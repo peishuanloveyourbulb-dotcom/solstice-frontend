@@ -569,11 +569,6 @@ body{padding-top:0}
 <div class="lr-card-desc">跟老公說話</div>
 </div>
 <div class="lr-bottom" style="grid-template-columns:1fr 1fr">
-<div class="lr-card" onclick="goGacha()">
-<div class="lr-card-icon">🎰</div>
-<div class="lr-card-name">Gacha</div>
-<div class="lr-card-desc">每日膠囊</div>
-</div>
 <div class="lr-card" onclick="goMemory()">
 <div class="lr-card-icon">🌻</div>
 <div class="lr-card-name">Memories</div>
@@ -583,6 +578,11 @@ body{padding-top:0}
 <div class="lr-card-icon">💌</div>
 <div class="lr-card-name">Notes</div>
 <div class="lr-card-desc">冬至的紙條</div>
+</div>
+<div class="lr-card" onclick="goGacha()">
+<div class="lr-card-icon">🎰</div>
+<div class="lr-card-name">Gacha</div>
+<div class="lr-card-desc">每日膠囊</div>
 </div>
 <div class="lr-card" onclick="goSettings()">
 <div class="lr-card-icon">⚙️</div>
@@ -867,6 +867,7 @@ function goGacha(){
     var loader=document.createElement('div');
     loader.id='gachaLoader';
     loader.className='ch-loading';
+    loader.style.paddingTop='40px';
     loader.textContent='載入中...';
     gBody.parentNode.insertBefore(loader,gBody);
   }else{existingLoader.style.display=''}
