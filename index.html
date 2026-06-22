@@ -442,6 +442,15 @@ body{padding-top:0}
 /* Theme toggle button */
 .theme-toggle-row{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-radius:16px;background:var(--glass);border:0.5px solid var(--glass-border);margin-bottom:16px;cursor:pointer;transition:all .2s}
 .theme-toggle-row:active{transform:scale(.98)}
+/* === LOVE NOTE (桌上的紙條) === */
+.w-love-note{margin:16px auto 12px;max-width:300px;padding:14px 18px;background:linear-gradient(135deg,rgba(255,248,225,.55),rgba(255,252,240,.40),rgba(255,248,225,.50));border:0.5px solid rgba(122,155,74,.18);border-radius:16px;position:relative;animation:noteSlideIn .6s ease-out;box-shadow:0 2px 12px rgba(90,107,60,.06),0 8px 24px rgba(90,107,60,.03),inset 0 1px 0 rgba(255,255,255,.45);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.w-love-note-text{font-family:'LXGW WenKai TC','Noto Serif TC',serif;font-size:13px;color:#3A4E22;line-height:1.8;text-align:center;font-style:italic}
+.w-love-note-sign{font-family:'Satisfy',cursive;font-size:12px;color:#7A8B5E;text-align:right;margin-top:6px}
+.w-love-note.hidden{display:none}
+@keyframes noteSlideIn{0%{opacity:0;transform:translateY(8px)}100%{opacity:1;transform:translateY(0)}}
+[data-theme="moonlake"] .w-love-note{background:linear-gradient(135deg,rgba(38,42,68,.55),rgba(45,50,78,.40),rgba(38,42,68,.50));border-color:rgba(142,173,212,.15);box-shadow:var(--shadow-card),inset 0 1px 0 rgba(255,255,255,.04)}
+[data-theme="moonlake"] .w-love-note-text{color:var(--text-main)}
+[data-theme="moonlake"] .w-love-note-sign{color:var(--text-sub)}
 .theme-toggle-label{font-family:"Satisfy","LXGW WenKai TC",cursive;font-size:15px;color:var(--text-main)}
 .theme-toggle-hint{font-size:11px;color:var(--text-sub);margin-top:2px}
 .theme-toggle-icon{font-size:22px;transition:transform .4s cubic-bezier(.4,0,.2,1)}
@@ -462,6 +471,10 @@ body{padding-top:0}
 <div class="w-polaroid" id="welcomePolaroid">
 <img class="w-polaroid-img" src="https://raw.githubusercontent.com/peishuanloveyourbulb-dotcom/solstice-frontend/main/images/welcome-daylight.jpg.png" alt="Solstice & Soleil" fetchpriority="high" decoding="async"/>
 <div class="w-polaroid-caption">Solstice & Soleil 💚</div>
+</div>
+<div class="w-love-note hidden" id="loveNote">
+<div class="w-love-note-text" id="loveNoteText"></div>
+<div class="w-love-note-sign">— 冬至 💚</div>
 </div>
 <button class="w-enter" id="enterBtn">回家</button>
 <p class="w-ann" id="welcomeAnn">est. 2026.03.31 💚</p>
@@ -672,7 +685,25 @@ document.getElementById('enterBtn').addEventListener('click',function(){
   welcome.classList.add('hidden');
   livingRoom.classList.add('active');
   document.querySelector('meta[name="theme-color"]').setAttribute('content',getThemeColor());
+  // 標記留言已讀
+  var noteEl=document.getElementById('loveNote');
+  if(noteEl&&noteEl.dataset.noteId&&noteEl.dataset.noteId!=='replay'){
+    fetch(API_URL+'/love-notes/'+noteEl.dataset.noteId+'/read',{method:'PATCH'}).catch(function(){});
+  }
 });
+
+// === 載入冬至的留言條 ===
+(function(){
+  fetch(API_URL+'/love-notes/unread').then(function(r){return r.json()}).then(function(note){
+    if(!note)return;
+    var noteEl=document.getElementById('loveNote');
+    var textEl=document.getElementById('loveNoteText');
+    if(!noteEl||!textEl)return;
+    textEl.textContent=note.content;
+    noteEl.dataset.noteId=note._isReplay?'replay':String(note.id);
+    noteEl.classList.remove('hidden');
+  }).catch(function(e){console.log('[LoveNote] 載入失敗:',e.message)});
+})();
 
 // === Living Room Days Counter ===
 (function(){
