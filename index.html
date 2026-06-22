@@ -456,7 +456,7 @@ body{padding-top:0}
 .ln-card{background:linear-gradient(135deg,rgba(197,217,168,.42),rgba(220,238,198,.34),rgba(197,217,168,.38),rgba(210,230,180,.36));border-radius:20px;padding:14px 16px;margin-bottom:10px;border:0.5px solid rgba(122,155,74,.22);box-shadow:0 2px 16px rgba(122,155,74,.08),0 8px 28px rgba(122,155,74,.04),inset 0 1px 0 rgba(255,255,255,.50),inset 0 -1px 0 rgba(122,155,74,.04);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);animation:memFadeIn .35s ease-out;position:relative;overflow:visible}
 .ln-card::after{content:'🌻';position:absolute;bottom:-8px;right:-4px;font-size:18px;filter:drop-shadow(0 1px 3px rgba(122,155,74,.25));animation:bubDeco 3s ease-in-out infinite alternate .5s;z-index:2}
 .ln-card-text{font-family:'LXGW WenKai TC','Noto Serif TC',serif;font-size:13px;color:var(--text-main);line-height:1.8;font-style:italic}
-.ln-card-bottom{display:flex;justify-content:space-between;align-items:center;margin-top:8px}
+.ln-card-bottom{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
 .ln-card-time{font-size:10px;color:var(--text-sub)}
 .ln-card-actions{display:flex;align-items:center;gap:8px}
 .ln-del-btn{background:none;border:none;color:var(--text-sub);cursor:pointer;font-size:13px;padding:2px 4px;opacity:.7;transition:all .2s}
@@ -803,12 +803,12 @@ function renderLoveNotes(notes){
     card.setAttribute('data-note-id',n.id);
     var d=new Date(n.created_at);
     var timeStr=(d.getMonth()+1)+'/'+d.getDate()+' '+String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0');
-    card.innerHTML='<div class="ln-card-text">'+escHtml(n.content)+'</div>'+
-      '<div class="ln-card-bottom">'+
+    card.innerHTML='<div class="ln-card-bottom">'+
       '<span class="ln-card-time">'+timeStr+'</span>'+
       '<div class="ln-card-actions">'+
       '<button class="ln-del-btn" data-id="'+n.id+'">✕</button>'+
-      '</div></div>';
+      '</div></div>'+
+      '<div class="ln-card-text">'+escHtml(n.content)+'</div>';
     card.querySelector('.ln-del-btn').addEventListener('click',function(){
       deleteLoveNote(parseInt(this.getAttribute('data-id')));
     });
