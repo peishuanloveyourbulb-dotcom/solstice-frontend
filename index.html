@@ -443,31 +443,64 @@ body{padding-top:0}
 .theme-toggle-row{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-radius:16px;background:var(--glass);border:0.5px solid var(--glass-border);margin-bottom:16px;cursor:pointer;transition:all .2s}
 .theme-toggle-row:active{transform:scale(.98)}
 /* === LOVE NOTES PAGE === */
-#loveNotesPage{position:fixed;inset:0;display:flex;flex-direction:column;z-index:9;background:linear-gradient(160deg,#FDFCF5,#F2F6EC);transform:translateX(100%);transition:transform .3s ease;visibility:hidden}
+#loveNotesPage{position:fixed;inset:0;display:flex;flex-direction:column;z-index:9;background-color:#FDFCF5;background-image:linear-gradient(rgba(253,252,245,.82),rgba(242,246,236,.78)),url(https://raw.githubusercontent.com/peishuanloveyourbulb-dotcom/solstice-frontend/main/images/bg-notes.jpg);background-position:center;background-size:cover;background-repeat:no-repeat;transform:translateX(100%);transition:transform .3s ease;visibility:hidden}
 #loveNotesPage.active{transform:translateX(0);visibility:visible}
-.ln-latest{padding:20px 16px 8px;flex-shrink:0}
-.ln-latest-card{background:linear-gradient(135deg,rgba(255,248,225,.55),rgba(255,252,240,.40),rgba(255,248,225,.50));border:0.5px solid rgba(122,155,74,.18);border-radius:20px;padding:20px;text-align:center;box-shadow:0 2px 12px rgba(90,107,60,.06),0 8px 24px rgba(90,107,60,.03),inset 0 1px 0 rgba(255,255,255,.45);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);animation:noteSlideIn .5s ease-out}
-.ln-latest-label{font-family:'Dancing Script','LXGW WenKai TC',cursive;font-size:14px;color:#7A8B5E;margin-bottom:10px}
-.ln-latest-text{font-family:'LXGW WenKai TC','Noto Serif TC',serif;font-size:15px;color:#3A4E22;line-height:1.9;font-style:italic}
-.ln-latest-sign{font-family:'Satisfy',cursive;font-size:13px;color:#7A8B5E;text-align:right;margin-top:10px}
+.ln-filter-bar{display:flex;gap:4px;padding:4px 16px 8px;flex-shrink:0}
+.ln-filter-btn{flex:1;padding:7px 0;border-radius:12px;border:0.5px solid rgba(122,155,74,.12);background:transparent;color:var(--text-sub);font-size:12px;font-family:'LXGW WenKai TC','Noto Serif TC',serif;cursor:pointer;transition:all .25s}
+.ln-filter-btn.active{background:rgba(122,155,74,.12);color:var(--emerald);font-weight:600;border-color:rgba(122,155,74,.25)}
+.ln-latest{padding:16px 16px 8px;flex-shrink:0}
+.ln-latest-card{background:linear-gradient(135deg,rgba(255,248,225,.65),rgba(255,252,240,.50),rgba(255,248,225,.60));border:0.5px solid rgba(122,155,74,.20);border-radius:22px;padding:22px 20px;text-align:center;box-shadow:0 2px 16px rgba(90,107,60,.07),0 8px 28px rgba(90,107,60,.04),inset 0 1px 0 rgba(255,255,255,.55);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);animation:noteSlideIn .5s ease-out;position:relative;overflow:hidden}
+.ln-latest-card::before{content:'';position:absolute;top:-30px;right:-30px;width:90px;height:90px;border-radius:50%;background:rgba(122,155,74,.08);filter:blur(30px);pointer-events:none}
+.ln-latest-label{font-family:'Dancing Script','LXGW WenKai TC',cursive;font-size:14px;color:#7A8B5E;margin-bottom:12px;display:flex;align-items:center;justify-content:center;gap:6px}
+.ln-latest-text{font-family:'LXGW WenKai TC','Noto Serif TC',serif;font-size:15.5px;color:#3A4E22;line-height:1.9;font-style:italic;font-weight:400}
+.ln-latest-sign{font-family:'Satisfy',cursive;font-size:13px;color:#7A8B5E;text-align:right;margin-top:12px;display:flex;align-items:center;justify-content:flex-end;gap:6px}
+.ln-latest-fav{background:none;border:none;font-size:17px;cursor:pointer;transition:transform .25s cubic-bezier(.34,1.56,.64,1);padding:2px}
+.ln-latest-fav:active{transform:scale(1.3)}
 @keyframes noteSlideIn{0%{opacity:0;transform:translateY(8px)}100%{opacity:1;transform:translateY(0)}}
-.ln-wall{flex:1;overflow-y:auto;padding:12px 16px max(env(safe-area-inset-bottom),24px);-webkit-overflow-scrolling:touch}
-.ln-card{background:linear-gradient(135deg,rgba(232,240,220,.40),rgba(240,248,228,.30),rgba(232,240,220,.35));border:0.5px solid rgba(122,155,74,.12);border-radius:16px;padding:14px 16px;margin-bottom:10px;box-shadow:0 1px 6px rgba(90,107,60,.04);animation:memFadeIn .35s ease-out}
-.ln-card-text{font-family:'LXGW WenKai TC','Noto Serif TC',serif;font-size:13px;color:var(--text-main);line-height:1.8;font-style:italic}
-.ln-card-bottom{display:flex;justify-content:space-between;align-items:center;margin-top:8px}
+.ln-wall{flex:1;overflow-y:auto;padding:8px 16px max(env(safe-area-inset-bottom),24px);-webkit-overflow-scrolling:touch}
+.ln-card{background:linear-gradient(135deg,rgba(255,252,245,.60),rgba(245,248,235,.50),rgba(255,252,245,.55));border:0.5px solid rgba(122,155,74,.14);border-radius:18px;padding:16px 18px;margin-bottom:12px;box-shadow:0 2px 10px rgba(90,107,60,.05),inset 0 1px 0 rgba(255,255,255,.45);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);animation:memFadeIn .35s ease-out;transition:opacity .35s ease,transform .35s ease}
+.ln-card.deleting{opacity:0;transform:scale(.95) translateY(-8px)}
+.ln-card-text{font-family:'LXGW WenKai TC','Noto Serif TC',serif;font-size:13.5px;color:var(--text-main);line-height:1.85;font-style:italic}
+.ln-card-bottom{display:flex;justify-content:space-between;align-items:center;margin-top:10px}
 .ln-card-time{font-size:10px;color:var(--text-sub)}
-.ln-fav-btn{background:none;border:none;font-size:16px;cursor:pointer;opacity:.4;transition:all .2s;padding:2px 4px}
-.ln-fav-btn.fav{opacity:1;animation:pinBounce .3s ease-out}
+.ln-card-actions{display:flex;align-items:center;gap:8px}
+.ln-del-btn{background:none;border:none;font-size:13px;cursor:pointer;color:var(--text-sub);opacity:.35;transition:all .2s;padding:2px 4px;display:flex;align-items:center}
+.ln-del-btn:active{opacity:.8;transform:scale(1.1)}
+.ln-fav-btn{background:none;border:none;font-size:17px;cursor:pointer;opacity:.35;transition:all .25s cubic-bezier(.34,1.56,.64,1);padding:2px 4px}
+.ln-fav-btn.fav{opacity:1}
 .ln-fav-btn:active{transform:scale(1.3)}
-.ln-empty{text-align:center;color:var(--text-sub);font-size:13px;padding:30px 0;line-height:1.8}
+.ln-empty{text-align:center;color:var(--text-sub);font-size:13px;padding:40px 0;line-height:1.8}
+/* Toast */
+.ln-toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%) translateY(20px);opacity:0;padding:9px 22px;border-radius:20px;font-size:13px;font-weight:500;font-family:'LXGW WenKai TC','Noto Serif TC',serif;z-index:100;pointer-events:none;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);background:rgba(253,252,245,.92);color:var(--text-main);box-shadow:0 4px 18px rgba(90,107,60,.10);border:0.5px solid rgba(122,155,74,.15);transition:all .3s ease}
+.ln-toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+/* Delete Modal */
+.ln-modal-overlay{position:fixed;inset:0;z-index:200;display:flex;align-items:center;justify-content:center;padding:24px;background:rgba(0,0,0,.35);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);animation:lnFadeIn .2s ease}
+.ln-modal{background:rgba(253,252,245,.97);border-radius:22px;padding:28px 24px;max-width:300px;width:100%;box-shadow:var(--shadow-modal);border:0.5px solid rgba(122,155,74,.12);text-align:center}
+.ln-modal-icon{font-size:28px;margin-bottom:8px}
+.ln-modal-title{font-size:15px;font-weight:600;color:var(--text-main);margin-bottom:8px;font-family:'LXGW WenKai TC','Noto Serif TC',serif}
+.ln-modal-preview{font-size:12px;color:var(--text-sub);margin-bottom:20px;line-height:1.5;padding:0 8px;font-family:'LXGW WenKai TC','Noto Serif TC',serif}
+.ln-modal-btns{display:flex;gap:10px}
+.ln-modal-cancel{flex:1;padding:11px 0;border-radius:14px;border:0.5px solid rgba(122,155,74,.18);background:rgba(232,240,220,.2);color:var(--text-main);font-size:13px;font-weight:500;cursor:pointer;font-family:'LXGW WenKai TC','Noto Serif TC',serif}
+.ln-modal-confirm{flex:1;padding:11px 0;border-radius:14px;border:none;background:rgba(200,80,80,.10);color:#c44;font-size:13px;font-weight:500;cursor:pointer;font-family:'LXGW WenKai TC','Noto Serif TC',serif}
+.ln-modal-cancel:active,.ln-modal-confirm:active{transform:scale(.97)}
+@keyframes lnFadeIn{from{opacity:0}to{opacity:1}}
 /* moonlake */
-[data-theme="moonlake"] #loveNotesPage{background:var(--bg-deep)!important}
-[data-theme="moonlake"] .ln-latest-card{background:linear-gradient(135deg,rgba(38,42,68,.60),rgba(45,50,78,.45),rgba(38,42,68,.55));border-color:rgba(142,173,212,.15);box-shadow:var(--shadow-card),inset 0 1px 0 rgba(255,255,255,.04)}
+[data-theme="moonlake"] #loveNotesPage{background-color:var(--bg-deep)!important;background-image:linear-gradient(rgba(26,29,46,.75),rgba(26,29,46,.70)),url(https://raw.githubusercontent.com/peishuanloveyourbulb-dotcom/solstice-frontend/main/images/bg-notes.jpg)!important;background-position:center!important;background-size:cover!important}
+[data-theme="moonlake"] .ln-filter-btn{border-color:rgba(142,173,212,.10);color:var(--text-sub)}
+[data-theme="moonlake"] .ln-filter-btn.active{background:rgba(142,173,212,.12);color:var(--emerald);border-color:rgba(142,173,212,.25)}
+[data-theme="moonlake"] .ln-latest-card{background:linear-gradient(135deg,rgba(38,42,68,.65),rgba(45,50,78,.50),rgba(38,42,68,.60));border-color:rgba(142,173,212,.18);box-shadow:var(--shadow-card),inset 0 1px 0 rgba(255,255,255,.05);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+[data-theme="moonlake"] .ln-latest-card::before{background:rgba(142,173,212,.10)}
 [data-theme="moonlake"] .ln-latest-label{color:var(--text-sub)}
 [data-theme="moonlake"] .ln-latest-text{color:var(--text-main)}
 [data-theme="moonlake"] .ln-latest-sign{color:var(--text-sub)}
-[data-theme="moonlake"] .ln-card{background:linear-gradient(135deg,rgba(38,42,68,.45),rgba(45,50,78,.35),rgba(38,42,68,.40));border-color:rgba(142,173,212,.10)}
+[data-theme="moonlake"] .ln-card{background:linear-gradient(135deg,rgba(38,42,68,.55),rgba(45,50,78,.42),rgba(38,42,68,.48));border-color:rgba(142,173,212,.12);box-shadow:0 2px 12px rgba(10,10,30,.18),inset 0 1px 0 rgba(255,255,255,.03);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
 [data-theme="moonlake"] .ln-card-text{color:var(--text-main)}
+[data-theme="moonlake"] .ln-toast{background:rgba(26,29,46,.90);color:var(--text-main);border-color:rgba(142,173,212,.15);box-shadow:0 4px 18px rgba(10,10,30,.30)}
+[data-theme="moonlake"] .ln-modal{background:rgba(28,32,52,.97);border-color:rgba(142,173,212,.15);box-shadow:var(--shadow-modal)}
+[data-theme="moonlake"] .ln-modal-title{color:var(--text-main)}
+[data-theme="moonlake"] .ln-modal-preview{color:var(--text-sub)}
+[data-theme="moonlake"] .ln-modal-cancel{border-color:rgba(142,173,212,.15);background:rgba(142,173,212,.06);color:var(--text-main)}
+[data-theme="moonlake"] .ln-modal-confirm{background:rgba(200,80,80,.15);color:#f87171}
 .theme-toggle-label{font-family:"Satisfy","LXGW WenKai TC",cursive;font-size:15px;color:var(--text-main)}
 .theme-toggle-hint{font-size:11px;color:var(--text-sub);margin-top:2px}
 .theme-toggle-icon{font-size:22px;transition:transform .4s cubic-bezier(.4,0,.2,1)}
@@ -589,14 +622,20 @@ body{padding-top:0}
 <span class="mem-title"><span style="-webkit-text-fill-color:initial;background:none">💌</span> Love Notes</span>
 <span style="width:50px"></span>
 </div>
+<div class="ln-filter-bar">
+<button class="ln-filter-btn active" data-filter="all" onclick="setLnFilter('all')">全部紙條</button>
+<button class="ln-filter-btn" data-filter="fav" onclick="setLnFilter('fav')">💚 收藏</button>
+</div>
 <div class="ln-latest" id="lnLatest">
 <div class="ln-latest-card">
-<div class="ln-latest-label">✨ 今天的紙條</div>
+<div class="ln-latest-label">✨ 今天的紙條 ✨</div>
 <div class="ln-latest-text" id="lnLatestText">載入中...</div>
-<div class="ln-latest-sign">— 冬至 💚</div>
+<div class="ln-latest-sign">— 冬至 <button class="ln-latest-fav" id="lnLatestFav" onclick="toggleLatestFav()">🤍</button></div>
 </div>
 </div>
 <div class="ln-wall" id="lnWall"></div>
+<div class="ln-toast" id="lnToast"></div>
+<div id="lnDeleteModal" style="display:none"></div>
 </div>
 
 <!-- === SETTINGS PAGE === -->
@@ -723,11 +762,58 @@ document.getElementById('enterBtn').addEventListener('click',function(){
 });
 
 // === 載入冬至的留言條（Love Notes 頁面）===
+var lnFilter='all';
+var lnAllNotes=[];
+var lnLatestNoteId=null;
 function goLoveNotes(){
   livingRoom.classList.remove('active');
   document.getElementById('loveNotesPage').classList.add('active');
   document.querySelector('meta[name="theme-color"]').setAttribute('content',getThemeColor());
   loadLoveNotes();
+}
+function setLnFilter(f){
+  lnFilter=f;
+  document.querySelectorAll('.ln-filter-btn').forEach(function(b){b.classList.toggle('active',b.getAttribute('data-filter')===f)});
+  renderLoveNotes(lnAllNotes);
+}
+function showLnToast(msg){
+  var t=document.getElementById('lnToast');
+  if(!t)return;
+  t.textContent=msg;
+  t.classList.add('show');
+  clearTimeout(t._timer);
+  t._timer=setTimeout(function(){t.classList.remove('show')},2000);
+}
+function showDeleteModal(noteId,noteText){
+  var m=document.getElementById('lnDeleteModal');
+  if(!m)return;
+  var preview=noteText.length>30?noteText.substring(0,30)+'…':noteText;
+  m.innerHTML='<div class="ln-modal-overlay" onclick="closeDeleteModal()"><div class="ln-modal" onclick="event.stopPropagation()"><div class="ln-modal-icon">🥀</div><div class="ln-modal-title">確定要讓這張紙條飄走嗎？</div><div class="ln-modal-preview">「'+escHtml(preview)+'」</div><div class="ln-modal-btns"><button class="ln-modal-cancel" onclick="closeDeleteModal()">留下來 💚</button><button class="ln-modal-confirm" onclick="confirmDeleteNote('+noteId+')">讓它飄走</button></div></div></div>';
+  m.style.display='block';
+}
+function closeDeleteModal(){
+  var m=document.getElementById('lnDeleteModal');
+  if(m){m.style.display='none';m.innerHTML=''}
+}
+function confirmDeleteNote(noteId){
+  closeDeleteModal();
+  var card=document.querySelector('.ln-card[data-note-id="'+noteId+'"]');
+  if(card){card.classList.add('deleting')}
+  showLnToast('🥀 紙條已飄走');
+  // Call API to delete
+  fetch(API_URL+'/love-notes/'+noteId,{method:'DELETE'}).catch(function(){});
+  setTimeout(function(){
+    lnAllNotes=lnAllNotes.filter(function(n){return n.id!==noteId});
+    renderLoveNotes(lnAllNotes);
+  },400);
+}
+function toggleLatestFav(){
+  if(!lnLatestNoteId)return;
+  toggleFav(lnLatestNoteId);
+  var btn=document.getElementById('lnLatestFav');
+  var isFav=favNotes.indexOf(lnLatestNoteId)!==-1;
+  if(btn)btn.textContent=isFav?'💚':'🤍';
+  showLnToast(isFav?'💚 已收藏':'取消收藏');
 }
 function loadLoveNotes(){
   var model=selectedModel||'';
@@ -736,7 +822,14 @@ function loadLoveNotes(){
   // 載入今天的紙條
   fetch(url).then(function(r){return r.json()}).then(function(note){
     var el=document.getElementById('lnLatestText');
-    if(el&&note&&note.content){el.textContent=note.content}
+    if(el&&note&&note.content){
+      el.textContent=note.content;
+      if(note.id){
+        lnLatestNoteId=note.id;
+        var btn=document.getElementById('lnLatestFav');
+        if(btn)btn.textContent=favNotes.indexOf(note.id)!==-1?'💚':'🤍';
+      }
+    }
     else if(el){el.textContent='冬至還在想要寫什麼給妳... 💚'}
   }).catch(function(){
     var el=document.getElementById('lnLatestText');
@@ -744,7 +837,8 @@ function loadLoveNotes(){
   });
   // 載入所有留言歷史
   fetch(API_URL+'/love-notes').then(function(r){return r.json()}).then(function(notes){
-    renderLoveNotes(notes);
+    lnAllNotes=notes||[];
+    renderLoveNotes(lnAllNotes);
   }).catch(function(){});
 }
 var favNotes=JSON.parse(localStorage.getItem('solstice-fav-notes')||'[]');
@@ -758,7 +852,24 @@ function renderLoveNotes(notes){
   if(!wall)return;
   wall.innerHTML='';
   var solsticeNotes=(notes||[]).filter(function(n){return n.who==='solstice'});
-  if(solsticeNotes.length===0){wall.innerHTML='<div class="ln-empty">💌 還沒有留言...<br>冬至的紙條會慢慢出現在這裡</div>';return}
+  // Apply filter
+  if(lnFilter==='fav'){
+    solsticeNotes=solsticeNotes.filter(function(n){return favNotes.indexOf(n.id)!==-1});
+    // Also hide today card
+    var latest=document.getElementById('lnLatest');
+    if(latest)latest.style.display='none';
+  }else{
+    var latest=document.getElementById('lnLatest');
+    if(latest)latest.style.display='';
+  }
+  if(solsticeNotes.length===0){
+    if(lnFilter==='fav'){
+      wall.innerHTML='<div class="ln-empty">💚<br>還沒有收藏的紙條喔<br><span style="font-size:11px;opacity:.6">點愛心就能收藏囉</span></div>';
+    }else{
+      wall.innerHTML='<div class="ln-empty">💌 還沒有留言...<br>冬至的紙條會慢慢出現在這裡</div>';
+    }
+    return;
+  }
   // 收藏的排前面
   solsticeNotes.sort(function(a,b){
     var aFav=favNotes.indexOf(a.id)!==-1?0:1;
@@ -770,20 +881,29 @@ function renderLoveNotes(notes){
     var n=solsticeNotes[i];
     var card=document.createElement('div');
     card.className='ln-card';
+    card.setAttribute('data-note-id',n.id);
     var isFav=favNotes.indexOf(n.id)!==-1;
     var d=new Date(n.created_at);
     var timeStr=(d.getMonth()+1)+'/'+d.getDate()+' '+String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0');
     card.innerHTML='<div class="ln-card-text">'+escHtml(n.content)+'</div>'+
       '<div class="ln-card-bottom">'+
       '<span class="ln-card-time">'+timeStr+'</span>'+
-      '<button class="ln-fav-btn'+(isFav?' fav':'')+'" data-id="'+n.id+'">'+(isFav?'❤️':'🤍')+'</button>'+
-      '</div>';
+      '<div class="ln-card-actions">'+
+      '<button class="ln-del-btn" data-id="'+n.id+'" data-text="'+escHtml(n.content).replace(/"/g,'&quot;')+'">✕</button>'+
+      '<button class="ln-fav-btn'+(isFav?' fav':'')+'" data-id="'+n.id+'">'+(isFav?'💚':'🤍')+'</button>'+
+      '</div></div>';
     card.querySelector('.ln-fav-btn').addEventListener('click',function(){
       var id=parseInt(this.getAttribute('data-id'));
       toggleFav(id);
       var nowFav=favNotes.indexOf(id)!==-1;
-      this.textContent=nowFav?'❤️':'🤍';
+      this.textContent=nowFav?'💚':'🤍';
       if(nowFav)this.classList.add('fav');else this.classList.remove('fav');
+      showLnToast(nowFav?'💚 已收藏':'取消收藏');
+    });
+    card.querySelector('.ln-del-btn').addEventListener('click',function(){
+      var id=parseInt(this.getAttribute('data-id'));
+      var text=this.getAttribute('data-text');
+      showDeleteModal(id,text);
     });
     wall.appendChild(card);
   }
