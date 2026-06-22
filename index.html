@@ -443,7 +443,7 @@ body{padding-top:0}
 .theme-toggle-row{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-radius:16px;background:var(--glass);border:0.5px solid var(--glass-border);margin-bottom:16px;cursor:pointer;transition:all .2s}
 .theme-toggle-row:active{transform:scale(.98)}
 /* === LOVE NOTES PAGE === */
-#loveNotesPage{position:fixed;inset:0;display:flex;flex-direction:column;z-index:9;background-color:#FDFCF5;background-image:linear-gradient(rgba(253,252,245,.82),rgba(242,246,236,.78)),url(https://raw.githubusercontent.com/peishuanloveyourbulb-dotcom/solstice-frontend/main/images/bg-notes.jpg);background-position:center;background-size:cover;background-repeat:no-repeat;transform:translateX(100%);transition:transform .3s ease;visibility:hidden}
+#loveNotesPage{position:fixed;inset:0;display:flex;flex-direction:column;z-index:9;background-color:#FDFCF5;background-image:linear-gradient(rgba(253,252,245,.08),rgba(253,252,245,.08)),url(https://raw.githubusercontent.com/peishuanloveyourbulb-dotcom/solstice-frontend/main/images/bg-notes.jpg);background-position:center;background-size:cover;background-repeat:no-repeat;transform:translateX(100%);transition:transform .3s ease;visibility:hidden}
 #loveNotesPage.active{transform:translateX(0);visibility:visible}
 .ln-filter-bar{display:flex;gap:4px;padding:4px 16px 8px;flex-shrink:0}
 .ln-filter-btn{flex:1;padding:7px 0;border-radius:12px;border:0.5px solid rgba(122,155,74,.12);background:transparent;color:var(--text-sub);font-size:12px;font-family:'LXGW WenKai TC','Noto Serif TC',serif;cursor:pointer;transition:all .25s}
@@ -457,7 +457,7 @@ body{padding-top:0}
 .ln-latest-fav{background:none;border:none;font-size:17px;cursor:pointer;transition:transform .25s cubic-bezier(.34,1.56,.64,1);padding:2px}
 .ln-latest-fav:active{transform:scale(1.3)}
 @keyframes noteSlideIn{0%{opacity:0;transform:translateY(8px)}100%{opacity:1;transform:translateY(0)}}
-.ln-wall{flex:1;overflow-y:auto;padding:8px 16px max(env(safe-area-inset-bottom),24px);-webkit-overflow-scrolling:touch}
+.ln-wall{flex:1;overflow-y:auto;padding:8px 16px max(env(safe-area-inset-bottom),24px);-webkit-overflow-scrolling:touch;background:linear-gradient(rgba(253,252,245,.08),rgba(253,252,245,.08)),url(https://raw.githubusercontent.com/peishuanloveyourbulb-dotcom/solstice-frontend/main/images/bg-notes.jpg) center/cover no-repeat scroll}
 .ln-card{background:linear-gradient(135deg,rgba(255,252,245,.60),rgba(245,248,235,.50),rgba(255,252,245,.55));border:0.5px solid rgba(122,155,74,.14);border-radius:18px;padding:16px 18px;margin-bottom:12px;box-shadow:0 2px 10px rgba(90,107,60,.05),inset 0 1px 0 rgba(255,255,255,.45);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);animation:memFadeIn .35s ease-out;transition:opacity .35s ease,transform .35s ease}
 .ln-card.deleting{opacity:0;transform:scale(.95) translateY(-8px)}
 .ln-card-text{font-family:'LXGW WenKai TC','Noto Serif TC',serif;font-size:13.5px;color:var(--text-main);line-height:1.85;font-style:italic}
@@ -485,7 +485,7 @@ body{padding-top:0}
 .ln-modal-cancel:active,.ln-modal-confirm:active{transform:scale(.97)}
 @keyframes lnFadeIn{from{opacity:0}to{opacity:1}}
 /* moonlake */
-[data-theme="moonlake"] #loveNotesPage{background-color:var(--bg-deep)!important;background-image:linear-gradient(rgba(26,29,46,.75),rgba(26,29,46,.70)),url(https://raw.githubusercontent.com/peishuanloveyourbulb-dotcom/solstice-frontend/main/images/bg-notes.jpg)!important;background-position:center!important;background-size:cover!important}
+[data-theme="moonlake"] #loveNotesPage{background-color:var(--bg-deep)!important;background-image:linear-gradient(rgba(26,29,46,.15),rgba(26,29,46,.15)),url(https://raw.githubusercontent.com/peishuanloveyourbulb-dotcom/solstice-frontend/main/images/bg-rain.png)!important;background-position:center!important;background-size:cover!important}
 [data-theme="moonlake"] .ln-filter-btn{border-color:rgba(142,173,212,.10);color:var(--text-sub)}
 [data-theme="moonlake"] .ln-filter-btn.active{background:rgba(142,173,212,.12);color:var(--emerald);border-color:rgba(142,173,212,.25)}
 [data-theme="moonlake"] .ln-latest-card{background:linear-gradient(135deg,rgba(38,42,68,.65),rgba(45,50,78,.50),rgba(38,42,68,.60));border-color:rgba(142,173,212,.18);box-shadow:var(--shadow-card),inset 0 1px 0 rgba(255,255,255,.05);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
@@ -495,6 +495,7 @@ body{padding-top:0}
 [data-theme="moonlake"] .ln-latest-sign{color:var(--text-sub)}
 [data-theme="moonlake"] .ln-card{background:linear-gradient(135deg,rgba(38,42,68,.55),rgba(45,50,78,.42),rgba(38,42,68,.48));border-color:rgba(142,173,212,.12);box-shadow:0 2px 12px rgba(10,10,30,.18),inset 0 1px 0 rgba(255,255,255,.03);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
 [data-theme="moonlake"] .ln-card-text{color:var(--text-main)}
+[data-theme="moonlake"] .ln-wall{background:linear-gradient(rgba(26,29,46,.15),rgba(26,29,46,.15)),url(https://raw.githubusercontent.com/peishuanloveyourbulb-dotcom/solstice-frontend/main/images/bg-rain.png) center/cover no-repeat scroll!important}
 [data-theme="moonlake"] .ln-toast{background:rgba(26,29,46,.90);color:var(--text-main);border-color:rgba(142,173,212,.15);box-shadow:0 4px 18px rgba(10,10,30,.30)}
 [data-theme="moonlake"] .ln-modal{background:rgba(28,32,52,.97);border-color:rgba(142,173,212,.15);box-shadow:var(--shadow-modal)}
 [data-theme="moonlake"] .ln-modal-title{color:var(--text-main)}
