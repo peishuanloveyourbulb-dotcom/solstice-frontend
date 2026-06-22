@@ -463,7 +463,7 @@ body{padding-top:0}
 .ln-del-btn:active{opacity:1}
 [data-theme="moonlake"] .ln-del-btn{color:var(--text-sub)}
 .ln-empty{text-align:center;color:var(--text-sub);font-size:13px;padding:30px 0;line-height:1.8}
-.ln-loading{text-align:center;color:var(--text-sub);font-size:13px;padding:20px}
+.ln-loading{text-align:center;color:var(--text-sub);font-size:13px;padding:20px;flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center}
 .ln-loading::before{content:'🌻';display:block;font-size:22px;margin-bottom:6px;animation:sunflowerBreathe 2s ease-in-out infinite}
 /* moonlake */
 [data-theme="moonlake"] #loveNotesPage{background:linear-gradient(rgba(26,29,46,.15),rgba(26,29,46,.15)),url(https://raw.githubusercontent.com/peishuanloveyourbulb-dotcom/solstice-frontend/main/images/bg-rain.png) center/cover no-repeat!important}
@@ -752,8 +752,8 @@ function goLoveNotes(){
 function loadLoveNotes(){
   var wall=document.getElementById('lnWall');
   var latest=document.getElementById('lnLatest');
-  // 第一招：先隱藏內容 + 顯示 loading
-  if(latest)latest.style.opacity='0';
+  // 第一招：先隱藏內容 + 顯示 loading（display:none 讓 loading 位置跟聊天室一樣靠上居中）
+  if(latest){latest.style.display='none';latest.style.opacity='0'}
   if(wall)wall.innerHTML='<div class="ln-loading">載入中...</div>';
   var model=selectedModel||'';
   var url=API_URL+'/love-notes/unread';
@@ -762,8 +762,7 @@ function loadLoveNotes(){
   function tryReveal(){
     if(!unreadDone||!notesDone)return;
     renderLoveNotes(notesData);
-    if(latest)latest.style.transition='opacity .3s ease';
-    if(latest)latest.style.opacity='1';
+    if(latest){latest.style.display='';latest.style.transition='opacity .3s ease';latest.style.opacity='1'}
   }
   fetch(url).then(function(r){return r.json()}).then(function(note){
     var el=document.getElementById('lnLatestText');
