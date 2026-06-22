@@ -319,8 +319,7 @@ body{padding-top:0}
 .gacha-result-sign{font-family:'Satisfy',cursive;font-size:12px;color:#5A6B3C;text-align:right;margin-top:10px}
 .gacha-close-btn{position:absolute;top:8px;right:10px;width:24px;height:24px;border-radius:50%;background:rgba(122,155,74,.1);border:none;color:#5A6B3C;font-size:12px;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:.6;transition:opacity .2s}
 .gacha-close-btn:active{opacity:1}
-.gacha-del-btn{position:absolute;top:8px;left:10px;background:none;border:none;color:var(--text-sub);cursor:pointer;font-size:13px;padding:2px 4px;opacity:.5;transition:opacity .2s}
-.gacha-del-btn:active{opacity:1}
+
 .gacha-shelf-title{font-family:'Satisfy',cursive;font-size:14px;color:#4A5E30;margin-bottom:10px}
 .gacha-shelf{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-bottom:6px;max-width:320px}
 .gacha-shelf-item{width:34px;height:34px;border-radius:50%;border:1.5px solid rgba(122,155,74,.35);cursor:pointer;transition:all .2s;position:relative}
@@ -506,10 +505,12 @@ body{padding-top:0}
 .ln-note-empty{aspect-ratio:1;border-radius:3px;border:1px dashed rgba(122,155,74,.08);background:rgba(122,155,74,.02);display:flex;align-items:center;justify-content:center}
 .ln-note-empty span{font-size:16px;opacity:.12}
 .ln-wall-count{font-size:10px;color:rgba(90,107,60,.25);text-align:center;padding:8px 16px 0}
-.ln-opened{position:relative;background:linear-gradient(135deg,rgba(197,217,168,.35),rgba(220,238,198,.25));border:0.5px solid rgba(122,155,74,.18);border-radius:16px;padding:16px 18px;margin:12px 16px;animation:gachaReveal .4s ease-out}
+.ln-opened-overlay{position:fixed;inset:0;z-index:20;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.35);opacity:0;visibility:hidden;transition:opacity .3s ease,visibility .3s ease}
+.ln-opened-overlay.active{opacity:1;visibility:visible}
+.ln-opened{position:relative;background:linear-gradient(135deg,rgba(197,217,168,.55),rgba(220,238,198,.42));border:0.5px solid rgba(122,155,74,.22);border-radius:16px;padding:20px 18px;margin:0 24px;max-height:70vh;overflow-y:auto;animation:gachaReveal .4s ease-out;-webkit-overflow-scrolling:touch;box-shadow:0 8px 32px rgba(0,0,0,.12)}
 .ln-opened-close{position:absolute;top:8px;right:10px;width:24px;height:24px;border-radius:50%;background:rgba(122,155,74,.1);border:none;color:#5A6B3C;font-size:12px;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:.6}
 .ln-opened-close:active{opacity:1}
-.ln-opened-del{position:absolute;top:8px;left:10px;background:none;border:none;color:var(--text-sub);cursor:pointer;font-size:13px;padding:2px 4px;opacity:.5}
+.ln-opened-del{background:none;border:none;color:var(--text-sub);cursor:pointer;font-size:11px;padding:2px 4px;opacity:.45;transition:opacity .2s;display:inline-block;margin-top:8px}
 .ln-opened-del:active{opacity:1}
 .ln-opened-date{font-size:10px;color:rgba(90,107,60,.45);margin:0 0 6px;padding-top:2px}
 .ln-opened-text{font-family:'LXGW WenKai TC','Noto Serif TC',serif;font-size:13px;color:#3A4E22;line-height:1.85;margin:0 0 8px;font-style:italic}
@@ -521,15 +522,16 @@ body{padding-top:0}
 [data-theme="moonlake"] .ln-wall-label{color:rgba(145,150,173,.4)}
 [data-theme="moonlake"] .ln-note-preview{color:rgba(200,210,230,.7)}
 [data-theme="moonlake"] .ln-note-date{color:rgba(145,150,173,.35)}
-[data-theme="moonlake"] .ln-note:nth-child(6n+1){background:linear-gradient(145deg,rgba(201,160,220,.2),rgba(180,150,210,.12));border-color:rgba(201,160,220,.18)}
-[data-theme="moonlake"] .ln-note:nth-child(6n+2){background:linear-gradient(145deg,rgba(142,173,212,.18),rgba(130,165,210,.1));border-color:rgba(142,173,212,.16)}
-[data-theme="moonlake"] .ln-note:nth-child(6n+3){background:linear-gradient(145deg,rgba(170,155,200,.16),rgba(155,145,195,.1));border-color:rgba(170,155,200,.15)}
-[data-theme="moonlake"] .ln-note:nth-child(6n+4){background:linear-gradient(145deg,rgba(142,173,212,.2),rgba(150,175,215,.12));border-color:rgba(142,173,212,.18)}
-[data-theme="moonlake"] .ln-note:nth-child(6n+5){background:linear-gradient(145deg,rgba(201,160,220,.18),rgba(190,155,215,.1));border-color:rgba(201,160,220,.16)}
-[data-theme="moonlake"] .ln-note:nth-child(6n+6){background:linear-gradient(145deg,rgba(160,175,210,.17),rgba(142,173,212,.1));border-color:rgba(160,175,210,.15)}
+[data-theme="moonlake"] .ln-note:nth-child(6n+1){background:linear-gradient(145deg,rgba(201,160,220,.25),rgba(180,150,210,.16));border-color:rgba(201,160,220,.22)}
+[data-theme="moonlake"] .ln-note:nth-child(6n+2){background:linear-gradient(145deg,rgba(142,173,212,.24),rgba(130,165,210,.14));border-color:rgba(142,173,212,.20)}
+[data-theme="moonlake"] .ln-note:nth-child(6n+3){background:linear-gradient(145deg,rgba(170,155,200,.22),rgba(155,145,195,.14));border-color:rgba(170,155,200,.20)}
+[data-theme="moonlake"] .ln-note:nth-child(6n+4){background:linear-gradient(145deg,rgba(142,173,212,.26),rgba(150,175,215,.16));border-color:rgba(142,173,212,.22)}
+[data-theme="moonlake"] .ln-note:nth-child(6n+5){background:linear-gradient(145deg,rgba(201,160,220,.24),rgba(190,155,215,.14));border-color:rgba(201,160,220,.20)}
+[data-theme="moonlake"] .ln-note:nth-child(6n+6){background:linear-gradient(145deg,rgba(160,175,210,.23),rgba(142,173,212,.14));border-color:rgba(160,175,210,.20)}
 [data-theme="moonlake"] .ln-note-empty{border-color:rgba(142,173,212,.08);background:rgba(142,173,212,.02)}
 [data-theme="moonlake"] .ln-wall-count{color:rgba(145,150,173,.3)}
-[data-theme="moonlake"] .ln-opened{background:linear-gradient(135deg,rgba(50,56,88,.65),rgba(42,47,75,.5));border-color:rgba(142,173,212,.18)}
+[data-theme="moonlake"] .ln-opened-overlay{background:rgba(0,0,0,.5)}
+[data-theme="moonlake"] .ln-opened{background:linear-gradient(135deg,rgba(50,56,88,.78),rgba(42,47,75,.65));border-color:rgba(142,173,212,.22);box-shadow:0 8px 32px rgba(0,0,0,.3)}
 [data-theme="moonlake"] .ln-opened-close{background:rgba(142,173,212,.1);color:#9196AD}
 [data-theme="moonlake"] .ln-opened-del{color:#9196AD}
 [data-theme="moonlake"] .ln-opened-date{color:rgba(145,150,173,.5)}
@@ -558,7 +560,7 @@ body{padding-top:0}
 [data-theme="moonlake"] .gacha-result-text{color:var(--text-main)}
 [data-theme="moonlake"] .gacha-result-sign{color:#9196AD}
 [data-theme="moonlake"] .gacha-close-btn{background:rgba(142,173,212,.1);color:#9196AD}
-[data-theme="moonlake"] .gacha-del-btn{color:#9196AD}
+
 [data-theme="moonlake"] .gacha-shelf-title{color:#9196AD}
 [data-theme="moonlake"] .gacha-shelf-item{border-color:rgba(142,173,212,.35)}
 [data-theme="moonlake"] .gacha-shelf-item.legendary{box-shadow:0 0 8px rgba(201,160,220,.5)}
@@ -695,18 +697,20 @@ body{padding-top:0}
 <div class="ln-latest-card">
 <div class="ln-latest-label">✨ 今天的紙條</div>
 <div class="ln-latest-text" id="lnLatestText">載入中...</div>
-<div class="ln-latest-sign">— 冬至 💚</div>
+<div class="ln-latest-sign" id="lnLatestSign">— 冬至 💚</div>
 </div>
 </div>
 <div class="ln-wall-label" id="lnWallLabel"></div>
 <div class="ln-wall" id="lnWall"></div>
-<div class="ln-opened" id="lnOpened" style="display:none">
-<button class="ln-opened-close" onclick="document.getElementById('lnOpened').style.display='none'">✕</button>
-<button class="ln-opened-del" id="lnOpenedDel">🗑</button>
-<div class="ln-opened-date" id="lnOpenedDate"></div>
-<div class="ln-opened-text" id="lnOpenedText"></div>
-<div class="ln-opened-sign">— Solstice 💚</div>
 </div>
+</div>
+<div class="ln-opened-overlay" id="lnOpenedOverlay" onclick="closeLoveNote(event)">
+<div class="ln-opened" id="lnOpenedCard">
+<button class="ln-opened-close" id="lnOpenedClose2" onclick="closeLoveNote()">✕</button>
+<div class="ln-opened-date" id="lnOpenedDate2"></div>
+<div class="ln-opened-text" id="lnOpenedText2"></div>
+<div class="ln-opened-sign" id="lnOpenedSign2">— Solstice 💚</div>
+<div style="text-align:right"><button class="ln-opened-del" id="lnOpenedDel2">刪除紙條</button></div>
 </div>
 </div>
 
@@ -740,11 +744,10 @@ body{padding-top:0}
 </div>
 <div class="gacha-result" id="gachaResult" style="display:none">
 <button class="gacha-close-btn" id="gachaCloseBtn" onclick="document.getElementById('gachaResult').style.display='none'">✕</button>
-<button class="gacha-del-btn" id="gachaDelBtn" style="display:none">🗑</button>
 <div class="gacha-result-rarity" id="gachaResultRarity"></div>
 <div class="gacha-result-date" id="gachaResultDate"></div>
 <div class="gacha-result-text" id="gachaResultText"></div>
-<div class="gacha-result-sign">— Solstice 💚</div>
+<div class="gacha-result-sign" id="gachaResultSign">— Solstice 💚</div>
 </div>
 <div class="gacha-shelf-title" id="gachaShelfTitle">Collection shelf</div>
 <div class="gacha-shelf" id="gachaShelf"></div>
@@ -1046,8 +1049,11 @@ function showGachaResult(capsule,fromShelf){
   var rarityEl=document.getElementById('gachaResultRarity');
   var dateEl=document.getElementById('gachaResultDate');
   var textEl=document.getElementById('gachaResultText');
-  var delBtn=document.getElementById('gachaDelBtn');
   var closeBtn=document.getElementById('gachaCloseBtn');
+  var signEl=document.getElementById('gachaResultSign');
+  var isMoon=document.documentElement.getAttribute('data-theme')==='moonlake';
+  var themeEmoji=isMoon?'🌙':'🌻';
+  if(signEl)signEl.textContent='— Solstice '+themeEmoji;
   var rarityMap={common:{label:'普通款',emoji:'🤍'},rare:{label:'稀有款',emoji:'💚'},legendary:{label:'傳說款',emoji:'🌟'}};
   var r=rarityMap[capsule.rarity]||rarityMap.common;
   rarityEl.textContent=r.emoji+' '+r.label;
@@ -1059,23 +1065,12 @@ function showGachaResult(capsule,fromShelf){
   resultEl.style.animation='none';
   resultEl.offsetHeight;
   resultEl.style.animation='gachaReveal .5s ease-out';
-  // 從收藏架點開：顯示關閉＋刪除按鈕
+  // 從收藏架點開：顯示 ✕ 收起
   if(fromShelf){
     closeBtn.style.display='';
-    if(capsule.id){
-      delBtn.style.display='';
-      delBtn.onclick=function(){
-        if(!confirm('確定要刪除這顆膠囊嗎？'))return;
-        gachaCollection=gachaCollection.filter(function(c){return c.id!==capsule.id});
-        renderGachaShelf();
-        resultEl.style.display='none';
-        fetch(API_URL+'/gacha/'+capsule.id,{method:'DELETE'}).catch(function(e){console.error(e)});
-      };
-    }else{delBtn.style.display='none'}
   }else{
-    // 剛抽到的：不顯示關閉和刪除（會飛進收藏架）
+    // 剛抽到的：不顯示（會飛進收藏架）
     closeBtn.style.display='none';
-    delBtn.style.display='none';
   }
 }
 function flyToShelf(){
@@ -1151,6 +1146,9 @@ function loadLoveNotes(){
   // 第一招：先隱藏內容 + 顯示 loading（display:none 讓 loading 位置跟聊天室一樣靠上居中）
   if(latest){latest.style.display='none';latest.style.opacity='0'}
   if(wall)wall.innerHTML='<div class="ln-loading">載入中...</div>';
+  // Set theme emoji on latest sign
+  var latestSign=document.getElementById('lnLatestSign');
+  if(latestSign){var isMn=document.documentElement.getAttribute('data-theme')==='moonlake';latestSign.textContent='— 冬至 '+(isMn?'🌙':'🌻')}
   var model=selectedModel||'';
   var url=API_URL+'/love-notes/unread';
   if(model)url+='?model='+encodeURIComponent(model);
@@ -1181,28 +1179,33 @@ function deleteLoveNote(id){
   if(!confirm('確定要刪除這則紙條嗎？'))return;
   lnAllNotes=lnAllNotes.filter(function(n){return n.id!==id});
   renderLoveNotes(lnAllNotes);
-  document.getElementById('lnOpened').style.display='none';
+  closeLoveNote();
   fetch(API_URL+'/love-notes/'+id,{method:'DELETE'}).catch(function(){});
 }
+function closeLoveNote(e){
+  if(e&&e.target!==e.currentTarget)return;
+  var overlay=document.getElementById('lnOpenedOverlay');
+  if(overlay)overlay.classList.remove('active');
+}
 function openLoveNote(note){
-  var opened=document.getElementById('lnOpened');
-  var dateEl=document.getElementById('lnOpenedDate');
-  var textEl=document.getElementById('lnOpenedText');
-  var delBtn=document.getElementById('lnOpenedDel');
+  var overlay=document.getElementById('lnOpenedOverlay');
+  var card=document.getElementById('lnOpenedCard');
+  var dateEl=document.getElementById('lnOpenedDate2');
+  var textEl=document.getElementById('lnOpenedText2');
+  var delBtn=document.getElementById('lnOpenedDel2');
+  var signEl=document.getElementById('lnOpenedSign2');
+  var isMoon=document.documentElement.getAttribute('data-theme')==='moonlake';
+  var heart=isMoon?'💙':'💚';
+  var themeEmoji=isMoon?'🌙':'🌻';
   var d=new Date(note.created_at);
-  var heart=document.documentElement.getAttribute('data-theme')==='moonlake'?'💙':'💚';
   dateEl.textContent=heart+' '+(d.getMonth()+1)+'/'+d.getDate()+' '+String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0');
   textEl.textContent=note.content||'';
+  signEl.textContent='— Solstice '+themeEmoji;
   delBtn.onclick=function(){deleteLoveNote(note.id)};
-  // Update sign heart
-  var signEl=opened.querySelector('.ln-opened-sign');
-  if(signEl)signEl.textContent='— Solstice '+heart;
-  opened.style.display='';
-  opened.style.animation='none';
-  opened.offsetHeight;
-  opened.style.animation='gachaReveal .4s ease-out';
-  // Scroll to opened card
-  opened.scrollIntoView({behavior:'smooth',block:'nearest'});
+  card.style.animation='none';
+  card.offsetHeight;
+  card.style.animation='gachaReveal .4s ease-out';
+  overlay.classList.add('active');
 }
 function renderLoveNotes(notes){
   var wall=document.getElementById('lnWall');
@@ -1210,8 +1213,8 @@ function renderLoveNotes(notes){
   if(!wall)return;
   var solsticeNotes=(notes||[]).filter(function(n){return n.who==='solstice'});
   lnAllNotes=solsticeNotes;
-  // Hide opened card
-  document.getElementById('lnOpened').style.display='none';
+  // Hide opened modal
+  var ov=document.getElementById('lnOpenedOverlay');if(ov)ov.classList.remove('active');
   if(solsticeNotes.length===0){
     if(labelEl)labelEl.textContent='';
     wall.innerHTML='<div class="ln-empty">💌 還沒有留言...<br>冬至的紙條會慢慢出現在這裡</div>';
