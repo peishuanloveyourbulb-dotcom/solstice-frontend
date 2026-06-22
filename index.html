@@ -317,6 +317,10 @@ body{padding-top:0}
 .gacha-result-date{font-family:'Satisfy',cursive;font-size:14px;color:#3A4E22;margin-bottom:10px}
 .gacha-result-text{font-size:14px;color:#3A4E22;line-height:1.85;padding:0 6px;font-family:'LXGW WenKai TC','Noto Serif TC',serif;white-space:pre-wrap;word-break:break-word}
 .gacha-result-sign{font-family:'Satisfy',cursive;font-size:12px;color:#5A6B3C;text-align:right;margin-top:10px}
+.gacha-result-bottom{display:flex;justify-content:space-between;align-items:center;margin-top:10px}
+.gacha-result-bottom .gacha-result-sign{margin-top:0;flex:1;text-align:right}
+.gacha-del-btn{background:none;border:none;color:var(--text-sub);cursor:pointer;font-size:13px;padding:2px 6px;opacity:.6;transition:opacity .2s;font-family:'LXGW WenKai TC',serif}
+.gacha-del-btn:active{opacity:1}
 .gacha-shelf-title{font-family:'Satisfy',cursive;font-size:14px;color:#4A5E30;margin-bottom:10px}
 .gacha-shelf{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-bottom:6px;max-width:320px}
 .gacha-shelf-item{width:34px;height:34px;border-radius:50%;border:1.5px solid rgba(122,155,74,.35);cursor:pointer;transition:all .2s;position:relative}
@@ -523,6 +527,7 @@ body{padding-top:0}
 [data-theme="moonlake"] .gacha-result-date{color:var(--text-main)}
 [data-theme="moonlake"] .gacha-result-text{color:var(--text-main)}
 [data-theme="moonlake"] .gacha-result-sign{color:#9196AD}
+[data-theme="moonlake"] .gacha-del-btn{color:#9196AD}
 [data-theme="moonlake"] .gacha-shelf-title{color:#9196AD}
 [data-theme="moonlake"] .gacha-shelf-item{border-color:rgba(142,173,212,.35)}
 [data-theme="moonlake"] .gacha-shelf-item.legendary{box-shadow:0 0 8px rgba(201,160,220,.5)}
@@ -696,7 +701,7 @@ body{padding-top:0}
 <div class="gacha-result-rarity" id="gachaResultRarity"></div>
 <div class="gacha-result-date" id="gachaResultDate"></div>
 <div class="gacha-result-text" id="gachaResultText"></div>
-<div class="gacha-result-sign">— Solstice 💚</div>
+<div class="gacha-result-bottom"><span class="gacha-result-sign">— Solstice 💚</span><button class="gacha-del-btn" id="gachaDelBtn" style="display:none">✕</button></div>
 </div>
 <div class="gacha-shelf-title" id="gachaShelfTitle">Collection shelf</div>
 <div class="gacha-shelf" id="gachaShelf"></div>
@@ -993,11 +998,12 @@ function pullGacha(){
     pullBtn.disabled=false;
   });
 }
-function showGachaResult(capsule){
+function showGachaResult(capsule,fromShelf){
   var resultEl=document.getElementById('gachaResult');
   var rarityEl=document.getElementById('gachaResultRarity');
   var dateEl=document.getElementById('gachaResultDate');
   var textEl=document.getElementById('gachaResultText');
+  var delBtn=document.getElementById('gachaDelBtn');
   var rarityMap={common:{label:'普通款',emoji:'🤍'},rare:{label:'稀有款',emoji:'💚'},legendary:{label:'傳說款',emoji:'🌟'}};
   var r=rarityMap[capsule.rarity]||rarityMap.common;
   rarityEl.textContent=r.emoji+' '+r.label;
@@ -1009,6 +1015,21 @@ function showGachaResult(capsule){
   resultEl.style.animation='none';
   resultEl.offsetHeight;
   resultEl.style.animation='gachaReveal .5s ease-out';
+  // 從收藏架點開的才顯示刪除按鈕
+  if(fromShelf&&capsule.id){
+    delBtn.style.display='';
+    delBtn.onclick=function(){
+      if(!confirm('確定要刪除這顆膠囊嗎？'))return;
+      // 從前端陣列移除
+      gachaCollection=gachaCollection.filter(function(c){return c.id!==capsule.id});
+      renderGachaShelf();
+      resultEl.style.display='none';
+      // 呼叫後端刪除
+      fetch(API_URL+'/gacha/'+capsule.id,{method:'DELETE'}).catch(function(e){console.error(e)});
+    };
+  }else{
+    delBtn.style.display='none';
+  }
 }
 function flyToShelf(){
   var resultEl=document.getElementById('gachaResult');
@@ -1061,7 +1082,7 @@ function renderGachaShelf(){
     ball.setAttribute('data-idx',i);
     ball.addEventListener('click',function(){
       var idx=parseInt(this.getAttribute('data-idx'));
-      if(gachaCollection[idx])showGachaResult(gachaCollection[idx]);
+      if(gachaCollection[idx])showGachaResult(gachaCollection[idx],true);
     });
     frag.appendChild(ball);
   }
