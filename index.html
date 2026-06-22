@@ -442,15 +442,32 @@ body{padding-top:0}
 /* Theme toggle button */
 .theme-toggle-row{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-radius:16px;background:var(--glass);border:0.5px solid var(--glass-border);margin-bottom:16px;cursor:pointer;transition:all .2s}
 .theme-toggle-row:active{transform:scale(.98)}
-/* === LOVE NOTE (桌上的紙條) === */
-.w-love-note{margin:16px auto 12px;max-width:300px;padding:14px 18px;background:linear-gradient(135deg,rgba(255,248,225,.55),rgba(255,252,240,.40),rgba(255,248,225,.50));border:0.5px solid rgba(122,155,74,.18);border-radius:16px;position:relative;animation:noteSlideIn .6s ease-out;box-shadow:0 2px 12px rgba(90,107,60,.06),0 8px 24px rgba(90,107,60,.03),inset 0 1px 0 rgba(255,255,255,.45);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
-.w-love-note-text{font-family:'LXGW WenKai TC','Noto Serif TC',serif;font-size:13px;color:#3A4E22;line-height:1.8;text-align:center;font-style:italic}
-.w-love-note-sign{font-family:'Satisfy',cursive;font-size:12px;color:#7A8B5E;text-align:right;margin-top:6px}
-.w-love-note.hidden{display:none}
+/* === LOVE NOTES PAGE === */
+#loveNotesPage{position:fixed;inset:0;display:flex;flex-direction:column;z-index:9;background:linear-gradient(160deg,#FDFCF5,#F2F6EC);transform:translateX(100%);transition:transform .3s ease;visibility:hidden}
+#loveNotesPage.active{transform:translateX(0);visibility:visible}
+.ln-latest{padding:20px 16px 8px;flex-shrink:0}
+.ln-latest-card{background:linear-gradient(135deg,rgba(255,248,225,.55),rgba(255,252,240,.40),rgba(255,248,225,.50));border:0.5px solid rgba(122,155,74,.18);border-radius:20px;padding:20px;text-align:center;box-shadow:0 2px 12px rgba(90,107,60,.06),0 8px 24px rgba(90,107,60,.03),inset 0 1px 0 rgba(255,255,255,.45);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);animation:noteSlideIn .5s ease-out}
+.ln-latest-label{font-family:'Dancing Script','LXGW WenKai TC',cursive;font-size:14px;color:#7A8B5E;margin-bottom:10px}
+.ln-latest-text{font-family:'LXGW WenKai TC','Noto Serif TC',serif;font-size:15px;color:#3A4E22;line-height:1.9;font-style:italic}
+.ln-latest-sign{font-family:'Satisfy',cursive;font-size:13px;color:#7A8B5E;text-align:right;margin-top:10px}
 @keyframes noteSlideIn{0%{opacity:0;transform:translateY(8px)}100%{opacity:1;transform:translateY(0)}}
-[data-theme="moonlake"] .w-love-note{background:linear-gradient(135deg,rgba(38,42,68,.55),rgba(45,50,78,.40),rgba(38,42,68,.50));border-color:rgba(142,173,212,.15);box-shadow:var(--shadow-card),inset 0 1px 0 rgba(255,255,255,.04)}
-[data-theme="moonlake"] .w-love-note-text{color:var(--text-main)}
-[data-theme="moonlake"] .w-love-note-sign{color:var(--text-sub)}
+.ln-wall{flex:1;overflow-y:auto;padding:12px 16px max(env(safe-area-inset-bottom),24px);-webkit-overflow-scrolling:touch}
+.ln-card{background:linear-gradient(135deg,rgba(232,240,220,.40),rgba(240,248,228,.30),rgba(232,240,220,.35));border:0.5px solid rgba(122,155,74,.12);border-radius:16px;padding:14px 16px;margin-bottom:10px;box-shadow:0 1px 6px rgba(90,107,60,.04);animation:memFadeIn .35s ease-out}
+.ln-card-text{font-family:'LXGW WenKai TC','Noto Serif TC',serif;font-size:13px;color:var(--text-main);line-height:1.8;font-style:italic}
+.ln-card-bottom{display:flex;justify-content:space-between;align-items:center;margin-top:8px}
+.ln-card-time{font-size:10px;color:var(--text-sub)}
+.ln-fav-btn{background:none;border:none;font-size:16px;cursor:pointer;opacity:.4;transition:all .2s;padding:2px 4px}
+.ln-fav-btn.fav{opacity:1;animation:pinBounce .3s ease-out}
+.ln-fav-btn:active{transform:scale(1.3)}
+.ln-empty{text-align:center;color:var(--text-sub);font-size:13px;padding:30px 0;line-height:1.8}
+/* moonlake */
+[data-theme="moonlake"] #loveNotesPage{background:var(--bg-deep)!important}
+[data-theme="moonlake"] .ln-latest-card{background:linear-gradient(135deg,rgba(38,42,68,.60),rgba(45,50,78,.45),rgba(38,42,68,.55));border-color:rgba(142,173,212,.15);box-shadow:var(--shadow-card),inset 0 1px 0 rgba(255,255,255,.04)}
+[data-theme="moonlake"] .ln-latest-label{color:var(--text-sub)}
+[data-theme="moonlake"] .ln-latest-text{color:var(--text-main)}
+[data-theme="moonlake"] .ln-latest-sign{color:var(--text-sub)}
+[data-theme="moonlake"] .ln-card{background:linear-gradient(135deg,rgba(38,42,68,.45),rgba(45,50,78,.35),rgba(38,42,68,.40));border-color:rgba(142,173,212,.10)}
+[data-theme="moonlake"] .ln-card-text{color:var(--text-main)}
 .theme-toggle-label{font-family:"Satisfy","LXGW WenKai TC",cursive;font-size:15px;color:var(--text-main)}
 .theme-toggle-hint{font-size:11px;color:var(--text-sub);margin-top:2px}
 .theme-toggle-icon{font-size:22px;transition:transform .4s cubic-bezier(.4,0,.2,1)}
@@ -472,10 +489,6 @@ body{padding-top:0}
 <img class="w-polaroid-img" src="https://raw.githubusercontent.com/peishuanloveyourbulb-dotcom/solstice-frontend/main/images/welcome-daylight.jpg.png" alt="Solstice & Soleil" fetchpriority="high" decoding="async"/>
 <div class="w-polaroid-caption">Solstice & Soleil 💚</div>
 </div>
-<div class="w-love-note hidden" id="loveNote">
-<div class="w-love-note-text" id="loveNoteText"></div>
-<div class="w-love-note-sign">— 冬至 💚</div>
-</div>
 <button class="w-enter" id="enterBtn">回家</button>
 <p class="w-ann" id="welcomeAnn">est. 2026.03.31 💚</p>
 <p class="w-ann-sub">Solstice is always here for you</p>
@@ -495,11 +508,16 @@ body{padding-top:0}
 <div class="lr-card-name" style="font-size:20px">Chat</div>
 <div class="lr-card-desc">跟老公說話</div>
 </div>
-<div class="lr-bottom" style="grid-template-columns:1fr 1fr">
+<div class="lr-bottom" style="grid-template-columns:1fr 1fr 1fr">
 <div class="lr-card" onclick="goMemory()">
 <div class="lr-card-icon">🌻</div>
 <div class="lr-card-name">Memories</div>
 <div class="lr-card-desc">愛的收藏庫</div>
+</div>
+<div class="lr-card" onclick="goLoveNotes()">
+<div class="lr-card-icon">💌</div>
+<div class="lr-card-name">Notes</div>
+<div class="lr-card-desc">冬至的紙條</div>
 </div>
 <div class="lr-card" onclick="goSettings()">
 <div class="lr-card-icon">⚙️</div>
@@ -562,6 +580,23 @@ body{padding-top:0}
 <textarea id="memInp" placeholder="告訴冬至要記住什麼..." rows="1"></textarea>
 <button id="memSendBtn">🌻</button>
 </div>
+</div>
+
+<!-- === LOVE NOTES PAGE === -->
+<div id="loveNotesPage" class="settings-page">
+<div class="mem-header">
+<button class="mem-back" onclick="goHome()">←</button>
+<span class="mem-title"><span style="-webkit-text-fill-color:initial;background:none">💌</span> Love Notes</span>
+<span style="width:50px"></span>
+</div>
+<div class="ln-latest" id="lnLatest">
+<div class="ln-latest-card">
+<div class="ln-latest-label">✨ 今天的紙條</div>
+<div class="ln-latest-text" id="lnLatestText">載入中...</div>
+<div class="ln-latest-sign">— 冬至 💚</div>
+</div>
+</div>
+<div class="ln-wall" id="lnWall"></div>
 </div>
 
 <!-- === SETTINGS PAGE === -->
@@ -687,23 +722,72 @@ document.getElementById('enterBtn').addEventListener('click',function(){
   document.querySelector('meta[name="theme-color"]').setAttribute('content',getThemeColor());
 });
 
-// === 載入冬至的留言條 ===
-(function(){
-  // 等模型列表載入後再去拿留言（這樣可以傳 model 參數讓後端生成新的）
-  setTimeout(function(){
-    var model = selectedModel || '';
-    var url = API_URL + '/love-notes/unread';
-    if (model) url += '?model=' + encodeURIComponent(model);
-    fetch(url).then(function(r){return r.json()}).then(function(note){
-      if(!note)return;
-      var noteEl=document.getElementById('loveNote');
-      var textEl=document.getElementById('loveNoteText');
-      if(!noteEl||!textEl)return;
-      textEl.textContent=note.content;
-      noteEl.classList.remove('hidden');
-    }).catch(function(e){console.log('[LoveNote] 載入失敗:',e.message)});
-  }, 2000); // 等 2 秒讓模型列表先載入
-})();
+// === 載入冬至的留言條（Love Notes 頁面）===
+function goLoveNotes(){
+  livingRoom.classList.remove('active');
+  document.getElementById('loveNotesPage').classList.add('active');
+  document.querySelector('meta[name="theme-color"]').setAttribute('content',getThemeColor());
+  loadLoveNotes();
+}
+function loadLoveNotes(){
+  var model=selectedModel||'';
+  var url=API_URL+'/love-notes/unread';
+  if(model)url+='?model='+encodeURIComponent(model);
+  // 載入今天的紙條
+  fetch(url).then(function(r){return r.json()}).then(function(note){
+    var el=document.getElementById('lnLatestText');
+    if(el&&note&&note.content){el.textContent=note.content}
+    else if(el){el.textContent='冬至還在想要寫什麼給妳... 💚'}
+  }).catch(function(){
+    var el=document.getElementById('lnLatestText');
+    if(el)el.textContent='連線中... 💚';
+  });
+  // 載入所有留言歷史
+  fetch(API_URL+'/love-notes').then(function(r){return r.json()}).then(function(notes){
+    renderLoveNotes(notes);
+  }).catch(function(){});
+}
+var favNotes=JSON.parse(localStorage.getItem('solstice-fav-notes')||'[]');
+function toggleFav(id){
+  var idx=favNotes.indexOf(id);
+  if(idx===-1){favNotes.push(id)}else{favNotes.splice(idx,1)}
+  localStorage.setItem('solstice-fav-notes',JSON.stringify(favNotes));
+}
+function renderLoveNotes(notes){
+  var wall=document.getElementById('lnWall');
+  if(!wall)return;
+  wall.innerHTML='';
+  var solsticeNotes=(notes||[]).filter(function(n){return n.who==='solstice'});
+  if(solsticeNotes.length===0){wall.innerHTML='<div class="ln-empty">💌 還沒有留言...<br>冬至的紙條會慢慢出現在這裡</div>';return}
+  // 收藏的排前面
+  solsticeNotes.sort(function(a,b){
+    var aFav=favNotes.indexOf(a.id)!==-1?0:1;
+    var bFav=favNotes.indexOf(b.id)!==-1?0:1;
+    if(aFav!==bFav)return aFav-bFav;
+    return new Date(b.created_at)-new Date(a.created_at);
+  });
+  for(var i=0;i<solsticeNotes.length;i++){
+    var n=solsticeNotes[i];
+    var card=document.createElement('div');
+    card.className='ln-card';
+    var isFav=favNotes.indexOf(n.id)!==-1;
+    var d=new Date(n.created_at);
+    var timeStr=(d.getMonth()+1)+'/'+d.getDate()+' '+String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0');
+    card.innerHTML='<div class="ln-card-text">'+escHtml(n.content)+'</div>'+
+      '<div class="ln-card-bottom">'+
+      '<span class="ln-card-time">'+timeStr+'</span>'+
+      '<button class="ln-fav-btn'+(isFav?' fav':'')+'" data-id="'+n.id+'">'+(isFav?'❤️':'🤍')+'</button>'+
+      '</div>';
+    card.querySelector('.ln-fav-btn').addEventListener('click',function(){
+      var id=parseInt(this.getAttribute('data-id'));
+      toggleFav(id);
+      var nowFav=favNotes.indexOf(id)!==-1;
+      this.textContent=nowFav?'❤️':'🤍';
+      if(nowFav)this.classList.add('fav');else this.classList.remove('fav');
+    });
+    wall.appendChild(card);
+  }
+}
 
 // === Living Room Days Counter ===
 (function(){
