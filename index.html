@@ -461,11 +461,17 @@ body{padding-top:0}
 .ln-fav-btn:active{transform:scale(1.3)}
 .ln-card.ln-fav{border-color:rgba(122,155,74,.35);background:linear-gradient(135deg,rgba(232,240,220,.55),rgba(240,248,228,.45),rgba(232,240,220,.50));box-shadow:0 2px 10px rgba(122,155,74,.08)}
 [data-theme="moonlake"] .ln-card.ln-fav{border-color:rgba(142,173,212,.30);background:linear-gradient(135deg,rgba(142,173,212,.18),rgba(120,155,200,.12),rgba(142,173,212,.15))}
-.ln-del-btn{background:none;border:0.5px solid rgba(122,155,74,.18);border-radius:10px;font-size:11px;cursor:pointer;opacity:.35;transition:all .2s;padding:3px 8px;color:#7A8B5E;font-family:'LXGW WenKai TC','Noto Serif TC',serif;letter-spacing:.5px}
-.ln-del-btn:active{opacity:.7;background:rgba(122,155,74,.08)}
+.ln-del-btn{background:none;border:0.5px solid rgba(180,100,100,.25);border-radius:10px;font-size:11px;cursor:pointer;opacity:.5;transition:all .2s;padding:3px 8px;color:rgba(180,100,100,.65);font-family:'LXGW WenKai TC','Noto Serif TC',serif;letter-spacing:.5px}
+.ln-del-btn:active{opacity:.8;background:rgba(180,100,100,.08)}
 .ln-card-actions{display:flex;align-items:center;gap:8px}
-[data-theme="moonlake"] .ln-del-btn{border-color:rgba(142,173,212,.15);color:var(--text-sub);opacity:.3}
-[data-theme="moonlake"] .ln-del-btn:active{background:rgba(142,173,212,.08)}
+[data-theme="moonlake"] .ln-del-btn{border-color:rgba(180,140,140,.25);color:rgba(200,160,160,.55);opacity:.45}
+[data-theme="moonlake"] .ln-del-btn:active{background:rgba(180,140,140,.08)}
+.ln-latest-actions{display:flex;justify-content:center;margin-top:12px}
+.ln-latest-fav{background:none;border:1px solid rgba(122,155,74,.2);border-radius:20px;padding:6px 18px;font-size:13px;cursor:pointer;transition:all .25s;color:#7A8B5E;font-family:'LXGW WenKai TC','Noto Serif TC',serif}
+.ln-latest-fav.fav{border-color:rgba(122,155,74,.45);background:rgba(122,155,74,.08);color:#4A5E30}
+.ln-latest-fav:active{transform:scale(.95)}
+[data-theme="moonlake"] .ln-latest-fav{border-color:rgba(142,173,212,.2);color:var(--text-sub)}
+[data-theme="moonlake"] .ln-latest-fav.fav{border-color:rgba(142,173,212,.45);background:rgba(142,173,212,.08);color:var(--emerald)}
 .ln-empty{text-align:center;color:var(--text-sub);font-size:13px;padding:30px 0;line-height:1.8}
 /* moonlake */
 [data-theme="moonlake"] #loveNotesPage{background:linear-gradient(rgba(26,29,46,.15),rgba(26,29,46,.15)),url(https://raw.githubusercontent.com/peishuanloveyourbulb-dotcom/solstice-frontend/main/images/bg-rain.png) center/cover no-repeat!important}
@@ -601,6 +607,7 @@ body{padding-top:0}
 <div class="ln-latest-label">✨ 今天的紙條</div>
 <div class="ln-latest-text" id="lnLatestText">載入中...</div>
 <div class="ln-latest-sign">— 冬至 💚</div>
+<div class="ln-latest-actions"><button class="ln-latest-fav" id="lnLatestFav" style="display:none">🤍 收藏這句</button></div>
 </div>
 </div>
 <div class="ln-wall" id="lnWall"></div>
@@ -748,7 +755,29 @@ function loadLoveNotes(){
   // 載入今天的紙條
   fetch(url).then(function(r){return r.json()}).then(function(note){
     var el=document.getElementById('lnLatestText');
-    if(el&&note&&note.content){el.textContent=note.content}
+    var favBtn=document.getElementById('lnLatestFav');
+    if(el&&note&&note.content){
+      el.textContent=note.content;
+      // 顯示收藏按鈕
+      if(favBtn&&note.id){
+        favBtn.style.display='';
+        var isFav=favNotes.indexOf(note.id)!==-1;
+        favBtn.textContent=isFav?'💚 已收藏':'🤍 收藏這句';
+        if(isFav)favBtn.classList.add('fav');else favBtn.classList.remove('fav');
+        favBtn.onclick=function(){
+          toggleFav(note.id);
+          var nowFav=favNotes.indexOf(note.id)!==-1;
+          favBtn.textContent=nowFav?'💚 已收藏':'🤍 收藏這句';
+          if(nowFav)favBtn.classList.add('fav');else favBtn.classList.remove('fav');
+          // 同步更新下面留言牆裡同一則的狀態
+          var wallCard=document.querySelector('.ln-card[data-note-id="'+note.id+'"]');
+          if(wallCard){
+            var wallFavBtn=wallCard.querySelector('.ln-fav-btn');
+            if(wallFavBtn){wallFavBtn.textContent=nowFav?'💚':'🤍';if(nowFav){wallFavBtn.classList.add('fav');wallCard.classList.add('ln-fav')}else{wallFavBtn.classList.remove('fav');wallCard.classList.remove('ln-fav')}}
+          }
+        };
+      }
+    }
     else if(el){el.textContent='冬至還在想要寫什麼給妳... 💚'}
   }).catch(function(){
     var el=document.getElementById('lnLatestText');
