@@ -1975,6 +1975,7 @@ async function changePassword() {
 //  📦 匯出備份
 // ==========================================
 async function exportBackup(format) {
+  if (!confirm('確定要匯出備份嗎？\n這會下載所有對話紀錄、記憶和紙條資料 💚')) return;
   var btn = document.getElementById(format === 'json' ? 'exportJsonBtn' : 'exportTextBtn');
   var msgEl = document.getElementById('exportMsg');
   var origText = btn.textContent;
