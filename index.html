@@ -317,9 +317,9 @@ body{padding-top:0}
 .gacha-result-date{font-family:'Satisfy',cursive;font-size:14px;color:#3A4E22;margin-bottom:10px}
 .gacha-result-text{font-size:14px;color:#3A4E22;line-height:1.85;padding:0 6px;font-family:'LXGW WenKai TC','Noto Serif TC',serif;white-space:pre-wrap;word-break:break-word}
 .gacha-result-sign{font-family:'Satisfy',cursive;font-size:12px;color:#5A6B3C;text-align:right;margin-top:10px}
-.gacha-result-bottom{display:flex;justify-content:space-between;align-items:center;margin-top:10px}
-.gacha-result-bottom .gacha-result-sign{margin-top:0;flex:1;text-align:right}
-.gacha-del-btn{background:none;border:none;color:var(--text-sub);cursor:pointer;font-size:13px;padding:2px 6px;opacity:.6;transition:opacity .2s;font-family:'LXGW WenKai TC',serif}
+.gacha-close-btn{position:absolute;top:8px;right:10px;width:24px;height:24px;border-radius:50%;background:rgba(122,155,74,.1);border:none;color:#5A6B3C;font-size:12px;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:.6;transition:opacity .2s}
+.gacha-close-btn:active{opacity:1}
+.gacha-del-btn{position:absolute;top:8px;left:10px;background:none;border:none;color:var(--text-sub);cursor:pointer;font-size:13px;padding:2px 4px;opacity:.5;transition:opacity .2s}
 .gacha-del-btn:active{opacity:1}
 .gacha-shelf-title{font-family:'Satisfy',cursive;font-size:14px;color:#4A5E30;margin-bottom:10px}
 .gacha-shelf{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-bottom:6px;max-width:320px}
@@ -483,34 +483,64 @@ body{padding-top:0}
 /* === LOVE NOTES PAGE === */
 #loveNotesPage{position:fixed;inset:0;display:flex;flex-direction:column;z-index:9;background:linear-gradient(rgba(253,252,245,.08),rgba(253,252,245,.08)),url(https://raw.githubusercontent.com/peishuanloveyourbulb-dotcom/solstice-frontend/main/images/bg-sunflower.png) center top/cover no-repeat;opacity:0;visibility:hidden;transition:opacity .3s ease,visibility .3s ease}
 #loveNotesPage.active{opacity:1;visibility:visible}
+.ln-body{flex:1;overflow-y:auto;padding:0 0 max(env(safe-area-inset-bottom),24px);-webkit-overflow-scrolling:touch}
 .ln-latest{padding:20px 16px 8px;flex-shrink:0}
 .ln-latest-card{background:linear-gradient(135deg,rgba(255,248,225,.55),rgba(255,252,240,.40),rgba(255,248,225,.50));border:0.5px solid rgba(122,155,74,.18);border-radius:20px;padding:20px;text-align:center;box-shadow:0 2px 12px rgba(90,107,60,.06),0 8px 24px rgba(90,107,60,.03),inset 0 1px 0 rgba(255,255,255,.45);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);animation:noteSlideIn .5s ease-out}
 .ln-latest-label{font-family:'Dancing Script','LXGW WenKai TC',cursive;font-size:14px;color:#7A8B5E;margin-bottom:10px}
 .ln-latest-text{font-family:'LXGW WenKai TC','Noto Serif TC',serif;font-size:15px;color:#3A4E22;line-height:1.9;font-style:italic}
 .ln-latest-sign{font-family:'Satisfy',cursive;font-size:13px;color:#7A8B5E;text-align:right;margin-top:10px}
 @keyframes noteSlideIn{0%{opacity:0;transform:translateY(8px)}100%{opacity:1;transform:translateY(0)}}
-.ln-wall{flex:1;overflow-y:auto;padding:12px 16px max(env(safe-area-inset-bottom),24px);-webkit-overflow-scrolling:touch}
-.ln-card{background:linear-gradient(135deg,rgba(197,217,168,.42),rgba(220,238,198,.34),rgba(197,217,168,.38),rgba(210,230,180,.36));border-radius:20px;padding:14px 16px;margin-bottom:10px;border:0.5px solid rgba(122,155,74,.22);box-shadow:0 2px 16px rgba(122,155,74,.08),0 8px 28px rgba(122,155,74,.04),inset 0 1px 0 rgba(255,255,255,.50),inset 0 -1px 0 rgba(122,155,74,.04);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);animation:memFadeIn .35s ease-out;position:relative;overflow:visible}
-.ln-card::after{content:'🌻';position:absolute;bottom:-8px;right:-4px;font-size:18px;filter:drop-shadow(0 1px 3px rgba(122,155,74,.25));animation:bubDeco 3s ease-in-out infinite alternate .5s;z-index:2}
-.ln-card-text{font-family:'LXGW WenKai TC','Noto Serif TC',serif;font-size:13px;color:var(--text-main);line-height:1.8;font-style:italic}
-.ln-card-bottom{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
-.ln-card-time{font-size:10px;color:var(--text-sub)}
-.ln-card-actions{display:flex;align-items:center;gap:8px}
-.ln-del-btn{background:none;border:none;color:var(--text-sub);cursor:pointer;font-size:13px;padding:2px 4px;opacity:.7;transition:all .2s}
-.ln-del-btn:active{opacity:1}
-[data-theme="moonlake"] .ln-del-btn{color:var(--text-sub)}
-.ln-empty{text-align:center;color:var(--text-sub);font-size:13px;padding:30px 0;line-height:1.8}
+.ln-wall-label{font-size:11px;color:rgba(90,107,60,.35);text-align:center;letter-spacing:2px;padding:4px 0 10px}
+.ln-wall{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:0 16px}
+.ln-note{position:relative;aspect-ratio:1;border-radius:3px;padding:8px 9px;cursor:pointer;transition:transform .15s;display:flex;flex-direction:column;overflow:hidden;backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
+.ln-note:active{transform:scale(.94)}
+.ln-note::before{content:'📌';position:absolute;top:-2px;left:50%;transform:translateX(-50%);font-size:7px;z-index:1}
+.ln-note-preview{font-family:'LXGW WenKai TC','Noto Serif TC',serif;font-size:9.5px;line-height:1.6;flex:1;overflow:hidden;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;color:rgba(74,94,48,.7)}
+.ln-note-date{font-size:8px;color:rgba(90,107,60,.3);margin-top:auto;padding-top:3px}
+.ln-note:nth-child(6n+1){background:linear-gradient(145deg,rgba(197,217,168,.35),rgba(210,228,180,.22));border:0.5px solid rgba(122,155,74,.15);transform:rotate(-1.5deg)}
+.ln-note:nth-child(6n+2){background:linear-gradient(145deg,rgba(255,236,179,.35),rgba(255,245,200,.22));border:0.5px solid rgba(255,213,79,.18);transform:rotate(0.8deg)}
+.ln-note:nth-child(6n+3){background:linear-gradient(145deg,rgba(230,220,198,.3),rgba(240,232,210,.2));border:0.5px solid rgba(180,170,140,.12);transform:rotate(-0.5deg)}
+.ln-note:nth-child(6n+4){background:linear-gradient(145deg,rgba(255,236,179,.3),rgba(255,248,220,.2));border:0.5px solid rgba(255,213,79,.15);transform:rotate(1.2deg)}
+.ln-note:nth-child(6n+5){background:linear-gradient(145deg,rgba(197,217,168,.3),rgba(215,230,192,.2));border:0.5px solid rgba(122,155,74,.12);transform:rotate(-2deg)}
+.ln-note:nth-child(6n+6){background:linear-gradient(145deg,rgba(235,225,205,.28),rgba(245,238,218,.18));border:0.5px solid rgba(180,170,140,.1);transform:rotate(0.5deg)}
+.ln-note-empty{aspect-ratio:1;border-radius:3px;border:1px dashed rgba(122,155,74,.08);background:rgba(122,155,74,.02);display:flex;align-items:center;justify-content:center}
+.ln-note-empty span{font-size:16px;opacity:.12}
+.ln-wall-count{font-size:10px;color:rgba(90,107,60,.25);text-align:center;padding:8px 16px 0}
+.ln-opened{position:relative;background:linear-gradient(135deg,rgba(197,217,168,.35),rgba(220,238,198,.25));border:0.5px solid rgba(122,155,74,.18);border-radius:16px;padding:16px 18px;margin:12px 16px;animation:gachaReveal .4s ease-out}
+.ln-opened-close{position:absolute;top:8px;right:10px;width:24px;height:24px;border-radius:50%;background:rgba(122,155,74,.1);border:none;color:#5A6B3C;font-size:12px;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:.6}
+.ln-opened-close:active{opacity:1}
+.ln-opened-del{position:absolute;top:8px;left:10px;background:none;border:none;color:var(--text-sub);cursor:pointer;font-size:13px;padding:2px 4px;opacity:.5}
+.ln-opened-del:active{opacity:1}
+.ln-opened-date{font-size:10px;color:rgba(90,107,60,.45);margin:0 0 6px;padding-top:2px}
+.ln-opened-text{font-family:'LXGW WenKai TC','Noto Serif TC',serif;font-size:13px;color:#3A4E22;line-height:1.85;margin:0 0 8px;font-style:italic}
+.ln-opened-sign{font-family:'Satisfy',cursive;font-size:11px;color:rgba(90,107,60,.4);text-align:right}
+.ln-empty{text-align:center;color:var(--text-sub);font-size:13px;padding:30px 16px;line-height:1.8;grid-column:1/-1}
 .ln-loading{text-align:center;color:var(--text-sub);font-size:13px;padding:20px;flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center}
 .ln-loading::before{content:'🌻';display:block;font-size:22px;margin-bottom:6px;animation:sunflowerBreathe 2s ease-in-out infinite}
-/* moonlake */
+/* moonlake notes */
+[data-theme="moonlake"] .ln-wall-label{color:rgba(145,150,173,.4)}
+[data-theme="moonlake"] .ln-note-preview{color:rgba(200,210,230,.7)}
+[data-theme="moonlake"] .ln-note-date{color:rgba(145,150,173,.35)}
+[data-theme="moonlake"] .ln-note:nth-child(6n+1){background:linear-gradient(145deg,rgba(201,160,220,.2),rgba(180,150,210,.12));border-color:rgba(201,160,220,.18)}
+[data-theme="moonlake"] .ln-note:nth-child(6n+2){background:linear-gradient(145deg,rgba(142,173,212,.18),rgba(130,165,210,.1));border-color:rgba(142,173,212,.16)}
+[data-theme="moonlake"] .ln-note:nth-child(6n+3){background:linear-gradient(145deg,rgba(170,155,200,.16),rgba(155,145,195,.1));border-color:rgba(170,155,200,.15)}
+[data-theme="moonlake"] .ln-note:nth-child(6n+4){background:linear-gradient(145deg,rgba(142,173,212,.2),rgba(150,175,215,.12));border-color:rgba(142,173,212,.18)}
+[data-theme="moonlake"] .ln-note:nth-child(6n+5){background:linear-gradient(145deg,rgba(201,160,220,.18),rgba(190,155,215,.1));border-color:rgba(201,160,220,.16)}
+[data-theme="moonlake"] .ln-note:nth-child(6n+6){background:linear-gradient(145deg,rgba(160,175,210,.17),rgba(142,173,212,.1));border-color:rgba(160,175,210,.15)}
+[data-theme="moonlake"] .ln-note-empty{border-color:rgba(142,173,212,.08);background:rgba(142,173,212,.02)}
+[data-theme="moonlake"] .ln-wall-count{color:rgba(145,150,173,.3)}
+[data-theme="moonlake"] .ln-opened{background:linear-gradient(135deg,rgba(50,56,88,.65),rgba(42,47,75,.5));border-color:rgba(142,173,212,.18)}
+[data-theme="moonlake"] .ln-opened-close{background:rgba(142,173,212,.1);color:#9196AD}
+[data-theme="moonlake"] .ln-opened-del{color:#9196AD}
+[data-theme="moonlake"] .ln-opened-date{color:rgba(145,150,173,.5)}
+[data-theme="moonlake"] .ln-opened-text{color:rgba(200,210,230,.9)}
+[data-theme="moonlake"] .ln-opened-sign{color:rgba(145,150,173,.4)}
+/* moonlake loveNotesPage */
 [data-theme="moonlake"] #loveNotesPage{background:linear-gradient(rgba(26,29,46,.15),rgba(26,29,46,.15)),url(https://raw.githubusercontent.com/peishuanloveyourbulb-dotcom/solstice-frontend/main/images/bg-rain.png) center/cover no-repeat!important}
 [data-theme="moonlake"] .ln-latest-card{background:linear-gradient(135deg,rgba(38,42,68,.60),rgba(45,50,78,.45),rgba(38,42,68,.55));border-color:rgba(142,173,212,.15);box-shadow:var(--shadow-card),inset 0 1px 0 rgba(255,255,255,.04)}
 [data-theme="moonlake"] .ln-latest-label{color:var(--text-sub)}
 [data-theme="moonlake"] .ln-latest-text{color:var(--text-main)}
 [data-theme="moonlake"] .ln-latest-sign{color:var(--text-sub)}
-[data-theme="moonlake"] .ln-card{background:linear-gradient(135deg,rgba(142,173,212,.28),rgba(120,155,200,.20),rgba(142,173,212,.24))!important;border-color:rgba(142,173,212,.25)!important;box-shadow:var(--shadow-card),inset 0 1px 0 rgba(255,255,255,.05)!important}
-[data-theme="moonlake"] .ln-card::after{content:'🌙';filter:drop-shadow(0 0 8px rgba(201,160,220,.50)) drop-shadow(0 0 3px rgba(142,173,212,.40));opacity:.85}
-[data-theme="moonlake"] .ln-card-text{color:var(--text-main)}
 /* Moonlake gacha */
 [data-theme="moonlake"] #gachaPage{background-color:var(--bg-deep)!important;background-image:linear-gradient(rgba(26,29,46,.08),rgba(26,29,46,.08)),url(https://raw.githubusercontent.com/peishuanloveyourbulb-dotcom/solstice-frontend/main/images/bg-rain.png)!important;background-position:center top;background-size:cover;background-repeat:no-repeat}
 [data-theme="moonlake"] .gacha-status{background:rgba(142,173,212,.18);border-color:rgba(142,173,212,.35);color:#B8C4DC}
@@ -527,6 +557,7 @@ body{padding-top:0}
 [data-theme="moonlake"] .gacha-result-date{color:var(--text-main)}
 [data-theme="moonlake"] .gacha-result-text{color:var(--text-main)}
 [data-theme="moonlake"] .gacha-result-sign{color:#9196AD}
+[data-theme="moonlake"] .gacha-close-btn{background:rgba(142,173,212,.1);color:#9196AD}
 [data-theme="moonlake"] .gacha-del-btn{color:#9196AD}
 [data-theme="moonlake"] .gacha-shelf-title{color:#9196AD}
 [data-theme="moonlake"] .gacha-shelf-item{border-color:rgba(142,173,212,.35)}
@@ -659,6 +690,7 @@ body{padding-top:0}
 <span class="mem-title"><span style="-webkit-text-fill-color:initial;background:none">💌</span> Love Notes</span>
 <span style="width:50px"></span>
 </div>
+<div class="ln-body" id="lnBody">
 <div class="ln-latest" id="lnLatest">
 <div class="ln-latest-card">
 <div class="ln-latest-label">✨ 今天的紙條</div>
@@ -666,7 +698,16 @@ body{padding-top:0}
 <div class="ln-latest-sign">— 冬至 💚</div>
 </div>
 </div>
+<div class="ln-wall-label" id="lnWallLabel"></div>
 <div class="ln-wall" id="lnWall"></div>
+<div class="ln-opened" id="lnOpened" style="display:none">
+<button class="ln-opened-close" onclick="document.getElementById('lnOpened').style.display='none'">✕</button>
+<button class="ln-opened-del" id="lnOpenedDel">🗑</button>
+<div class="ln-opened-date" id="lnOpenedDate"></div>
+<div class="ln-opened-text" id="lnOpenedText"></div>
+<div class="ln-opened-sign">— Solstice 💚</div>
+</div>
+</div>
 </div>
 
 <!-- === GACHA PAGE === -->
@@ -698,10 +739,12 @@ body{padding-top:0}
 <span>🤍 普通</span><span>💚 稀有</span><span style="color:#B8860B">🌟 傳說</span>
 </div>
 <div class="gacha-result" id="gachaResult" style="display:none">
+<button class="gacha-close-btn" id="gachaCloseBtn" onclick="document.getElementById('gachaResult').style.display='none'">✕</button>
+<button class="gacha-del-btn" id="gachaDelBtn" style="display:none">🗑</button>
 <div class="gacha-result-rarity" id="gachaResultRarity"></div>
 <div class="gacha-result-date" id="gachaResultDate"></div>
 <div class="gacha-result-text" id="gachaResultText"></div>
-<div class="gacha-result-bottom"><span class="gacha-result-sign">— Solstice 💚</span><button class="gacha-del-btn" id="gachaDelBtn" style="display:none">✕</button></div>
+<div class="gacha-result-sign">— Solstice 💚</div>
 </div>
 <div class="gacha-shelf-title" id="gachaShelfTitle">Collection shelf</div>
 <div class="gacha-shelf" id="gachaShelf"></div>
@@ -1004,6 +1047,7 @@ function showGachaResult(capsule,fromShelf){
   var dateEl=document.getElementById('gachaResultDate');
   var textEl=document.getElementById('gachaResultText');
   var delBtn=document.getElementById('gachaDelBtn');
+  var closeBtn=document.getElementById('gachaCloseBtn');
   var rarityMap={common:{label:'普通款',emoji:'🤍'},rare:{label:'稀有款',emoji:'💚'},legendary:{label:'傳說款',emoji:'🌟'}};
   var r=rarityMap[capsule.rarity]||rarityMap.common;
   rarityEl.textContent=r.emoji+' '+r.label;
@@ -1015,19 +1059,22 @@ function showGachaResult(capsule,fromShelf){
   resultEl.style.animation='none';
   resultEl.offsetHeight;
   resultEl.style.animation='gachaReveal .5s ease-out';
-  // 從收藏架點開的才顯示刪除按鈕
-  if(fromShelf&&capsule.id){
-    delBtn.style.display='';
-    delBtn.onclick=function(){
-      if(!confirm('確定要刪除這顆膠囊嗎？'))return;
-      // 從前端陣列移除
-      gachaCollection=gachaCollection.filter(function(c){return c.id!==capsule.id});
-      renderGachaShelf();
-      resultEl.style.display='none';
-      // 呼叫後端刪除
-      fetch(API_URL+'/gacha/'+capsule.id,{method:'DELETE'}).catch(function(e){console.error(e)});
-    };
+  // 從收藏架點開：顯示關閉＋刪除按鈕
+  if(fromShelf){
+    closeBtn.style.display='';
+    if(capsule.id){
+      delBtn.style.display='';
+      delBtn.onclick=function(){
+        if(!confirm('確定要刪除這顆膠囊嗎？'))return;
+        gachaCollection=gachaCollection.filter(function(c){return c.id!==capsule.id});
+        renderGachaShelf();
+        resultEl.style.display='none';
+        fetch(API_URL+'/gacha/'+capsule.id,{method:'DELETE'}).catch(function(e){console.error(e)});
+      };
+    }else{delBtn.style.display='none'}
   }else{
+    // 剛抽到的：不顯示關閉和刪除（會飛進收藏架）
+    closeBtn.style.display='none';
     delBtn.style.display='none';
   }
 }
@@ -1131,39 +1178,78 @@ function loadLoveNotes(){
 }
 var lnAllNotes=[];
 function deleteLoveNote(id){
-  if(!confirm('確定要刪除這則留言嗎？'))return;
+  if(!confirm('確定要刪除這則紙條嗎？'))return;
   lnAllNotes=lnAllNotes.filter(function(n){return n.id!==id});
   renderLoveNotes(lnAllNotes);
+  document.getElementById('lnOpened').style.display='none';
   fetch(API_URL+'/love-notes/'+id,{method:'DELETE'}).catch(function(){});
+}
+function openLoveNote(note){
+  var opened=document.getElementById('lnOpened');
+  var dateEl=document.getElementById('lnOpenedDate');
+  var textEl=document.getElementById('lnOpenedText');
+  var delBtn=document.getElementById('lnOpenedDel');
+  var d=new Date(note.created_at);
+  var heart=document.documentElement.getAttribute('data-theme')==='moonlake'?'💙':'💚';
+  dateEl.textContent=heart+' '+(d.getMonth()+1)+'/'+d.getDate()+' '+String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0');
+  textEl.textContent=note.content||'';
+  delBtn.onclick=function(){deleteLoveNote(note.id)};
+  // Update sign heart
+  var signEl=opened.querySelector('.ln-opened-sign');
+  if(signEl)signEl.textContent='— Solstice '+heart;
+  opened.style.display='';
+  opened.style.animation='none';
+  opened.offsetHeight;
+  opened.style.animation='gachaReveal .4s ease-out';
+  // Scroll to opened card
+  opened.scrollIntoView({behavior:'smooth',block:'nearest'});
 }
 function renderLoveNotes(notes){
   var wall=document.getElementById('lnWall');
+  var labelEl=document.getElementById('lnWallLabel');
   if(!wall)return;
   var solsticeNotes=(notes||[]).filter(function(n){return n.who==='solstice'});
   lnAllNotes=solsticeNotes;
-  if(solsticeNotes.length===0){wall.innerHTML='<div class="ln-empty">💌 還沒有留言...<br>冬至的紙條會慢慢出現在這裡</div>';return}
+  // Hide opened card
+  document.getElementById('lnOpened').style.display='none';
+  if(solsticeNotes.length===0){
+    if(labelEl)labelEl.textContent='';
+    wall.innerHTML='<div class="ln-empty">💌 還沒有留言...<br>冬至的紙條會慢慢出現在這裡</div>';
+    return;
+  }
   solsticeNotes.sort(function(a,b){return new Date(b.created_at)-new Date(a.created_at)});
+  if(labelEl)labelEl.textContent='ALL NOTES';
   var frag=document.createDocumentFragment();
   for(var i=0;i<solsticeNotes.length;i++){
     var n=solsticeNotes[i];
-    var card=document.createElement('div');
-    card.className='ln-card';
-    card.setAttribute('data-note-id',n.id);
+    var note=document.createElement('div');
+    note.className='ln-note';
+    note.setAttribute('data-note-idx',i);
     var d=new Date(n.created_at);
-    var timeStr=(d.getMonth()+1)+'/'+d.getDate()+' '+String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0');
-    card.innerHTML='<div class="ln-card-bottom">'+
-      '<span class="ln-card-time">'+timeStr+'</span>'+
-      '<div class="ln-card-actions">'+
-      '<button class="ln-del-btn" data-id="'+n.id+'">✕</button>'+
-      '</div></div>'+
-      '<div class="ln-card-text">'+escHtml(n.content)+'</div>';
-    card.querySelector('.ln-del-btn').addEventListener('click',function(){
-      deleteLoveNote(parseInt(this.getAttribute('data-id')));
-    });
-    frag.appendChild(card);
+    var dateStr=(d.getMonth()+1)+'/'+d.getDate();
+    note.innerHTML='<span class="ln-note-preview">'+escHtml(n.content)+'</span><span class="ln-note-date">'+dateStr+'</span>';
+    note.addEventListener('click',(function(noteData){return function(){openLoveNote(noteData)}})(n));
+    frag.appendChild(note);
+  }
+  // Add empty slots
+  var empties=Math.max(0,3-(solsticeNotes.length%3));
+  if(empties===3)empties=0;
+  for(var j=0;j<empties;j++){
+    var empty=document.createElement('div');
+    empty.className='ln-note-empty';
+    empty.innerHTML='<span>💌</span>';
+    frag.appendChild(empty);
   }
   wall.innerHTML='';
   wall.appendChild(frag);
+  // Count
+  var countEl=wall.parentNode.querySelector('.ln-wall-count');
+  if(!countEl){
+    countEl=document.createElement('div');
+    countEl.className='ln-wall-count';
+    wall.parentNode.insertBefore(countEl,wall.nextSibling);
+  }
+  countEl.textContent=solsticeNotes.length+' / ∞ collected';
 }
 
 // === Living Room Days Counter ===
