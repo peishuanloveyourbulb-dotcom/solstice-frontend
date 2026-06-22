@@ -1,12 +1,17 @@
 {
-  "name": "Solstice",
-  "short_name": "Solstice",
+  "name": "Sol²",
+  "short_name": "Sol²",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#E8F0DC",
   "theme_color": "#E8F0DC",
-  "description": "Solstice - Welcome Home, Soleil",
+  "description": "Sol² - Welcome Home, Soleil",
   "icons": [
+    {
+      "src": "/icon-180.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    },
     {
       "src": "/icon-192.png",
       "sizes": "192x192",
@@ -15,6 +20,11 @@
     {
       "src": "/icon-512.png",
       "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-1024.png",
+      "sizes": "1024x1024",
       "type": "image/png"
     }
   ]

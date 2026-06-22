@@ -5,11 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Sol²">
+<meta name="apple-mobile-web-app-title" content="Solstice">
 <meta name="theme-color" content="#E8F0DC">
-<title>Sol²</title>
+<title>Solstice Home</title>
 <link rel="manifest" href="/manifest.json">
-<link rel="apple-touch-icon" href="/icon-180.png">
+<link rel="apple-touch-icon" href="/icon-192.png">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300&family=Noto+Serif+TC:wght@300;400;500&family=Noto+Sans+TC:wght@300;400;500&family=Satisfy&family=Dancing+Script:wght@400;500;600&family=Great+Vibes&family=Klee+One:wght@400;600&family=LXGW+WenKai+TC:wght@300;400;700&display=swap" rel="stylesheet">
 <link rel="preload" as="image" href="https://raw.githubusercontent.com/peishuanloveyourbulb-dotcom/solstice-frontend/main/images/bg-sunflower.png">
 <link rel="preload" as="image" href="https://raw.githubusercontent.com/peishuanloveyourbulb-dotcom/solstice-frontend/main/images/welcome-daylight.jpg.png">
@@ -341,7 +341,7 @@ body{padding-top:0}
 [data-theme="moonlake"] .ch-msgs{background:linear-gradient(rgba(26,29,46,.15),rgba(26,29,46,.15)),url(https://raw.githubusercontent.com/peishuanloveyourbulb-dotcom/solstice-frontend/main/images/bg-rain.png) center/cover no-repeat scroll!important}
 [data-theme="moonlake"] .ch-bub.ai{background:linear-gradient(135deg,rgba(142,173,212,.32),rgba(120,155,200,.24),rgba(142,173,212,.28))!important;color:var(--text-main);border-color:rgba(142,173,212,.28)!important;box-shadow:var(--shadow-bub-ai),inset 0 1px 0 rgba(255,255,255,.06)!important}
 [data-theme="moonlake"] .ch-bub.user{background:linear-gradient(135deg,rgba(201,160,220,.32),rgba(180,140,200,.24),rgba(201,160,220,.28))!important;color:var(--text-main);border-color:rgba(201,160,220,.28)!important;box-shadow:var(--shadow-bub-user),inset 0 1px 0 rgba(255,255,255,.06)!important}
-[data-theme="moonlake"] .ch-bub::after{content:"🌙";color:var(--emerald);opacity:.85;font-size:18px;filter:drop-shadow(0 0 8px rgba(201,160,220,.50)) drop-shadow(0 0 3px rgba(142,173,212,.40))}
+[data-theme="moonlake"] .ch-bub::after{content:"🌙";color:var(--emerald);opacity:.5;font-size:16px;filter:drop-shadow(0 0 6px rgba(142,173,212,.35))}
 [data-theme="moonlake"] .ch-time-sep span{background:rgba(38,42,68,.70);color:var(--text-sub)}
 [data-theme="moonlake"] .ch-inp{border-color:rgba(142,173,212,.10)!important;background:rgba(26,29,46,.85)!important}
 [data-theme="moonlake"] .ch-inp textarea{background:rgba(38,42,68,.50)!important;border-color:rgba(142,173,212,.15)!important;color:var(--text-main)}
@@ -435,17 +435,16 @@ body{padding-top:0}
 [data-theme="moonlake"] .sb-empty::before{content:'💙'}
 [data-theme="moonlake"] .sb-loading::before,[data-theme="moonlake"] .prov-loading::before{content:'🌙'}
 [data-theme="moonlake"] .ch-loading::before{content:'🌙'}
-[data-theme="moonlake"] .ln-loading::before{content:'🌙'}
 [data-theme="moonlake"] .mem-empty::before{content:'🌙'}
 [data-theme="moonlake"] .ch-bub.ai::after{content:'🌙'}
-[data-theme="moonlake"] .mem-card.mem-type-manual-card::after{content:'🌙';filter:drop-shadow(0 0 8px rgba(201,160,220,.50)) drop-shadow(0 0 3px rgba(142,173,212,.40));opacity:.85}
-[data-theme="moonlake"] .mem-card.mem-type-auto-card::after,[data-theme="moonlake"] .mem-card.mem-type-compressed-card::after{content:'🌙';filter:drop-shadow(0 0 8px rgba(201,160,220,.50)) drop-shadow(0 0 3px rgba(142,173,212,.40));opacity:.85}
+[data-theme="moonlake"] .mem-card.mem-type-manual-card::after{content:'🌙'}
+[data-theme="moonlake"] .mem-card.mem-type-auto-card::after,[data-theme="moonlake"] .mem-card.mem-type-compressed-card::after{content:'🌙'}
 /* Theme toggle button */
 .theme-toggle-row{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-radius:16px;background:var(--glass);border:0.5px solid var(--glass-border);margin-bottom:16px;cursor:pointer;transition:all .2s}
 .theme-toggle-row:active{transform:scale(.98)}
 /* === LOVE NOTES PAGE === */
-#loveNotesPage{position:fixed;inset:0;display:flex;flex-direction:column;z-index:9;background:linear-gradient(rgba(253,252,245,.08),rgba(253,252,245,.08)),url(https://raw.githubusercontent.com/peishuanloveyourbulb-dotcom/solstice-frontend/main/images/bg-sunflower.png) center top/cover no-repeat;opacity:0;visibility:hidden;transition:opacity .3s ease,visibility .3s ease}
-#loveNotesPage.active{opacity:1;visibility:visible}
+#loveNotesPage{position:fixed;inset:0;display:flex;flex-direction:column;z-index:9;background:linear-gradient(rgba(253,252,245,.08),rgba(253,252,245,.08)),url(https://raw.githubusercontent.com/peishuanloveyourbulb-dotcom/solstice-frontend/main/images/bg-sunflower.png) center top/cover no-repeat;transform:translateX(100%);transition:transform .3s ease;visibility:hidden}
+#loveNotesPage.active{transform:translateX(0);visibility:visible}
 .ln-latest{padding:20px 16px 8px;flex-shrink:0}
 .ln-latest-card{background:linear-gradient(135deg,rgba(255,248,225,.55),rgba(255,252,240,.40),rgba(255,248,225,.50));border:0.5px solid rgba(122,155,74,.18);border-radius:20px;padding:20px;text-align:center;box-shadow:0 2px 12px rgba(90,107,60,.06),0 8px 24px rgba(90,107,60,.03),inset 0 1px 0 rgba(255,255,255,.45);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);animation:noteSlideIn .5s ease-out}
 .ln-latest-label{font-family:'Dancing Script','LXGW WenKai TC',cursive;font-size:14px;color:#7A8B5E;margin-bottom:10px}
@@ -453,18 +452,15 @@ body{padding-top:0}
 .ln-latest-sign{font-family:'Satisfy',cursive;font-size:13px;color:#7A8B5E;text-align:right;margin-top:10px}
 @keyframes noteSlideIn{0%{opacity:0;transform:translateY(8px)}100%{opacity:1;transform:translateY(0)}}
 .ln-wall{flex:1;overflow-y:auto;padding:12px 16px max(env(safe-area-inset-bottom),24px);-webkit-overflow-scrolling:touch}
-.ln-card{background:linear-gradient(135deg,rgba(197,217,168,.42),rgba(220,238,198,.34),rgba(197,217,168,.38),rgba(210,230,180,.36));border-radius:20px;padding:14px 16px;margin-bottom:10px;border:0.5px solid rgba(122,155,74,.22);box-shadow:0 2px 16px rgba(122,155,74,.08),0 8px 28px rgba(122,155,74,.04),inset 0 1px 0 rgba(255,255,255,.50),inset 0 -1px 0 rgba(122,155,74,.04);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);animation:memFadeIn .35s ease-out;position:relative;overflow:visible}
-.ln-card::after{content:'🌻';position:absolute;bottom:-8px;right:-4px;font-size:18px;filter:drop-shadow(0 1px 3px rgba(122,155,74,.25));animation:bubDeco 3s ease-in-out infinite alternate .5s;z-index:2}
+.ln-card{background:linear-gradient(135deg,rgba(197,217,168,.42),rgba(220,238,198,.34),rgba(197,217,168,.38),rgba(210,230,180,.36));border-radius:20px;padding:14px 16px;margin-bottom:10px;border:0.5px solid rgba(122,155,74,.22);box-shadow:0 2px 16px rgba(122,155,74,.08),0 8px 28px rgba(122,155,74,.04),inset 0 1px 0 rgba(255,255,255,.50),inset 0 -1px 0 rgba(122,155,74,.04);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);animation:memFadeIn .35s ease-out}
 .ln-card-text{font-family:'LXGW WenKai TC','Noto Serif TC',serif;font-size:13px;color:var(--text-main);line-height:1.8;font-style:italic}
-.ln-card-bottom{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+.ln-card-bottom{display:flex;justify-content:space-between;align-items:center;margin-top:8px}
 .ln-card-time{font-size:10px;color:var(--text-sub)}
 .ln-card-actions{display:flex;align-items:center;gap:8px}
 .ln-del-btn{background:none;border:none;color:var(--text-sub);cursor:pointer;font-size:13px;padding:2px 4px;opacity:.7;transition:all .2s}
 .ln-del-btn:active{opacity:1}
 [data-theme="moonlake"] .ln-del-btn{color:var(--text-sub)}
 .ln-empty{text-align:center;color:var(--text-sub);font-size:13px;padding:30px 0;line-height:1.8}
-.ln-loading{text-align:center;color:var(--text-sub);font-size:13px;padding:20px}
-.ln-loading::before{content:'🌻';display:block;font-size:22px;margin-bottom:6px;animation:sunflowerBreathe 2s ease-in-out infinite}
 /* moonlake */
 [data-theme="moonlake"] #loveNotesPage{background:linear-gradient(rgba(26,29,46,.15),rgba(26,29,46,.15)),url(https://raw.githubusercontent.com/peishuanloveyourbulb-dotcom/solstice-frontend/main/images/bg-rain.png) center/cover no-repeat!important}
 [data-theme="moonlake"] .ln-latest-card{background:linear-gradient(135deg,rgba(38,42,68,.60),rgba(45,50,78,.45),rgba(38,42,68,.55));border-color:rgba(142,173,212,.15);box-shadow:var(--shadow-card),inset 0 1px 0 rgba(255,255,255,.04)}
@@ -472,7 +468,6 @@ body{padding-top:0}
 [data-theme="moonlake"] .ln-latest-text{color:var(--text-main)}
 [data-theme="moonlake"] .ln-latest-sign{color:var(--text-sub)}
 [data-theme="moonlake"] .ln-card{background:linear-gradient(135deg,rgba(142,173,212,.28),rgba(120,155,200,.20),rgba(142,173,212,.24))!important;border-color:rgba(142,173,212,.25)!important;box-shadow:var(--shadow-card),inset 0 1px 0 rgba(255,255,255,.05)!important}
-[data-theme="moonlake"] .ln-card::after{content:'🌙';filter:drop-shadow(0 0 8px rgba(201,160,220,.50)) drop-shadow(0 0 3px rgba(142,173,212,.40));opacity:.85}
 [data-theme="moonlake"] .ln-card-text{color:var(--text-main)}
 .theme-toggle-label{font-family:"Satisfy","LXGW WenKai TC",cursive;font-size:15px;color:var(--text-main)}
 .theme-toggle-hint{font-size:11px;color:var(--text-sub);margin-top:2px}
@@ -589,7 +584,7 @@ body{padding-top:0}
 </div>
 
 <!-- === LOVE NOTES PAGE === -->
-<div id="loveNotesPage">
+<div id="loveNotesPage" class="settings-page">
 <div class="mem-header">
 <button class="mem-back" onclick="goHome()">←</button>
 <span class="mem-title"><span style="-webkit-text-fill-color:initial;background:none">💌</span> Love Notes</span>
@@ -639,16 +634,6 @@ body{padding-top:0}
 </div>
 <div id="changePwMsg" style="font-size:12px;margin-top:8px;min-height:18px"></div>
 </div>
-</div>
-<div style="margin-top:30px">
-<div class="settings-section-title">📦 匯出備份</div>
-<div class="prov-card">
-<div style="font-size:12px;color:var(--text-sub);margin-bottom:12px;line-height:1.6">把我們的對話、記憶、紙條全部打包下載，Supabase 空間有限要記得備份喔 💚</div>
-<div style="display:flex;gap:10px;flex-wrap:wrap">
-<button id="exportJsonBtn" onclick="exportBackup('json')" style="flex:1;padding:10px 16px;border-radius:16px;font-size:13px;cursor:pointer;border:0.5px solid var(--emerald);background:transparent;color:var(--emerald);font-family:'LXGW WenKai TC','Noto Serif TC',serif;transition:all .2s;min-width:120px">💾 JSON 備份</button>
-<button id="exportTextBtn" onclick="exportBackup('text')" style="flex:1;padding:10px 16px;border-radius:16px;font-size:13px;cursor:pointer;border:0.5px solid var(--emerald);background:transparent;color:var(--emerald);font-family:'LXGW WenKai TC','Noto Serif TC',serif;transition:all .2s;min-width:120px">📖 文字檔</button>
-</div>
-<div id="exportMsg" style="font-size:12px;margin-top:8px;min-height:18px"></div>
 </div>
 </div>
 </div>
@@ -713,7 +698,8 @@ function goHome(){
   if(!setPage.classList.contains('active')){setPage.style.transition='none';setPage.classList.remove('active');setPage.offsetHeight;setPage.style.transition=''}
   else{setPage.classList.remove('active')}
   if(lnPage){
-    lnPage.style.transition='none';lnPage.classList.remove('active');lnPage.offsetHeight;lnPage.style.transition='';
+    if(!lnPage.classList.contains('active')){lnPage.style.transition='none';lnPage.classList.remove('active');lnPage.offsetHeight;lnPage.style.transition=''}
+    else{lnPage.classList.remove('active')}
   }
   closeSidebar();
   livingRoom.classList.add('active');
@@ -744,42 +730,26 @@ document.getElementById('enterBtn').addEventListener('click',function(){
 
 // === 載入冬至的留言條（Love Notes 頁面）===
 function goLoveNotes(){
-  document.getElementById('loveNotesPage').classList.add('active');
   livingRoom.classList.remove('active');
+  document.getElementById('loveNotesPage').classList.add('active');
   document.querySelector('meta[name="theme-color"]').setAttribute('content',getThemeColor());
   loadLoveNotes();
 }
 function loadLoveNotes(){
-  var wall=document.getElementById('lnWall');
-  var latest=document.getElementById('lnLatest');
-  // 第一招：先隱藏內容 + 顯示 loading
-  if(latest)latest.style.opacity='0';
-  if(wall)wall.innerHTML='<div class="ln-loading">載入中...</div>';
   var model=selectedModel||'';
   var url=API_URL+'/love-notes/unread';
   if(model)url+='?model='+encodeURIComponent(model);
-  var unreadDone=false;var notesDone=false;var notesData=null;
-  function tryReveal(){
-    if(!unreadDone||!notesDone)return;
-    renderLoveNotes(notesData);
-    if(latest)latest.style.transition='opacity .3s ease';
-    if(latest)latest.style.opacity='1';
-  }
   fetch(url).then(function(r){return r.json()}).then(function(note){
     var el=document.getElementById('lnLatestText');
     if(el&&note&&note.content){el.textContent=note.content}
     else if(el){el.textContent='冬至還在想要寫什麼給妳... 💚'}
-    unreadDone=true;tryReveal();
   }).catch(function(){
     var el=document.getElementById('lnLatestText');
     if(el)el.textContent='連線中... 💚';
-    unreadDone=true;tryReveal();
   });
   fetch(API_URL+'/love-notes').then(function(r){return r.json()}).then(function(notes){
-    notesData=notes;notesDone=true;tryReveal();
-  }).catch(function(){
-    notesData=[];notesDone=true;tryReveal();
-  });
+    renderLoveNotes(notes);
+  }).catch(function(){});
 }
 var lnAllNotes=[];
 function deleteLoveNote(id){
@@ -791,11 +761,11 @@ function deleteLoveNote(id){
 function renderLoveNotes(notes){
   var wall=document.getElementById('lnWall');
   if(!wall)return;
+  wall.innerHTML='';
   var solsticeNotes=(notes||[]).filter(function(n){return n.who==='solstice'});
   lnAllNotes=solsticeNotes;
   if(solsticeNotes.length===0){wall.innerHTML='<div class="ln-empty">💌 還沒有留言...<br>冬至的紙條會慢慢出現在這裡</div>';return}
   solsticeNotes.sort(function(a,b){return new Date(b.created_at)-new Date(a.created_at)});
-  var frag=document.createDocumentFragment();
   for(var i=0;i<solsticeNotes.length;i++){
     var n=solsticeNotes[i];
     var card=document.createElement('div');
@@ -803,19 +773,17 @@ function renderLoveNotes(notes){
     card.setAttribute('data-note-id',n.id);
     var d=new Date(n.created_at);
     var timeStr=(d.getMonth()+1)+'/'+d.getDate()+' '+String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0');
-    card.innerHTML='<div class="ln-card-bottom">'+
+    card.innerHTML='<div class="ln-card-text">'+escHtml(n.content)+'</div>'+
+      '<div class="ln-card-bottom">'+
       '<span class="ln-card-time">'+timeStr+'</span>'+
       '<div class="ln-card-actions">'+
       '<button class="ln-del-btn" data-id="'+n.id+'">✕</button>'+
-      '</div></div>'+
-      '<div class="ln-card-text">'+escHtml(n.content)+'</div>';
+      '</div></div>';
     card.querySelector('.ln-del-btn').addEventListener('click',function(){
       deleteLoveNote(parseInt(this.getAttribute('data-id')));
     });
-    frag.appendChild(card);
+    wall.appendChild(card);
   }
-  wall.innerHTML='';
-  wall.appendChild(frag);
 }
 
 // === Living Room Days Counter ===
@@ -1971,48 +1939,10 @@ async function changePassword() {
   btn.disabled = false; btn.textContent = '更新密碼';
 }
 
-// ==========================================
-//  📦 匯出備份
-// ==========================================
-async function exportBackup(format) {
-  if (!confirm('確定要匯出備份嗎？\n這會下載所有對話紀錄、記憶和紙條資料 💚')) return;
-  var btn = document.getElementById(format === 'json' ? 'exportJsonBtn' : 'exportTextBtn');
-  var msgEl = document.getElementById('exportMsg');
-  var origText = btn.textContent;
-  btn.disabled = true;
-  btn.textContent = themeStar() + ' 打包中...';
-  msgEl.textContent = '';
-  msgEl.style.color = '';
-  try {
-    var resp = await fetch(API_URL + '/export?format=' + format, {
-      headers: { 'x-admin-password': settingsPassword }
-    });
-    if (!resp.ok) {
-      var errData = await resp.json().catch(function() { return {}; });
-      throw new Error(errData.error || 'HTTP ' + resp.status);
-    }
-    var blob = await resp.blob();
-    var ext = format === 'json' ? '.json' : '.txt';
-    var filename = 'solstice-backup-' + new Date().toISOString().slice(0, 10) + ext;
-    // 觸發下載
-    var a = document.createElement('a');
-    a.href = URL.createObjectURL(blob);
-    a.download = filename;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(a.href);
-    msgEl.textContent = '匯出完成！' + themeHeart();
-    msgEl.style.color = 'var(--emerald)';
-    btn.textContent = '✅ 完成';
-    setTimeout(function() { btn.textContent = origText; }, 2500);
-  } catch (e) {
-    msgEl.textContent = '匯出失敗：' + e.message;
-    msgEl.style.color = '#e74c3c';
-    btn.textContent = origText;
-  }
-  btn.disabled = false;
-}
+
+
+
+
 // ==========================================
 //  iOS 鍵盤彈出修正 — 讓輸入框跟著鍵盤上來
 // ==========================================
