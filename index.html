@@ -723,10 +723,10 @@ function goChat(){
   chat.classList.add('active');
   document.querySelector('meta[name="theme-color"]').setAttribute('content',getThemeColor());
   if(msgs.children.length>0) return;
+  var ld=document.createElement('div');ld.className='ch-loading';ld.textContent='載入中...';msgs.appendChild(ld);
   if(sessionId){
-    var ld=document.createElement('div');ld.className='ch-loading';ld.textContent='正在載入對話紀錄...';msgs.appendChild(ld);
     loadHistory().then(function(){ld.remove();if(msgs.children.length===0){addMsg('ai',randomGreeting())}});
-  }else{setTimeout(function(){if(msgs.children.length===0){addMsg('ai',randomGreeting())}},600)}
+  }else{setTimeout(function(){ld.remove();if(msgs.children.length===0){addMsg('ai',randomGreeting())}},600)}
 }
 function goMemory(){
   livingRoom.classList.remove('active');
