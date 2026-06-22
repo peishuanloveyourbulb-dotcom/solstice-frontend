@@ -819,7 +819,7 @@ function goHome(){
     gachaPage.style.transition='none';gachaPage.classList.remove('active');gachaPage.offsetHeight;gachaPage.style.transition='';
     // Reset gacha body 讓下次進來重新走 loading → reveal 流程
     var gBody=document.getElementById('gachaBody');
-    if(gBody){gBody.style.transition='none';gBody.style.opacity='0';gBody.style.visibility='hidden'}
+    if(gBody){gBody.style.transition='none';gBody.style.opacity='0';gBody.style.display='none'}
   }
   closeSidebar();
   livingRoom.classList.add('active');
@@ -859,14 +859,14 @@ function goLoveNotes(){
 function goGacha(){
   // 第一招：先隱藏內容區 + 顯示 loading 過渡動畫（🌻 / 🌙）
   var gBody=document.getElementById('gachaBody');
-  if(gBody){gBody.style.opacity='0';gBody.style.visibility='hidden'}
-  // 插入 loading 動畫（複用 ln-loading 樣式，自動支援兩個主題）
+  if(gBody){gBody.style.display='none'}
+  // 插入 loading 動畫（用 ch-loading 樣式，位置跟聊天室一樣偏上方）
   var gachaPage=document.getElementById('gachaPage');
   var existingLoader=document.getElementById('gachaLoader');
   if(!existingLoader){
     var loader=document.createElement('div');
     loader.id='gachaLoader';
-    loader.className='ln-loading';
+    loader.className='ch-loading';
     loader.textContent='載入中...';
     gBody.parentNode.insertBefore(loader,gBody);
   }else{existingLoader.style.display=''}
@@ -888,10 +888,17 @@ function loadGachaState(){
     if(!todayDone||!collDone)return;
     // 第二招：shelf 用 DocumentFragment 一次性渲染（在 renderGachaShelf 裡已處理）
     renderGachaShelf();
-    // 移除 loading 動畫 + 一次性顯示內容
+    // 移除 loading 動畫
     var loader=document.getElementById('gachaLoader');
     if(loader)loader.style.display='none';
-    if(gBody){gBody.style.transition='opacity .3s ease,visibility .3s ease';gBody.style.opacity='1';gBody.style.visibility='visible'}
+    // 一次性顯示內容：先 display 回來（opacity 0），再觸發淡入
+    if(gBody){
+      gBody.style.opacity='0';
+      gBody.style.display='';
+      gBody.offsetHeight;
+      gBody.style.transition='opacity .3s ease';
+      gBody.style.opacity='1';
+    }
   }
   // Load today's status
   fetch(API_URL+'/gacha/today').then(function(r){return r.json()}).then(function(data){
