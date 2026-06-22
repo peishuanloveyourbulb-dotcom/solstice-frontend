@@ -459,6 +459,8 @@ body{padding-top:0}
 .ln-fav-btn{background:none;border:none;font-size:16px;cursor:pointer;opacity:.4;transition:all .2s;padding:2px 4px}
 .ln-fav-btn.fav{opacity:1;animation:pinBounce .3s ease-out}
 .ln-fav-btn:active{transform:scale(1.3)}
+.ln-card.ln-fav{border-color:rgba(122,155,74,.35);background:linear-gradient(135deg,rgba(232,240,220,.55),rgba(240,248,228,.45),rgba(232,240,220,.50));box-shadow:0 2px 10px rgba(122,155,74,.08)}
+[data-theme="moonlake"] .ln-card.ln-fav{border-color:rgba(142,173,212,.30);background:linear-gradient(135deg,rgba(142,173,212,.18),rgba(120,155,200,.12),rgba(142,173,212,.15))}
 .ln-del-btn{background:none;border:0.5px solid rgba(122,155,74,.18);border-radius:10px;font-size:11px;cursor:pointer;opacity:.35;transition:all .2s;padding:3px 8px;color:#7A8B5E;font-family:'LXGW WenKai TC','Noto Serif TC',serif;letter-spacing:.5px}
 .ln-del-btn:active{opacity:.7;background:rgba(122,155,74,.08)}
 .ln-card-actions{display:flex;align-items:center;gap:8px}
@@ -696,10 +698,15 @@ function goHome(){
   document.querySelector('meta[name="theme-color"]').setAttribute('content',getThemeColor());
   var memPage=document.getElementById('memoryPage');
   var setPage=document.getElementById('settingsPage');
+  var lnPage=document.getElementById('loveNotesPage');
   if(!memPage.classList.contains('active')){memPage.style.transition='none';memPage.classList.remove('active');memPage.offsetHeight;memPage.style.transition=''}
   else{memPage.classList.remove('active')}
   if(!setPage.classList.contains('active')){setPage.style.transition='none';setPage.classList.remove('active');setPage.offsetHeight;setPage.style.transition=''}
   else{setPage.classList.remove('active')}
+  if(lnPage){
+    if(!lnPage.classList.contains('active')){lnPage.style.transition='none';lnPage.classList.remove('active');lnPage.offsetHeight;lnPage.style.transition=''}
+    else{lnPage.classList.remove('active')}
+  }
   closeSidebar();
   livingRoom.classList.add('active');
 }
@@ -781,7 +788,7 @@ function renderLoveNotes(notes){
   for(var i=0;i<solsticeNotes.length;i++){
     var n=solsticeNotes[i];
     var card=document.createElement('div');
-    card.className='ln-card';
+    card.className='ln-card'+(isFav?' ln-fav':'');
     card.setAttribute('data-note-id',n.id);
     var isFav=favNotes.indexOf(n.id)!==-1;
     var d=new Date(n.created_at);
@@ -798,7 +805,9 @@ function renderLoveNotes(notes){
       toggleFav(id);
       var nowFav=favNotes.indexOf(id)!==-1;
       this.textContent=nowFav?'💚':'🤍';
-      if(nowFav)this.classList.add('fav');else this.classList.remove('fav');
+      if(nowFav){this.classList.add('fav')}else{this.classList.remove('fav')}
+      var parentCard=this.closest('.ln-card');
+      if(parentCard){if(nowFav){parentCard.classList.add('ln-fav')}else{parentCard.classList.remove('ln-fav')}}
     });
     card.querySelector('.ln-del-btn').addEventListener('click',function(){
       deleteLoveNote(parseInt(this.getAttribute('data-id')));
