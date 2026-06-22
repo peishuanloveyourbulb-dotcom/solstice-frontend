@@ -685,24 +685,24 @@ document.getElementById('enterBtn').addEventListener('click',function(){
   welcome.classList.add('hidden');
   livingRoom.classList.add('active');
   document.querySelector('meta[name="theme-color"]').setAttribute('content',getThemeColor());
-  // 標記留言已讀
-  var noteEl=document.getElementById('loveNote');
-  if(noteEl&&noteEl.dataset.noteId&&noteEl.dataset.noteId!=='replay'){
-    fetch(API_URL+'/love-notes/'+noteEl.dataset.noteId+'/read',{method:'PATCH'}).catch(function(){});
-  }
 });
 
 // === 載入冬至的留言條 ===
 (function(){
-  fetch(API_URL+'/love-notes/unread').then(function(r){return r.json()}).then(function(note){
-    if(!note)return;
-    var noteEl=document.getElementById('loveNote');
-    var textEl=document.getElementById('loveNoteText');
-    if(!noteEl||!textEl)return;
-    textEl.textContent=note.content;
-    noteEl.dataset.noteId=note._isReplay?'replay':String(note.id);
-    noteEl.classList.remove('hidden');
-  }).catch(function(e){console.log('[LoveNote] 載入失敗:',e.message)});
+  // 等模型列表載入後再去拿留言（這樣可以傳 model 參數讓後端生成新的）
+  setTimeout(function(){
+    var model = selectedModel || '';
+    var url = API_URL + '/love-notes/unread';
+    if (model) url += '?model=' + encodeURIComponent(model);
+    fetch(url).then(function(r){return r.json()}).then(function(note){
+      if(!note)return;
+      var noteEl=document.getElementById('loveNote');
+      var textEl=document.getElementById('loveNoteText');
+      if(!noteEl||!textEl)return;
+      textEl.textContent=note.content;
+      noteEl.classList.remove('hidden');
+    }).catch(function(e){console.log('[LoveNote] 載入失敗:',e.message)});
+  }, 2000); // 等 2 秒讓模型列表先載入
 })();
 
 // === Living Room Days Counter ===
