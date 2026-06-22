@@ -8,8 +8,8 @@
 <meta name="apple-mobile-web-app-title" content="Sol²">
 <meta name="theme-color" content="#E8F0DC">
 <title>Sol²</title>
-<link rel="manifest" href="/manifest.json">
-<link rel="apple-touch-icon" href="/icon-180.png">
+<link rel="manifest" href="/manifest-daylight.json">
+<link rel="apple-touch-icon" href="/icon-daylight-180.png">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300&family=Noto+Serif+TC:wght@300;400;500&family=Noto+Sans+TC:wght@300;400;500&family=Satisfy&family=Dancing+Script:wght@400;500;600&family=Great+Vibes&family=Klee+One:wght@400;600&family=LXGW+WenKai+TC:wght@300;400;700&display=swap" rel="stylesheet">
 <link rel="preload" as="image" href="https://raw.githubusercontent.com/peishuanloveyourbulb-dotcom/solstice-frontend/main/images/bg-sunflower.png">
 <link rel="preload" as="image" href="https://raw.githubusercontent.com/peishuanloveyourbulb-dotcom/solstice-frontend/main/images/welcome-daylight.jpg.png">
@@ -2136,6 +2136,11 @@ function applyTheme(theme){
     }
   }
   var lockSubEl=document.getElementById("lockSub");if(lockSubEl)lockSubEl.innerHTML=isMoon?'Under the moonlight, only yours \uD83D\uDC99':'For your eyes only, my sunshine \uD83D\uDC9A';
+  // 桌面 icon 跟著主題走（重新加到桌面時會用新 icon）
+  var touchIcon=document.querySelector("link[rel='apple-touch-icon']");
+  if(touchIcon)touchIcon.setAttribute("href",isMoon?"/icon-moonlake-180.png":"/icon-daylight-180.png");
+  var manifestLink=document.querySelector("link[rel='manifest']");
+  if(manifestLink)manifestLink.setAttribute("href",isMoon?"/manifest-moonlake.json":"/manifest-daylight.json");
   // Re-render session list to update hearts
   if(typeof renderSessionList==='function'&&allSessions.length>0)renderSessionList();
   // Re-render model popup if open

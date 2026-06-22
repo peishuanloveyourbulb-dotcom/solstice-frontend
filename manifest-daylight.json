@@ -1,0 +1,26 @@
+{
+  "name": "Sol²",
+  "short_name": "Sol²",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#E8F0DC",
+  "theme_color": "#E8F0DC",
+  "description": "Sol² - Welcome Home, Soleil",
+  "icons": [
+    {
+      "src": "/icon-daylight-180.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-daylight-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-daylight-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
