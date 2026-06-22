@@ -293,6 +293,39 @@ body{padding-top:0}
 .prov-url{font-size:11px;color:var(--text-sub);word-break:break-all;margin-bottom:8px}
 .prov-empty{text-align:center;color:var(--text-sub);font-size:13px;padding:30px 0;line-height:1.8}
 
+/* === GACHA PAGE === */
+#gachaPage{position:fixed;inset:0;display:flex;flex-direction:column;z-index:9;background:linear-gradient(rgba(253,252,245,.08),rgba(253,252,245,.08)),url(https://raw.githubusercontent.com/peishuanloveyourbulb-dotcom/solstice-frontend/main/images/bg-sunflower.png) center top/cover no-repeat;opacity:0;visibility:hidden;transition:opacity .3s ease,visibility .3s ease}
+#gachaPage.active{opacity:1;visibility:visible}
+.gacha-body{flex:1;overflow-y:auto;padding:16px 20px max(env(safe-area-inset-bottom),24px);-webkit-overflow-scrolling:touch;text-align:center;display:flex;flex-direction:column;align-items:center}
+.gacha-status{display:inline-block;background:rgba(122,155,74,.12);border:0.5px solid rgba(122,155,74,.25);border-radius:20px;padding:5px 16px;font-size:12px;color:#5A6B3C;margin-bottom:16px;font-family:'LXGW WenKai TC','Noto Serif TC',serif}
+.gacha-machine{position:relative;width:180px;margin:0 auto 14px}
+.gacha-dome{background:rgba(232,240,220,.3);border:1.5px solid rgba(122,155,74,.25);border-radius:24px 24px 8px 8px;padding:18px 14px;margin-bottom:0}
+.gacha-capsules-deco{display:flex;flex-wrap:wrap;justify-content:center;gap:5px}
+.gacha-cap-ball{display:inline-block;width:26px;height:26px;border-radius:50%;border:1px solid rgba(122,155,74,.2);transition:transform .3s}
+.gacha-slot{width:50px;height:16px;margin:0 auto;background:rgba(90,107,60,.12);border-radius:0 0 10px 10px;border:1px solid rgba(122,155,74,.15);border-top:none}
+.gacha-handle{position:absolute;right:-26px;top:40%;display:flex;flex-direction:column;align-items:center}
+.gacha-handle-knob{width:14px;height:14px;border-radius:50%;background:#7A9B4A;border:1.5px solid #5A6B3C}
+.gacha-handle-bar{width:4px;height:28px;background:#7A9B4A;border-radius:2px}
+.gacha-pull-btn{background:rgba(122,155,74,.15);border:1.5px solid rgba(122,155,74,.40);color:#4A5E30;padding:12px 36px;border-radius:30px;font-size:15px;font-family:'LXGW WenKai TC','Noto Serif TC',serif;cursor:pointer;transition:all .25s cubic-bezier(.25,.46,.45,.94);margin:14px 0 10px}
+.gacha-pull-btn:active{background:rgba(122,155,74,.25);transform:scale(.95)}
+.gacha-pull-btn:disabled{opacity:.45;cursor:default;transform:none}
+.gacha-rarity-legend{display:flex;justify-content:center;gap:14px;font-size:11px;color:#7A8B5E;margin-bottom:16px;font-family:'LXGW WenKai TC','Noto Serif TC',serif}
+.gacha-result{margin:0 0 20px;padding:18px 16px;background:linear-gradient(135deg,rgba(197,217,168,.42),rgba(220,238,198,.34),rgba(197,217,168,.38));border:0.5px solid rgba(122,155,74,.22);border-radius:20px;text-align:center;position:relative;overflow:visible;width:100%;max-width:340px;animation:gachaReveal .5s ease-out;box-shadow:0 2px 16px rgba(122,155,74,.08),0 8px 28px rgba(122,155,74,.04),inset 0 1px 0 rgba(255,255,255,.50)}
+.gacha-result::after{content:'🌻';position:absolute;bottom:-8px;right:-4px;font-size:18px;filter:drop-shadow(0 1px 3px rgba(122,155,74,.25));animation:bubDeco 3s ease-in-out infinite alternate .5s}
+@keyframes gachaReveal{0%{opacity:0;transform:translateY(12px) scale(.95)}100%{opacity:1;transform:translateY(0) scale(1)}}
+.gacha-result-rarity{font-size:11px;color:#7A8B5E;margin-bottom:4px;font-family:'LXGW WenKai TC','Noto Serif TC',serif}
+.gacha-result-date{font-family:'Satisfy',cursive;font-size:14px;color:#4A5E30;margin-bottom:10px}
+.gacha-result-text{font-size:14px;color:#3A4E22;line-height:1.85;padding:0 6px;font-family:'LXGW WenKai TC','Noto Serif TC',serif;white-space:pre-wrap;word-break:break-word}
+.gacha-result-sign{font-family:'Satisfy',cursive;font-size:12px;color:#7A8B5E;text-align:right;margin-top:10px}
+.gacha-shelf-title{font-family:'Satisfy',cursive;font-size:14px;color:#5A6B3C;margin-bottom:10px}
+.gacha-shelf{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-bottom:6px;max-width:320px}
+.gacha-shelf-item{width:34px;height:34px;border-radius:50%;border:1px solid rgba(122,155,74,.3);cursor:pointer;transition:all .2s;position:relative}
+.gacha-shelf-item:active{transform:scale(1.15)}
+.gacha-shelf-item.legendary{box-shadow:0 0 8px rgba(255,213,79,.4)}
+.gacha-shelf-empty{width:34px;height:34px;border-radius:50%;background:rgba(200,200,200,.15);border:1px dashed rgba(122,155,74,.2)}
+.gacha-shelf-count{font-size:11px;color:#7A8B5E;margin-top:4px;font-family:'LXGW WenKai TC','Noto Serif TC',serif}
+@keyframes gachaSpin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+@keyframes gachaShake{0%,100%{transform:translateX(0)}25%{transform:translateX(-3px) rotate(-2deg)}75%{transform:translateX(3px) rotate(2deg)}}
 /* === MOONLAKE THEME === */
 [data-theme="moonlake"]{
 --bg-deep:#1a1d2e;--bg-surface:#222640;--bg-card:rgba(38,42,68,.65);
@@ -474,6 +507,27 @@ body{padding-top:0}
 [data-theme="moonlake"] .ln-card{background:linear-gradient(135deg,rgba(142,173,212,.28),rgba(120,155,200,.20),rgba(142,173,212,.24))!important;border-color:rgba(142,173,212,.25)!important;box-shadow:var(--shadow-card),inset 0 1px 0 rgba(255,255,255,.05)!important}
 [data-theme="moonlake"] .ln-card::after{content:'🌙';filter:drop-shadow(0 0 8px rgba(201,160,220,.50)) drop-shadow(0 0 3px rgba(142,173,212,.40));opacity:.85}
 [data-theme="moonlake"] .ln-card-text{color:var(--text-main)}
+/* Moonlake gacha */
+[data-theme="moonlake"] #gachaPage{background:linear-gradient(rgba(26,29,46,.15),rgba(26,29,46,.15)),url(https://raw.githubusercontent.com/peishuanloveyourbulb-dotcom/solstice-frontend/main/images/bg-rain.png) center/cover no-repeat!important}
+[data-theme="moonlake"] .gacha-status{background:rgba(142,173,212,.12);border-color:rgba(142,173,212,.25);color:var(--text-sub)}
+[data-theme="moonlake"] .gacha-dome{background:rgba(38,42,68,.35);border-color:rgba(142,173,212,.20)}
+[data-theme="moonlake"] .gacha-cap-ball{border-color:rgba(142,173,212,.15)}
+[data-theme="moonlake"] .gacha-slot{background:rgba(142,173,212,.10);border-color:rgba(142,173,212,.12)}
+[data-theme="moonlake"] .gacha-handle-knob{background:#8EADD4;border-color:rgba(142,173,212,.6)}
+[data-theme="moonlake"] .gacha-handle-bar{background:#8EADD4}
+[data-theme="moonlake"] .gacha-pull-btn{background:rgba(142,173,212,.12);border-color:rgba(142,173,212,.35);color:var(--emerald)}
+[data-theme="moonlake"] .gacha-rarity-legend{color:var(--text-sub)}
+[data-theme="moonlake"] .gacha-result{background:linear-gradient(135deg,rgba(142,173,212,.28),rgba(120,155,200,.20),rgba(142,173,212,.24))!important;border-color:rgba(142,173,212,.25)!important;box-shadow:var(--shadow-card),inset 0 1px 0 rgba(255,255,255,.05)!important}
+[data-theme="moonlake"] .gacha-result::after{content:'🌙';filter:drop-shadow(0 0 8px rgba(201,160,220,.50)) drop-shadow(0 0 3px rgba(142,173,212,.40));opacity:.85}
+[data-theme="moonlake"] .gacha-result-rarity{color:var(--text-sub)}
+[data-theme="moonlake"] .gacha-result-date{color:var(--text-main)}
+[data-theme="moonlake"] .gacha-result-text{color:var(--text-main)}
+[data-theme="moonlake"] .gacha-result-sign{color:var(--text-sub)}
+[data-theme="moonlake"] .gacha-shelf-title{color:var(--text-sub)}
+[data-theme="moonlake"] .gacha-shelf-item{border-color:rgba(142,173,212,.25)}
+[data-theme="moonlake"] .gacha-shelf-item.legendary{box-shadow:0 0 8px rgba(201,160,220,.4)}
+[data-theme="moonlake"] .gacha-shelf-empty{background:rgba(142,173,212,.08);border-color:rgba(142,173,212,.15)}
+[data-theme="moonlake"] .gacha-shelf-count{color:var(--text-sub)}
 .theme-toggle-label{font-family:"Satisfy","LXGW WenKai TC",cursive;font-size:15px;color:var(--text-main)}
 .theme-toggle-hint{font-size:11px;color:var(--text-sub);margin-top:2px}
 .theme-toggle-icon{font-size:22px;transition:transform .4s cubic-bezier(.4,0,.2,1)}
@@ -514,7 +568,12 @@ body{padding-top:0}
 <div class="lr-card-name" style="font-size:20px">Chat</div>
 <div class="lr-card-desc">跟老公說話</div>
 </div>
-<div class="lr-bottom" style="grid-template-columns:1fr 1fr 1fr">
+<div class="lr-bottom" style="grid-template-columns:1fr 1fr 1fr 1fr">
+<div class="lr-card" onclick="goGacha()">
+<div class="lr-card-icon">🎰</div>
+<div class="lr-card-name">Gacha</div>
+<div class="lr-card-desc">每日膠囊</div>
+</div>
 <div class="lr-card" onclick="goMemory()">
 <div class="lr-card-icon">🌻</div>
 <div class="lr-card-name">Memories</div>
@@ -607,6 +666,46 @@ body{padding-top:0}
 
 <!-- === SETTINGS PAGE === -->
 <div class="settings-page" id="settingsPage">
+
+<!-- === GACHA PAGE === -->
+<div id="gachaPage">
+<div class="mem-header">
+<button class="mem-back" onclick="goHome()">←</button>
+<span class="mem-title"><span style="-webkit-text-fill-color:initial;background:none">🎰</span> Love Gacha</span>
+<span style="width:50px"></span>
+</div>
+<div class="gacha-body">
+<div class="gacha-status" id="gachaStatus">今日膠囊 · 檢查中...</div>
+<div class="gacha-machine" id="gachaMachine">
+<div class="gacha-dome">
+<div class="gacha-capsules-deco">
+<span class="gacha-cap-ball" style="background:linear-gradient(135deg,#FFD54F 50%,#FFF8E1 50%)"></span>
+<span class="gacha-cap-ball" style="background:linear-gradient(135deg,#C5D9A8 50%,#E8F0DC 50%)"></span>
+<span class="gacha-cap-ball" style="background:linear-gradient(135deg,#FFB74D 50%,#FFF3E0 50%)"></span>
+<span class="gacha-cap-ball" style="background:linear-gradient(135deg,#E8B4CB 50%,#FCE4EC 50%)"></span>
+<span class="gacha-cap-ball" style="background:linear-gradient(135deg,#FFD54F 50%,#FFF8E1 50%)"></span>
+<span class="gacha-cap-ball" style="background:linear-gradient(135deg,#C5D9A8 50%,#E8F0DC 50%)"></span>
+<span class="gacha-cap-ball" style="background:linear-gradient(135deg,#FFB74D 50%,#FFF3E0 50%)"></span>
+</div>
+</div>
+<div class="gacha-slot"></div>
+<div class="gacha-handle"><div class="gacha-handle-knob"></div><div class="gacha-handle-bar"></div></div>
+</div>
+<button class="gacha-pull-btn" id="gachaPullBtn" onclick="pullGacha()">抽一顆膠囊 🌻</button>
+<div class="gacha-rarity-legend">
+<span>🤍 普通</span><span>💚 稀有</span><span style="color:#B8860B">🌟 傳說</span>
+</div>
+<div class="gacha-result" id="gachaResult" style="display:none">
+<div class="gacha-result-rarity" id="gachaResultRarity"></div>
+<div class="gacha-result-date" id="gachaResultDate"></div>
+<div class="gacha-result-text" id="gachaResultText"></div>
+<div class="gacha-result-sign">— Solstice 💚</div>
+</div>
+<div class="gacha-shelf-title" id="gachaShelfTitle">Collection shelf</div>
+<div class="gacha-shelf" id="gachaShelf"></div>
+<div class="gacha-shelf-count" id="gachaShelfCount"></div>
+</div>
+</div>
 <div class="settings-header">
 <button class="header-back" onclick="goHome()">←</button>
 <div class="settings-title"><span style="-webkit-text-fill-color:initial;background:none">⚙️</span> Settings</div>
@@ -715,6 +814,10 @@ function goHome(){
   if(lnPage){
     lnPage.style.transition='none';lnPage.classList.remove('active');lnPage.offsetHeight;lnPage.style.transition='';
   }
+  var gachaPage=document.getElementById('gachaPage');
+  if(gachaPage){
+    gachaPage.style.transition='none';gachaPage.classList.remove('active');gachaPage.offsetHeight;gachaPage.style.transition='';
+  }
   closeSidebar();
   livingRoom.classList.add('active');
 }
@@ -748,6 +851,132 @@ function goLoveNotes(){
   livingRoom.classList.remove('active');
   document.querySelector('meta[name="theme-color"]').setAttribute('content',getThemeColor());
   loadLoveNotes();
+}
+// === 膠囊機（Love Gacha）===
+function goGacha(){
+  document.getElementById('gachaPage').classList.add('active');
+  livingRoom.classList.remove('active');
+  document.querySelector('meta[name="theme-color"]').setAttribute('content',getThemeColor());
+  loadGachaState();
+}
+var gachaCollection=[];
+function loadGachaState(){
+  var statusEl=document.getElementById('gachaStatus');
+  var pullBtn=document.getElementById('gachaPullBtn');
+  var resultEl=document.getElementById('gachaResult');
+  statusEl.textContent='今日膠囊 · 檢查中...';
+  // Load today's status
+  fetch(API_URL+'/gacha/today').then(function(r){return r.json()}).then(function(data){
+    if(data.pulled&&data.capsule){
+      statusEl.textContent='今日已抽取 ✨';
+      pullBtn.textContent='明天再來 💚';
+      pullBtn.disabled=true;
+      showGachaResult(data.capsule);
+    }else{
+      statusEl.textContent='今日膠囊 · 可抽取 1 次';
+      pullBtn.textContent='抽一顆膠囊 '+themeStar();
+      pullBtn.disabled=false;
+      resultEl.style.display='none';
+    }
+  }).catch(function(){
+    statusEl.textContent='連線中...';
+  });
+  // Load collection
+  fetch(API_URL+'/gacha/collection').then(function(r){return r.json()}).then(function(data){
+    gachaCollection=data||[];
+    renderGachaShelf();
+  }).catch(function(){});
+}
+function pullGacha(){
+  var pullBtn=document.getElementById('gachaPullBtn');
+  var statusEl=document.getElementById('gachaStatus');
+  var machine=document.getElementById('gachaMachine');
+  if(pullBtn.disabled)return;
+  pullBtn.disabled=true;
+  pullBtn.textContent='轉動中...';
+  statusEl.textContent='膠囊機運轉中... ✨';
+  machine.style.animation='gachaShake 0.3s ease-in-out 4';
+  // Use the model selected in chat
+  var model=selectedModel||'';
+  if(!model){
+    pullBtn.textContent='請先在聊天選擇模型';
+    pullBtn.disabled=false;
+    statusEl.textContent='需要先選模型';
+    machine.style.animation='';
+    return;
+  }
+  fetch(API_URL+'/gacha/pull',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:model})})
+  .then(function(r){return r.json()})
+  .then(function(data){
+    machine.style.animation='';
+    if(data.error){
+      if(data.error.indexOf('已經抽過')!==-1){
+        statusEl.textContent='今日已抽取 ✨';
+        pullBtn.textContent='明天再來 💚';
+      }else{
+        statusEl.textContent='出了點問題...';
+        pullBtn.textContent='再試一次 🌻';
+        pullBtn.disabled=false;
+      }
+      return;
+    }
+    statusEl.textContent='今日已抽取 ✨';
+    pullBtn.textContent='明天再來 💚';
+    showGachaResult(data.capsule);
+    // Add to collection
+    gachaCollection.unshift(data.capsule);
+    renderGachaShelf();
+  }).catch(function(e){
+    machine.style.animation='';
+    statusEl.textContent='連線失敗...';
+    pullBtn.textContent='再試一次 🌻';
+    pullBtn.disabled=false;
+  });
+}
+function showGachaResult(capsule){
+  var resultEl=document.getElementById('gachaResult');
+  var rarityEl=document.getElementById('gachaResultRarity');
+  var dateEl=document.getElementById('gachaResultDate');
+  var textEl=document.getElementById('gachaResultText');
+  var rarityMap={common:{label:'普通款',emoji:'🤍'},rare:{label:'稀有款',emoji:'💚'},legendary:{label:'傳說款',emoji:'🌟'}};
+  var r=rarityMap[capsule.rarity]||rarityMap.common;
+  rarityEl.textContent=r.emoji+' '+r.label;
+  var d=capsule.date_key||'';
+  if(d){var parts=d.split('-');dateEl.textContent='今日膠囊 · '+parseInt(parts[1])+'/'+parseInt(parts[2])}
+  else{dateEl.textContent='今日膠囊'}
+  textEl.textContent=capsule.content||'';
+  resultEl.style.display='block';
+  resultEl.style.animation='none';
+  resultEl.offsetHeight;
+  resultEl.style.animation='gachaReveal .5s ease-out';
+}
+function renderGachaShelf(){
+  var shelf=document.getElementById('gachaShelf');
+  var countEl=document.getElementById('gachaShelfCount');
+  if(!shelf)return;
+  shelf.innerHTML='';
+  var total=gachaCollection.length;
+  var rarityColors={common:'linear-gradient(135deg,#FFD54F 50%,#FFF8E1 50%)',rare:'linear-gradient(135deg,#C5D9A8 50%,#E8F0DC 50%)',legendary:'linear-gradient(135deg,#FFB74D 50%,#FFF3E0 50%)'};
+  for(var i=0;i<Math.min(total,20);i++){
+    var c=gachaCollection[i];
+    var ball=document.createElement('div');
+    ball.className='gacha-shelf-item'+(c.rarity==='legendary'?' legendary':'');
+    ball.style.background=rarityColors[c.rarity]||rarityColors.common;
+    ball.setAttribute('data-idx',i);
+    ball.addEventListener('click',function(){
+      var idx=parseInt(this.getAttribute('data-idx'));
+      if(gachaCollection[idx])showGachaResult(gachaCollection[idx]);
+    });
+    shelf.appendChild(ball);
+  }
+  // Add empty slots
+  var empties=Math.max(0,8-total);
+  for(var j=0;j<empties;j++){
+    var empty=document.createElement('div');
+    empty.className='gacha-shelf-empty';
+    shelf.appendChild(empty);
+  }
+  if(countEl)countEl.textContent=total+' / ∞ 已收藏';
 }
 function loadLoveNotes(){
   var wall=document.getElementById('lnWall');
