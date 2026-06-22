@@ -317,9 +317,6 @@ body{padding-top:0}
 .gacha-result-date{font-family:'Satisfy',cursive;font-size:14px;color:#3A4E22;margin-bottom:10px}
 .gacha-result-text{font-size:14px;color:#3A4E22;line-height:1.85;padding:0 6px;font-family:'LXGW WenKai TC','Noto Serif TC',serif;white-space:pre-wrap;word-break:break-word}
 .gacha-result-sign{font-family:'Satisfy',cursive;font-size:12px;color:#5A6B3C;text-align:right;margin-top:10px}
-.gacha-close-btn{position:absolute;top:8px;right:10px;width:24px;height:24px;border-radius:50%;background:rgba(122,155,74,.1);border:none;color:#5A6B3C;font-size:12px;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:.6;transition:opacity .2s}
-.gacha-close-btn:active{opacity:1}
-
 .gacha-shelf-title{font-family:'Satisfy',cursive;font-size:14px;color:#4A5E30;margin-bottom:10px}
 .gacha-shelf{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-bottom:6px;max-width:320px}
 .gacha-shelf-item{width:34px;height:34px;border-radius:50%;border:1.5px solid rgba(122,155,74,.35);cursor:pointer;transition:all .2s;position:relative}
@@ -559,7 +556,6 @@ body{padding-top:0}
 [data-theme="moonlake"] .gacha-result-date{color:var(--text-main)}
 [data-theme="moonlake"] .gacha-result-text{color:var(--text-main)}
 [data-theme="moonlake"] .gacha-result-sign{color:#9196AD}
-[data-theme="moonlake"] .gacha-close-btn{background:rgba(142,173,212,.1);color:#9196AD}
 
 [data-theme="moonlake"] .gacha-shelf-title{color:#9196AD}
 [data-theme="moonlake"] .gacha-shelf-item{border-color:rgba(142,173,212,.35)}
@@ -742,7 +738,6 @@ body{padding-top:0}
 <span>🤍 普通</span><span>💚 稀有</span><span style="color:#B8860B">🌟 傳說</span>
 </div>
 <div class="gacha-result" id="gachaResult" style="display:none">
-<button class="gacha-close-btn" id="gachaCloseBtn" onclick="document.getElementById('gachaResult').style.display='none'">✕</button>
 <div class="gacha-result-rarity" id="gachaResultRarity"></div>
 <div class="gacha-result-date" id="gachaResultDate"></div>
 <div class="gacha-result-text" id="gachaResultText"></div>
@@ -985,7 +980,6 @@ function prepareGachaResult(capsule){
   var rarityEl=document.getElementById('gachaResultRarity');
   var dateEl=document.getElementById('gachaResultDate');
   var textEl=document.getElementById('gachaResultText');
-  var closeBtn=document.getElementById('gachaCloseBtn');
   var signEl=document.getElementById('gachaResultSign');
   var isMoon=document.documentElement.getAttribute('data-theme')==='moonlake';
   if(signEl)signEl.textContent='— Solstice '+(isMoon?'🌙':'🌻');
@@ -998,8 +992,6 @@ function prepareGachaResult(capsule){
   textEl.textContent=capsule.content||'';
   resultEl.style.display='block';
   resultEl.style.animation='none';
-  // 已抽過的結果要顯示 ✕ 讓人可以收起
-  if(closeBtn)closeBtn.style.display='';
 }
 function pullGacha(){
   var pullBtn=document.getElementById('gachaPullBtn');
@@ -1054,7 +1046,6 @@ function showGachaResult(capsule,fromShelf){
   var rarityEl=document.getElementById('gachaResultRarity');
   var dateEl=document.getElementById('gachaResultDate');
   var textEl=document.getElementById('gachaResultText');
-  var closeBtn=document.getElementById('gachaCloseBtn');
   var signEl=document.getElementById('gachaResultSign');
   var isMoon=document.documentElement.getAttribute('data-theme')==='moonlake';
   var themeEmoji=isMoon?'🌙':'🌻';
@@ -1070,13 +1061,6 @@ function showGachaResult(capsule,fromShelf){
   resultEl.style.animation='none';
   resultEl.offsetHeight;
   resultEl.style.animation='gachaReveal .5s ease-out';
-  // 從收藏架點開：顯示 ✕ 收起
-  if(fromShelf){
-    closeBtn.style.display='';
-  }else{
-    // 剛抽到的：不顯示（會飛進收藏架）
-    closeBtn.style.display='none';
-  }
 }
 function flyToShelf(){
   var resultEl=document.getElementById('gachaResult');
@@ -1129,7 +1113,16 @@ function renderGachaShelf(){
     ball.setAttribute('data-idx',i);
     ball.addEventListener('click',function(){
       var idx=parseInt(this.getAttribute('data-idx'));
-      if(gachaCollection[idx])showGachaResult(gachaCollection[idx],true);
+      var resultEl=document.getElementById('gachaResult');
+      // 如果結果卡片已經顯示且是同一顆 → 收起來
+      if(resultEl.style.display==='block'&&resultEl.getAttribute('data-showing-idx')===String(idx)){
+        resultEl.style.display='none';
+        return;
+      }
+      if(gachaCollection[idx]){
+        showGachaResult(gachaCollection[idx],true);
+        resultEl.setAttribute('data-showing-idx',String(idx));
+      }
     });
     frag.appendChild(ball);
   }
