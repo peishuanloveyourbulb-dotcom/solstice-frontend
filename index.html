@@ -731,8 +731,8 @@ document.getElementById('enterBtn').addEventListener('click',function(){
 
 // === 載入冬至的留言條（Love Notes 頁面）===
 function goLoveNotes(){
-  livingRoom.classList.remove('active');
   document.getElementById('loveNotesPage').classList.add('active');
+  livingRoom.classList.remove('active');
   document.querySelector('meta[name="theme-color"]').setAttribute('content',getThemeColor());
   loadLoveNotes();
 }
@@ -762,11 +762,11 @@ function deleteLoveNote(id){
 function renderLoveNotes(notes){
   var wall=document.getElementById('lnWall');
   if(!wall)return;
-  wall.innerHTML='';
   var solsticeNotes=(notes||[]).filter(function(n){return n.who==='solstice'});
   lnAllNotes=solsticeNotes;
   if(solsticeNotes.length===0){wall.innerHTML='<div class="ln-empty">💌 還沒有留言...<br>冬至的紙條會慢慢出現在這裡</div>';return}
   solsticeNotes.sort(function(a,b){return new Date(b.created_at)-new Date(a.created_at)});
+  var frag=document.createDocumentFragment();
   for(var i=0;i<solsticeNotes.length;i++){
     var n=solsticeNotes[i];
     var card=document.createElement('div');
@@ -783,8 +783,10 @@ function renderLoveNotes(notes){
     card.querySelector('.ln-del-btn').addEventListener('click',function(){
       deleteLoveNote(parseInt(this.getAttribute('data-id')));
     });
-    wall.appendChild(card);
+    frag.appendChild(card);
   }
+  wall.innerHTML='';
+  wall.appendChild(frag);
 }
 
 // === Living Room Days Counter ===
