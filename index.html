@@ -294,7 +294,7 @@ body{padding-top:0}
 .prov-empty{text-align:center;color:var(--text-sub);font-size:13px;padding:30px 0;line-height:1.8}
 
 /* === GACHA PAGE === */
-#gachaPage{position:fixed;inset:0;display:flex;flex-direction:column;z-index:9;background-color:#FDFCF5;background-image:linear-gradient(rgba(253,252,245,.08),rgba(253,252,245,.08)),url(https://raw.githubusercontent.com/peishuanloveyourbulb-dotcom/solstice-frontend/main/images/bg-sunflower.png);background-position:center top;background-size:cover;background-repeat:no-repeat;background-attachment:local;opacity:0;visibility:hidden;transition:opacity .3s ease,visibility .3s ease}
+#gachaPage{position:fixed;inset:0;display:flex;flex-direction:column;z-index:9;background-color:#FDFCF5;background-image:linear-gradient(rgba(253,252,245,.04),rgba(253,252,245,.04)),url(https://raw.githubusercontent.com/peishuanloveyourbulb-dotcom/solstice-frontend/main/images/bg-sunflower.png);background-position:center top;background-size:cover;background-repeat:no-repeat;background-attachment:local;opacity:0;visibility:hidden;transition:opacity .3s ease,visibility .3s ease}
 #gachaPage.active{opacity:1;visibility:visible}
 .gacha-body{flex:1;overflow-y:auto;padding:16px 20px max(env(safe-area-inset-bottom),24px);-webkit-overflow-scrolling:touch;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center}
 .gacha-status{display:inline-block;background:rgba(122,155,74,.15);border:0.5px solid rgba(122,155,74,.30);border-radius:20px;padding:5px 16px;font-size:12px;color:#4A5E30;margin-bottom:18px;font-family:'LXGW WenKai TC','Noto Serif TC',serif;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
@@ -508,7 +508,7 @@ body{padding-top:0}
 [data-theme="moonlake"] .ln-card::after{content:'🌙';filter:drop-shadow(0 0 8px rgba(201,160,220,.50)) drop-shadow(0 0 3px rgba(142,173,212,.40));opacity:.85}
 [data-theme="moonlake"] .ln-card-text{color:var(--text-main)}
 /* Moonlake gacha */
-[data-theme="moonlake"] #gachaPage{background-color:var(--bg-deep)!important;background-image:linear-gradient(rgba(26,29,46,.15),rgba(26,29,46,.15)),url(https://raw.githubusercontent.com/peishuanloveyourbulb-dotcom/solstice-frontend/main/images/bg-rain.png)!important;background-position:center top;background-size:cover;background-repeat:no-repeat}
+[data-theme="moonlake"] #gachaPage{background-color:var(--bg-deep)!important;background-image:linear-gradient(rgba(26,29,46,.08),rgba(26,29,46,.08)),url(https://raw.githubusercontent.com/peishuanloveyourbulb-dotcom/solstice-frontend/main/images/bg-rain.png)!important;background-position:center top;background-size:cover;background-repeat:no-repeat}
 [data-theme="moonlake"] .gacha-status{background:rgba(142,173,212,.18);border-color:rgba(142,173,212,.35);color:#B8C4DC}
 [data-theme="moonlake"] .gacha-dome{background:rgba(38,42,68,.75);border-color:rgba(142,173,212,.30)}
 [data-theme="moonlake"] .gacha-cap-ball{border-color:rgba(142,173,212,.25)}
@@ -671,7 +671,7 @@ body{padding-top:0}
 <span class="mem-title"><span style="-webkit-text-fill-color:initial;background:none">🎰</span> Love Gacha</span>
 <span style="width:50px"></span>
 </div>
-<div class="gacha-body">
+<div class="gacha-body" id="gachaBody">
 <div class="gacha-status" id="gachaStatus">今日膠囊 · 檢查中...</div>
 <div class="gacha-machine" id="gachaMachine">
 <div class="gacha-dome">
@@ -817,6 +817,9 @@ function goHome(){
   var gachaPage=document.getElementById('gachaPage');
   if(gachaPage){
     gachaPage.style.transition='none';gachaPage.classList.remove('active');gachaPage.offsetHeight;gachaPage.style.transition='';
+    // Reset gacha body 讓下次進來重新走 loading → reveal 流程
+    var gBody=document.getElementById('gachaBody');
+    if(gBody){gBody.style.transition='none';gBody.style.opacity='0';gBody.style.visibility='hidden'}
   }
   closeSidebar();
   livingRoom.classList.add('active');
@@ -854,6 +857,9 @@ function goLoveNotes(){
 }
 // === 膠囊機（Love Gacha）===
 function goGacha(){
+  // 第一招：先隱藏內容區 + 顯示 loading
+  var gBody=document.getElementById('gachaBody');
+  if(gBody){gBody.style.opacity='0';gBody.style.visibility='hidden'}
   document.getElementById('gachaPage').classList.add('active');
   livingRoom.classList.remove('active');
   document.querySelector('meta[name="theme-color"]').setAttribute('content',getThemeColor());
@@ -864,28 +870,60 @@ function loadGachaState(){
   var statusEl=document.getElementById('gachaStatus');
   var pullBtn=document.getElementById('gachaPullBtn');
   var resultEl=document.getElementById('gachaResult');
+  var gBody=document.getElementById('gachaBody');
   statusEl.textContent='今日膠囊 · 檢查中...';
+  // 兩支 API 都回來才一次性顯示
+  var todayDone=false;var collDone=false;
+  function tryReveal(){
+    if(!todayDone||!collDone)return;
+    // 第二招：shelf 用 DocumentFragment 一次性渲染（在 renderGachaShelf 裡已處理）
+    renderGachaShelf();
+    // 全部組裝好，一次性顯示
+    if(gBody){gBody.style.transition='opacity .3s ease,visibility .3s ease';gBody.style.opacity='1';gBody.style.visibility='visible'}
+  }
   // Load today's status
   fetch(API_URL+'/gacha/today').then(function(r){return r.json()}).then(function(data){
     if(data.pulled&&data.capsule){
       statusEl.textContent='今日已抽取 ✨';
       pullBtn.textContent='明天再來 💚';
       pullBtn.disabled=true;
-      showGachaResult(data.capsule);
+      // 先把結果內容填好但不跑動畫（等 reveal 時一起出現）
+      prepareGachaResult(data.capsule);
     }else{
       statusEl.textContent='今日膠囊 · 可抽取 1 次';
       pullBtn.textContent='抽一顆膠囊 '+themeStar();
       pullBtn.disabled=false;
       resultEl.style.display='none';
     }
+    todayDone=true;tryReveal();
   }).catch(function(){
     statusEl.textContent='連線中...';
+    todayDone=true;tryReveal();
   });
   // Load collection
   fetch(API_URL+'/gacha/collection').then(function(r){return r.json()}).then(function(data){
     gachaCollection=data||[];
-    renderGachaShelf();
-  }).catch(function(){});
+    collDone=true;tryReveal();
+  }).catch(function(){
+    gachaCollection=[];
+    collDone=true;tryReveal();
+  });
+}
+// 靜態填入結果（不跑動畫），用於頁面初次載入
+function prepareGachaResult(capsule){
+  var resultEl=document.getElementById('gachaResult');
+  var rarityEl=document.getElementById('gachaResultRarity');
+  var dateEl=document.getElementById('gachaResultDate');
+  var textEl=document.getElementById('gachaResultText');
+  var rarityMap={common:{label:'普通款',emoji:'🤍'},rare:{label:'稀有款',emoji:'💚'},legendary:{label:'傳說款',emoji:'🌟'}};
+  var r=rarityMap[capsule.rarity]||rarityMap.common;
+  rarityEl.textContent=r.emoji+' '+r.label;
+  var d=capsule.date_key||'';
+  if(d){var parts=d.split('-');dateEl.textContent='今日膠囊 · '+parseInt(parts[1])+'/'+parseInt(parts[2])}
+  else{dateEl.textContent='今日膠囊'}
+  textEl.textContent=capsule.content||'';
+  resultEl.style.display='block';
+  resultEl.style.animation='none';
 }
 function pullGacha(){
   var pullBtn=document.getElementById('gachaPullBtn');
@@ -954,9 +992,10 @@ function renderGachaShelf(){
   var shelf=document.getElementById('gachaShelf');
   var countEl=document.getElementById('gachaShelfCount');
   if(!shelf)return;
-  shelf.innerHTML='';
   var total=gachaCollection.length;
   var rarityColors={common:'linear-gradient(135deg,#FFD54F 50%,#FFF8E1 50%)',rare:'linear-gradient(135deg,#C5D9A8 50%,#E8F0DC 50%)',legendary:'linear-gradient(135deg,#FFB74D 50%,#FFF3E0 50%)'};
+  // 第二招：DocumentFragment 一次性渲染，不逐個 appendChild
+  var frag=document.createDocumentFragment();
   for(var i=0;i<Math.min(total,20);i++){
     var c=gachaCollection[i];
     var ball=document.createElement('div');
@@ -967,15 +1006,18 @@ function renderGachaShelf(){
       var idx=parseInt(this.getAttribute('data-idx'));
       if(gachaCollection[idx])showGachaResult(gachaCollection[idx]);
     });
-    shelf.appendChild(ball);
+    frag.appendChild(ball);
   }
   // Add empty slots
   var empties=Math.max(0,8-total);
   for(var j=0;j<empties;j++){
     var empty=document.createElement('div');
     empty.className='gacha-shelf-empty';
-    shelf.appendChild(empty);
+    frag.appendChild(empty);
   }
+  // 一次清空 + 一次塞入，DOM 只更新一次
+  shelf.innerHTML='';
+  shelf.appendChild(frag);
   if(countEl)countEl.textContent=total+' / ∞ 已收藏';
 }
 function loadLoveNotes(){
