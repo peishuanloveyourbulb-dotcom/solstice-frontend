@@ -452,15 +452,14 @@ body{padding-top:0}
 .ln-latest-sign{font-family:'Satisfy',cursive;font-size:13px;color:#7A8B5E;text-align:right;margin-top:10px}
 @keyframes noteSlideIn{0%{opacity:0;transform:translateY(8px)}100%{opacity:1;transform:translateY(0)}}
 .ln-wall{flex:1;overflow-y:auto;padding:12px 16px max(env(safe-area-inset-bottom),24px);-webkit-overflow-scrolling:touch}
-.ln-card{background:linear-gradient(135deg,rgba(232,240,220,.40),rgba(240,248,228,.30),rgba(232,240,220,.35));border:0.5px solid rgba(122,155,74,.12);border-radius:16px;padding:14px 16px;margin-bottom:10px;box-shadow:0 1px 6px rgba(90,107,60,.04);animation:memFadeIn .35s ease-out}
+.ln-card{background:linear-gradient(135deg,rgba(197,217,168,.42),rgba(220,238,198,.34),rgba(197,217,168,.38),rgba(210,230,180,.36));border-radius:20px;padding:14px 16px;margin-bottom:10px;border:0.5px solid rgba(122,155,74,.22);box-shadow:0 2px 16px rgba(122,155,74,.08),0 8px 28px rgba(122,155,74,.04),inset 0 1px 0 rgba(255,255,255,.50),inset 0 -1px 0 rgba(122,155,74,.04);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);animation:memFadeIn .35s ease-out}
 .ln-card-text{font-family:'LXGW WenKai TC','Noto Serif TC',serif;font-size:13px;color:var(--text-main);line-height:1.8;font-style:italic}
 .ln-card-bottom{display:flex;justify-content:space-between;align-items:center;margin-top:8px}
 .ln-card-time{font-size:10px;color:var(--text-sub)}
 .ln-card-actions{display:flex;align-items:center;gap:8px}
-.ln-del-btn{background:none;border:0.5px solid rgba(180,100,100,.25);border-radius:10px;font-size:11px;cursor:pointer;opacity:.5;transition:all .2s;padding:3px 8px;color:rgba(180,100,100,.65);font-family:'LXGW WenKai TC','Noto Serif TC',serif;letter-spacing:.5px}
-.ln-del-btn:active{opacity:.8;background:rgba(180,100,100,.08)}
-[data-theme="moonlake"] .ln-del-btn{border-color:rgba(180,140,140,.25);color:rgba(200,160,160,.55);opacity:.45}
-[data-theme="moonlake"] .ln-del-btn:active{background:rgba(180,140,140,.08)}
+.ln-del-btn{background:none;border:none;color:var(--text-sub);cursor:pointer;font-size:13px;padding:2px 4px;opacity:.7;transition:all .2s}
+.ln-del-btn:active{opacity:1}
+[data-theme="moonlake"] .ln-del-btn{color:var(--text-sub)}
 .ln-empty{text-align:center;color:var(--text-sub);font-size:13px;padding:30px 0;line-height:1.8}
 /* moonlake */
 [data-theme="moonlake"] #loveNotesPage{background:linear-gradient(rgba(26,29,46,.15),rgba(26,29,46,.15)),url(https://raw.githubusercontent.com/peishuanloveyourbulb-dotcom/solstice-frontend/main/images/bg-rain.png) center/cover no-repeat!important}
@@ -468,7 +467,7 @@ body{padding-top:0}
 [data-theme="moonlake"] .ln-latest-label{color:var(--text-sub)}
 [data-theme="moonlake"] .ln-latest-text{color:var(--text-main)}
 [data-theme="moonlake"] .ln-latest-sign{color:var(--text-sub)}
-[data-theme="moonlake"] .ln-card{background:linear-gradient(135deg,rgba(38,42,68,.45),rgba(45,50,78,.35),rgba(38,42,68,.40));border-color:rgba(142,173,212,.10)}
+[data-theme="moonlake"] .ln-card{background:linear-gradient(135deg,rgba(142,173,212,.28),rgba(120,155,200,.20),rgba(142,173,212,.24))!important;border-color:rgba(142,173,212,.25)!important;box-shadow:var(--shadow-card),inset 0 1px 0 rgba(255,255,255,.05)!important}
 [data-theme="moonlake"] .ln-card-text{color:var(--text-main)}
 .theme-toggle-label{font-family:"Satisfy","LXGW WenKai TC",cursive;font-size:15px;color:var(--text-main)}
 .theme-toggle-hint{font-size:11px;color:var(--text-sub);margin-top:2px}
@@ -778,7 +777,7 @@ function renderLoveNotes(notes){
       '<div class="ln-card-bottom">'+
       '<span class="ln-card-time">'+timeStr+'</span>'+
       '<div class="ln-card-actions">'+
-      '<button class="ln-del-btn" data-id="'+n.id+'">刪除</button>'+
+      '<button class="ln-del-btn" data-id="'+n.id+'">✕</button>'+
       '</div></div>';
     card.querySelector('.ln-del-btn').addEventListener('click',function(){
       deleteLoveNote(parseInt(this.getAttribute('data-id')));
