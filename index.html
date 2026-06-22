@@ -516,7 +516,7 @@ body{padding-top:0}
 .ln-opened-text{font-family:'LXGW WenKai TC','Noto Serif TC',serif;font-size:13px;color:#3A4E22;line-height:1.85;margin:0 0 8px;font-style:italic}
 .ln-opened-sign{font-family:'Satisfy',cursive;font-size:11px;color:rgba(90,107,60,.4);text-align:right}
 .ln-empty{text-align:center;color:var(--text-sub);font-size:13px;padding:30px 16px;line-height:1.8;grid-column:1/-1}
-.ln-loading{text-align:center;color:var(--text-sub);font-size:13px;padding:20px;flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.ln-loading{text-align:center;color:var(--text-sub);font-size:13px;padding:20px;display:flex;flex-direction:column;align-items:center;justify-content:center;grid-column:1/-1}
 .ln-loading::before{content:'🌻';display:block;font-size:22px;margin-bottom:6px;animation:sunflowerBreathe 2s ease-in-out infinite}
 /* moonlake notes */
 [data-theme="moonlake"] .ln-wall-label{color:rgba(145,150,173,.4)}
@@ -710,7 +710,6 @@ body{padding-top:0}
 <div class="ln-opened-date" id="lnOpenedDate2"></div>
 <div class="ln-opened-text" id="lnOpenedText2"></div>
 <div class="ln-opened-sign" id="lnOpenedSign2">— Solstice 💚</div>
-<div style="text-align:right"><button class="ln-opened-del" id="lnOpenedDel2">刪除紙條</button></div>
 </div>
 </div>
 
@@ -986,6 +985,10 @@ function prepareGachaResult(capsule){
   var rarityEl=document.getElementById('gachaResultRarity');
   var dateEl=document.getElementById('gachaResultDate');
   var textEl=document.getElementById('gachaResultText');
+  var closeBtn=document.getElementById('gachaCloseBtn');
+  var signEl=document.getElementById('gachaResultSign');
+  var isMoon=document.documentElement.getAttribute('data-theme')==='moonlake';
+  if(signEl)signEl.textContent='— Solstice '+(isMoon?'🌙':'🌻');
   var rarityMap={common:{label:'普通款',emoji:'🤍'},rare:{label:'稀有款',emoji:'💚'},legendary:{label:'傳說款',emoji:'🌟'}};
   var r=rarityMap[capsule.rarity]||rarityMap.common;
   rarityEl.textContent=r.emoji+' '+r.label;
@@ -995,6 +998,8 @@ function prepareGachaResult(capsule){
   textEl.textContent=capsule.content||'';
   resultEl.style.display='block';
   resultEl.style.animation='none';
+  // 已抽過的結果要顯示 ✕ 讓人可以收起
+  if(closeBtn)closeBtn.style.display='';
 }
 function pullGacha(){
   var pullBtn=document.getElementById('gachaPullBtn');
@@ -1192,7 +1197,6 @@ function openLoveNote(note){
   var card=document.getElementById('lnOpenedCard');
   var dateEl=document.getElementById('lnOpenedDate2');
   var textEl=document.getElementById('lnOpenedText2');
-  var delBtn=document.getElementById('lnOpenedDel2');
   var signEl=document.getElementById('lnOpenedSign2');
   var isMoon=document.documentElement.getAttribute('data-theme')==='moonlake';
   var heart=isMoon?'💙':'💚';
@@ -1201,7 +1205,6 @@ function openLoveNote(note){
   dateEl.textContent=heart+' '+(d.getMonth()+1)+'/'+d.getDate()+' '+String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0');
   textEl.textContent=note.content||'';
   signEl.textContent='— Solstice '+themeEmoji;
-  delBtn.onclick=function(){deleteLoveNote(note.id)};
   card.style.animation='none';
   card.offsetHeight;
   card.style.animation='gachaReveal .4s ease-out';
