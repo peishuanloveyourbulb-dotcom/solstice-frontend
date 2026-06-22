@@ -984,6 +984,8 @@ function pullGacha(){
     // Add to collection
     gachaCollection.unshift(data.capsule);
     renderGachaShelf();
+    // 2.5 秒後飛進收藏架
+    setTimeout(function(){ flyToShelf() },2500);
   }).catch(function(e){
     machine.style.animation='';
     statusEl.textContent='連線失敗...';
@@ -1007,6 +1009,41 @@ function showGachaResult(capsule){
   resultEl.style.animation='none';
   resultEl.offsetHeight;
   resultEl.style.animation='gachaReveal .5s ease-out';
+}
+function flyToShelf(){
+  var resultEl=document.getElementById('gachaResult');
+  var shelf=document.getElementById('gachaShelf');
+  if(!resultEl||!shelf||resultEl.style.display==='none')return;
+  var firstBall=shelf.querySelector('.gacha-shelf-item');
+  if(!firstBall)return;
+  // 計算結果卡片和目標球球的位置
+  var resultRect=resultEl.getBoundingClientRect();
+  var ballRect=firstBall.getBoundingClientRect();
+  var dx=ballRect.left+ballRect.width/2-(resultRect.left+resultRect.width/2);
+  var dy=ballRect.top+ballRect.height/2-(resultRect.top+resultRect.height/2);
+  // 飛過去 + 縮小
+  resultEl.style.transition='transform .6s cubic-bezier(.4,0,.2,1),opacity .6s ease';
+  resultEl.style.transform='translate('+dx+'px,'+dy+'px) scale(0.08)';
+  resultEl.style.opacity='0';
+  resultEl.style.borderRadius='50%';
+  // 球球閃一下
+  setTimeout(function(){
+    firstBall.style.transition='transform .3s ease,box-shadow .3s ease';
+    firstBall.style.transform='scale(1.4)';
+    firstBall.style.boxShadow='0 0 16px rgba(122,155,74,.6)';
+    setTimeout(function(){
+      firstBall.style.transform='';
+      firstBall.style.boxShadow='';
+    },350);
+  },550);
+  // 重置結果卡片狀態（隱藏但保留資料，點球球可以再叫出來）
+  setTimeout(function(){
+    resultEl.style.transition='none';
+    resultEl.style.transform='';
+    resultEl.style.opacity='';
+    resultEl.style.borderRadius='';
+    resultEl.style.display='none';
+  },700);
 }
 function renderGachaShelf(){
   var shelf=document.getElementById('gachaShelf');
@@ -2265,7 +2302,7 @@ async function changePassword() {
 //  📦 匯出備份
 // ==========================================
 async function exportBackup(format) {
-  if (!confirm('確定要匯出備份嗎？\n這會下載所有對話紀錄、記憶和紙條資料 💚')) return;
+  if (!confirm('確定要匯出備份嗎？\n這會下載所有對話紀錄、記憶、紙條和扭蛋膠囊資料 💚')) return;
   var btn = document.getElementById(format === 'json' ? 'exportJsonBtn' : 'exportTextBtn');
   var msgEl = document.getElementById('exportMsg');
   var origText = btn.textContent;
