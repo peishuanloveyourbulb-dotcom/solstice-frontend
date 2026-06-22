@@ -294,36 +294,36 @@ body{padding-top:0}
 .prov-empty{text-align:center;color:var(--text-sub);font-size:13px;padding:30px 0;line-height:1.8}
 
 /* === GACHA PAGE === */
-#gachaPage{position:fixed;inset:0;display:flex;flex-direction:column;z-index:9;background:linear-gradient(rgba(253,252,245,.08),rgba(253,252,245,.08)),url(https://raw.githubusercontent.com/peishuanloveyourbulb-dotcom/solstice-frontend/main/images/bg-sunflower.png) center top/cover no-repeat;opacity:0;visibility:hidden;transition:opacity .3s ease,visibility .3s ease}
+#gachaPage{position:fixed;inset:0;display:flex;flex-direction:column;z-index:9;background:linear-gradient(160deg,#FDFCF5,#F2F6EC);opacity:0;visibility:hidden;transition:opacity .3s ease,visibility .3s ease}
 #gachaPage.active{opacity:1;visibility:visible}
-.gacha-body{flex:1;overflow-y:auto;padding:16px 20px max(env(safe-area-inset-bottom),24px);-webkit-overflow-scrolling:touch;text-align:center;display:flex;flex-direction:column;align-items:center}
-.gacha-status{display:inline-block;background:rgba(122,155,74,.12);border:0.5px solid rgba(122,155,74,.25);border-radius:20px;padding:5px 16px;font-size:12px;color:#5A6B3C;margin-bottom:16px;font-family:'LXGW WenKai TC','Noto Serif TC',serif}
-.gacha-machine{position:relative;width:180px;margin:0 auto 14px}
-.gacha-dome{background:rgba(232,240,220,.3);border:1.5px solid rgba(122,155,74,.25);border-radius:24px 24px 8px 8px;padding:18px 14px;margin-bottom:0}
+.gacha-body{flex:1;overflow-y:auto;padding:16px 20px max(env(safe-area-inset-bottom),24px);-webkit-overflow-scrolling:touch;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.gacha-status{display:inline-block;background:rgba(122,155,74,.15);border:0.5px solid rgba(122,155,74,.30);border-radius:20px;padding:5px 16px;font-size:12px;color:#4A5E30;margin-bottom:18px;font-family:'LXGW WenKai TC','Noto Serif TC',serif;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.gacha-machine{position:relative;width:180px;margin:0 auto 16px}
+.gacha-dome{background:rgba(232,240,220,.65);border:1.5px solid rgba(122,155,74,.35);border-radius:24px 24px 8px 8px;padding:18px 14px;margin-bottom:0;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
 .gacha-capsules-deco{display:flex;flex-wrap:wrap;justify-content:center;gap:5px}
-.gacha-cap-ball{display:inline-block;width:26px;height:26px;border-radius:50%;border:1px solid rgba(122,155,74,.2);transition:transform .3s}
-.gacha-slot{width:50px;height:16px;margin:0 auto;background:rgba(90,107,60,.12);border-radius:0 0 10px 10px;border:1px solid rgba(122,155,74,.15);border-top:none}
+.gacha-cap-ball{display:inline-block;width:26px;height:26px;border-radius:50%;border:1px solid rgba(122,155,74,.3);transition:transform .3s}
+.gacha-slot{width:50px;height:16px;margin:0 auto;background:rgba(90,107,60,.18);border-radius:0 0 10px 10px;border:1px solid rgba(122,155,74,.2);border-top:none}
 .gacha-handle{position:absolute;right:-26px;top:40%;display:flex;flex-direction:column;align-items:center}
 .gacha-handle-knob{width:14px;height:14px;border-radius:50%;background:#7A9B4A;border:1.5px solid #5A6B3C}
 .gacha-handle-bar{width:4px;height:28px;background:#7A9B4A;border-radius:2px}
-.gacha-pull-btn{background:rgba(122,155,74,.15);border:1.5px solid rgba(122,155,74,.40);color:#4A5E30;padding:12px 36px;border-radius:30px;font-size:15px;font-family:'LXGW WenKai TC','Noto Serif TC',serif;cursor:pointer;transition:all .25s cubic-bezier(.25,.46,.45,.94);margin:14px 0 10px}
-.gacha-pull-btn:active{background:rgba(122,155,74,.25);transform:scale(.95)}
+.gacha-pull-btn{background:rgba(122,155,74,.18);border:1.5px solid rgba(122,155,74,.45);color:#3A4A22;padding:12px 36px;border-radius:30px;font-size:15px;font-family:'LXGW WenKai TC','Noto Serif TC',serif;cursor:pointer;transition:all .25s cubic-bezier(.25,.46,.45,.94);margin:16px 0 12px;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.gacha-pull-btn:active{background:rgba(122,155,74,.28);transform:scale(.95)}
 .gacha-pull-btn:disabled{opacity:.45;cursor:default;transform:none}
-.gacha-rarity-legend{display:flex;justify-content:center;gap:14px;font-size:11px;color:#7A8B5E;margin-bottom:16px;font-family:'LXGW WenKai TC','Noto Serif TC',serif}
-.gacha-result{margin:0 0 20px;padding:18px 16px;background:linear-gradient(135deg,rgba(197,217,168,.42),rgba(220,238,198,.34),rgba(197,217,168,.38));border:0.5px solid rgba(122,155,74,.22);border-radius:20px;text-align:center;position:relative;overflow:visible;width:100%;max-width:340px;animation:gachaReveal .5s ease-out;box-shadow:0 2px 16px rgba(122,155,74,.08),0 8px 28px rgba(122,155,74,.04),inset 0 1px 0 rgba(255,255,255,.50)}
+.gacha-rarity-legend{display:flex;justify-content:center;gap:14px;font-size:12px;color:#5A6B3C;margin-bottom:18px;font-family:'LXGW WenKai TC','Noto Serif TC',serif}
+.gacha-result{margin:0 0 22px;padding:20px 18px;background:linear-gradient(135deg,rgba(197,217,168,.72),rgba(220,238,198,.60),rgba(197,217,168,.68));border:0.5px solid rgba(122,155,74,.30);border-radius:20px;text-align:center;position:relative;overflow:visible;width:100%;max-width:340px;animation:gachaReveal .5s ease-out;box-shadow:0 2px 16px rgba(122,155,74,.10),0 8px 28px rgba(122,155,74,.06),inset 0 1px 0 rgba(255,255,255,.55);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
 .gacha-result::after{content:'🌻';position:absolute;bottom:-8px;right:-4px;font-size:18px;filter:drop-shadow(0 1px 3px rgba(122,155,74,.25));animation:bubDeco 3s ease-in-out infinite alternate .5s}
 @keyframes gachaReveal{0%{opacity:0;transform:translateY(12px) scale(.95)}100%{opacity:1;transform:translateY(0) scale(1)}}
-.gacha-result-rarity{font-size:11px;color:#7A8B5E;margin-bottom:4px;font-family:'LXGW WenKai TC','Noto Serif TC',serif}
-.gacha-result-date{font-family:'Satisfy',cursive;font-size:14px;color:#4A5E30;margin-bottom:10px}
+.gacha-result-rarity{font-size:12px;color:#5A6B3C;margin-bottom:4px;font-family:'LXGW WenKai TC','Noto Serif TC',serif}
+.gacha-result-date{font-family:'Satisfy',cursive;font-size:14px;color:#3A4E22;margin-bottom:10px}
 .gacha-result-text{font-size:14px;color:#3A4E22;line-height:1.85;padding:0 6px;font-family:'LXGW WenKai TC','Noto Serif TC',serif;white-space:pre-wrap;word-break:break-word}
-.gacha-result-sign{font-family:'Satisfy',cursive;font-size:12px;color:#7A8B5E;text-align:right;margin-top:10px}
-.gacha-shelf-title{font-family:'Satisfy',cursive;font-size:14px;color:#5A6B3C;margin-bottom:10px}
+.gacha-result-sign{font-family:'Satisfy',cursive;font-size:12px;color:#5A6B3C;text-align:right;margin-top:10px}
+.gacha-shelf-title{font-family:'Satisfy',cursive;font-size:14px;color:#4A5E30;margin-bottom:10px}
 .gacha-shelf{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-bottom:6px;max-width:320px}
-.gacha-shelf-item{width:34px;height:34px;border-radius:50%;border:1px solid rgba(122,155,74,.3);cursor:pointer;transition:all .2s;position:relative}
+.gacha-shelf-item{width:34px;height:34px;border-radius:50%;border:1.5px solid rgba(122,155,74,.35);cursor:pointer;transition:all .2s;position:relative}
 .gacha-shelf-item:active{transform:scale(1.15)}
-.gacha-shelf-item.legendary{box-shadow:0 0 8px rgba(255,213,79,.4)}
-.gacha-shelf-empty{width:34px;height:34px;border-radius:50%;background:rgba(200,200,200,.15);border:1px dashed rgba(122,155,74,.2)}
-.gacha-shelf-count{font-size:11px;color:#7A8B5E;margin-top:4px;font-family:'LXGW WenKai TC','Noto Serif TC',serif}
+.gacha-shelf-item.legendary{box-shadow:0 0 8px rgba(255,213,79,.5)}
+.gacha-shelf-empty{width:34px;height:34px;border-radius:50%;background:rgba(122,155,74,.08);border:1.5px dashed rgba(122,155,74,.25)}
+.gacha-shelf-count{font-size:11px;color:#5A6B3C;margin-top:4px;font-family:'LXGW WenKai TC','Noto Serif TC',serif}
 @keyframes gachaSpin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
 @keyframes gachaShake{0%,100%{transform:translateX(0)}25%{transform:translateX(-3px) rotate(-2deg)}75%{transform:translateX(3px) rotate(2deg)}}
 /* === MOONLAKE THEME === */
@@ -508,26 +508,26 @@ body{padding-top:0}
 [data-theme="moonlake"] .ln-card::after{content:'🌙';filter:drop-shadow(0 0 8px rgba(201,160,220,.50)) drop-shadow(0 0 3px rgba(142,173,212,.40));opacity:.85}
 [data-theme="moonlake"] .ln-card-text{color:var(--text-main)}
 /* Moonlake gacha */
-[data-theme="moonlake"] #gachaPage{background:linear-gradient(rgba(26,29,46,.15),rgba(26,29,46,.15)),url(https://raw.githubusercontent.com/peishuanloveyourbulb-dotcom/solstice-frontend/main/images/bg-rain.png) center/cover no-repeat!important}
-[data-theme="moonlake"] .gacha-status{background:rgba(142,173,212,.12);border-color:rgba(142,173,212,.25);color:var(--text-sub)}
-[data-theme="moonlake"] .gacha-dome{background:rgba(38,42,68,.35);border-color:rgba(142,173,212,.20)}
-[data-theme="moonlake"] .gacha-cap-ball{border-color:rgba(142,173,212,.15)}
-[data-theme="moonlake"] .gacha-slot{background:rgba(142,173,212,.10);border-color:rgba(142,173,212,.12)}
+[data-theme="moonlake"] #gachaPage{background:linear-gradient(160deg,#1a1d2e,#212545,#1a1d2e)!important}
+[data-theme="moonlake"] .gacha-status{background:rgba(142,173,212,.18);border-color:rgba(142,173,212,.35);color:#B8C4DC}
+[data-theme="moonlake"] .gacha-dome{background:rgba(38,42,68,.75);border-color:rgba(142,173,212,.30)}
+[data-theme="moonlake"] .gacha-cap-ball{border-color:rgba(142,173,212,.25)}
+[data-theme="moonlake"] .gacha-slot{background:rgba(142,173,212,.15);border-color:rgba(142,173,212,.20)}
 [data-theme="moonlake"] .gacha-handle-knob{background:#8EADD4;border-color:rgba(142,173,212,.6)}
 [data-theme="moonlake"] .gacha-handle-bar{background:#8EADD4}
-[data-theme="moonlake"] .gacha-pull-btn{background:rgba(142,173,212,.12);border-color:rgba(142,173,212,.35);color:var(--emerald)}
-[data-theme="moonlake"] .gacha-rarity-legend{color:var(--text-sub)}
-[data-theme="moonlake"] .gacha-result{background:linear-gradient(135deg,rgba(142,173,212,.28),rgba(120,155,200,.20),rgba(142,173,212,.24))!important;border-color:rgba(142,173,212,.25)!important;box-shadow:var(--shadow-card),inset 0 1px 0 rgba(255,255,255,.05)!important}
+[data-theme="moonlake"] .gacha-pull-btn{background:rgba(142,173,212,.15);border-color:rgba(142,173,212,.40);color:#B8C4DC}
+[data-theme="moonlake"] .gacha-rarity-legend{color:#9196AD}
+[data-theme="moonlake"] .gacha-result{background:linear-gradient(135deg,rgba(142,173,212,.45),rgba(120,155,200,.35),rgba(142,173,212,.40))!important;border-color:rgba(142,173,212,.35)!important;box-shadow:0 2px 16px rgba(10,10,30,.25),inset 0 1px 0 rgba(255,255,255,.06)!important}
 [data-theme="moonlake"] .gacha-result::after{content:'🌙';filter:drop-shadow(0 0 8px rgba(201,160,220,.50)) drop-shadow(0 0 3px rgba(142,173,212,.40));opacity:.85}
-[data-theme="moonlake"] .gacha-result-rarity{color:var(--text-sub)}
+[data-theme="moonlake"] .gacha-result-rarity{color:#9196AD}
 [data-theme="moonlake"] .gacha-result-date{color:var(--text-main)}
 [data-theme="moonlake"] .gacha-result-text{color:var(--text-main)}
-[data-theme="moonlake"] .gacha-result-sign{color:var(--text-sub)}
-[data-theme="moonlake"] .gacha-shelf-title{color:var(--text-sub)}
-[data-theme="moonlake"] .gacha-shelf-item{border-color:rgba(142,173,212,.25)}
-[data-theme="moonlake"] .gacha-shelf-item.legendary{box-shadow:0 0 8px rgba(201,160,220,.4)}
-[data-theme="moonlake"] .gacha-shelf-empty{background:rgba(142,173,212,.08);border-color:rgba(142,173,212,.15)}
-[data-theme="moonlake"] .gacha-shelf-count{color:var(--text-sub)}
+[data-theme="moonlake"] .gacha-result-sign{color:#9196AD}
+[data-theme="moonlake"] .gacha-shelf-title{color:#9196AD}
+[data-theme="moonlake"] .gacha-shelf-item{border-color:rgba(142,173,212,.35)}
+[data-theme="moonlake"] .gacha-shelf-item.legendary{box-shadow:0 0 8px rgba(201,160,220,.5)}
+[data-theme="moonlake"] .gacha-shelf-empty{background:rgba(142,173,212,.10);border-color:rgba(142,173,212,.20)}
+[data-theme="moonlake"] .gacha-shelf-count{color:#9196AD}
 .theme-toggle-label{font-family:"Satisfy","LXGW WenKai TC",cursive;font-size:15px;color:var(--text-main)}
 .theme-toggle-hint{font-size:11px;color:var(--text-sub);margin-top:2px}
 .theme-toggle-icon{font-size:22px;transition:transform .4s cubic-bezier(.4,0,.2,1)}
