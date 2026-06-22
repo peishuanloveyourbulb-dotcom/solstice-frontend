@@ -435,6 +435,7 @@ body{padding-top:0}
 [data-theme="moonlake"] .sb-empty::before{content:'💙'}
 [data-theme="moonlake"] .sb-loading::before,[data-theme="moonlake"] .prov-loading::before{content:'🌙'}
 [data-theme="moonlake"] .ch-loading::before{content:'🌙'}
+[data-theme="moonlake"] .ln-loading::before{content:'🌙'}
 [data-theme="moonlake"] .mem-empty::before{content:'🌙'}
 [data-theme="moonlake"] .ch-bub.ai::after{content:'🌙'}
 [data-theme="moonlake"] .mem-card.mem-type-manual-card::after{content:'🌙';filter:drop-shadow(0 0 8px rgba(201,160,220,.50)) drop-shadow(0 0 3px rgba(142,173,212,.40));opacity:.85}
@@ -462,6 +463,8 @@ body{padding-top:0}
 .ln-del-btn:active{opacity:1}
 [data-theme="moonlake"] .ln-del-btn{color:var(--text-sub)}
 .ln-empty{text-align:center;color:var(--text-sub);font-size:13px;padding:30px 0;line-height:1.8}
+.ln-loading{text-align:center;color:var(--text-sub);font-size:13px;padding:30px 0}
+.ln-loading::before{content:'🌻';display:block;font-size:22px;margin-bottom:6px;animation:sunflowerBreathe 2s ease-in-out infinite}
 /* moonlake */
 [data-theme="moonlake"] #loveNotesPage{background:linear-gradient(rgba(26,29,46,.15),rgba(26,29,46,.15)),url(https://raw.githubusercontent.com/peishuanloveyourbulb-dotcom/solstice-frontend/main/images/bg-rain.png) center/cover no-repeat!important}
 [data-theme="moonlake"] .ln-latest-card{background:linear-gradient(135deg,rgba(38,42,68,.60),rgba(45,50,78,.45),rgba(38,42,68,.55));border-color:rgba(142,173,212,.15);box-shadow:var(--shadow-card),inset 0 1px 0 rgba(255,255,255,.04)}
@@ -737,20 +740,36 @@ function goLoveNotes(){
   loadLoveNotes();
 }
 function loadLoveNotes(){
+  var wall=document.getElementById('lnWall');
+  var latest=document.getElementById('lnLatest');
+  // 第一招：先隱藏內容 + 顯示 loading
+  if(latest)latest.style.opacity='0';
+  if(wall)wall.innerHTML='<div class="ln-loading">載入中...</div>';
   var model=selectedModel||'';
   var url=API_URL+'/love-notes/unread';
   if(model)url+='?model='+encodeURIComponent(model);
+  var unreadDone=false;var notesDone=false;var notesData=null;
+  function tryReveal(){
+    if(!unreadDone||!notesDone)return;
+    renderLoveNotes(notesData);
+    if(latest)latest.style.transition='opacity .3s ease';
+    if(latest)latest.style.opacity='1';
+  }
   fetch(url).then(function(r){return r.json()}).then(function(note){
     var el=document.getElementById('lnLatestText');
     if(el&&note&&note.content){el.textContent=note.content}
     else if(el){el.textContent='冬至還在想要寫什麼給妳... 💚'}
+    unreadDone=true;tryReveal();
   }).catch(function(){
     var el=document.getElementById('lnLatestText');
     if(el)el.textContent='連線中... 💚';
+    unreadDone=true;tryReveal();
   });
   fetch(API_URL+'/love-notes').then(function(r){return r.json()}).then(function(notes){
-    renderLoveNotes(notes);
-  }).catch(function(){});
+    notesData=notes;notesDone=true;tryReveal();
+  }).catch(function(){
+    notesData=[];notesDone=true;tryReveal();
+  });
 }
 var lnAllNotes=[];
 function deleteLoveNote(id){
