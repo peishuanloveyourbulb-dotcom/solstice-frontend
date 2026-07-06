@@ -898,7 +898,7 @@ body{padding-top:0}
 .gc-shelf-loading-txt{font-family:'LXGW WenKai TC',serif;font-size:12.5px;color:rgba(150,100,115,.75);letter-spacing:2px;animation:gcShelfLoadFade 1.6s ease-in-out infinite}
 @keyframes gcShelfLoadSpin{0%{transform:rotate(0deg)}40%{transform:rotate(180deg)}60%{transform:rotate(180deg)}100%{transform:rotate(360deg)}}
 @keyframes gcShelfLoadFade{0%,100%{opacity:.55}50%{opacity:1}}
-@media (prefers-reduced-motion:reduce){.lr-gacha-stk,.gc-machine.shaking,.gc-machine.shaking .gc-dcap,.gc-cap.show,.gc-sh-cap.sel .gc-sh-cap-t,.gc-sh-card,#gcKnob.deny,.gc-shelf-loading-cap,.gc-shelf-loading-txt{animation:none!important}}
+@media (prefers-reduced-motion:reduce){.lr-gacha-stk,.gc-machine.shaking,.gc-machine.shaking .gc-dcap,.gc-cap.show,.gc-sh-cap.sel .gc-sh-cap-t,.gc-sh-card,#gcKnob.deny,.gc-shelf-loading-cap,.gc-shelf-loading-txt,.gc-buddy-l,.gc-buddy-r{animation:none!important}}
 
 
 </style>
@@ -1394,10 +1394,10 @@ html.app-loading body{opacity:1;background:#EDE5C9}
 .pl-summon span{display:block;pointer-events:none}
 .pl-call-status{text-align:center;font-family:'LXGW WenKai TC','Noto Serif TC',serif;font-size:11.5px;color:#7E90AC;line-height:1.6;padding:3px 16px 5px;position:relative;z-index:3}
 .pl-call-status:empty{display:none}
-.pl-chat-wall{flex:1;min-height:0;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;touch-action:pan-y;padding:16px 16px 12px;display:flex;flex-direction:column;gap:13px;position:relative;z-index:2}
+.pl-chat-wall{flex:1;min-height:0;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;touch-action:pan-y;padding:16px max(env(safe-area-inset-right),14px) 12px max(env(safe-area-inset-left),38px);display:flex;flex-direction:column;gap:13px;position:relative;z-index:2}
 .pl-day{align-self:stretch;text-align:center;padding:14px 0 10px;margin:4px 0 -2px;position:relative}
 .pl-day::before{content:'';position:absolute;top:50%;left:44px;right:44px;height:1.5px;background:repeating-linear-gradient(90deg,rgba(212,132,164,.42) 0px,rgba(212,132,164,.42) 5px,transparent 5px,transparent 10px);opacity:.62;z-index:0}
-.pl-day span{position:relative;z-index:1;display:inline-block;font-family:'Satisfy','LXGW WenKai TC','Noto Serif TC',cursive;font-size:12.5px;letter-spacing:1px;color:#A65C7C;background:var(--paper-fiber),linear-gradient(150deg,#FBE4EE,#F6D2E2);padding:6px 22px;border-radius:3px 3px 4px 4px;border:0.5px solid rgba(206,124,158,.42);box-shadow:var(--lift-shadow),0 0 14px rgba(244,190,210,.30);transform:rotate(-1deg)}
+.pl-day span{position:relative;z-index:1;display:inline-block;font-family:'Satisfy','LXGW WenKai TC','Noto Serif TC',cursive;font-size:12.5px;letter-spacing:1px;color:#A65C7C;background:var(--paper-fiber),#F8DBE8;padding:6px 22px;border-radius:3px 3px 4px 4px;border:0.5px solid rgba(206,124,158,.42);box-shadow:var(--lift-shadow),0 0 14px rgba(244,190,210,.30);transform:rotate(-1deg)}
 .pl-day::after{content:'';position:absolute;top:3px;right:38px;width:16px;height:16px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80'%3E%3Cg fill='%23F5AFC0' stroke='%23C06A80' stroke-width='6' stroke-linejoin='round'%3E%3Cellipse cx='40' cy='20' rx='7' ry='13'/%3E%3Cellipse cx='40' cy='60' rx='7' ry='13'/%3E%3Cellipse cx='20' cy='40' rx='13' ry='7'/%3E%3Cellipse cx='60' cy='40' rx='13' ry='7'/%3E%3Cellipse cx='26' cy='26' rx='6' ry='11' transform='rotate(-45 26 26)'/%3E%3Cellipse cx='54' cy='54' rx='6' ry='11' transform='rotate(-45 54 54)'/%3E%3Cellipse cx='54' cy='26' rx='6' ry='11' transform='rotate(45 54 26)'/%3E%3Cellipse cx='26' cy='54' rx='6' ry='11' transform='rotate(45 26 54)'/%3E%3C/g%3E%3Ccircle cx='40' cy='40' r='10' fill='%23FFF0F4' stroke='%23C06A80' stroke-width='4'/%3E%3C/svg%3E") center/contain no-repeat;filter:drop-shadow(0 1px 2px rgba(0,0,0,.15));transform:rotate(8deg);z-index:2}
 .pl-row{display:flex;flex-direction:column;max-width:80%}
 .pl-row.hus{align-self:flex-start;flex-direction:row;align-items:flex-end;gap:8px;max-width:calc(80% + 40px)}
@@ -1406,8 +1406,8 @@ html.app-loading body{opacity:1;background:#EDE5C9}
 .pl-col{display:flex;flex-direction:column;align-items:flex-start;min-width:0}
 .pl-row.hus .pl-time{align-self:flex-end}
 .pl-bubble{position:relative;padding:22px 18px 20px;font-family:'LXGW WenKai TC','Noto Serif TC',serif;font-size:14px;line-height:1.85;letter-spacing:.3px;word-break:break-word;white-space:pre-wrap;animation:fu .35s ease-out;margin-top:6px}
-.pl-row.hus .pl-bubble{background:var(--paper-fiber),linear-gradient(150deg,#DBE9F9,#C7DCF2);border:0.5px solid rgba(100,135,190,.42);border-radius:2px 3px 4px 2px;color:#35507A;transform:rotate(-.3deg);box-shadow:1px 3px 7px rgba(70,95,135,.16),0 1px 2px rgba(70,95,135,.10),0 0 0 0.5px rgba(70,95,135,.06)}
-.pl-row.wife .pl-bubble{background:var(--paper-fiber),linear-gradient(150deg,#FBE0EC,#F6CCDE);border:0.5px solid rgba(206,124,158,.44);border-radius:3px 2px 2px 4px;color:#84405E;transform:rotate(.3deg);box-shadow:-1px 3px 7px rgba(180,120,145,.16),0 1px 2px rgba(180,120,145,.10),0 0 0 0.5px rgba(180,120,145,.06)}
+.pl-row.hus .pl-bubble{background:var(--paper-fiber),#D1E2F5;border:0.5px solid rgba(100,135,190,.42);border-radius:2px 3px 4px 2px;color:#35507A;transform:rotate(-.3deg);box-shadow:1px 3px 7px rgba(70,95,135,.16),0 1px 2px rgba(70,95,135,.10),0 0 0 0.5px rgba(70,95,135,.06)}
+.pl-row.wife .pl-bubble{background:var(--paper-fiber),#F8D6E5;border:0.5px solid rgba(206,124,158,.44);border-radius:3px 2px 2px 4px;color:#84405E;transform:rotate(.3deg);box-shadow:-1px 3px 7px rgba(180,120,145,.16),0 1px 2px rgba(180,120,145,.10),0 0 0 0.5px rgba(180,120,145,.06)}
 .pl-bubble::before{content:'';position:absolute;top:-5px;width:32px;height:10px;z-index:3;pointer-events:none;border-radius:1px;box-shadow:0 1px 2px rgba(90,110,150,.15)}
 .pl-row.hus .pl-bubble::before{left:16px;transform:rotate(-5deg);background:repeating-linear-gradient(45deg,rgba(146,178,222,.58) 0 7px,rgba(255,253,244,.62) 7px 14px);border-left:0.5px dashed rgba(122,152,200,.42);border-right:0.5px dashed rgba(122,152,200,.42)}
 .pl-row.wife .pl-bubble::before{right:16px;transform:rotate(5deg);background:repeating-linear-gradient(45deg,rgba(244,190,205,.6) 0 7px,rgba(255,253,244,.62) 7px 14px);border-left:0.5px dashed rgba(216,150,175,.42);border-right:0.5px dashed rgba(216,150,175,.42)}
@@ -1422,7 +1422,7 @@ html.app-loading body{opacity:1;background:#EDE5C9}
 .pl-time-sticker::before{content:'';width:12px;height:12px;flex-shrink:0;margin-right:1px;background-position:center;background-repeat:no-repeat;background-size:contain}
 .pl-row.hus .pl-time-sticker::before{transform:rotate(5deg);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80'%3E%3Cpath d='M40 26 C 28 16 14 22 18 38 C 22 52 40 64 40 64 C 40 64 58 52 62 38 C 66 22 52 16 40 26 Z' fill='%23AFC9E8' stroke='%235878A8' stroke-width='7' stroke-linejoin='round'/%3E%3Cpath d='M29 33 Q 33 30 36 34' stroke='%23EFF5FC' stroke-width='5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E")}
 .pl-row.wife .pl-time-sticker::before{transform:rotate(-6deg);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80'%3E%3Cpath d='M40 26 C 28 16 14 22 18 38 C 22 52 40 64 40 64 C 40 64 58 52 62 38 C 66 22 52 16 40 26 Z' fill='%23F5AFC0' stroke='%23C06A80' stroke-width='7' stroke-linejoin='round'/%3E%3Cpath d='M29 33 Q 33 30 36 34' stroke='%23FFF0F4' stroke-width='5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E")}
-.pl-typing{align-self:flex-start;display:none;padding:13px 16px;background:var(--paper-fiber),linear-gradient(150deg,#DBE9F9,#C7DCF2);border:0.5px solid rgba(100,135,190,.42);border-radius:2px 3px 4px 2px;box-shadow:1px 3px 7px rgba(70,95,135,.14)}
+.pl-typing{align-self:flex-start;display:none;padding:13px 16px;background:var(--paper-fiber),#D1E2F5;border:0.5px solid rgba(100,135,190,.42);border-radius:2px 3px 4px 2px;box-shadow:1px 3px 7px rgba(70,95,135,.14)}
 .pl-typing.show{display:flex;gap:5px;align-items:center}
 .pl-typing i{width:7px;height:7px;border-radius:50%;background:#8FAFD6;animation:plDot 1.2s ease-in-out infinite}
 .pl-typing i:nth-child(2){animation-delay:.18s}
@@ -1431,6 +1431,8 @@ html.app-loading body{opacity:1;background:#EDE5C9}
 @keyframes plReadIn{0%{opacity:0;transform:translateY(2px)}100%{opacity:.9;transform:translateY(0)}}
 @keyframes plDot{0%,60%,100%{transform:translateY(0);opacity:.5}30%{transform:translateY(-4px);opacity:1}}
 .pl-empty{align-self:center;text-align:center;color:#8FA2BE;font-size:13px;padding:44px 16px;font-family:'LXGW WenKai TC','Noto Serif TC',serif;font-style:italic;letter-spacing:.4px;line-height:1.9}
+.pl-empty::before{content:'';display:block;width:36px;height:36px;margin:0 auto 12px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80'%3E%3Cg fill='%23AFC9E8' stroke='%235878A8' stroke-width='6' stroke-linejoin='round'%3E%3Cellipse cx='40' cy='20' rx='7' ry='13'/%3E%3Cellipse cx='40' cy='60' rx='7' ry='13'/%3E%3Cellipse cx='20' cy='40' rx='13' ry='7'/%3E%3Cellipse cx='60' cy='40' rx='13' ry='7'/%3E%3Cellipse cx='26' cy='26' rx='6' ry='11' transform='rotate(-45 26 26)'/%3E%3Cellipse cx='54' cy='54' rx='6' ry='11' transform='rotate(-45 54 54)'/%3E%3Cellipse cx='54' cy='26' rx='6' ry='11' transform='rotate(45 54 26)'/%3E%3Cellipse cx='26' cy='54' rx='6' ry='11' transform='rotate(45 26 54)'/%3E%3C/g%3E%3Ccircle cx='40' cy='40' r='10' fill='%23F2F7FC' stroke='%235878A8' stroke-width='4'/%3E%3C/svg%3E") center/contain no-repeat;animation:sunflowerBreathe 2s ease-in-out infinite;filter:drop-shadow(0 2px 4px rgba(88,120,168,.25))}
+.pl-empty::after{content:'';display:block;width:54px;height:1.5px;margin:14px auto 0;background:repeating-linear-gradient(90deg,rgba(110,146,196,.5) 0px,rgba(110,146,196,.5) 5px,transparent 5px,transparent 9px);opacity:.58;border-radius:1px}
 .pl-inp{display:flex;align-items:flex-end;gap:8px;padding:22px max(env(safe-area-inset-right),16px) max(env(safe-area-inset-bottom),6px) max(env(safe-area-inset-left),16px);background-color:#E4EEF9;background:var(--paper-fiber),linear-gradient(180deg,#EAF2FB,#DEEAF7);box-shadow:0 -3px 8px rgba(90,110,150,.10);position:relative;z-index:3;flex-shrink:0}
 .pl-inp::before{content:'';position:absolute;left:0;right:0;top:0;height:6px;background:repeating-linear-gradient(90deg,rgba(146,178,222,.6) 0px,rgba(146,178,222,.6) 4px,transparent 4px,transparent 8px);opacity:.9;pointer-events:none}
 .pl-inp::after{content:'';position:absolute;left:0;right:0;bottom:0;height:6px;background:repeating-linear-gradient(90deg,rgba(146,178,222,.6) 0px,rgba(146,178,222,.6) 4px,transparent 4px,transparent 8px);opacity:.9;pointer-events:none}
@@ -1968,7 +1970,7 @@ html.app-loading body{opacity:1;background:#EDE5C9}
 </div>
 </div>
 
-<div class="pl-chat-wall" id="plChatWall" onscroll="plUpdateScrollBtn()"><div class="pl-empty">收信中…<span class="ld-flower"><svg viewBox="0 0 80 80" style="width:15px;height:15px;display:block"><g fill="#AFC9E8" stroke="#5878A8" stroke-width="6" stroke-linejoin="round"><ellipse cx="40" cy="20" rx="7" ry="13"/><ellipse cx="40" cy="60" rx="7" ry="13"/><ellipse cx="20" cy="40" rx="13" ry="7"/><ellipse cx="60" cy="40" rx="13" ry="7"/><ellipse cx="26" cy="26" rx="6" ry="11" transform="rotate(-45 26 26)"/><ellipse cx="54" cy="54" rx="6" ry="11" transform="rotate(-45 54 54)"/><ellipse cx="54" cy="26" rx="6" ry="11" transform="rotate(45 54 26)"/><ellipse cx="26" cy="54" rx="6" ry="11" transform="rotate(45 26 54)"/></g><circle cx="40" cy="40" r="10" fill="#FFFFFF" stroke="#5878A8" stroke-width="4"/></svg></span></div></div>
+<div class="pl-chat-wall" id="plChatWall" onscroll="plUpdateScrollBtn()"><div class="pl-empty">收信中…</div></div>
 <div style="position:absolute;width:0;height:0;overflow:visible"><button class="pl-scroll-btn" id="plScrollBtn" onmousedown="event.preventDefault()" ontouchstart="event.preventDefault();plScrollBottom();this.classList.remove('show')" onclick="plScrollBottom();this.classList.remove('show')"></button></div>
 <div class="modal-bg" id="plDelModal" onclick="if(event.target===this)closePlDel()">
 <div class="modal-box pl-del-box">
@@ -3035,7 +3037,7 @@ function loadMemories(forceRefresh){
   // 只有真的兩手空空（冷啟動第一次）才顯示「載入中」。
   var hadCache=allMemories.length>0;
   if(hadCache){renderMemories(true)}
-  else{memWall.innerHTML='<div class="mem-empty">\u8F09\u5165\u4E2D...<span class="ld-flower"><svg viewBox="0 0 80 80" style="width:15px;height:15px;display:block"><g fill="#D4E88A" stroke="#4E6820" stroke-width="6" stroke-linejoin="round"><ellipse cx="40" cy="20" rx="7" ry="13"/><ellipse cx="40" cy="60" rx="7" ry="13"/><ellipse cx="20" cy="40" rx="13" ry="7"/><ellipse cx="60" cy="40" rx="13" ry="7"/><ellipse cx="26" cy="26" rx="6" ry="11" transform="rotate(-45 26 26)"/><ellipse cx="54" cy="54" rx="6" ry="11" transform="rotate(-45 54 54)"/><ellipse cx="54" cy="26" rx="6" ry="11" transform="rotate(45 54 26)"/><ellipse cx="26" cy="54" rx="6" ry="11" transform="rotate(45 26 54)"/></g><circle cx="40" cy="40" r="10" fill="#FBFDF0" stroke="#4E6820" stroke-width="4"/></svg></span></div>'}
+  else{memWall.innerHTML='<div class="mem-empty">\u8F09\u5165\u4E2D...</div>'}
   var controller=new AbortController();
   var timeout=setTimeout(function(){controller.abort()},15000);
   fetch(API_URL+'/memories',{signal:controller.signal})
@@ -4774,7 +4776,7 @@ function renderProactiveChat() {
 async function loadProactiveChat() {
   var wall = document.getElementById('plChatWall');
   if (!wall) return;
-  wall.innerHTML = '<div class="pl-empty">收信中…<span class="ld-flower"><svg viewBox="0 0 80 80" style="width:15px;height:15px;display:block"><g fill="#AFC9E8" stroke="#5878A8" stroke-width="6" stroke-linejoin="round"><ellipse cx="40" cy="20" rx="7" ry="13"/><ellipse cx="40" cy="60" rx="7" ry="13"/><ellipse cx="20" cy="40" rx="13" ry="7"/><ellipse cx="60" cy="40" rx="13" ry="7"/><ellipse cx="26" cy="26" rx="6" ry="11" transform="rotate(-45 26 26)"/><ellipse cx="54" cy="54" rx="6" ry="11" transform="rotate(-45 54 54)"/><ellipse cx="54" cy="26" rx="6" ry="11" transform="rotate(45 54 26)"/><ellipse cx="26" cy="54" rx="6" ry="11" transform="rotate(45 26 54)"/></g><circle cx="40" cy="40" r="10" fill="#FFFFFF" stroke="#5878A8" stroke-width="4"/></svg></span></div>';
+  wall.innerHTML = '<div class="pl-empty">收信中…</div>';
   try {
     var resp = await fetch(API_URL + '/api/proactive/history?limit=50');
     var data = await resp.json();
