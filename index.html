@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<!-- solstice-fix-v4-0623 -->
+<html lang="zh-TW" class="app-loading">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover, interactive-widget=resizes-content">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Sol²">
+<meta name="theme-color" content="">
+<title>Sol²</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<!-- === iOS PWA Splash Screen === -->
+<!-- iPhone 16 Pro Max / 15 Pro Max / 14 Pro Max -->
+<link rel="apple-touch-startup-image" href="/splash-1290x2796.png" media="(device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
+<!-- iPhone 16 Pro / 15 Pro -->
+<link rel="apple-touch-startup-image" href="/splash-1206x2622.png" media="(device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
+<!-- iPhone 16 / 15 / 14 Pro -->
+<link rel="apple-touch-startup-image" href="/splash-1179x2556.png" media="(device-width: 393px) and (device-height: 852px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
+<!-- iPhone 14 Plus / 13 Pro Max / 12 Pro Max -->
+<link rel="apple-touch-startup-image" href="/splash-1284x2778.png" media="(device-width: 428px) and (device-height: 926px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
+<!-- iPhone 14 / 13 / 13 Pro / 12 / 12 Pro -->
+<link rel="apple-touch-startup-image" href="/splash-1170x2532.png" media="(device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
+<!-- iPhone 11 Pro Max / Xs Max -->
+<link rel="apple-touch-startup-image" href="/splash-1242x2688.png" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
+<!-- iPhone 11 Pro / Xs / X -->
+<link rel="apple-touch-startup-image" href="/splash-1125x2436.png" media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
+<!-- iPhone 11 / XR -->
+<link rel="apple-touch-startup-image" href="/splash-828x1792.png" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300&family=Noto+Serif+TC:wght@300;400;500&family=Noto+Sans+TC:wght@300;400;500&family=Satisfy&family=Dancing+Script:wght@400;500;600&family=Great+Vibes&family=Klee+One:wght@400;600&family=LXGW+WenKai+TC:wght@300;400;700&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="https://raw.githubusercontent.com/peishuanloveyourbulb-dotcom/solstice-frontend/main/images/bg-sunflower.png">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+--bg-deep:#FDFCF5;
+--bg-card:rgba(255,248,225,.55);
+--gold:#8B7B3C;
+--gold-dim:#A89860;
+--emerald:#5A6B3C;
+--emerald-dim:rgba(90,107,60,.25);
+--emerald-glow:rgba(122,155,74,.30);
+--text-main:#3A4A22;
+--text-sub:#7A8B5E;
+--border-subtle:rgba(90,107,60,.12);
+--border-gold:rgba(255,213,79,.30);--border-emerald:rgba(122,155,74,.25);--border-silver:rgba(168,191,120,.30);
+--glass:rgba(255,248,225,.5);
+--glass-border:rgba(122,155,74,.15);
+--sunflower:#FFD54F;
+--sunflower-dim:rgba(255,213,79,.25);
+--milk-green:rgba(197,217,168,.35);
+--milk-yellow:rgba(255,236,179,.35);
+--shadow-card:0 2px 6px rgba(90,107,60,.12),0 4px 14px rgba(90,107,60,.07),0 0 0 0.5px rgba(90,107,60,.04);
+--shadow-card-hover:0 2px 8px rgba(90,107,60,.12),0 6px 18px rgba(90,107,60,.07);
+--shadow-bub-ai:0 2px 5px rgba(90,107,60,.10),0 0 0 0.5px rgba(90,107,60,.03);
+--shadow-bub-user:0 2px 5px rgba(180,160,80,.10),0 0 0 0.5px rgba(180,160,80,.03);
+--shadow-modal:0 8px 32px rgba(58,74,34,.12),0 2px 8px rgba(58,74,34,.06);
+--note-mint:#E8F0DC;--note-cream:#FFF5D6;--note-linen:#F0EBE0;--note-blush:#FCE4EC;--note-sage:#E0EDCE;--note-butter:#FFF8E1;--note-kraft:#E8DAB8;--note-envelope:#F5EFD8;
+--note-mintlight:#F0F6E6;--note-lavender:#EDE7F2;--note-morningblue:#E3EEF5;--note-peach:#FCEAE0;
+--ribbon-anniv:linear-gradient(120deg,#A8D49C 0%,#C5E1A5 50%,#A8D49C 100%);
+--ribbon-birthday:linear-gradient(120deg,#FFD180 0%,#FFE082 50%,#FFCC80 100%);
+--ribbon-solstice:linear-gradient(120deg,#B0BEC5 0%,#CFD8DC 50%,#B0BEC5 100%);
+--ribbon-monthly:linear-gradient(120deg,#F8BBD0 0%,#FFE0B2 50%,#F8BBD0 100%);
+--paper-fiber:repeating-linear-gradient(90deg,rgba(120,110,70,.020) 0px,rgba(120,110,70,.020) 1px,transparent 1px,transparent 3px),repeating-linear-gradient(0deg,rgba(120,110,70,.014) 0px,rgba(120,110,70,.014) 1px,transparent 1px,transparent 4px);
+--tape-bg:linear-gradient(120deg,rgba(255,252,240,.55),rgba(255,248,225,.30) 45%,rgba(255,252,240,.50));
+--tape-edge:rgba(180,165,110,.18);
+--lift-shadow:2px 5px 9px rgba(90,107,60,.13),0 2px 4px rgba(90,107,60,.10),0 0 0 0.5px rgba(90,107,60,.05);
+--lift-shadow-hover:3px 7px 14px rgba(90,107,60,.15),0 3px 6px rgba(90,107,60,.10);
+--diary-line:repeating-linear-gradient(to bottom,transparent 0px,transparent 27px,rgba(122,155,74,.10) 27px,rgba(122,155,74,.10) 28px);
+--diary-margin:linear-gradient(to right,transparent 31px,rgba(205,92,92,.14) 31px,rgba(205,92,92,.14) 32px,transparent 32px);
+}
+/* === 全家共用節日拉條 (Top Ribbon) === */
+.special-ribbon{position:relative;display:none;align-items:center;justify-content:center;gap:8px;padding:max(env(safe-area-inset-top,0px),6px) 16px 6px;min-height:28px;font-family:'Satisfy','Dancing Script','LXGW WenKai TC',cursive;font-size:13px;color:#4A3E20;letter-spacing:.6px;z-index:7;box-shadow:0 1px 4px rgba(90,107,60,.18),inset 0 -1px 0 rgba(0,0,0,.04);text-shadow:0 1px 0 rgba(255,255,255,.45);overflow:hidden}
+.special-ribbon.show{display:flex}
+.special-ribbon::before,.special-ribbon::after{content:'';position:absolute;top:50%;width:14px;height:14px;background:inherit;transform:translateY(-50%) rotate(45deg);opacity:.55;border-radius:1px}
+.special-ribbon::before{left:6px}
+.special-ribbon::after{right:6px}
+.special-ribbon.anniv{background:var(--ribbon-anniv)}
+.special-ribbon.birthday{background:var(--ribbon-birthday);color:#5A3A10}
+.special-ribbon.solstice{background:var(--ribbon-solstice);color:#3A4658}
+.special-ribbon.monthly{background:var(--ribbon-monthly);color:#5A3050}
+.special-ribbon .rib-emoji{font-size:14px;filter:drop-shadow(0 1px 1px rgba(0,0,0,.10))}
+@keyframes ribbonSlideIn{from{transform:translateY(-100%);opacity:0}to{transform:translateY(0);opacity:1}}
+.special-ribbon.show{animation:ribbonSlideIn .5s cubic-bezier(.25,.46,.45,.94) both}
+/* 當 ribbon 顯示時，相鄰 header 不再重複吃 top safe-area */
+.special-ribbon.show ~ .ch-header,
+.special-ribbon.show ~ .settings-header,
+.special-ribbon.show ~ .mem-header,
+.special-ribbon.show ~ .lr-header{padding-top:10px!important}
+html{background-color:#FDFCF5;margin:0;padding:0}
+body{margin:0;padding:0;height:100vh;overflow:hidden;background-color:#FDFCF5;background:#FDFCF5;color:var(--text-main);font-family:'LXGW WenKai TC','Noto Sans TC','Noto Serif TC',system-ui,sans-serif}
+/* 共用照片背景 mixin（每頁容器內部用） */
+.page-photo-bg{position:absolute;inset:0;background-image:url(https://raw.githubusercontent.com/peishuanloveyourbulb-dotcom/solstice-frontend/main/images/bg-sunflower.png);background-size:cover;background-position:center;z-index:0;pointer-events:none}
+.page-photo-overlay{position:absolute;inset:0;background:var(--paper-fiber),linear-gradient(160deg,rgba(253,252,245,.78),rgba(242,246,236,.78));z-index:0;pointer-events:none}
+/* Living Room: 加深 overlay 避免背景合照跟便條紙中央合照撞 */
+#livingRoom .page-photo-overlay{background:var(--paper-fiber),linear-gradient(160deg,rgba(253,252,245,.65),rgba(242,246,236,.65))!important}
+
+.settings-page .page-photo-overlay{background:var(--paper-fiber),linear-gradient(rgba(196,168,90,.15) 1px,transparent 1px),linear-gradient(90deg,rgba(196,168,90,.15) 1px,transparent 1px),linear-gradient(165deg,rgba(253,249,236,.86),rgba(246,237,210,.86))!important;background-size:auto,22px 22px,22px 22px,auto!important}
+/* 確保各頁主要內容浮在背景之上 */
+#livingRoom > *:not(.page-photo-bg):not(.page-photo-overlay):not(.lr-back),
+#chat > *:not(.page-photo-bg):not(.page-photo-overlay):not(.page-tape-mark),
+#memoryPage > *:not(.page-photo-bg):not(.page-photo-overlay):not(.page-tape-mark),
+.settings-page > *:not(.page-photo-bg):not(.page-photo-overlay):not(.page-tape-mark){position:relative;z-index:1}
+.sidebar > *{position:relative;z-index:1}
+button,input,select,textarea,label{font-family:inherit}
+body{padding-top:0}
+/* === Password gate 已內嵌到 Welcome 頁 — 只保留 shake 動畫 === */
+@keyframes pwShake{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-6px)}40%,80%{transform:translateX(6px)}}
+
+/* === WELCOME PAGE === */
+#welcome{position:fixed;inset:0;background-color:#F8F4DC;background:var(--paper-fiber),repeating-linear-gradient(0deg,rgba(168,158,70,.055) 0 1px,transparent 1px 22px),repeating-linear-gradient(90deg,rgba(168,158,70,.055) 0 1px,transparent 1px 22px),linear-gradient(160deg,#FDFBEC 0%,#F9F4D9 50%,#F2EDC6 100%);display:flex;align-items:stretch;justify-content:stretch;z-index:10;transition:opacity .6s ease,visibility .6s ease;overflow:hidden;-webkit-overflow-scrolling:touch}
+#welcome::before{content:'';position:fixed;inset:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Cfilter id='paper'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='3' seed='5'/%3E%3CfeColorMatrix values='0 0 0 0 0.45 0 0 0 0 0.38 0 0 0 0 0.20 0 0 0 0.10 0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23paper)'/%3E%3C/svg%3E");background-size:200px;opacity:.25;pointer-events:none;z-index:0;mix-blend-mode:multiply}
+#welcome.hidden{opacity:0;visibility:hidden;pointer-events:none}
+/* === 攤開的日記跨頁 === */
+.w-content{text-align:center;padding:max(env(safe-area-inset-top,20px),52px) 26px max(env(safe-area-inset-bottom,20px),36px);width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;margin:0;position:relative;z-index:1;background:linear-gradient(155deg,rgba(255,252,236,.42) 0%,rgba(250,245,218,.28) 50%,rgba(243,237,202,.38) 100%);box-shadow:inset 0 0 0 1px rgba(180,160,90,.18),inset 0 1px 0 rgba(255,255,255,.45),inset 0 -2px 4px rgba(140,115,50,.10);box-sizing:border-box;overflow:hidden}
+.w-content::before{content:'';position:absolute;top:14px;left:14px;right:14px;bottom:14px;border:1px dashed rgba(122,155,74,.28);border-radius:4px;pointer-events:none;z-index:0}
+/* 中央書脊線已移除 */
+.w-content::after{display:none}
+.w-content > *{position:relative;z-index:2}
+.w-content > .w-book-spine{display:none}
+.w-content > .w-corner-tl,.w-content > .w-corner-tr,.w-content > .w-corner-bl,.w-content > .w-corner-br{display:none}
+.w-content > .w-corner-tl{top:20px;left:20px;border-right:none;border-bottom:none;border-radius:4px 0 0 0}
+.w-content > .w-corner-tr{top:20px;right:20px;border-left:none;border-bottom:none;border-radius:0 4px 0 0}
+.w-content > .w-corner-bl{bottom:20px;left:20px;border-right:none;border-top:none;border-radius:0 0 0 4px}
+.w-content > .w-corner-br{bottom:20px;right:20px;border-left:none;border-top:none;border-radius:0 0 4px 0}
+.w-content > .w-bookmark{display:none}
+.w-title{font-family:'Great Vibes','Satisfy',cursive;font-size:34px;font-weight:400;color:#4A5E30;margin:0 0 2px;letter-spacing:1.5px;text-shadow:0 1px 0 rgba(255,245,220,.65),0 2px 4px rgba(140,100,40,.12);line-height:1.1}
+.w-title-rule{width:48px;height:1.5px;background:linear-gradient(90deg,transparent 0%,rgba(122,155,74,.50) 20%,rgba(122,155,74,.50) 80%,transparent 100%);margin:0 auto 14px;border-radius:1px}
+/* 歡迎詞 - 移到拍立得上方作頁眉，加裝飾 */
+.w-sub{font-family:'Satisfy','LXGW WenKai TC','Noto Serif TC',serif;font-style:normal;font-weight:300;color:#6B7F4A;font-size:13px;margin:0 0 16px;letter-spacing:1.4px;opacity:.85;position:relative;display:inline-block}
+.w-sub::before{content:'❀';position:absolute;left:-22px;top:50%;transform:translateY(-50%);font-size:11px;color:rgba(122,155,74,.60)}
+.w-sub::after{content:'❀';position:absolute;right:-22px;top:50%;transform:translateY(-50%);font-size:11px;color:rgba(122,155,74,.60)}
+.w-heart{display:none}
+/* 拍立得 - 縮小、交叉雙膠帶 */
+.w-polaroid{display:inline-block;background:#FFFEF9;padding:8px 8px 36px 8px;border-radius:3px;box-shadow:0 2px 12px rgba(60,40,10,.18),0 8px 28px rgba(90,75,30,.22),0 0 0 1px rgba(150,120,60,.14);margin:4px auto 18px;position:relative;transform:rotate(-2.2deg);transition:transform .5s cubic-bezier(.25,.46,.45,.94);animation:polaroidFloat 4s ease-in-out infinite alternate}
+.w-polaroid::before{content:'';position:absolute;top:-9px;left:25%;width:58px;height:14px;transform:translateX(-50%) rotate(-18deg);background:repeating-linear-gradient(135deg,rgba(122,155,74,.26) 0px,rgba(122,155,74,.26) 2px,rgba(197,217,168,.32) 2px,rgba(197,217,168,.32) 4px,rgba(168,191,120,.18) 4px,rgba(168,191,120,.18) 6px);border-left:0.5px dashed var(--tape-edge);border-right:0.5px dashed var(--tape-edge);box-shadow:0 1px 3px rgba(90,107,60,.16);z-index:3;border-radius:1px}
+.w-polaroid::after{content:'';position:absolute;top:-9px;right:15%;width:54px;height:13px;transform:translateX(50%) rotate(14deg);background:repeating-linear-gradient(135deg,rgba(233,180,203,.30) 0px,rgba(233,180,203,.30) 2px,rgba(252,228,236,.36) 2px,rgba(252,228,236,.36) 4px,rgba(255,213,79,.22) 4px,rgba(255,213,79,.22) 6px);border-left:0.5px dashed var(--tape-edge);border-right:0.5px dashed var(--tape-edge);box-shadow:0 1px 2px rgba(180,80,120,.16);z-index:3;border-radius:1px;display:block}
+.w-polaroid:active{transform:rotate(0deg) scale(.98)}
+.w-polaroid-caption{position:absolute;bottom:11px;left:0;right:0;text-align:center;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:12px;color:#7A6A3E;letter-spacing:.5px}
+.w-polaroid img{width:min(180px,46vw);height:auto;max-height:32vh;object-fit:cover;display:block;border-radius:2px;animation:imgFadeIn .5s ease-out;position:relative}
+.w-polaroid-img-wrap{position:relative;display:block}
+.w-polaroid-img-wrap::after{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");background-size:100px;mix-blend-mode:multiply;border-radius:2px;pointer-events:none;z-index:1}
+/* 郵戳印章 - 右上角 */
+.w-stamp{position:absolute;top:60px;right:26px;width:58px;height:58px;border:1.5px solid rgba(160,80,60,.45);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:7.5px;font-weight:600;color:rgba(160,80,60,.62);letter-spacing:.6px;line-height:1.25;text-align:center;transform:rotate(-12deg);background:radial-gradient(circle at 30% 30%,rgba(180,90,60,.05),transparent 70%);box-shadow:inset 0 0 0 1px rgba(160,80,60,.16);z-index:2;text-transform:uppercase;font-style:italic;opacity:.78}
+.w-stamp::before{content:'';position:absolute;inset:4px;border:1px dashed rgba(160,80,60,.28);border-radius:50%;pointer-events:none}
+.w-stamp-text{position:relative;padding:6px;z-index:1}
+@keyframes wSunBob{0%,100%{transform:rotate(0deg) translateY(0)}25%{transform:rotate(-4deg) translateY(-1.5px)}75%{transform:rotate(4deg) translateY(-1.5px)}}
+/* 手繪塗鴉層 — 跟其他房間同款筆觸 */
+.w-doodle{position:absolute;pointer-events:none;opacity:.62}
+.w-content > .w-doodle{z-index:1}
+.w-doodle svg{width:100%;height:100%;display:block}
+.w-doodle-1{top:16%;left:5%;width:44px;height:44px;transform:rotate(-14deg)}
+.w-doodle-2{top:45%;right:4.5%;width:42px;height:32px;transform:rotate(10deg)}
+.w-doodle-3{top:29%;right:7%;width:32px;height:32px;transform:rotate(-8deg)}
+.w-doodle-4{bottom:12%;right:6%;width:38px;height:38px;transform:rotate(12deg)}
+.w-doodle-5{bottom:22%;left:5%;width:36px;height:36px;transform:rotate(-10deg)}
+.w-doodle-6{top:38%;left:4.5%;width:46px;height:60px;transform:rotate(-7deg);opacity:.78}
+/* 回家按鈕 */
+.w-enter{position:relative;background:var(--paper-fiber),var(--note-mint);border:0.5px solid rgba(122,155,74,.45);color:#3A4E22;padding:12px 36px;border-radius:4px 7px 5px 6px;font-size:15px;font-family:'Satisfy','LXGW WenKai TC','Noto Serif TC',serif;cursor:pointer;transition:all .3s cubic-bezier(.25,.46,.45,.94);box-shadow:0 2px 6px rgba(90,107,60,.18),inset 0 1px 0 rgba(255,255,255,.55),inset 0 -1px 0 rgba(122,155,74,.15);transform:rotate(-1.5deg);letter-spacing:2px;font-weight:500;overflow:visible}
+.w-enter::before{content:'';position:absolute;top:-8px;left:50%;width:48px;height:12px;transform:translateX(-50%) rotate(-6deg);background:repeating-linear-gradient(135deg,rgba(233,180,203,.30) 0px,rgba(233,180,203,.30) 2px,rgba(252,228,236,.36) 2px,rgba(252,228,236,.36) 4px,rgba(255,213,79,.22) 4px,rgba(255,213,79,.22) 6px);border-left:0.5px dashed var(--tape-edge);border-right:0.5px dashed var(--tape-edge);box-shadow:0 1px 2px rgba(180,80,120,.16);border-radius:1px;z-index:2;pointer-events:none}
+.w-enter:hover{transform:rotate(-1deg) translateY(-1px);box-shadow:0 3px 10px rgba(90,107,60,.24),0 0 12px rgba(197,217,168,.22),inset 0 1px 0 rgba(255,255,255,.55)}
+.w-enter:active{background:rgba(168,191,120,.40);transform:rotate(0deg) scale(.96);box-shadow:inset 0 1px 3px rgba(90,107,60,.20)}
+.w-enter-wrap{position:relative;display:inline-block;min-height:48px;margin-top:8px;flex-shrink:0}
+.w-content > .w-enter-wrap{z-index:3}
+.w-enter-wrap .w-enter{transition:opacity .3s ease,transform .35s cubic-bezier(.25,.46,.45,.94)}
+.w-enter-wrap.show-pw .w-enter{opacity:0;pointer-events:none;transform:rotate(-1.5deg) scale(.85)}
+.w-pw-zone{position:absolute;left:50%;top:0;display:flex;align-items:center;gap:8px;opacity:0;pointer-events:none;transition:opacity .35s ease .1s,transform .4s cubic-bezier(.25,.46,.45,.94);transform:translateX(-50%) scale(.85)}
+.w-enter-wrap.show-pw .w-pw-zone{opacity:1;pointer-events:auto;transform:translateX(-50%) scale(1)}
+.w-pw-inp{width:180px;padding:12px 16px;border:1px solid rgba(140,110,55,.28);border-radius:6px;background:var(--paper-fiber),linear-gradient(to bottom,#FEFCF1 0%,#FBF6E4 100%);font-family:'LXGW WenKai TC','Noto Serif TC',sans-serif;font-size:14px;color:#5a3e0e;outline:none;transition:border-color .25s,box-shadow .25s,transform .15s;-webkit-appearance:none;box-shadow:inset 0 1px 2px rgba(140,100,40,.08),0 1px 3px rgba(90,107,60,.06);letter-spacing:1.2px;text-align:center;transform:rotate(-0.4deg)}
+.w-pw-inp::placeholder{color:rgba(122,90,42,.42);font-style:italic;letter-spacing:.6px}
+.w-pw-inp:focus{border-color:rgba(122,155,74,.55);box-shadow:inset 0 1px 3px rgba(140,100,40,.10),0 0 0 3px rgba(197,217,168,.30),0 2px 8px rgba(90,107,60,.12)}
+.w-pw-inp.pw-shake{animation:pwShake .42s cubic-bezier(.36,.07,.19,.97);border-color:rgba(192,80,80,.55)}
+.w-pw-go{min-width:56px;height:42px;padding:0 12px;border-radius:5px 7px 5px 7px;border:0.5px solid rgba(122,155,74,.45);background:var(--paper-fiber),var(--note-mint);color:#3A4E22;font-size:14px;font-family:'LXGW WenKai TC','Noto Serif TC',serif;letter-spacing:2px;cursor:pointer;transition:all .25s cubic-bezier(.25,.46,.45,.94);box-shadow:0 2px 5px rgba(90,107,60,.18),inset 0 1px 0 rgba(255,255,255,.55);transform:rotate(2deg);flex-shrink:0;display:flex;align-items:center;justify-content:center;line-height:1}
+.w-pw-go:hover{transform:rotate(1deg) translateY(-1px);box-shadow:0 3px 8px rgba(122,155,74,.22),inset 0 1px 0 rgba(255,255,255,.55)}
+.w-pw-go:active{background:rgba(168,191,120,.45);transform:rotate(0deg) scale(.92)}
+.w-pw-err{display:none}
+/* 手寫詩句 - 妳的句子，這頁日記的靈魂 */
+/* 詩 — 直排籤詩：窄長小紙籤 + 原稿紙直格線，落款橫排 */
+.w-poem{margin:18px auto 8px;padding:18px 22px 12
