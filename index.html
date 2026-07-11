@@ -29,6 +29,7 @@
 <!-- iPhone 11 / XR -->
 <link rel="apple-touch-startup-image" href="/splash-828x1792.png" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300&family=Noto+Serif+TC:wght@300;400;500&family=Noto+Sans+TC:wght@300;400;500&family=Satisfy&family=Dancing+Script:wght@400;500;600&family=Great+Vibes&family=Klee+One:wght@400;600&family=LXGW+WenKai+TC:wght@300;400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="darkroom.css?v=1">
 <link rel="preload" as="image" href="images/bg-sunflower.png">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -2242,6 +2243,19 @@ html.app-loading body{opacity:1;background:#F9F5DE}
 <circle cx="32" cy="54.4" r="4.6" fill="#F6B7CC" stroke="#A08556" stroke-width="1.3"/>
 <rect x="29.4" y="53.3" width="5.2" height="2.2" rx="1.1" fill="#A08556"/>
 <path d="M25.5 65 v-3 q0 -2.4 2.4 -2.4 h8.2 q2.4 0 2.4 2.4 V65 z" fill="rgba(120,90,50,.16)" stroke="#A08556" stroke-width="1.1"/>
+</svg>
+</div>
+<div class="lr-camera-stk" onclick="goDarkroom()" title="暗房">
+<svg viewBox="0 0 56 46">
+<ellipse cx="28" cy="43" rx="16" ry="2.5" fill="rgba(120,90,50,.15)"/>
+<rect x="20" y="4" width="16" height="9" rx="3" fill="#55575F" stroke="#A08556" stroke-width="1.8"/>
+<rect x="4" y="10" width="48" height="30" rx="7" fill="#3F4148" stroke="#A08556" stroke-width="2"/>
+<circle cx="45.5" cy="8" r="2.7" fill="#E98FAE" stroke="#B76E90" stroke-width="1.1"/>
+<circle cx="28" cy="25" r="10" fill="#23252B" stroke="#C8CBD4" stroke-width="2"/>
+<circle cx="28" cy="25" r="5.8" fill="#5C7FD6" stroke="#2E4573" stroke-width="1.4"/>
+<path d="M25 22.5 Q 27 21 29 22.5" stroke="#DCE6F8" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+<rect x="8.5" y="15" width="8" height="5.5" rx="1.6" fill="#F4F1E8" stroke="#A08556" stroke-width="1.3"/>
+<rect x="40" y="15" width="7.5" height="5.5" rx="1.6" fill="#BFD0F0" stroke="#A08556" stroke-width="1.3"/>
 </svg>
 </div>
 <div class="lr-phone-stk" onclick="goPushSettings()" title="小小郵局">
@@ -7509,5 +7523,7 @@ function escapeHtml(str) {
 <div class="big-emoji-wm" data-page="settings"></div>
 <script>initThinkingBtn();applyTheme();</script>
 
+<div class="dr-page" id="darkroomPage"></div>
+<script src="darkroom.js?v=1" defer></script>
 </body>
 </html>
