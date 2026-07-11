@@ -1,0 +1,108 @@
+/* ============================================
+   Sol² 暗房（Darkroom）— darkroom.css
+   炭黑牆＋白拍立得＋灰紙膠帶，紅燈是家裡唯一的暖
+   ============================================ */
+
+/* ---------- 客廳門口的小相機貼紙（站在扭蛋機和小電話中間） ---------- */
+.lr-camera-stk{position:absolute;left:50%;margin-left:-25px;bottom:-13px;width:50px;height:41px;z-index:6;cursor:pointer;filter:drop-shadow(0 2px 3px rgba(90,107,60,.28));transform:rotate(-4deg);animation:drCamWiggle 9s ease-in-out infinite;transform-origin:50% 90%;-webkit-tap-highlight-color:transparent}
+.lr-camera-stk svg{width:100%;height:100%;display:block}
+@keyframes drCamWiggle{0%,88%,100%{transform:rotate(-4deg)}92%{transform:rotate(-8deg)}96%{transform:rotate(-1deg)}}
+
+/* ---------- 房間外殼 ---------- */
+.dr-page{display:none;position:fixed;inset:0;z-index:800;background:#0d0d0f;color:#e8e8ea;font-family:'LXGW WenKai TC','Noto Sans TC',system-ui,sans-serif}
+.dr-page.open{display:block;animation:drFadeIn .28s ease-out}
+.dr-page *{box-sizing:border-box}
+@keyframes drFadeIn{from{opacity:0;transform:scale(.985)}to{opacity:1;transform:none}}
+.dr-shell{position:absolute;inset:0;display:flex;flex-direction:column;background:radial-gradient(120% 90% at 50% -10%,rgba(233,143,174,.06),transparent 55%),radial-gradient(140% 120% at 50% 115%,rgba(0,0,0,.5),transparent 60%),#0d0d0f}
+
+/* ---------- 門楣：返回鍵＋標題＋紅色安全燈 ---------- */
+.dr-head{flex:0 0 auto;display:flex;align-items:center;gap:12px;padding:calc(10px + env(safe-area-inset-top,0px)) 16px 10px}
+.dr-back{width:38px;height:38px;flex:0 0 auto;border-radius:50%;border:1px solid #2c2c31;background:#141417;color:#e8e8ea;font-size:18px;line-height:1;cursor:pointer;font-family:inherit;-webkit-tap-highlight-color:transparent}
+.dr-back:active{background:#1d1d21}
+.dr-title-en{font-family:'Great Vibes','Satisfy',cursive;font-size:30px;line-height:1;color:#f2f2f4;letter-spacing:1px;text-shadow:0 0 14px rgba(233,143,174,.18)}
+.dr-title-zh{font-size:11.5px;color:#8b8b92;letter-spacing:2px;margin-top:3px}
+.dr-safelight{margin-left:auto;width:10px;height:10px;flex:0 0 auto;border-radius:50%;background:#e98fae;box-shadow:0 0 10px 2px rgba(233,143,174,.55);animation:drGlow 3.2s ease-in-out infinite}
+@keyframes drGlow{0%,100%{opacity:.55}50%{opacity:1}}
+
+/* ---------- 底片打孔飾條 ---------- */
+.dr-film{flex:0 0 12px;background:repeating-linear-gradient(90deg,#232327 0 9px,#0d0d0f 9px 17px);border-top:1px solid #232327;border-bottom:1px solid #232327;opacity:.85}
+
+/* ---------- 牆面（可捲動） ---------- */
+.dr-scroll{flex:1 1 auto;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:22px 16px calc(112px + env(safe-area-inset-bottom,0px))}
+.dr-wall{display:grid;grid-template-columns:1fr 1fr;gap:26px 16px}
+.dr-card{margin:0;background:#fafafa;border-radius:3px;padding:7px 7px 0;box-shadow:0 10px 22px rgba(0,0,0,.55),0 2px 5px rgba(0,0,0,.4);transform:rotate(var(--tilt,0deg));position:relative;cursor:pointer;-webkit-touch-callout:none;-webkit-user-select:none;user-select:none}
+.dr-tape{position:absolute;top:-9px;left:50%;width:52px;height:17px;margin-left:-26px;transform:rotate(-3deg);background:repeating-linear-gradient(45deg,rgba(214,214,220,.85) 0 6px,rgba(178,178,186,.85) 6px 12px);opacity:.92;border-radius:1px;box-shadow:0 1px 2px rgba(0,0,0,.25)}
+.dr-card:nth-child(even) .dr-tape{transform:rotate(2.5deg)}
+.dr-ph-wrap{background:#1a1a1d;overflow:hidden;border-radius:2px}
+.dr-ph{display:block;width:100%;aspect-ratio:3/4;object-fit:cover;filter:grayscale(.06) contrast(1.02)}
+.dr-meta{padding:7px 3px 9px;text-align:center}
+.dr-cap-t{font-family:'Klee One','LXGW WenKai TC',cursive;font-size:12.5px;color:#2c2c30;line-height:1.35;word-break:break-word}
+.dr-date{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:10.5px;color:#9a9aa0;letter-spacing:.8px;margin-top:2px}
+
+/* ---------- 顯影動畫：從暗紅慢慢亮起來 ---------- */
+.dr-develop .dr-ph{animation:drDevelop 1.9s ease-out}
+@keyframes drDevelop{0%{filter:brightness(.08) contrast(1.7) grayscale(1) sepia(.5) hue-rotate(-30deg) saturate(2)}55%{filter:brightness(.55) contrast(1.25) grayscale(.6)}100%{filter:brightness(1) contrast(1.02) grayscale(.06)}}
+.dr-fadeout{animation:drFadeOut .35s ease-in forwards}
+@keyframes drFadeOut{to{opacity:0;transform:scale(.9) rotate(var(--tilt,0deg))}}
+
+/* ---------- 狀態列：顯影中／接觸不良 ---------- */
+.dr-status{display:none;flex-direction:column;align-items:center;gap:12px;padding:64px 0;color:#8b8b92;letter-spacing:2px;font-size:13px}
+.dr-status.on{display:flex}
+.dr-dot{width:12px;height:12px;border-radius:50%;background:#e98fae;box-shadow:0 0 12px 3px rgba(233,143,174,.5);animation:drGlow 1.6s ease-in-out infinite}
+.dr-retry{margin-top:6px;padding:9px 18px;border-radius:20px;border:1px solid #3a3a40;background:#17171a;color:#d8d8dc;font-size:13px;letter-spacing:1px;font-family:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}
+
+/* ---------- 空牆：一朵月光向日葵 ---------- */
+.dr-empty{display:flex;flex-direction:column;align-items:center;gap:14px;padding:56px 24px;text-align:center;color:#8b8b92;font-size:13px;letter-spacing:1.5px;line-height:1.9}
+.dr-empty[hidden]{display:none}
+.dr-empty svg{width:96px;height:96px;filter:drop-shadow(0 0 12px rgba(233,143,174,.14))}
+
+/* ---------- 快門造型的上傳鍵 ---------- */
+.dr-add{position:absolute;left:50%;bottom:calc(22px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);width:64px;height:64px;border-radius:50%;border:none;background:transparent;cursor:pointer;z-index:5;-webkit-tap-highlight-color:transparent}
+.dr-add-ring{position:absolute;inset:0;border-radius:50%;background:#1a1a1e;border:2px solid #3a3a40;box-shadow:0 8px 20px rgba(0,0,0,.6)}
+.dr-add-core{position:absolute;inset:12px;border-radius:50%;background:radial-gradient(circle at 32% 30%,#f3b7ca,#e98fae 60%,#c9698f);box-shadow:inset 0 -3px 6px rgba(0,0,0,.25),0 0 14px rgba(233,143,174,.35);transition:transform .12s}
+.dr-add:active .dr-add-core{transform:scale(.9)}
+
+/* ---------- 取景框（裁切視窗） ---------- */
+.dr-modal{position:absolute;inset:0;z-index:40;display:flex;align-items:center;justify-content:center;background:rgba(5,5,6,.72);-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px);padding:20px}
+.dr-modal[hidden]{display:none}
+.dr-crop-card{width:min(88vw,340px);background:#141417;border:1px solid #2c2c31;border-radius:14px;padding:16px;box-shadow:0 18px 44px rgba(0,0,0,.6)}
+.dr-crop-head{font-size:13px;color:#c9c9cf;letter-spacing:2px;text-align:center;margin-bottom:12px}
+.dr-frame{position:relative;width:100%;aspect-ratio:3/4;overflow:hidden;background:#0a0a0c;border-radius:6px;border:1px solid #2c2c31;touch-action:none}
+.dr-frame img{position:absolute;left:50%;top:50%;max-width:none;will-change:transform;-webkit-user-select:none;user-select:none;pointer-events:none}
+.dr-frame::after{content:'';position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(90deg,transparent 33.1%,rgba(255,255,255,.1) 33.33%,transparent 33.6%),linear-gradient(90deg,transparent 66.1%,rgba(255,255,255,.1) 66.33%,transparent 66.6%),linear-gradient(0deg,transparent 33.1%,rgba(255,255,255,.1) 33.33%,transparent 33.6%),linear-gradient(0deg,transparent 66.1%,rgba(255,255,255,.1) 66.33%,transparent 66.6%)}
+.dr-crop-tools{display:flex;align-items:center;gap:12px;margin:14px 2px 4px}
+.dr-rot{width:40px;height:40px;flex:0 0 auto;border-radius:50%;border:1px solid #3a3a40;background:#1a1a1e;color:#e8e8ea;font-size:18px;line-height:1;cursor:pointer;font-family:inherit;-webkit-tap-highlight-color:transparent}
+.dr-rot:active{background:#26262b}
+#drZoom{flex:1;-webkit-appearance:none;appearance:none;height:4px;border-radius:2px;background:#3a3a40;outline:none}
+#drZoom::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:#e98fae;border:2px solid #141417;box-shadow:0 0 8px rgba(233,143,174,.4)}
+.dr-cap{width:100%;margin-top:12px;padding:11px 12px;border-radius:9px;border:1px solid #2c2c31;background:#0f0f12;color:#e8e8ea;font-size:14px;font-family:inherit;letter-spacing:.5px}
+.dr-cap::placeholder{color:#5c5c63}
+.dr-crop-btns{display:flex;gap:10px;margin-top:14px}
+.dr-btn{flex:1;padding:12px 0;border-radius:11px;border:none;font-size:14.5px;letter-spacing:2px;cursor:pointer;font-family:inherit;-webkit-tap-highlight-color:transparent}
+.dr-btn-ghost{background:#1a1a1e;color:#c9c9cf;border:1px solid #2c2c31}
+.dr-btn-main{background:linear-gradient(135deg,#f0aec4,#e98fae);color:#3a1220;font-weight:600}
+.dr-btn-main:disabled{opacity:.55}
+.dr-btn-danger{background:#b3405f;color:#fff}
+
+/* ---------- 取下前的確認小卡 ---------- */
+.dr-cfm-card{width:min(84vw,300px);background:#141417;border:1px solid #2c2c31;border-radius:14px;padding:20px 18px;text-align:center;box-shadow:0 18px 44px rgba(0,0,0,.6)}
+.dr-cfm-t{font-size:15.5px;color:#f0f0f2;letter-spacing:1px}
+.dr-cfm-s{font-size:12.5px;color:#8b8b92;line-height:1.8;margin:10px 0 16px}
+
+/* ---------- 長按動作單 ---------- */
+.dr-sheet-mask{position:absolute;inset:0;z-index:30;background:rgba(5,5,6,.6);display:flex;align-items:flex-end}
+.dr-sheet-mask[hidden]{display:none}
+.dr-sheet{width:100%;background:#141417;border-radius:18px 18px 0 0;border-top:1px solid #2c2c31;padding:14px 16px calc(16px + env(safe-area-inset-bottom,0px));animation:drSheetUp .22s ease-out}
+@keyframes drSheetUp{from{transform:translateY(30px);opacity:0}to{transform:none;opacity:1}}
+.dr-sheet-title{text-align:center;font-size:12px;color:#8b8b92;letter-spacing:2px;padding-bottom:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dr-sheet-btn{display:block;width:100%;padding:13px 0;margin-top:8px;border-radius:11px;border:1px solid #26262b;background:#1a1a1e;color:#e2e2e6;font-size:14.5px;letter-spacing:2px;font-family:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.dr-sheet-btn:active{background:#232328}
+.dr-danger{color:#f2a1b8;border-color:#3a2229}
+.dr-cancel{background:transparent;border-style:dashed;color:#8b8b92}
+
+/* ---------- 小提示氣泡 ---------- */
+.dr-toast{position:absolute;left:50%;bottom:calc(104px + env(safe-area-inset-bottom,0px));transform:translateX(-50%) translateY(8px);background:#1c1c20;color:#e8e8ea;border:1px solid #34343a;font-size:13px;letter-spacing:1px;padding:10px 16px;border-radius:20px;opacity:0;pointer-events:none;transition:.25s;z-index:60;max-width:80vw;text-align:center}
+.dr-toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* ---------- 減少動態偏好 ---------- */
+@media (prefers-reduced-motion:reduce){.lr-camera-stk,.dr-safelight,.dr-dot,.dr-develop .dr-ph,.dr-page.open,.dr-sheet{animation:none!important}}
