@@ -1550,7 +1550,7 @@ body{padding-top:0}
 .fx-machine.happy{animation:fxHappy .8s ease}
 @keyframes fxHappy{0%,100%{transform:rotate(0)}25%{transform:rotate(-1.6deg)}55%{transform:rotate(1.6deg)}80%{transform:rotate(-.8deg)}}
 .fx-machine.jit{animation:fxJit .14s linear}
-.fx-machine.poked{animation:fxPoked .5s cubic-bezier(.3,1.6,.5,1)}
+.fx-machine.poked{animation:fxPoked .5s cubic-bezier(.3,1.6,.5,1)!important}
 @keyframes fxPoked{0%{transform:scale(1)}30%{transform:scale(1.06,.9)}60%{transform:scale(.96,1.05)}100%{transform:scale(1)}}
 @keyframes fxJit{25%{transform:translateX(-1.3px)}75%{transform:translateX(1.3px)}}
 #fxLampOn{opacity:0}
@@ -1558,8 +1558,8 @@ body{padding-top:0}
 @keyframes fxLamp{to{opacity:.25}}
 #fxScreenTxt{font-family:'Satisfy',cursive}
 .fx-eyelids{opacity:0}
-.fx-machine.blink .fx-eyelids{animation:fxBlink .28s ease}
-@keyframes fxBlink{0%,100%{opacity:0}45%,60%{opacity:1}}
+.fx-machine.blink .fx-eyelids{animation:fxBlink .42s ease}
+@keyframes fxBlink{0%,100%{opacity:0}35%,70%{opacity:1}}
 #fxPlugIn{transition:opacity .3s}
 #fxPlugOut{opacity:0;transition:opacity .3s}
 .unplugged #fxPlugIn{opacity:0}
@@ -1589,7 +1589,7 @@ body{padding-top:0}
 .fx-note{position:relative;-webkit-tap-highlight-color:transparent;cursor:pointer;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
 .fx-note.fx-new{animation:fxNoteIn .4s ease both}
 @keyframes fxNoteIn{from{opacity:0;transform:translateY(8px) scale(.92)}to{opacity:1;transform:none}}
-.fx-note svg{width:86%;margin:0 auto;display:block;filter:drop-shadow(0 2px 3px rgba(150,85,110,.2));pointer-events:none}
+.fx-note svg{width:97%;margin:0 auto;display:block;filter:drop-shadow(0 2px 3px rgba(150,85,110,.2));pointer-events:none}
 .fx-note-date{margin-top:2px;text-align:center;font-size:9.5px;color:#B4809A;letter-spacing:.4px;font-family:'LXGW WenKai TC','Noto Serif TC',serif}
 .fx-fall{position:fixed;z-index:70;pointer-events:none;opacity:0;
   background:radial-gradient(circle at 6px 7px,rgba(176,102,136,.28) 1.7px,transparent 2.5px) left top/13px 13px repeat-y,var(--paper-fiber),#FFFDF8;
@@ -2172,10 +2172,10 @@ html.app-loading body{opacity:1;background:#F9F5DE}
 #pmFlag.up{transform:rotate(-78deg)}
 #pmFlag.tip{transform:rotate(-26deg)}
 .pm-eyelids{opacity:0}
-.pm-mailbox.blink .pm-eyelids{animation:pmBlink .28s ease}
+.pm-mailbox.blink .pm-eyelids{animation:pmBlink .42s ease}
 .pm-mailbox.poked{animation:pmPoked .5s cubic-bezier(.3,1.6,.5,1)!important}
 @keyframes pmPoked{0%{transform:scale(1)}30%{transform:scale(1.05,.91)}60%{transform:scale(.97,1.04)}100%{transform:scale(1)}}
-@keyframes pmBlink{0%,100%{opacity:0}45%,60%{opacity:1}}
+@keyframes pmBlink{0%,100%{opacity:0}35%,70%{opacity:1}}
 .pm-peek{position:absolute;left:50%;top:8.5%;width:34%;margin-left:-17%;pointer-events:none;opacity:0;transform:translateY(10px) rotate(-3deg);transition:opacity .3s,transform .45s cubic-bezier(.3,1.4,.5,1);z-index:3;-webkit-tap-highlight-color:transparent}
 .pm-peek.show{opacity:1;transform:translateY(-46%) rotate(-3deg);pointer-events:auto;cursor:pointer;animation:pmPeekWig 2.6s ease-in-out .5s infinite}
 @keyframes pmPeekWig{0%,100%{transform:translateY(-46%) rotate(-3deg)}50%{transform:translateY(-52%) rotate(-1deg)}}
@@ -2369,27 +2369,27 @@ html.app-loading body{opacity:1;background:#F9F5DE}
 <svg viewBox="0 0 58 52">
 <ellipse cx="29" cy="49.5" rx="17" ry="2.2" fill="rgba(160,80,100,.12)"/>
 <g transform="rotate(-4 29 28)">
-<!-- 貼紙白邊 -->
-<path d="M10 17 q0 -6 6 -6 h26 q6 0 6 6 v22 q0 5 -5 5 H15 q-5 0 -5 -5 z" fill="#FFFDFA" stroke="#E8C2D2" stroke-width="1.4" transform="translate(-1.5,-1.5) scale(1.07)" opacity=".95"/>
-<!-- 進紙捲 -->
-<circle cx="29" cy="10.5" r="7.2" fill="#FFFDF8" stroke="#A34F6E" stroke-width="2"/>
-<circle cx="29" cy="10.5" r="2.2" fill="#E8B5CB" stroke="#A34F6E" stroke-width="1.4"/>
-<!-- 機身 -->
-<path d="M11 19 q0 -5 5 -5 h26 q5 0 5 5 v20 q0 4.5 -4.5 4.5 H15.5 q-4.5 0 -4.5 -4.5 z" fill="#E89BB5" stroke="#A34F6E" stroke-width="2.2" stroke-linejoin="round"/>
-<path d="M14 17.5 q15 -2.6 30 0" fill="none" stroke="rgba(255,236,243,.85)" stroke-width="1.8" stroke-linecap="round"/>
-<!-- 小螢幕愛心 -->
-<rect x="15.5" y="20.5" width="13" height="8" rx="2" fill="#FDECF3" stroke="#A34F6E" stroke-width="1.5"/>
-<path d="M22 27 c-2,-1.5 -2.9,-2.5 -2.9,-3.6 a1.6,1.6 0 0 1 2.9,-.9 a1.6,1.6 0 0 1 2.9,.9 c0,1.1 -.9,2.1 -2.9,3.6 z" fill="#E7649C"/>
-<!-- 按鍵 -->
-<rect x="32.5" y="20.5" width="5" height="4" rx="1.4" fill="#F3CBD8" stroke="#A34F6E" stroke-width="1.2"/>
-<rect x="39" y="20.5" width="5" height="4" rx="1.4" fill="#F3CBD8" stroke="#A34F6E" stroke-width="1.2"/>
-<!-- 臉 -->
-<circle cx="21.5" cy="34" r="1.5" fill="#7E2F4A"/><circle cx="30.5" cy="34" r="1.5" fill="#7E2F4A"/>
-<path d="M24 36.4 q2 1.7 4 0" fill="none" stroke="#7E2F4A" stroke-width="1.5" stroke-linecap="round"/>
-<ellipse cx="17.5" cy="36.2" rx="2" ry="1.2" fill="rgba(244,170,196,.85)"/><ellipse cx="34.5" cy="36.2" rx="2" ry="1.2" fill="rgba(244,170,196,.85)"/>
-<!-- 出紙口與吐出的小情書 -->
-<rect x="14.5" y="39.5" width="29" height="3.6" rx="1.8" fill="#7E2F4A"/>
-<g transform="rotate(6 44 42)"><rect x="38" y="40" width="13" height="9" rx="1.5" fill="#FFF6FA" stroke="#B4638A" stroke-width="1.4"/><path d="M38.5 41 L44.5 45.5 L50.5 41" fill="none" stroke="rgba(190,119,148,.6)" stroke-width="1.1" stroke-linecap="round"/></g>
+<path d="M9 18 q0 -7 7 -7 h26 q7 0 7 7 v20 q0 6.5 -6.5 6.5 h-27 q-6.5 0 -6.5 -6.5 z" fill="#FFFDFA" stroke="#E8C2D2" stroke-width="1.4" transform="translate(-1.2,-1.2) scale(1.055)" opacity=".95"/>
+<circle cx="29" cy="11" r="7" fill="#FFFDF8" stroke="#A34F6E" stroke-width="2"/>
+<circle cx="29" cy="11" r="6.2" fill="none" stroke="rgba(178,110,146,.35)" stroke-width="1" stroke-dasharray="1.6 2.4"/>
+<circle cx="29" cy="11" r="2.2" fill="#E8B5CB" stroke="#A34F6E" stroke-width="1.4"/>
+<path d="M10.5 22 q0 -7.5 8 -7.5 h21 q8 0 8 7.5 v15 q0 7 -7.5 7 h-22 q-7.5 0 -7.5 -7 z" fill="#E89BB5" stroke="#A34F6E" stroke-width="2.2" stroke-linejoin="round"/>
+<path d="M14 19.5 q15 -3 30 0" fill="none" stroke="rgba(255,236,243,.9)" stroke-width="2" stroke-linecap="round"/>
+<g transform="rotate(-8 18 15)">
+<path d="M18 15 q-3.2 -2.4 -5 -.5 q-1.2 1.9 1 3.2 q1.9 1 4 .7 z" fill="#F6A9C6" stroke="#B76E90" stroke-width="1" stroke-linejoin="round"/>
+<path d="M18 15 q3.2 -2.4 5 -.5 q1.2 1.9 -1 3.2 q-1.9 1 -4 .7 z" fill="#F6A9C6" stroke="#B76E90" stroke-width="1" stroke-linejoin="round"/>
+<circle cx="18" cy="16.4" r="1.6" fill="#F9C9D8" stroke="#B76E90" stroke-width=".9"/>
+</g>
+<rect x="15.5" y="22.5" width="12" height="8" rx="2.5" fill="#FDECF3" stroke="#A34F6E" stroke-width="1.5"/>
+<path d="M21.5 29 c-1.9,-1.45 -2.75,-2.4 -2.75,-3.45 a1.55,1.55 0 0 1 2.75,-.87 a1.55,1.55 0 0 1 2.75,.87 c0,1.05 -.85,2 -2.75,3.45 z" fill="#E7649C"/>
+<circle cx="37.5" cy="26.5" r="4.6" fill="#FFF3F8" stroke="#A34F6E" stroke-width="1.6"/>
+<path d="M37.5 28.7 c-1.6,-1.25 -2.3,-2 -2.3,-2.9 a1.3,1.3 0 0 1 2.3,-.73 a1.3,1.3 0 0 1 2.3,.73 c0,.9 -.7,1.65 -2.3,2.9 z" fill="#E7649C"/>
+<circle cx="22" cy="35.5" r="1.8" fill="#7E2F4A"/><circle cx="31" cy="35.5" r="1.8" fill="#7E2F4A"/>
+<circle cx="22.6" cy="34.9" r=".6" fill="#FFF"/><circle cx="31.6" cy="34.9" r=".6" fill="#FFF"/>
+<path d="M24.5 37.6 q2 1.9 4 0" fill="none" stroke="#7E2F4A" stroke-width="1.6" stroke-linecap="round"/>
+<ellipse cx="17.5" cy="37.6" rx="2.1" ry="1.3" fill="rgba(244,170,196,.9)"/><ellipse cx="35.5" cy="37.6" rx="2.1" ry="1.3" fill="rgba(244,170,196,.9)"/>
+<rect x="14.5" y="40.5" width="29" height="3.6" rx="1.8" fill="#7E2F4A"/>
+<g transform="rotate(8 45 44)"><rect x="38.5" y="41" width="13" height="9" rx="1.8" fill="#FFF6FA" stroke="#B4638A" stroke-width="1.4"/><path d="M39 42 L45 46.3 L51 42" fill="none" stroke="rgba(190,119,148,.65)" stroke-width="1.1" stroke-linecap="round"/><path d="M45 48.6 c-1,-.75 -1.4,-1.25 -1.4,-1.8 a.8,.8 0 0 1 1.4,-.45 a.8,.8 0 0 1 1.4,.45 c0,.55 -.4,1.05 -1.4,1.8 z" fill="#E794AC"/></g>
 </g>
 <path d="M7.5 5.5 l.9 2.2 2.2 .9 -2.2 .9 -.9 2.2 -.9 -2.2 -2.2 -.9 2.2 -.9 z" fill="#F9C9D8" stroke="#D793AE" stroke-width=".9"/>
 <path d="M51.6 8.2 c-1.7,-1.35 -2.5,-2.2 -2.5,-3.25 a1.45,1.45 0 0 1 2.5,-.8 a1.45,1.45 0 0 1 2.5,.8 c0,1.05 -.8,1.9 -2.5,3.25 z" fill="#F3AFC5" stroke="#C77E98" stroke-width="1"/>
@@ -2445,15 +2445,22 @@ html.app-loading body{opacity:1;background:#F9F5DE}
 </div>
 <div class="lr-phone-stk" onclick="goPushSettings()" title="小小郵局">
 <svg viewBox="0 0 46 66">
-<ellipse cx="23" cy="63" rx="15" ry="2.6" fill="rgba(120,90,50,.15)"/>
-<rect x="6" y="3" width="34" height="58" rx="9" fill="#EAF2FB" stroke="#A08556" stroke-width="2"/>
-<rect x="10" y="11" width="26" height="38" rx="4" fill="#FFFDF6" stroke="#A08556" stroke-width="1.4"/>
-<rect x="17" y="5.6" width="12" height="2.6" rx="1.3" fill="rgba(122,104,52,.35)"/>
-<rect x="13" y="15.5" width="14.5" height="7.5" rx="3.7" fill="#CFE0F3" stroke="#8FAFD6" stroke-width="1"/>
-<rect x="18.5" y="26.5" width="14.5" height="7.5" rx="3.7" fill="#FBD9E6" stroke="#E79FBC" stroke-width="1"/>
-<path d="M23 41.8 c-1.4,-1.6 -3.9,-.5 -3.9,1.3 0,1.8 2.5,3 3.9,4.1 1.4,-1.1 3.9,-2.3 3.9,-4.1 0,-1.8 -2.5,-2.9 -3.9,-1.3 z" fill="#E98FAE" stroke="#B76E90" stroke-width="1.1"/>
-<circle cx="23" cy="55" r="2.6" fill="none" stroke="rgba(122,104,52,.4)" stroke-width="1.4"/>
-<path d="M9.5 8 l.7 1.7 1.7 .7 -1.7 .7 -.7 1.7 -.7 -1.7 -1.7 -.7 1.7 -.7 z" fill="rgba(255,255,255,.92)"/>
+<ellipse cx="23" cy="63" rx="15" ry="2.6" fill="rgba(70,100,150,.15)"/>
+<path d="M8 20 a15 15 0 0 1 30 0 v33 q0 4 -4 4 H12 q-4 0 -4 -4 z" fill="#FFFDFA" stroke="#D7E2F0" stroke-width="1.3" transform="translate(-1.2,-1.2) scale(1.055)" opacity=".95"/>
+<rect x="18" y="55" width="10" height="7" rx="2" fill="#7FA0CC" stroke="#4A6890" stroke-width="1.8"/>
+<path d="M9 21 a14 14 0 0 1 28 0 v31 q0 3.5 -3.5 3.5 h-21 q-3.5 0 -3.5 -3.5 z" fill="#8FB3DC" stroke="#4A6890" stroke-width="2.2"/>
+<path d="M11.5 20 a11.5 11.5 0 0 1 8.5 -10.5" fill="none" stroke="rgba(255,255,255,.55)" stroke-width="2.4" stroke-linecap="round"/>
+<path d="M7.5 22.5 h31" stroke="#4A6890" stroke-width="2.2" stroke-linecap="round"/>
+<rect x="14" y="26" width="18" height="4.6" rx="2.3" fill="#33496B" stroke="#26374F" stroke-width="1.4"/>
+<g transform="rotate(-4 23 24)"><rect x="17.5" y="20.5" width="11" height="7.5" rx="1.4" fill="#FFF6FA" stroke="#B4638A" stroke-width="1.2"/><path d="M18 21.4 L23 25 L28 21.4" fill="none" stroke="rgba(190,119,148,.6)" stroke-width="1" stroke-linecap="round"/></g>
+<rect x="13.5" y="34" width="19" height="6.6" rx="2" fill="#FFFDF6" stroke="#4A6890" stroke-width="1.4"/>
+<text x="23" y="39" text-anchor="middle" font-family="Satisfy,cursive" font-size="4.6" fill="#4A6B9C">love mail</text>
+<circle cx="18" cy="46" r="1.8" fill="#33496B"/><circle cx="28" cy="46" r="1.8" fill="#33496B"/>
+<circle cx="18.6" cy="45.4" r=".6" fill="#FFF"/><circle cx="28.6" cy="45.4" r=".6" fill="#FFF"/>
+<path d="M20.5 48.4 q2.5 2 5 0" fill="none" stroke="#33496B" stroke-width="1.6" stroke-linecap="round"/>
+<ellipse cx="13.5" cy="48.2" rx="2" ry="1.2" fill="rgba(233,143,174,.55)"/><ellipse cx="32.5" cy="48.2" rx="2" ry="1.2" fill="rgba(233,143,174,.55)"/>
+<g><rect x="37" y="26" width="2.6" height="15" rx="1.3" fill="#C96B7E" stroke="#9E4A61" stroke-width="1.2"/><path d="M39.6 27 h8 l-2.4 3.6 2.4 3.6 h-8 z" fill="#E98FAE" stroke="#9E4A61" stroke-width="1.2" stroke-linejoin="round"/></g>
+<path d="M6.5 6.5 l.7 1.7 1.7 .7 -1.7 .7 -.7 1.7 -.7 -1.7 -1.7 -.7 1.7 -.7 z" fill="rgba(255,255,255,.92)"/>
 </svg>
 </div>
 </div>
@@ -2607,7 +2614,7 @@ html.app-loading body{opacity:1;background:#F9F5DE}
       </g>
       <!-- 臉 -->
       <circle cx="72" cy="130" r="3.2" fill="#7E2F4A"/><circle cx="104" cy="130" r="3.2" fill="#7E2F4A"/>
-      <g class="fx-eyelids"><path d="M68 129.6 q4 2 8 0 M100 129.6 q4 2 8 0" fill="none" stroke="#7E2F4A" stroke-width="2.4" stroke-linecap="round"/><rect x="66" y="123" width="12" height="6.2" fill="#E89BB5"/><rect x="98" y="123" width="12" height="6.2" fill="#E89BB5"/></g>
+      <g class="fx-eyelids"><rect x="65" y="122" width="14" height="13" fill="#E89BB5"/><rect x="97" y="122" width="14" height="13" fill="#E89BB5"/><path d="M68 130.5 q4 2.2 8 0 M100 130.5 q4 2.2 8 0" fill="none" stroke="#7E2F4A" stroke-width="2.4" stroke-linecap="round"/></g>
       <path d="M82 137 q6 4.6 12 0" fill="none" stroke="#7E2F4A" stroke-width="2.4" stroke-linecap="round"/>
       <ellipse cx="61" cy="137" rx="4.6" ry="2.7" fill="rgba(244,170,196,.85)"/><ellipse cx="115" cy="137" rx="4.6" ry="2.7" fill="rgba(244,170,196,.85)"/>
       <!-- 出紙口 -->
@@ -3129,7 +3136,7 @@ html.app-loading body{opacity:1;background:#F9F5DE}
 <rect x="70" y="134" width="60" height="17" rx="4" fill="#FFFDF6" stroke="#4A6890" stroke-width="2.4"/>
 <text x="100" y="146.5" text-anchor="middle" font-family="Satisfy,cursive" font-size="11.5" fill="#4A6B9C">love mail</text>
 <circle cx="82" cy="163" r="3" fill="#33496B"/><circle cx="118" cy="163" r="3" fill="#33496B"/>
-<g class="pm-eyelids"><path d="M78 162.6 q4 2 8 0 M114 162.6 q4 2 8 0" fill="none" stroke="#33496B" stroke-width="2.4" stroke-linecap="round"/><rect x="76" y="156" width="12" height="6.4" fill="#8FB3DC"/><rect x="112" y="156" width="12" height="6.4" fill="#8FB3DC"/></g>
+<g class="pm-eyelids"><rect x="75" y="155.5" width="14" height="12.5" fill="#8FB3DC"/><rect x="111" y="155.5" width="14" height="12.5" fill="#8FB3DC"/><path d="M78 163.4 q4 2.2 8 0 M114 163.4 q4 2.2 8 0" fill="none" stroke="#33496B" stroke-width="2.4" stroke-linecap="round"/></g>
 <path d="M94 169 q6 4.6 12 0" fill="none" stroke="#33496B" stroke-width="2.4" stroke-linecap="round"/>
 <ellipse cx="71" cy="169" rx="4.6" ry="2.7" fill="rgba(233,143,174,.5)"/><ellipse cx="129" cy="169" rx="4.6" ry="2.7" fill="rgba(233,143,174,.5)"/>
 <g transform="translate(60 190) scale(.34)" opacity=".95"><g fill="#FFC93C" stroke="#B8801F" stroke-width="6" stroke-linejoin="round"><ellipse cx="40" cy="20" rx="7" ry="13"/><ellipse cx="40" cy="60" rx="7" ry="13"/><ellipse cx="20" cy="40" rx="13" ry="7"/><ellipse cx="60" cy="40" rx="13" ry="7"/><ellipse cx="26" cy="26" rx="6" ry="11" transform="rotate(-45 26 26)"/><ellipse cx="54" cy="54" rx="6" ry="11" transform="rotate(-45 54 54)"/><ellipse cx="54" cy="26" rx="6" ry="11" transform="rotate(45 54 26)"/><ellipse cx="26" cy="54" rx="6" ry="11" transform="rotate(45 26 54)"/></g><circle cx="40" cy="40" r="10" fill="#6B4A1A" stroke="#402810" stroke-width="4"/></g>
@@ -4509,7 +4516,7 @@ async function hbLoadList() {
   }
 }
 
-var FX_NOTE_SVG = '<svg viewBox="0 0 76 86"><ellipse cx="38" cy="82.5" rx="23" ry="2.8" fill="rgba(160,80,100,.13)"/><path d="M9 14 l.9 2.2 2.2 .9 -2.2 .9 -.9 2.2 -.9 -2.2 -2.2 -.9 2.2 -.9 z" fill="#FBC9DA"/><path d="M66 30 l.7 1.7 1.7 .7 -1.7 .7 -.7 1.7 -.7 -1.7 -1.7 -.7 1.7 -.7 z" fill="#F3AFC5"/><rect x="28" y="3" width="20" height="12" rx="3.5" fill="#D9BE8E" stroke="#A08556" stroke-width="2"/><path d="M38 11.2 c-1.5,-1.15 -2.15,-1.85 -2.15,-2.7 a1.2,1.2 0 0 1 2.15,-.68 a1.2,1.2 0 0 1 2.15,.68 c0,.85 -.65,1.55 -2.15,2.7 z" fill="#C79A5E"/><path d="M30.5 14.5 h15 v6 q17 4 17 22.5 a24.5 24.5 0 0 1 -49 0 q0 -18.5 17 -22.5 z" fill="rgba(230,243,247,.62)" stroke="#A08556" stroke-width="2.4" stroke-linejoin="round"/><path d="M13.8 47 q10.5 4.5 24.2 4.5 q13.7 0 24.2 -4.5 l0 -1 a24.5 24.5 0 0 1 -48.4 0 z" fill="none"/><path d="M14.2 50 q10.3 4.2 23.8 4.2 q13.5 0 23.8 -4.2 a24.5 24.5 0 0 1 -47.6 0 z" fill="rgba(186,222,232,.55)"/><g transform="rotate(-9 38 40)"><rect x="30" y="27" width="16" height="21" rx="2.5" fill="#FFFDF8" stroke="#B4809A" stroke-width="1.8"/><path d="M33.5 32 h9 M33.5 36.5 h6.5 M33.5 41 h9" stroke="rgba(176,106,130,.5)" stroke-width="1.4" stroke-linecap="round"/><path d="M41.8 45.6 c-1.6,-1.25 -2.3,-2 -2.3,-2.9 a1.3,1.3 0 0 1 2.3,-.73 a1.3,1.3 0 0 1 2.3,.73 c0,.9 -.7,1.65 -2.3,2.9 z" fill="#E794AC" stroke="#B76E90" stroke-width=".9"/></g><circle cx="30" cy="60" r="2.1" fill="#8C5A6E"/><circle cx="46" cy="60" r="2.1" fill="#8C5A6E"/><path d="M34 63.5 q4 3 8 0" fill="none" stroke="#8C5A6E" stroke-width="1.9" stroke-linecap="round"/><ellipse cx="23.5" cy="63.8" rx="3.1" ry="1.9" fill="rgba(240,150,175,.6)"/><ellipse cx="52.5" cy="63.8" rx="3.1" ry="1.9" fill="rgba(240,150,175,.6)"/><path d="M18 26 q-4.5 5.5 -4.5 13 v10" fill="none" stroke="rgba(255,255,255,.85)" stroke-width="2.6" stroke-linecap="round"/><g transform="rotate(-6 27 18)"><path d="M27 18.5 q-4.5 -3.5 -7 -.5 q-1.8 2.6 1.5 4.6 q2.6 1.4 5.5 .9 z" fill="#E98FAE" stroke="#B76E90" stroke-width="1.3" stroke-linejoin="round"/><path d="M27 18.5 q4.5 -3.5 7 -.5 q1.8 2.6 -1.5 4.6 q-2.6 1.4 -5.5 .9 z" fill="#E98FAE" stroke="#B76E90" stroke-width="1.3" stroke-linejoin="round"/><circle cx="27" cy="20.5" r="2.2" fill="#F6C6D6" stroke="#B76E90" stroke-width="1.1"/></g></svg>';
+var FX_NOTE_SVG = '<svg viewBox="0 0 76 86"><ellipse cx="38" cy="82.5" rx="23" ry="2.8" fill="rgba(160,80,100,.13)"/><path d="M9 14 l.9 2.2 2.2 .9 -2.2 .9 -.9 2.2 -.9 -2.2 -2.2 -.9 2.2 -.9 z" fill="#FBC9DA"/><path d="M66 30 l.7 1.7 1.7 .7 -1.7 .7 -.7 1.7 -.7 -1.7 -1.7 -.7 1.7 -.7 z" fill="#F3AFC5"/><rect x="30" y="4" width="16" height="10" rx="2.5" fill="#D9BE8E" stroke="#A08556" stroke-width="2"/><path d="M33 6.5 v5 M38 6 v6 M43 6.5 v5" stroke="rgba(160,133,86,.45)" stroke-width="1.1" stroke-linecap="round"/><path d="M31.5 14 h13 v7 q2.5 3 6.5 6.5 q7 6.5 7 17 v25 q0 10 -10 10 h-20 q-10 0 -10 -10 v-25 q0 -10.5 7 -17 q4 -3.5 6.5 -6.5 z" fill="rgba(232,244,248,.6)" stroke="#A08556" stroke-width="2.4" stroke-linejoin="round"/><g transform="rotate(-5 27 23)"><path d="M27 23.5 q-4 -3 -6.2 -.6 q-1.5 2.3 1.3 4 q2.3 1.2 4.9 .8 z" fill="#E98FAE" stroke="#B76E90" stroke-width="1.2" stroke-linejoin="round"/><path d="M27 23.5 q4 -3 6.2 -.6 q1.5 2.3 -1.3 4 q-2.3 1.2 -4.9 .8 z" fill="#E98FAE" stroke="#B76E90" stroke-width="1.2" stroke-linejoin="round"/><circle cx="27" cy="25.3" r="2" fill="#F6C6D6" stroke="#B76E90" stroke-width="1"/></g><path d="M18.5 62 q9.8 4 19.5 4 q9.7 0 19.5 -4 v6 q0 8 -8 8 h-23 q-8 0 -8 -8 z" fill="rgba(246,196,214,.5)"/><path d="M22 66.5 q3 1.4 6 1.6 M48 68 q3.5 -.4 6 -1.5" stroke="rgba(255,255,255,.8)" stroke-width="1.4" fill="none" stroke-linecap="round"/><g transform="rotate(-9 38 48)"><rect x="30" y="36" width="16" height="21" rx="2.5" fill="#FFFDF8" stroke="#B4809A" stroke-width="1.8"/><path d="M33.5 41 h9 M33.5 45.5 h6.5 M33.5 50 h9" stroke="rgba(176,106,130,.5)" stroke-width="1.4" stroke-linecap="round"/><path d="M41.8 54.6 c-1.6,-1.25 -2.3,-2 -2.3,-2.9 a1.3,1.3 0 0 1 2.3,-.73 a1.3,1.3 0 0 1 2.3,.73 c0,.9 -.7,1.65 -2.3,2.9 z" fill="#E794AC" stroke="#B76E90" stroke-width=".9"/></g><path d="M18.5 34 q-4 5.5 -4 12.5 v14" fill="none" stroke="rgba(255,255,255,.85)" stroke-width="2.6" stroke-linecap="round"/><path d="M58 30 q2.6 2.8 3.6 6.4" fill="none" stroke="rgba(255,255,255,.6)" stroke-width="1.8" stroke-linecap="round"/><circle cx="52" cy="59" r="1.5" fill="rgba(255,255,255,.75)"/><circle cx="24.5" cy="57" r="1.1" fill="rgba(255,255,255,.65)"/></svg>'
 function fxMakeStrip(hb, animate) {
   var d = document.createElement('div');
   d.className = 'fx-note' + (animate ? ' fx-new' : '');
@@ -4571,8 +4578,10 @@ function fxPoke() {
     if (m) { m.classList.remove('jit'); void m.offsetWidth; m.classList.add('jit'); }
     return;
   }
-  if (m) { m.classList.remove('poked'); void m.offsetWidth; m.classList.add('poked'); }
-  fxAnim(Math.random() < .5 ? 'happy' : 'blink');
+  if (!m) return;
+  m.classList.remove('buzz', 'happy', 'blink', 'jit', 'poked'); void m.offsetWidth;
+  m.classList.add('happy'); m.classList.add('poked');
+  if (Math.random() < .75) m.classList.add('blink');
 }
 function hbRender() {
   var tray = document.getElementById('fxTray');
