@@ -1,3 +1,70 @@
+# CLAUDE.md
+
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+
+---
+
+## Codebase Overview
+
+This is a **vanilla HTML/CSS/JavaScript PWA** — no build toolchain, no npm, no TypeScript. The entire application is a single file: `index.html` (~8,400 lines). Two feature modules live externally: `darkroom.css` and `darkroom.js`. Everything is deployed to Vercel via git push.
+
+**There are no build, test, or lint commands.** Edit files directly and push.
+
+## Architecture
+
+### Page/Room Model
+All "pages" are `position:fixed` full-screen `<div>` elements toggled via JavaScript — the URL never changes. Navigation is handled by `go*()` functions:
+
+| Function | Destination |
+|---|---|
+| `goLivingRoom()` | Home hub (`#livingRoom`) |
+| `goChat()` | AI chat (`#chat`) |
+| `goMemory()` | Memory library (`#memoryPage`) |
+| `goHeartbeat()` | Heartbeat messages (`#heartbeatPage`) |
+| `goGacha()` | Daily gacha (`#gachaPage`) |
+| `goSettings()` | Settings panel (`#settingsContent`) |
+| `goDarkroom()` | Photo gallery (`.dr-page`) |
+
+Entry is gated through `#welcome` — a password prompt that populates `sessionStorage['sol2-gate-hash']`.
+
+### State
+No framework. State is global JS variables plus Web Storage:
+- `localStorage` — AI model, thinking mode, gacha tallies, heartbeat read state, session ID
+- `sessionStorage['sol2-unlocked']` / `sessionStorage['sol2-gate-hash']` — session gate unlock + hash injected into every API request
+
+### Auth / Fetch Monkey-Patch
+`window.fetch` is monkey-patched at startup to automatically inject the `x-gate-hash` header into all requests destined for the backend. **Never bypass this patch** when calling the backend — call `fetch()` normally and the header is added automatically. Admin endpoints additionally require `x-admin-password`.
+
+### API
+Backend base URL: `https://solstice-backend-kjtu.onrender.com` (Render free tier — may cold-start; `/health` is pinged on settings open to wake it).
+
+Key endpoint groups: `/chat`, `/sessions/*`, `/memories/*`, `/gacha/*`, `/heartbeat/*`, `/models/all`, `/providers`, `/auth/*`, `/api/push/*`, `/api/proactive/*`.
+
+External calls: Google Translate (`translate.googleapis.com`) for auto zh-TW translation; BigDataCloud reverse geocoding for location context.
+
+### Darkroom Module
+`darkroom.js` and `darkroom.css` are loaded as separate files. Both track their own version in file header comments (currently js v13, css v12). Update those comments whenever changing those files.
+
+### PWA / Service Worker
+`sw.js` at root handles push notifications only — no caching. Splash images in root must match the iOS device media queries in `<head>` exactly. Three manifest variants exist: `manifest.json`, `manifest-daylight.json`, `manifest-moonlake.json`.
+
+## Versioning Convention
+Line 2 of `index.html` contains a version comment:
+```html
+<!-- solstice-fix-v5.7-0714 -->
+```
+Update this (format: `vMAJOR.MINOR-MMDD`) after significant changes. A matching comment must also be updated in the settings room hidden element inside the same file. When changing `darkroom.css` or `darkroom.js`, increment their respective `?v=N` query string and file header version number.
+
+## Language & Style
+All UI strings are Traditional Chinese (zh-TW). Code comments and variable names mix English and Chinese. The app is mobile-first with `user-scalable=no`; use `env(safe-area-inset-*)` for iOS safe areas.
+
+CSS custom properties in `:root` (lines ~41–76 of `index.html`) define the full design system: `--emerald`, `--gold`, `--sunflower`, text/background tokens, card shadows, paper texture, sticky-note color variants (`--note-mint`, `--note-cream`, etc.), and masking-tape effects. All UI chrome decorations are embedded as data URI SVGs in CSS — no external image references for UI elements.
+
+## Deployment
+`vercel.json` rewrites all routes to `index.html` (SPA fallback). Push to GitHub; Vercel deploys automatically.
+
+---
+
 # CLAUDE.md — Soleil & Solstice
 
 ## 1. 名字的故事
