@@ -748,7 +748,6 @@ body{padding-top:0}
 .set-block{position:relative;margin-bottom:28px;z-index:1}
 /* 🎙️ 老公的聲線試衣間（設定頁 2026/07/23）——一排小卡帶，播放時輪盤會轉，選定蓋粉章 */
 .vc-card{position:relative;background:var(--paper-fiber),#F5F0DD;border:.5px solid rgba(160,140,80,.24);border-radius:3px 5px 3px 6px;padding:16px 14px 13px;box-shadow:var(--lift-shadow);transform:rotate(-0.3deg)}
-.vc-desc{font-size:12px;color:#7A6535;line-height:1.75;margin:0 2px 10px;font-family:'LXGW WenKai TC','Noto Serif TC',serif}
 .vc-row{display:flex;align-items:center;gap:11px;padding:8px 4px;border-bottom:1px dashed rgba(160,140,80,.28)}
 .vc-row:last-child{border-bottom:none}
 .vc-tape{flex-shrink:0;width:56px;background:none;border:none;padding:0;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:transform .15s;transform:rotate(-1.5deg)}
@@ -3169,7 +3168,6 @@ html.app-loading body{opacity:1;background:#F9F5DE}
 <div class="set-block">
 <div class="set-block-label"><span class="set-label-emoji">🎙️</span>老公的聲線</div>
 <div class="vc-card">
-<div class="vc-desc">點卡帶試聽一句。選定之後，打電話＋聊天室唸句子都會換成這個聲音。</div>
 <div class="vc-list" id="vcList"></div>
 <div class="vc-msg" id="vcMsg"></div>
 </div>
@@ -8669,7 +8667,7 @@ function escapeHtml(str) {
 <div class="big-emoji-wm" data-page="settings"></div>
 <script>
 // ===== 🎙️ 聲線試衣間（設定頁）2026/07/23：試聽走 /tts?voice=（後端白名單），選定存進 settings.call_voice，電話與唸句共用 =====
-var VC_LIST=[['echo','沉穩少年感（原本的聲音）'],['ash','低沉一點的大人味'],['ballad','慢慢的、像在唸情書'],['verse','活潑、語氣起伏最大'],['alloy','中性、乾淨俐落'],['sage','溫溫柔柔的'],['coral','偏女聲、亮亮的'],['shimmer','偏女聲、輕輕柔柔']];
+var VC_LIST=[['echo','沉穩少年感'],['ash','低沉一點的大人味'],['ballad','慢慢的、像在唸情書'],['verse','活潑、語氣起伏最大']];// 2026/07/23 老婆定案：只留四捲男聲，偏女聲與中性的下架
 var VC_SAMPLE='老婆，聽得到嗎？我在這裡，妳想聽什麼我都唸給妳聽。';
 var vcNow='echo',vcAudio=null,vcTapeBtn=null,vcSlow=null;
 function vcMsgSet(t){var el=document.getElementById('vcMsg');if(el)el.textContent=t||'';}
@@ -8769,7 +8767,7 @@ async function callStart(){
     };
     var offer=await callPC.createOffer();
     await callPC.setLocalDescription(offer);
-    var sdpR=await fetch('https://api.openai.com/v1/realtime?model='+encodeURIComponent(sess.model||'gpt-4o-realtime-preview'),{method:'POST',headers:{'Authorization':'Bearer '+sess.client_secret,'Content-Type':'application/sdp'},body:offer.sdp});
+    var sdpR=await fetch('https://api.openai.com/v1/realtime/calls?model='+encodeURIComponent(sess.model||'gpt-realtime'),{method:'POST',headers:{'Authorization':'Bearer '+sess.client_secret,'Content-Type':'application/sdp'},body:offer.sdp});
     if(!sdpR.ok){var tt=await sdpR.text().catch(function(){return '';});callFail('線路握手失敗（'+sdpR.status+'）'+(tt?'：'+tt.slice(0,90):''));return;}
     var ans=await sdpR.text();
     await callPC.setRemoteDescription({type:'answer',sdp:ans});
