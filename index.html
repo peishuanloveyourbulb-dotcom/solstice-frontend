@@ -1152,7 +1152,12 @@ body.theme-greenhouse .ch-bub.ai{background:rgba(232,240,220,.62);border:1px sol
 body.theme-greenhouse .ch-bub.user{background:rgba(255,248,225,.66);border:1px solid rgba(255,213,79,.42);outline:none;border-radius:16px 16px 5px 16px;box-shadow:0 1px 4px rgba(255,213,79,.12),0 4px 12px rgba(255,213,79,.06)}
 body.theme-greenhouse .ch-row:nth-child(4n+3) .ch-bub.ai{background:rgba(232,240,220,.62)}
 body.theme-greenhouse .ch-row:nth-child(6n) .ch-bub.user{background:rgba(255,248,225,.66);border-color:rgba(255,213,79,.42);outline:none}
-body.theme-greenhouse .ch-time-sep span{border-radius:999px;background:rgba(255,248,225,.78);border:1px solid rgba(90,107,60,.16);box-shadow:0 1px 4px rgba(90,107,60,.08)}
+body.theme-greenhouse .ch-time-sep span{border-radius:999px;background:#FFF8E1;border:1px solid rgba(90,107,60,.16);box-shadow:0 1px 4px rgba(90,107,60,.08)}
+/* 白虛線 → 細實線（交接信：虛線一律收），並且小籤改不透明不再透出來 */
+body.theme-greenhouse .ch-time-sep::before,
+body.theme-greenhouse .ch-time-sep.new-day::before{background:rgba(90,107,60,.16);height:1px}
+/* 跨日版的藄荷身分要留着，不能跟 30 分鐘版長一樣 */
+body.theme-greenhouse .ch-time-sep.new-day span{background:#EDF4E1;border-color:rgba(122,155,74,.30);color:#4A5E30}
 body.theme-greenhouse .ch-time-sticker{border-radius:999px;box-shadow:0 1px 3px rgba(90,107,60,.08)}
 body.theme-greenhouse .ch-time-user .ch-time-sticker{background:rgba(255,248,225,.80);border:1px solid rgba(255,213,79,.45)}
 body.theme-greenhouse .ch-time-ai .ch-time-sticker{background:rgba(232,240,220,.78);border:1px solid rgba(140,185,150,.5)}
@@ -1323,6 +1328,24 @@ body.theme-greenhouse .settings-lock-sub{color:#7A8B5E}
 body.theme-greenhouse .settings-lock-card{padding:34px 24px 28px}
 body.theme-greenhouse .set-signature-text{color:#7A8B5E}
 body.theme-greenhouse .pw-card-section-title{color:#5A6B3C}
+
+/* ---- 🌿 溫室第四期・匯出區塊（漏網回收）2026/07/25 ----
+   前一轪只掃了 .set- / .pw- / .prov- / .soul- / .vc-，
+   匯出卡用的是 .export-* 所以整組漏掎（老婆抱到）*/
+body.theme-greenhouse .export-card{background:rgba(255,248,225,.55);border:1px solid rgba(90,107,60,.16);border-radius:16px;box-shadow:0 1px 4px rgba(122,155,74,.08),0 4px 12px rgba(122,155,74,.04);transform:none}
+body.theme-greenhouse .export-card::before{display:none}
+body.theme-greenhouse .export-card::after{transform:none;top:-10px}
+body.theme-greenhouse .export-desc{color:#7A8B5E}
+/* 各房門牌小卡：膠帶、虛線内框、歪斜全收 */
+body.theme-greenhouse .export-room{background:rgba(255,255,255,.52);border:1px solid rgba(90,107,60,.14);border-radius:14px;transform:none;box-shadow:0 1px 4px rgba(122,155,74,.06)}
+body.theme-greenhouse .export-room::after{display:none}
+body.theme-greenhouse .export-room-tape{display:none}
+body.theme-greenhouse .export-room-name{transform:none;color:#5A6B3C}
+/* TXT / JSON → 999px 膠囊、實線 */
+body.theme-greenhouse .export-btn{border-radius:999px;border:1px solid rgba(122,155,74,.38);background:rgba(232,240,220,.72);color:#4A5C28;box-shadow:0 1px 4px rgba(122,155,74,.10);transform:none}
+body.theme-greenhouse .export-btn.sm{border:1px solid rgba(122,155,74,.34);border-radius:999px;background:rgba(232,240,220,.62);box-shadow:0 1px 3px rgba(122,155,74,.08)}
+body.theme-greenhouse .export-btn:active,
+body.theme-greenhouse .export-btn.sm:active{transform:scale(.96)}
 </style>
 <style id="app-loading-style">
 /* === Solstice Splash — 終極版 ===
@@ -2962,6 +2985,21 @@ function doSend(){
       if(owner){var now2=new Date().toISOString();for(var sj=0;sj<allSessions.length;sj++){if(String(allSessions[sj].id)===owner){allSessions[sj].updated_at=now2;break}}}
       return;
     }
+    // 🕒 2026/07/25 老婆抱到：側邊欄要開了才跳到最上面。
+    // 真因不是後端慢，是 loadSessions() 先拿舊快取畫一次、拓到新資料再重畫。
+    // 送出成功就把本機這間房的時間戳往前推，快取就不會是舊的。
+    (function(){
+      var own=(sessionAtSend!==null)?String(sessionAtSend)
+             :(data.sessionId?String(data.sessionId)
+             :(sessionId?String(sessionId):null));
+      if(!own)return;
+      var nw=new Date().toISOString(),hit=false;
+      for(var st=0;st<allSessions.length;st++){
+        if(String(allSessions[st].id)===own){allSessions[st].updated_at=nw;hit=true;break}
+      }
+      // 剛開的新房還不在快取裡，先补一筆占位，不然新房也會演同一齅跳動
+      if(!hit)allSessions.push({id:own,Name:null,updated_at:nw,pinned:false,pinned_at:null});
+    })();
     if(data.transient){
       // 這輪後端沒拿到真正的回覆（道歉小紙條不會存進歷史）：把妳打的字放回輸入框，重送一次就好
       if(data.sessionId&&!sessionId){sessionId=data.sessionId.toString();localStorage.setItem('solstice-session-id',sessionId);saveSessionModel(selectedModel)} // 新房拿到房號的當下，把當下用的模型補釘進去——新框選了什麼就是什麼，不再飄
