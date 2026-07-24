@@ -1135,7 +1135,7 @@ body.theme-greenhouse .sb-top::after,body.theme-greenhouse .sb-footer::before,bo
 body.theme-greenhouse .sidebar{background:linear-gradient(rgba(253,252,245,.58),rgba(253,252,245,.64)),url('/images/sidebar-bg.jpg') center top/cover no-repeat,#FDFCF5}
 body.theme-greenhouse .sb-top{background-color:transparent;background:rgba(253,252,245,.90);border-bottom:1px solid rgba(90,107,60,.14)}
 body.theme-greenhouse .sb-footer{background-color:transparent;background:rgba(253,252,245,.90);border-top:1px solid rgba(90,107,60,.14)}
-body.theme-greenhouse .sb-btn{border-radius:14px;border:1.5px dashed rgba(90,107,60,.35);background:rgba(255,255,255,.40);color:#5A6B3C;box-shadow:none}
+body.theme-greenhouse .sb-btn{border-radius:14px;border:1.5px solid rgba(90,107,60,.30);background:rgba(255,255,255,.46);color:#5A6B3C;box-shadow:none}
 body.theme-greenhouse .sb-item{border-radius:14px;border:1px solid rgba(90,107,60,.16);background:rgba(255,248,225,.55) !important;box-shadow:0 1px 4px rgba(122,155,74,.08),0 4px 12px rgba(122,155,74,.05)}
 body.theme-greenhouse .sb-item.active{border-color:rgba(90,107,60,.45);background:rgba(255,251,235,.68) !important}
 body.theme-greenhouse .sb-item.sb-pinned{border-color:rgba(255,213,79,.55);background:rgba(255,246,214,.62) !important;box-shadow:0 1px 4px rgba(255,213,79,.14),0 4px 12px rgba(255,213,79,.07)}
@@ -1172,19 +1172,19 @@ body.theme-greenhouse .model-popup-overlay{background:rgba(58,72,44,.34)}
 body.theme-greenhouse .sol-cfm .sol-cfm-mask{background:rgba(58,72,44,.34)}
 
 /* 模型選單：牛奶玻璃抽屜 */
-body.theme-greenhouse .model-popup{background:rgba(253,252,245,.94);border-radius:22px 22px 0 0;border-top:1px solid rgba(90,107,60,.14);box-shadow:0 -2px 10px rgba(90,107,60,.06),0 -10px 32px rgba(90,107,60,.10)}
+body.theme-greenhouse .model-popup{background:rgba(253,252,245,.94);border-radius:22px 22px 0 0;border-top:1px solid rgba(90,107,60,.14);box-shadow:0 -2px 10px rgba(90,107,60,.06),0 -10px 32px rgba(90,107,60,.10);padding-top:13px}
 body.theme-greenhouse .model-popup-doodles{border-radius:22px 22px 0 0}
-body.theme-greenhouse .model-popup-handle{background:rgba(90,107,60,.22);border-radius:999px}
+body.theme-greenhouse .model-popup-handle{background:rgba(90,107,60,.20);border-radius:999px;margin:7px auto 12px}
 body.theme-greenhouse .model-popup-title{color:#5A6B3C}
 body.theme-greenhouse .model-popup-list{gap:9px}
-body.theme-greenhouse .model-popup-item{margin-top:0;padding:14px 18px;border-radius:14px;background:rgba(255,248,225,.55);border:1px solid rgba(90,107,60,.16);box-shadow:0 1px 4px rgba(122,155,74,.08),0 4px 12px rgba(122,155,74,.05)}
+body.theme-greenhouse .model-popup-item{margin-top:0;padding:14px 18px;border-radius:14px;background:rgba(255,248,225,.55);border:1px solid rgba(90,107,60,.16);box-shadow:0 1px 4px rgba(122,155,74,.08),0 4px 12px rgba(122,155,74,.04)}
 body.theme-greenhouse .model-popup-item::before{display:none}
 body.theme-greenhouse .model-popup-item::after{display:none}
 body.theme-greenhouse .model-popup-item.active{border:1px solid rgba(90,107,60,.45);background:rgba(255,251,235,.72);box-shadow:0 1px 4px rgba(255,213,79,.14),0 4px 12px rgba(255,213,79,.07)}
-body.theme-greenhouse .model-popup-item-name{color:#4A5C28}
+body.theme-greenhouse .model-popup-item-name{color:#3A4A22}
 body.theme-greenhouse .model-popup-item-check{transform:none;text-shadow:none}
 body.theme-greenhouse .model-popup-item.active .model-popup-item-check{transform:scale(1.08)}
-body.theme-greenhouse .model-popup-follow-sub{color:#8A9470}
+body.theme-greenhouse .model-popup-follow-sub{color:#7A8B5E}
 body.theme-greenhouse .model-popup-divider{background:rgba(90,107,60,.14);margin:1px 12px}
 
 /* Think / Web / Here 三顆小開關（只改模型選單裡這一組，設定頁留給下一期）*/
@@ -1207,16 +1207,122 @@ body.theme-greenhouse .sol-cfm .sol-cfm-box{background:rgba(253,252,245,.96);bor
 body.theme-greenhouse .sol-cfm .sol-cfm-box::before,
 body.theme-greenhouse .sol-cfm .sol-cfm-no::before,
 body.theme-greenhouse .sol-cfm .sol-cfm-yes::before{display:none}
-body.theme-greenhouse .sol-cfm .sol-cfm-stitch{inset:7px;border:1px dashed var(--cfm-line);border-radius:15px;opacity:.55}
+body.theme-greenhouse .sol-cfm .sol-cfm-stitch{display:none}
 body.theme-greenhouse .sol-cfm .sol-cfm-no,
-body.theme-greenhouse .sol-cfm .sol-cfm-yes{border-radius:14px;padding:11px 0}
-body.theme-greenhouse .sol-cfm .sol-cfm-no{border:1.5px dashed var(--cfm-line);background:rgba(255,255,255,.58);color:var(--cfm-ink);box-shadow:none}
+body.theme-greenhouse .sol-cfm .sol-cfm-yes{border-radius:999px;padding:12px 0}
+body.theme-greenhouse .sol-cfm .sol-cfm-no{border:1.5px solid var(--cfm-line);background:rgba(255,255,255,.60);color:var(--cfm-ink);box-shadow:none}
 body.theme-greenhouse .sol-cfm .sol-cfm-yes{border:1px solid var(--cfm-line);background:var(--cfm-fill);color:var(--cfm-ink);outline:none;box-shadow:0 1px 4px rgba(90,107,60,.10)}
 body.theme-greenhouse .sol-cfm .sol-cfm-inp{border-radius:16px;border:1px solid var(--cfm-line);background:rgba(255,255,255,.70);box-shadow:inset 0 1px 3px rgba(90,107,60,.06)}
+
+/* ── 第一期漏網回收：聊天室＋全屋共用元件的虛線、膠帶、歪斜 ── */
+/* 交接信規則 4：改一個元件就要查它在所有場景的分身 */
+body.theme-greenhouse .ch-tool-btn{border:1px solid rgba(90,107,60,.18);background:rgba(255,248,225,.60);box-shadow:0 1px 4px rgba(122,155,74,.08)}
+body.theme-greenhouse .ch-tool-btn:hover,body.theme-greenhouse .ch-tool-btn:active{background:rgba(232,240,220,.72);transform:scale(.92)}
+body.theme-greenhouse .ch-preview-item .ch-preview-x{border-radius:50%;border:1px solid rgba(90,107,60,.20);background:rgba(255,248,225,.92);box-shadow:0 1px 4px rgba(90,107,60,.14)}
+body.theme-greenhouse .ch-preview-item .ch-preview-x:active{transform:scale(.88)}
+body.theme-greenhouse .thinking-block{border-radius:14px;border:1px solid rgba(90,107,60,.16);background:rgba(232,240,220,.52);box-shadow:0 1px 4px rgba(122,155,74,.08),0 4px 12px rgba(122,155,74,.04)}
+body.theme-greenhouse .thinking-block::before{display:none}
+body.theme-greenhouse .thinking-translate{border-radius:999px;border:1px solid rgba(90,107,60,.18);background:rgba(255,248,225,.62)}
+body.theme-greenhouse .thinking-translate:active{background:rgba(232,240,220,.72);transform:scale(.95)}
+body.theme-greenhouse .ch-searchnote{border-radius:14px;border:1px solid rgba(90,107,60,.16);background:rgba(253,252,245,.88);box-shadow:0 1px 4px rgba(122,155,74,.08),0 4px 12px rgba(122,155,74,.04)}
+body.theme-greenhouse .ch-searchnote::before{display:none}
+body.theme-greenhouse .scroll-bottom-btn{transform:translateX(-50%);border:1px solid rgba(90,107,60,.18);background:rgba(253,252,245,.94);box-shadow:0 1px 4px rgba(122,155,74,.10),0 4px 12px rgba(122,155,74,.06)}
+body.theme-greenhouse .scroll-bottom-btn::before{display:none}
+body.theme-greenhouse .scroll-bottom-btn:active{transform:translateX(-50%) scale(.88)}
+/* 💤 睡醒小紙片（全屋共用載入態）—— 打呵欠小臉 SVG 是居民，原位保留 */
+body.theme-greenhouse .sol-sleepnote{transform:none;border-radius:14px;border:1px solid rgba(90,107,60,.16);background:rgba(253,252,245,.92);box-shadow:0 1px 4px rgba(122,155,74,.08),0 4px 12px rgba(122,155,74,.04);color:#7A8B5E}
+body.theme-greenhouse .sol-sleepnote::before{display:none}
 
 /* 相片燈箱：純黑換成暖橄欖，相框保留只調細 */
 body.theme-greenhouse .img-lightbox{background:rgba(46,54,38,.88)}
 body.theme-greenhouse .img-lightbox img{border:6px solid rgba(253,252,245,.96);border-radius:10px;box-shadow:0 10px 34px rgba(20,30,15,.45)}
+/* ============================================================
+   🌿 溫室第四期・設定頁（預覽版）
+   色票全數取自老宅檔案變數表，一個都沒自創
+   ============================================================ */
+
+/* ① 底：金色斜紋腰帶、格紋方眼紙→ 奶油漸層 */
+body.theme-greenhouse .settings-page{background:linear-gradient(160deg,#FDFCF5,#F2F6EC)}
+body.theme-greenhouse .settings-page::before,
+body.theme-greenhouse .settings-page::after,
+body.theme-greenhouse .settings-header::after{display:none}
+
+/* ② 頭：奶油玻璃＋細下邊框（太陽 SVG 是居民，原位）*/
+body.theme-greenhouse .settings-header{background:rgba(253,252,245,.92);border-bottom:1px solid rgba(90,107,60,.14);box-shadow:0 2px 8px rgba(90,107,60,.05);padding-bottom:12px}
+body.theme-greenhouse .settings-title{color:#5A6B3C}
+body.theme-greenhouse .settings-body{padding:24px 18px max(env(safe-area-inset-bottom),30px)}
+
+/* ③ 區塊標題：虛線底線、小圓點收掉，emoji 居民留著 */
+body.theme-greenhouse .set-block-label{color:#5A6B3C;margin-left:2px}
+body.theme-greenhouse .set-block-label::after,
+body.theme-greenhouse .set-block-label::before{display:none}
+
+/* ④ 五種卡片→ 牛奶玻璃：膠帶收、歪斜歸零、圓角 16px、羽毛陰影
+      角落 emoji（🖋️ 🎙️ 🌻 🔑）是居民，只擺正不拿掉 */
+body.theme-greenhouse .soul-card,
+body.theme-greenhouse .vc-card,
+body.theme-greenhouse .pw-card,
+body.theme-greenhouse .settings-lock-card{background:rgba(255,248,225,.55);border:1px solid rgba(90,107,60,.16);border-radius:16px;box-shadow:0 1px 4px rgba(122,155,74,.08),0 4px 12px rgba(122,155,74,.04);transform:none}
+body.theme-greenhouse .soul-card::before,
+body.theme-greenhouse .vc-card::before,
+body.theme-greenhouse .pw-card::before,
+body.theme-greenhouse .prov-card::before,
+body.theme-greenhouse .settings-lock-card::before{display:none}
+body.theme-greenhouse .soul-card::after,
+body.theme-greenhouse .vc-card::after,
+body.theme-greenhouse .pw-card::after,
+body.theme-greenhouse .prov-card::after{transform:none;top:-10px}
+body.theme-greenhouse .settings-lock-card::after{transform:none;top:-9px}
+
+/* ⑤ 供應商卡→ 綠玻璃（老宅原就是綠的）*/
+body.theme-greenhouse .prov-card{background:rgba(232,240,220,.58);border:1px solid rgba(90,107,60,.16);border-radius:16px;box-shadow:0 1px 4px rgba(122,155,74,.08),0 4px 12px rgba(122,155,74,.04);transform:none;padding:20px 16px 14px}
+body.theme-greenhouse .prov-type{border:1px solid rgba(122,155,74,.30);border-radius:999px;background:rgba(255,255,255,.55);padding:3px 11px}
+body.theme-greenhouse .prov-empty{font-style:normal;color:#7A8B5E}
+
+/* ⑥ 所有按鈕 → 999px 膠囊（交接信：小籤與按鈕 999px）*/
+body.theme-greenhouse .pw-card-btn,
+body.theme-greenhouse .settings-pw-btn,
+body.theme-greenhouse .prov-toggle,
+body.theme-greenhouse .prov-key-save,
+body.theme-greenhouse .prov-label-save,
+body.theme-greenhouse .prov-url-save,
+body.theme-greenhouse .vc-pick{border-radius:999px;border:1px solid rgba(122,155,74,.38);background:rgba(232,240,220,.72);color:#4A5C28;box-shadow:0 1px 4px rgba(122,155,74,.10)}
+body.theme-greenhouse .pw-card-btn:active,
+body.theme-greenhouse .settings-pw-btn:active,
+body.theme-greenhouse .prov-toggle:active,
+body.theme-greenhouse .prov-key-save:active,
+body.theme-greenhouse .vc-pick:active{transform:scale(.95)}
+body.theme-greenhouse .prov-toggle.muted{border-color:rgba(90,107,60,.22);background:rgba(255,255,255,.50);color:#7A8B5E;box-shadow:none}
+body.theme-greenhouse .vc-row.now .vc-pick{border-color:rgba(122,155,74,.55);background:rgba(197,217,168,.75);color:#3A4A22}
+
+/* ⑦ 輸入框 → 玻璃底、圓角 14px（字級 ≥16px 不動，iOS 防縮放）*/
+body.theme-greenhouse .pw-card input,
+body.theme-greenhouse .settings-lock input,
+body.theme-greenhouse .prov-key-input,
+body.theme-greenhouse .prov-label-input,
+body.theme-greenhouse .prov-url-input,
+body.theme-greenhouse .soul-ta{background:rgba(255,255,255,.62);border:1px solid rgba(90,107,60,.18);border-radius:14px;box-shadow:inset 0 1px 3px rgba(90,107,60,.05)}
+body.theme-greenhouse .pw-card input:focus,
+body.theme-greenhouse .settings-lock input:focus,
+body.theme-greenhouse .prov-key-input:focus{border-color:rgba(122,155,74,.50);background:rgba(255,255,255,.80);box-shadow:inset 0 1px 3px rgba(90,107,60,.05),0 0 0 3px rgba(168,191,120,.20)}
+body.theme-greenhouse .pw-card-hint{background:rgba(255,255,255,.46);border:1px solid rgba(90,107,60,.14);border-radius:12px;opacity:1;color:#7A8B5E}
+
+/* ⑧ 聲線列：虛線分隔 → 細實線（卡帶 SVG 是居民，原位）*/
+body.theme-greenhouse .vc-row{border-bottom:1px solid rgba(90,107,60,.12)}
+body.theme-greenhouse .vc-row:last-child{border-bottom:none}
+
+/* ⑨ 碎碎念卡的小開關列（✨ 是居民，膠帶收）*/
+body.theme-greenhouse .settings-page .think-toggle-row{border-radius:14px;background:rgba(255,255,255,.46);border:1px solid rgba(90,107,60,.14);box-shadow:none}
+body.theme-greenhouse .settings-page .think-toggle-row::before{display:none}
+body.theme-greenhouse .settings-page .think-toggle-track{border-radius:999px;background:rgba(90,107,60,.16);border:1px solid rgba(90,107,60,.18)}
+body.theme-greenhouse .settings-page .think-toggle-track.active{background:rgba(122,155,74,.72);border-color:rgba(122,155,74,.55)}
+
+/* ⑩ 解鎖頁與簽名 */
+body.theme-greenhouse .settings-lock-title{color:#5A6B3C}
+body.theme-greenhouse .settings-lock-sub{color:#7A8B5E}
+body.theme-greenhouse .settings-lock-card{padding:34px 24px 28px}
+body.theme-greenhouse .set-signature-text{color:#7A8B5E}
+body.theme-greenhouse .pw-card-section-title{color:#5A6B3C}
 </style>
 <style id="app-loading-style">
 /* === Solstice Splash — 終極版 ===
