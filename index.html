@@ -1375,7 +1375,7 @@ body.theme-greenhouse .w-stamp::before{border:1px solid rgba(90,107,60,.20)}
       白邊、噪點、漂浮動畫、合照 全部保留——它本來就是相框 */
 body.theme-greenhouse .w-polaroid{background:#FFFEF9;padding:10px 10px 42px;border-radius:5px;box-shadow:0 2px 12px rgba(90,107,60,.10),0 10px 32px rgba(90,107,60,.14),0 0 0 1px rgba(122,155,74,.08)}
 body.theme-greenhouse .w-polaroid::before,body.theme-greenhouse .w-polaroid::after{display:none}
-body.theme-greenhouse .w-polaroid img{width:min(220px,56vw);max-height:36vh;border-radius:3px}
+body.theme-greenhouse .w-polaroid img{width:min(220px,56vw);max-height:36vh;max-height:min(36vh,calc(100svh - 452px));border-radius:3px}
 body.theme-greenhouse .w-polaroid-caption{bottom:13px;font-size:13px;color:#7A8B5E}
 
 /* ⑤ 回家鍵：老宅本來就是膠囊（border-radius:30px） */
@@ -1388,9 +1388,13 @@ body.theme-greenhouse .w-pw-go{border-radius:999px;background:rgba(122,155,74,.2
 body.theme-greenhouse .w-pw-go:hover{transform:none}
 body.theme-greenhouse .w-pw-go:active{transform:scale(.93)}
 
+/* ⑤.5 上下內距：溫室層專用（52/36 → 40/28）。
+      與詩的留白一起省出約 34px，讓簽名在短螢幕上也完整露臉。 */
+body.theme-greenhouse .w-content{padding-top:max(env(safe-area-inset-top,20px),40px);padding-bottom:max(env(safe-area-inset-bottom,20px),28px)}
+
 /* ⑥ 詩：卡片、膠帶、虛線內框全抽掉，文字一個字不動。
       這首是老婆寫的，不該裝在貼紙裡，該像刻在牆上。 */
-body.theme-greenhouse .w-poem{background:none;border:none;box-shadow:none;border-radius:0;padding:20px 10px 6px;margin:20px auto 6px}
+body.theme-greenhouse .w-poem{background:none;border:none;box-shadow:none;border-radius:0;padding:14px 10px 4px;margin:14px auto 4px}
 body.theme-greenhouse .w-poem::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:46px;height:1px;background:rgba(90,107,60,.24)}
 body.theme-greenhouse .w-poem::after{display:none}
 body.theme-greenhouse .w-poem-line{color:#4A5E30;font-size:13.5px;letter-spacing:1.6px;line-height:2}
@@ -1627,7 +1631,7 @@ html.app-loading body{opacity:1;background:#F9F5DE}
 <div class="page-photo-overlay"></div>
 <div class="special-ribbon" id="livingRoomRibbon"></div>
 <!-- lr-deco-layer 已移除 — 改用目錄頁設計 -->
-<button class="lr-back" onclick="livingRoom.classList.remove('active');welcome.classList.remove('hidden');document.querySelector('meta[name=&quot;theme-color&quot;]').setAttribute('content',getThemeColor())">←</button>
+<button class="lr-back" onclick="livingRoom.classList.remove('active');welcome.classList.remove('hidden');document.querySelector('meta[name=&quot;theme-color&quot;]').setAttribute('content',getThemeColor());if(window.fitWelcome)fitWelcome()">←</button>
 <div class="lr-notecard">
 <span class="lr-notecard-deco lr-notecard-deco-star"><svg style="width:20px;height:20px;display:block" viewBox="0 0 80 80"><path d="M40 12 L47 32 L68 32 L51 45 L58 66 L40 53 L22 66 L29 45 L12 32 L33 32 Z" fill="#FFD54F" stroke="#B87E00" stroke-width="5" stroke-linejoin="round"/></svg></span>
 <span class="lr-strip-tape lr-strip-tape-l"></span>
@@ -2186,6 +2190,70 @@ function goLivingRoom(){
   livingRoom.classList.add('active');
   document.querySelector('meta[name="theme-color"]').setAttribute('content',getThemeColor());
 }
+
+// ============================================================
+// 歡迎頁「一頁裝得下」保險 — 2026/07/25 老婆報修兩支
+//   甲：詩的簽名「— Soleil」被切掉
+//   乙：解鎖進客廳再返回，整頁往上跑，而且回不來
+// 同一個病根：.w-content 是 height:100% + overflow:hidden 的鐵盒。
+//   甲 = 內容一超高，最底那行直接被盒子關門裁掉（不是被誰蓋住）。
+//   乙 = overflow:hidden 的盒子「使用者捲不動、瀏覽器卻捲得動」——
+//        點密碼框時瀏覽器為了讓輸入框露出來，偷偷把 scrollTop 推上去；
+//        viewport 是 interactive-widget=resizes-content，鍵盤一開整頁縮短，推更兇。
+//        返回時 scrollTop 還留在上面，而 overflow:hidden 讓她連捲回來都不行。
+// 對策：每次露臉先把 scrollTop 歸零；再量「簽名底邊」有沒有掉到內距線以下，
+//   有的話只縮拍立得（最經得起縮的居民，等比縮不會變形），一次縮到剛好就停。
+//   標題、副標、回家鍵、詩、螢光筆一律原位不動。
+// ============================================================
+function fitWelcome(){
+  var box=document.querySelector('#welcome .w-content');
+  if(!box) return;
+  box.scrollTop=0;
+  var a=document.activeElement;
+  // 打字中不出手：鍵盤把版面壓短，這時候量到的數字是假的（會把照片縮成郵票）
+  if(a && box.contains(a) && (a.tagName==='INPUT'||a.tagName==='TEXTAREA')) return;
+  var img=document.querySelector('#welcomePolaroid .w-polaroid-img');
+  var sign=document.querySelector('#welcome .w-poem-sign');
+  if(!img || !sign) return;
+  img.style.maxHeight='';                 // 先還原，讓 CSS 先講話；裝得下就什麼都不做
+  var padB=parseFloat(getComputedStyle(box).paddingBottom)||0;
+  for(var i=0;i<5;i++){
+    var floor=box.getBoundingClientRect().bottom-padB;
+    var over=sign.getBoundingClientRect().bottom-floor;
+    if(over<=0.5) break;                  // 簽名已經完整在線內
+    var h=img.getBoundingClientRect().height;
+    if(!h) break;
+    var next=h-over-1;
+    if(next<130){ img.style.maxHeight='130px'; break }   // 地板：照片不縮成郵票
+    img.style.maxHeight=next+'px';
+  }
+  box.scrollTop=0;
+}
+window.fitWelcome=fitWelcome;
+
+(function(){
+  var box=document.querySelector('#welcome .w-content');
+  if(box){
+    // 瀏覽器偷推的那一下：盒子裡沒人在打字就一律彈回 0（打字中放行，不然看不到自己打的密碼）
+    box.addEventListener('scroll',function(){
+      if(box.scrollTop===0) return;
+      var a=document.activeElement;
+      if(a && box.contains(a) && (a.tagName==='INPUT'||a.tagName==='TEXTAREA')) return;
+      box.scrollTop=0;
+    },{passive:true});
+  }
+  var pw=document.getElementById('pwInput');
+  if(pw){
+    pw.addEventListener('blur',function(){ setTimeout(fitWelcome,80); setTimeout(fitWelcome,450) });
+  }
+  var im=document.querySelector('#welcomePolaroid .w-polaroid-img');
+  if(im && !im.complete) im.addEventListener('load',function(){ fitWelcome() });
+  window.addEventListener('resize',function(){ setTimeout(fitWelcome,90) });
+  window.addEventListener('orientationchange',function(){ setTimeout(fitWelcome,350) });
+  if(document.fonts && document.fonts.ready) document.fonts.ready.then(function(){ setTimeout(fitWelcome,0) });
+  // 字型、圖片、進場動畫各自到位的時間點都補一次（fitWelcome 每次都先還原再量，重複呼叫零副作用）
+  setTimeout(fitWelcome,0); setTimeout(fitWelcome,500); setTimeout(fitWelcome,1400);
+})();
 
 // === Welcome -> Living Room (帶密碼閘) ===
 document.getElementById('enterBtn').addEventListener('click',function(){
