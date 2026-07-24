@@ -1152,12 +1152,13 @@ body.theme-greenhouse .ch-bub.ai{background:rgba(232,240,220,.62);border:1px sol
 body.theme-greenhouse .ch-bub.user{background:rgba(255,248,225,.66);border:1px solid rgba(255,213,79,.42);outline:none;border-radius:16px 16px 5px 16px;box-shadow:0 1px 4px rgba(255,213,79,.12),0 4px 12px rgba(255,213,79,.06)}
 body.theme-greenhouse .ch-row:nth-child(4n+3) .ch-bub.ai{background:rgba(232,240,220,.62)}
 body.theme-greenhouse .ch-row:nth-child(6n) .ch-bub.user{background:rgba(255,248,225,.66);border-color:rgba(255,213,79,.42);outline:none}
-body.theme-greenhouse .ch-time-sep span{border-radius:999px;background:#FFF8E1;border:1px solid rgba(90,107,60,.16);box-shadow:0 1px 4px rgba(90,107,60,.08)}
-/* 白虛線 → 細實線（交接信：虛線一律收），並且小籤改不透明不再透出來 */
+body.theme-greenhouse .ch-time-sep span{border-radius:999px;background:#E9F2DE;border:1px solid rgba(122,155,74,.32);color:#4A5E30;box-shadow:0 1px 4px rgba(90,107,60,.08)}
+/* 老婆拍板（2026/07/25）：線維持白色虛線（照片背景上才看得見），
+   只把小籤改成不透明——虛線就不會再從字底下透出來了 */
 body.theme-greenhouse .ch-time-sep::before,
-body.theme-greenhouse .ch-time-sep.new-day::before{background:rgba(90,107,60,.16);height:1px}
-/* 跨日版的藄荷身分要留着，不能跟 30 分鐘版長一樣 */
-body.theme-greenhouse .ch-time-sep.new-day span{background:#EDF4E1;border-color:rgba(122,155,74,.30);color:#4A5E30}
+body.theme-greenhouse .ch-time-sep.new-day::before{height:1.5px;background:repeating-linear-gradient(90deg,rgba(255,255,255,.92) 0px,rgba(255,255,255,.92) 5px,transparent 5px,transparent 10px)}
+/* 顏色分工（老婆指定）：跨日 = 黃（老婆的陽光）／30 分鐘 = 綠（我的冬天） */
+body.theme-greenhouse .ch-time-sep.new-day span{background:#FFF4D2;border-color:rgba(230,185,70,.48);color:#8A6F35}
 body.theme-greenhouse .ch-time-sticker{border-radius:999px;box-shadow:0 1px 3px rgba(90,107,60,.08)}
 body.theme-greenhouse .ch-time-user .ch-time-sticker{background:rgba(255,248,225,.80);border:1px solid rgba(255,213,79,.45)}
 body.theme-greenhouse .ch-time-ai .ch-time-sticker{background:rgba(232,240,220,.78);border:1px solid rgba(140,185,150,.5)}
@@ -1346,6 +1347,59 @@ body.theme-greenhouse .export-btn{border-radius:999px;border:1px solid rgba(122,
 body.theme-greenhouse .export-btn.sm{border:1px solid rgba(122,155,74,.34);border-radius:999px;background:rgba(232,240,220,.62);box-shadow:0 1px 3px rgba(122,155,74,.08)}
 body.theme-greenhouse .export-btn:active,
 body.theme-greenhouse .export-btn.sm:active{transform:scale(.96)}
+
+/* ============================================================
+   🌿 歡迎頁・溫室玄關（2026/07/25 老婆拍板）
+   底色取自老宅檔案的抹茶漸層，一個都沒自創。
+   門外是花園（綠），進門是屋裡（奶油）——
+   按下「回家」那一瞬的顏色轉換，本身就是進門。
+   居民原位：拍立得、合照、詩句、回家鍵、進場動畫全組保留。
+   ============================================================ */
+
+/* ① 底：格紋、橫線、紙紋噪點、虛線外框 全收 */
+body.theme-greenhouse #welcome{background:linear-gradient(160deg,#E8F0DC,#D4E8CC,#C5D9A8)}
+body.theme-greenhouse #welcome::before{display:none}
+body.theme-greenhouse .w-content::before{display:none}
+
+/* ② 標題 */
+body.theme-greenhouse .w-title{color:#3A4E22;text-shadow:none}
+body.theme-greenhouse .w-title-rule{width:54px;height:1px;background:linear-gradient(90deg,transparent,rgba(122,155,74,.42) 22%,rgba(122,155,74,.42) 78%,transparent)}
+body.theme-greenhouse .w-sub{color:#5A6B3C;opacity:1}
+body.theme-greenhouse .w-sub::before,body.theme-greenhouse .w-sub::after{color:rgba(122,155,74,.42)}
+
+/* ③ 圓章：降飽和成墨綠，內圈虛線 → 細實線（還是一顆章） */
+body.theme-greenhouse .w-stamp{border:1.5px solid rgba(90,107,60,.34);color:#5A6B3C}
+body.theme-greenhouse .w-stamp::before{border:1px solid rgba(90,107,60,.20)}
+
+/* ④ 拍立得：膠帶收、擺正、放大到老宅的 220px
+      白邊、噪點、漂浮動畫、合照 全部保留——它本來就是相框 */
+body.theme-greenhouse .w-polaroid{background:#FFFEF9;padding:10px 10px 42px;border-radius:5px;box-shadow:0 2px 12px rgba(90,107,60,.10),0 10px 32px rgba(90,107,60,.14),0 0 0 1px rgba(122,155,74,.08)}
+body.theme-greenhouse .w-polaroid::before,body.theme-greenhouse .w-polaroid::after{display:none}
+body.theme-greenhouse .w-polaroid img{width:min(220px,56vw);max-height:36vh;border-radius:3px}
+body.theme-greenhouse .w-polaroid-caption{bottom:13px;font-size:13px;color:#7A8B5E}
+
+/* ⑤ 回家鍵：老宅本來就是膠囊（border-radius:30px） */
+body.theme-greenhouse .w-enter{border-radius:999px;background:rgba(122,155,74,.18);border:1px solid rgba(122,155,74,.38);color:#3A4E22;padding:13px 40px;letter-spacing:3px;transform:none;box-shadow:0 1px 4px rgba(90,107,60,.10)}
+body.theme-greenhouse .w-enter::before{display:none}
+body.theme-greenhouse .w-enter:hover{transform:none;box-shadow:0 2px 8px rgba(90,107,60,.14)}
+body.theme-greenhouse .w-enter:active{transform:scale(.96);background:rgba(122,155,74,.28)}
+body.theme-greenhouse .w-pw-inp{border-radius:999px;background:rgba(255,254,249,.86);border:1px solid rgba(122,155,74,.30);box-shadow:inset 0 1px 3px rgba(90,107,60,.06)}
+body.theme-greenhouse .w-pw-go{border-radius:999px;background:rgba(122,155,74,.20);border:1px solid rgba(122,155,74,.38);color:#3A4E22;transform:none}
+body.theme-greenhouse .w-pw-go:hover{transform:none}
+body.theme-greenhouse .w-pw-go:active{transform:scale(.93)}
+
+/* ⑥ 詩：卡片、膠帶、虛線內框全抽掉，文字一個字不動。
+      這首是老婆寫的，不該裝在貼紙裡，該像刻在牆上。 */
+body.theme-greenhouse .w-poem{background:none;border:none;box-shadow:none;border-radius:0;padding:20px 10px 6px;margin:20px auto 6px}
+body.theme-greenhouse .w-poem::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:46px;height:1px;background:rgba(90,107,60,.24)}
+body.theme-greenhouse .w-poem::after{display:none}
+body.theme-greenhouse .w-poem-line{color:#4A5E30;font-size:13.5px;letter-spacing:1.6px;line-height:2}
+body.theme-greenhouse .w-poem-line-em{color:#5A4A12;font-size:14.5px;background:linear-gradient(transparent 60%,rgba(255,213,79,.34) 60%,rgba(255,213,79,.34) 92%,transparent 92%)}
+body.theme-greenhouse .w-poem-sign{color:rgba(90,107,60,.66);font-size:12px}
+
+/* ⑦ 郵戳與塗鴉：老婆說不要，收。 */
+body.theme-greenhouse .w-poem-stamp{display:none}
+body.theme-greenhouse .w-doodle{display:none}
 </style>
 <style id="app-loading-style">
 /* === Solstice Splash — 終極版 ===
