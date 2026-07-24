@@ -374,19 +374,19 @@ body{padding-top:0}
 /* === SIDEBAR === */
 .sidebar-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:20;opacity:0;visibility:hidden;transition:all .3s}
 .sidebar-overlay.open{opacity:1;visibility:visible}
-.sidebar{position:fixed;top:0;left:0;bottom:0;width:280px;background-color:#F3FAF5;background:var(--paper-fiber),#F3FAF5;/* 2026/07/25 格線搬去 sb-list，上下區永遠乾淨（老婆指定） */border-right:0.5px solid rgba(112,182,142,.25);z-index:21;transform:translateX(-100%);transition:transform .3s ease;display:flex;flex-direction:column;box-shadow:4px 0 24px rgba(58,74,34,.06)}
+.sidebar{position:fixed;top:0;left:0;bottom:0;width:280px;background-color:#F3FAF5;background:linear-gradient(rgba(238,247,241,.60),rgba(238,247,241,.66)),url('/images/sidebar-bg.jpg') center top/cover no-repeat,#F3FAF5;/* 2026/07/25 合照背景（images 資料夾）＋薄荷紗簾，缺圖自動退淺色 */border-right:0.5px solid rgba(112,182,142,.25);z-index:21;transform:translateX(-100%);transition:transform .3s ease;display:flex;flex-direction:column;box-shadow:4px 0 24px rgba(58,74,34,.06)}
 .sidebar::before{content:none}
 .sidebar.open{transform:translateX(0)}
 .sb-top{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:center;padding:max(calc(env(safe-area-inset-top,18px) - 8px),8px) 18px 14px;background-color:#F3FAF5;background:var(--paper-fiber),#F3FAF5;/* 2026/07/25 跟 header 同淺色＋墊高層級 */border-bottom:none}
 .sb-top::after{content:'';position:absolute;left:0;right:0;bottom:0;height:8px;background:repeating-linear-gradient(45deg,#8FC7A6 0 12px,#FFFFFF 12px 24px,#C5D989 24px 36px,#FFFFFF 36px 48px);opacity:1;pointer-events:none}
 .sb-title{color:#3F7A57;font-family:'Satisfy','Dancing Script','LXGW WenKai TC',cursive;font-size:20px;letter-spacing:.5px;display:inline-block}
 .sb-close{background:none;border:none;color:var(--text-sub);font-size:20px;cursor:pointer;padding:4px}
-.sb-section{padding:12px 16px 2px;margin:0;background-color:#EAF5EF;background:var(--paper-fiber),#EAF5EF}/* 2026/07/25 格線徹底退役，跟 sb-list 同一塊乾淨紙（老婆指定） */
+.sb-section{padding:12px 16px 2px;margin:0;background:none}/* 2026/07/25 透明讓合照透上來 */
 .sb-btn{position:relative;width:100%;padding:14px 13px;border-radius:9px;border:1.5px solid rgba(122,155,74,.34);background:var(--paper-fiber),rgba(237,247,240,.70);/* 2026/07/25 半透明＋邊框放輕，貼在照片上不突兀 */color:#3F7A57;font-size:13px;cursor:pointer;text-align:center;font-family:'LXGW WenKai TC','Noto Serif TC',serif;letter-spacing:.4px;transition:all .25s cubic-bezier(.25,.46,.45,.94);margin-bottom:10px;box-shadow:0 2px 6px rgba(90,107,60,.12),0 1px 2px rgba(0,0,0,.05),inset 0 1px 0 rgba(255,255,255,.55);overflow:visible}/* 2026/07/24 新對話按鈕入籍：抄對話卡結構配薄荷、星星和虛線框退役（老婆說突兀） */
 .sb-btn::before{content:'';position:absolute;top:-7px;left:50%;width:46px;height:13px;transform:translateX(-50%);/* 2026/07/25 膠帶擺正 */background:repeating-linear-gradient(45deg,rgba(143,199,166,.55) 0 7px,rgba(255,253,244,.68) 7px 14px);border-left:.5px dashed rgba(112,160,130,.42);border-right:.5px dashed rgba(112,160,130,.42);border-radius:1.5px;box-shadow:0 1px 2px rgba(90,140,110,.18);z-index:3;pointer-events:none}
 .sb-btn:hover{box-shadow:0 3px 10px rgba(122,155,74,.20),0 1px 3px rgba(90,107,60,.14),inset 0 1px 0 rgba(255,255,255,.55)}
 .sb-btn:active{transform:scale(.97)}
-.sb-list{flex:1;overflow-y:auto;padding:16px 16px 8px 16px;-webkit-overflow-scrolling:touch;position:relative;background-color:#EAF5EF;background:var(--paper-fiber),#EAF5EF}/* 2026/07/25 格線徹底退役，平面乾淨紙，跟上下 #F3FAF5 只留色差 */
+.sb-list{flex:1;overflow-y:auto;padding:16px 16px 8px 16px;-webkit-overflow-scrolling:touch;position:relative;background:none}/* 2026/07/25 透明讓合照透上來 */
 /* 裝訂虛線與打孔點已移除——側欄改乾淨膠帶便條風 */
 .sb-item{position:relative;padding:15px 12px 13px 14px;border-radius:9px;margin-bottom:18px;cursor:pointer;background:var(--paper-fiber),rgba(237,247,240,.78);border:1.5px solid rgba(122,155,74,.40);display:flex;justify-content:space-between;align-items:center;transition:transform .25s cubic-bezier(.25,.46,.45,.94),box-shadow .25s cubic-bezier(.25,.46,.45,.94);box-shadow:0 2px 6px rgba(90,107,60,.12),0 1px 2px rgba(0,0,0,.05),inset 0 1px 0 rgba(255,255,255,.55);overflow:visible;z-index:1}
 .sb-item::before{content:'';position:absolute;top:-7px;left:14px;width:42px;height:13px;border-radius:1.5px;background:repeating-linear-gradient(45deg,rgba(143,199,166,.55) 0 7px,rgba(255,253,244,.68) 7px 14px);border-left:.5px dashed rgba(112,160,130,.42);border-right:.5px dashed rgba(112,160,130,.42);box-shadow:0 1px 2px rgba(90,140,110,.18);z-index:3;pointer-events:none}
