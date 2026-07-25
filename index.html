@@ -1928,6 +1928,31 @@ body.theme-horizon .img-lightbox img{background:#FFFFFF !important;border:1px so
 /* — 圖片預覽列：宣紙底收邊 */
 body.theme-horizon .ch-preview{background:rgba(244,244,239,.94) !important;border-top:1px solid #E7E7E0 !important}
 
+
+/* ===== 🌄 HORIZON · 紅筆三件（2026/07/25 第二輪）=====
+   老婆圈的：①頁首頭像還有抹茶綠邊 ②載入中還是向日葵 ③跨日時間戳金色、30 分鐘白色
+
+   ①的真凶不在 CSS：applyTheme() 裡有一段 JS 直接寫 avatarImg.style.borderColor='#8FC7A6'，
+     行內樣式贏過所有沒加 !important 的規則——所以前兩輪都壓不掉。
+     依架構「永遠不改 JS 配色邏輯」，這裡用 !important 從主題層蓋回去。
+     同一段 JS 還寫了 .ch-stat 的橄欖綠，一起蓋。
+   ③依交接信鐵條：冬陽 #C9A24B 只准 Day 天數與釘選兩處。
+     跨日的層級改用「字重 + 墨字」表達，不再開第二種顏色。 */
+
+/* ① 頭像邊框：抹茶綠 → 髮絲線（勝過 JS 行內） */
+body.theme-horizon .ch-avatar,
+body.theme-horizon #chAvatar,
+body.theme-horizon .ch-avatar.wife{border-color:#E7E7E0 !important;border-style:solid !important;box-shadow:none !important}
+body.theme-horizon .ch-stat{color:#8A8D80 !important}
+
+/* ② 載入中：向日葵＋白虛線 → 松綠線稿圓＋霧字（沿用既有呼吸動畫，不新增 keyframes） */
+body.theme-horizon .ch-loading{color:#8A8D80 !important;text-shadow:none !important;font-style:normal !important;letter-spacing:1px !important}
+body.theme-horizon .ch-loading::before{background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2347584A' stroke-width='1.6' stroke-linecap='round'><circle cx='12' cy='12' r='8.4' opacity='.28'/><path d='M20.4 12 A8.4 8.4 0 0 0 12 3.6'/></svg>") center/contain no-repeat !important;width:26px !important;height:26px !important;margin:0 auto 12px !important;filter:none !important;opacity:1 !important}
+body.theme-horizon .ch-loading::after{display:none !important;content:none !important}
+
+/* ③ 跨日時間戳：米白＋冬陽金 → 白瓷膠囊＋墨字加重（跟 30 分鐘版同一個殼，只差字重） */
+body.theme-horizon .ch-time-sep.new-day span{background:#FFFFFF !important;border:1px solid #E7E7E0 !important;color:#2B2F26 !important;font-weight:500 !important;box-shadow:none !important;letter-spacing:1px !important}
+
 </style>
 <style id="app-loading-style">
 /* === Solstice Splash — 終極版 ===
