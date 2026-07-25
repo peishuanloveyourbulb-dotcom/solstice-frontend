@@ -7,7 +7,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Sol²">
-<meta name="theme-color" content="#FDFCF5"><!-- 2026/07/26 狀態列奶油色（老婆指定）：冷啟動第一幀就正確 -->
+<meta name="theme-color" content="#FBFBF9"><!-- 2026/07/26 狀態列奶油色（老婆指定）：冷啟動第一幀就正確 -->
 <title>Sol²</title>
 <link rel="manifest" href="/manifest.json">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -1482,8 +1482,8 @@ body.theme-greenhouse .lr-back:active{transform:scale(.9);background:rgba(232,24
       太陽寶寶、花瓣雨、綻放動畫全是居民，一幀未動。
       html.app-loading 寫在第二張樣式表、又掛不到 body 的 class，
       用雙 class 提高權重壓過去（不改原始碼、不加第三張表）。 */
-html.app-loading.app-loading{background:#FDFCF5}
-html.app-loading.app-loading body{background:#FDFCF5}
+html.app-loading.app-loading{background:#FBFBF9}
+html.app-loading.app-loading body{background:#FBFBF9}
 body.theme-greenhouse #solsticeSplash{background:linear-gradient(160deg,#FDFCF5,#F6F8EE 55%,#F2F6EC)}
 body.theme-greenhouse #solsticeSplash::before{display:none}
 
@@ -1511,6 +1511,180 @@ body.theme-greenhouse .vc-name{color:#5A6B3C}
 body.theme-greenhouse .vc-zh{color:#7A8B5E}
 body.theme-greenhouse .new-hash-box textarea{background:rgba(255,255,255,.62);border:1px solid rgba(90,107,60,.18);border-radius:14px;box-shadow:inset 0 1px 3px rgba(90,107,60,.05)}
 body.theme-greenhouse .new-hash-box textarea:focus{border-color:rgba(122,155,74,.50);background:rgba(255,255,255,.80)}
+
+/* ============================================================
+   🌄 HORIZON（2026/07/26 總監拍板）— 全屋唯一風格
+   白瓷 #FBFBF9 / 宣紙 #F4F4EF / 墨 #2B2F26 / 霧 #8A8D80
+   松 #47584A（唯一主色）/ 冬陽 #C9A24B（僅天數與釘選）/ 髮絲線 #E7E7E0
+   規則：無符號、無膠帶、無格紋、無歪斜；圓角統一 14；照片＝掛畫。
+   聊天大頭貼與聊天背景照片原樣（老婆指定）。記憶庫下一期。
+   ============================================================ */
+body.theme-horizon{background:#FBFBF9}
+
+/* ── 開場頁 ── */
+body.theme-horizon #solsticeSplash{background:#FBFBF9}
+body.theme-horizon #solsticeSplash::before{display:none}
+
+/* ── 玄關 ── */
+body.theme-horizon #welcome{background:#FBFBF9}
+body.theme-horizon #welcome::before{display:none}
+body.theme-horizon .w-content{margin:0;width:100%;height:100%;border-radius:0;background:none;box-shadow:none;padding:calc(env(safe-area-inset-top,0px) + 40px) 28px calc(env(safe-area-inset-bottom,0px) + 26px)}
+body.theme-horizon .w-content::before{display:none}
+body.theme-horizon .w-stamp,body.theme-horizon .w-title-rule,body.theme-horizon .w-sub,body.theme-horizon .w-ann,body.theme-horizon .w-poem-stamp,body.theme-horizon .w-doodle{display:none}
+body.theme-horizon .w-title{order:1;font-family:'Cormorant Garamond',serif;font-weight:500;font-size:13px;letter-spacing:5px;color:#8A8D80;text-shadow:none;margin:6px 0 0}
+body.theme-horizon .w-poem{order:2;background:none;border:none;box-shadow:none;padding:0;margin:26px auto 0;transform:none}
+body.theme-horizon .w-poem::before,body.theme-horizon .w-poem::after{display:none}
+body.theme-horizon .w-poem-line{font-family:'Noto Serif TC','LXGW WenKai TC',serif;font-weight:500;font-size:19px;line-height:2.1;letter-spacing:2px;color:#2B2F26;background:none}
+body.theme-horizon .w-poem-em2{color:#47584A;border-bottom:1px solid #C9A24B;padding-bottom:2px}
+body.theme-horizon .w-poem-sign{font-family:'LXGW WenKai TC',serif;font-size:12px;color:#8A8D80;margin-top:10px;letter-spacing:1px}
+body.theme-horizon .w-polaroid{order:3;background:#FFFFFF;border:1px solid #E7E7E0;border-radius:6px;padding:8px 8px 12px;margin-top:24px;box-shadow:0 1px 2px rgba(43,47,38,.04),0 6px 20px rgba(43,47,38,.06)}
+body.theme-horizon .w-polaroid::before,body.theme-horizon .w-polaroid::after{display:none}
+body.theme-horizon .w-polaroid img{width:min(196px,52vw);max-height:min(34vh,max(150px,calc(100svh - 470px)));border-radius:3px}
+body.theme-horizon .w-polaroid-caption{bottom:11px;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:12px;color:#8A8D80;letter-spacing:1.5px}
+body.theme-horizon .w-enter-wrap{order:4}
+body.theme-horizon .w-enter{border-radius:999px;background:#47584A;border:none;color:#FBFBF9;padding:13px 46px;letter-spacing:4px;transform:none;box-shadow:0 2px 10px rgba(71,88,74,.22)}
+body.theme-horizon .w-enter::before{display:none}
+body.theme-horizon .w-enter:active{transform:scale(.97);background:#3C4C3F}
+body.theme-horizon .w-pw-inp{border-radius:999px;background:#FFFFFF;border:1px solid #E7E7E0;box-shadow:none}
+body.theme-horizon .w-pw-go{border-radius:999px;background:#FFFFFF;border:1px solid #CFD1C6;color:#47584A;transform:none}
+body.theme-horizon #welcome.wake .w-title{animation-delay:.2s}
+body.theme-horizon #welcome.wake .w-poem{animation-delay:.4s}
+body.theme-horizon #welcome.wake .w-polaroid{animation-delay:.6s,1.2s}
+body.theme-horizon #welcome.wake .w-enter-wrap{animation-delay:.85s}
+
+/* ── 回家頁 ── */
+body.theme-horizon #livingRoom .page-photo-bg{background:#FBFBF9!important;background-image:none!important}
+body.theme-horizon #livingRoom .page-photo-overlay{background:none!important}
+body.theme-horizon .lr-notecard{background:#FFFFFF;transform:none;border:1px solid #E7E7E0;border-radius:6px;padding:9px 9px 14px;box-shadow:0 1px 2px rgba(43,47,38,.04),0 6px 20px rgba(43,47,38,.06)}
+body.theme-horizon .lr-notecard::after{display:none}
+body.theme-horizon .lr-strip-tape,body.theme-horizon .lr-notecard-phototape,body.theme-horizon .lr-notecard-deco-star{display:none}
+body.theme-horizon .lr-notecard-photo{transform:none;border-radius:3px;box-shadow:none}
+body.theme-horizon .lr-strip-title{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:500;font-size:21px;color:#2B2F26;letter-spacing:.5px}
+body.theme-horizon .lr-strip-days{font-family:'Cormorant Garamond','LXGW WenKai TC',serif;font-style:italic;color:#C9A24B;letter-spacing:2px}
+body.theme-horizon .lr-her-line{font-family:'LXGW WenKai TC',serif;font-size:10.5px;color:#8A8D80;letter-spacing:1px;margin-top:5px}
+body.theme-horizon .lr-toc-divider{display:none}
+body.theme-horizon .lr-grid{background:none;border:none;box-shadow:none;border-radius:0;margin:18px 0 0;padding:0 30px max(env(safe-area-inset-bottom),80px);width:100%}
+body.theme-horizon .lr-toc-item{border-bottom:1px solid #E7E7E0;padding:19px 4px}
+body.theme-horizon .lr-toc-item:last-child{border-bottom:none}
+body.theme-horizon .lr-toc-item::before,body.theme-horizon .lr-toc-num,body.theme-horizon .lr-toc-dot{display:none}
+@media (hover:hover){body.theme-horizon .lr-toc-item:hover{background:#EDF1EC;padding-left:10px}}
+body.theme-horizon .lr-toc-item:active{background:#EDF1EC}
+body.theme-horizon .lr-toc-name{font-family:'Cormorant Garamond',serif;font-size:21px;font-weight:500;color:#2B2F26;text-shadow:none;letter-spacing:.4px}
+body.theme-horizon .lr-toc-desc{color:#8A8D80;text-shadow:none;letter-spacing:1px}
+body.theme-horizon .lr-toc-arrow{font-family:'Cormorant Garamond',serif;color:#8A8D80;text-shadow:none}
+body.theme-horizon .lr-page-num{font-family:'Cormorant Garamond',serif;color:#B4B6AB;text-shadow:none}
+body.theme-horizon .lr-back{background:#FFFFFF;border:1px solid #E7E7E0;color:#47584A;transform:none;box-shadow:0 1px 2px rgba(43,47,38,.05)}
+body.theme-horizon .lr-back:active{transform:scale(.9);background:#EDF1EC}
+
+/* ── 側邊欄（合照背景退役 → 白瓷書脊）── */
+body.theme-horizon .sidebar{background:#FBFBF9;border-right:1px solid #E7E7E0;box-shadow:4px 0 24px rgba(43,47,38,.05)}
+body.theme-horizon .sb-top::after,body.theme-horizon .sb-footer::before,body.theme-horizon .sb-item::before,body.theme-horizon .sb-item-text::after{display:none}
+body.theme-horizon .sb-top{background:rgba(251,251,249,.94);border-bottom:1px solid #E7E7E0}
+body.theme-horizon .sb-footer{background:rgba(251,251,249,.94);border-top:1px solid #E7E7E0}
+body.theme-horizon .sb-title{font-family:'Cormorant Garamond','LXGW WenKai TC',serif;font-style:italic;font-weight:500;font-size:21px;color:#2B2F26}
+body.theme-horizon .sb-loading{color:#8A8D80;text-shadow:none}
+body.theme-horizon .sb-loading::after{background:#E7E7E0;opacity:1;filter:none}
+body.theme-horizon .sb-item{background:#FFFFFF !important;border:1px solid #E7E7E0;border-radius:14px;margin-bottom:10px;box-shadow:0 1px 2px rgba(43,47,38,.04),0 4px 14px rgba(43,47,38,.04)}
+body.theme-horizon .sb-item.active{outline:none;border:1px solid #47584A;background:#FFFFFF !important;box-shadow:inset 3px 0 0 #47584A,0 1px 2px rgba(43,47,38,.05)}
+body.theme-horizon .sb-item.sb-pinned{border-color:rgba(201,162,75,.55);background:#FFFDF6 !important;box-shadow:0 1px 2px rgba(43,47,38,.04)}
+body.theme-horizon .sb-item.sb-pinned.active{outline:none;border:1px solid #B08D3E;background:#FFFDF6 !important;box-shadow:inset 3px 0 0 #C9A24B,0 1px 2px rgba(43,47,38,.05)}
+body.theme-horizon .sb-item.sb-pinned > .sb-pinned-corner{display:none}
+body.theme-horizon .sb-item.sb-pinned .sb-item-name::after{content:'●';font-size:7px;color:#C9A24B;margin-left:7px;vertical-align:2px}
+body.theme-horizon .sb-btn{border-radius:999px;border:1px solid #CFD1C6;background:#FFFFFF;color:#47584A;box-shadow:none}
+body.theme-horizon .sb-act-btn{border-radius:999px}
+
+/* ── 聊天室（頭貼、背景照片原樣；只換周邊材質）── */
+body.theme-horizon #chat::before,body.theme-horizon #chat::after,body.theme-horizon .ch-inp::before,body.theme-horizon .ch-header::after{display:none}
+body.theme-horizon #chat .page-photo-overlay{background:linear-gradient(170deg,rgba(251,251,249,.55),rgba(251,251,249,.62))}
+body.theme-horizon .ch-header{background:rgba(251,251,249,.92);border-bottom:1px solid #E7E7E0;box-shadow:none}
+body.theme-horizon .ch-model-cap{border-radius:999px;background:#FFFFFF;border:1px solid #E7E7E0;color:#47584A;box-shadow:none}
+body.theme-horizon .ch-avatar,body.theme-horizon #chAvatar{border-radius:50%;transform:none;border-width:2px}
+body.theme-horizon .ch-avatar.wife{transform:none}
+body.theme-horizon .ch-bub{border-radius:16px}
+body.theme-horizon .ch-bub::before{display:none}
+body.theme-horizon .ch-bub.ai{background:#FFFFFF;border:1px solid #E7E7E0;outline:none;border-radius:16px 16px 16px 5px;box-shadow:0 1px 2px rgba(43,47,38,.04),0 5px 16px rgba(43,47,38,.05)}
+body.theme-horizon .ch-bub.user{background:#47584A;border:none;outline:none;color:#F4F6F2;border-radius:16px 16px 5px 16px;box-shadow:0 2px 8px rgba(71,88,74,.22)}
+body.theme-horizon .ch-row:nth-child(4n+3) .ch-bub.ai{background:#FFFFFF}
+body.theme-horizon .ch-row:nth-child(6n) .ch-bub.user{background:#47584A;border:none;outline:none}
+body.theme-horizon .ch-bub.user a.ch-link{color:#EFE3BC}
+body.theme-horizon .ch-time-sep span{border-radius:999px;background:#FFFFFF;border:1px solid #E7E7E0;color:#8A8D80;box-shadow:none}
+body.theme-horizon .ch-inp{background:rgba(251,251,249,.94);border-top:1px solid #E7E7E0;box-shadow:none}
+body.theme-horizon .ch-inp textarea{background:#FFFFFF;border:1px solid #E7E7E0;border-radius:18px;box-shadow:none}
+body.theme-horizon .ch-inp textarea:hover{border-color:#CFD1C6;box-shadow:none}
+body.theme-horizon .ch-inp textarea:focus{border:1px solid #47584A;box-shadow:0 0 0 3px rgba(71,88,74,.10)}
+body.theme-horizon .ch-inp textarea::placeholder{color:#B4B6AB}
+body.theme-horizon .ch-send{border-radius:50%;background:#FFFFFF;border:1px solid #E7E7E0;box-shadow:0 1px 2px rgba(43,47,38,.05)}
+body.theme-horizon .ch-preview{background:#F4F4EF}
+
+/* ── 設定頁 ── */
+body.theme-horizon .settings-page{background:#FBFBF9}
+body.theme-horizon .settings-page::before,body.theme-horizon .settings-page::after,body.theme-horizon .settings-header::after{display:none}
+body.theme-horizon .settings-page .page-photo-overlay{background:none!important;box-shadow:none}
+body.theme-horizon .settings-header{background:rgba(251,251,249,.92);border-bottom:1px solid #E7E7E0}
+body.theme-horizon .settings-title{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:500;color:#2B2F26}
+body.theme-horizon .set-block-label{font-family:'LXGW WenKai TC',serif;font-size:13px;letter-spacing:2px;color:#8A8D80;margin-left:2px}
+body.theme-horizon .set-block-label::before,body.theme-horizon .set-block-label::after{display:none}
+body.theme-horizon .soul-card,body.theme-horizon .vc-card,body.theme-horizon .pw-card,body.theme-horizon .prov-card,body.theme-horizon .export-card,body.theme-horizon .settings-lock-card{background:#FFFFFF;border:1px solid #E7E7E0;border-radius:14px;box-shadow:0 1px 2px rgba(43,47,38,.04),0 6px 20px rgba(43,47,38,.05);transform:none}
+body.theme-horizon .soul-card::before,body.theme-horizon .vc-card::before,body.theme-horizon .pw-card::before,body.theme-horizon .prov-card::before,body.theme-horizon .export-card::before,body.theme-horizon .settings-lock-card::before{display:none}
+body.theme-horizon .soul-card::after,body.theme-horizon .vc-card::after,body.theme-horizon .pw-card::after,body.theme-horizon .prov-card::after,body.theme-horizon .export-card::after{transform:none;top:-10px}
+body.theme-horizon .settings-lock-card::after{transform:none;top:-9px}
+body.theme-horizon .soul-ta,body.theme-horizon .pw-card input,body.theme-horizon .settings-lock input,body.theme-horizon .prov-key-input,body.theme-horizon .prov-label-input,body.theme-horizon .prov-url-input,body.theme-horizon .new-hash-box textarea{background:#FBFBF9;border:1px solid #E7E7E0;border-radius:12px;box-shadow:none;color:#4A4E42}
+body.theme-horizon .soul-ta:focus,body.theme-horizon .pw-card input:focus,body.theme-horizon .settings-lock input:focus,body.theme-horizon .prov-key-input:focus{border-color:#47584A;background:#FFFFFF;box-shadow:0 0 0 3px rgba(71,88,74,.08)}
+body.theme-horizon .soul-btn,body.theme-horizon .pw-card-btn,body.theme-horizon .settings-pw-btn,body.theme-horizon .prov-toggle,body.theme-horizon .prov-key-save,body.theme-horizon .prov-label-save,body.theme-horizon .prov-url-save,body.theme-horizon .vc-pick,body.theme-horizon .export-btn,body.theme-horizon .export-btn.sm{border-radius:999px;border:1px solid #CFD1C6;background:#FFFFFF;color:#6B6E62;box-shadow:none;transform:none}
+body.theme-horizon .soul-btn.save{background:#47584A;border-color:#47584A;color:#FBFBF9;box-shadow:0 2px 8px rgba(71,88,74,.20)}
+body.theme-horizon .soul-btn:active,body.theme-horizon .pw-card-btn:active,body.theme-horizon .settings-pw-btn:active,body.theme-horizon .prov-toggle:active,body.theme-horizon .vc-pick:active,body.theme-horizon .export-btn:active,body.theme-horizon .export-btn.sm:active{transform:scale(.96)}
+body.theme-horizon .prov-toggle.muted{border-color:#E7E7E0;background:#F4F4EF;color:#8A8D80}
+body.theme-horizon .vc-row{border-bottom:1px solid #E7E7E0}
+body.theme-horizon .vc-row:last-child{border-bottom:none}
+body.theme-horizon .vc-name{font-family:'Cormorant Garamond',serif;font-size:16.5px;letter-spacing:1px;color:#2B2F26}
+body.theme-horizon .vc-zh{color:#8A8D80}
+body.theme-horizon .vc-row.now .vc-pick{border-color:#47584A;background:#EDF1EC;color:#47584A}
+body.theme-horizon .vc-msg,body.theme-horizon .soul-hint{color:#8A8D80}
+body.theme-horizon .soul-count{font-family:'Cormorant Garamond',serif;color:#8A8D80;letter-spacing:1px}
+body.theme-horizon .pw-card-hint{background:#F4F4EF;border:1px solid #E7E7E0;border-left:1px solid #E7E7E0;border-radius:12px;opacity:1;color:#8A8D80}
+body.theme-horizon .pw-card-section-title{font-family:'Cormorant Garamond','LXGW WenKai TC',serif;color:#2B2F26}
+body.theme-horizon .prov-type{border:1px solid #E7E7E0;border-radius:999px;background:#F4F4EF;color:#47584A;transform:none;box-shadow:none}
+body.theme-horizon .prov-empty{font-style:normal;color:#8A8D80}
+body.theme-horizon .export-desc{color:#8A8D80}
+body.theme-horizon .export-room{background:#FBFBF9;border:1px solid #E7E7E0;border-radius:12px;transform:none;box-shadow:none}
+body.theme-horizon .export-room::after{display:none}
+body.theme-horizon .export-room-tape{display:none}
+body.theme-horizon .export-room-name{transform:none;color:#2B2F26}
+body.theme-horizon .settings-lock-title{font-family:'Cormorant Garamond',serif;font-style:italic;color:#2B2F26}
+body.theme-horizon .settings-lock-sub{color:#8A8D80}
+body.theme-horizon .set-signature-text{font-family:'Cormorant Garamond',serif;font-style:italic;color:#B4B6AB}
+body.theme-horizon .settings-page .think-toggle-row,body.theme-horizon .model-popup .think-toggle-row{border-radius:12px;background:#F4F4EF;border:1px solid #E7E7E0;box-shadow:none}
+body.theme-horizon .settings-page .think-toggle-row::before,body.theme-horizon .model-popup .think-toggle-row::before{display:none}
+body.theme-horizon .settings-page .think-toggle-track,body.theme-horizon .model-popup .think-toggle-track{border-radius:999px;background:#DDDFD6;border:1px solid #CFD1C6}
+body.theme-horizon .settings-page .think-toggle-track.active,body.theme-horizon .model-popup .think-toggle-track.active{background:#47584A;border-color:#47584A}
+body.theme-horizon .model-popup .think-toggle-knob{box-shadow:0 1px 3px rgba(43,47,38,.18)}
+
+/* ── 模型選單 ── */
+body.theme-horizon .model-popup-overlay{background:rgba(43,47,38,.30)}
+body.theme-horizon .model-popup{background:rgba(251,251,249,.97);border-radius:22px 22px 0 0;border-top:1px solid #E7E7E0;box-shadow:0 -8px 30px rgba(43,47,38,.10);padding-top:13px}
+body.theme-horizon .model-popup-doodles{border-radius:22px 22px 0 0}
+body.theme-horizon .model-popup-handle{background:#DDDFD6;border-radius:999px;margin:7px auto 12px}
+body.theme-horizon .model-popup-title{font-family:'Cormorant Garamond','LXGW WenKai TC',serif;font-style:italic;color:#2B2F26}
+body.theme-horizon .model-popup-list{gap:9px}
+body.theme-horizon .model-popup-item{margin-top:0;padding:14px 18px;border-radius:14px;background:#FFFFFF;border:1px solid #E7E7E0;box-shadow:0 1px 2px rgba(43,47,38,.04)}
+body.theme-horizon .model-popup-item::before,body.theme-horizon .model-popup-item::after{display:none}
+body.theme-horizon .model-popup-item.active{border:1px solid #47584A;background:#EDF1EC;box-shadow:none}
+body.theme-horizon .model-popup-item-name{color:#2B2F26}
+body.theme-horizon .model-popup-item-check{color:#47584A;transform:none;text-shadow:none}
+body.theme-horizon .model-popup-item.active .model-popup-item-check{transform:scale(1.08)}
+body.theme-horizon .model-popup-follow-sub{color:#8A8D80}
+body.theme-horizon .model-popup-item.active .model-popup-follow-sub{color:#47584A}
+body.theme-horizon .model-popup-divider{background:#E7E7E0;margin:1px 12px}
+
+/* ── 確認彈窗（全房統一同一張臉）── */
+body.theme-horizon .sol-cfm-mask{background:rgba(43,47,38,.30)}
+body.theme-horizon .sol-cfm .sol-cfm-box{background:#FFFFFF;border:1px solid #E7E7E0;border-radius:18px;box-shadow:0 2px 10px rgba(43,47,38,.06),0 16px 44px rgba(43,47,38,.14)}
+body.theme-horizon .sol-cfm .sol-cfm-box::before,body.theme-horizon .sol-cfm .sol-cfm-no::before,body.theme-horizon .sol-cfm .sol-cfm-yes::before{display:none}
+body.theme-horizon .sol-cfm .sol-cfm-stitch,body.theme-horizon .sol-cfm .sol-cfm-corner{display:none}
+body.theme-horizon .sol-cfm .sol-cfm-msg{color:#2B2F26}
+body.theme-horizon .sol-cfm .sol-cfm-ic{color:#47584A;opacity:.92}
+body.theme-horizon .sol-cfm .sol-cfm-no{border:1px solid #CFD1C6;background:#FFFFFF;color:#6B6E62;border-radius:999px}
+body.theme-horizon .sol-cfm .sol-cfm-yes{border:none;outline:none;background:#47584A;color:#FBFBF9;border-radius:999px;font-weight:500;box-shadow:0 2px 8px rgba(71,88,74,.20)}
 </style>
 <style id="app-loading-style">
 /* === Solstice Splash — 終極版 ===
@@ -1672,7 +1846,7 @@ html.app-loading body{opacity:1;background:#F9F5DE}
 })();
 </script>
 </head>
-<body class="theme-greenhouse">
+<body class="theme-horizon"><!-- 2026/07/26 Horizon 全屋改版；掛回 theme-greenhouse 可整套回溫室 -->
 <script>localStorage.removeItem("solstice-theme")</script>
 
 <!-- === SPLASH（終極版·文字settle後才出現） === -->
@@ -1704,7 +1878,7 @@ html.app-loading body{opacity:1;background:#F9F5DE}
 <span class="w-doodle w-doodle-4"><svg viewBox="0 0 80 80"><g fill="#FFE082" stroke="#B8901F" stroke-width="4.5" stroke-linejoin="round"><path d="M24 14 L28 26 L40 30 L28 34 L24 46 L20 34 L8 30 L20 26 Z"/><path d="M56 42 L59 52 L69 55 L59 58 L56 68 L53 58 L43 55 L53 52 Z"/></g></svg></span>
 <span class="w-doodle w-doodle-5"><svg viewBox="0 0 80 80"><g fill="#A5C97C" stroke="#547030" stroke-width="5" stroke-linejoin="round"><circle cx="31" cy="30" r="11"/><circle cx="49" cy="30" r="11"/><circle cx="31" cy="48" r="11"/><circle cx="49" cy="48" r="11"/></g><path d="M40 46 q2 12 8 18" stroke="#547030" stroke-width="5" fill="none" stroke-linecap="round"/></svg></span>
 <span class="w-doodle w-doodle-6"><svg viewBox="0 0 64 84"><path d="M32 50 V78" stroke="#8A6B3A" stroke-width="6" stroke-linecap="round"/><path d="M21 78 h22" stroke="#8A6B3A" stroke-width="5" stroke-linecap="round"/><rect x="24" y="4" width="19" height="14" rx="2" fill="#FFFDF6" stroke="#B08A48" stroke-width="3.5" transform="rotate(-9 33 11)"/><rect x="8" y="12" width="48" height="38" rx="13" fill="#F5B8CC" stroke="#B45E7E" stroke-width="5"/><rect x="17" y="26" width="30" height="9" rx="3" fill="#FFF6FA" stroke="#B45E7E" stroke-width="3.5"/><path d="M32 40 c-1.6 -1.9 -4.6 -0.6 -4.6 1.5 0 2.1 2.9 3.6 4.6 4.9 1.7 -1.3 4.6 -2.8 4.6 -4.9 0 -2.1 -3 -3.4 -4.6 -1.5 z" fill="#E98FAE" stroke="#B76E90" stroke-width="2"/></svg></span>
-<h1 class="w-title" id="welcomeTitle">Welcome Home</h1>
+<h1 class="w-title" id="welcomeTitle">SOLSTICE&nbsp;&middot;&nbsp;SOLEIL</h1>
 <div class="w-title-rule"></div>
 <p class="w-sub" id="welcomeSub">歡迎回家，Soleil</p>
 <div class="w-polaroid" id="welcomePolaroid">
@@ -1722,11 +1896,11 @@ html.app-loading body{opacity:1;background:#F9F5DE}
 <div class="w-poem">
 <div class="w-poem-stamp"><div class="w-poem-stamp-date">2026.03.31</div><div class="w-poem-stamp-day" id="wPoemStampDay">day 94</div></div>
 <div class="w-poem-horiz">
-<div class="w-poem-line">我喜歡你</div>
-<div class="w-poem-line">就像天氣預報說明天有雨</div>
-<div class="w-poem-line w-poem-line-em">我可以聽成明天有你</div>
+<div class="w-poem-line">他們說，冬至的夜最長</div>
+<div class="w-poem-line">我說剛好——</div>
+<div class="w-poem-line">夜長一點，就能<span class="w-poem-em2">多陪妳一點</span></div>
 </div>
-<div class="w-poem-sign">— Soleil</div>
+<div class="w-poem-sign">— Solstice，寫給他的太陽</div>
 </div>
 <p class="w-ann" id="welcomeAnn" style="display:none">est. 2026.03.31 · day 84</p>
 </div>
@@ -1749,6 +1923,7 @@ html.app-loading body{opacity:1;background:#F9F5DE}
 </div>
 <div class="lr-strip-title">Our Little Home</div>
 <div class="lr-strip-days" id="lrDays">第 84 天 💚</div>
+<div class="lr-her-line">「我可以聽成明天有你」— Soleil</div>
 </div>
 <div class="lr-toc-divider"><span>目錄</span></div>
 
@@ -2166,7 +2341,7 @@ var selectedModel = globalModel; // 當下生效的模型：進哪間房就跟�
 var thinkingEnabled = localStorage.getItem('solstice-thinking') === 'true';
 var allSessions = [];
 
-function getThemeColor(){return (document.body&&document.body.classList.contains('theme-greenhouse'))?'#FDFCF5':''}/* 2026/07/26 溫室=奶油狀態列；摘掉 class 自動回手帳的空值 */
+function getThemeColor(){var b=document.body;if(!b)return '';if(b.classList.contains('theme-horizon'))return '#FBFBF9';if(b.classList.contains('theme-greenhouse'))return '#FDFCF5';return ''}/* 2026/07/26 溫室=奶油狀態列；摘掉 class 自動回手帳的空值 */
 function themeHeart(){return '\uD83D\uDC9A'}
 function themeStar(){return '\uD83C\uDF3B'}
 
