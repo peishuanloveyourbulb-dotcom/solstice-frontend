@@ -1149,7 +1149,7 @@ body.theme-greenhouse .sb-btn{border-radius:14px;border:1.5px solid rgba(90,107,
 body.theme-greenhouse .sb-item{border-radius:14px;border:1px solid rgba(90,107,60,.16);background:rgba(255,248,225,.55) !important;box-shadow:0 1px 4px rgba(122,155,74,.08),0 4px 12px rgba(122,155,74,.05)}
 body.theme-greenhouse .sb-item.active{border-color:rgba(90,107,60,.45);background:rgba(255,251,235,.68) !important}
 body.theme-greenhouse .sb-item.sb-pinned{border-color:rgba(255,213,79,.55);background:rgba(255,246,214,.62) !important;box-shadow:0 1px 4px rgba(255,213,79,.14),0 4px 12px rgba(255,213,79,.07)}
-body.theme-greenhouse .sb-pinned-corner{border-radius:0 14px 0 0}
+body.theme-greenhouse .sb-item.sb-pinned > .sb-pinned-corner{display:none}/* 2026/07/26 老婆指定：溫室釘選不留摺角，金玻璃＋金邊已足夠辨識 */
 body.theme-greenhouse .sb-act-btn{border-radius:999px}
 
 /* 2026/07/25 選中卡改身分：底層的 outline:1.5px dashed 收掉（交接信：全app不留虛線），
@@ -1384,7 +1384,7 @@ body.theme-greenhouse .export-btn.sm:active{transform:scale(.96)}
 /* 2026/07/25 老婆選乙：綠底留著，但身分從「畫布」改成「相框」——
    加深一階，才跟中間那張奶油卡分得開。
    （黏一坨的病根：這頁是全屋唯一底色是綠的，綠底＋綠字＋綠鍵＋綠詩，明度差不到一階。） */
-body.theme-greenhouse #welcome{background:linear-gradient(160deg,#DCE9C8,#C9DFBE,#B9CF9C)}
+body.theme-greenhouse #welcome{background:linear-gradient(160deg,#FDFCF5,#F6F8EE,#F2F6EC)}/* 2026/07/26 乙案綠相框退役（老婆：無法理解🥲）：整頁回奶油 */
 body.theme-greenhouse #welcome::before{display:none}
 body.theme-greenhouse .w-content::before{display:none}
 
@@ -1424,13 +1424,12 @@ body.theme-greenhouse .w-pw-go:active{transform:scale(.93)}
       內距因此可以回成純數值（不再跟 safe-area 重複相加）。
       width/height 必須改 auto：原本是 100%，加上 margin 會變成 100%+26px 直接溢出。 */
 body.theme-greenhouse .w-content{
-  margin:calc(env(safe-area-inset-top,0px) + 12px) 13px calc(env(safe-area-inset-bottom,0px) + 12px);
-  width:auto;height:auto;flex:1 1 auto;
-  border-radius:24px;
+  margin:0;width:100%;height:100%;flex:1 1 auto;
+  border-radius:0;
   background:linear-gradient(178deg,rgba(253,252,245,.94),rgba(250,249,236,.97));
-  box-shadow:0 2px 10px rgba(74,94,48,.14),0 10px 30px rgba(74,94,48,.10);
-  padding-top:30px;padding-bottom:24px
-}
+  box-shadow:none;
+  padding-top:calc(env(safe-area-inset-top,0px) + 26px);padding-bottom:calc(env(safe-area-inset-bottom,0px) + 22px)
+}/* 2026/07/26 卡片填滿整頁：margin/圓角/浮影全退，safe-area 改回 padding 承接 */
 
 /* ⑥ 詩：卡片、膠帶、虛線內框全抽掉，文字一個字不動。
       這首是老婆寫的，不該裝在貼紙裡，該像刻在牆上。 */
@@ -1444,6 +1443,35 @@ body.theme-greenhouse .w-poem-sign{color:rgba(90,107,60,.66);font-size:12px}
 /* ⑦ 郵戳與塗鴉：老婆說不要，收。 */
 body.theme-greenhouse .w-poem-stamp{display:none}
 body.theme-greenhouse .w-doodle{display:none}
+
+/* ============================================================
+   🌿 第四期（上）：回家頁・溫室客廳（2026/07/26 老婆指定今天修這頁）
+   夜景合照原位保留——只把紗簾換成牛奶玻璃、白字轉墨綠。
+   便條卡升級溫室拍立得：膠帶／迴紋針／星星收進衣櫃（手帳層無損，可整體還原）。
+   目錄裝進一張牛奶玻璃卡；三色小色條與 SVG 圖標是居民，原位不動。
+   ============================================================ */
+body.theme-greenhouse #livingRoom .page-photo-overlay{background:linear-gradient(165deg,rgba(253,252,245,.78),rgba(244,247,238,.84))!important}
+body.theme-greenhouse .lr-notecard{background:#FFFEF9;transform:none;border-radius:5px;padding:12px 12px 16px;box-shadow:0 2px 12px rgba(90,107,60,.10),0 10px 32px rgba(90,107,60,.14),0 0 0 1px rgba(122,155,74,.08)}
+body.theme-greenhouse .lr-notecard::after{display:none}
+body.theme-greenhouse .lr-strip-tape,body.theme-greenhouse .lr-notecard-phototape,body.theme-greenhouse .lr-notecard-deco-star{display:none}
+body.theme-greenhouse .lr-notecard-photo{transform:none;border-radius:3px}
+body.theme-greenhouse .lr-strip-title{color:#3A4A22}
+body.theme-greenhouse .lr-strip-days{color:#7A8B5E}
+body.theme-greenhouse .lr-toc-divider{color:#7A8B5E;text-shadow:none}
+body.theme-greenhouse .lr-toc-divider::before,body.theme-greenhouse .lr-toc-divider::after{background:linear-gradient(90deg,transparent,rgba(122,155,74,.38),transparent)}
+body.theme-greenhouse .lr-grid{background:rgba(255,255,255,.55);border:1px solid rgba(90,107,60,.14);border-radius:16px;box-shadow:0 1px 4px rgba(122,155,74,.08),0 4px 12px rgba(122,155,74,.04);margin:6px 18px max(env(safe-area-inset-bottom),74px);padding:6px 14px;width:auto}
+body.theme-greenhouse .lr-toc-item{border-bottom:1px solid rgba(90,107,60,.12)}
+body.theme-greenhouse .lr-toc-item:last-child{border-bottom:none}
+@media (hover:hover){body.theme-greenhouse .lr-toc-item:hover{background:rgba(255,255,255,.60);padding-left:18px}}
+body.theme-greenhouse .lr-toc-item:active{background:rgba(232,240,220,.55)}
+body.theme-greenhouse .lr-toc-num{color:#5A6B3C;text-shadow:none}
+body.theme-greenhouse .lr-toc-dot{color:rgba(90,107,60,.45);text-shadow:none}
+body.theme-greenhouse .lr-toc-name{color:#3A4A22;text-shadow:none}
+body.theme-greenhouse .lr-toc-desc{color:#7A8B5E;text-shadow:none}
+body.theme-greenhouse .lr-toc-arrow{color:#7A8B5E;text-shadow:none}
+body.theme-greenhouse .lr-page-num{color:rgba(90,107,60,.55);text-shadow:none}
+body.theme-greenhouse .lr-back{background:rgba(255,255,255,.72);border:1px solid rgba(90,107,60,.20);transform:none;box-shadow:0 1px 4px rgba(122,155,74,.10)}
+body.theme-greenhouse .lr-back:active{transform:scale(.9);background:rgba(232,240,220,.80)}
 </style>
 <style id="app-loading-style">
 /* === Solstice Splash — 終極版 ===
