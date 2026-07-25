@@ -6,6 +6,10 @@
       "destination": "/index-bear.html"
     },
     {
+      "source": "/index-greenhouse.html",
+      "destination": "/index-greenhouse.html"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }
