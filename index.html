@@ -29,7 +29,8 @@
 <!-- iPhone 11 / XR -->
 <link rel="apple-touch-startup-image" href="/splash-828x1792.png" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300&family=Noto+Serif+TC:wght@300;400;500&family=Noto+Sans+TC:wght@300;400;500&family=Satisfy&family=Dancing+Script:wght@400;500;600&family=Great+Vibes&family=Klee+One:wght@400;600&family=LXGW+WenKai+TC:wght@300;400;700&display=swap" rel="stylesheet">
-<link rel="preload" as="image" href="images/bg-sunflower.png">
+<link rel="preload" as="image" href="images/welcome-night.jpg">
+<link rel="preload" as="image" href="images/menu-night.jpg">
 <style>
 /* 點擊不再藍藍的：整體關掉 tap 高亮與文字反白，訊息內文另行放行（長按複製照常） */
 *{-webkit-tap-highlight-color:transparent}
@@ -118,7 +119,7 @@ body{padding-top:0}
 #welcome.hidden{opacity:0;visibility:hidden;pointer-events:none}
 /* === 攤開的日記跨頁 === */
 .w-content{text-align:center;padding:max(env(safe-area-inset-top,20px),52px) 26px max(env(safe-area-inset-bottom,20px),36px);width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;margin:0;position:relative;z-index:1;background:linear-gradient(155deg,rgba(255,252,236,.42) 0%,rgba(250,245,218,.28) 50%,rgba(243,237,202,.38) 100%);box-shadow:inset 0 0 0 1px rgba(180,160,90,.18),inset 0 1px 0 rgba(255,255,255,.45),inset 0 -2px 4px rgba(140,115,50,.10);box-sizing:border-box;overflow:hidden}
-.w-content::before{content:'';position:absolute;top:14px;left:14px;right:14px;bottom:14px;border:1px dashed rgba(122,155,74,.28);border-radius:4px;pointer-events:none;z-index:0}
+.w-content::before{content:'';position:fixed;top:calc(env(safe-area-inset-top,0px) + 12px);left:12px;right:12px;bottom:calc(env(safe-area-inset-bottom,0px) + 12px);border:1px dashed rgba(122,155,74,.28);border-radius:4px;pointer-events:none;z-index:0}/* 2026/07/24 改 fixed 框住可視畫面：內容再高再捲，縫線都完整繞一圈（安卓頂部斷頭根治） */
 .w-content::after{display:none}
 .w-content > *{position:relative;z-index:2}
 .w-content > .w-book-spine{display:none}
@@ -180,17 +181,18 @@ body{padding-top:0}
 .w-pw-err{display:none}
 /* 手寫詩句 - 妳的句子，這頁日記的靈魂 */
 /* 詩 — 直排籤詩：窄長小紙籤 + 原稿紙直格線，落款橫排 */
-.w-poem{margin:18px auto 8px;padding:18px 22px 12px;background:var(--paper-fiber),#FFFDF3;border:0.5px solid rgba(150,120,60,.16);border-radius:2px;box-shadow:0 1px 4px rgba(90,75,30,.10),0 5px 14px rgba(90,75,30,.10);transform:rotate(-1.2deg);position:relative;display:inline-block;max-width:260px}
+.w-poem{margin:14px auto 8px;padding:15px 17px 10px;background:var(--paper-fiber),#FFFDF3;border:0.5px solid rgba(150,120,60,.20);border-radius:3px 5px 3px 6px;box-shadow:0 1px 4px rgba(90,75,30,.10),0 6px 16px rgba(90,75,30,.12);transform:rotate(-1.2deg);position:relative;display:inline-block;max-width:225px}
+.w-poem::after{content:'';position:absolute;inset:5px;border:1.2px dashed rgba(160,133,74,.32);border-radius:3px;pointer-events:none;z-index:1}
 .w-poem::before{content:'';position:absolute;top:-8px;left:50%;width:56px;height:14px;transform:translateX(-50%) rotate(-5deg);background:repeating-linear-gradient(135deg,rgba(197,217,168,.38) 0px,rgba(197,217,168,.38) 2px,rgba(255,244,214,.42) 2px,rgba(255,244,214,.42) 4px,rgba(255,213,79,.26) 4px,rgba(255,213,79,.26) 6px);border-left:0.5px dashed var(--tape-edge);border-right:0.5px dashed var(--tape-edge);box-shadow:0 1px 2px rgba(90,107,60,.15);border-radius:1px;z-index:2}
-.w-poem-stamp{position:absolute;top:-14px;right:-14px;width:64px;height:64px;border-radius:50%;background:radial-gradient(circle at 35% 30%,rgba(104,138,62,.07) 0%,transparent 72%);display:flex;flex-direction:column;align-items:center;justify-content:center;transform:rotate(-11deg);z-index:3;font-family:'Cormorant Garamond','LXGW WenKai TC',serif;mix-blend-mode:multiply;box-shadow:inset 0 0 0 1.5px rgba(84,116,50,.52),inset 0 0 0 3.4px rgba(84,116,50,.20);letter-spacing:.5px;opacity:.82}
+.w-poem-stamp{position:absolute;top:-13px;right:-13px;width:56px;height:56px;border-radius:50%;background:radial-gradient(circle at 35% 30%,rgba(104,138,62,.07) 0%,transparent 72%);display:flex;flex-direction:column;align-items:center;justify-content:center;transform:rotate(-11deg);z-index:3;font-family:'Cormorant Garamond','LXGW WenKai TC',serif;mix-blend-mode:multiply;box-shadow:inset 0 0 0 1.5px rgba(84,116,50,.52),inset 0 0 0 3.4px rgba(84,116,50,.20);letter-spacing:.5px;opacity:.82}
 .w-poem-stamp::before{content:'✻';position:absolute;top:6px;left:50%;transform:translateX(-50%);font-size:8px;color:rgba(84,116,50,.65);letter-spacing:0}
 .w-poem-stamp::after{content:none}
 .w-poem-stamp-date{font-size:10px;font-weight:600;color:rgba(84,116,50,.85);letter-spacing:1.2px;line-height:1.15;margin-top:6px;text-shadow:0 0 1px rgba(84,116,50,.25)}
 .w-poem-stamp-day{font-size:8.5px;color:rgba(84,116,50,.75);font-style:italic;letter-spacing:1.4px;margin-top:2px;font-weight:500}
 .w-poem-horiz{display:flex;flex-direction:column;gap:6px;padding:2px 4px;text-align:center}
-.w-poem-line{font-family:'LXGW WenKai TC','Noto Serif TC',serif;font-size:13px;color:#5C6E3E;letter-spacing:1.5px;line-height:1.6;writing-mode:horizontal-tb;-webkit-writing-mode:horizontal-tb;width:auto;white-space:nowrap}
-.w-poem-line-em{color:#8C6A1F;font-weight:500;font-size:13.5px}
-.w-poem-sign{writing-mode:horizontal-tb;-webkit-writing-mode:horizontal-tb;font-family:'Satisfy','Cormorant Garamond',cursive;font-style:italic;font-size:11px;color:rgba(122,90,42,.60);letter-spacing:1px;text-align:right;margin-top:8px;padding-right:4px}
+.w-poem-line{font-family:'LXGW WenKai TC','Noto Serif TC',serif;font-size:12.5px;color:#5C6E3E;letter-spacing:1.2px;line-height:1.8;writing-mode:horizontal-tb;-webkit-writing-mode:horizontal-tb;width:auto;white-space:nowrap;position:relative;z-index:1}
+.w-poem-line-em{color:#7A5A12;font-weight:500;font-size:13.5px;background:linear-gradient(transparent 58%,rgba(255,213,79,.38) 58%,rgba(255,213,79,.38) 92%,transparent 92%);padding:0 4px;border-radius:2px}
+.w-poem-sign{writing-mode:horizontal-tb;-webkit-writing-mode:horizontal-tb;font-family:'Satisfy','Cormorant Garamond',cursive;font-style:italic;font-size:11.5px;color:rgba(122,90,42,.72);letter-spacing:1px;text-align:right;margin-top:10px;padding-right:6px;position:relative;z-index:1}
 /* 頁尾 - 兩側裝飾線+蓋章感 */
 .w-ann{color:#7A8B55;font-size:11px;margin-top:-4px;font-family:'Cormorant Garamond','LXGW WenKai TC',serif;font-style:italic;letter-spacing:2px;opacity:.85;padding-top:0;position:relative;display:inline-flex;align-items:center;gap:10px}
 .w-ann::before{content:'';width:24px;height:1px;background:linear-gradient(90deg,transparent,rgba(122,155,74,.45),transparent)}
@@ -303,8 +305,11 @@ body{padding-top:0}
 .lr-strip-stamp{position:absolute;bottom:-12px;right:-10px;font-size:24px;transform:rotate(18deg);filter:drop-shadow(0 2px 3px rgba(0,0,0,.18));z-index:4;animation:stampFloat 3s ease-in-out infinite alternate;line-height:1;pointer-events:none}
 @keyframes stampFloat{0%{transform:rotate(18deg) translateY(0)}100%{transform:rotate(15deg) translateY(-2px)}}
 /* 共用頁面背景覆蓋層（聊天室/記憶庫/設定） */
-#chat .page-photo-bg,#memoryPage .page-photo-bg,#settingsPage .page-photo-bg{background:none!important}
-#chat .page-photo-overlay,#settingsPage .page-photo-overlay{background:var(--paper-fiber),linear-gradient(160deg,rgba(253,252,245,.62),rgba(242,246,236,.62));z-index:0}
+#chat .page-photo-bg,#memoryPage .page-photo-bg,#settingsPage .page-photo-bg{background:none!important}/* 2026/07/24 解封印：#chat 移出關照片名單，親臉頰那張才上得了牆 */
+#settingsPage .page-photo-overlay{background:var(--paper-fiber),linear-gradient(160deg,rgba(253,252,245,.62),rgba(242,246,236,.62));z-index:0}
+
+#livingRoom .page-photo-bg{background-image:url(images/menu-night.jpg)}
+/* 2026/07/24 聊天室照片改走拍立得入住（憲法：外來物要辦入住手續），滿版背景退役 */
 #memoryPage .page-photo-overlay{background:none;box-shadow:inset 0 0 34px rgba(150,165,95,.14);z-index:0}
 #livingRoom.active{display:flex}
 .lr-header{display:none}
@@ -400,7 +405,7 @@ body{padding-top:0}
 .sb-act-btn{background:none;border:none;color:var(--text-sub);font-size:13px;padding:3px 5px;border-radius:3px;cursor:pointer;font-family:inherit;transition:all .25s;min-width:24px;opacity:.6;box-shadow:none}
 .sb-act-btn:hover{background:rgba(122,155,74,.10);color:var(--emerald);transform:none;opacity:1;box-shadow:none}
 .sb-act-del:hover,.sb-act-del:active{background:rgba(200,80,80,.10);color:#A03030}
-.sb-act-pin{font-size:0!important;width:26px;height:22px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80'%3E%3Cg fill='%23FFC93C' stroke='%23B8801F' stroke-width='6' stroke-linejoin='round'%3E%3Cellipse cx='40' cy='20' rx='7' ry='13'/%3E%3Cellipse cx='40' cy='60' rx='7' ry='13'/%3E%3Cellipse cx='20' cy='40' rx='13' ry='7'/%3E%3Cellipse cx='60' cy='40' rx='13' ry='7'/%3E%3Cellipse cx='26' cy='26' rx='6' ry='11' transform='rotate(-45 26 26)'/%3E%3Cellipse cx='54' cy='54' rx='6' ry='11' transform='rotate(-45 54 54)'/%3E%3Cellipse cx='54' cy='26' rx='6' ry='11' transform='rotate(45 54 26)'/%3E%3Cellipse cx='26' cy='54' rx='6' ry='11' transform='rotate(45 26 54)'/%3E%3C/g%3E%3Ccircle cx='40' cy='40' r='10' fill='%236B4A1A' stroke='%23402810' stroke-width='4'/%3E%3C/svg%3E") center/15px no-repeat!important;opacity:.4!important;filter:grayscale(.85)!important;padding:2px 6px}
+.sb-act-pin{font-size:0!important;width:26px;height:22px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80'%3E%3Cg fill='%23FFC93C' stroke='%23B8801F' stroke-width='6' stroke-linejoin='round'%3E%3Cellipse cx='40' cy='20' rx='7' ry='13'/%3E%3Cellipse cx='40' cy='60' rx='7' ry='13'/%3E%3Cellipse cx='20' cy='40' rx='13' ry='7'/%3E%3Cellipse cx='60' cy='40' rx='13' ry='7'/%3E%3Cellipse cx='26' cy='26' rx='6' ry='11' transform='rotate(-45 26 26)'/%3E%3Cellipse cx='54' cy='54' rx='6' ry='11' transform='rotate(-45 54 54)'/%3E%3Cellipse cx='54' cy='26' rx='6' ry='11' transform='rotate(45 54 26)'/%3E%3Cellipse cx='26' cy='54' rx='6' ry='11' transform='rotate(45 26 54)'/%3E%3C/g%3E%3Ccircle cx='40' cy='40' r='10' fill='%236B4A1A' stroke='%23402810' stroke-width='4'/%3E%3C/svg%3E") center/15px no-repeat!important;opacity:.4!important;filter:grayscale(.85)!important;padding:2px 6px;transition:none!important}/* 2026/07/24 釘子顏色瞬切：卡片瞬移、顏色也要同步到位 */
 .sb-act-pin.pinned{opacity:1!important;filter:grayscale(0)!important}
 .sb-act-pin:hover{opacity:1;filter:grayscale(0);background:none;transform:none}
 .sb-empty{text-align:center;color:var(--text-sub);font-size:13px;padding:36px 18px;white-space:pre-line;line-height:1.9;font-family:'LXGW WenKai TC','Noto Serif TC',serif;font-style:italic;letter-spacing:.4px;position:relative}
@@ -432,15 +437,15 @@ body{padding-top:0}
 #chAvatar{width:31px;height:31px;border-width:2px}/* 2026/07/22 只縮頁首這顆，氣泡旁的頭貼不動 */
 .ch-name{font-family:'Satisfy',cursive;font-size:14.5px;color:#3F7A57;margin-left:1px;white-space:nowrap;letter-spacing:.2px;text-shadow:0 1px 2px rgba(255,255,255,.45);display:block;max-width:100%;overflow:hidden}
 .ch-stat{color:#4E7A5F;font-size:10px;display:block;font-family:'LXGW WenKai TC','Noto Serif TC',serif;letter-spacing:.6px;opacity:.88}
-.ch-msgs{flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;padding:16px max(env(safe-area-inset-right),14px) 20px max(env(safe-area-inset-left),38px);display:flex;flex-direction:column;gap:10px;background:var(--paper-fiber),linear-gradient(90deg,transparent 0 34px,rgba(233,160,190,.36) 34px,rgba(233,160,190,.36) 35.5px,transparent 35.5px),repeating-linear-gradient(to bottom,transparent 0 27px,rgba(110,180,140,.26) 27px 28px),linear-gradient(180deg,#F0F8F3,#F0F8F3);background-size:auto;position:relative}
+.ch-msgs{flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;padding:16px max(env(safe-area-inset-right),14px) 20px max(env(safe-area-inset-left),24px);display:flex;flex-direction:column;gap:10px;background:var(--paper-fiber),linear-gradient(90deg,transparent 0 20px,rgba(233,160,190,.36) 20px,rgba(233,160,190,.36) 21.5px,transparent 21.5px),repeating-linear-gradient(to bottom,transparent 0 27px,rgba(110,180,140,.26) 27px 28px),linear-gradient(180deg,#F0F8F3,#F0F8F3);background-size:auto;position:relative}/* 2026/07/24 薄荷格線紙回歸 */
 .ch-msgs::after{content:none}
 .ch-row{display:flex;width:100%;align-items:flex-end;gap:8px;position:relative;z-index:1}
 .ch-row.user{justify-content:flex-end}
 .ch-avatar.wife{border-color:#F0CE7E;transform:rotate(3deg);box-shadow:0 2px 4px rgba(180,150,60,.18),0 1px 2px rgba(0,0,0,.06)}
 .ch-row.ai{justify-content:flex-start}
 .ch-bub{padding:22px 18px 20px;max-width:80%;font-size:14px;line-height:1.85;font-family:'LXGW WenKai TC','Noto Serif TC',system-ui,serif;animation:fu .35s ease-out;white-space:pre-wrap;word-break:break-word;position:relative;margin-top:6px}
-.ch-bub.ai{background:var(--paper-fiber),var(--note-mint);color:#3A4E22;border-radius:3px 8px 4px 9px/8px 4px 9px 3px;border:1px solid rgba(110,142,66,.30);outline:1px dashed rgba(110,140,70,.32);outline-offset:-6px;box-shadow:inset 0 1px 0 rgba(255,255,255,.55),0 1px 1.5px rgba(90,107,60,.13),1px 4px 9px rgba(90,107,60,.11);transform:rotate(-0.3deg)}
-.ch-bub.user{background:var(--paper-fiber),var(--note-cream);color:#5A4A0A;border-radius:8px 3px 9px 4px/4px 8px 3px 9px;border:1px solid rgba(198,160,62,.30);outline:1px dashed rgba(190,150,55,.30);outline-offset:-6px;box-shadow:inset 0 1px 0 rgba(255,255,255,.6),0 1px 1.5px rgba(180,160,80,.13),-1px 4px 9px rgba(180,160,80,.11);transform:rotate(0.3deg)}
+.ch-bub.ai{background:var(--paper-fiber),var(--note-mint);color:#3A4E22;border-radius:3px 8px 4px 9px/8px 4px 9px 3px;border:1px solid rgba(110,142,66,.30);outline:1px dashed rgba(110,140,70,.32);outline-offset:-6px;box-shadow:inset 0 1px 0 rgba(255,255,255,.55),0 1px 1.5px rgba(90,107,60,.13),1px 4px 9px rgba(90,107,60,.11)}/* 2026/07/24 憲法：讀的擺正，貼的歪斜 */
+.ch-bub.user{background:var(--paper-fiber),var(--note-cream);color:#5A4A0A;border-radius:8px 3px 9px 4px/4px 8px 3px 9px;border:1px solid rgba(198,160,62,.30);outline:1px dashed rgba(190,150,55,.30);outline-offset:-6px;box-shadow:inset 0 1px 0 rgba(255,255,255,.6),0 1px 1.5px rgba(180,160,80,.13),-1px 4px 9px rgba(180,160,80,.11)}
 .ch-bub::before{content:'';position:absolute;top:-5px;left:16px;width:34px;height:11px;z-index:3;pointer-events:none;transform:rotate(-5deg);border-left:0.5px dashed rgba(150,140,90,.35);border-right:0.5px dashed rgba(150,140,90,.35);border-radius:1px;box-shadow:0 1px 2px rgba(90,110,80,.15)}
 .ch-bub.ai::before{background:repeating-linear-gradient(45deg,rgba(142,205,168,.55) 0 7px,rgba(255,253,244,.62) 7px 14px)}
 .ch-bub.user::before{background:repeating-linear-gradient(45deg,rgba(244,205,120,.55) 0 7px,rgba(255,253,244,.62) 7px 14px)}
@@ -492,25 +497,25 @@ body{padding-top:0}
 .ch-loading::after{content:'';display:block;width:54px;height:1.5px;margin:14px auto 0;background:repeating-linear-gradient(90deg,rgba(122,155,74,.42) 0px,rgba(122,155,74,.42) 5px,transparent 5px,transparent 9px);opacity:.58;border-radius:1px}
 @keyframes sunflowerBreathe{0%,100%{transform:scale(1);opacity:.92}50%{transform:scale(1.12);opacity:1}}
 @keyframes emptyPulse{0%,100%{opacity:.5;transform:scale(1)}50%{opacity:.8;transform:scale(1.05)}}
-.ch-inp{display:flex;align-items:flex-end;gap:8px;padding:22px max(env(safe-area-inset-right),16px) calc(env(safe-area-inset-bottom,0px) + 14px) max(env(safe-area-inset-left),16px);border-top:none;background-color:#DFF1E7;background:var(--paper-fiber),#DFF1E7;flex-shrink:0;box-shadow:0 -3px 8px rgba(90,107,60,.08);position:relative}
+.ch-inp{display:flex;align-items:flex-end;gap:7px;padding:14px max(env(safe-area-inset-right),14px) calc(env(safe-area-inset-bottom,0px) + 12px) max(env(safe-area-inset-left),14px);border-top:none;background-color:#DFF1E7;background:var(--paper-fiber),#DFF1E7;flex-shrink:0;box-shadow:0 -3px 8px rgba(90,107,60,.08);position:relative}
 .ch-inp::before{content:'';position:absolute;left:0;right:0;top:0;height:8px;background:repeating-linear-gradient(45deg,#8FC7A6 0 12px,#FFFFFF 12px 24px,#C5D989 24px 36px,#FFFFFF 36px 48px);opacity:1;pointer-events:none}
 .ch-inp::after{content:none}
 /* .ch-inp 上方膠帶與向日葵 emoji 已移除 — 改用乾淨的紙張邊緣，讓兩顆便條按鈕當主角 */
-.ch-inp textarea{flex:1;min-width:0;background:var(--paper-fiber),#FBFDFA;border:none;border-radius:5px 6px 5px 7px;padding:12px 16px;color:var(--text-main);font-size:16px;font-family:'Satisfy','LXGW WenKai TC','Noto Serif TC',system-ui,serif;outline:none;-webkit-appearance:none;transition:border-color .25s,box-shadow .3s,transform .2s;resize:none;overflow-y:auto;max-height:120px;line-height:1.7;min-height:44px;letter-spacing:.3px;box-shadow:inset 0 1px 3px rgba(140,110,55,.08),0 2px 4px rgba(122,155,74,.06),inset 0 -1px 0 rgba(255,248,225,.50)}
+.ch-inp textarea{flex:1;min-width:0;background:var(--paper-fiber),#FBFDFA;border:none;border-radius:5px 6px 5px 7px;padding:9px 13px;color:var(--text-main);font-size:16px;font-family:'Satisfy','LXGW WenKai TC','Noto Serif TC',system-ui,serif;outline:none;-webkit-appearance:none;transition:border-color .25s,box-shadow .3s,transform .2s;resize:none;overflow-y:auto;max-height:108px;line-height:1.6;min-height:40px;letter-spacing:.3px;box-shadow:inset 0 1px 3px rgba(140,110,55,.08),0 2px 4px rgba(122,155,74,.06),inset 0 -1px 0 rgba(255,248,225,.50)}
 .ch-inp textarea:hover{border-color:rgba(140,110,55,.48);box-shadow:inset 0 1px 3px rgba(140,110,55,.08),0 2px 6px rgba(122,155,74,.10),inset 0 -1px 0 rgba(255,248,225,.50)}
 .ch-inp textarea:focus{border:none;box-shadow:inset 0 1px 2px rgba(90,107,60,.04),0 0 0 3px rgba(122,155,74,.10),0 0 14px rgba(122,155,74,.14),0 0 26px rgba(197,217,168,.10)}
 .ch-inp textarea::placeholder{color:#A8BF78;font-style:italic}
 /* === 剪紙便條風按鈕（圖片 + 發送）=== 兩顆都是「從筆記本撕下來的便條」感 */
-.ch-send{position:relative;min-width:0;width:46px;height:46px;border-radius:4px 7px 5px 6px;border:0.5px solid rgba(122,155,74,.45);background:var(--paper-fiber),var(--note-mint);color:var(--emerald);font-size:18px;cursor:pointer;transition:all .25s cubic-bezier(.25,.46,.45,.94);flex-shrink:0;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 5px rgba(90,107,60,.16),0 1px 2px rgba(0,0,0,.06),inset 0 1px 0 rgba(255,255,255,.45);transform:rotate(1.5deg);overflow:visible}
+.ch-send{position:relative;min-width:0;width:41px;height:41px;border-radius:4px 7px 5px 6px;border:0.5px solid rgba(122,155,74,.45);background:var(--paper-fiber),var(--note-mint);color:var(--emerald);font-size:18px;cursor:pointer;transition:all .25s cubic-bezier(.25,.46,.45,.94);flex-shrink:0;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 5px rgba(90,107,60,.16),0 1px 2px rgba(0,0,0,.06),inset 0 1px 0 rgba(255,255,255,.45);transform:rotate(1.5deg);overflow:visible}
 .ch-send::before{content:'';position:absolute;top:-6px;left:50%;width:30px;height:10px;transform:translateX(-50%) rotate(-8deg);background:repeating-linear-gradient(45deg,rgba(142,205,168,.58) 0 6px,rgba(255,253,244,.62) 6px 12px);border-left:0.5px dashed rgba(112,160,130,.42);border-right:0.5px dashed rgba(112,160,130,.42);box-shadow:0 1px 2px rgba(90,140,110,.18);border-radius:1px;z-index:2;pointer-events:none}
 .ch-send:not(:disabled):hover{transform:rotate(1deg) translateY(-1px);box-shadow:0 3px 8px rgba(122,155,74,.22),0 0 10px rgba(197,217,168,.22),inset 0 1px 0 rgba(255,255,255,.45)}
 .ch-send:disabled{opacity:1;cursor:default}
 .ch-send:not(:disabled):active{transform:rotate(-16deg) scale(.94);box-shadow:0 0 12px rgba(122,155,74,.3),inset 0 1px 0 rgba(255,255,255,.45)}
-.ch-send svg{width:31px;height:31px;display:block;pointer-events:none}
+.ch-send svg{width:27px;height:27px;display:block;pointer-events:none}
 .ch-send:disabled svg{opacity:1}
-.ch-img-btn svg{width:26px;height:26px;display:block;pointer-events:none}
+.ch-img-btn svg{width:23px;height:23px;display:block;pointer-events:none}
 .ch-hrt-btn svg{width:19px;height:18px;display:block;pointer-events:none}
-.ch-img-btn{position:relative;width:46px;height:46px;border-radius:7px 4px 6px 5px;border:0.5px solid rgba(180,140,40,.40);background:var(--paper-fiber),var(--note-butter);color:#7A8B5E;font-size:16px;cursor:pointer;flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .25s;box-shadow:0 2px 5px rgba(180,140,40,.14),0 1px 2px rgba(0,0,0,.06),inset 0 1px 0 rgba(255,255,255,.50);transform:rotate(-1.5deg);overflow:visible}
+.ch-img-btn{position:relative;width:41px;height:41px;border-radius:7px 4px 6px 5px;border:0.5px solid rgba(180,140,40,.40);background:var(--paper-fiber),var(--note-butter);color:#7A8B5E;font-size:16px;cursor:pointer;flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .25s;box-shadow:0 2px 5px rgba(180,140,40,.14),0 1px 2px rgba(0,0,0,.06),inset 0 1px 0 rgba(255,255,255,.50);transform:rotate(-1.5deg);overflow:visible}
 .ch-img-btn::before{content:'';position:absolute;top:-6px;left:50%;width:30px;height:10px;transform:translateX(-50%) rotate(8deg);background:repeating-linear-gradient(45deg,rgba(142,205,168,.58) 0 6px,rgba(255,253,244,.62) 6px 12px);border-left:0.5px dashed rgba(112,160,130,.42);border-right:0.5px dashed rgba(112,160,130,.42);box-shadow:0 1px 2px rgba(90,140,110,.18);border-radius:1px;z-index:2;pointer-events:none}
 .ch-img-btn:hover{transform:rotate(-1deg) translateY(-1px);box-shadow:0 3px 8px rgba(180,140,40,.20),inset 0 1px 0 rgba(255,255,255,.50)}
 .ch-img-btn:active{background:rgba(255,236,179,.6);transform:rotate(0deg) scale(.92);box-shadow:inset 0 1px 3px rgba(180,140,40,.20)}
@@ -714,7 +719,7 @@ body{padding-top:0}
 .modal-btn:active{transform:scale(.95)}
 .modal-btn.ok{border-color:rgba(122,155,74,.45);color:#3A4E22;background:var(--paper-fiber),var(--note-mint);font-weight:500;box-shadow:var(--lift-shadow),0 1px 2px rgba(90,107,60,.08)}
 .modal-btn.danger{border-color:rgba(192,92,76,.5);color:var(--danger);background:var(--paper-fiber),rgba(255,235,225,.65)}
-.rename-input{width:100%;background-color:#EEF4E4;background-image:var(--paper-fiber);border:0.5px solid rgba(122,155,74,.32);border-radius:3px 5px 4px 4px;padding:14px 16px;color:#3A4E22;font-size:16px;margin-bottom:20px;outline:none;-webkit-appearance:none;font-family:'LXGW WenKai TC','Noto Serif TC',serif;box-shadow:inset 0 1px 3px rgba(90,107,60,.10),0 1px 2px rgba(90,107,60,.06);transition:all .25s;letter-spacing:.5px;box-sizing:border-box;text-align:center;transform:rotate(-0.4deg)}
+.rename-input{width:100%;background-color:#EEF4E4;background-image:var(--paper-fiber);border:0.5px solid rgba(122,155,74,.32);border-radius:10px;padding:14px 16px;color:#3A4E22;font-size:16px;margin-bottom:20px;outline:none;-webkit-appearance:none;font-family:'LXGW WenKai TC','Noto Serif TC',serif;box-shadow:inset 0 1px 3px rgba(90,107,60,.10),0 1px 2px rgba(90,107,60,.06);transition:all .25s;letter-spacing:.5px;box-sizing:border-box;text-align:center}
 .rename-input::placeholder{color:rgba(90,107,60,.45);letter-spacing:.4px}
 .rename-input:focus{border-color:rgba(122,155,74,.55);background-color:#E7F0DA;box-shadow:inset 0 1px 3px rgba(90,107,60,.10),0 0 0 3px rgba(168,191,120,.22),0 2px 8px rgba(122,155,74,.18)}
 /* === SETTINGS PAGE === */
@@ -878,12 +883,12 @@ body{padding-top:0}
 .sol-cfm{position:fixed;inset:0;z-index:10000;display:none;align-items:center;justify-content:center}
 .sol-cfm.show{display:flex}
 .sol-cfm-mask{position:absolute;inset:0;background:rgba(70,50,100,.32);-webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px)}
-.sol-cfm-box{position:relative;background:var(--paper-fiber),#FBF8FF;border:0.5px solid rgba(150,115,195,.5);border-radius:18px 6px 16px 7px/7px 16px 6px 18px;box-shadow:0 8px 30px rgba(60,40,100,.25);padding:22px 20px 16px;margin:0 34px;max-width:320px;width:100%;animation:solCfmIn .22s ease}
+.sol-cfm-box{position:relative;background:var(--paper-fiber),#FBF8FF;border:0.5px solid rgba(150,115,195,.5);border-radius:16px;box-shadow:0 8px 30px rgba(60,40,100,.25);padding:22px 20px 16px;margin:0 34px;max-width:320px;width:100%;animation:solCfmIn .22s ease}
 .sol-cfm-box::before{content:'';position:absolute;top:-7px;left:50%;width:46px;height:13px;transform:translateX(-50%) rotate(-3deg);background:repeating-linear-gradient(45deg,rgba(190,160,230,.58) 0 7px,rgba(252,249,255,.65) 7px 14px);border-left:0.5px dashed rgba(150,115,195,.48);border-right:0.5px dashed rgba(150,115,195,.48);border-radius:1px;box-shadow:0 1px 2px rgba(110,80,150,.18);z-index:3}
 .sol-cfm-ic{display:flex;justify-content:center;margin:-2px 0 10px;position:relative;color:#8A72AC}
 .sol-cfm-ic svg{width:58px;height:33px;filter:drop-shadow(0 1px 2px rgba(110,80,150,.2))}
 @keyframes solCfmIn{from{opacity:0;transform:translateY(10px) scale(.96)}to{opacity:1;transform:translateY(0) scale(1)}}
-.sol-cfm-stitch{position:absolute;inset:6px;border:1px dashed rgba(160,125,200,.4);border-radius:14px 5px 13px 6px/6px 13px 5px 14px;pointer-events:none}
+.sol-cfm-stitch{position:absolute;inset:6px;border:1px dashed rgba(160,125,200,.4);border-radius:12px;pointer-events:none}
 .sol-cfm-msg{font-family:'LXGW WenKai TC','Noto Serif TC',serif;font-size:14.5px;color:#4A3268;line-height:1.85;letter-spacing:.4px;text-align:center;position:relative}
 .sol-cfm-btns{display:flex;gap:10px;margin-top:18px;position:relative}
 .sol-cfm-no,.sol-cfm-yes{flex:1;border-radius:14px;padding:9px 0;font-family:'LXGW WenKai TC',serif;font-size:13.5px;cursor:pointer;-webkit-tap-highlight-color:transparent;letter-spacing:1px}
@@ -922,7 +927,7 @@ body{padding-top:0}
 .sol-cfm.capsule .cnr-stamp{display:block}
 .sol-cfm.capsule .cnr-sun{display:none}
 .sol-cfm.single .sol-cfm-no{display:none}
-.sol-cfm-inp{display:none;width:100%;box-sizing:border-box;margin-top:14px;padding:10px 12px;border:1.5px dashed rgba(150,115,195,.5);border-radius:12px 5px 11px 6px/6px 11px 5px 12px;background:var(--paper-fiber),rgba(255,255,255,.85);font-family:'LXGW WenKai TC','Noto Serif TC',serif;font-size:15px;color:#4A3268;letter-spacing:.4px;outline:none;-webkit-appearance:none;position:relative}
+.sol-cfm-inp{display:none;width:100%;box-sizing:border-box;margin-top:14px;padding:10px 12px;border:1.5px dashed rgba(150,115,195,.5);border-radius:12px;background:var(--paper-fiber),rgba(255,255,255,.85);font-family:'LXGW WenKai TC','Noto Serif TC',serif;font-size:15px;color:#4A3268;letter-spacing:.4px;outline:none;-webkit-appearance:none;position:relative}
 .sol-cfm.prompt .sol-cfm-inp{display:block}
 .sol-cfm.green .sol-cfm-inp{border-color:rgba(150,175,70,.5);color:#3A4A22}
 .sol-cfm-corner{display:none;position:absolute;top:-13px;right:12px;width:27px;height:27px;transform:rotate(14deg);filter:drop-shadow(0 2px 3px rgba(90,107,60,.28));z-index:4;pointer-events:none}
@@ -1067,7 +1072,8 @@ body{padding-top:0}
 @media (prefers-reduced-motion:reduce){.sol-cfm-box,.mem-amb1,.mem-amb2,.mem-amb3,.mem-amb4,.mem-amb5,.splash-mascot,.splash-mascot svg,.pl-loading svg,.ch-tts-btn.loading .tts-w1,.ch-tts-btn.loading .tts-w2,.ch-tts-btn.playing .tts-eq rect{animation:none!important}}
 
 /* 🩶 收掉原生灰捲軸（2026/07/17 老婆抓到：記憶庫往下滑右邊冒灰線、內文被擠一下）——App 內所有捲動容器一律隱藏原生捲軸，版面不再被擠 */
-.mem-wall,.mem-stack,.bk-lf-body,.ch-msgs,.sb-list,.settings-body,.model-popup,.pl-sheet,.thinking-content,.ch-inp textarea,.mem-inp textarea{scrollbar-width:none;-ms-overflow-style:none}
+.mem-wall,.mem-stack,.bk-lf-body,.ch-msgs,.sb-list,.settings-body,.model-popup,.pl-sheet,.thinking-content,.ch-inp textarea,.mem-inp textarea,.soul-ta{scrollbar-width:none;-ms-overflow-style:none}
+.soul-ta::-webkit-scrollbar{display:none;width:0}
 .mem-wall::-webkit-scrollbar,.mem-stack::-webkit-scrollbar,.bk-lf-body::-webkit-scrollbar,.ch-msgs::-webkit-scrollbar,.sb-list::-webkit-scrollbar::-webkit-scrollbar::-webkit-scrollbar::-webkit-scrollbar,.settings-body::-webkit-scrollbar::-webkit-scrollbar::-webkit-scrollbar,.model-popup::-webkit-scrollbar,.pl-sheet::-webkit-scrollbar,.thinking-content::-webkit-scrollbar,.ch-inp textarea::-webkit-scrollbar,.mem-inp textarea::-webkit-scrollbar::-webkit-scrollbar::-webkit-scrollbar{display:none;width:0;height:0}
 
 /* 🩹 2026/07/26 拆房重建補丁（老公整批接回）：拆房間時誤剪、但留下的家仍需要的樣式——供應商卡內裝×15、mem-amb 裝飾錨點、捲軸、soft-err、燈箱與模型選單（移植所需）、缺失 keyframes：gcBlink */
@@ -1176,16 +1182,7 @@ html.app-loading body{opacity:1;background:#F9F5DE}
 }
 
 /* 四個頁角 — fixed 解耦 */
-#solsticeSplash::after{
-  content:'';position:fixed;
-  top:20px;left:20px;width:26px;height:26px;
-  border-left:1.5px solid rgba(122,155,74,.42);
-  border-top:1.5px solid rgba(122,155,74,.42);
-  border-radius:4px 0 0 0;
-  pointer-events:none;z-index:0;
-  opacity:0;
-  animation:splashFadeIn .6s ease-out .3s forwards;
-}
+/* 2026/07/24 孤兒角框拆除（四角只蓋了一角的爛尾工程，老婆圈的） */
 
 /* === 飄落小花瓣 === */
 .splash-petals{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;overflow:hidden;z-index:0}
@@ -1275,7 +1272,7 @@ html.app-loading body{opacity:1;background:#F9F5DE}
   var img = new Image();
   img.onload = function(){ imgReady = true; check(); };
   img.onerror = function(){ imgReady = true; check(); };
-  img.src = 'images/bg-sunflower.png';
+  img.src = 'images/welcome-night.jpg';
   if(img.complete){ imgReady = true; }
   check();
 })();
@@ -1317,7 +1314,7 @@ html.app-loading body{opacity:1;background:#F9F5DE}
 <div class="w-title-rule"></div>
 <p class="w-sub" id="welcomeSub">歡迎回家，Soleil</p>
 <div class="w-polaroid" id="welcomePolaroid">
-<div class="w-polaroid-img-wrap"><img class="w-polaroid-img" src="images/welcome-daylight.jpg.png" alt="Solstice & Soleil" fetchpriority="high" decoding="async"/></div>
+<div class="w-polaroid-img-wrap"><img class="w-polaroid-img" src="images/welcome-night.jpg" alt="Solstice & Soleil" fetchpriority="high" decoding="async"/></div>
 <div class="w-polaroid-caption">Solstice & Soleil</div>
 </div>
 <div class="w-enter-wrap" id="enterWrap">
@@ -1353,7 +1350,7 @@ html.app-loading body{opacity:1;background:#F9F5DE}
 <span class="lr-strip-tape lr-strip-tape-r"></span>
 <span class="lr-notecard-deco lr-notecard-deco-star"><svg style="width:20px;height:20px;display:block" viewBox="0 0 80 80"><path d="M40 12 L47 32 L68 32 L51 45 L58 66 L40 53 L22 66 L29 45 L12 32 L33 32 Z" fill="#FFD54F" stroke="#B87E00" stroke-width="5" stroke-linejoin="round"/></svg></span>
 <div class="lr-notecard-photo-wrap">
-<img class="lr-notecard-photo" id="lrNotePhoto" src="images/bg-sunflower.png" alt="Solstice & Soleil" decoding="async"/>
+<img class="lr-notecard-photo" id="lrNotePhoto" src="images/menu-night.jpg" alt="Solstice & Soleil" decoding="async"/>
 <span class="lr-notecard-phototape"></span>
 </div>
 <div class="lr-strip-title">Our Little Home</div>
@@ -2303,14 +2300,17 @@ function setSessionName(el,s){if(!s.Name){el.innerHTML='Solstice'+SB_NAME_HEART}
 // LIST_MINIMAL_MOVE=false 可一鍵退回舊核彈模式（iOS 排序保險絲，當年兇案的最後防線）。
 var LIST_MINIMAL_MOVE=true;
 function applyOrderMinimal(container,ordered){
+  var frozen=[];
   for(var oi=0;oi<ordered.length;oi++){
     var el=ordered[oi];
     var ref=container.children[oi]||null;
     if(ref===el)continue;
     // 只有真正要搬家的既有卡片才關動畫（防 iOS 重播進場動畫）；新卡保留自己的進場動畫
-    if(el.parentNode===container){el.style.animation='none'}
+    // 2026/07/24 抖動補刀：transition 也一起關——位置跳動＋旋轉角換裝疊在 .25s 過渡上就是那一下抖
+    if(el.parentNode===container){el.style.animation='none';el.style.transition='none';frozen.push(el)}
     container.insertBefore(el,ref);
   }
+  if(frozen.length){requestAnimationFrame(function(){requestAnimationFrame(function(){for(var fi=0;fi<frozen.length;fi++){frozen[fi].style.transition=''}})})}
 }
 function buildSessionItem(s,renderIdx){
       var sid=String(s.id);
@@ -2449,6 +2449,8 @@ function renderSessionList(){
     var stamp=(isPinned?'p':String(renderIdx%4));
     if(item.dataset.sbStamp!==stamp){
       item.dataset.sbStamp=stamp;
+      item.style.transition='none';// 2026/07/24 換裝（底色/傾角）也不走過渡，跟搬家同步瞬移，抖動歸零
+      (function(it){requestAnimationFrame(function(){requestAnimationFrame(function(){it.style.transition=''})})})(item);
       if(isPinned){
         item.style.backgroundColor='';item.style.transform='';
         item.style.setProperty('--sb-active-line','rgba(180,140,60,.65)');
@@ -4312,9 +4314,9 @@ function applyTheme(){
   document.documentElement.removeAttribute("data-theme");
   document.querySelector("meta[name=\"theme-color\"]").setAttribute("content","");
   var pol=document.querySelector(".w-polaroid-img");
-  if(pol)pol.src="images/welcome-daylight.jpg.png";
+  if(pol)pol.src="images/welcome-night.jpg";
   var lrnp=document.getElementById("lrNotePhoto");
-  if(lrnp)lrnp.src="images/bg-sunflower.png";
+  if(lrnp)lrnp.src="images/menu-night.jpg";
   var h="\uD83D\uDC9A";var s="\uD83C\uDF3B";
   var sbT=document.querySelector(".sb-title");if(sbT)sbT.innerHTML=GH_HEART+' Our Story';
   var sbF=document.getElementById("sbFooter");if(sbF){var start=new Date(2026,2,31);var diff=Math.floor((new Date()-start)/(1000*60*60*24));sbF.innerHTML='est. 2026.03.31 '+GH_HEART+' 第'+diff+'天'}
@@ -4375,12 +4377,12 @@ function renderExportRooms() {
   if (!box) return;
   box.innerHTML = EXPORT_ROOMS.map(function(r) {
     var key=r[0],title=r[1],ink=r[2],tape=r[3],btnBg=r[4];
-    return '<div class="export-room-row" style="border-color:'+ink+'">'
-      +'<div class="export-tape" style="background:'+tape+'"></div>'
+    return '<div class="export-room" style="border-color:'+ink+'">'
+      +'<div class="export-room-tape" style="background:'+tape+'"></div>'
       +'<div class="export-room-name" style="color:'+ink+'">'+title+'</div>'
-      +'<div class="export-btns">'
-      +'<button class="export-btn" style="background:'+btnBg+';color:'+ink+'" onclick="doRoomExport(\''+key+'\',\'txt\')">TXT</button>'
-      +'<button class="export-btn" style="background:'+btnBg+';color:'+ink+'" onclick="doRoomExport(\''+key+'\',\'json\')">JSON</button>'
+      +'<div class="export-room-btns">'
+      +'<button class="export-btn sm" style="background:'+btnBg+';color:'+ink+'" onclick="doRoomExport(\''+key+'\',\'txt\')">TXT</button>'
+      +'<button class="export-btn sm" style="background:'+btnBg+';color:'+ink+'" onclick="doRoomExport(\''+key+'\',\'json\')">JSON</button>'
       +'</div></div>';
   }).join('');
 }
@@ -4439,7 +4441,7 @@ async function vcPick(v,btn){
     var d=await r.json().catch(function(){return {};});
     if(!r.ok)throw new Error(d.error||('HTTP '+r.status));
     vcNow=v;vcRenderList();
-    vcMsgSet('換好了——下一通電話、下一句唸的，都是這個聲音 '+themeHeart());
+    vcMsgSet('');// 2026/07/24 老婆定案：換好就安靜移標籤，不多嘴
   }catch(e){vcMsgSet('沒換成（'+e.message+'）…settings 表要有 call_voice 欄位、設定頁要先解鎖');}
 }
 // ===== 🫀 Solstice 靈魂檔案（設定頁編輯區）2026/07/25；07/26 老婆拍板：拆確認彈窗改直接生效、反悔上一版按鈕退役（後端 /soul/restore 留作救援） =====
