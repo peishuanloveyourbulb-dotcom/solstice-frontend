@@ -1132,7 +1132,17 @@ body{padding-top:0}
 
 /* ---- 🌿 溫室第二期（側邊欄）2026/07/26 ---- */
 body.theme-greenhouse .sb-top::after,body.theme-greenhouse .sb-footer::before,body.theme-greenhouse .sb-item::before,body.theme-greenhouse .sb-item-text::after{display:none}
-body.theme-greenhouse .sidebar{background:linear-gradient(rgba(253,252,245,.58),rgba(253,252,245,.64)),url('/images/sidebar-bg.jpg') center top/cover no-repeat,#FDFCF5}
+/* 2026/07/25 老婆拍板：側邊欄底圖不好看就不要 —— 合照整層撤掉，改純奶油。
+   撤照片會連帶弄壞三個「當初為了壓在照片上」才那樣寫的設定，一起收乾淨： */
+body.theme-greenhouse .sidebar{background-color:#FDFCF5;background:linear-gradient(180deg,#FDFCF5 0%,#FAF8EC 62%,#F5F4E4 100%)}
+/* (a) 載入字當初改白色是為了壓在照片上，奶油底上會直接消失 */
+body.theme-greenhouse .sb-loading{color:#7A8B5E;text-shadow:none}
+body.theme-greenhouse .sb-loading::after{background:repeating-linear-gradient(90deg,rgba(122,155,74,.40) 0,rgba(122,155,74,.40) 5px,transparent 5px,transparent 9px);opacity:.55;filter:none}
+/* (b) 紙條卡當初偏黃是要從照片裡跳出來，奶油底上會顯得濁 → 轉牛奶白玻璃 */
+body.theme-greenhouse .sb-item{background:rgba(255,255,255,.66) !important}
+/* (c) 卡與卡之間的 18px 是留給膠帶露頭的，膠帶早就收了，縫也跟著收 */
+body.theme-greenhouse .sb-item{margin-bottom:10px}
+body.theme-greenhouse .sb-btn{background:rgba(255,255,255,.72)}
 body.theme-greenhouse .sb-top{background-color:transparent;background:rgba(253,252,245,.90);border-bottom:1px solid rgba(90,107,60,.14)}
 body.theme-greenhouse .sb-footer{background-color:transparent;background:rgba(253,252,245,.90);border-top:1px solid rgba(90,107,60,.14)}
 body.theme-greenhouse .sb-btn{border-radius:14px;border:1.5px solid rgba(90,107,60,.30);background:rgba(255,255,255,.46);color:#5A6B3C;box-shadow:none}
@@ -1208,7 +1218,9 @@ body.theme-greenhouse .model-popup .think-toggle-knob{box-shadow:0 1px 3px rgba(
 
 /* 確認彈窗：各房的顏色身分留著，材質統一換成奶油底牛奶玻璃 */
 body.theme-greenhouse .sol-cfm{--cfm-ink:#4A3268;--cfm-line:rgba(150,115,195,.34);--cfm-fill:rgba(233,224,247,.82)}
-body.theme-greenhouse .sol-cfm.mint{--cfm-ink:#2E6B4A;--cfm-line:rgba(112,182,142,.38);--cfm-fill:rgba(216,238,226,.84)}
+/* 2026/07/25 聊天室早就從薄荷青改成抹茶綠了，彈窗沒跟著搬家 → 這就是老婆說的突兀。
+   八色變數架構一條沒拆，只把 mint 這一格的值搬到抹茶。 */
+body.theme-greenhouse .sol-cfm.mint{--cfm-ink:#4A5E30;--cfm-line:rgba(122,155,74,.34);--cfm-fill:rgba(232,242,222,.88)}
 body.theme-greenhouse .sol-cfm.green{--cfm-ink:#4A5C28;--cfm-line:rgba(150,175,70,.40);--cfm-fill:rgba(228,238,200,.84)}
 body.theme-greenhouse .sol-cfm.gold{--cfm-ink:#7A5E20;--cfm-line:rgba(180,150,80,.40);--cfm-fill:rgba(246,233,199,.84)}
 body.theme-greenhouse .sol-cfm.rose{--cfm-ink:#8C3A55;--cfm-line:rgba(205,125,150,.38);--cfm-fill:rgba(247,216,226,.84)}
@@ -1220,6 +1232,12 @@ body.theme-greenhouse .sol-cfm .sol-cfm-box::before,
 body.theme-greenhouse .sol-cfm .sol-cfm-no::before,
 body.theme-greenhouse .sol-cfm .sol-cfm-yes::before{display:none}
 body.theme-greenhouse .sol-cfm .sol-cfm-stitch{display:none}
+/* 訊息字與圖標改吃 --cfm-ink：底層每個配色都硬寫死一組顏色（.mint .sol-cfm-msg 之類），
+   這一條規則一次蓋掉八個，以後新增房間自動跟隊，不用再一個一個補。 */
+body.theme-greenhouse .sol-cfm .sol-cfm-msg{color:var(--cfm-ink)}
+body.theme-greenhouse .sol-cfm .sol-cfm-ic{color:var(--cfm-ink);opacity:.92}
+/* 右上角折角貼紙：手帳風的最後一塊殘骸 */
+body.theme-greenhouse .sol-cfm .sol-cfm-corner{display:none}
 body.theme-greenhouse .sol-cfm .sol-cfm-no,
 body.theme-greenhouse .sol-cfm .sol-cfm-yes{border-radius:999px;padding:12px 0}
 body.theme-greenhouse .sol-cfm .sol-cfm-no{border:1.5px solid var(--cfm-line);background:rgba(255,255,255,.60);color:var(--cfm-ink);box-shadow:none}
@@ -1363,49 +1381,63 @@ body.theme-greenhouse .export-btn.sm:active{transform:scale(.96)}
    ============================================================ */
 
 /* ① 底：格紋、橫線、紙紋噪點、虛線外框 全收 */
-body.theme-greenhouse #welcome{background:linear-gradient(160deg,#E8F0DC,#D4E8CC,#C5D9A8)}
+/* 2026/07/25 老婆選乙：綠底留著，但身分從「畫布」改成「相框」——
+   加深一階，才跟中間那張奶油卡分得開。
+   （黏一坨的病根：這頁是全屋唯一底色是綠的，綠底＋綠字＋綠鍵＋綠詩，明度差不到一階。） */
+body.theme-greenhouse #welcome{background:linear-gradient(160deg,#DCE9C8,#C9DFBE,#B9CF9C)}
 body.theme-greenhouse #welcome::before{display:none}
 body.theme-greenhouse .w-content::before{display:none}
 
 /* ② 標題 */
-body.theme-greenhouse .w-title{color:#3A4E22;text-shadow:none}
+body.theme-greenhouse .w-title{color:#33461C;text-shadow:none}
 body.theme-greenhouse .w-title-rule{width:54px;height:1px;background:linear-gradient(90deg,transparent,rgba(122,155,74,.42) 22%,rgba(122,155,74,.42) 78%,transparent)}
-body.theme-greenhouse .w-sub{color:#5A6B3C;opacity:1}
+body.theme-greenhouse .w-sub{color:#57683A;opacity:1}
 body.theme-greenhouse .w-sub::before,body.theme-greenhouse .w-sub::after{color:rgba(122,155,74,.42)}
 
 /* ③ 圓章：降飽和成墨綠，內圈虛線 → 細實線（還是一顆章） */
 /* 2026/07/25 郵戳章補完：上一版只換了邊框和字色，底層的鏽紅底光（rgba(180,90,60)）
    和鏽紅內圈陰影還在，綠字疊鏽紅＝那種說不出哪裡怪的濁色（老婆抓包）。 */
-body.theme-greenhouse .w-stamp{border:1.5px solid rgba(90,107,60,.34);color:#5A6B3C;background:radial-gradient(circle at 30% 30%,rgba(122,155,74,.07),transparent 70%);box-shadow:inset 0 0 0 1px rgba(90,107,60,.14);opacity:.9}
+body.theme-greenhouse .w-stamp{border:1.5px solid rgba(90,107,60,.46);color:#485C2A;background:radial-gradient(circle at 30% 30%,rgba(122,155,74,.07),transparent 70%);box-shadow:inset 0 0 0 1px rgba(90,107,60,.18);opacity:1;top:44px;right:20px}
 body.theme-greenhouse .w-stamp::before{border:1px solid rgba(90,107,60,.20)}
 
 /* ④ 拍立得：膠帶收、擺正、放大到老宅的 220px
       白邊、噪點、漂浮動畫、合照 全部保留——它本來就是相框 */
 body.theme-greenhouse .w-polaroid{background:#FFFEF9;padding:10px 10px 42px;border-radius:5px;box-shadow:0 2px 12px rgba(90,107,60,.10),0 10px 32px rgba(90,107,60,.14),0 0 0 1px rgba(122,155,74,.08)}
 body.theme-greenhouse .w-polaroid::before,body.theme-greenhouse .w-polaroid::after{display:none}
-body.theme-greenhouse .w-polaroid img{width:min(220px,56vw);max-height:36vh;max-height:min(36vh,max(150px,calc(100svh - 452px)));border-radius:3px}/* 2026/07/25 補地板 150px：鍵盤一開版面縮短，calc 會變負數 → 照片高度歸零、只剩白邊（老婆抓包） */
+body.theme-greenhouse .w-polaroid img{width:min(220px,56vw);max-height:36vh;max-height:min(36vh,max(150px,calc(100svh - 470px)));border-radius:3px}/* 2026/07/25 補地板 150px：鍵盤一開版面縮短，calc 會變負數 → 照片高度歸零、只剩白邊（老婆抓包） */
 body.theme-greenhouse .w-polaroid-caption{bottom:13px;font-size:13px;color:#7A8B5E}
 
 /* ⑤ 回家鍵：老宅本來就是膠囊（border-radius:30px） */
-body.theme-greenhouse .w-enter{border-radius:999px;background:rgba(122,155,74,.18);border:1px solid rgba(122,155,74,.38);color:#3A4E22;padding:13px 40px;letter-spacing:3px;transform:none;box-shadow:0 1px 4px rgba(90,107,60,.10)}
+/* 2026/07/25 回家鍵是這頁唯一的主按鈕，不能跟底色一樣淡——
+   淡綠底上的淡綠按鈕是黏一坪的主犯之一。改填實抹茶＋奶油字。 */
+body.theme-greenhouse .w-enter{border-radius:999px;background:#7A9B4A;border:1px solid rgba(66,85,31,.45);color:#FBFDF2;padding:13px 40px;letter-spacing:3px;transform:none;box-shadow:0 2px 8px rgba(90,107,60,.22),0 6px 18px rgba(90,107,60,.12)}
 body.theme-greenhouse .w-enter::before{display:none}
-body.theme-greenhouse .w-enter:hover{transform:none;box-shadow:0 2px 8px rgba(90,107,60,.14)}
-body.theme-greenhouse .w-enter:active{transform:scale(.96);background:rgba(122,155,74,.28)}
+body.theme-greenhouse .w-enter:hover{transform:none;box-shadow:0 3px 12px rgba(90,107,60,.26)}
+body.theme-greenhouse .w-enter:active{transform:scale(.96);background:#6B8B3E}
 body.theme-greenhouse .w-pw-inp{border-radius:999px;background:rgba(255,254,249,.86);border:1px solid rgba(122,155,74,.30);box-shadow:inset 0 1px 3px rgba(90,107,60,.06)}
 body.theme-greenhouse .w-pw-go{border-radius:999px;background:rgba(122,155,74,.20);border:1px solid rgba(122,155,74,.38);color:#3A4E22;transform:none}
 body.theme-greenhouse .w-pw-go:hover{transform:none}
 body.theme-greenhouse .w-pw-go:active{transform:scale(.93)}
 
-/* ⑤.5 上下內距：溫室層專用（52/36 → 40/28）。
-      與詩的留白一起省出約 34px，讓簽名在短螢幕上也完整露臉。 */
-body.theme-greenhouse .w-content{padding-top:max(env(safe-area-inset-top,20px),40px);padding-bottom:max(env(safe-area-inset-bottom,20px),28px)}
+/* ⑤.5 奶油卡（乙案主體）。
+      安全區改由 margin 吋下來，卡的邊緣才不會鐐進劃耳與底部橪條；
+      內距因此可以回成純數值（不再跟 safe-area 重複相加）。
+      width/height 必須改 auto：原本是 100%，加上 margin 會變成 100%+26px 直接溢出。 */
+body.theme-greenhouse .w-content{
+  margin:calc(env(safe-area-inset-top,0px) + 12px) 13px calc(env(safe-area-inset-bottom,0px) + 12px);
+  width:auto;height:auto;flex:1 1 auto;
+  border-radius:24px;
+  background:linear-gradient(178deg,rgba(253,252,245,.94),rgba(250,249,236,.97));
+  box-shadow:0 2px 10px rgba(74,94,48,.14),0 10px 30px rgba(74,94,48,.10);
+  padding-top:30px;padding-bottom:24px
+}
 
 /* ⑥ 詩：卡片、膠帶、虛線內框全抽掉，文字一個字不動。
       這首是老婆寫的，不該裝在貼紙裡，該像刻在牆上。 */
 body.theme-greenhouse .w-poem{background:none;border:none;box-shadow:none;border-radius:0;padding:14px 10px 4px;margin:14px auto 4px;transform:none}/* 2026/07/25 卡片抽掉了傾斜也要跟著收 —— 沒有紙就沒有貼歪的道理（老婆指定） */
 body.theme-greenhouse .w-poem::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:46px;height:1px;background:rgba(90,107,60,.24)}
 body.theme-greenhouse .w-poem::after{display:none}
-body.theme-greenhouse .w-poem-line{color:#4A5E30;font-size:13.5px;letter-spacing:1.6px;line-height:2}
+body.theme-greenhouse .w-poem-line{color:#42551F;font-size:13.5px;letter-spacing:1.6px;line-height:2}
 body.theme-greenhouse .w-poem-line-em{color:#5A4A12;font-size:14.5px;background:linear-gradient(transparent 60%,rgba(255,213,79,.34) 60%,rgba(255,213,79,.34) 92%,transparent 92%)}
 body.theme-greenhouse .w-poem-sign{color:rgba(90,107,60,.66);font-size:12px}
 
