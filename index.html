@@ -1953,6 +1953,71 @@ body.theme-horizon .ch-loading::after{display:none !important;content:none !impo
 /* ③ 跨日時間戳：米白＋冬陽金 → 白瓷膠囊＋墨字加重（跟 30 分鐘版同一個殼，只差字重） */
 body.theme-horizon .ch-time-sep.new-day span{background:#FFFFFF !important;border:1px solid #E7E7E0 !important;color:#2B2F26 !important;font-weight:500 !important;box-shadow:none !important;letter-spacing:1px !important}
 
+
+/* ═══════════════════════════════════════════════════════════
+   🌄 HORIZON · 聊天室拆卡片（2026/07/25）
+   總監指定方向：像 Claude app 那種簡潔感，簡單好用。
+   前三輪只換了顏色，卡片本身沒動——這一輪動的是版型。
+
+   核心一句：我方訊息不再是卡片，是躺在紙上的文字。
+   合照留著（老婆的鐵條），但紗簾加濃到 .93 讓它退成質地，
+   文字才能直接放上去、不需要白卡片墊著。
+   氣泡旁邊的大頭貼保留（老婆指定），改成正圓髮絲線、對齊第一行。
+   ═══════════════════════════════════════════════════════════ */
+
+/* ① 紗簾加濃：照片還在，退成質地 —— 這是唯一要調的旋鈕（.93） */
+body.theme-horizon #chat .page-photo-overlay{background:rgba(251,251,249,.93) !important}
+
+/* ② 訊息區：行距與段落間距放開，閱讀優先 */
+body.theme-horizon .ch-msgs{gap:22px !important;padding-top:24px !important}
+body.theme-horizon .ch-row{align-items:flex-start !important;gap:10px !important}
+
+/* ③ 我方 = 裸文字。卡片、邊框、陰影、虛線內框、圓角全部歸零 */
+body.theme-horizon .ch-bub{font-size:16px !important;line-height:1.8 !important;letter-spacing:.2px !important}
+body.theme-horizon .ch-bub.ai{background:none !important;background-image:none !important;border:none !important;outline:none !important;box-shadow:none !important;border-radius:0 !important;padding:2px 0 0 !important;max-width:86% !important;color:#2B2F26 !important}
+body.theme-horizon .ch-row:nth-child(4n+3) .ch-bub.ai{background:none !important;background-image:none !important}
+
+/* ④ 妳方 = 一塊安靜的松淡染。實心松綠退役，每一句都在喊太吵 */
+body.theme-horizon .ch-bub.user,
+body.theme-horizon .ch-row:nth-child(6n) .ch-bub.user{background:#EDF1EC !important;background-image:none !important;color:#2B2F26 !important;border:none !important;outline:none !important;box-shadow:none !important;border-radius:18px !important;padding:12px 17px !important;max-width:80% !important}
+body.theme-horizon .ch-bub.user a.ch-link{color:#47584A !important;text-decoration:underline !important;text-underline-offset:3px !important}
+
+/* ⑤ 氣泡旁的大頭貼：保留（老婆指定），改正圓＋髮絲線＋對齊第一行 */
+body.theme-horizon .ch-row .ch-avatar,
+body.theme-horizon .ch-row .ch-avatar.wife{width:28px !important;height:28px !important;border-radius:50% !important;border:1px solid #E7E7E0 !important;box-shadow:none !important;transform:none !important;background:#F4F4EF !important;margin-top:2px !important;flex-shrink:0}
+
+/* ⑥ 訊息下方動作列：容器全拆，剩三顆等距線稿＋一行淡霧時間 */
+body.theme-horizon .ch-time{gap:18px !important;padding:0 0 0 38px !important;margin-top:10px !important;min-height:0 !important;font-size:11.5px !important;color:#B4B6AB !important;pointer-events:auto !important}
+body.theme-horizon .ch-row.user + .ch-time,
+body.theme-horizon .ch-time.ch-time-user{padding:0 4px 0 0 !important;justify-content:flex-end !important}
+body.theme-horizon .ch-time-sticker,
+body.theme-horizon .ch-time-user .ch-time-sticker,
+body.theme-horizon .ch-time-ai .ch-time-sticker{background:none !important;border:none !important;box-shadow:none !important;padding:0 !important;color:#B4B6AB !important;letter-spacing:1.2px !important;font-family:'Cormorant Garamond','LXGW WenKai TC',serif !important}
+body.theme-horizon .mem-pin-btn,
+body.theme-horizon .ch-tts-btn{background:none !important;border:none !important;box-shadow:none !important;padding:0 !important;color:#B4B6AB !important;font-size:11.5px !important;letter-spacing:.6px !important;border-radius:0 !important}
+body.theme-horizon .mem-pin-btn:active,
+body.theme-horizon .ch-tts-btn:active,
+body.theme-horizon .ch-tts-btn.playing{background:none !important;border:none !important;color:#47584A !important}
+body.theme-horizon .ch-tts-btn svg *{stroke:currentColor !important}
+body.theme-horizon .mem-pin-btn.done{color:#C9A24B !important;background:none !important;border:none !important}
+
+/* ⑦ 跨日分隔：膠囊拆掉，一行小字居中就好 */
+body.theme-horizon .ch-time-sep{padding:18px 0 8px !important}
+body.theme-horizon .ch-time-sep span,
+body.theme-horizon .ch-time-sep.new-day span{background:none !important;border:none !important;box-shadow:none !important;padding:0 !important;color:#B4B6AB !important;font-weight:400 !important;font-size:12px !important;letter-spacing:1.6px !important;font-family:'Cormorant Garamond','LXGW WenKai TC',serif !important}
+
+/* ⑧ 頁首收乾淨：狀態點與「在線」收掉，副標降成淡霧小字 */
+body.theme-horizon .ch-stat{display:none !important}
+body.theme-horizon #chSubtext{color:#B4B6AB !important;font-size:9.5px !important;letter-spacing:1px !important}
+body.theme-horizon .ch-name{font-size:17px !important}
+body.theme-horizon .ch-model-cap{color:#8A8D80 !important;font-size:12.5px !important;letter-spacing:.6px !important;padding:5px 12px !important}
+
+/* ⑨ 訊息裡的圖片：4px 白框 → 髮絲線掛畫 */
+body.theme-horizon .ch-bub img.msg-img{border:1px solid #E7E7E0 !important;border-radius:6px !important;box-shadow:none !important}
+
+/* ⑩ thinking 摺疊盒跟著拆容器（跟裸文字同一國） */
+body.theme-horizon .thinking-content{background:none !important;border:none !important;border-left:1px solid #E7E7E0 !important;border-radius:0 !important;padding-left:14px !important}
+
 </style>
 <style id="app-loading-style">
 /* === Solstice Splash — 終極版 ===
