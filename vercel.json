@@ -2,6 +2,10 @@
   "outputDirectory": ".",
   "rewrites": [
     {
+      "source": "/index-bear.html",
+      "destination": "/index-bear.html"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }
