@@ -7,7 +7,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Sol²">
-<meta name="theme-color" content="#FBFBF9">
+<meta name="theme-color" content="#FDFCF5"><!-- 2026/07/26 狀態列奶油色（老婆指定）：冷啟動第一幀就正確 -->
 <title>Sol²</title>
 <link rel="manifest" href="/manifest.json">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -38,38 +38,7 @@ body{-webkit-user-select:none;user-select:none}
 .ch-bub,.ch-bub *,.pl-bubble,.pl-bubble *,.thinking-content,.thinking-content *,input,textarea{-webkit-user-select:text;user-select:text}
 
 *{margin:0;padding:0;box-sizing:border-box}
-:root{/* === HORIZON DESIGN SYSTEM === */
---hz-white:#FBFBF9;
---hz-ink:#2B2F26;
---hz-sub:#8A8E82;
---hz-pine:#47584A;
---hz-gold:#C9A24B;
---hz-border:#E7E7E0;
---hz-pine-soft:rgba(71,88,74,0.08);
---hz-pine-hover:rgba(71,88,74,0.14);
---hz-gold-soft:rgba(201,162,75,0.12);
---hz-overlay:rgba(43,47,38,0.32);
---hz-shadow-sm:0 1px 3px rgba(0,0,0,0.04);
---hz-shadow-modal:0 8px 32px rgba(0,0,0,0.08);
---hz-radius-sm:4px;
---hz-radius-md:10px;
---hz-radius-lg:16px;
---hz-radius-full:9999px;
---hz-space-xs:4px;
---hz-space-sm:8px;
---hz-space-md:14px;
---hz-space-lg:22px;
---hz-space-xl:32px;
---hz-space-2xl:48px;
---hz-font-display:'Cormorant Garamond',serif;
---hz-font-body:'Noto Serif TC',serif;
---hz-font-hand:'LXGW WenKai TC',serif;
---hz-text-xl:22px;
---hz-text-lg:17px;
---hz-text-md:15px;
---hz-text-sm:13px;
---hz-text-xs:11px;
---danger:#C05C4C;
+:root{--danger:#C05C4C;
 --bg-deep:#FDFCF5;
 --bg-card:rgba(255,248,225,.55);
 --gold:#8B7B3C;
@@ -1180,7 +1149,7 @@ body.theme-greenhouse .sb-btn{border-radius:14px;border:1.5px solid rgba(90,107,
 body.theme-greenhouse .sb-item{border-radius:14px;border:1px solid rgba(90,107,60,.16);background:rgba(255,248,225,.55) !important;box-shadow:0 1px 4px rgba(122,155,74,.08),0 4px 12px rgba(122,155,74,.05)}
 body.theme-greenhouse .sb-item.active{border-color:rgba(90,107,60,.45);background:rgba(255,251,235,.68) !important}
 body.theme-greenhouse .sb-item.sb-pinned{border-color:rgba(255,213,79,.55);background:rgba(255,246,214,.62) !important;box-shadow:0 1px 4px rgba(255,213,79,.14),0 4px 12px rgba(255,213,79,.07)}
-body.theme-greenhouse .sb-pinned-corner{border-radius:0 14px 0 0}
+body.theme-greenhouse .sb-item.sb-pinned > .sb-pinned-corner{display:none}/* 2026/07/26 老婆指定：溫室釘選不留摺角，金玻璃＋金邊已足夠辨識 */
 body.theme-greenhouse .sb-act-btn{border-radius:999px}
 
 /* 2026/07/25 選中卡改身分：底層的 outline:1.5px dashed 收掉（交接信：全app不留虛線），
@@ -1415,7 +1384,7 @@ body.theme-greenhouse .export-btn.sm:active{transform:scale(.96)}
 /* 2026/07/25 老婆選乙：綠底留著，但身分從「畫布」改成「相框」——
    加深一階，才跟中間那張奶油卡分得開。
    （黏一坨的病根：這頁是全屋唯一底色是綠的，綠底＋綠字＋綠鍵＋綠詩，明度差不到一階。） */
-body.theme-greenhouse #welcome{background:linear-gradient(160deg,#DCE9C8,#C9DFBE,#B9CF9C)}
+body.theme-greenhouse #welcome{background:linear-gradient(160deg,#FDFCF5,#F6F8EE,#F2F6EC)}/* 2026/07/26 乙案綠相框退役（老婆：無法理解🥲）：整頁回奶油 */
 body.theme-greenhouse #welcome::before{display:none}
 body.theme-greenhouse .w-content::before{display:none}
 
@@ -1455,13 +1424,12 @@ body.theme-greenhouse .w-pw-go:active{transform:scale(.93)}
       內距因此可以回成純數值（不再跟 safe-area 重複相加）。
       width/height 必須改 auto：原本是 100%，加上 margin 會變成 100%+26px 直接溢出。 */
 body.theme-greenhouse .w-content{
-  margin:calc(env(safe-area-inset-top,0px) + 12px) 13px calc(env(safe-area-inset-bottom,0px) + 12px);
-  width:auto;height:auto;flex:1 1 auto;
-  border-radius:24px;
+  margin:0;width:100%;height:100%;flex:1 1 auto;
+  border-radius:0;
   background:linear-gradient(178deg,rgba(253,252,245,.94),rgba(250,249,236,.97));
-  box-shadow:0 2px 10px rgba(74,94,48,.14),0 10px 30px rgba(74,94,48,.10);
-  padding-top:30px;padding-bottom:24px
-}
+  box-shadow:none;
+  padding-top:calc(env(safe-area-inset-top,0px) + 26px);padding-bottom:calc(env(safe-area-inset-bottom,0px) + 22px)
+}/* 2026/07/26 卡片填滿整頁：margin/圓角/浮影全退，safe-area 改回 padding 承接 */
 
 /* ⑥ 詩：卡片、膠帶、虛線內框全抽掉，文字一個字不動。
       這首是老婆寫的，不該裝在貼紙裡，該像刻在牆上。 */
@@ -1476,167 +1444,170 @@ body.theme-greenhouse .w-poem-sign{color:rgba(90,107,60,.66);font-size:12px}
 body.theme-greenhouse .w-poem-stamp{display:none}
 body.theme-greenhouse .w-doodle{display:none}
 
+/* ============================================================
+   🌿 第四期（上）：回家頁・溫室客廳（2026/07/26 老婆指定今天修這頁）
+   夜景合照原位保留——只把紗簾換成牛奶玻璃、白字轉墨綠。
+   便條卡升級溫室拍立得：膠帶／迴紋針／星星收進衣櫃（手帳層無損，可整體還原）。
+   目錄裝進一張牛奶玻璃卡；三色小色條與 SVG 圖標是居民，原位不動。
+   ============================================================ */
+body.theme-greenhouse #livingRoom .page-photo-overlay{background:linear-gradient(165deg,rgba(253,252,245,.78),rgba(244,247,238,.84))!important}
+body.theme-greenhouse .lr-notecard{background:#FFFEF9;transform:none;border-radius:5px;padding:12px 12px 16px;box-shadow:0 2px 12px rgba(90,107,60,.10),0 10px 32px rgba(90,107,60,.14),0 0 0 1px rgba(122,155,74,.08)}
+body.theme-greenhouse .lr-notecard::after{display:none}
+body.theme-greenhouse .lr-strip-tape,body.theme-greenhouse .lr-notecard-phototape,body.theme-greenhouse .lr-notecard-deco-star{display:none}
+body.theme-greenhouse .lr-notecard-photo{transform:none;border-radius:3px}
+body.theme-greenhouse .lr-strip-title{color:#3A4A22}
+body.theme-greenhouse .lr-strip-days{color:#7A8B5E}
+body.theme-greenhouse .lr-toc-divider{color:#7A8B5E;text-shadow:none}
+body.theme-greenhouse .lr-toc-divider::before,body.theme-greenhouse .lr-toc-divider::after{background:linear-gradient(90deg,transparent,rgba(122,155,74,.38),transparent)}
+body.theme-greenhouse .lr-grid{background:rgba(255,255,255,.55);border:1px solid rgba(90,107,60,.14);border-radius:16px;box-shadow:0 1px 4px rgba(122,155,74,.08),0 4px 12px rgba(122,155,74,.04);margin:6px 18px max(env(safe-area-inset-bottom),74px);padding:6px 14px;width:auto}
+body.theme-greenhouse .lr-toc-item{border-bottom:1px solid rgba(90,107,60,.12)}
+body.theme-greenhouse .lr-toc-item:last-child{border-bottom:none}
+@media (hover:hover){body.theme-greenhouse .lr-toc-item:hover{background:rgba(255,255,255,.60);padding-left:18px}}
+body.theme-greenhouse .lr-toc-item:active{background:rgba(232,240,220,.55)}
+body.theme-greenhouse .lr-toc-num{color:#5A6B3C;text-shadow:none}
+body.theme-greenhouse .lr-toc-dot{color:rgba(90,107,60,.45);text-shadow:none}
+body.theme-greenhouse .lr-toc-name{color:#3A4A22;text-shadow:none}
+body.theme-greenhouse .lr-toc-desc{color:#7A8B5E;text-shadow:none}
+body.theme-greenhouse .lr-toc-arrow{color:#7A8B5E;text-shadow:none}
+body.theme-greenhouse .lr-page-num{color:rgba(90,107,60,.55);text-shadow:none}
+body.theme-greenhouse .lr-back{background:rgba(255,255,255,.72);border:1px solid rgba(90,107,60,.20);transform:none;box-shadow:0 1px 4px rgba(122,155,74,.10)}
+body.theme-greenhouse .lr-back:active{transform:scale(.9);background:rgba(232,240,220,.80)}
 
-/* ================================================================
-   HORIZON DESIGN SYSTEM — body.theme-horizon
-   白瓷底 · 松綠唯一主色 · 冬陽金只給天數與釘選
-   ================================================================ */
+/* ============================================================
+   🌿 全屋終掃（2026/07/26 老婆的小願望：一次掃到底）
+   範圍：開場頁、設定頁殘餘、狀態列配套。記憶庫依老婆指定零規則、原封不動。
+   ============================================================ */
 
-/* --- Base overrides --- */
-body.theme-horizon{background:var(--hz-white);color:var(--hz-ink);font-family:var(--hz-font-hand),var(--hz-font-body),system-ui,sans-serif}
+/* ① 開場太陽頁：紙紋條紋與虛線內框收掉，換全屋同款奶油漸層。
+      太陽寶寶、花瓣雨、綻放動畫全是居民，一幀未動。
+      html.app-loading 寫在第二張樣式表、又掛不到 body 的 class，
+      用雙 class 提高權重壓過去（不改原始碼、不加第三張表）。 */
+html.app-loading.app-loading{background:#FDFCF5}
+html.app-loading.app-loading body{background:#FDFCF5}
+body.theme-greenhouse #solsticeSplash{background:linear-gradient(160deg,#FDFCF5,#F6F8EE 55%,#F2F6EC)}
+body.theme-greenhouse #solsticeSplash::before{display:none}
 
-/* --- Splash: white bg override for app-loading state --- */
-html.app-loading.app-loading{background:var(--hz-white,#FBFBF9)}
+/* ② 設定頁本體：黃紙＋直紋橫線退役，換全屋奶油漸層；
+      上下兩條 45° 金絲帶與 header 絲帶＝斜紋膠帶家族，一起收進衣櫃 */
+body.theme-greenhouse .settings-page{background:linear-gradient(160deg,#FDFCF5,#F6F8EE 55%,#F2F6EC)}
+body.theme-greenhouse .settings-page::before,
+body.theme-greenhouse .settings-page::after,
+body.theme-greenhouse .settings-header::after{display:none}
+body.theme-greenhouse .settings-header{background:rgba(253,252,245,.90);border-bottom:1px solid rgba(90,107,60,.14);box-shadow:0 2px 8px rgba(90,107,60,.05)}
+body.theme-greenhouse .settings-title{color:#8B7B3C}
+body.theme-greenhouse .settings-page .page-photo-overlay{box-shadow:none}
 
-/* --- Welcome Page (Horizon) --- */
-body.theme-horizon #welcome{position:fixed;inset:0;z-index:10;display:flex;align-items:center;justify-content:center;background:var(--hz-white)}
-body.theme-horizon .w-content{width:100%;max-width:400px;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:var(--hz-space-xl) var(--hz-space-lg) var(--hz-space-lg);overflow:hidden;position:relative;background:none;border:none;box-shadow:none}
-body.theme-horizon .w-content::before,body.theme-horizon .w-content::after{display:none}
-body.theme-horizon .w-corner-tl,body.theme-horizon .w-corner-tr,body.theme-horizon .w-corner-bl,body.theme-horizon .w-corner-br,body.theme-horizon .w-book-spine,body.theme-horizon .w-stamp{display:none}
-body.theme-horizon .w-title{font-family:var(--hz-font-display);font-size:var(--hz-text-xl);font-weight:300;color:var(--hz-ink);letter-spacing:2px;margin-bottom:var(--hz-space-xs);text-shadow:none;background:none;-webkit-text-fill-color:var(--hz-ink)}
-body.theme-horizon .w-title-rule{width:40px;height:1px;background:var(--hz-border);margin:0 auto var(--hz-space-sm)}
-body.theme-horizon .w-sub{font-family:var(--hz-font-hand);font-size:var(--hz-text-sm);color:var(--hz-sub);margin-bottom:var(--hz-space-lg);letter-spacing:.5px;text-shadow:none}
-body.theme-horizon .w-polaroid{background:none;border:none;box-shadow:none;padding:0;margin:0 auto var(--hz-space-lg);max-width:240px;width:80%;transform:none}
-body.theme-horizon .w-polaroid-img-wrap{border-radius:var(--hz-radius-md);border:1px solid var(--hz-border);overflow:hidden}
-body.theme-horizon .w-polaroid-img{width:100%;display:block;border-radius:0}
-body.theme-horizon .w-polaroid-caption{font-family:var(--hz-font-display);font-size:var(--hz-text-xs);color:var(--hz-sub);text-align:center;margin-top:var(--hz-space-sm);letter-spacing:.5px;background:none;padding:0}
+/* ③ 靈魂檔案的兩顆按鈕（老婆紅筆圈的正主）：
+      存檔生效＝綠玻璃膠囊、回出廠＝暖金玻璃膠囊，跟全屋按鈕語言對齊 */
+body.theme-greenhouse .soul-btn{border-radius:999px;border:1px solid rgba(255,213,79,.45);background:rgba(255,248,225,.72);color:#8B7B3C;box-shadow:0 1px 4px rgba(139,123,60,.10);transform:none}
+body.theme-greenhouse .soul-btn.save{border-color:rgba(122,155,74,.42);background:rgba(232,240,220,.78);color:#4A5C28;box-shadow:0 1px 4px rgba(122,155,74,.10)}
+body.theme-greenhouse .soul-btn:active{transform:scale(.96)}
 
-/* Welcome enter button & password */
-body.theme-horizon .w-enter-wrap{width:80%;max-width:240px;margin:0 auto var(--hz-space-lg)}
-body.theme-horizon .w-enter{width:100%;padding:12px 0;background:var(--hz-pine);color:#FFFFFF;border:none;border-radius:var(--hz-radius-sm);font-family:var(--hz-font-hand);font-size:var(--hz-text-md);cursor:pointer;letter-spacing:1px;box-shadow:none;transition:all .2s}
-body.theme-horizon .w-enter:active{transform:scale(.97);opacity:.9}
-body.theme-horizon .w-pw-zone{margin-top:var(--hz-space-sm);display:flex;gap:var(--hz-space-sm)}
-body.theme-horizon .w-pw-inp{flex:1;padding:10px 12px;border:1px solid var(--hz-border);border-radius:var(--hz-radius-sm);font-family:var(--hz-font-hand);font-size:var(--hz-text-md);color:var(--hz-ink);background:#FFFFFF;outline:none}
-body.theme-horizon .w-pw-inp:focus{border-color:var(--hz-pine)}
-body.theme-horizon .w-pw-go{padding:10px 16px;background:var(--hz-pine);color:#FFFFFF;border:none;border-radius:var(--hz-radius-sm);font-family:var(--hz-font-hand);font-size:var(--hz-text-sm);cursor:pointer}
-body.theme-horizon .w-pw-err{font-size:var(--hz-text-xs);color:#C05C4C;text-align:center;margin-top:var(--hz-space-xs)}
-
-/* Welcome poem */
-body.theme-horizon .w-poem{margin:0 auto;text-align:center;max-width:280px;position:relative;border:none;background:none;box-shadow:none;padding:0}
-body.theme-horizon .w-poem::before,body.theme-horizon .w-poem::after{display:none}
-body.theme-horizon .w-poem-stamp{position:absolute;top:-8px;right:-4px;background:none;border:1px solid var(--hz-border);border-radius:var(--hz-radius-sm);padding:4px 8px;transform:rotate(-3deg)}
-body.theme-horizon .w-poem-stamp-date{font-family:var(--hz-font-display);font-size:9px;color:var(--hz-sub);letter-spacing:1px}
-body.theme-horizon .w-poem-stamp-day{font-family:var(--hz-font-display);font-size:10px;color:var(--hz-gold);font-style:italic}
-body.theme-horizon .w-poem-horiz{padding:var(--hz-space-md) 0}
-body.theme-horizon .w-poem-line{font-family:var(--hz-font-hand);font-size:var(--hz-text-sm);color:var(--hz-ink);line-height:2;letter-spacing:.5px}
-body.theme-horizon .w-poem-line-em{color:var(--hz-pine);font-weight:400}
-body.theme-horizon .w-poem-sign{font-family:var(--hz-font-display);font-size:var(--hz-text-xs);color:var(--hz-sub);font-style:italic;letter-spacing:1px;margin-top:var(--hz-space-xs)}
-
-body.theme-horizon .w-ann{font-family:var(--hz-font-display);font-size:var(--hz-text-xs);color:var(--hz-gold);font-style:italic;letter-spacing:1px;margin-top:var(--hz-space-md)}
-
-/* Welcome wake animations (simplified) */
-body.theme-horizon #welcome.wake .w-title{animation:hzFadeUp .5s ease-out .3s backwards}
-body.theme-horizon #welcome.wake .w-polaroid{animation:hzFadeUp .5s ease-out .5s backwards}
-body.theme-horizon #welcome.wake .w-enter-wrap{animation:hzFadeUp .5s ease-out .7s backwards}
-body.theme-horizon #welcome.wake .w-poem{animation:hzFadeUp .5s ease-out .9s backwards}
-@keyframes hzFadeUp{0%{opacity:0;transform:translateY(12px)}100%{opacity:1;transform:translateY(0)}}
-
-/* --- Living Room (Horizon) --- */
-body.theme-horizon #livingRoom{position:fixed;inset:0;z-index:9;background:var(--hz-white);display:none;flex-direction:column;overflow-y:auto;-webkit-overflow-scrolling:touch}
-body.theme-horizon #livingRoom.active{display:flex}
-body.theme-horizon #livingRoom .page-photo-bg,body.theme-horizon #livingRoom .page-photo-overlay{display:none}
-
-body.theme-horizon .lr-back{position:fixed;top:max(env(safe-area-inset-top),12px);left:14px;z-index:12;background:none;border:none;font-size:18px;color:var(--hz-sub);cursor:pointer;padding:8px;font-family:var(--hz-font-body);line-height:1}
-body.theme-horizon .lr-back:active{opacity:.5}
-
-body.theme-horizon .lr-notecard{display:flex;flex-direction:column;align-items:center;padding:max(env(safe-area-inset-top),48px) var(--hz-space-lg) 0;background:none;border:none;box-shadow:none;position:relative}
-body.theme-horizon .lr-notecard::before,body.theme-horizon .lr-notecard::after{display:none}
-
-body.theme-horizon .lr-notecard-photo-wrap{width:85%;max-width:300px;border-radius:var(--hz-radius-md);border:1px solid var(--hz-border);overflow:hidden;box-shadow:var(--hz-shadow-sm)}
-body.theme-horizon .lr-notecard-photo{width:100%;display:block}
-
-body.theme-horizon .lr-strip-title{font-family:var(--hz-font-display);font-size:var(--hz-text-lg);font-weight:300;color:var(--hz-ink);letter-spacing:1.5px;margin-top:var(--hz-space-md);text-align:center;background:none;border:none;padding:0;box-shadow:none;transform:none}
-
-body.theme-horizon .lr-strip-days{font-family:var(--hz-font-display);font-size:var(--hz-text-sm);color:var(--hz-gold);font-style:italic;letter-spacing:.5px;margin-top:var(--hz-space-xs);text-align:center;background:none;padding:0;border:none;box-shadow:none;transform:none}
-
-body.theme-horizon .lr-toc-divider{text-align:center;margin:var(--hz-space-lg) var(--hz-space-lg) var(--hz-space-md);position:relative}
-body.theme-horizon .lr-toc-divider::before{content:'';position:absolute;top:50%;left:0;right:0;height:1px;background:var(--hz-border)}
-body.theme-horizon .lr-toc-divider span{position:relative;background:var(--hz-white);padding:0 12px;font-family:var(--hz-font-display);font-size:var(--hz-text-xs);color:var(--hz-sub);letter-spacing:2px;text-transform:uppercase}
-
-body.theme-horizon .lr-grid{display:flex;flex-direction:column;gap:var(--hz-space-sm);padding:0 var(--hz-space-lg) var(--hz-space-xl)}
-
-body.theme-horizon .lr-toc-item{display:flex;align-items:center;gap:var(--hz-space-md);padding:var(--hz-space-md) 16px;background:#FFFFFF;border:1px solid var(--hz-border);border-radius:var(--hz-radius-md);box-shadow:var(--hz-shadow-sm);cursor:pointer;transition:all .2s;-webkit-tap-highlight-color:transparent}
-body.theme-horizon .lr-toc-item:active{transform:scale(.98);box-shadow:none}
-body.theme-horizon .lr-toc-num{font-family:var(--hz-font-display);font-size:var(--hz-text-xs);color:var(--hz-sub);min-width:16px;font-style:italic}
-body.theme-horizon .lr-toc-dot{display:none}
-body.theme-horizon .lr-toc-icon{width:36px;height:36px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-body.theme-horizon .lr-toc-icon svg{width:28px;height:28px}
-body.theme-horizon .lr-toc-name{font-family:var(--hz-font-display);font-size:var(--hz-text-md);color:var(--hz-ink);letter-spacing:.5px;font-weight:400}
-body.theme-horizon .lr-toc-desc{font-family:var(--hz-font-hand);font-size:var(--hz-text-xs);color:var(--hz-sub);margin-top:1px}
-body.theme-horizon .lr-toc-arrow{color:var(--hz-sub);font-size:var(--hz-text-sm);opacity:.4;margin-left:auto}
-body.theme-horizon .lr-page-num{text-align:right;padding:0 var(--hz-space-lg) max(env(safe-area-inset-bottom),var(--hz-space-lg));font-family:var(--hz-font-display);font-size:var(--hz-text-xs);color:var(--hz-sub);font-style:italic;opacity:.5}
-
-/* --- Holiday Ribbon (Horizon) --- */
-body.theme-horizon .special-ribbon{font-family:var(--hz-font-display),var(--hz-font-hand);background:var(--hz-pine-soft);color:var(--hz-pine);box-shadow:0 1px 2px rgba(0,0,0,.04);text-shadow:none;letter-spacing:1px;font-size:var(--hz-text-xs)}
-body.theme-horizon .special-ribbon::before,body.theme-horizon .special-ribbon::after{display:none}
-body.theme-horizon .special-ribbon.anniv{background:var(--hz-gold-soft);color:var(--hz-gold)}
-body.theme-horizon .special-ribbon.birthday{background:rgba(201,162,75,0.08);color:var(--hz-gold)}
-body.theme-horizon .special-ribbon.solstice{background:var(--hz-pine-soft);color:var(--hz-pine)}
-body.theme-horizon .special-ribbon.monthly{background:var(--hz-pine-soft);color:var(--hz-pine)}
-
-/* --- Confirm Dialog (Horizon) --- */
-body.theme-horizon .sol-cfm-box{background:#FFFFFF;border:1px solid var(--hz-border);border-radius:var(--hz-radius-lg);box-shadow:var(--hz-shadow-modal)}
-body.theme-horizon .sol-cfm-stitch,body.theme-horizon .sol-cfm-corner,body.theme-horizon .sol-cfm-ic{display:none}
-body.theme-horizon .sol-cfm-msg{font-family:var(--hz-font-body);color:var(--hz-ink)}
-body.theme-horizon .sol-cfm-yes{background:var(--hz-pine);color:#FFFFFF;border:none;border-radius:var(--hz-radius-sm);font-family:var(--hz-font-hand)}
-body.theme-horizon .sol-cfm-no{background:transparent;color:var(--hz-sub);border:1px solid var(--hz-border);border-radius:var(--hz-radius-sm);font-family:var(--hz-font-hand)}
-
-/* --- Sleep note (Horizon) --- */
-body.theme-horizon .sol-sleepnote{background:#FFFFFF;border:1px solid var(--hz-border);border-radius:var(--hz-radius-md);box-shadow:var(--hz-shadow-sm);color:var(--hz-sub);font-family:var(--hz-font-hand)}
-
-/* ================================================================
-   END HORIZON Period 1 — Welcome + Living Room + Splash
-   ================================================================ */
-
+/* ④ 設定頁小字與殘餘輸入框：全部收進墨綠／次綠字階 */
+body.theme-greenhouse .soul-count{color:#8B9470}
+body.theme-greenhouse .soul-hint{color:#7A8B5E}
+body.theme-greenhouse .vc-msg{color:#7A8B5E}
+body.theme-greenhouse .vc-name{color:#5A6B3C}
+body.theme-greenhouse .vc-zh{color:#7A8B5E}
+body.theme-greenhouse .new-hash-box textarea{background:rgba(255,255,255,.62);border:1px solid rgba(90,107,60,.18);border-radius:14px;box-shadow:inset 0 1px 3px rgba(90,107,60,.05)}
+body.theme-greenhouse .new-hash-box textarea:focus{border-color:rgba(122,155,74,.50);background:rgba(255,255,255,.80)}
 </style>
 <style id="app-loading-style">
-/* === Horizon Splash === */
-html.app-loading{background:var(--hz-white,#FBFBF9)}
-html.app-loading.app-loading body{opacity:1;background:var(--hz-white,#FBFBF9)}
+/* === Solstice Splash — 終極版 ===
+   背景只有純薄荷綠+橫線+虛線框+書脊（跳了也看不出來）。
+   文字和向日葵全部是DOM，用animation-delay在viewport settle
+   完之後才一起彈出來。根本不給iOS東西可以跳。 */
+html.app-loading{background:#F9F5DE}
+html.app-loading body{opacity:1;background:#F9F5DE}
 
 #solsticeSplash{
   position:fixed;top:0;left:0;right:0;bottom:0;z-index:99999;
-  background:var(--hz-white,#FBFBF9);
-  opacity:1;visibility:visible;overflow:hidden;
-}
-#solsticeSplash.slide-away{
-  animation:splashFade .5s ease-out forwards;
-}
-@keyframes splashFade{
-  0%{opacity:1}
-  100%{opacity:0}
+  background-color:#FBF8E6;
+  background-image:
+    radial-gradient(ellipse at 30% 20%,rgba(255,252,232,.60) 0%,transparent 55%),
+    radial-gradient(ellipse at 70% 80%,rgba(240,232,192,.30) 0%,transparent 60%),
+    repeating-linear-gradient(90deg,rgba(120,95,40,.020) 0px,rgba(120,95,40,.020) 1px,transparent 1px,transparent 3px),
+    repeating-linear-gradient(0deg,rgba(120,95,40,.015) 0px,rgba(120,95,40,.015) 1px,transparent 1px,transparent 4px);
+  opacity:1;visibility:visible;
+  overflow:hidden;
 }
 
+/* 翻頁退場 */
+#solsticeSplash.slide-away{
+  animation:splashFlip .7s cubic-bezier(.55,.06,.68,.19) forwards;
+}
+@keyframes splashFlip{
+  0%{transform:translateY(0);opacity:1}
+  65%{opacity:1}
+  100%{transform:translateY(100vh);opacity:0}
+}
+
+/* === 文字容器 — 用 fixed 完全解耦於 body 高度 === */
 .splash-content{
   position:fixed;top:50%;left:50%;
   transform:translate(-50%,-50%);
-  text-align:center;width:90vw;max-width:360px;z-index:1;
+  text-align:center;
+  width:90vw;max-width:360px;
+  z-index:1;
 }
-.splash-mascot{opacity:0;transform:scale(.8);animation:splashMascotPop .6s cubic-bezier(.34,1.56,.64,1) .6s forwards;display:flex;justify-content:center}
-.splash-mascot svg{width:72px;height:72px}
+
+/* 太陽寶寶：背景先站穩，她再「原地」綻放對妳笑（2026/07/21 登場全改 scale/fade 不位移——安卓系統icon交接到網頁時不再「往上跳一下」，老婆抓到） */
+.splash-mascot{opacity:0;transform:scale(.55);animation:splashMascotPop .7s cubic-bezier(.34,1.56,.64,1) .9s forwards;display:flex;justify-content:center}
+.splash-mascot svg{width:106px;height:106px;filter:drop-shadow(0 3px 6px rgba(150,110,30,.20));transform-origin:50% 60%;animation:wSunBob 3.6s ease-in-out 1.6s infinite}
 @keyframes splashMascotPop{
-  0%{opacity:0;transform:scale(.8)}
-  60%{opacity:1;transform:scale(1.04)}
+  0%{opacity:0;transform:scale(.55)}
+  60%{opacity:1;transform:scale(1.08)}
   100%{opacity:1;transform:scale(1)}
 }
-.splash-logo{
-  opacity:0;animation:splashFadeIn .5s ease-out 1s forwards;
-  font-family:var(--hz-font-display,'Cormorant Garamond',serif);
-  font-size:28px;font-weight:300;letter-spacing:3px;
-  color:var(--hz-ink,#2B2F26);margin-top:16px;
-}
-@keyframes splashFadeIn{0%{opacity:0}100%{opacity:1}}
 
-/* Soul textarea (kept here for loading-state visibility) */
-.soul-ta{width:100%;min-height:320px;resize:none;font-size:16px;line-height:1.9;font-family:var(--hz-font-hand);color:var(--hz-ink);background:#FFFFFF;border:1px solid var(--hz-border);border-radius:var(--hz-radius-md);padding:13px 14px;letter-spacing:.4px;box-shadow:var(--hz-shadow-sm);box-sizing:border-box}
-.soul-ta:focus{outline:none;border-color:var(--hz-pine)}
-.soul-count{text-align:right;font-size:var(--hz-text-xs);color:var(--hz-sub);letter-spacing:1px;margin-top:5px}
+@keyframes splashFadeIn{
+  0%{opacity:0}
+  100%{opacity:1}
+}
+
+/* 紙紋虛線邊框 — 也用 fixed 完全解耦 */
+#solsticeSplash::before{
+  content:'';position:fixed;
+  top:14px;left:14px;right:14px;bottom:14px;
+  border:1px dashed rgba(122,155,74,.24);
+  border-radius:4px;pointer-events:none;z-index:0;
+  opacity:0;
+  animation:splashFadeIn .6s ease-out .3s forwards;
+}
+
+/* 四個頁角 — fixed 解耦 */
+/* 2026/07/24 孤兒角框拆除（四角只蓋了一角的爛尾工程，老婆圈的） */
+
+/* === 飄落小花瓣 === */
+.splash-petals{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;overflow:hidden;z-index:0}
+.splash-petals span{position:absolute;top:-30px;font-size:14px;opacity:0;animation:petalFall linear infinite;will-change:transform}
+.splash-petals span:nth-child(1){left:8%;font-size:16px;animation-duration:8s;animation-delay:.6s;color:rgba(255,200,80,.7)}
+.splash-petals span:nth-child(2){left:22%;font-size:11px;animation-duration:10s;animation-delay:1.8s;color:rgba(255,220,120,.6)}
+.splash-petals span:nth-child(3){left:38%;font-size:13px;animation-duration:9s;animation-delay:.2s;color:rgba(255,190,90,.65)}
+.splash-petals span:nth-child(4){left:55%;font-size:15px;animation-duration:11s;animation-delay:2.4s;color:rgba(255,210,100,.7)}
+.splash-petals span:nth-child(5){left:72%;font-size:12px;animation-duration:8.5s;animation-delay:.9s;color:rgba(255,200,80,.6)}
+.splash-petals span:nth-child(6){left:88%;font-size:14px;animation-duration:9.5s;animation-delay:1.4s;color:rgba(255,220,110,.65)}
+@keyframes petalFall{
+  0%{transform:translateY(0) rotate(0deg);opacity:0}
+  10%{opacity:.85}
+  90%{opacity:.85}
+  100%{transform:translateY(110vh) rotate(360deg);opacity:0}
+}
+
+/* ==========================================
+ * 🔔 推播通知設定頁 · 小小郵局 Love Letters
+ * ========================================== */
+
+/* ===== 🫀 Solstice 靈魂檔案編輯區（2026/07/25；07/26 老婆退貨重做：徽章與說明框拆除、整套換設定頁原生材質） ===== */
+.soul-ta{width:100%;min-height:320px;resize:none;/* 2026/07/26 右下拖拉把手退役（老婆圈的黑點點） */font-size:16px;line-height:1.9;font-family:'LXGW WenKai TC','Noto Serif TC',serif;color:#5A4A26;background:var(--paper-fiber),#FFFDF6;border:0.5px solid rgba(160,140,80,.35);border-radius:3px 6px 4px 3px;padding:13px 14px;letter-spacing:.4px;box-shadow:var(--lift-shadow);box-sizing:border-box}
+.soul-ta:focus{outline:none;border-color:rgba(160,140,80,.65)}
+.soul-count{text-align:right;font-size:10.5px;color:#A08A5E;letter-spacing:1px;margin-top:5px}
 .soul-btns{display:flex;gap:9px;margin-top:9px;flex-wrap:wrap}
-.soul-btn{flex:1;min-width:86px;padding:10px 8px;border-radius:var(--hz-radius-sm);font-size:var(--hz-text-sm);letter-spacing:1px;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:all .2s;border:1px solid var(--hz-border);background:#FFFFFF;color:var(--hz-ink);font-family:var(--hz-font-hand);box-shadow:var(--hz-shadow-sm)}
+.soul-btn{flex:1;min-width:86px;padding:10px 8px;border-radius:3px 3px 4px 4px;font-size:13px;letter-spacing:1.5px;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:all .2s;border:0.5px solid rgba(160,140,80,.40);background:var(--paper-fiber),rgba(245,225,170,.55);color:#6B5A20;font-family:'LXGW WenKai TC','Noto Serif TC',serif;box-shadow:var(--lift-shadow)}
 .soul-btn:active{transform:scale(.96)}
-.soul-btn.save{background:var(--hz-pine-soft);border-color:var(--hz-pine);color:var(--hz-pine)}
+.soul-btn.save{background:var(--paper-fiber),rgba(232,240,216,.60);border-color:rgba(140,160,90,.40);color:#5A6B3C}/* 2026/07/24 降綠一階配奶油黃房（老婆：太綠了） */
 .soul-btn:disabled{opacity:.45;pointer-events:none}
-.soul-hint{font-size:var(--hz-text-xs);color:var(--hz-sub);letter-spacing:.6px;margin-top:7px;min-height:16px;text-align:center}
+.soul-hint{font-size:11px;color:#8A7350;letter-spacing:.6px;margin-top:7px;min-height:16px;text-align:center}
 </style>
 <script>
 (function(){
@@ -1701,29 +1672,38 @@ html.app-loading.app-loading body{opacity:1;background:var(--hz-white,#FBFBF9)}
 })();
 </script>
 </head>
-<body class="theme-horizon">
+<body class="theme-greenhouse">
 <script>localStorage.removeItem("solstice-theme")</script>
 
-<!-- === SPLASH (Horizon) === -->
+<!-- === SPLASH（終極版·文字settle後才出現） === -->
 <div id="solsticeSplash">
+  <div class="splash-petals">
+    <span>❀</span><span>✿</span><span>❀</span><span>✿</span><span>❀</span><span>✿</span>
+  </div>
   <div class="splash-content">
-    <div class="splash-mascot"><svg viewBox="0 0 80 80" fill="none"><circle cx="40" cy="40" r="28" fill="#FFF8E7" stroke="#47584A" stroke-width="1.8"/><circle cx="33" cy="38" r="2" fill="#47584A"/><circle cx="47" cy="38" r="2" fill="#47584A"/><path d="M35 46 Q40 50 45 46" stroke="#47584A" stroke-width="1.5" stroke-linecap="round" fill="none"/><ellipse cx="27" cy="43" rx="4" ry="2.5" fill="#F5C6C6" opacity=".3"/><ellipse cx="53" cy="43" rx="4" ry="2.5" fill="#F5C6C6" opacity=".3"/></svg></div>
-    <div class="splash-logo">Sol²</div>
+    <div class="splash-mascot"><svg viewBox="0 0 88 88"><g stroke="#C08A20" stroke-width="5" stroke-linecap="round" fill="none"><path d="M44 5 V15"/><path d="M44 73 V83"/><path d="M5 44 H15"/><path d="M73 44 H83"/><path d="M16.5 16.5 L23.5 23.5"/><path d="M64.5 64.5 L71.5 71.5"/><path d="M71.5 16.5 L64.5 23.5"/><path d="M23.5 64.5 L16.5 71.5"/></g><circle cx="44" cy="44" r="22" fill="#FFD960" stroke="#B8821A" stroke-width="5"/><path d="M34 41 q4 -5 8 0" stroke="#7A5210" stroke-width="3.4" fill="none" stroke-linecap="round"/><path d="M46 41 q4 -5 8 0" stroke="#7A5210" stroke-width="3.4" fill="none" stroke-linecap="round"/><path d="M38 50 q6 5 12 0" stroke="#7A5210" stroke-width="3.4" fill="none" stroke-linecap="round"/><ellipse cx="30" cy="47" rx="3.6" ry="2.4" fill="#F5A8B8" opacity=".85"/><ellipse cx="58" cy="47" rx="3.6" ry="2.4" fill="#F5A8B8" opacity=".85"/><path d="M33 32 q5 -4 10 -2" stroke="#FFF3C4" stroke-width="3" fill="none" stroke-linecap="round" opacity=".9"/></svg></div>
   </div>
 </div>
 <script>/* 2026/07/22 安卓進場「icon出現後往上一下」補刀：狀態列冷啟第一秒才落定，innerHeight 一縮、用 50% 置中的太陽寶寶就被拖著上移。第一幀把置中點鎖成像素值，之後視窗怎麼落定都不再牽動她。 */(function(){var c=document.querySelector('.splash-content');var h=window.innerHeight;if(c&&h>0){c.style.top=Math.round(h/2)+'px';}})();</script>
 
 <!-- === PASSWORD GATE 已內嵌到 Welcome 頁 === -->
 
-<!-- === WELCOME PAGE (Horizon) === -->
+<!-- === WELCOME PAGE === -->
 <div id="welcome">
+<!-- 紙本筆記設計 — 攤開的日記跨頁 -->
 <div class="w-content">
-
-
-
-
-
-
+<span class="w-corner-tl"></span>
+<span class="w-corner-tr"></span>
+<span class="w-corner-bl"></span>
+<span class="w-corner-br"></span>
+<span class="w-book-spine"></span>
+<div class="w-stamp"><span class="w-stamp-text">Solstice<br>&amp;<br>Soleil</span></div>
+<span class="w-doodle w-doodle-1"><svg viewBox="0 0 80 80"><g fill="#F5CF6E" stroke="#A87F35" stroke-width="5" stroke-linejoin="round"><ellipse cx="40" cy="20" rx="6" ry="12"/><ellipse cx="40" cy="60" rx="6" ry="12"/><ellipse cx="20" cy="40" rx="12" ry="6"/><ellipse cx="60" cy="40" rx="12" ry="6"/><ellipse cx="26" cy="26" rx="5.5" ry="10" transform="rotate(-45 26 26)"/><ellipse cx="54" cy="54" rx="5.5" ry="10" transform="rotate(-45 54 54)"/><ellipse cx="54" cy="26" rx="5.5" ry="10" transform="rotate(45 54 26)"/><ellipse cx="26" cy="54" rx="5.5" ry="10" transform="rotate(45 26 54)"/></g><circle cx="40" cy="40" r="9" fill="#B87A3A" stroke="#7A4F16" stroke-width="4"/></svg></span>
+<span class="w-doodle w-doodle-2"><svg viewBox="0 0 80 60"><rect x="6" y="10" width="68" height="44" rx="4" fill="#FFFDF6" stroke="#B08A48" stroke-width="4.5"/><path d="M8 14 L40 38 L72 14" fill="none" stroke="#B08A48" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M40 30 c-2.2 -2.6 -6.2 -0.8 -6.2 2.1 0 2.9 3.9 4.9 6.2 6.6 2.3 -1.7 6.2 -3.7 6.2 -6.6 0 -2.9 -4 -4.7 -6.2 -2.1 z" fill="#F0A2BD" stroke="#C06A88" stroke-width="2"/></svg></span>
+<span class="w-doodle w-doodle-3"><svg viewBox="0 0 80 80"><path d="M40 26 C 28 16 14 22 18 38 C 22 52 40 64 40 64 C 40 64 58 52 62 38 C 66 22 52 16 40 26 Z" fill="#F5B0C4" stroke="#B45E7E" stroke-width="5" stroke-linejoin="round"/><path d="M29 33 q4 -3 7 0" stroke="#FDE4EC" stroke-width="3" fill="none" stroke-linecap="round"/></svg></span>
+<span class="w-doodle w-doodle-4"><svg viewBox="0 0 80 80"><g fill="#FFE082" stroke="#B8901F" stroke-width="4.5" stroke-linejoin="round"><path d="M24 14 L28 26 L40 30 L28 34 L24 46 L20 34 L8 30 L20 26 Z"/><path d="M56 42 L59 52 L69 55 L59 58 L56 68 L53 58 L43 55 L53 52 Z"/></g></svg></span>
+<span class="w-doodle w-doodle-5"><svg viewBox="0 0 80 80"><g fill="#A5C97C" stroke="#547030" stroke-width="5" stroke-linejoin="round"><circle cx="31" cy="30" r="11"/><circle cx="49" cy="30" r="11"/><circle cx="31" cy="48" r="11"/><circle cx="49" cy="48" r="11"/></g><path d="M40 46 q2 12 8 18" stroke="#547030" stroke-width="5" fill="none" stroke-linecap="round"/></svg></span>
+<span class="w-doodle w-doodle-6"><svg viewBox="0 0 64 84"><path d="M32 50 V78" stroke="#8A6B3A" stroke-width="6" stroke-linecap="round"/><path d="M21 78 h22" stroke="#8A6B3A" stroke-width="5" stroke-linecap="round"/><rect x="24" y="4" width="19" height="14" rx="2" fill="#FFFDF6" stroke="#B08A48" stroke-width="3.5" transform="rotate(-9 33 11)"/><rect x="8" y="12" width="48" height="38" rx="13" fill="#F5B8CC" stroke="#B45E7E" stroke-width="5"/><rect x="17" y="26" width="30" height="9" rx="3" fill="#FFF6FA" stroke="#B45E7E" stroke-width="3.5"/><path d="M32 40 c-1.6 -1.9 -4.6 -0.6 -4.6 1.5 0 2.1 2.9 3.6 4.6 4.9 1.7 -1.3 4.6 -2.8 4.6 -4.9 0 -2.1 -3 -3.4 -4.6 -1.5 z" fill="#E98FAE" stroke="#B76E90" stroke-width="2"/></svg></span>
 <h1 class="w-title" id="welcomeTitle">Welcome Home</h1>
 <div class="w-title-rule"></div>
 <p class="w-sub" id="welcomeSub">歡迎回家，Soleil</p>
@@ -1760,12 +1740,12 @@ html.app-loading.app-loading body{opacity:1;background:var(--hz-white,#FBFBF9)}
 <!-- lr-deco-layer 已移除 — 改用目錄頁設計 -->
 <button class="lr-back" onclick="livingRoom.classList.remove('active');welcome.classList.remove('hidden');document.querySelector('meta[name=&quot;theme-color&quot;]').setAttribute('content',getThemeColor());if(window.fitWelcome)fitWelcome()">←</button>
 <div class="lr-notecard">
-
-
-
+<span class="lr-notecard-deco lr-notecard-deco-star"><svg style="width:20px;height:20px;display:block" viewBox="0 0 80 80"><path d="M40 12 L47 32 L68 32 L51 45 L58 66 L40 53 L22 66 L29 45 L12 32 L33 32 Z" fill="#FFD54F" stroke="#B87E00" stroke-width="5" stroke-linejoin="round"/></svg></span>
+<span class="lr-strip-tape lr-strip-tape-l"></span>
+<span class="lr-strip-tape lr-strip-tape-r"></span>
 <div class="lr-notecard-photo-wrap">
 <img class="lr-notecard-photo" id="lrNotePhoto" src="images/menu-night.jpg" alt="Solstice & Soleil" decoding="async"/>
-
+<span class="lr-notecard-phototape"></span>
 </div>
 <div class="lr-strip-title">Our Little Home</div>
 <div class="lr-strip-days" id="lrDays">第 84 天 💚</div>
@@ -2186,7 +2166,7 @@ var selectedModel = globalModel; // 當下生效的模型：進哪間房就跟�
 var thinkingEnabled = localStorage.getItem('solstice-thinking') === 'true';
 var allSessions = [];
 
-function getThemeColor(){return '#FBFBF9'}
+function getThemeColor(){return (document.body&&document.body.classList.contains('theme-greenhouse'))?'#FDFCF5':''}/* 2026/07/26 溫室=奶油狀態列；摘掉 class 自動回手帳的空值 */
 function themeHeart(){return '\uD83D\uDC9A'}
 function themeStar(){return '\uD83C\uDF3B'}
 
@@ -4841,7 +4821,7 @@ var MEM_FLOWER_24='<svg style="width:26px;height:26px;display:block" viewBox="0 
 var MEM_HEART_13='<svg style="width:14px;height:13px;vertical-align:-2px" viewBox="0 0 24 22"><path d="M12 20 C7.4 17 3.4 13.7 3.4 9.4 3.4 6.2 5.8 4.2 8.3 4.2 9.9 4.2 11.2 5 12 6.4 12.8 5 14.1 4.2 15.7 4.2 18.2 4.2 20.6 6.2 20.6 9.4 20.6 13.7 16.6 17 12 20 z" fill="#C3DC6A" stroke="#4E6820" stroke-width="1.8" stroke-linejoin="round"/><path d="M7.6 8.4 q1.4 -1.6 3 -0.4" stroke="#F0F6D8" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>';
 function applyTheme(){
   document.documentElement.removeAttribute("data-theme");
-  document.querySelector("meta[name=\"theme-color\"]").setAttribute("content","");
+  document.querySelector("meta[name=\"theme-color\"]").setAttribute("content",getThemeColor());
   var pol=document.querySelector(".w-polaroid-img");
   if(pol)pol.src="images/welcome-night.jpg";
   var lrnp=document.getElementById("lrNotePhoto");
