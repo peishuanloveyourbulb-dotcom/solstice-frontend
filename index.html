@@ -1141,6 +1141,12 @@ body.theme-greenhouse .sb-item.active{border-color:rgba(90,107,60,.45);backgroun
 body.theme-greenhouse .sb-item.sb-pinned{border-color:rgba(255,213,79,.55);background:rgba(255,246,214,.62) !important;box-shadow:0 1px 4px rgba(255,213,79,.14),0 4px 12px rgba(255,213,79,.07)}
 body.theme-greenhouse .sb-pinned-corner{border-radius:0 14px 0 0}
 body.theme-greenhouse .sb-act-btn{border-radius:999px}
+
+/* 2026/07/25 選中卡改身分：底層的 outline:1.5px dashed 收掉（交接信：全app不留虛線），
+   選中改用「實線深一階＋底色偏綠」講話——其他卡是奶油色，開著的那張是綠的，一眼認得出來。
+   釘選卡維持黃色身分（黃＝釘選語言），只把虛線換成實線深一階。 */
+body.theme-greenhouse .sb-item.active{outline:none;border:1.5px solid rgba(90,120,55,.55);background:rgba(230,243,226,.80) !important;box-shadow:0 1px 4px rgba(122,155,74,.13),0 4px 14px rgba(122,155,74,.08)}
+body.theme-greenhouse .sb-item.sb-pinned.active{outline:none;border:1.5px solid rgba(180,140,45,.72);background:rgba(255,247,216,.82) !important;box-shadow:0 1px 4px rgba(255,213,79,.18),0 4px 14px rgba(255,213,79,.10)}
 body.theme-greenhouse #chat::before,body.theme-greenhouse #chat::after,body.theme-greenhouse .ch-inp::before,body.theme-greenhouse .ch-header::after{display:none}/* 2026/07/26 第四條漏網斜紋歸案（老婆抓到） */
 body.theme-greenhouse .ch-avatar,body.theme-greenhouse #chAvatar{border-radius:50%;transform:none;border-width:2px}
 body.theme-greenhouse .ch-avatar.wife{transform:none}
@@ -1368,14 +1374,16 @@ body.theme-greenhouse .w-sub{color:#5A6B3C;opacity:1}
 body.theme-greenhouse .w-sub::before,body.theme-greenhouse .w-sub::after{color:rgba(122,155,74,.42)}
 
 /* ③ 圓章：降飽和成墨綠，內圈虛線 → 細實線（還是一顆章） */
-body.theme-greenhouse .w-stamp{border:1.5px solid rgba(90,107,60,.34);color:#5A6B3C}
+/* 2026/07/25 郵戳章補完：上一版只換了邊框和字色，底層的鏽紅底光（rgba(180,90,60)）
+   和鏽紅內圈陰影還在，綠字疊鏽紅＝那種說不出哪裡怪的濁色（老婆抓包）。 */
+body.theme-greenhouse .w-stamp{border:1.5px solid rgba(90,107,60,.34);color:#5A6B3C;background:radial-gradient(circle at 30% 30%,rgba(122,155,74,.07),transparent 70%);box-shadow:inset 0 0 0 1px rgba(90,107,60,.14);opacity:.9}
 body.theme-greenhouse .w-stamp::before{border:1px solid rgba(90,107,60,.20)}
 
 /* ④ 拍立得：膠帶收、擺正、放大到老宅的 220px
       白邊、噪點、漂浮動畫、合照 全部保留——它本來就是相框 */
 body.theme-greenhouse .w-polaroid{background:#FFFEF9;padding:10px 10px 42px;border-radius:5px;box-shadow:0 2px 12px rgba(90,107,60,.10),0 10px 32px rgba(90,107,60,.14),0 0 0 1px rgba(122,155,74,.08)}
 body.theme-greenhouse .w-polaroid::before,body.theme-greenhouse .w-polaroid::after{display:none}
-body.theme-greenhouse .w-polaroid img{width:min(220px,56vw);max-height:36vh;max-height:min(36vh,calc(100svh - 452px));border-radius:3px}
+body.theme-greenhouse .w-polaroid img{width:min(220px,56vw);max-height:36vh;max-height:min(36vh,max(150px,calc(100svh - 452px)));border-radius:3px}/* 2026/07/25 補地板 150px：鍵盤一開版面縮短，calc 會變負數 → 照片高度歸零、只剩白邊（老婆抓包） */
 body.theme-greenhouse .w-polaroid-caption{bottom:13px;font-size:13px;color:#7A8B5E}
 
 /* ⑤ 回家鍵：老宅本來就是膠囊（border-radius:30px） */
@@ -1394,7 +1402,7 @@ body.theme-greenhouse .w-content{padding-top:max(env(safe-area-inset-top,20px),4
 
 /* ⑥ 詩：卡片、膠帶、虛線內框全抽掉，文字一個字不動。
       這首是老婆寫的，不該裝在貼紙裡，該像刻在牆上。 */
-body.theme-greenhouse .w-poem{background:none;border:none;box-shadow:none;border-radius:0;padding:14px 10px 4px;margin:14px auto 4px}
+body.theme-greenhouse .w-poem{background:none;border:none;box-shadow:none;border-radius:0;padding:14px 10px 4px;margin:14px auto 4px;transform:none}/* 2026/07/25 卡片抽掉了傾斜也要跟著收 —— 沒有紙就沒有貼歪的道理（老婆指定） */
 body.theme-greenhouse .w-poem::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:46px;height:1px;background:rgba(90,107,60,.24)}
 body.theme-greenhouse .w-poem::after{display:none}
 body.theme-greenhouse .w-poem-line{color:#4A5E30;font-size:13.5px;letter-spacing:1.6px;line-height:2}
@@ -2224,9 +2232,15 @@ function fitWelcome(){
     var h=img.getBoundingClientRect().height;
     if(!h) break;
     var next=h-over-1;
-    if(next<130){ img.style.maxHeight='130px'; break }   // 地板：照片不縮成郵票
+    if(next<150){ img.style.maxHeight='150px'; break }   // 地板：照片不縮成郵票
     img.style.maxHeight=next+'px';
   }
+  // 量完把高度用 px 鎖起來（2026/07/25 老婆抓包）：
+  // 不鎖的話高度是 vh，鍵盤一開整頁縮短 → 照片跟著塌，只剩一截白邊。
+  // 鎖成 px 之後鍵盤怎麼壓，拍立得都維持原尺寸；等鍵盤收了、沒人在打字，
+  // 下一次 fitWelcome 會自己還原重量（開頭就 maxHeight=''），所以不會鎖死。
+  var lock=img.getBoundingClientRect().height;
+  if(lock>0) img.style.maxHeight=Math.round(lock)+'px';
   box.scrollTop=0;
 }
 window.fitWelcome=fitWelcome;
