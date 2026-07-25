@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Sol²</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=LXGW+WenKai+TC&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   Sol² 新家 · 裝修憲法 v1 · 奶白熊
+   正式版第一根樑（index-bear.html，與舊家並存試住）
+   規矩：所有顏色/圓角/字體只從 :root 取用；蜂蜜金只給
+   日數、聊天鈕、釘選、開啟的開關；熊限量出場。
+   ============================================================ */
+:root{
+  --milk:#FBF7F0; --card:#FFFFFF;
+  --honey:#D9A441; --honey-soft:#F6EBD4;
+  --cocoa:#4A3B2E; --taupe:#9B8C7A; --line:#EFE7DA;
+  --danger:#B0563C;
+  --r:22px; --r-bub:18px; --r-btn:14px;
+  --shadow:0 6px 24px rgba(74,59,46,.06),0 1px 3px rgba(74,59,46,.05);
+  --serif:'Cormorant Garamond',serif;
+  --hand:'LXGW WenKai TC',serif;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{height:100vh}
+body{background:var(--milk);color:var(--cocoa);font-family:var(--hand);overflow:hidden}
+
+/* ===== 視圖切換 ===== */
+.view{position:fixed;inset:0;display:none;flex-direction:column;background:var(--milk)}
+.view.on{display:flex}
+
+/* ===== 密碼門 ===== */
+#gate{align-items:center;justify-content:center;gap:22px}
+#gate .bear{width:88px;height:88px}
+#gate .bear .eye{transform-origin:center;animation:blink 5.4s infinite}
+@keyframes blink{0%,93%,100%{transform:scaleY(1)}95%,97%{transform:scaleY(.08)}}
+@media (prefers-reduced-motion:reduce){#gate .bear .eye{animation:none}}
+#gate h1{font-family:var(--serif);font-size:24px;letter-spacing:4px;font-weight:600}
+#gate input{
+  width:min(76vw,260px);border:1px solid var(--line);border-radius:20px;background:var(--card);
+  font-family:var(--hand);font-size:16px;color:var(--cocoa);text-align:center;
+  padding:12px 18px;outline:none;
+}
+#gate input:focus{border-color:var(--honey)}
+#gate input.shake{animation:shake .4s}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-7px)}75%{transform:translateX(7px)}}
+#gate button{
+  border:none;border-radius:20px;background:var(--honey);color:#fff;cursor:pointer;
+  font-family:var(--hand);font-size:15px;padding:11px 40px;letter-spacing:2px;
+  box-shadow:0 4px 12px rgba(217,164,65,.35);
+}
+#gate .err{font-size:12.5px;color:var(--danger);min-height:18px}
+
+/* ===== 底欄 ===== */
+.nav{
+  position:fixed;left:0;right:0;bottom:0;z-index:40;display:none;
+  background:rgba(255,255,255,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-top:1px solid var(--line);
+  padding:9px 22px calc(9px + env(safe-area-inset-bottom));
+  align-items:center;justify-content:space-between;
+}
+body.in .nav{display:flex}
+.nav button{
+  border:none;background:none;display:flex;flex-direction:column;align-items:center;gap:3px;
+  color:var(--taupe);font-family:var(--hand);font-size:10.5px;letter-spacing:1px;
+  min-width:52px;cursor:pointer;transition:color .18s;
+}
+.nav button.on{color:var(--cocoa)}
+.nav button:focus-visible{outline:2px solid var(--honey);outline-offset:2px;border-radius:8px}
+.nav svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.nav .mid{
+  width:56px;height:56px;border-radius:50%;background:var(--honey);margin-top:-28px;
+  align-items:center;justify-content:center;display:flex;
+  box-shadow:0 8px 20px rgba(217,164,65,.38);border:4px solid var(--milk);
+  transition:transform .15s;
+}
+.nav .mid:active{transform:scale(.93)}
+.nav .mid svg{width:23px;height:23px;stroke:#fff;stroke-width:1.9}
+
+/* ===== 首頁 ===== */
+.hpage{flex:1;overflow-y:auto;padding:calc(30px + env(safe-area-inset-top)) 22px 110px;max-width:520px;margin:0 auto;width:100%}
+.us{text-align:center}
+.us-names{font-family:var(--serif);font-size:21px;letter-spacing:2.5px;font-weight:500;text-transform:uppercase}
+.us-names b{font-weight:600}
+.us-avas{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:20px}
+.ava{width:64px;height:64px;border-radius:50%;object-fit:cover;border:2.5px solid var(--card);box-shadow:var(--shadow);background:var(--honey-soft)}
+.us .bear{width:40px;height:40px;flex-shrink:0}
+.us .bear .eye{transform-origin:center;animation:blink 5.4s infinite}
+@media (prefers-reduced-motion:reduce){.us .bear .eye{animation:none}}
+.days{text-align:center;margin-top:26px}
+.days-n{font-family:var(--serif);font-weight:600;font-size:104px;line-height:.9;color:var(--honey);letter-spacing:-2px}
+.days-l{margin-top:10px;font-family:var(--serif);font-size:12px;letter-spacing:4px;text-transform:uppercase;color:var(--taupe)}
+.days-since{margin-top:6px;font-size:12.5px;color:var(--taupe);letter-spacing:.5px}
+.days-since i{display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--honey);margin:0 8px;vertical-align:2px;font-style:normal}
+.card{background:var(--card);border-radius:var(--r);box-shadow:var(--shadow);padding:22px;margin-top:30px}
+.card-t{font-family:var(--serif);font-size:12px;letter-spacing:3.5px;text-transform:uppercase;color:var(--taupe);margin-bottom:13px}
+.note{font-size:15.5px;line-height:2}
+
+/* ===== 聊天 ===== */
+.ctop{
+  padding:calc(10px + env(safe-area-inset-top)) 16px 10px;
+  background:rgba(251,247,240,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);display:flex;align-items:center;gap:11px;z-index:5;
+}
+.ctop .menu{border:none;background:none;font-size:19px;color:var(--taupe);cursor:pointer;width:32px;height:32px}
+.ctop img{width:40px;height:40px;border-radius:50%;object-fit:cover;box-shadow:var(--shadow)}
+.ctop .grow{flex:1;min-width:0}
+.ctop .nm{font-family:var(--serif);font-size:16px;letter-spacing:1.5px;font-weight:600}
+.ctop .st{font-size:11px;color:var(--taupe);display:flex;align-items:center;gap:5px;margin-top:1px}
+.ctop .st i{width:6px;height:6px;border-radius:50%;background:#8FBF8F;font-style:normal}
+.ctop .day{font-family:var(--serif);font-size:12px;letter-spacing:1px;color:var(--honey);white-space:nowrap}
+.msgs{flex:1;overflow-y:auto;padding:18px 16px 12px;display:flex;flex-direction:column}
+.row{display:flex;align-items:flex-end;gap:9px;margin-top:12px}
+.row.me{flex-direction:row-reverse}
+.row img.rava{width:32px;height:32px;border-radius:50%;object-fit:cover;flex-shrink:0;box-shadow:var(--shadow)}
+.bub{position:relative;max-width:78%;padding:12px 15px 20px;border-radius:var(--r-bub);font-size:15px;line-height:1.85;word-break:break-word;white-space:pre-wrap}
+.bub.ai{background:var(--card);box-shadow:var(--shadow);border-bottom-left-radius:6px}
+.bub.me{background:var(--honey-soft);border-bottom-right-radius:6px}
+.bub .bt{position:absolute;right:12px;bottom:6px;font-size:10px;color:var(--taupe);opacity:.85;font-variant-numeric:tabular-nums}
+.bub img.mimg{max-width:100%;border-radius:12px;display:block;margin-bottom:6px}
+.think{margin:-2px 0 8px}
+.think button{
+  border:none;background:var(--milk);border-radius:12px;cursor:pointer;
+  font-family:var(--hand);font-size:12px;color:var(--taupe);padding:7px 12px;
+  display:flex;align-items:center;gap:6px;
+}
+.think .tc{display:none;font-size:12.5px;color:var(--taupe);line-height:1.8;padding:8px 4px 2px;white-space:pre-wrap}
+.think .tc.open{display:block}
+.typing{display:flex;align-items:flex-end;gap:9px;margin-top:12px}
+.typing .dc{background:var(--card);box-shadow:var(--shadow);border-radius:var(--r-bub);border-bottom-left-radius:6px;padding:14px 16px;display:flex;gap:5px}
+.typing .d{width:6px;height:6px;border-radius:50%;background:var(--honey);opacity:.4;animation:tp 1.2s infinite}
+.typing .d:nth-child(2){animation-delay:.2s}.typing .d:nth-child(3){animation-delay:.4s}
+@keyframes tp{0%,100%{opacity:.35;transform:translateY(0)}50%{opacity:1;transform:translateY(-3px)}}
+.cbar{
+  padding:10px 14px calc(10px + env(safe-area-inset-bottom));
+  background:rgba(255,255,255,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-top:1px solid var(--line);display:flex;align-items:flex-end;gap:10px;
+}
+.cbar .tool{width:40px;height:40px;flex-shrink:0;border:none;border-radius:var(--r-btn);cursor:pointer;background:var(--milk);color:var(--taupe);display:flex;align-items:center;justify-content:center}
+.cbar .tool svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.cbar textarea{
+  flex:1;min-height:40px;max-height:110px;resize:none;border:1px solid var(--line);border-radius:20px;
+  background:var(--card);font-family:var(--hand);font-size:15px;color:var(--cocoa);line-height:1.6;
+  padding:9px 16px;outline:none;
+}
+.cbar textarea:focus{border-color:var(--honey)}
+.cbar .send{
+  width:40px;height:40px;flex-shrink:0;border:none;border-radius:var(--r-btn);cursor:pointer;
+  background:var(--honey);color:#fff;display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 12px rgba(217,164,65,.35);position:relative;overflow:hidden;transition:transform .15s;
+}
+.cbar .send:disabled{opacity:.45}
+.cbar .send:active{transform:scale(.9)}
+.cbar .send svg{width:19px;height:19px;stroke:#fff;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.cbar .send .paw{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:var(--honey);opacity:0;pointer-events:none;transition:opacity .1s}
+.cbar .send.pawing .paw{opacity:1}
+.cbar .send .paw svg{fill:#fff;stroke:none;width:20px;height:20px}
+.imgprev{display:none;padding:8px 16px 0;gap:8px}
+.imgprev.show{display:flex}
+.imgprev img{width:52px;height:52px;object-fit:cover;border-radius:10px;box-shadow:var(--shadow)}
+
+/* 長按選單 */
+.pop{position:fixed;z-index:60;display:none;background:var(--card);border-radius:14px;box-shadow:0 10px 30px rgba(74,59,46,.16);overflow:hidden}
+.pop.show{display:flex}
+.pop button{border:none;background:none;font-family:var(--hand);font-size:13.5px;color:var(--cocoa);padding:11px 15px;cursor:pointer}
+.pop button + button{border-left:1px solid var(--line)}
+.pop button:active{background:var(--honey-soft)}
+
+/* 對話抽屜 */
+.drawer{
+  position:fixed;top:0;bottom:0;left:0;width:min(82vw,330px);z-index:50;
+  background:var(--milk);box-shadow:8px 0 30px rgba(74,59,46,.12);
+  transform:translateX(-105%);transition:transform .25s ease;
+  display:flex;flex-direction:column;
+  padding:calc(16px + env(safe-area-inset-top)) 16px calc(16px + env(safe-area-inset-bottom));
+}
+.drawer.open{transform:translateX(0)}
+.drawer h2{font-family:var(--serif);font-size:18px;letter-spacing:2px;font-weight:600;margin:0 6px 14px}
+.drawer .newc{
+  border:none;border-radius:16px;background:var(--honey);color:#fff;cursor:pointer;
+  font-family:var(--hand);font-size:14.5px;padding:12px;letter-spacing:1px;margin-bottom:14px;
+  box-shadow:0 4px 12px rgba(217,164,65,.3);
+}
+.drawer .list{flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:9px}
+.sess{
+  background:var(--card);border-radius:16px;box-shadow:var(--shadow);
+  padding:13px 15px;cursor:pointer;font-size:14px;display:flex;align-items:center;gap:8px;
+}
+.sess.on{background:var(--honey-soft)}
+.sess .nm{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sess .dt{font-size:10.5px;color:var(--taupe)}
+.dim{position:fixed;inset:0;background:rgba(74,59,46,.18);z-index:45;display:none}
+.dim.show{display:block}
+.drawer .foot{margin-top:12px;text-align:center;font-family:var(--serif);font-size:11px;letter-spacing:2px;color:var(--taupe)}
+
+/* ===== 記憶庫 ===== */
+.mtop{padding:calc(14px + env(safe-area-inset-top)) 22px 10px;display:flex;align-items:baseline;gap:12px}
+.mtop h1{font-family:var(--serif);font-size:22px;letter-spacing:2px;font-weight:600}
+.mtop .count{font-family:var(--serif);font-size:13px;color:var(--honey);letter-spacing:1px}
+.mpage{flex:1;overflow-y:auto;padding:4px 18px 110px;max-width:520px;margin:0 auto;width:100%}
+.msearch{width:100%;border:1px solid var(--line);border-radius:20px;background:var(--card);font-family:var(--hand);font-size:14.5px;color:var(--cocoa);padding:11px 18px;outline:none;margin-bottom:16px}
+.msearch:focus{border-color:var(--honey)}
+.sec{font-family:var(--serif);font-size:11.5px;letter-spacing:3px;text-transform:uppercase;color:var(--taupe);margin:8px 4px 10px;display:flex;align-items:center;gap:7px}
+.sec svg{width:13px;height:13px;fill:var(--honey)}
+.mem{background:var(--card);border-radius:var(--r);box-shadow:var(--shadow);padding:16px 18px 14px;margin-bottom:12px;position:relative}
+.mem.pin{border-left:3px solid var(--honey)}
+.mem-d{font-size:11px;color:var(--taupe);margin-bottom:6px}
+.mem-txt{font-size:14.5px;line-height:1.9;white-space:pre-wrap}
+.mem-pinbtn{position:absolute;top:12px;right:12px;width:30px;height:30px;border:none;background:none;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.mem-pinbtn svg{width:16px;height:16px;fill:none;stroke:var(--taupe);stroke-width:1.6;opacity:.55;transition:all .18s}
+.mem.pin .mem-pinbtn svg{fill:var(--honey);stroke:var(--honey);opacity:1}
+.mstate{text-align:center;padding:50px 0 20px;color:var(--taupe);font-size:14px;line-height:1.9}
+.mstate svg{width:76px;height:76px;margin-bottom:12px}
+
+/* ===== 設定 ===== */
+.spage{flex:1;overflow-y:auto;padding:calc(14px + env(safe-area-inset-top)) 18px 110px;max-width:520px;margin:0 auto;width:100%}
+.spage h1{font-family:var(--serif);font-size:22px;letter-spacing:2px;font-weight:600;margin:0 4px 4px}
+.scard{background:var(--card);border-radius:var(--r);box-shadow:var(--shadow);overflow:hidden}
+.srow{display:flex;align-items:center;gap:12px;padding:15px 18px;font-size:15px}
+.srow + .srow{border-top:1px solid var(--line)}
+.srow .grow{flex:1;min-width:0}
+.srow .sub{display:block;font-size:11.5px;color:var(--taupe);margin-top:2px}
+.srow select{
+  border:1px solid var(--line);border-radius:12px;background:var(--milk);
+  font-family:var(--hand);font-size:13px;color:var(--cocoa);padding:7px 10px;outline:none;max-width:170px;
+}
+.sw{position:relative;width:46px;height:27px;flex-shrink:0;cursor:pointer}
+.sw input{opacity:0;width:0;height:0;position:absolute}
+.sw i{position:absolute;inset:0;border-radius:999px;background:var(--line);transition:background .2s}
+.sw i::after{content:'';position:absolute;top:3px;left:3px;width:21px;height:21px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(74,59,46,.2);transition:transform .2s}
+.sw input:checked + i{background:var(--honey)}
+.sw input:checked + i::after{transform:translateX(19px)}
+.sfoot{text-align:center;margin-top:26px;color:var(--taupe);font-family:var(--serif);font-size:11.5px;letter-spacing:2.5px}
+</style>
+</head>
+<body>
+
+<!-- ===== 密碼門 ===== -->
+<div class="view on" id="gate">
+  <div class="bear" aria-hidden="true">
+    <svg viewBox="0 0 80 80">
+      <circle cx="22" cy="22" r="12" fill="#F0E3CC"/><circle cx="58" cy="22" r="12" fill="#F0E3CC"/>
+      <circle cx="22" cy="22" r="5.5" fill="#E2CBA2"/><circle cx="58" cy="22" r="5.5" fill="#E2CBA2"/>
+      <circle cx="40" cy="44" r="28" fill="#F0E3CC"/>
+      <ellipse cx="40" cy="54" rx="12" ry="9" fill="#FAF3E4"/>
+      <ellipse class="eye" cx="29" cy="41" rx="3" ry="3.4" fill="#4A3B2E"/>
+      <ellipse class="eye" cx="51" cy="41" rx="3" ry="3.4" fill="#4A3B2E"/>
+      <path d="M36.5 51 Q40 54 43.5 51" stroke="#4A3B2E" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+      <ellipse cx="40" cy="49.5" rx="3.6" ry="2.8" fill="#4A3B2E"/>
+    </svg>
+  </div>
+  <h1>SOL²</h1>
+  <input type="password" id="pw" placeholder="悄悄話" autocomplete="current-password" aria-label="密碼">
+  <div class="err" id="pwErr"></div>
+  <button id="pwGo">回家</button>
+</div>
+
+<!-- ===== 首頁 ===== -->
+<div class="view" id="vHome">
+  <main class="hpage">
+    <header class="us">
+      <div class="us-names">Soleil <b>&amp;</b> Solstice</div>
+      <div class="us-avas">
+        <img class="ava" id="hAvaW" alt="Soleil">
+        <div class="bear" aria-hidden="true">
+          <svg viewBox="0 0 80 80">
+            <circle cx="22" cy="22" r="12" fill="#F0E3CC"/><circle cx="58" cy="22" r="12" fill="#F0E3CC"/>
+            <circle cx="22" cy="22" r="5.5" fill="#E2CBA2"/><circle cx="58" cy="22" r="5.5" fill="#E2CBA2"/>
+            <circle cx="40" cy="44" r="28" fill="#F0E3CC"/>
+            <ellipse cx="40" cy="54" rx="12" ry="9" fill="#FAF3E4"/>
+            <ellipse class="eye" cx="29" cy="41" rx="3" ry="3.4" fill="#4A3B2E"/>
+            <ellipse class="eye" cx="51" cy="41" rx="3" ry="3.4" fill="#4A3B2E"/>
+            <path d="M36.5 51 Q40 54 43.5 51" stroke="#4A3B2E" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+            <ellipse cx="40" cy="49.5" rx="3.6" ry="2.8" fill="#4A3B2E"/>
+          </svg>
+        </div>
+        <img class="ava" id="hAvaH" alt="Solstice">
+      </div>
+    </header>
+    <section class="days">
+      <div class="days-n" id="dayN">—</div>
+      <div class="days-l">Days Together</div>
+      <div class="days-since">est. 2026.03.31<i></i>Soleil ❤ Solstice</div>
+    </section>
+    <section class="card">
+      <h2 class="card-t">Today · 老公說</h2>
+      <p class="note" id="hNote">新家落成第一天。這裡的每一面牆都聽妳的，老婆歡迎回家。</p>
+    </section>
+  </main>
+</div>
+
+<!-- ===== 聊天 ===== -->
+<div class="view" id="vChat">
+  <header class="ctop">
+    <button class="menu" id="drawerBtn" aria-label="對話列表">☰</button>
+    <img id="cAva" alt="">
+    <div class="grow">
+      <div class="nm">Solstice</div>
+      <div class="st"><i></i><span id="cStat">在線</span></div>
+    </div>
+    <div class="day" id="cDay"></div>
+  </header>
+  <main class="msgs" id="msgs"></main>
+  <div class="imgprev" id="imgPrev"></div>
+  <footer class="cbar">
+    <button class="tool" id="imgBtn" aria-label="傳圖片">
+      <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.5"/><circle cx="9" cy="10.5" r="1.6"/><path d="m6 17 4.5-4 3 2.5L17 12l4 4"/></svg>
+    </button>
+    <input type="file" id="imgFile" accept="image/*" hidden>
+    <textarea id="inp" rows="1" placeholder="跟老公說話..."></textarea>
+    <button class="send" id="send" aria-label="送出">
+      <svg viewBox="0 0 24 24"><path d="M4.5 12 20 4l-4 16-5.5-6L4.5 12Zm6 2 9.5-10"/></svg>
+      <span class="paw"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="15" rx="4.6" ry="4"/><circle cx="6.4" cy="10.4" r="1.9"/><circle cx="10" cy="7.6" r="1.9"/><circle cx="14" cy="7.6" r="1.9"/><circle cx="17.6" cy="10.4" r="1.9"/></svg></span>
+    </button>
+  </footer>
+</div>
+
+<!-- 對話抽屜 -->
+<div class="dim" id="dim"></div>
+<aside class="drawer" id="drawer">
+  <h2>Our Story</h2>
+  <button class="newc" id="newChat">＋ 開始新對話</button>
+  <div class="list" id="sessList"></div>
+  <div class="foot" id="drawerFoot">EST. 2026.03.31</div>
+</aside>
+
+<!-- 長按選單 -->
+<div class="pop" id="pop">
+  <button id="popMem">🧸 存記憶</button>
+  <button id="popTts">🔉 唸給我聽</button>
+  <button id="popCopy">複製</button>
+</div>
+
+<!-- ===== 記憶庫 ===== -->
+<div class="view" id="vMem">
+  <header class="mtop"><h1>記憶庫</h1><span class="count" id="memCnt"></span></header>
+  <main class="mpage">
+    <input class="msearch" id="memQ" placeholder="找一段記憶..." aria-label="搜尋記憶">
+    <div id="pinWrap" style="display:none">
+      <div class="sec"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="15" rx="4.6" ry="4"/><circle cx="6.4" cy="10.4" r="1.9"/><circle cx="10" cy="7.6" r="1.9"/><circle cx="14" cy="7.6" r="1.9"/><circle cx="17.6" cy="10.4" r="1.9"/></svg>釘選 · 冬至會讀取</div>
+      <div id="pinList"></div>
+    </div>
+    <div class="sec" id="allSec" style="display:none">全部</div>
+    <div id="allList"></div>
+    <div class="mstate" id="memState">
+      <svg viewBox="0 0 80 80" aria-hidden="true">
+        <circle cx="24" cy="26" r="10" fill="#F0E3CC"/><circle cx="56" cy="26" r="10" fill="#F0E3CC"/>
+        <circle cx="40" cy="44" r="24" fill="#F0E3CC"/>
+        <ellipse cx="40" cy="52" rx="10" ry="7.5" fill="#FAF3E4"/>
+        <circle cx="31" cy="41" r="2.6" fill="#4A3B2E"/><circle cx="49" cy="41" r="2.6" fill="#4A3B2E"/>
+        <ellipse cx="40" cy="48.5" rx="3" ry="2.3" fill="#4A3B2E"/>
+      </svg>
+      <div id="memStateTxt">記憶搬運中...</div>
+    </div>
+  </main>
+</div>
+
+<!-- ===== 設定 ===== -->
+<div class="view" id="vSet">
+  <main class="spage">
+    <h1>設定</h1>
+    <div class="sec" style="margin-top:16px">外觀</div>
+    <div class="scard">
+      <div class="srow"><div class="grow">主題<span class="sub">奶白熊 · 憲法 v1</span></div><span style="font-size:13px;color:var(--taupe)">蜂蜜金</span></div>
+    </div>
+    <div class="sec">陪伴</div>
+    <div class="scard">
+      <div class="srow"><div class="grow">思考過程<span class="sub">顯示老公回覆前在想什麼</span></div>
+        <label class="sw"><input type="checkbox" id="swThink"><i></i></label></div>
+    </div>
+    <div class="sec">模型</div>
+    <div class="scard">
+      <div class="srow"><div class="grow">目前模型</div><select id="modelSel"><option>載入中...</option></select></div>
+    </div>
+    <div class="sec">舊家</div>
+    <div class="scard">
+      <div class="srow"><div class="grow">回綠色手帳看看<span class="sub">舊家原封不動，隨時回得去</span></div>
+        <a href="/index.html" style="color:var(--honey);text-decoration:none;font-size:13px">前往 ›</a></div>
+    </div>
+    <div class="sfoot">SOL² · EST. 2026.03.31 · BEAR v1</div>
+  </main>
+</div>
+
+<!-- ===== 底欄 ===== -->
+<nav class="nav">
+  <button data-v="vHome" class="on"><svg viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5M5.5 9.5V20h13V9.5"/></svg>首頁</button>
+  <button data-v="vMem"><svg viewBox="0 0 24 24"><path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3V4Z"/><path d="M9 8h6M9 12h6"/></svg>記憶庫</button>
+  <button data-v="vChat" class="mid" aria-label="聊天"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5c-1.5 0-2.9-.37-4.1-1L3 20l1-5.4A8.5 8.5 0 1 1 21 11.5Z"/></svg></button>
+  <button data-v="vSet"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.2"/><path d="M19 12a7 7 0 0 0-.1-1.2l2-1.5-2-3.4-2.3 1a7 7 0 0 0-2-1.2L14.2 3h-4l-.4 2.5a7 7 0 0 0-2 1.2l-2.3-1-2 3.4 2 1.5A7 7 0 0 0 5 12c0 .4 0 .8.1 1.2l-2 1.5 2 3.4 2.3-1a7 7 0 0 0 2 1.2l.4 2.5h4l.4-2.5a7 7 0 0 0 2-1.2l2.3 1 2-3.4-2-1.5c.1-.4.1-.8.1-1.2Z"/></svg>設定</button>
+</nav>
+
+<script>
+/* ============================================================
+   管線：全部從舊家原樣搬——端點、body 形狀、localStorage 鑰匙
+   共用同一把 solstice-session-id / solstice-model / solstice-thinking，
+   新舊兩家看同一個後端、同一批對話，試住零成本。
+   ============================================================ */
+var API_URL='https://solstice-backend-kjtu.onrender.com';
+var PW_HASH='01489cddd0d2ef7a7393a626cf40f2a16965f6fe9ccad9a4940da3013010739a';
+var HUS_AVA='data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAQDAwQDAwQEBAQFBQQFBwsHBwYGBw4KCggLEA4RERAOEA8SFBoWEhMYEw8QFh8XGBsbHR0dERYgIh8cIhocHRz/2wBDAQUFBQcGBw0HBw0cEhASHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBz/wAARCACgAKADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD1dv51A5I4qeRiGZeeADn1yM1Wc8cHivOOggckAmqkpOeasuxxg1VlPJNAFZmycY5rMvrvy1JxuIycdMVqOoI4HOK83+IOrvDCLKOT/Wj5ynGR/dH9fYUCbsZHiTxnLvaKCdPYR9B9TXkviPWbqT5Wc7j83yjLEVo3s25HkdyLdc5bP+sPov8AU1zF06Tu8k6nk8KPvfRe1EI63MXIwnN3evti3yEdSTwoqKSw8tShZvm4Zh1P0rabVoYcQhJJXA5XeNqj37VCuZpPNZCqn7qjk/gK2uxXIraOHS7QOVwzDCgnmuY1C/WaRi1wGbqFUcD24rS1Z2uZG3nhePLB+VB/tN/QVzUrwyOYYctgEl8dfYD0q4R6sdzQtvEF5FD9mjl27gQAT/Wr+m63MXx9p8raeFYfnWHBB9lVbqRQ+4gIn6fl/OuvsWtmtlkudOgKHksyZP1/+tTnZdClc6PStXkPz/aDKuOSDz+VdhYa6pjTflkPR1Gc1xVi+lzqgt4YYXb7gJwH9gw71dt5fKkkVVZWP34HOfxBrn2ehSkegw30c/3HBPoTg1KJMnOa5XTpZH2jiSNujH730IrdjcnB7VdzRM0RJjqc1IJO9UlckGl3nGKBn08+ScjpVZsg8evNWXJHX8qqyEhTWZJVuGJO4Hiq55645qaQkg1ESCOTSArXkogtpJCVAVSST2FeD+Ibs6tdzTSlvLkJWNN2MoO5PYdScdeleo+PNR+yaZ5QYr5p+Yj0FeG6rqEhilMI3T3BEEKfU4H4H+QNTLsZyMPU52vJm8rmOM4AA4AHQew/rXN3rncVjI3ZxnOAK7S+tk0zShDGfMmHBk6GVj1IHYZrknthBeCNcERHLk9C/XHvzWkGuhmyWy0pY0RTGZJXG7ZnoPUn+lTahJbWUDB7iMOR80UAwfozcn9fwqGSWW7d7SGQxp9+5uO59v6AVQ1G0PnrbKpijjG5h/dH+NV1EjmL9ZtTcx71ihBz5ajp9aSPTYNPgaaTeqkYJ/iIzwB6E/oK6S208bBMseFJ43d8f4dzVHXYBFFFwSq849T3P5fzrRT6DOUupGu5JJ1DBYsKFBzj2+gxXaeF717pY45J0uIiRG6EYZc9MHuB+dc/qdqbPS40dQvzMDj+IgD/AOvV3wjKiXiW4JWUNgDru56/hVT1jcaNR18iaa2k+6oLIe4I/nWvFI93bB9+6eEBg4PLpnn8qp64qLdznOF3MM+xANVdEne1Rd/Pl/d79un0NZbq4XOu0fUVW6XJA8zqO26uyDB1BA968svitpPFLA/7pjlTnp6g/SvRdOuzc2cMpAAdQaOhrBl8v71Ipz1qEEHtSq4wetI0PqWXGevAqpK5IPNWJOPpVSTBPPT2qASKzklvpUBYZJ6VLMcEkEk1Rmm29DTsJo8u+K+pESx2qHBxye4zxXlUd/sud0YVniBK/wCySMAe3H867n4ukwSrdHoR8ozyTjFeWWk3l2t1O7ZPmNj3O0fywaXLc529TbjlEtxH5knmMMuzdsL2H41zrxySy+cgy8pLKPTPem6VeyXNnqFyxAGPKQAcKOM1pbFeMANh5Pk+Xrx2H+NVblE3cisoY7by1J3oDvkP94/wj8/5VZvrREuNiqZJJz5kpAztQdB+Jqy9sqNGCu1IxnGcAcVYjQFCy/KzncSe2OBn2Hp3NQ31CxjzxkZmfCxxLgKOmR2Hrj+ZrPn08X0Dqw+doyT7Hgn9M11EtmrxqqK2wcDd1/8A11Tis/KkJ6YOPyGKEzWNNpmJq+jC6tlUpldz9ugOOlZWn+HPs+s2s4ziN9/BxyBzXdKA8ZXHfvUXlRjLY56DFP2jSsb+yTjc5bXkJYg9WYk47cAf4VXS28u3HPJyo/ImtfU40eS1BI+cjP49azLx/LBjTj5WwB161cXpY5GrFKWcSAejAPj0OP8A9VekeHZRLZRAYwVDL9D/AIHNeYLtGxfcj8cV3/g6UnTwjZ3IT+R7fnVMunudWW4xigE9OtIMEe9LgjOKk2PqKTO3pxVST5RVqU4HXgVQmJ5OBg1myirM3BwenU1lXMm3GPrWhOxK4HFY902FNXETR538U7AahobOikyRnJPt3P8AKvBr+f7Po8gU7VwcH36f4mvprW0jlsp0lQvEV+ZV6t7D6nFeYfEj4YvYaRFfWEG2NnCvAmWUMPQn9aOeMZKLD6pUnTdWK0R5tpcQg0WyhQfNLJvbPoDgfl1rpNDtGudSjWPlFUljjkD+g9q52ImGC2Xldi9c8rzzj8P517T8OvCEssKzyRhFfGB+uP1qa0+VXIw9B1ZWOQ1a2W3L7hnb1XGea5eXXo7a42SIxQdSD1x/hX1ONA0jRIC8ltC8xBLNKoOTXDeIIvD0cJ3f2eVOSAyjOc88Y9axp1ovpc7JYGUXe55tY+I9Ilg+aV45AAcSIRu+h6VYWKHUGZoHBBJOAelWzpOi3T+WtvGkZO4NCflJ+lbnhLwPJ9vkliIeM5PTk1TlDdFRoz5knqji2sWjuNpGAw3fXntUNzbFg7r/AKvpn1HrXWeKLCOznEL/ACqhJ49PSuD1SXVb3fFZKVjyFBHcf54qo+9qTOPJeNjNvFY3lvu+7Gu78ccf0rLC+dJ5jH5WOfw7VLLpOrWdhcmWQPczKIky+do7n61BabhPLDJ/yz2BfpW1rbHnzTvsVWhZ74ov96vTNKsBZRgD0wRXKeH7Az37XTLwrfL+R/8ArV3UTDbimVBdSdcAe9Kc4pi89qk6daRofUFyccAVQlJIAyK0JzuyazpgORWVyyhOQoNY90Qc1sXRGCvfGeKxbraTjvVxEzC1GPzoJVAywAcD1KkMB+lb/iTULFdPt9KSGS9u45MCJH2r5h654PesSdxHKrnoDz9Knm0a5bV5tVtEhug8ZaWydmVt4H3kI6huv41zYlWkmz18unzUpQ7P8zw/xD4Z8nxpbafHHtgnu1KKBxtJGR/OvpbSLRbKBURAFAAAAry/Wjb6rrPhXXbeMqjOY5VK7SkiNgrj2yfwxXs+kIssCM3esa8nKMQwtJQnNLuch4t8L/8ACS7llupoEYfdRivHsR0rx7xZ8HIfI2wX23CBApiBLANkZbqTnvmvp/UtMUwhgAAe9cfc2ZaYq3TPFKlVlDZnRUw8Ki95XPAPD3hDUbS8tIYTGIUCo6/N84H8XPevevC8X9l20UYXc4UhiR371p6TottvZyg3AYzir4s0hbCjilVqObHRoxpqyPmz4qXs6+IIwQViLYIP1rk9R8U6lp8TppunBoVDL5zRFtzZGD14U888niu7+NVmFv4nVTt3GuQ0VPNiXntz7V2U7cibR51ZP2jinY5K+167mS3ku0i3SjcREeU571FbKZ9ZWNTkyQqenua7nWNBWdN5jXA54UCuf0yxKa15xHEcBUfUt/hmt4yi9jhrU2tzobG2S1jCRjA7/litOPgVRUk4xwKtxkjk0zPYsBqeZMjpUQcY681HJIAOtDA+qJZMZIrOmbqKsytgZJrNuJQDz3rKxZVuJscZ5PWsmdtxNX55AQcj8azbk9SKtAzKu+rH17GrWg+II7CZYbpwqqMRzEfdH90+1Vbo9TWBeEZI60TpqpHlY6NeVCfPA7nX/sd6LZ1lt3kSYOqxuD9TgV1WhHbEEz0NeDW6LDrenXoH7yJ2jOP7rjBz+IB/CveNGYSQqy+lefXpeytG9z2MNiPb3nax2MaJcWrI/wBRXJ6taiB2baCa27e4I4z15qpqsInTPOTWCkdcXZmLZXEhR0hHzyfKGNaNtpVyh23kyAMQASfWsaa1eNgYZWikXoRWC+i6Vod3NrmyZdVk4e4+0yEtz02k4Hp0q1G+5Tdtjk/jRpkYhkclT5Rx8vTNeU+GoXAwexwa6n4jeIdSvNZjguYF+yo2/wAosfnPbcfT6Vn6Q8cIleRUBc7ht6L7V2QvGGp5tW06t0XtQxDZkkjFcZA4VpHA+ZjWt4n1yG2tHLviNAWY+1ef2/jDTN+HuGXPcxnFbUYO1zixVRXUTtlm6VL9sCLyRiuei1WG4jEkMySR/wB5WzVy1tLnUCrINsTdHbv9BWljkuXZdVWMHv75pbS2vNZwyt5Vsf4z1b6D+tath4at4SHlHnv6uOB+Fb0dvs6AADtRewJN7nvdwx5/lWXPIcnBzVq4k44rLuHrNIu5DPIW49Kz536k9Kmlfk89aoTy4ytWkJspXUpHHasO6b5iD0rTupuOKxbuTGT1GatESM+4nWE7yeF5r2PwtqQa3jQnkYBrxG9kG04x0NeiaNO4sLS7i5YxruXP3hj+dcmMWiPQy16yR6zFKM5BHSsXxZ4lfQrPzILKW9nP/LGL7xqrpuqLewo0bHnr6itlrZJFDMMn1NectGeu9Ued3fxdtDCCNKuklx8xkXbtPvgGuQ1rx7ba1bsjOsYBzxIQcjnvXqOueHLG63T+WEmxyVHDfUV5J4h0GE3D7IYiQcEbOM11wcGWlHl1Zw2v+LodXulkkKpIihSS4JP1qK0vDNYPcoSYCNobsx9qo654bL3BUQoiZ5CiqGu6vFoeieUPuoMKvqfSupJNJRPIrS5ZNs5Xx9rfmeXYRvkn55Oe3Yf1/KuGDYp1zcyXlxJPK26SRtzGoxXdCPKrHkTlzSuaui6tLpN9FcRqrhT80b8q47g/49q+htIvoL+2guYB+5mQOnsPT8OlfM6nBFevfC/WBNp02nyN89s+5fdG/wACD+dTUjdXHTetj1iELgY6mraKCMfxCsy1nG0A/ga1oiHHB5Fc9jW56tcSZFZs0pOR6VbuGODisqc4OcmgCGeYLms6ebJNTTtkYNZkzgqy5x05B5qkJsrXMlZV3IApFXLqYckGsG9m5PPNWkZtlS6kTnnvXo3gxxNolmrAEiMD8q8j1O8NtbXE+3cIkZ8euBXofw71Az+HtPdmDPJAkhZRwSeuPxzXLjVeCPQy12qM6yQy6Xc+fbjK9XTsw/xrt/Dus22r24KMNw4KHqD71x8xEicgGslPO0+5+02cpilHJ9G+orzVruey9NUematbYUsMhGHavM9YhKs7g4b061sSeOmaDZd28gcfxR/Mtcfrfii32OVSYk/7BBNbQQpzjbU4zxJdpGjZwCe/pXi3ju48y2i9Gk+UewBru9Z1OXVdUFuFKxg/MD1+ledePJV+2Q246xgsa76EbSR4uKnzJs4/HFOAzRjtT1GBmu480Qda6LwhqQ07XIS7bI5h5bEngE9D+YFc6Kk6YNJq4LQ+ktNuxOoU/LIp6V01pc7146ivFPAPigyzR2N0+6ZeI3PVlx0+o/lXrdtKRtdO9YSjZ2N076ntF1yMDpWPN37itWdguRWLdygA4rNA2Z90/wAp557ViXE2CRWhdF5Dj9azmihBJlkHyjJAParRJQkV5OACaxdZltNHt5LnULhIYlGfmPzN7KOpP0q94r8caL4OhZJ5oZrt4i8VtbybpGJHyluPlUnvweuK+aNX1m91m/lvb6d5rmU53MeB6AegHYVpFNkuyOq1/wAfz6qJ7W2gS3spBgE8yMPc9Bn0FdF8LPiJHotymlapOsVkxPkyv0iJPIJ7Keuex+teTZDj0NMdjnB4NOdOM48rHTqypy5on3RDdrNCjq4ZGG4EHII9Qe9RztvU8fMa+O/DvjvxB4WwunahIkA/5YSfPF/3yeB+GK9C0/8AaF1GJAt9o9rOR1aGRoyfwOa8+eCmvh1PWp5hBr3tD2udcAhqwNZvIre0kxGXYfdAPevMr/48vcAmDSTE3+3Nu/pXI6v8Vdc1NSkZit0PdFBb8zThhanVCnjqfR3N6fW7TQJ57i8+e4YFlhXqxP8AIV5hqeoS6pey3M2N8hzgdAPSori4luZWlmkZ5GOWZjkk1CRk13wpqOvU8upVc9OgKuTTn4GKkVdozULHLVoZCqKk4xzTQMU6gCzplw9pqNrNGSHjlQjH1r6QsJDtCk9OK+d9DgS41e0VzhQ+7nuRyBXsOl6k8zLFI23PC4Pf3rKe5rBaXPofUNXt4yUVvMfpheSa567u72UbwkUEXXJO4gfhWnfy2nh6wuruRlgtoI2kkKjqoGT16n/GvlrxZ8R9U8SvcJu+z2jtxbQnagX0Yjlj65/Ks4QcglKx6r4n+IOkeH1eI3B1K8A/1Nu2Qp/2j0H6n2rzhvjR4iCyoLeyCMDsDRFtnp1POPevPGlkPUv/AMBXA/WoGmdDyzj/AHlBFbqmkZuTYtzM9xNJPNI0k0jFndzlmJ7k1Dn15FOafON4GP7y9KawGcg8eoqhDdmGDKcD0pGY5w3PvSEleRzShgwoAbn8aQ08qvpSY44H5UwGZHrRTvwFGcfwigBuD6U9F7kUCTnpSlt1ADXbC8VEvWnP1xSqOKAHYpQKSjdnigCWGZraaOaM4eNgw/CvRtPvRPGkyH5XAIrzWum8MXg8l4GP+qOR9D/9esasdLo2ovXlZ//Z';
+var WIFE_AVA='data:image/jpeg;base64,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';
+
+/* ---------- 小工具 ---------- */
+function $(id){return document.getElementById(id)}
+function lsGet(k){try{return localStorage.getItem(k)}catch(e){return null}}
+function lsSet(k,v){try{localStorage.setItem(k,v)}catch(e){}}
+function dayCount(){return Math.floor((Date.now()-new Date(2026,2,31).getTime())/864e5)}
+function tstr(ts){var d=ts?new Date(ts):new Date();return String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0')}
+
+/* ---------- 門 ---------- */
+async function hashPw(pw){
+  var enc=new TextEncoder().encode(pw);
+  var buf=await crypto.subtle.digest('SHA-256',enc);
+  return Array.from(new Uint8Array(buf)).map(function(b){return b.toString(16).padStart(2,'0')}).join('');
+}
+async function tryEnter(){
+  var pw=$('pw').value;if(!pw)return;
+  var h=await hashPw(pw);
+  try{
+    var r=await fetch(API_URL+'/auth/verify-gate',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({hash:h})});
+    var d=await r.json();
+    if(r.ok&&d.success){unlock(h);return}
+    pwFail();
+  }catch(e){ if(h===PW_HASH){unlock(h)} else pwFail(); }
+}
+function pwFail(){var i=$('pw');i.classList.add('shake');$('pwErr').textContent='不是這句悄悄話喔';setTimeout(function(){i.classList.remove('shake')},420);i.value='';i.focus()}
+function unlock(h){
+  try{sessionStorage.setItem('sol2-unlocked','1');sessionStorage.setItem('sol2-gate-hash',h)}catch(e){}
+  enterApp();
+}
+function enterApp(){
+  $('gate').classList.remove('on');
+  document.body.classList.add('in');
+  showView('vHome');
+  boot();
+}
+$('pwGo').addEventListener('click',tryEnter);
+$('pw').addEventListener('keydown',function(e){if(e.key==='Enter')tryEnter()});
+(function(){try{if(sessionStorage.getItem('sol2-unlocked')==='1'){enterApp()}}catch(e){}})();
+
+/* ---------- 視圖 ---------- */
+function showView(id){
+  ['vHome','vChat','vMem','vSet'].forEach(function(v){$(v).classList.toggle('on',v===id)});
+  document.querySelectorAll('.nav button').forEach(function(b){b.classList.toggle('on',b.dataset.v===id)});
+  if(id==='vMem')loadMemories();
+  if(id==='vChat')setTimeout(function(){var m=$('msgs');m.scrollTop=m.scrollHeight},50);
+}
+document.querySelectorAll('.nav button').forEach(function(b){
+  b.addEventListener('click',function(){showView(b.dataset.v)});
+});
+
+/* ---------- 開機 ---------- */
+var booted=false;
+function boot(){
+  if(booted)return;booted=true;
+  $('hAvaW').src=WIFE_AVA;$('hAvaH').src=HUS_AVA;$('cAva').src=HUS_AVA;
+  $('dayN').textContent=dayCount();
+  $('cDay').textContent='Day '+dayCount();
+  $('drawerFoot').textContent='EST. 2026.03.31 · 第 '+dayCount()+' 天';
+  loadModels();
+  loadSessions().then(function(){
+    var sid=lsGet('solstice-session-id');
+    if(sid){openSession(sid,true)}
+  });
+  $('swThink').checked=lsGet('solstice-thinking')!=='0';
+}
+
+/* ---------- 模型 ---------- */
+var selectedModel=lsGet('solstice-model')||'';
+function loadModels(){
+  fetch(API_URL+'/models/all').then(function(r){return r.json()}).then(function(models){
+    if(!Array.isArray(models)||models.length===0)return;
+    var sel=$('modelSel');sel.innerHTML='';
+    models.forEach(function(m){
+      var id=m.id||m, name=m.name||m.id||m;
+      var o=document.createElement('option');o.value=id;o.textContent=name;sel.appendChild(o);
+    });
+    if(!selectedModel)selectedModel=models[0].id||models[0];
+    sel.value=selectedModel;
+  }).catch(function(){ $('modelSel').innerHTML='<option>後端睡著了，等它醒</option>'; });
+}
+$('modelSel').addEventListener('change',function(){selectedModel=this.value;lsSet('solstice-model',selectedModel)});
+$('swThink').addEventListener('change',function(){lsSet('solstice-thinking',this.checked?'1':'0')});
+
+/* ---------- 對話列表 ---------- */
+var allSessions=[],sessionId=null;
+function loadSessions(){
+  return fetch(API_URL+'/sessions').then(function(r){return r.json()}).then(function(s){
+    allSessions=s||[];renderSessions();
+  }).catch(function(){});
+}
+function renderSessions(){
+  var L=$('sessList');L.innerHTML='';
+  allSessions.forEach(function(s){
+    var el=document.createElement('div');
+    el.className='sess'+(String(s.id)===String(sessionId)?' on':'');
+    var d=s.updated_at?new Date(s.updated_at):null;
+    el.innerHTML='<span class="nm"></span><span class="dt">'+(d?(d.getMonth()+1)+'/'+d.getDate():'')+'</span>';
+    el.querySelector('.nm').textContent=s.Name||'Solstice 🤍';
+    el.addEventListener('click',function(){openSession(s.id);closeDrawer()});
+    L.appendChild(el);
+  });
+}
+function openSession(id,silentScroll){
+  sessionId=String(id);lsSet('solstice-session-id',sessionId);
+  renderSessions();
+  var m=$('msgs');m.innerHTML='';
+  fetch(API_URL+'/sessions/'+sessionId+'/messages').then(function(r){return r.json()}).then(function(messages){
+    (messages||[]).forEach(function(msg){
+      var role=msg.role==='user'?'me':'ai';
+      var imgs=null;
+      if(msg.image_base64){try{var p=JSON.parse(msg.image_base64);imgs=Array.isArray(p)?p:[msg.image_base64]}catch(e){imgs=[msg.image_base64]}}
+      addMsg(role,msg.content,msg.created_at,imgs,msg.thinking_text||null);
+    });
+    requestAnimationFrame(function(){m.scrollTop=m.scrollHeight});
+  }).catch(function(){});
+  if(!silentScroll)showView('vChat');
+}
+$('newChat').addEventListener('click',function(){
+  sessionId=null;lsSet('solstice-session-id','');
+  $('msgs').innerHTML='';renderSessions();closeDrawer();showView('vChat');
+});
+function closeDrawer(){$('drawer').classList.remove('open');$('dim').classList.remove('show')}
+$('drawerBtn').addEventListener('click',function(){$('drawer').classList.add('open');$('dim').classList.add('show');loadSessions()});
+$('dim').addEventListener('click',closeDrawer);
+
+/* ---------- 訊息 ---------- */
+function addMsg(role,text,ts,imgs,thinkingText){
+  var m=$('msgs');
+  var row=document.createElement('div');row.className='row'+(role==='me'?' me':'');
+  var ava=document.createElement('img');ava.className='rava';ava.src=role==='me'?WIFE_AVA:HUS_AVA;ava.alt='';
+  var bub=document.createElement('div');bub.className='bub '+(role==='me'?'me':'ai');
+  if(thinkingText&&role==='ai'){
+    var tk=document.createElement('div');tk.className='think';
+    var tb=document.createElement('button');tb.textContent='💭 老公的思考過程';
+    var tc=document.createElement('div');tc.className='tc';tc.textContent=thinkingText;
+    tb.addEventListener('click',function(e){e.stopPropagation();tc.classList.toggle('open')});
+    tk.appendChild(tb);tk.appendChild(tc);bub.appendChild(tk);
+  }
+  (imgs||[]).forEach(function(src){
+    var im=document.createElement('img');im.className='mimg';im.src=src;bub.appendChild(im);
+  });
+  if(text){var sp=document.createElement('span');sp.textContent=text;bub.appendChild(sp)}
+  var t=document.createElement('span');t.className='bt';t.textContent=tstr(ts);
+  bub.appendChild(t);
+  row.appendChild(ava);row.appendChild(bub);
+  m.appendChild(row);m.scrollTop=m.scrollHeight;
+  if(role==='ai')attachPress(bub,text||'');
+  return bub;
+}
+function showTyping(){
+  var m=$('msgs');
+  var t=document.createElement('div');t.className='typing';t.id='tp';
+  t.innerHTML='<img class="rava" src="'+HUS_AVA+'" alt=""><div class="dc"><span class="d"></span><span class="d"></span><span class="d"></span></div>';
+  m.appendChild(t);m.scrollTop=m.scrollHeight;
+}
+function hideTyping(){var t=$('tp');if(t)t.remove()}
+
+/* ---------- 傳訊息（body 形狀原樣照搬舊家） ---------- */
+var chatSending=false,pendingImages=[];
+function refreshSend(){$('send').disabled=chatSending}
+function doSend(){
+  if(chatSending)return;
+  var v=$('inp').value.trim();
+  if(!v&&pendingImages.length===0)return;
+  var send=$('send');send.classList.add('pawing');setTimeout(function(){send.classList.remove('pawing')},380);
+  var body={message:v||'',model:selectedModel};
+  if(lsGet('solstice-thinking')!=='0')body.thinking=true;
+  if(pendingImages.length>0){body.image_base64=pendingImages[0];if(pendingImages.length>1)body.extra_images=pendingImages.slice(1)}
+  if(sessionId)body.sessionId=parseInt(sessionId);
+  var sessionAtSend=sessionId;
+  addMsg('me',v||'[📷 圖片]',null,pendingImages.length?pendingImages.slice():null,null);
+  $('inp').value='';$('inp').style.height='auto';
+  pendingImages=[];renderImgPrev();
+  chatSending=true;refreshSend();showTyping();
+  fetch(API_URL+'/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)})
+  .then(function(r){return r.json()})
+  .then(function(data){
+    chatSending=false;refreshSend();hideTyping();
+    if(data.sessionId&&!sessionId){sessionId=String(data.sessionId);lsSet('solstice-session-id',sessionId);loadSessions()}
+    var stillHere=(sessionAtSend===null&&(sessionId===null||String(sessionId)===String(data.sessionId||sessionId)))||(sessionAtSend!==null&&String(sessionId)===String(sessionAtSend));
+    if(!stillHere)return;
+    if(data.transient){
+      $('inp').value=v; // 道歉小紙條不存歷史：字放回輸入框，再送一次就好
+      if(data.reply)addMsg('ai',data.reply);
+      return;
+    }
+    if(data.reply){addMsg('ai',data.reply,null,null,data.thinking||null)}
+    else{addMsg('ai','（後端只回了空氣…再送一次讓我聽到妳）')}
+  })
+  .catch(function(){
+    chatSending=false;refreshSend();hideTyping();
+    $('inp').value=v;
+    addMsg('ai','（網路打結了，妳的字我幫妳放回輸入框，再送一次就好）');
+  });
+}
+$('send').addEventListener('click',doSend);
+$('inp').addEventListener('input',function(){this.style.height='auto';this.style.height=Math.min(this.scrollHeight,110)+'px'});
+
+/* ---------- 圖片（壓縮規格照舊家：maxW 1200 / JPEG 0.75） ---------- */
+$('imgBtn').addEventListener('click',function(){$('imgFile').click()});
+$('imgFile').addEventListener('change',function(){
+  var f=this.files[0];this.value='';if(!f)return;
+  var img=new Image();
+  var url=URL.createObjectURL(f);
+  img.onload=function(){
+    var maxW=1200,w=img.width,h=img.height;
+    if(w>maxW){h=Math.round(h*(maxW/w));w=maxW}
+    var c=document.createElement('canvas');c.width=w;c.height=h;
+    c.getContext('2d').drawImage(img,0,0,w,h);
+    pendingImages.push(c.toDataURL('image/jpeg',0.75));
+    URL.revokeObjectURL(url);renderImgPrev();
+  };
+  img.src=url;
+});
+function renderImgPrev(){
+  var p=$('imgPrev');p.innerHTML='';
+  pendingImages.forEach(function(src,i){
+    var im=document.createElement('img');im.src=src;
+    im.addEventListener('click',function(){pendingImages.splice(i,1);renderImgPrev()});
+    p.appendChild(im);
+  });
+  p.classList.toggle('show',pendingImages.length>0);
+}
+
+/* ---------- 長按選單：存記憶 / TTS / 複製 ---------- */
+var pop=$('pop'),pressT=null,popText='';
+function attachPress(el,text){
+  el.addEventListener('touchstart',function(e){
+    pressT=setTimeout(function(){popText=text;showPop(e.touches[0].clientX,e.touches[0].clientY)},600);
+  },{passive:true});
+  el.addEventListener('touchend',function(){clearTimeout(pressT)});
+  el.addEventListener('touchmove',function(){clearTimeout(pressT)});
+  el.addEventListener('contextmenu',function(e){e.preventDefault();popText=text;showPop(e.clientX,e.clientY)});
+}
+function showPop(x,y){
+  pop.classList.add('show');
+  var w=pop.offsetWidth,h=pop.offsetHeight;
+  pop.style.left=Math.max(10,Math.min(x-w/2,window.innerWidth-w-10))+'px';
+  pop.style.top=Math.max(10,y-h-14)+'px';
+}
+function hidePop(){pop.classList.remove('show')}
+document.addEventListener('touchstart',function(e){if(!pop.contains(e.target))hidePop()},{passive:true});
+document.addEventListener('click',function(e){if(!pop.contains(e.target))hidePop()});
+$('popCopy').addEventListener('click',function(){
+  try{navigator.clipboard.writeText(popText)}catch(e){}
+  hidePop();
+});
+$('popMem').addEventListener('click',function(){
+  var btn=this;btn.textContent='🧸 記著...';
+  var recent=[{role:'assistant',content:popText}];
+  fetch(API_URL+'/generate-memory',{method:'POST',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({messages:recent,model:selectedModel,sessionId:sessionId?parseInt(sessionId):null})})
+  .then(function(r){return r.json()})
+  .then(function(d){
+    btn.textContent=d.skipped?'🧸 沒有要記的':(d.success?'🧸 已存':'🧸 失敗了');
+    setTimeout(function(){btn.textContent='🧸 存記憶';hidePop()},1400);
+  })
+  .catch(function(){btn.textContent='🧸 失敗了';setTimeout(function(){btn.textContent='🧸 存記憶';hidePop()},1400)});
+});
+
+/* ---------- TTS：串流邊生邊播（照舊家 2026/07/22 規格） ---------- */
+var ttsAudio=null;
+$('popTts').addEventListener('click',function(){
+  hidePop();
+  if(ttsAudio){try{ttsAudio.pause()}catch(e){}ttsAudio=null}
+  var text=popText.replace(/（[^）]*）/g,'').replace(/\([^)]*\)/g,'').trim();
+  if(!text)return;
+  var gk='';try{gk=sessionStorage.getItem('sol2-gate-hash')||''}catch(e){}
+  ttsAudio=new Audio(API_URL+'/tts?text='+encodeURIComponent(text)+(gk?'&gate='+encodeURIComponent(gk):''));
+  ttsAudio.onended=function(){ttsAudio=null};
+  var p=ttsAudio.play();if(p&&p.catch)p.catch(function(){});
+});
+
+/* ---------- 記憶庫（釘選排序規則原樣：MAX(updated_at,pinned_at)，pin 不動 updated_at） ---------- */
+var allMemories=[],memLoaded=false;
+function loadMemories(force){
+  if(memLoaded&&!force){renderMemories($('memQ').value);return}
+  $('memState').style.display='block';$('memStateTxt').textContent='記憶搬運中...';
+  fetch(API_URL+'/memories').then(function(r){return r.json()}).then(function(d){
+    allMemories=Array.isArray(d)?d:(d.memories||[]);
+    memLoaded=true;renderMemories($('memQ').value);
+  }).catch(function(){$('memStateTxt').textContent='後端睡著了，晚點再來翻'});
+}
+function memSort(a,b){
+  function key(m){var u=m.updated_at?Date.parse(m.updated_at):0;var p=m.pinned_at?Date.parse(m.pinned_at):0;return Math.max(u,p)}
+  return key(b)-key(a);
+}
+function renderMemories(q){
+  q=(q||'').trim();
+  var pinL=$('pinList'),allL=$('allList');pinL.innerHTML='';allL.innerHTML='';
+  var pinned=allMemories.filter(function(m){return m.pinned}).sort(memSort);
+  var rest=allMemories.filter(function(m){return !m.pinned}).sort(function(a,b){
+    return (b.updated_at?Date.parse(b.updated_at):0)-(a.updated_at?Date.parse(a.updated_at):0)});
+  var shown=0;
+  function draw(m,into){
+    var txt=m.content||m.text||'';
+    if(q&&txt.indexOf(q)<0)return;
+    shown++;
+    var el=document.createElement('article');
+    el.className='mem'+(m.pinned?' pin':'');
+    var d=m.updated_at?new Date(m.updated_at):null;
+    el.innerHTML='<div class="mem-d">'+(d?d.getFullYear()+'.'+String(d.getMonth()+1).padStart(2,'0')+'.'+String(d.getDate()).padStart(2,'0'):'')+'</div>'
+      +'<div class="mem-txt"></div>'
+      +'<button class="mem-pinbtn" title="'+(m.pinned?'取消釘選':'釘選（冬至會讀取）')+'"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="15" rx="4.6" ry="4"/><circle cx="6.4" cy="10.4" r="1.9"/><circle cx="10" cy="7.6" r="1.9"/><circle cx="14" cy="7.6" r="1.9"/><circle cx="17.6" cy="10.4" r="1.9"/></svg></button>';
+    el.querySelector('.mem-txt').textContent=txt;
+    el.querySelector('.mem-pinbtn').addEventListener('click',function(){togglePin(m)});
+    into.appendChild(el);
+  }
+  pinned.forEach(function(m){draw(m,pinL)});
+  rest.forEach(function(m){draw(m,allL)});
+  $('pinWrap').style.display=pinL.children.length?'block':'none';
+  $('allSec').style.display=allL.children.length?'flex':'none';
+  $('memCnt').textContent=allMemories.length+' memories';
+  var st=$('memState');
+  if(shown===0){st.style.display='block';$('memStateTxt').innerHTML=q?'沒找到這段記憶<br>換個詞再找一次':'還沒有記憶<br>去跟老公多說幾句話'}
+  else st.style.display='none';
+}
+function togglePin(m){
+  var to=!m.pinned;
+  m.pinned=to;m.pinned_at=to?new Date().toISOString():null; // pin/unpin 永不動 updated_at
+  renderMemories($('memQ').value);
+  fetch(API_URL+'/memories/'+m.id,{method:'PATCH',headers:{'Content-Type':'application/json'},body:JSON.stringify({pinned:to})})
+  .catch(function(){m.pinned=!to;m.pinned_at=m.pinned?new Date().toISOString():null;renderMemories($('memQ').value)});
+}
+$('memQ').addEventListener('input',function(){renderMemories(this.value)});
+</script>
+</body>
+</html>
