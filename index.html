@@ -7,7 +7,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Sol²">
-<meta name="theme-color" content="">
+<meta name="theme-color" content="#FDFCF5"><!-- 2026/07/26 狀態列奶油色（老婆指定）：冷啟動第一幀就正確 -->
 <title>Sol²</title>
 <link rel="manifest" href="/manifest.json">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -1472,6 +1472,45 @@ body.theme-greenhouse .lr-toc-arrow{color:#7A8B5E;text-shadow:none}
 body.theme-greenhouse .lr-page-num{color:rgba(90,107,60,.55);text-shadow:none}
 body.theme-greenhouse .lr-back{background:rgba(255,255,255,.72);border:1px solid rgba(90,107,60,.20);transform:none;box-shadow:0 1px 4px rgba(122,155,74,.10)}
 body.theme-greenhouse .lr-back:active{transform:scale(.9);background:rgba(232,240,220,.80)}
+
+/* ============================================================
+   🌿 全屋終掃（2026/07/26 老婆的小願望：一次掃到底）
+   範圍：開場頁、設定頁殘餘、狀態列配套。記憶庫依老婆指定零規則、原封不動。
+   ============================================================ */
+
+/* ① 開場太陽頁：紙紋條紋與虛線內框收掉，換全屋同款奶油漸層。
+      太陽寶寶、花瓣雨、綻放動畫全是居民，一幀未動。
+      html.app-loading 寫在第二張樣式表、又掛不到 body 的 class，
+      用雙 class 提高權重壓過去（不改原始碼、不加第三張表）。 */
+html.app-loading.app-loading{background:#FDFCF5}
+html.app-loading.app-loading body{background:#FDFCF5}
+body.theme-greenhouse #solsticeSplash{background:linear-gradient(160deg,#FDFCF5,#F6F8EE 55%,#F2F6EC)}
+body.theme-greenhouse #solsticeSplash::before{display:none}
+
+/* ② 設定頁本體：黃紙＋直紋橫線退役，換全屋奶油漸層；
+      上下兩條 45° 金絲帶與 header 絲帶＝斜紋膠帶家族，一起收進衣櫃 */
+body.theme-greenhouse .settings-page{background:linear-gradient(160deg,#FDFCF5,#F6F8EE 55%,#F2F6EC)}
+body.theme-greenhouse .settings-page::before,
+body.theme-greenhouse .settings-page::after,
+body.theme-greenhouse .settings-header::after{display:none}
+body.theme-greenhouse .settings-header{background:rgba(253,252,245,.90);border-bottom:1px solid rgba(90,107,60,.14);box-shadow:0 2px 8px rgba(90,107,60,.05)}
+body.theme-greenhouse .settings-title{color:#8B7B3C}
+body.theme-greenhouse .settings-page .page-photo-overlay{box-shadow:none}
+
+/* ③ 靈魂檔案的兩顆按鈕（老婆紅筆圈的正主）：
+      存檔生效＝綠玻璃膠囊、回出廠＝暖金玻璃膠囊，跟全屋按鈕語言對齊 */
+body.theme-greenhouse .soul-btn{border-radius:999px;border:1px solid rgba(255,213,79,.45);background:rgba(255,248,225,.72);color:#8B7B3C;box-shadow:0 1px 4px rgba(139,123,60,.10);transform:none}
+body.theme-greenhouse .soul-btn.save{border-color:rgba(122,155,74,.42);background:rgba(232,240,220,.78);color:#4A5C28;box-shadow:0 1px 4px rgba(122,155,74,.10)}
+body.theme-greenhouse .soul-btn:active{transform:scale(.96)}
+
+/* ④ 設定頁小字與殘餘輸入框：全部收進墨綠／次綠字階 */
+body.theme-greenhouse .soul-count{color:#8B9470}
+body.theme-greenhouse .soul-hint{color:#7A8B5E}
+body.theme-greenhouse .vc-msg{color:#7A8B5E}
+body.theme-greenhouse .vc-name{color:#5A6B3C}
+body.theme-greenhouse .vc-zh{color:#7A8B5E}
+body.theme-greenhouse .new-hash-box textarea{background:rgba(255,255,255,.62);border:1px solid rgba(90,107,60,.18);border-radius:14px;box-shadow:inset 0 1px 3px rgba(90,107,60,.05)}
+body.theme-greenhouse .new-hash-box textarea:focus{border-color:rgba(122,155,74,.50);background:rgba(255,255,255,.80)}
 </style>
 <style id="app-loading-style">
 /* === Solstice Splash — 終極版 ===
@@ -2127,7 +2166,7 @@ var selectedModel = globalModel; // 當下生效的模型：進哪間房就跟�
 var thinkingEnabled = localStorage.getItem('solstice-thinking') === 'true';
 var allSessions = [];
 
-function getThemeColor(){return ''}
+function getThemeColor(){return (document.body&&document.body.classList.contains('theme-greenhouse'))?'#FDFCF5':''}/* 2026/07/26 溫室=奶油狀態列；摘掉 class 自動回手帳的空值 */
 function themeHeart(){return '\uD83D\uDC9A'}
 function themeStar(){return '\uD83C\uDF3B'}
 
@@ -4782,7 +4821,7 @@ var MEM_FLOWER_24='<svg style="width:26px;height:26px;display:block" viewBox="0 
 var MEM_HEART_13='<svg style="width:14px;height:13px;vertical-align:-2px" viewBox="0 0 24 22"><path d="M12 20 C7.4 17 3.4 13.7 3.4 9.4 3.4 6.2 5.8 4.2 8.3 4.2 9.9 4.2 11.2 5 12 6.4 12.8 5 14.1 4.2 15.7 4.2 18.2 4.2 20.6 6.2 20.6 9.4 20.6 13.7 16.6 17 12 20 z" fill="#C3DC6A" stroke="#4E6820" stroke-width="1.8" stroke-linejoin="round"/><path d="M7.6 8.4 q1.4 -1.6 3 -0.4" stroke="#F0F6D8" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>';
 function applyTheme(){
   document.documentElement.removeAttribute("data-theme");
-  document.querySelector("meta[name=\"theme-color\"]").setAttribute("content","");
+  document.querySelector("meta[name=\"theme-color\"]").setAttribute("content",getThemeColor());
   var pol=document.querySelector(".w-polaroid-img");
   if(pol)pol.src="images/welcome-night.jpg";
   var lrnp=document.getElementById("lrNotePhoto");
