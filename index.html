@@ -1685,6 +1685,142 @@ body.theme-horizon .sol-cfm .sol-cfm-msg{color:#2B2F26}
 body.theme-horizon .sol-cfm .sol-cfm-ic{color:#47584A;opacity:.92}
 body.theme-horizon .sol-cfm .sol-cfm-no{border:1px solid #CFD1C6;background:#FFFFFF;color:#6B6E62;border-radius:999px}
 body.theme-horizon .sol-cfm .sol-cfm-yes{border:none;outline:none;background:#47584A;color:#FBFBF9;border-radius:999px;font-weight:500;box-shadow:0 2px 8px rgba(71,88,74,.20)}
+
+/* ===== 🌄 HORIZON · 聊天室 & 側邊欄補綴（2026/07/27）=====
+   老婆親自點名的漏網：頭貼歪斜、Satisfy 字體、氣泡膠帶、時間分隔太陽、
+   來源書籤虛線、YouTube 卡虛線、預覽 X 歪、img/送出/摘要三顆 SVG 手帳感、
+   到底箭頭向日葵、存記憶籤向日葵、側邊欄釘子向日葵、彈窗八色 variant。
+   全部走 body.theme-horizon 覆蓋，不動舊定義。 */
+
+/* — 頭貼：拿掉歪斜與抹茶邊 */
+body.theme-horizon .ch-avatar{transform:none;border:1px solid #E7E7E0;background:#F4F4EF;box-shadow:none;padding:0}
+body.theme-horizon .ch-avatar.wife{transform:none;border:1px solid #E7E7E0;box-shadow:none}
+
+/* — 頁首右邊工具區間距、暱稱字型換成 Cormorant italic 墨字 */
+body.theme-horizon .ch-name{font-family:'Cormorant Garamond','Noto Serif TC',serif;font-style:italic;font-weight:500;font-size:15px;color:#2B2F26;text-shadow:none;letter-spacing:.3px}
+body.theme-horizon #chSubtext{color:#8A8D80 !important;font-weight:300 !important}
+body.theme-horizon .ch-stat{color:#8A8D80}
+body.theme-horizon #chOnlineDot{color:#47584A !important}
+
+/* — 氣泡：關閉膠帶與角落 SVG */
+body.theme-horizon .ch-bub::before,
+body.theme-horizon .ch-bub::after{display:none !important;content:none !important}
+
+/* — 訊息時間戳、釘顏色 */
+body.theme-horizon .ch-time{color:#B4B6AB;font-family:'LXGW WenKai TC','Noto Serif TC',serif}
+body.theme-horizon .ch-time .mem-pin-btn{color:#C9A24B}
+
+/* — 時間分隔：關閉白虛線＋太陽 SVG，字型改乾淨 */
+body.theme-horizon .ch-time-sep::before,
+body.theme-horizon .ch-time-sep::after,
+body.theme-horizon .ch-time-sep.new-day::before,
+body.theme-horizon .ch-time-sep.new-day::after{display:none !important;content:none !important;background:none !important}
+body.theme-horizon .ch-time-sep span{font-family:'LXGW WenKai TC','Noto Serif TC',serif !important;letter-spacing:.6px}
+body.theme-horizon .ch-time-sep.new-day span{background:#FFFDF6;border:1px solid rgba(201,162,75,.4);color:#C9A24B;box-shadow:none}
+
+/* — 訊息內連結：Horizon 版走松綠實下劃線，AI 泡泡與 user 泡泡各自語言 */
+body.theme-horizon .ch-bub.ai a.ch-link{color:#47584A;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
+body.theme-horizon .ch-bub.user a.ch-link{color:#EFE3BC}
+
+/* — 來源書籤：虛線 → 髮絲線；膠囊化 */
+body.theme-horizon .ch-src{border-top:1px solid #E7E7E0;padding-top:8px;margin-top:10px}
+body.theme-horizon .ch-book{border-radius:999px !important;border:1px solid #E7E7E0 !important;background:#FFFFFF !important;color:#47584A !important;box-shadow:none !important;padding:4px 10px !important;font-size:11.5px !important;letter-spacing:.4px !important}
+body.theme-horizon .ch-book:hover{background:#EDF1EC !important;border-color:#CFD1C6 !important}
+
+/* — YouTube 卡：虛線 → 髮絲線＋掛畫語言 */
+body.theme-horizon .ch-yt-th{border:1px solid #E7E7E0 !important;border-radius:6px !important;background:#F4F4EF !important;box-shadow:none !important}
+body.theme-horizon .ch-yt-cap{color:#8A8D80 !important}
+body.theme-horizon .ch-yt-play{color:#2B2F26 !important;opacity:.75}
+
+/* — 圖片預覽移除鍵：歪斜 rotate → 白圓髮絲線 */
+body.theme-horizon .ch-preview-item .ch-preview-x{border-radius:50% !important;background:#FFFFFF !important;border:1px solid #E7E7E0 !important;color:#2B2F26 !important;font-family:'LXGW WenKai TC','Noto Serif TC',serif !important;box-shadow:0 1px 2px rgba(43,47,38,.05) !important}
+body.theme-horizon .ch-preview-item .ch-preview-x:active{transform:scale(.92) !important}
+
+/* — 圖片按鈕：拿掉手帳圈狀＋rotate；SVG 顏色統一由 currentColor 決定 */
+body.theme-horizon .ch-img-btn{background:#FFFFFF !important;border:1px solid #E7E7E0 !important;border-radius:50% !important;width:36px !important;height:36px !important;padding:0 !important;box-shadow:0 1px 2px rgba(43,47,38,.05) !important;display:inline-flex !important;align-items:center !important;justify-content:center !important;color:#47584A !important}
+body.theme-horizon .ch-img-btn:hover{background:#EDF1EC !important;border-color:#CFD1C6 !important}
+body.theme-horizon .ch-img-btn:active{background:#EDF1EC !important;transform:scale(.94) !important;box-shadow:0 1px 2px rgba(43,47,38,.05) !important}
+body.theme-horizon .ch-img-btn svg{width:18px !important;height:18px !important}
+/* 直接蓋掉舊 SVG：顏色重繪成松綠線稿（原本 SVG 各 path 有寫死顏色，用選擇器蓋所有子元素） */
+body.theme-horizon .ch-img-btn svg *{fill:none !important;stroke:#47584A !important;stroke-width:1.6 !important;stroke-linecap:round !important;stroke-linejoin:round !important}
+
+/* — 送出鍵：向日葵 → 松綠實心紙飛機（同樣手法用選擇器蓋 SVG 子元素顏色）*/
+body.theme-horizon .ch-send{background:#47584A !important;border:1px solid #47584A !important;border-radius:50% !important;width:36px !important;height:36px !important;padding:0 !important;box-shadow:0 2px 6px rgba(71,88,74,.20) !important;display:inline-flex !important;align-items:center !important;justify-content:center !important}
+body.theme-horizon .ch-send:hover{background:#3E4E42 !important;border-color:#3E4E42 !important}
+body.theme-horizon .ch-send:active{transform:scale(.94) !important}
+body.theme-horizon .ch-send:disabled{background:#FFFFFF !important;border-color:#E7E7E0 !important;opacity:.6 !important;box-shadow:none !important}
+body.theme-horizon .ch-send svg{width:18px !important;height:18px !important}
+body.theme-horizon .ch-send svg *{fill:none !important;stroke:#FBFBF9 !important;stroke-width:1.8 !important;stroke-linecap:round !important;stroke-linejoin:round !important}
+body.theme-horizon .ch-send:disabled svg *{stroke:#B4B6AB !important}
+
+/* — 摘要愛心：綠愛心填色 → 松綠線稿愛心（同樣蓋 SVG 內容）*/
+body.theme-horizon .ch-hrt-btn{color:#47584A !important;background:none !important;border:none !important}
+body.theme-horizon .ch-hrt-btn svg{width:18px !important;height:18px !important}
+body.theme-horizon .ch-hrt-btn svg *{fill:none !important;stroke:#47584A !important;stroke-width:1.6 !important;stroke-linecap:round !important;stroke-linejoin:round !important}
+body.theme-horizon .ch-hrt-btn:hover{opacity:.7}
+
+/* — 到底箭頭 scroll-bottom-btn：向日葵＋膠帶＋歪斜 → 白瓷圓＋髮絲線＋松綠 V 箭頭
+     這顆的箭頭是靠 ::after 貼一張 SVG 圖，Horizon 版重新畫一張 */
+body.theme-horizon .scroll-bottom-btn{transform:translateX(-50%) !important;background:#FFFFFF !important;border:1px solid #E7E7E0 !important;color:#47584A !important;width:36px !important;height:36px !important;box-shadow:0 2px 8px rgba(43,47,38,.10),0 1px 2px rgba(43,47,38,.05) !important;font-size:0 !important}
+body.theme-horizon .scroll-bottom-btn:active{transform:translateX(-50%) scale(.92) !important;box-shadow:0 1px 4px rgba(43,47,38,.08) !important}
+body.theme-horizon .scroll-bottom-btn::before{display:none !important;content:none !important}
+body.theme-horizon .scroll-bottom-btn::after{content:'' !important;position:absolute !important;top:50% !important;left:50% !important;width:18px !important;height:18px !important;background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2347584A' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'><path d='M7 10 L12 15 L17 10'/><path d='M12 4 v11'/></svg>") center/contain no-repeat !important;transform:translate(-50%,-50%) !important;opacity:1 !important;filter:none !important}
+
+/* — 存記憶籤 mem-pin-btn：抹茶綠＋向日葵 → 白瓷 chip＋松綠線稿圖釘 */
+body.theme-horizon .mem-pin-btn{background:#FFFFFF !important;border:1px solid #E7E7E0 !important;color:#47584A !important;border-radius:999px !important;padding:4px 10px !important;font-size:11px !important;letter-spacing:.4px !important;box-shadow:none !important;opacity:1 !important}
+body.theme-horizon .mem-pin-btn:hover,
+body.theme-horizon .mem-pin-btn:active{background:#EDF1EC !important;border-color:#CFD1C6 !important;color:#47584A !important;box-shadow:none !important}
+body.theme-horizon .mem-pin-btn::before{width:11px !important;height:11px !important;background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2347584A' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'><path d='M9 3 h6 v4 l3 5 h-12 l3 -5 z' fill='%23FFFFFF'/><path d='M12 12 v9'/></svg>") center/contain no-repeat !important;filter:none !important}
+body.theme-horizon .mem-pin-btn.saving{opacity:1 !important;color:#8A8D80 !important}
+body.theme-horizon .mem-pin-btn.done{color:#C9A24B !important;border-color:rgba(201,162,75,.5) !important;background:#FFFDF6 !important}
+body.theme-horizon .mem-pin-btn.done::before{background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23C9A24B' stroke='%23B08D3E' stroke-width='1.5' stroke-linejoin='round'><path d='M9 3 h6 v4 l3 5 h-12 l3 -5 z'/><path d='M12 12 v9' stroke-linecap='round'/></svg>") !important}
+
+/* — 側邊欄動作區 hover：抹茶綠 → pine-tint */
+body.theme-horizon .sb-act-btn:hover{background:#EDF1EC !important;color:#47584A !important;opacity:1 !important;box-shadow:none !important}
+body.theme-horizon .sb-act-del:hover,
+body.theme-horizon .sb-act-del:active{background:rgba(180,50,50,.10) !important;color:#A03030 !important}
+
+/* — 側邊欄釘子 sb-act-pin：向日葵 → 真圖釘（灰線稿／金填色兩態）*/
+body.theme-horizon .sb-act-pin{background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23B4B6AB' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'><path d='M9 3 h6 v4 l3 5 h-12 l3 -5 z' fill='%23FFFFFF'/><path d='M12 12 v9'/></svg>") center/15px no-repeat !important;opacity:.75 !important;filter:none !important}
+body.theme-horizon .sb-act-pin:hover{opacity:1 !important;background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2347584A' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'><path d='M9 3 h6 v4 l3 5 h-12 l3 -5 z' fill='%23FFFFFF'/><path d='M12 12 v9'/></svg>") center/15px no-repeat !important;filter:none !important;transform:none !important}
+body.theme-horizon .sb-act-pin.pinned{opacity:1 !important;background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23C9A24B' stroke='%23B08D3E' stroke-width='1.5' stroke-linejoin='round'><path d='M9 3 h6 v4 l3 5 h-12 l3 -5 z'/><path d='M12 12 v9' stroke-linecap='round'/></svg>") center/15px no-repeat !important;filter:none !important}
+
+/* — 確認彈窗 sol-cfm 八色 variant：全部收斂成白瓷＋墨字＋松綠 */
+body.theme-horizon .sol-cfm.rose .sol-cfm-msg,
+body.theme-horizon .sol-cfm.amber .sol-cfm-msg,
+body.theme-horizon .sol-cfm.capsule .sol-cfm-msg,
+body.theme-horizon .sol-cfm.mint .sol-cfm-msg,
+body.theme-horizon .sol-cfm.green .sol-cfm-msg,
+body.theme-horizon .sol-cfm.blue .sol-cfm-msg,
+body.theme-horizon .sol-cfm.gold .sol-cfm-msg{color:#2B2F26 !important}
+body.theme-horizon .sol-cfm.rose .sol-cfm-ic,
+body.theme-horizon .sol-cfm.amber .sol-cfm-ic,
+body.theme-horizon .sol-cfm.capsule .sol-cfm-ic,
+body.theme-horizon .sol-cfm.mint .sol-cfm-ic,
+body.theme-horizon .sol-cfm.green .sol-cfm-ic,
+body.theme-horizon .sol-cfm.blue .sol-cfm-ic,
+body.theme-horizon .sol-cfm.gold .sol-cfm-ic{color:#47584A !important;opacity:.92 !important}
+body.theme-horizon .sol-cfm.rose .sol-cfm-box,
+body.theme-horizon .sol-cfm.amber .sol-cfm-box,
+body.theme-horizon .sol-cfm.capsule .sol-cfm-box,
+body.theme-horizon .sol-cfm.mint .sol-cfm-box,
+body.theme-horizon .sol-cfm.green .sol-cfm-box,
+body.theme-horizon .sol-cfm.blue .sol-cfm-box,
+body.theme-horizon .sol-cfm.gold .sol-cfm-box{border:1px solid #E7E7E0 !important;background:#FFFFFF !important}
+body.theme-horizon .sol-cfm.rose .sol-cfm-no,
+body.theme-horizon .sol-cfm.amber .sol-cfm-no,
+body.theme-horizon .sol-cfm.capsule .sol-cfm-no,
+body.theme-horizon .sol-cfm.mint .sol-cfm-no,
+body.theme-horizon .sol-cfm.green .sol-cfm-no,
+body.theme-horizon .sol-cfm.blue .sol-cfm-no,
+body.theme-horizon .sol-cfm.gold .sol-cfm-no{border:1px solid #CFD1C6 !important;background:#FFFFFF !important;color:#6B6E62 !important;box-shadow:none !important;outline:none !important}
+body.theme-horizon .sol-cfm.rose .sol-cfm-yes,
+body.theme-horizon .sol-cfm.amber .sol-cfm-yes,
+body.theme-horizon .sol-cfm.capsule .sol-cfm-yes,
+body.theme-horizon .sol-cfm.mint .sol-cfm-yes,
+body.theme-horizon .sol-cfm.green .sol-cfm-yes,
+body.theme-horizon .sol-cfm.blue .sol-cfm-yes,
+body.theme-horizon .sol-cfm.gold .sol-cfm-yes{background:#47584A !important;color:#FBFBF9 !important;border:none !important;outline:none !important;box-shadow:0 2px 8px rgba(71,88,74,.20) !important}
 </style>
 <style id="app-loading-style">
 /* === Solstice Splash — 終極版 ===
