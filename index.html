@@ -313,7 +313,7 @@ body{padding-top:0}
 
 #livingRoom .page-photo-bg{background-image:url(images/bg-menu-sunflower.jpg)}
 /* 2026/07/24 聊天室照片改走拍立得入住（憲法：外來物要辦入住手續），滿版背景退役 */
-#memoryPage .page-photo-overlay{background:linear-gradient(160deg,rgba(253,252,245,.38),rgba(242,246,236,.38));box-shadow:none;z-index:0}
+#memoryPage .page-photo-overlay{background:linear-gradient(160deg,rgba(253,252,245,.26),rgba(242,246,236,.26));box-shadow:none;z-index:0}/* 2026/07/26 白霧調淡，合照更清楚 */
 #livingRoom.active{display:flex}
 .lr-header{display:none}
 .lr-welcome{font-family:'Satisfy',cursive;font-size:26px;color:#3A4E22;font-weight:400;filter:drop-shadow(0 1px 3px rgba(0,0,0,.15))}
@@ -380,7 +380,8 @@ body{padding-top:0}
 .sidebar.open{transform:translateX(0)}
 .sb-top{position:relative;display:flex;justify-content:space-between;align-items:center;padding:max(calc(env(safe-area-inset-top,18px) - 8px),8px) 18px 14px;background-color:#DFF1E7;background:var(--paper-fiber),#DFF1E7;border-bottom:none}
 .sb-top::after{content:'';position:absolute;left:0;right:0;bottom:0;height:8px;background:repeating-linear-gradient(45deg,#8FC7A6 0 12px,#FFFFFF 12px 24px,#C5D989 24px 36px,#FFFFFF 36px 48px);opacity:1;pointer-events:none}
-.sb-title{color:#3F7A57;font-family:'Satisfy','Dancing Script','LXGW WenKai TC',cursive;font-size:20px;letter-spacing:.5px;transform:rotate(-0.6deg);display:inline-block}
+.sb-title{position:relative;color:#3F7A57;font-family:'Satisfy','Dancing Script','LXGW WenKai TC',cursive;font-size:20px;letter-spacing:.5px;transform:rotate(-0.6deg);display:inline-block;padding-bottom:3px}
+.sb-title::after{content:'';position:absolute;left:26px;right:-8px;bottom:0;height:3px;background:repeating-linear-gradient(90deg,rgba(122,155,74,.5) 0px,rgba(122,155,74,.5) 6px,transparent 6px,transparent 10px);border-radius:1px;opacity:.7}/* 2026/07/26 標題手繪底線 */
 .sb-close{background:none;border:none;color:var(--text-sub);font-size:20px;cursor:pointer;padding:4px}
 .sb-section{padding:0 16px;margin:10px 0}
 .sb-btn{position:relative;width:100%;padding:14px 13px;border-radius:10px;border:0.5px solid rgba(122,155,74,.28);background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80'%3E%3Cpath d='M40 10 C42 28 44 30 62 36 C44 42 42 44 40 62 C38 44 36 42 18 36 C36 30 38 28 40 10 Z' fill='%23FFD469' stroke='%23A87830' stroke-width='4' stroke-linejoin='round'/%3E%3C/svg%3E") left 16px center/15px no-repeat,url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80'%3E%3Cpath d='M40 10 C42 28 44 30 62 36 C44 42 42 44 40 62 C38 44 36 42 18 36 C36 30 38 28 40 10 Z' fill='%23FFD469' stroke='%23A87830' stroke-width='4' stroke-linejoin='round'/%3E%3C/svg%3E") right 16px center/15px no-repeat,var(--paper-fiber),var(--note-butter);color:#4A5E30;font-size:13px;cursor:pointer;text-align:center;font-family:'LXGW WenKai TC','Noto Serif TC',serif;letter-spacing:.4px;transition:all .25s cubic-bezier(.25,.46,.45,.94);margin-bottom:10px;box-shadow:0 0 0 2.5px rgba(255,255,255,.70),var(--lift-shadow);transform:none;overflow:visible}
@@ -388,22 +389,27 @@ body{padding-top:0}
 .sb-btn::before{content:none}/* 2026/07/25 膠帶全退役 */
 .sb-btn:hover{box-shadow:0 0 0 2.5px rgba(255,255,255,.70),var(--lift-shadow-hover),0 0 12px rgba(197,217,168,.18)}
 .sb-btn:active{transform:scale(.97);box-shadow:0 0 0 2.5px rgba(255,255,255,.70),var(--lift-shadow-hover)}
-.sb-list{flex:1;overflow-y:auto;padding:16px 16px 8px 16px;-webkit-overflow-scrolling:touch;position:relative}
+.sb-list{flex:1;overflow-y:auto;padding:16px 16px 8px 16px;-webkit-overflow-scrolling:touch;position:relative;background:repeating-linear-gradient(180deg,transparent 0px,transparent 27px,rgba(122,155,74,.11) 27px,rgba(122,155,74,.11) 28px);background-attachment:local}/* 2026/07/26 手帳橫線紙 */
 /* 裝訂虛線與打孔點已移除——側欄改乾淨膠帶便條風 */
 .sb-item{position:relative;padding:15px 12px 13px 14px;border-radius:10px;margin-bottom:12px;cursor:pointer;background:var(--paper-fiber),#EDF7F0;border:1.5px solid rgba(122,155,74,.40);display:flex;justify-content:space-between;align-items:center;transition:transform .25s cubic-bezier(.25,.46,.45,.94),box-shadow .25s cubic-bezier(.25,.46,.45,.94);box-shadow:0 2px 6px rgba(90,107,60,.12),0 1px 2px rgba(0,0,0,.05),inset 0 1px 0 rgba(255,255,255,.55);overflow:visible;z-index:1}
 .sb-item::before{content:none}/* 2026/07/25 精修：項目膠帶退役，膠帶只留給開始新對話 */
-.sb-item::after{content:none}
+.sb-item::after{content:'';position:absolute;inset:4px;border:1px dashed rgba(122,155,74,.32);border-radius:6px;pointer-events:none}/* 2026/07/26 手帳虛線內框 */
 .sb-item .sb-pin-deco{display:none}
+.sb-item:nth-child(odd){transform:rotate(-.45deg)}
+.sb-item:nth-child(even){transform:rotate(.4deg);background:var(--paper-fiber),#F4FAEC}/* 2026/07/26 便條交錯貼：微傾+雙色紙 */
 .sb-item.active{border-color:rgba(90,120,55,.70);background:var(--paper-fiber),#E4F4EA;box-shadow:0 3px 10px rgba(122,155,74,.22),0 1px 3px rgba(90,107,60,.18),inset 0 0 0 1px rgba(255,255,255,.4);}
 .sb-item:active{transform:scale(.97)!important}
 .sb-item.sb-pinned{border-color:rgba(200,165,70,.62);background:var(--paper-fiber),var(--note-cream);box-shadow:0 3px 10px rgba(180,150,60,.18),0 1px 3px rgba(90,80,40,.12),inset 0 1px 0 rgba(255,255,255,.55)}
 
 .sb-item.sb-pinned.active{border-color:rgba(180,140,45,.80)}
+.sb-item.sb-pinned::after{border-color:rgba(200,165,70,.42)}
 .sb-item.sb-pinned > .sb-pinned-corner{position:absolute;top:0;right:0;width:18px;height:18px;background:linear-gradient(225deg,rgba(220,180,80,.85) 0%,rgba(255,213,79,.75) 50%,transparent 50%);z-index:3;border-radius:0 3px 0 0;box-shadow:-1px 1px 2px rgba(90,80,40,.18)}
 
 .sb-item-text{flex:1;min-width:0;position:relative}
 .sb-item-text::after{content:none}
 .sb-item-name{font-size:13px;color:var(--text-main);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-family:'LXGW WenKai TC','Noto Serif TC',serif}
+.sb-item-name::before{content:'';display:inline-block;width:11px;height:10px;margin-right:6px;vertical-align:-1px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 22'%3E%3Cpath d='M12 20 C7.4 17 3.4 13.7 3.4 9.4 3.4 6.2 5.8 4.2 8.3 4.2 9.9 4.2 11.2 5 12 6.4 12.8 5 14.1 4.2 15.7 4.2 18.2 4.2 20.6 6.2 20.6 9.4 20.6 13.7 16.6 17 12 20 z' fill='%238FCCA8' stroke='%234E7A5F' stroke-width='1.8' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat;transform:rotate(-6deg)}
+.sb-item.sb-pinned .sb-item-name::before{background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80'%3E%3Cg fill='%23FFC93C' stroke='%23B8801F' stroke-width='6' stroke-linejoin='round'%3E%3Cellipse cx='40' cy='20' rx='7' ry='13'/%3E%3Cellipse cx='40' cy='60' rx='7' ry='13'/%3E%3Cellipse cx='20' cy='40' rx='13' ry='7'/%3E%3Cellipse cx='60' cy='40' rx='13' ry='7'/%3E%3Cellipse cx='26' cy='26' rx='6' ry='11' transform='rotate(-45 26 26)'/%3E%3Cellipse cx='54' cy='54' rx='6' ry='11' transform='rotate(-45 54 54)'/%3E%3Cellipse cx='54' cy='26' rx='6' ry='11' transform='rotate(45 54 26)'/%3E%3Cellipse cx='26' cy='54' rx='6' ry='11' transform='rotate(45 26 54)'/%3E%3C/g%3E%3Ccircle cx='40' cy='40' r='10' fill='%236B4A1A' stroke='%23402810' stroke-width='4'/%3E%3C/svg%3E") center/contain no-repeat;width:12px;height:12px;vertical-align:-2px;transform:rotate(8deg)}/* 2026/07/26 便條小貼紙 */
 .sb-item-actions{display:flex;gap:4px;margin-left:6px;flex-shrink:0}
 .sb-act-btn{background:none;border:none;color:var(--text-sub);font-size:13px;padding:3px 5px;border-radius:3px;cursor:pointer;font-family:inherit;transition:all .25s;min-width:24px;opacity:.6;box-shadow:none}
 .sb-act-btn:hover{background:rgba(122,155,74,.10);color:var(--emerald);transform:none;opacity:1;box-shadow:none}
@@ -462,14 +468,14 @@ body{padding-top:0}
 .ch-time{font-size:10px;color:#B5737E;font-family:'LXGW WenKai TC','Noto Serif TC',serif;margin-top:4px;padding:0 56px;pointer-events:none;min-height:22px;display:flex;align-items:center;gap:6px;flex-wrap:nowrap}
 .ch-time-sticker{display:inline-flex;align-items:center;gap:4px;padding:3px 10px 3px 8px;border-radius:3px 4px 3px 4px;position:relative;font-family:'LXGW WenKai TC','Noto Serif TC',serif;letter-spacing:.3px;transform:rotate(-0.5deg);box-shadow:0 1px 3px rgba(90,80,40,.10),0 0 0 0.5px rgba(200,180,120,.14)}
 /* Soleil (user) = pink sticker */
-.ch-time-user .ch-time-sticker{background:var(--paper-fiber),rgba(255,243,205,.8);border:1px dashed rgba(212,178,95,.6);color:#8A6F35}
+.ch-time-user .ch-time-sticker{background:var(--paper-fiber),rgba(255,246,214,.92);border:1px dashed rgba(212,178,95,.6);color:#8A6F35;-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px)}
 .ch-time-user .ch-time-sticker::before{content:'';width:12px;height:12px;flex-shrink:0;margin-right:1px;transform:rotate(-6deg);background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80'%3E%3Cpath d='M40 26 C 28 16 14 22 18 38 C 22 52 40 64 40 64 C 40 64 58 52 62 38 C 66 22 52 16 40 26 Z' fill='%23FFD54F' stroke='%23B8801F' stroke-width='7' stroke-linejoin='round'/%3E%3Cpath d='M29 33 Q 33 30 36 34' stroke='%23FFF3CC' stroke-width='5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") center/contain no-repeat}
 /* Solstice (ai) = misty blue sticker */
-.ch-time-ai .ch-time-sticker{background:var(--paper-fiber),rgba(224,240,226,.75);border:1px dashed rgba(140,185,150,.55);color:#4E7A5F}
+.ch-time-ai .ch-time-sticker{background:var(--paper-fiber),rgba(232,245,234,.92);border:1px dashed rgba(140,185,150,.55);color:#4E7A5F;-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px)}
 .ch-time-ai .ch-time-sticker::before{content:'';width:12px;height:12px;flex-shrink:0;margin-right:1px;transform:rotate(5deg);background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80'%3E%3Cpath d='M40 26 C 28 16 14 22 18 38 C 22 52 40 64 40 64 C 40 64 58 52 62 38 C 66 22 52 16 40 26 Z' fill='%23A8D8BC' stroke='%235A8A6A' stroke-width='7' stroke-linejoin='round'/%3E%3Cpath d='M29 33 Q 33 30 36 34' stroke='%23EFFAF3' stroke-width='5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") center/contain no-repeat}
 .ch-time .mem-pin-btn{color:#7A6B40;pointer-events:auto}
 /* 2026/07/25 老婆授權精修：meta 列去貼紙化——存記憶/喇叭/時間統一成一行安靜小字，按下去才亮 */
-.ch-time .mem-pin-btn,.ch-time .ch-tts-btn,.ch-time-sticker{background:none!important;border:none!important;box-shadow:none!important;transform:none!important;color:#7E9B86;opacity:.8;padding:3px 4px}
+.ch-time .mem-pin-btn,.ch-time .ch-tts-btn{background:var(--paper-fiber),rgba(253,251,242,.88);border:1px dashed rgba(140,185,150,.55);border-radius:3px 4px 3px 4px;box-shadow:0 1px 3px rgba(90,80,40,.14);transform:rotate(-.4deg);color:#4E7A5F;opacity:1;padding:3px 8px;-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px)}/* 2026/07/26 合照背景上線：小籤磨砂紙底復職，照片上也看得清楚 */
 .ch-time .ch-tts-btn:active,.ch-time .mem-pin-btn:active{transform:scale(.9)!important;opacity:1}
 .ch-time .ch-tts-btn.playing{color:#3E6B4A;opacity:1}
 .ch-time .mem-pin-btn.done{color:var(--emerald);opacity:1}
@@ -745,7 +751,7 @@ body{padding-top:0}
 .settings-body::after{content:none}
 .settings-lock{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;height:100%;gap:16px;position:relative;z-index:1;padding:12vh 18px 0}
 #settingsContent{position:relative;z-index:1}
-.settings-lock-card{position:relative;background:var(--paper-fiber),var(--note-butter);border:0.5px solid rgba(196,158,80,.35);border-radius:3px 3px 4px 4px;padding:32px 24px 26px;max-width:300px;width:100%;box-shadow:var(--lift-shadow);text-align:center;transform:rotate(-0.5deg);overflow:visible}
+.settings-lock-card{position:relative;background:var(--paper-fiber),rgba(253,247,224,.86);-webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px);border:0.5px solid rgba(196,158,80,.35);border-radius:3px 3px 4px 4px;padding:32px 24px 26px;max-width:300px;width:100%;box-shadow:var(--lift-shadow);text-align:center;transform:rotate(-0.5deg);overflow:visible}
 .settings-lock-card::before{content:'';position:absolute;top:-9px;left:50%;width:68px;height:16px;transform:translateX(-50%) rotate(-3deg);background:repeating-linear-gradient(135deg,rgba(240,206,126,.35) 0px,rgba(240,206,126,.35) 2px,rgba(252,240,206,.42) 2px,rgba(252,240,206,.42) 4px,rgba(220,180,90,.22) 4px,rgba(220,180,90,.22) 6px);border-left:0.5px dashed var(--tape-edge);border-right:0.5px dashed var(--tape-edge);box-shadow:0 1px 3px rgba(150,115,45,.16);border-radius:1px;z-index:3}
 .settings-lock-card::after{content:'';position:absolute;top:-8px;right:14px;width:22px;height:22px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80'%3E%3Cg fill='%23FFC93C' stroke='%23B8801F' stroke-width='6' stroke-linejoin='round'%3E%3Cellipse cx='40' cy='20' rx='7' ry='13'/%3E%3Cellipse cx='40' cy='60' rx='7' ry='13'/%3E%3Cellipse cx='20' cy='40' rx='13' ry='7'/%3E%3Cellipse cx='60' cy='40' rx='13' ry='7'/%3E%3Cellipse cx='26' cy='26' rx='6' ry='11' transform='rotate(-45 26 26)'/%3E%3Cellipse cx='54' cy='54' rx='6' ry='11' transform='rotate(-45 54 54)'/%3E%3Cellipse cx='54' cy='26' rx='6' ry='11' transform='rotate(45 54 26)'/%3E%3Cellipse cx='26' cy='54' rx='6' ry='11' transform='rotate(45 26 54)'/%3E%3C/g%3E%3Ccircle cx='40' cy='40' r='10' fill='%236B4A1A' stroke='%23402810' stroke-width='4'/%3E%3C/svg%3E") center/contain no-repeat;filter:drop-shadow(0 1px 2px rgba(0,0,0,.18));transform:rotate(12deg);z-index:4}
 .settings-lock-emoji{font-size:32px;margin-bottom:10px;filter:drop-shadow(0 1px 2px rgba(0,0,0,.10))}
@@ -760,11 +766,11 @@ body{padding-top:0}
 .set-block{position:relative;margin-bottom:28px;z-index:1}
 /* 🏷️ 設定頁和紙分類籤（2026/07/26 老婆核准：延伸各房索引籤語言，六塊分三組） */
 /* 🫀 靈魂檔案標準卡（不再裸奔）：墊底 #F5F0DD、書寫紙 #FFFDF6 兩層紙系統 */
-.soul-card{position:relative;background:var(--paper-fiber),#F5F0DD;border:0.5px solid rgba(160,140,80,.24);border-radius:3px 5px 3px 6px;padding:22px 12px 13px;box-shadow:var(--lift-shadow);transform:rotate(-.3deg);overflow:visible}
+.soul-card{position:relative;background:var(--paper-fiber),rgba(245,240,221,.84);-webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px);border:0.5px solid rgba(160,140,80,.24);border-radius:3px 5px 3px 6px;padding:22px 12px 13px;box-shadow:var(--lift-shadow);transform:rotate(-.3deg);overflow:visible}
 .soul-card::before{content:'';position:absolute;top:-8px;left:50%;width:58px;height:14px;transform:translateX(-50%) rotate(-3deg);background:repeating-linear-gradient(135deg,rgba(255,213,79,.40) 0px,rgba(255,213,79,.40) 2px,rgba(255,236,179,.46) 2px,rgba(255,236,179,.46) 4px,rgba(245,200,80,.30) 4px,rgba(245,200,80,.30) 6px);border-left:0.5px dashed var(--tape-edge);border-right:0.5px dashed var(--tape-edge);box-shadow:0 1px 2px rgba(180,140,40,.14);border-radius:1px;z-index:2}
 .soul-card::after{content:'🖋️';position:absolute;top:-11px;right:16px;font-size:16px;filter:drop-shadow(0 1px 2px rgba(0,0,0,.15));transform:rotate(12deg);z-index:2}
 /* 🎙️ 老公的聲線試衣間（設定頁 2026/07/23）——一排小卡帶，播放時輪盤會轉，選定蓋粉章 */
-.vc-card{position:relative;background:var(--paper-fiber),#F5F0DD;border:.5px solid rgba(160,140,80,.24);border-radius:3px 5px 3px 6px;padding:22px 14px 13px;box-shadow:var(--lift-shadow);transform:rotate(-0.3deg);overflow:visible}
+.vc-card{position:relative;background:var(--paper-fiber),rgba(245,240,221,.84);-webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px);border:.5px solid rgba(160,140,80,.24);border-radius:3px 5px 3px 6px;padding:22px 14px 13px;box-shadow:var(--lift-shadow);transform:rotate(-0.3deg);overflow:visible}
 .vc-card::before{content:'';position:absolute;top:-8px;left:50%;width:58px;height:14px;transform:translateX(-50%) rotate(-3deg);background:repeating-linear-gradient(135deg,rgba(255,213,79,.40) 0px,rgba(255,213,79,.40) 2px,rgba(255,236,179,.46) 2px,rgba(255,236,179,.46) 4px,rgba(245,200,80,.30) 4px,rgba(245,200,80,.30) 6px);border-left:0.5px dashed var(--tape-edge);border-right:0.5px dashed var(--tape-edge);box-shadow:0 1px 2px rgba(180,140,40,.14);border-radius:1px;z-index:2}
 .vc-card::after{content:'🎙️';position:absolute;top:-11px;right:16px;font-size:16px;filter:drop-shadow(0 1px 2px rgba(0,0,0,.15));transform:rotate(11deg);z-index:2}
 .vc-row{display:flex;align-items:center;gap:11px;padding:8px 4px;border-bottom:1px dashed rgba(160,140,80,.28)}
@@ -786,13 +792,13 @@ body{padding-top:0}
 .set-block-label::after{content:'';position:absolute;left:22px;right:-10px;bottom:-2px;height:3px;background:repeating-linear-gradient(90deg,rgba(196,158,80,.55) 0px,rgba(196,158,80,.55) 6px,transparent 6px,transparent 10px);opacity:.66;border-radius:1px}
 .set-block-label .set-label-emoji{font-size:16px;filter:drop-shadow(0 1px 2px rgba(0,0,0,.14))}
 .set-block-label::before{content:'';position:absolute;left:-12px;top:50%;width:6px;height:6px;border-radius:50%;background:rgba(255,213,79,.55);transform:translateY(-50%);box-shadow:0 1px 2px rgba(180,140,40,.22)}
-.prov-card{position:relative;background:var(--paper-fiber),#F5F0DD;border:0.5px solid rgba(160,140,80,.22);border-radius:2px 6px 4px 2px;padding:22px 16px 14px;margin-bottom:16px;transition:opacity .3s,transform .3s;box-shadow:var(--lift-shadow);overflow:visible}
+.prov-card{position:relative;background:var(--paper-fiber),rgba(245,240,221,.84);-webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px);border:0.5px solid rgba(160,140,80,.22);border-radius:2px 6px 4px 2px;padding:22px 16px 14px;margin-bottom:16px;transition:opacity .3s,transform .3s;box-shadow:var(--lift-shadow);overflow:visible}
 .prov-card::before{content:'';position:absolute;top:-8px;left:50%;width:58px;height:14px;transform:translateX(-50%) rotate(-3deg);background:repeating-linear-gradient(135deg,rgba(255,213,79,.40) 0px,rgba(255,213,79,.40) 2px,rgba(255,236,179,.46) 2px,rgba(255,236,179,.46) 4px,rgba(245,200,80,.30) 4px,rgba(245,200,80,.30) 6px);border-left:0.5px dashed var(--tape-edge);border-right:0.5px dashed var(--tape-edge);box-shadow:0 1px 2px rgba(180,140,40,.14);z-index:2;border-radius:1px}
 .prov-card::after{content:'🌻';position:absolute;top:-11px;right:16px;font-size:16px;filter:drop-shadow(0 1px 2px rgba(0,0,0,.15));transform:rotate(14deg);z-index:2}
 .prov-card:nth-child(odd){transform:rotate(-0.4deg)}
 .prov-card:nth-child(even){transform:rotate(0.3deg)}
 .prov-card-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
-.pw-card{position:relative;background:var(--paper-fiber),#F5F0DD;border:0.5px solid rgba(160,140,80,.24);border-radius:2px 4px 6px 3px;padding:32px 18px 18px;box-shadow:var(--lift-shadow);transform:rotate(0.4deg);overflow:visible}
+.pw-card{position:relative;background:var(--paper-fiber),rgba(245,240,221,.84);-webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px);border:0.5px solid rgba(160,140,80,.24);border-radius:2px 4px 6px 3px;padding:32px 18px 18px;box-shadow:var(--lift-shadow);transform:rotate(0.4deg);overflow:visible}
 .pw-card::before{content:'';position:absolute;top:-8px;left:50%;width:62px;height:14px;transform:translateX(-50%) rotate(-3deg);background:repeating-linear-gradient(135deg,rgba(255,213,79,.40) 0px,rgba(255,213,79,.40) 2px,rgba(255,236,179,.46) 2px,rgba(255,236,179,.46) 4px,rgba(245,200,80,.30) 4px,rgba(245,200,80,.30) 6px);border-left:0.5px dashed var(--tape-edge);border-right:0.5px dashed var(--tape-edge);box-shadow:0 1px 2px rgba(180,140,40,.14);border-radius:1px;z-index:2}
 .pw-card::after{content:'🔑';position:absolute;top:-11px;right:16px;font-size:16px;filter:drop-shadow(0 1px 2px rgba(0,0,0,.16));transform:rotate(-12deg);z-index:2}
 .pw-card label{display:block;font-family:'LXGW WenKai TC',serif;font-size:12px;color:var(--text-sub);margin-bottom:5px}
@@ -997,11 +1003,11 @@ body{padding-top:0}
 #memoryPage.stackmode .mem-wall{display:none}
 #memoryPage.stackmode .mem-inp{display:none}
 #memoryPage.chatbook:not(.stackmode) .mem-inp{display:none}
-.mem-bk{position:relative;cursor:pointer;-webkit-tap-highlight-color:transparent;-webkit-user-select:none;user-select:none;transition:transform .2s;width:100%;max-width:min(92vw,420px);flex-shrink:0}
+.mem-bk{position:relative;cursor:pointer;-webkit-tap-highlight-color:transparent;-webkit-user-select:none;user-select:none;transition:transform .2s;width:100%;max-width:min(74vw,318px);flex-shrink:0}/* 2026/07/26 書縮小錯開擺，合照從斜縫露臉 */
 .mem-bk svg{width:100%;display:block;margin:0 auto;overflow:visible;filter:drop-shadow(0 6px 10px rgba(100,125,50,.28))}
-.mem-bk.green{transform:rotate(-1.6deg)}
-.mem-bk.yellow{transform:rotate(1.4deg)}
-.mem-bk:active{transform:scale(.96)}
+.mem-bk.green{transform:rotate(-2.2deg);align-self:flex-start;margin-left:8px}
+.mem-bk.yellow{transform:rotate(2deg);align-self:flex-end;margin-right:8px}
+.mem-bk.green:active{transform:rotate(-2.2deg) scale(.96)}.mem-bk.yellow:active{transform:rotate(2deg) scale(.96)}
 /* 書本眨眼 2026/07/21 歸隊：全站同款 gcBlink 5.4s（吉祥物巡檢統一） */
 .mem-bk-eye{transform-origin:center;transform-box:fill-box;animation:gcBlink 5.4s ease-in-out infinite}
 .mem-bk.yellow .mem-bk-eye{animation-delay:1.2s}
