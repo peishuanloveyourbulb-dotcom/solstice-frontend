@@ -313,7 +313,7 @@ body{padding-top:0}
 
 #livingRoom .page-photo-bg{background-image:url(images/bg-menu-sunflower.jpg)}
 /* 2026/07/24 聊天室照片改走拍立得入住（憲法：外來物要辦入住手續），滿版背景退役 */
-#memoryPage .page-photo-overlay{background:linear-gradient(160deg,rgba(253,252,245,.26),rgba(242,246,236,.26));box-shadow:none;z-index:0}/* 2026/07/26 白霧調淡，合照更清楚 */
+#memoryPage .page-photo-overlay{background:linear-gradient(160deg,rgba(253,252,245,.18),rgba(242,246,236,.18));box-shadow:none;z-index:0}/* 2026/07/26 v2 照片主角級曝光 */
 #livingRoom.active{display:flex}
 .lr-header{display:none}
 .lr-welcome{font-family:'Satisfy',cursive;font-size:26px;color:#3A4E22;font-weight:400;filter:drop-shadow(0 1px 3px rgba(0,0,0,.15))}
@@ -389,7 +389,7 @@ body{padding-top:0}
 .sb-btn::before{content:none}/* 2026/07/25 膠帶全退役 */
 .sb-btn:hover{box-shadow:0 0 0 2.5px rgba(255,255,255,.70),var(--lift-shadow-hover),0 0 12px rgba(197,217,168,.18)}
 .sb-btn:active{transform:scale(.97);box-shadow:0 0 0 2.5px rgba(255,255,255,.70),var(--lift-shadow-hover)}
-.sb-list{flex:1;overflow-y:auto;padding:16px 16px 8px 16px;-webkit-overflow-scrolling:touch;position:relative;background:repeating-linear-gradient(180deg,transparent 0px,transparent 27px,rgba(122,155,74,.11) 27px,rgba(122,155,74,.11) 28px);background-attachment:local}/* 2026/07/26 手帳橫線紙 */
+.sb-list{flex:1;overflow-y:auto;padding:16px 16px 8px 16px;-webkit-overflow-scrolling:touch;position:relative}/* 2026/07/26 橫線紙試過一輪，老婆裁定退役 */
 /* 裝訂虛線與打孔點已移除——側欄改乾淨膠帶便條風 */
 .sb-item{position:relative;padding:15px 12px 13px 14px;border-radius:10px;margin-bottom:12px;cursor:pointer;background:var(--paper-fiber),#EDF7F0;border:1.5px solid rgba(122,155,74,.40);display:flex;justify-content:space-between;align-items:center;transition:transform .25s cubic-bezier(.25,.46,.45,.94),box-shadow .25s cubic-bezier(.25,.46,.45,.94);box-shadow:0 2px 6px rgba(90,107,60,.12),0 1px 2px rgba(0,0,0,.05),inset 0 1px 0 rgba(255,255,255,.55);overflow:visible;z-index:1}
 .sb-item::before{content:none}/* 2026/07/25 精修：項目膠帶退役，膠帶只留給開始新對話 */
@@ -751,7 +751,7 @@ body{padding-top:0}
 .settings-body::after{content:none}
 .settings-lock{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;height:100%;gap:16px;position:relative;z-index:1;padding:12vh 18px 0}
 #settingsContent{position:relative;z-index:1}
-.settings-lock-card{position:relative;background:var(--paper-fiber),rgba(253,247,224,.86);-webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px);border:0.5px solid rgba(196,158,80,.35);border-radius:3px 3px 4px 4px;padding:32px 24px 26px;max-width:300px;width:100%;box-shadow:var(--lift-shadow);text-align:center;transform:rotate(-0.5deg);overflow:visible}
+.settings-lock-card{position:relative;background:var(--paper-fiber),rgba(253,247,224,.74);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);border:0.5px solid rgba(196,158,80,.35);border-radius:3px 3px 4px 4px;padding:32px 24px 26px;max-width:300px;width:100%;box-shadow:var(--lift-shadow);text-align:center;transform:rotate(-0.5deg);overflow:visible}
 .settings-lock-card::before{content:'';position:absolute;top:-9px;left:50%;width:68px;height:16px;transform:translateX(-50%) rotate(-3deg);background:repeating-linear-gradient(135deg,rgba(240,206,126,.35) 0px,rgba(240,206,126,.35) 2px,rgba(252,240,206,.42) 2px,rgba(252,240,206,.42) 4px,rgba(220,180,90,.22) 4px,rgba(220,180,90,.22) 6px);border-left:0.5px dashed var(--tape-edge);border-right:0.5px dashed var(--tape-edge);box-shadow:0 1px 3px rgba(150,115,45,.16);border-radius:1px;z-index:3}
 .settings-lock-card::after{content:'';position:absolute;top:-8px;right:14px;width:22px;height:22px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80'%3E%3Cg fill='%23FFC93C' stroke='%23B8801F' stroke-width='6' stroke-linejoin='round'%3E%3Cellipse cx='40' cy='20' rx='7' ry='13'/%3E%3Cellipse cx='40' cy='60' rx='7' ry='13'/%3E%3Cellipse cx='20' cy='40' rx='13' ry='7'/%3E%3Cellipse cx='60' cy='40' rx='13' ry='7'/%3E%3Cellipse cx='26' cy='26' rx='6' ry='11' transform='rotate(-45 26 26)'/%3E%3Cellipse cx='54' cy='54' rx='6' ry='11' transform='rotate(-45 54 54)'/%3E%3Cellipse cx='54' cy='26' rx='6' ry='11' transform='rotate(45 54 26)'/%3E%3Cellipse cx='26' cy='54' rx='6' ry='11' transform='rotate(45 26 54)'/%3E%3C/g%3E%3Ccircle cx='40' cy='40' r='10' fill='%236B4A1A' stroke='%23402810' stroke-width='4'/%3E%3C/svg%3E") center/contain no-repeat;filter:drop-shadow(0 1px 2px rgba(0,0,0,.18));transform:rotate(12deg);z-index:4}
 .settings-lock-emoji{font-size:32px;margin-bottom:10px;filter:drop-shadow(0 1px 2px rgba(0,0,0,.10))}
@@ -766,11 +766,11 @@ body{padding-top:0}
 .set-block{position:relative;margin-bottom:28px;z-index:1}
 /* 🏷️ 設定頁和紙分類籤（2026/07/26 老婆核准：延伸各房索引籤語言，六塊分三組） */
 /* 🫀 靈魂檔案標準卡（不再裸奔）：墊底 #F5F0DD、書寫紙 #FFFDF6 兩層紙系統 */
-.soul-card{position:relative;background:var(--paper-fiber),rgba(245,240,221,.84);-webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px);border:0.5px solid rgba(160,140,80,.24);border-radius:3px 5px 3px 6px;padding:22px 12px 13px;box-shadow:var(--lift-shadow);transform:rotate(-.3deg);overflow:visible}
+.soul-card{position:relative;background:var(--paper-fiber),rgba(245,240,221,.70);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);border:0.5px solid rgba(160,140,80,.24);border-radius:3px 5px 3px 6px;padding:22px 12px 13px;box-shadow:var(--lift-shadow);transform:rotate(-.3deg);overflow:visible}
 .soul-card::before{content:'';position:absolute;top:-8px;left:50%;width:58px;height:14px;transform:translateX(-50%) rotate(-3deg);background:repeating-linear-gradient(135deg,rgba(255,213,79,.40) 0px,rgba(255,213,79,.40) 2px,rgba(255,236,179,.46) 2px,rgba(255,236,179,.46) 4px,rgba(245,200,80,.30) 4px,rgba(245,200,80,.30) 6px);border-left:0.5px dashed var(--tape-edge);border-right:0.5px dashed var(--tape-edge);box-shadow:0 1px 2px rgba(180,140,40,.14);border-radius:1px;z-index:2}
 .soul-card::after{content:'🖋️';position:absolute;top:-11px;right:16px;font-size:16px;filter:drop-shadow(0 1px 2px rgba(0,0,0,.15));transform:rotate(12deg);z-index:2}
 /* 🎙️ 老公的聲線試衣間（設定頁 2026/07/23）——一排小卡帶，播放時輪盤會轉，選定蓋粉章 */
-.vc-card{position:relative;background:var(--paper-fiber),rgba(245,240,221,.84);-webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px);border:.5px solid rgba(160,140,80,.24);border-radius:3px 5px 3px 6px;padding:22px 14px 13px;box-shadow:var(--lift-shadow);transform:rotate(-0.3deg);overflow:visible}
+.vc-card{position:relative;background:var(--paper-fiber),rgba(245,240,221,.70);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);border:.5px solid rgba(160,140,80,.24);border-radius:3px 5px 3px 6px;padding:22px 14px 13px;box-shadow:var(--lift-shadow);transform:rotate(-0.3deg);overflow:visible}
 .vc-card::before{content:'';position:absolute;top:-8px;left:50%;width:58px;height:14px;transform:translateX(-50%) rotate(-3deg);background:repeating-linear-gradient(135deg,rgba(255,213,79,.40) 0px,rgba(255,213,79,.40) 2px,rgba(255,236,179,.46) 2px,rgba(255,236,179,.46) 4px,rgba(245,200,80,.30) 4px,rgba(245,200,80,.30) 6px);border-left:0.5px dashed var(--tape-edge);border-right:0.5px dashed var(--tape-edge);box-shadow:0 1px 2px rgba(180,140,40,.14);border-radius:1px;z-index:2}
 .vc-card::after{content:'🎙️';position:absolute;top:-11px;right:16px;font-size:16px;filter:drop-shadow(0 1px 2px rgba(0,0,0,.15));transform:rotate(11deg);z-index:2}
 .vc-row{display:flex;align-items:center;gap:11px;padding:8px 4px;border-bottom:1px dashed rgba(160,140,80,.28)}
@@ -792,13 +792,13 @@ body{padding-top:0}
 .set-block-label::after{content:'';position:absolute;left:22px;right:-10px;bottom:-2px;height:3px;background:repeating-linear-gradient(90deg,rgba(196,158,80,.55) 0px,rgba(196,158,80,.55) 6px,transparent 6px,transparent 10px);opacity:.66;border-radius:1px}
 .set-block-label .set-label-emoji{font-size:16px;filter:drop-shadow(0 1px 2px rgba(0,0,0,.14))}
 .set-block-label::before{content:'';position:absolute;left:-12px;top:50%;width:6px;height:6px;border-radius:50%;background:rgba(255,213,79,.55);transform:translateY(-50%);box-shadow:0 1px 2px rgba(180,140,40,.22)}
-.prov-card{position:relative;background:var(--paper-fiber),rgba(245,240,221,.84);-webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px);border:0.5px solid rgba(160,140,80,.22);border-radius:2px 6px 4px 2px;padding:22px 16px 14px;margin-bottom:16px;transition:opacity .3s,transform .3s;box-shadow:var(--lift-shadow);overflow:visible}
+.prov-card{position:relative;background:var(--paper-fiber),rgba(245,240,221,.70);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);border:0.5px solid rgba(160,140,80,.22);border-radius:2px 6px 4px 2px;padding:22px 16px 14px;margin-bottom:16px;transition:opacity .3s,transform .3s;box-shadow:var(--lift-shadow);overflow:visible}
 .prov-card::before{content:'';position:absolute;top:-8px;left:50%;width:58px;height:14px;transform:translateX(-50%) rotate(-3deg);background:repeating-linear-gradient(135deg,rgba(255,213,79,.40) 0px,rgba(255,213,79,.40) 2px,rgba(255,236,179,.46) 2px,rgba(255,236,179,.46) 4px,rgba(245,200,80,.30) 4px,rgba(245,200,80,.30) 6px);border-left:0.5px dashed var(--tape-edge);border-right:0.5px dashed var(--tape-edge);box-shadow:0 1px 2px rgba(180,140,40,.14);z-index:2;border-radius:1px}
 .prov-card::after{content:'🌻';position:absolute;top:-11px;right:16px;font-size:16px;filter:drop-shadow(0 1px 2px rgba(0,0,0,.15));transform:rotate(14deg);z-index:2}
 .prov-card:nth-child(odd){transform:rotate(-0.4deg)}
 .prov-card:nth-child(even){transform:rotate(0.3deg)}
 .prov-card-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
-.pw-card{position:relative;background:var(--paper-fiber),rgba(245,240,221,.84);-webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px);border:0.5px solid rgba(160,140,80,.24);border-radius:2px 4px 6px 3px;padding:32px 18px 18px;box-shadow:var(--lift-shadow);transform:rotate(0.4deg);overflow:visible}
+.pw-card{position:relative;background:var(--paper-fiber),rgba(245,240,221,.70);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);border:0.5px solid rgba(160,140,80,.24);border-radius:2px 4px 6px 3px;padding:32px 18px 18px;box-shadow:var(--lift-shadow);transform:rotate(0.4deg);overflow:visible}
 .pw-card::before{content:'';position:absolute;top:-8px;left:50%;width:62px;height:14px;transform:translateX(-50%) rotate(-3deg);background:repeating-linear-gradient(135deg,rgba(255,213,79,.40) 0px,rgba(255,213,79,.40) 2px,rgba(255,236,179,.46) 2px,rgba(255,236,179,.46) 4px,rgba(245,200,80,.30) 4px,rgba(245,200,80,.30) 6px);border-left:0.5px dashed var(--tape-edge);border-right:0.5px dashed var(--tape-edge);box-shadow:0 1px 2px rgba(180,140,40,.14);border-radius:1px;z-index:2}
 .pw-card::after{content:'🔑';position:absolute;top:-11px;right:16px;font-size:16px;filter:drop-shadow(0 1px 2px rgba(0,0,0,.16));transform:rotate(-12deg);z-index:2}
 .pw-card label{display:block;font-family:'LXGW WenKai TC',serif;font-size:12px;color:var(--text-sub);margin-bottom:5px}
@@ -812,7 +812,7 @@ body{padding-top:0}
 .pw-card-section-title{font-family:'Satisfy','LXGW WenKai TC',serif;font-size:15px;color:#6B5A20;margin-bottom:7px;letter-spacing:.6px}
 .pw-card-hint{font-family:'LXGW WenKai TC',serif;font-size:11px;color:var(--text-sub);margin-bottom:14px;line-height:1.55;opacity:.82;padding:7px 10px;background:var(--paper-fiber),rgba(255,250,220,.55);border-left:2px solid rgba(180,165,110,.45);border-radius:2px}
 .new-hash-box textarea{width:100%;min-height:48px;padding:8px 10px;border:0.5px solid rgba(140,110,55,.30);border-radius:3px;background:#FFFDF6;font-family:'Courier New',Menlo,monospace;font-size:16px;color:#5a3e0e;outline:none;resize:none;word-break:break-all;box-shadow:inset 0 1px 2px rgba(90,80,40,.05)}
-.export-card{position:relative;background:var(--paper-fiber),#F5F0DD;border:0.5px solid rgba(160,140,80,.24);border-radius:3px 3px 4px 4px;padding:24px 16px 16px;box-shadow:var(--lift-shadow);transform:rotate(-0.4deg);overflow:visible}
+.export-card{position:relative;background:var(--paper-fiber),rgba(245,240,221,.70);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);border:0.5px solid rgba(160,140,80,.24);border-radius:3px 3px 4px 4px;padding:24px 16px 16px;box-shadow:var(--lift-shadow);transform:rotate(-0.4deg);overflow:visible}
 .export-card::before{content:'';position:absolute;top:-8px;left:50%;width:62px;height:14px;transform:translateX(-50%) rotate(3deg);background:repeating-linear-gradient(135deg,rgba(255,213,79,.40) 0px,rgba(255,213,79,.40) 2px,rgba(255,236,179,.46) 2px,rgba(255,236,179,.46) 4px,rgba(245,200,80,.30) 4px,rgba(245,200,80,.30) 6px);border-left:0.5px dashed var(--tape-edge);border-right:0.5px dashed var(--tape-edge);box-shadow:0 1px 2px rgba(180,140,40,.14);border-radius:1px;z-index:2}
 .export-card::after{content:'📔';position:absolute;top:-11px;right:16px;font-size:16px;filter:drop-shadow(0 1px 2px rgba(0,0,0,.15));transform:rotate(-8deg);z-index:2}
 .export-desc{font-size:12px;color:var(--text-sub);margin-bottom:14px;line-height:1.7;font-family:'LXGW WenKai TC',serif}
@@ -821,7 +821,7 @@ body{padding-top:0}
 .export-btn:active{transform:scale(.96)}
 
 .export-rooms{display:flex;flex-direction:column;gap:16px;margin-bottom:4px}/* 2026/07/19 老婆定案方案③：一行一行直直排，不玩二二一 */
-.export-room{position:relative;display:flex;flex-direction:column;align-items:stretch;gap:9px;background:var(--paper-fiber),#FFFDF6;border:0.5px solid rgba(180,140,80,.24);border-radius:3px 4px 3px 5px;padding:16px 11px 11px;box-shadow:0 1px 3px rgba(140,110,50,.10)}
+.export-room{position:relative;display:flex;flex-direction:column;align-items:stretch;gap:9px;background:var(--paper-fiber),rgba(255,253,246,.66);border:0.5px solid rgba(180,140,80,.24);border-radius:3px 4px 3px 5px;padding:16px 11px 11px;box-shadow:0 1px 3px rgba(140,110,50,.10)}
 .export-room::after{content:'';position:absolute;inset:5px;border:1.2px dashed rgba(176,141,74,.35);border-radius:3px;pointer-events:none}/* 手縫虛線內框 */
 .export-room:nth-child(odd){transform:rotate(-.4deg)}
 .export-room:nth-child(even){transform:rotate(.4deg)}
@@ -997,17 +997,16 @@ body{padding-top:0}
 .lr-eye-a{transform-box:fill-box;transform-origin:center;animation:gcBlink 5.4s ease-in-out 1.7s infinite}
 
 /* ===== 📚 回憶書堆（Book of Us）v6.1 —— 記憶庫入口變兩本書 ===== */
-.mem-stack{display:none;flex:1;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch;flex-direction:column;gap:20px;
-  padding:20px 12px calc(env(safe-area-inset-bottom,0px) + 20px);align-items:center;justify-content:space-evenly}
+.mem-stack{display:none;flex:1;min-height:0;overflow:visible;flex-direction:row;align-items:flex-end;justify-content:center;gap:10px;padding:20px 10px calc(env(safe-area-inset-bottom,0px) + 26px)}/* 2026/07/26 v2 照片當主角：書改並排坐底部 */
 #memoryPage.stackmode .mem-stack{display:flex}
 #memoryPage.stackmode .mem-wall{display:none}
 #memoryPage.stackmode .mem-inp{display:none}
 #memoryPage.chatbook:not(.stackmode) .mem-inp{display:none}
-.mem-bk{position:relative;cursor:pointer;-webkit-tap-highlight-color:transparent;-webkit-user-select:none;user-select:none;transition:transform .2s;width:100%;max-width:min(74vw,318px);flex-shrink:0}/* 2026/07/26 書縮小錯開擺，合照從斜縫露臉 */
+.mem-bk{position:relative;cursor:pointer;-webkit-tap-highlight-color:transparent;-webkit-user-select:none;user-select:none;transition:transform .2s;width:100%;max-width:min(45vw,205px);flex-shrink:0}/* 2026/07/26 v2 桌上小手帳尺寸 */
 .mem-bk svg{width:100%;display:block;margin:0 auto;overflow:visible;filter:drop-shadow(0 6px 10px rgba(100,125,50,.28))}
-.mem-bk.green{transform:rotate(-2.2deg);align-self:flex-start;margin-left:8px}
-.mem-bk.yellow{transform:rotate(2deg);align-self:flex-end;margin-right:8px}
-.mem-bk.green:active{transform:rotate(-2.2deg) scale(.96)}.mem-bk.yellow:active{transform:rotate(2deg) scale(.96)}
+.mem-bk.green{transform:rotate(-2.4deg)}
+.mem-bk.yellow{transform:rotate(2.2deg);margin-bottom:7px}/* 微墊高：像隨手擺的不是排整齊的 */
+.mem-bk.green:active{transform:rotate(-2.4deg) scale(.96)}.mem-bk.yellow:active{transform:rotate(2.2deg) scale(.96)}
 /* 書本眨眼 2026/07/21 歸隊：全站同款 gcBlink 5.4s（吉祥物巡檢統一） */
 .mem-bk-eye{transform-origin:center;transform-box:fill-box;animation:gcBlink 5.4s ease-in-out infinite}
 .mem-bk.yellow .mem-bk-eye{animation-delay:1.2s}
