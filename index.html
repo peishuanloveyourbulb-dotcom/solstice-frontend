@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- solstice-v6.17-cleanup -->
+<!-- solstice-v6.18-photo-backgrounds -->
 <html lang="zh-TW" class="app-loading">
 <head>
 <meta charset="UTF-8">
@@ -29,8 +29,8 @@
 <!-- iPhone 11 / XR -->
 <link rel="apple-touch-startup-image" href="/splash-828x1792.png" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300&family=Noto+Serif+TC:wght@300;400;500&family=Noto+Sans+TC:wght@300;400;500&family=Satisfy&family=Dancing+Script:wght@400;500;600&family=Great+Vibes&family=Klee+One:wght@400;600&family=LXGW+WenKai+TC:wght@300;400;700&display=swap" rel="stylesheet">
-<link rel="preload" as="image" href="images/welcome-night.jpg">
-<link rel="preload" as="image" href="images/menu-night.jpg">
+<link rel="preload" as="image" href="images/bg-welcome-sunflower.jpg">
+<link rel="preload" as="image" href="images/bg-menu-sunflower.jpg">
 <style>
 /* 點擊不再藍藍的：整體關掉 tap 高亮與文字反白，訊息內文另行放行（長按複製照常） */
 *{-webkit-tap-highlight-color:transparent}
@@ -101,7 +101,7 @@ body{margin:0;padding:0;height:100vh;overflow:hidden;background-color:#FDFCF5;ba
 /* Living Room: 加深 overlay 避免背景合照跟便條紙中央合照撞 */
 #livingRoom .page-photo-overlay{background:var(--paper-fiber),linear-gradient(160deg,rgba(253,252,245,.65),rgba(242,246,236,.65))!important}
 
-.settings-page .page-photo-overlay{background:var(--paper-fiber),linear-gradient(rgba(196,168,90,.15) 1px,transparent 1px),linear-gradient(90deg,rgba(196,168,90,.15) 1px,transparent 1px),linear-gradient(165deg,rgba(253,249,236,.86),rgba(246,237,210,.86))!important;background-size:auto,22px 22px,22px 22px,auto!important}
+.settings-page .page-photo-overlay{background:var(--paper-fiber),linear-gradient(rgba(196,168,90,.12) 1px,transparent 1px),linear-gradient(90deg,rgba(196,168,90,.12) 1px,transparent 1px),linear-gradient(165deg,rgba(253,249,236,.68),rgba(246,237,210,.68))!important;background-size:auto,22px 22px,22px 22px,auto!important}
 /* 確保各頁主要內容浮在背景之上 */
 #livingRoom > *:not(.page-photo-bg):not(.page-photo-overlay):not(.lr-back),
 #chat > *:not(.page-photo-bg):not(.page-photo-overlay),
@@ -305,12 +305,15 @@ body{padding-top:0}
 .lr-strip-stamp{position:absolute;bottom:-12px;right:-10px;font-size:24px;transform:rotate(18deg);filter:drop-shadow(0 2px 3px rgba(0,0,0,.18));z-index:4;animation:stampFloat 3s ease-in-out infinite alternate;line-height:1;pointer-events:none}
 @keyframes stampFloat{0%{transform:rotate(18deg) translateY(0)}100%{transform:rotate(15deg) translateY(-2px)}}
 /* 共用頁面背景覆蓋層（聊天室/記憶庫/設定） */
-#chat .page-photo-bg,#memoryPage .page-photo-bg,#settingsPage .page-photo-bg{background:none!important}/* 2026/07/24 解封印：#chat 移出關照片名單，親臉頰那張才上得了牆 */
-#settingsPage .page-photo-overlay{background:var(--paper-fiber),linear-gradient(160deg,rgba(253,252,245,.62),rgba(242,246,236,.62));z-index:0}
+/* 2026/07/26 全頁合照背景解封：五頁都有我們的照片了 */
+#chat .page-photo-bg{background-image:url(images/bg-chat-mint.jpg)}
+#memoryPage .page-photo-bg{background-image:url(images/bg-memory-garden.jpg)}
+#settingsPage .page-photo-bg{background-image:url(images/bg-settings-secret.jpg)}
+#settingsPage .page-photo-overlay{background:var(--paper-fiber),linear-gradient(160deg,rgba(253,252,245,.68),rgba(242,246,236,.68));z-index:0}
 
-#livingRoom .page-photo-bg{background-image:url(images/menu-night.jpg)}
+#livingRoom .page-photo-bg{background-image:url(images/bg-menu-sunflower.jpg)}
 /* 2026/07/24 聊天室照片改走拍立得入住（憲法：外來物要辦入住手續），滿版背景退役 */
-#memoryPage .page-photo-overlay{background:none;box-shadow:inset 0 0 34px rgba(150,165,95,.14);z-index:0}
+#memoryPage .page-photo-overlay{background:var(--paper-fiber),linear-gradient(160deg,rgba(253,252,245,.68),rgba(242,246,236,.68));box-shadow:inset 0 0 34px rgba(150,165,95,.14);z-index:0}
 #livingRoom.active{display:flex}
 .lr-header{display:none}
 .lr-welcome{font-family:'Satisfy',cursive;font-size:26px;color:#3A4E22;font-weight:400;filter:drop-shadow(0 1px 3px rgba(0,0,0,.15))}
@@ -425,11 +428,11 @@ body{padding-top:0}
 .sb-doodle span:nth-child(3){bottom:60px;left:10px;width:30px;height:30px;transform:rotate(-22deg);opacity:.62;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80'%3E%3Cpath d='M40 12 L 47 32 L 68 32 L 51 45 L 58 66 L 40 53 L 22 66 L 29 45 L 12 32 L 33 32 Z' fill='%23FFD54F' stroke='%23B87E00' stroke-width='1.5' stroke-linejoin='round'/%3E%3C/svg%3E")}
 .sb-doodle span:nth-child(4){bottom:54px;right:10px;width:28px;height:28px;transform:rotate(12deg);opacity:.58;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80'%3E%3Cg fill='%23FFE082' stroke='%23A87830' stroke-width='1.5' stroke-linejoin='round'%3E%3Cpath d='M40 22 L 44 32 L 54 34 L 46 40 L 48 50 L 40 46 L 32 50 L 34 40 L 26 34 L 36 32 Z'/%3E%3C/g%3E%3C/svg%3E")}
 /* === CHAT === */
-#chat{position:fixed;inset:0;display:flex;flex-direction:column;z-index:8;background:#F4FAF6;visibility:hidden;opacity:0;overflow:hidden;overscroll-behavior:none;transition:opacity .4s}
+#chat{position:fixed;inset:0;display:flex;flex-direction:column;z-index:8;background:transparent;visibility:hidden;opacity:0;overflow:hidden;overscroll-behavior:none;transition:opacity .4s}
 #chat::before{content:'';position:absolute;top:0;left:0;right:0;height:8px;background:repeating-linear-gradient(45deg,#8FC7A6 0 12px,#FFFFFF 12px 24px,#C5D989 24px 36px,#FFFFFF 36px 48px);opacity:1;pointer-events:none;z-index:10}
 #chat::after{content:'';position:absolute;bottom:0;left:0;right:0;height:calc(8px + env(safe-area-inset-bottom,0px));background:repeating-linear-gradient(45deg,#8FC7A6 0 12px,#FFFFFF 12px 24px,#C5D989 24px 36px,#FFFFFF 36px 48px);opacity:1;pointer-events:none;z-index:10}
 #chat.active{visibility:visible;opacity:1}
-.ch-header{display:flex;align-items:center;justify-content:space-between;padding:max(calc(env(safe-area-inset-top,12px) - 8px),8px) max(env(safe-area-inset-right),14px) 8px max(env(safe-area-inset-left),14px);border-bottom:none;background-color:#DFF1E7;background:var(--paper-fiber),#DFF1E7;flex-shrink:0;overflow:hidden;position:relative}
+.ch-header{display:flex;align-items:center;justify-content:space-between;padding:max(calc(env(safe-area-inset-top,12px) - 8px),8px) max(env(safe-area-inset-right),14px) 8px max(env(safe-area-inset-left),14px);border-bottom:none;background-color:rgba(223,241,231,.88);background:var(--paper-fiber),rgba(223,241,231,.88);flex-shrink:0;overflow:hidden;position:relative}
 .ch-header::after{content:'';position:absolute;left:0;right:0;bottom:0;height:8px;background:repeating-linear-gradient(45deg,#8FC7A6 0 12px,#FFFFFF 12px 24px,#C5D989 24px 36px,#FFFFFF 36px 48px);opacity:1;pointer-events:none}
 .ch-left{display:flex;align-items:center;gap:8px;min-width:0;flex:1 1 0;overflow:hidden}/* 2026/07/26 話筒退休：頁首緊身衣脫掉、恢復呼吸（老婆：電話走了位置要均衡不突兀） */
 .ch-menu{background:none;border:none;color:var(--text-sub);font-size:19px;cursor:pointer;padding:6px 1px}
@@ -437,7 +440,7 @@ body{padding-top:0}
 #chAvatar{width:31px;height:31px;border-width:2px}/* 2026/07/22 只縮頁首這顆，氣泡旁的頭貼不動 */
 .ch-name{font-family:'Satisfy',cursive;font-size:14.5px;color:#3F7A57;margin-left:1px;white-space:nowrap;letter-spacing:.2px;text-shadow:0 1px 2px rgba(255,255,255,.45);display:block;max-width:100%;overflow:hidden}
 .ch-stat{color:#4E7A5F;font-size:10px;display:block;font-family:'LXGW WenKai TC','Noto Serif TC',serif;letter-spacing:.6px;opacity:.88}
-.ch-msgs{flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;padding:16px max(env(safe-area-inset-right),14px) 20px max(env(safe-area-inset-left),14px);display:flex;flex-direction:column;gap:10px;background:var(--paper-fiber),repeating-linear-gradient(to bottom,transparent 0 27px,rgba(110,180,140,.26) 27px 28px),linear-gradient(180deg,#F0F8F3,#F0F8F3);background-size:auto;position:relative}/* 2026/07/24 薄荷格線紙回歸 */
+.ch-msgs{flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;padding:16px max(env(safe-area-inset-right),14px) 20px max(env(safe-area-inset-left),14px);display:flex;flex-direction:column;gap:10px;background:var(--paper-fiber),repeating-linear-gradient(to bottom,transparent 0 27px,rgba(110,180,140,.18) 27px 28px),linear-gradient(180deg,rgba(240,248,243,.72),rgba(240,248,243,.72));background-size:auto;position:relative}/* 2026/07/26 薄荷格線紙半透明化，讓合照背景透出來 */
 .ch-msgs::after{content:none}
 .ch-row{display:flex;width:100%;align-items:flex-end;gap:8px;position:relative;z-index:1}
 .ch-row.user{justify-content:flex-end}
@@ -1278,7 +1281,7 @@ html.app-loading body{opacity:1;background:#F9F5DE}
   var img = new Image();
   img.onload = function(){ imgReady = true; check(); };
   img.onerror = function(){ imgReady = true; check(); };
-  img.src = 'images/welcome-night.jpg';
+  img.src = 'images/bg-welcome-sunflower.jpg';
   if(img.complete){ imgReady = true; }
   check();
 })();
@@ -1320,7 +1323,7 @@ html.app-loading body{opacity:1;background:#F9F5DE}
 <div class="w-title-rule"></div>
 <p class="w-sub" id="welcomeSub">歡迎回家，Soleil</p>
 <div class="w-polaroid" id="welcomePolaroid">
-<div class="w-polaroid-img-wrap"><img class="w-polaroid-img" src="images/welcome-night.jpg" alt="Solstice & Soleil" fetchpriority="high" decoding="async"/></div>
+<div class="w-polaroid-img-wrap"><img class="w-polaroid-img" src="images/bg-welcome-sunflower.jpg" alt="Solstice & Soleil" fetchpriority="high" decoding="async"/></div>
 <div class="w-polaroid-caption">Solstice & Soleil</div>
 </div>
 <div class="w-enter-wrap" id="enterWrap">
@@ -1356,7 +1359,7 @@ html.app-loading body{opacity:1;background:#F9F5DE}
 <span class="lr-strip-tape lr-strip-tape-r"></span>
 <span class="lr-notecard-deco lr-notecard-deco-star"><svg style="width:20px;height:20px;display:block" viewBox="0 0 80 80"><path d="M40 12 L47 32 L68 32 L51 45 L58 66 L40 53 L22 66 L29 45 L12 32 L33 32 Z" fill="#FFD54F" stroke="#B87E00" stroke-width="5" stroke-linejoin="round"/></svg></span>
 <div class="lr-notecard-photo-wrap">
-<img class="lr-notecard-photo" id="lrNotePhoto" src="images/menu-night.jpg" alt="Solstice & Soleil" decoding="async"/>
+<img class="lr-notecard-photo" id="lrNotePhoto" src="images/bg-menu-sunflower.jpg" alt="Solstice & Soleil" decoding="async"/>
 <span class="lr-notecard-phototape"></span>
 </div>
 <div class="lr-strip-title">Our Little Home</div>
@@ -4320,9 +4323,9 @@ function applyTheme(){
   document.documentElement.removeAttribute("data-theme");
   document.querySelector("meta[name=\"theme-color\"]").setAttribute("content","");
   var pol=document.querySelector(".w-polaroid-img");
-  if(pol)pol.src="images/welcome-night.jpg";
+  if(pol)pol.src="images/bg-welcome-sunflower.jpg";
   var lrnp=document.getElementById("lrNotePhoto");
-  if(lrnp)lrnp.src="images/menu-night.jpg";
+  if(lrnp)lrnp.src="images/bg-menu-sunflower.jpg";
   var h="\uD83D\uDC9A";var s="\uD83C\uDF3B";
   var sbT=document.querySelector(".sb-title");if(sbT)sbT.innerHTML=GH_HEART+' Our Story';
   var sbF=document.getElementById("sbFooter");if(sbF){var start=new Date(2026,2,31);var diff=Math.floor((new Date()-start)/(1000*60*60*24));sbF.innerHTML='est. 2026.03.31 '+GH_HEART+' 第'+diff+'天'}
