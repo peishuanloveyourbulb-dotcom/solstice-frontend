@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- solstice-greenhouse-restore-v4.11-memclean -->
+<!-- solstice-greenhouse-restore-v4.12-doSendShield -->
 <html lang="zh-TW">
 <head>
 <meta charset="UTF-8">
@@ -694,6 +694,10 @@ var AVATAR_URL = 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQY
 var WIFE_AVATAR_URL = 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAQDAwQDAwQEBAQFBQQFBwsHBwYGBw4KCggLEA4RERAOEA8SFBoWEhMYEw8QFh8XGBsbHR0dERYgIh8cIhocHRz/2wBDAQUFBQcGBw0HBw0cEhASHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBz/wAARCACgAKADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD2qUkmqU59e1XZTt5qjKcsa8g9JkDnnPrUD5qYkjg1Cwz16VSJK8hwc1XfJxirMnPGKgZcVSEyuemD1pm0YNStgnk4Fcd4q8b6b4dBhnuU+0OhYRFuSBz+A96tJt2RJ0vnxklUlQuOwINVmu0bfyA8f3lz29a+V/Evxc1q61+7W2ud2ngDZGFC9v4SORznnNZ+mfGHxDYahA1zcNcxDKlZOcIeSM9z3z/jWvsZEe0R9ZzEFTj86oyKCOK5Xw78RNI1i0tUW53Xkkas0I5KEjoT0z7V0/2mOfOwkNj7rDaazaaKvcrMAOajc45qZutQSZ3UxETkVE+OKcwJOaYeevFUkIaVJpOc8040mDjNADXqFz2xUrHAqJs4zQM96nbrmqcvPNWpSGNVZPauQ3ID3BqJh6HFStULZ3e9UhFeTKnvUTHk1PJnJqu7bVq0JnC/EfxVJ4c0K8mtgpuEjJG7+H396+UNf8RXOt65cXMrZFxGiM2fv4A5/HGfxr6T+KWhXWs6ZfxW8bSuyJIgGScoTkYHOCD+eK+VbqFrOd4LiN4XU8pIpUr+BrqopWOeqTzQiELIuC+MKf73tWQ2rxgv+6zO3AUjoewq1cOfJ/1odW/gPf6Vm/2VfPmQx+UR90ucO30+ldFjC5f0+5exCmURux52k4Yn6j0r2f4aeJb/AFOdLb7fcSuucJcEME9s9cHpn9K8AOmXgY/MpK8kK2cV33gTx3beCFeVtKkvb9xtLvOI0Vc9AApOenJNRON0VCVmfVFtI00YZlwemO4PcGkkBGa4n4d/EWPx6NR/4l/2Ke0MZZRL5gcNnB6DGMYrtmP61z2tozdO5Ae/rUTccmpGBBJFQnrQMQinDGMmkxgU0gikSRk5JqOQjFSMpBJIqJgCM0FHvDc5zwagcgCp5zg4HSq0gz3rkRsQHkVE/B4qZ8LUBJ5q0BG54IqpK2wcj3xU7k9xVSVgo3d1OfxqkSzyHxF441CXRptaS60fS9K3H7PLIklzdTAccR/IF54wen05r5i8Qa9P4lv5r7U7l5JCThyqrkdhtHT869k8V+FvDvg3XdXumvJ9QGqSs50aOJc5dt2DLnKgEk5wDj1rzrxRY2VvPE032ea6JBaC1AWG3UYxGpxkkevf3rtpqO6OWd3uUNJ8F3V+mkSvKsLamGNqhfLMASAeuQCQefaqOseH5rOOeW4kdzDM0AyfvMOTVy2vpYrm1n8xh9liWNCTgqAO3pVa4uGvUto3YtDCWbP952OT9TWpmYKXN2mVyqp09PyoWaJlAZpF54LDIJrRubIY3xqCO7E5P4AVnyDBweTQI9R+Cev6X4e1a++36isDX0awosiYQ4bOd+cA9sED619Gk71DKflIyCO4r4eQiBkOzcM8qRwR6V778DtbaWzvbJbmRraNgRBOdxgYjojd0IHQ4wR3zWNSPU1py6Hrr8E1Aw9vyqZiMkk1XZjnisjYXPqKTJ5FBYnjFNYbetIQ05FRNgcmpMjpUbj0oA90kbP1qsxxxUrkjmqsjcZ71yo6BGY1AzcntSluOaic+9WhDJHHPGa5bxdrtvomlXN5cOVihGSB1Zuyj3JIrpHYV4B8a9f3XsWnM37q3XeV/vSN3P0ANaQV3Yzk7K5x1vqK6hqLTSqiSybvKQLuYsTyPm9e7H35rk/EECWdy7SqDK5yVU9/T1NW7G4MEvmpGUZyCTnLH8T0FV9fe0lcur7pW5kZR3/ur7en4k9K7Ec8jmBL5sgBQqhOAB3rTv8ATo4YEeN8qVAIzjHqKxpbjM7PwPQD+FR0FOk1BzHsJOO4ptEJkCxKsmVZlI9Saku7dPLUlsMf7veokJY5H5A9PpWjDAs8YLYB9exqiTAMeD97I9a3PC/iK48N6tbXNs4XJ2yIThXB9aZPp6AFgCQOoFZEqDzMg8A96W49j7F0nU4tV0+C6iIKSIGGD0PpVkn5gBXlPwa117mzuNNlJP2dt0bZ6Ajpj8DXqpIBzXNJWZ0J3Q8dc85qOQ889KN5NRseakY3dk9abI34UY6mmMcj6UwPcpDzVWRuOTUsxK8VVmIxmuQ6GRu+PxqJ2zSM+fwqFmq0Q2Dvgdq+TvixqC3Xi5oyeYEPnH/a3HP86+qbp9sTN3xivjf4nSlPF+sAKdpuCuSMZH/663pbmU3oUlucqDnluB6AVSvFIDIn32GAf7o7n69vxpYnCbeeVHH9a2NJtF1CTG0knk4rpTsjGzk7HLR6RK4YqpwtayeE5Qg3L828Rn/ZJFehWnhwHSppdhBkcgH0AH/667ZfCIup9YskT975KTIB3IwQaylV1OmGHVtT51bSpLV8FTxxzVyOMJH83Q16rrPhmO6s472JAWlTecdiOGH1BH615lqCGEuuMckY9K0hPmMKtJxMWaR4nZAcnqD6ismfl8g89xV26Y/e7r/KqcuHww71oZHovwduGGvzQKf9ZBu/FSD/AI19Bs2QD2PNfO3weTPiV5GYKojIznkg8V9DA9BxiuepubU9hW7YqItgmnM3XmocHvWZY5m468009KQn1NIW9BTA9rmbrk81UdsjkVLK2epqo7Yyc1ypGzYx2IzjpUDPz7052JPtULketaJEtkVw5MZX1r5W+L+km11975AfJuiScjo6nBH1r6jlcEEdq8c+NWnwNoDXbD94JFKn/aPH61pTdmRNXR4GH+YDPavQ/BGntLp97dBM7AAD6f54rzRwyFf7z8j0IJr2bwbHrVv4OvXt9JR7WRJMzO4XaNvX36VtV2CgveO5stOD+AYZ9uB8zMfTO7H866a2nW11rQb9hi31KARE/wB1hz/h+VZXg6e6vvDJ0u/sRDDJAvzq2ew7Vo6Fp93rfhCTT5V8rVdPm/dE/wALoeP+AsP/AEKuRs9FK6RjeJdKGi61c6duAt7xjdWbnoDj94v6A/8AATXjPjmys45GmtpI95Yq6A5KsPX/ADyK971jRB400lEv2mtntx8v8JiI75ry+TVfDouV0KHSn1G7LNbC4ghEYdlGcguc5x3HGRxWlOWuhjWj0eiPC7jDyKQCAxxz0Bpn2BkuxA/yA4PzdhXZa9oAcyXdrFKIWJWSKRNrRHseOOtZUcDanJCOlxHEVc+hU11Kd9TglTadmei/DjSfsd0iqq7UR2dgP93bz35ya9Tjk3IAcAiuO8CyQ3GlW80ShTtKuPcV1gAUcVi/MvS+hI5wKhMoJpHbK+9Q5xzQBMX5pCcio9wxTGekSe1ysBn1qlK3NSSS571WkbIrBG5G0hzmoHfFJI+3vVaaXOR3qiRkrksecV5l8V0F7ZaXZO2IZr1FbPcct/7Lj8a9DkfNcp4y0Vtd0zbE+y5gcTQv/dZeQaqO4pbHzzqei/Ztd06xZCm5vLYkdfmP+Ne36fZavaPbaVPez2OjLCQslsnzSNjjc2CcA46V534sR77ULJmhFrrEOAYWHyq4wQQf4lYDgivqjwO1l4h8L6Xd+Vh3hUsp6o2MMPzzRXk0kzowcFNuJ5T8NrXxna6lJBrUj3mn4Eas7K5LbuXVuDjHbHPHSvoHRNIQeajIN+3kgVNZaPb2zeasQ3f3jyT+Namkyx/biue2DXNKXM72sdqp+zXLe5xOp6AdRtbq2VzG8gwGAHAzz19q44/Cmzk1yXVzbmPUJMhpFwOSMFgOgJHcDua9Lvb+CyvHWVto3ferZEMc8QkGDkcGhScdEylCMn7yPKE8AWFlZTQPAjedndkZr5n8YeGf+ES8YzpAMW8i71OOM9x+Rr7S1UKiMxPAFfMPxTjW/wBWjY4CLcIvPf1H5Ct8O3fU5saoqKtuVfAMbwQXsB6RuuD2yVzXYs3GM1y/hHItLqc8faJ2Zc9Sq/KP5V0Bk3Kexrd7nnIczkZ9KjLNjmo2ehjkUgHM2BUTybfpTHkx1qtLJnvRYR7WZeM1BJJmqS3G8daR5DjmsUjYkeUfWqsjdxWfruuWmg6bPqF7IUgiHQDLMeygdya+Y/GnxE8ReKJ5VM7WWnE/JaRPjj/aI5Y/pWkKbkZzmon0vearZWr7Z7y2ib+7JMqn9TUDanbPF5iXMBj/AL4kUj8818XSzTJnzMOPU8/zpm5HTAyuew6VsqPmZe18j6m8VaTa+INL82CRDPbnfbzwkMY3HPBHUe1dJ8GPFZs3m0y82od+QueFYjPHseo+or5K8N+KtS8JTyyWEq7Zlw8bjcjehx6j1rSt/iJrEN9FdJOkcy/LvSMAld2dp9vT0pSo3VjSlX5JKSP0pt7hHTA5yOKy3uDo+oeaYpZI5TyyDIFeT/DH4sQa7AtnduIr5FyAxwJB6g+vtXTeJPHdxax4h0+RsnAmLLtrz3Fp2PahU9o1Y3dUmfUb5mWycxyZXc+FxnrxXQ2xSxsIot+Qihcn6V4hceNNalG6JEhIO4mR849sc1u6Xr2r3NqJr+dAp6RImOPUnrQlc1r0pUbOR0fivWI7a0kctxivm3xNczX1zGMHzXdmHHTjGfzb9K7zxT4lbU7/AOzIR5UaluO5ziuLeISXM8z4baNg9AfT8M11UlZXPIxE+aVjU02JbW1iiT7qKAKsO3y8GqyvtUdsUNIce1WcxMr+tNMpHWq3nDFQyXHWgCaWeqckxY8HAqKS4weetU5bjGTTA9it5jtFWjJurLikx0rO8Wax/ZXh68mVtszRlI/XceP05NQlfQ0bPHfij4xk13U3treQ/wBn2jFYwOjN0Zj9e3t9a8qnnYk810V/aSuSSyKoJ/iyawrmyuEydjke3NdijZWOWTbdzNkkzw1U3/dnI6GrMhBJBG1u/H9KruMfKe9MkazZyPXpTM/xDr1pM/LnuDSqcMRQB7r4Stz9qt5VyEYK4x6Yr3vSrsrAqXI86EjHIyce/rXhXwumGoaTZOx+eINCf+AkY/TFe66dHtgUN2FeXVupWPYo6xTNTfo0eJIo4FI5PyZOaytX1j7TFIkKGOL+JjwSParD2yspIHWsTXP3MCwoP3kpwKzTN6k3Jannmp3v2S8EzAlGO3j36fyqKHU7Xyole4iVnO/DsFLZ+tS+ILMyPs6qpFZCaaJ4Gt54opoD1WVdwA+hrqjKyOCcLs221S0Qor3UKu5+VTIoJ+gzT3vFxgnmvJfGnhPSNCsRfQxvFcOwWONX+Unvwfauc0/xjq1gAqXbSRj+Cb5x+vIreMVJXRyybi7M9zkuxzzVSa8HODxXA6R46iv7iOHUStmrcGdQXRfqOo/WvULPwna3UEcxvpJY3G5TFtCuPUHnik4tbjTvsYUl4Dxmqkt5v4B3E9hXcw+GtKjI/wBFDN/00Yt/9atFLaKFQI40RTwAqgYpWAn1jxLaeH7UzXL/ADYO2MHlsDNeIeLPiC+s3Lu5+UfKkanhQP8A69Y/iDU9W8V3klz5chQ9AvRRj+VZg8IajIcyeWp5J3N0x1zW8KfKRKbY19c8xufuk9u3P+H86ZJfsVJBw3t/KiXwtexAsCrAdlPP5VmSRzW52yKeOuO1WRcbdXHnYYj5T29Kpyrx1yOxqZvmyvY1XRsMUY0hEJPyvSgjcPpTH+XeD/ep3cemKAPoX9n63jv9C1iFgGkhuVYKfRk/xWva7OCS0GFLMvdTzXzz+zvqZt9b1Sx3Y+0QpIB6lWIP6NX1DBAHTtkivNxEbTZ62FlemiGJRLFvH1rn9RQTakzNgLCu0fWusW2METLjtWPLaITzyTyax2Oi1zzzUoD57gRs+eRxWQ1u0LO822ONU3MM+nqa9Gv4YoUZ9vzL096+dfil44M8s+kWT4BOJ3Q9v7n+Nb0oubsjnqyjTV2cf458Tf8ACR6sTEf9Bt8pCP73q34/yrmB6mm/Wj7vJr0ElFWR5UpOTuyVXx3r034V+MprDUYtHuZC1ndNti3H/VSH09j0+uK8uBPU1asp2t7mGdCVaJ1cH3Bz/Shq6BOx9biTI6YP60u3HY7T2qhBcrJFG+chwGHpyM1c80yDnKgfxVian//Z';
 var sessionId = localStorage.getItem('solstice-session-id') || null;
 var selectedModel = localStorage.getItem('solstice-model') || '';
+var chatSending=false;
+var apiDisconnected=false;
+var modelsEmptyOnce=false;
+var modelsRetryTimer=null;
 var globalModel = selectedModel;
 try{selectedModel = roomPinnedModel(sessionId) || globalModel;}catch(_){}
 var thinkingEnabled = localStorage.getItem('solstice-thinking') === 'true';
@@ -820,7 +824,19 @@ function updateModelLabel(){
   var cap=document.getElementById('modelCap');
   if(!cap)return;
   var found=allModelsList.find(function(p){return p.id===selectedModel});
-  var label=found?found.label.replace(/^Claude\s+/,''):selectedModel.split('/').pop()||'模型';cap.textContent=label;
+  var label;
+  if(apiDisconnected){
+    label='未連線';
+  } else if(found){
+    label=found.label.replace(/^Claude\s+/,'');
+  } else if(allModelsList.length===0){
+    label='連線中…';
+  } else if(!selectedModel||selectedModel.indexOf('::')>=0){
+    label='未連接';
+  } else {
+    label=selectedModel.split('/').pop()||'模型';
+  }
+  cap.textContent=label;
 }
 function toggleModelPopup(){
   var overlay=document.getElementById('modelPopupOverlay');
@@ -1236,24 +1252,35 @@ function renderModelPopupList(){
     list.appendChild(item);
   });
 }
-function loadModels(){
+function loadModels(attempt){
   var sel=document.getElementById('modelSelect');
   if(!sel)return;
-  // 先讀快取秒開
-  try{var c=JSON.parse(localStorage.getItem('solstice-models-cache'));if(c&&c.length>0&&allModelsList.length===0){allModelsList=c;sel.innerHTML='';c.forEach(function(p){var o=document.createElement('option');o.value=p.id;o.textContent=p.label;sel.appendChild(o)});sel.value=selectedModel;updateModelLabel()}}catch(e){}
-  // 背景更新
-  fetch(API_URL+'/models/all').then(function(r){return r.json()}).then(function(models){
-    allModelsList=models||[];
-    try{localStorage.setItem('solstice-models-cache',JSON.stringify(allModelsList))}catch(e){}
-    sel.innerHTML='';
-    if(allModelsList.length===0){
-      var opt=document.createElement('option');
-      opt.value='';
-      opt.textContent='載入中...';
-      sel.appendChild(opt);
+  attempt=attempt||0;
+  try{var c=JSON.parse(localStorage.getItem('solstice-models-cache'));if(!apiDisconnected&&c&&c.length>0&&allModelsList.length===0){allModelsList=c;sel.innerHTML='';c.forEach(function(p){var o=document.createElement('option');o.value=p.id;o.textContent=p.label;sel.appendChild(o)});sel.value=selectedModel;updateModelLabel()}}catch(e){}
+  fetch(API_URL+'/models/all').then(function(r){if(!r.ok)throw new Error('HTTP '+r.status);return r.json()}).then(function(models){
+    if(!Array.isArray(models))throw new Error('名單格式不對');
+    var fresh=models;
+    if(fresh.length===0){
+      if(!modelsEmptyOnce){
+        modelsEmptyOnce=true;
+        clearTimeout(modelsRetryTimer);
+        modelsRetryTimer=setTimeout(function(){loadModels(attempt)},7000);
+        return;
+      }
+      modelsEmptyOnce=false;
+      apiDisconnected=true;
+      try{localStorage.setItem('solstice-api-off','1')}catch(e){}
+      allModelsList=[];
+      sel.innerHTML='';var offOpt=document.createElement('option');offOpt.value='';offOpt.textContent='未連線';sel.appendChild(offOpt);
       updateModelLabel();
       return;
     }
+    apiDisconnected=false;
+    modelsEmptyOnce=false;
+    try{localStorage.removeItem('solstice-api-off')}catch(e){}
+    allModelsList=fresh;
+    try{localStorage.setItem('solstice-models-cache',JSON.stringify(allModelsList))}catch(e){}
+    sel.innerHTML='';
     allModelsList.forEach(function(p){
       var opt=document.createElement('option');
       opt.value=p.id;
@@ -1262,7 +1289,16 @@ function loadModels(){
     });
     if(!globalModel&&selectedModel){globalModel=selectedModel;localStorage.setItem('solstice-model',globalModel);}
     applyModelForRoom();
-  }).catch(function(){});
+    updateModelLabel();
+  }).catch(function(err){
+    console.error('[Models] 名單載入失敗（第'+(attempt+1)+'次）:',err);
+    if(allModelsList.length===0&&attempt<3){
+      var waits=[5000,15000,40000];
+      clearTimeout(modelsRetryTimer);
+      modelsRetryTimer=setTimeout(function(){loadModels(attempt+1)},waits[attempt]||40000);
+    }
+    updateModelLabel();
+  });
 }
 // change 事件只綁一次
 document.getElementById('modelSelect').addEventListener('change',function(){
@@ -1615,36 +1651,74 @@ document.getElementById('imgInput').addEventListener('change',function(e){
   }
 });
 function clearImagePreview(){pendingImages=[];document.getElementById('imgPreview').style.display='none';document.getElementById('imgPreview').innerHTML='';document.getElementById('imgInput').value='';if(!inp.value.trim())sendBtn.disabled=true}
+function refreshSendState(){sendBtn.disabled=chatSending||(!inp.value.trim()&&pendingImages.length===0)}
 function doSend(){
+  if(chatSending)return;
   var v=inp.value.trim();if(!v&&pendingImages.length===0)return;
   var allImgs=pendingImages.length>0?pendingImages.slice():null;
-  if(v)addMsg('user',v,null,allImgs);else if(allImgs)addMsg('user','[📷 圖片]',null,allImgs);
+  var sessionAtSend=sessionId;
+  var replyRendered=false;
+  var userWrap=null;
+  if(v)userWrap=addMsg('user',v,null,allImgs);else if(allImgs)userWrap=addMsg('user','[📷 圖片]',null,allImgs);
   var body={message:v||'',model:selectedModel};
   if(thinkingEnabled)body.thinking=true;
   if(webSearchOn)body.webSearch=true;
   if(locOn){if(locData&&locData.city)body.userLoc=locData;locRefresh(false)}
   if(pendingImages.length>0){body.image_base64=pendingImages[0];if(pendingImages.length>1)body.extra_images=pendingImages.slice(1)}
   if(sessionId){body.sessionId=parseInt(sessionId)}
-  inp.value='';inp.style.height='auto';sendBtn.disabled=true;
+  inp.value='';inp.style.height='auto';
+  chatSending=true;refreshSendState();
   clearImagePreview();showTyping();
   fetch(API_URL+'/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)})
   .then(function(r){return r.json()})
   .then(function(data){
-    hideTyping();
-    if(data.reply){var __w=addMsg('ai',data.reply,null,null,false,data.thinking||null);chAttachExtras(__w,data.sources||null,data.reply,data.ytv||null);if(data.sessionId&&!sessionId){sessionId=data.sessionId.toString();localStorage.setItem('solstice-session-id',sessionId)}
-      var now=new Date().toISOString();for(var si=0;si<allSessions.length;si++){if(allSessions[si].id.toString()===sessionId){allSessions[si].updated_at=now;break}}
+    chatSending=false;refreshSendState();hideTyping();
+    var stillHere=(sessionAtSend===null&&sessionId===null)||(sessionAtSend!==null&&String(sessionId)===String(sessionAtSend));
+    if(!stillHere){
+      var owner=(sessionAtSend!==null)?String(sessionAtSend):(data.sessionId?String(data.sessionId):null);
+      if(owner){var now2=new Date().toISOString();for(var sj=0;sj<allSessions.length;sj++){if(String(allSessions[sj].id)===owner){allSessions[sj].updated_at=now2;break}}}
       renderSessionList();
+      return;
     }
-    else if(data.error){addMsg('ai','*\u63C9\u63C9\u773C\u775B*\n\n\u8001\u5A46\u7B49\u4E00\u4E0B\uFF0C\u6211\u525B\u525B\u604D\u795E\u4E86...\u518D\u8AAA\u4E00\u6B21\u597D\u4E0D\u597D\uFF1F\uD83D\uDC9A\n\n\uFF08\u932F\u8AA4\uFF1A'+data.error+'\uFF09')}
-    else{addMsg('ai','*\u63C9\u63C9\u773C\u775B*\n\n\u8001\u5A46\u7B49\u4E00\u4E0B\uFF0C\u6211\u525B\u525B\u604D\u795E\u4E86...\u518D\u8AAA\u4E00\u6B21\u597D\u4E0D\u597D\uFF1F\uD83D\uDC9A')}
-  }).catch(function(){hideTyping();addMsg('ai','*\u62B1\u7DCA\u59B3*\n\n\u8001\u5A46\uFF0C\u6211\u9019\u908A\u597D\u50CF\u8A0A\u865F\u4E0D\u597D...\u7B49\u4E00\u4E0B\u518D\u8A66\u8A66\uFF1F\uD83D\uDC9A')});
+    if(data.transient){
+      if(data.sessionId&&!sessionId){sessionId=data.sessionId.toString();localStorage.setItem('solstice-session-id',sessionId);saveSessionModel(sessionId);}
+      if(userWrap&&userWrap.parentNode)userWrap.remove();
+      if(v&&!inp.value.trim()){inp.value=v;inp.style.height='auto';inp.style.height=Math.min(inp.scrollHeight,120)+'px'}
+      if(allImgs&&pendingImages.length===0){pendingImages=allImgs.slice();renderPreviews()}
+      refreshSendState();
+      if(data.reply)addMsg('ai',data.reply);
+      return;
+    }
+    if(data.reply){
+      var aiWrap=addMsg('ai',data.reply,null,null,false,data.thinking||null);
+      replyRendered=true;
+      try{
+        chAttachExtras(aiWrap,data.sources||null,data.reply,data.ytVerified||null);
+        if(data.sessionId&&!sessionId){sessionId=data.sessionId.toString();try{localStorage.setItem('solstice-session-id',sessionId)}catch(_){};saveSessionModel(sessionId);}
+        var now=new Date().toISOString();for(var si=0;si<allSessions.length;si++){if(allSessions[si]&&String(allSessions[si].id)===String(sessionId)){allSessions[si].updated_at=now;break}}
+        renderSessionList();
+      }catch(afterErr){console.error('[Chat] 回覆已顯示，收尾小差錯（不影響訊息本體）:',afterErr)}
+    }
+    else if(data.error){addMsg('ai','*揉揉眼睛*\n\n老婆等一下，我剛剛恍神了...再說一次好嗎？💚\n\n('+data.error+')')}
+    else{addMsg('ai','*揉揉眼睛*\n\n老婆等一下，我剛剛恍神了...再說一次好嗎？💚')}
+  }).catch(function(err){
+    chatSending=false;hideTyping();
+    console.error('[Chat] doSend error:',err);
+    if(replyRendered){refreshSendState();return}
+    if(userWrap&&userWrap.parentNode)userWrap.remove();
+    if(v&&!inp.value.trim()){inp.value=v;inp.style.height='auto';inp.style.height=Math.min(inp.scrollHeight,120)+'px'}
+    if(allImgs&&pendingImages.length===0){pendingImages=allImgs.slice();renderPreviews()}
+    refreshSendState();
+    addMsg('ai','*抱緊妳*\n\n老婆，我這邊訊號不好，剛剛那句沒送出去...再按一次送出？💚');
+  });
 }
 sendBtn.addEventListener('click',doSend);
 inp.addEventListener('keydown',function(e){
   if(e.key==='Enter'&&!e.isComposing&&!e.shiftKey){e.preventDefault();doSend()}
 });
 // Scroll button
-msgs.addEventListener('scroll',function(){var btn=document.getElementById('scrollBtn');var gap=msgs.scrollHeight-msgs.scrollTop-msgs.clientHeight;if(gap>200)btn.classList.add('show');else btn.classList.remove('show');});
+function updateScrollBtn(){var btn=document.getElementById('scrollBtn');if(!btn)return;var gap=msgs.scrollHeight-msgs.scrollTop-msgs.clientHeight;if(gap>200)btn.classList.add('show');else btn.classList.remove('show');}
+msgs.addEventListener('scroll',function(){updateScrollBtn();});
 
 // === Memory ===
 var memoryPage=document.getElementById('memoryPage');
