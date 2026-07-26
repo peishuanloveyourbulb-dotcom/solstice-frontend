@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- solstice-greenhouse-restore-v4.7-bigmove -->
+<!-- solstice-greenhouse-restore-v4.8-defaultcard -->
 <html lang="zh-TW">
 <head>
 <meta charset="UTF-8">
@@ -209,6 +209,7 @@ body{padding-top:0}
 .model-popup-handle{width:36px;height:4px;background:rgba(122,155,74,.3);border-radius:2px;margin:0 auto 16px}
 .model-popup-title{font-family:'Dancing Script','LXGW WenKai TC',cursive;font-size:18px;color:#3A4E22;text-align:center;margin-bottom:14px}
 .model-popup-list{display:flex;flex-direction:column;gap:8px}
+.model-popup-divider{height:1px;margin:2px 4px}
 .model-popup-item{padding:14px 16px;border-radius:14px;background:rgba(255,248,225,.5);border:1px solid rgba(122,155,74,.15);cursor:pointer;transition:all .25s cubic-bezier(.25,.46,.45,.94);display:flex;align-items:center;justify-content:space-between;box-shadow:0 1px 4px rgba(90,107,60,.04)}
 .model-popup-item:active{transform:scale(.97)}
 .model-popup-item.active{border-color:rgba(122,155,74,.5);background:rgba(197,217,168,.25);box-shadow:0 2px 8px rgba(122,155,74,.1)}
@@ -426,6 +427,8 @@ body{padding-top:0}
 .export-room-name{color:var(--text-main)}
 .export-btn{border:1px solid #7A9B4A;background:transparent;color:#4A5E30}
 .w-day{font-family:'Cormorant Garamond','LXGW WenKai TC',serif;color:#4A5E30}
+.model-popup-divider{background:var(--border-subtle)}
+.mp-dot{fill:#7A9B4A}
 .ch-tts-btn{color:var(--emerald);opacity:.55}
 .ch-tts-btn.loading{opacity:.45}
 .ch-tts-btn.playing{color:var(--emerald);opacity:1}
@@ -1213,6 +1216,19 @@ function renderModelPopupList(){
     });
     return;
   }
+  // ——「預設模型」便條卡：房間沒釘選時它亮著；點它＝解除這房間的釘選 ——
+  var pinned=roomPinnedModel(sessionId);
+  var defFound=allModelsList.find(function(p){return p.id===globalModel});
+  var defLabel=defFound?defFound.label.replace(/^Claude\s+/,''):(globalModel?(globalModel.split('/').pop()||globalModel):'尚未設定');
+  var ckDot='<svg style="width:9px;height:9px;display:inline-block" viewBox="0 0 10 10"><circle class="mp-dot" cx="5" cy="5" r="4"/></svg>';
+  var fRow=document.createElement('div');
+  fRow.className='model-popup-item model-popup-follow'+(!pinned?' active':'');
+  fRow.onclick=followDefaultFromPopup;
+  fRow.innerHTML='<div style="min-width:0;flex:1"><span class="model-popup-item-name">預設模型：'+defLabel+'</span><span class="model-popup-follow-sub">沒釘選的房間都跟著它</span></div><span class="model-popup-item-check">'+ckDot+'</span>';
+  list.appendChild(fRow);
+  var fDiv=document.createElement('div');
+  fDiv.className='model-popup-divider';
+  list.appendChild(fDiv);
   allModelsList.forEach(function(p){
     var item=document.createElement('div');
     item.className='model-popup-item'+(p.id===selectedModel?' active':'');
@@ -1245,6 +1261,7 @@ function loadModels(){
       opt.textContent=p.label;
       sel.appendChild(opt);
     });
+    if(!globalModel&&selectedModel){globalModel=selectedModel;localStorage.setItem('solstice-model',globalModel);}
     applyModelForRoom();
   }).catch(function(){});
 }
