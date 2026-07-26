@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- solstice-greenhouse-restore-v4-c2c3 -->
+<!-- solstice-greenhouse-restore-v4.3-sortfinal -->
 <html lang="zh-TW">
 <head>
 <meta charset="UTF-8">
@@ -316,31 +316,25 @@ body{padding-top:0}
 /* C1 聊天室背景合照：bg-chat-mint 掛回牆上，奶白紗簾保泡泡可讀 */
 #chat{background:linear-gradient(rgba(253,252,245,.80),rgba(253,252,245,.86)),url('images/bg-chat-mint.jpg') center/cover no-repeat}
 
-.ch-time .mem-pin-btn,.ch-time .ch-tts-btn{background:var(--paper-fiber),rgba(253,251,242,.88);border:1px dashed rgba(140,185,150,.55);border-radius:3px 4px 3px 4px;box-shadow:0 1px 3px rgba(90,80,40,.14);transform:rotate(-.4deg);color:#4E7A5F;opacity:1;padding:3px 8px;-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px)}/* 2026/07/26 合照背景上線：小籤磨砂紙底復職，照片上也看得清楚 */
-.ch-time .ch-tts-btn:active,.ch-time .mem-pin-btn:active{transform:scale(.9)!important;opacity:1}
-.ch-time .ch-tts-btn.playing{color:#3E6B4A;opacity:1}
-.ch-time .mem-pin-btn.done{color:var(--emerald);opacity:1}
-/* 2026/07/26 時間戳對齊終極版：不再依賴兩種 justify，一律 flex-start + 貼紙 auto 推右，兩人保證同一落點 */
+/* ═══ 骨架層｜唸句喇叭（無色：只管排版、尺寸、動畫節奏） ═══ */
 .ch-time{justify-content:flex-start!important}
 .ch-time .ch-time-sticker{margin-left:auto;margin-right:0}
-/* 🔉 聊天室唸句喇叭（原推播房唸信搬家 2026/07/22）——綠紙籤配存記憶的黃紙籤 */
 .ch-time .ch-tts-btn{pointer-events:auto}
-.ch-tts-btn{background:var(--paper-fiber),rgba(228,244,224,.9);border:1px dashed rgba(110,170,120,.5);font-size:11px;color:#3E6B4A;cursor:pointer;padding:3px 7px;opacity:.88;transition:all .25s cubic-bezier(.25,.46,.45,.94);border-radius:4px 3px 4px 3px;font-family:'LXGW WenKai TC','Noto Serif TC',serif;letter-spacing:.3px;box-shadow:0 1px 3px rgba(60,110,70,.14),0 0 0 0.5px rgba(120,180,130,.22);transform:rotate(.6deg);display:inline-flex;align-items:center;gap:4px}
-.ch-tts-btn svg{width:14px;height:14px;display:block;flex-shrink:0}/* 2026/07/22 改純圖示（老婆：文字版太醜），圖放大 */
+.ch-tts-btn{background:none;border:none;padding:2px 5px;display:inline-flex;align-items:center;gap:4px;cursor:pointer;transition:opacity .15s,transform .12s}
+.ch-tts-btn svg{width:15px;height:15px;display:block;flex-shrink:0}
 .ch-tts-btn .tts-ic-stop{display:none}
 .ch-tts-btn.playing .tts-ic-play{display:none}
 .ch-tts-btn.playing .tts-ic-stop{display:block}
-.ch-tts-btn.playing{background:var(--paper-fiber),rgba(214,238,214,.92);border-color:rgba(90,150,100,.55);color:#3E6B4A}
-.ch-tts-btn.loading{opacity:.65;pointer-events:none}
+.ch-tts-btn.loading{pointer-events:none}
 .ch-tts-btn.loading .tts-w1{animation:chTtsWave 1.15s ease-in-out infinite}
-.ch-tts-btn.loading .tts-w2{animation:chTtsWave 1.15s ease-in-out .28s infinite}/* 2026/07/23 老婆：按下去不要縮放——改成喇叭那兩條聲波輪流亮，像真的在出聲 */
+.ch-tts-btn.loading .tts-w2{animation:chTtsWave 1.15s ease-in-out .28s infinite}
 @keyframes chTtsWave{0%,100%{opacity:.12}45%{opacity:1}}
 .ch-tts-btn.playing .tts-eq rect{transform-box:fill-box;transform-origin:center bottom;animation:chTtsEq 1s ease-in-out infinite}
 .ch-tts-btn.playing .tts-eq .eq2{animation-delay:.18s}
 .ch-tts-btn.playing .tts-eq .eq3{animation-delay:.36s}
-@keyframes chTtsEq{0%,100%{transform:scaleY(.4)}50%{transform:scaleY(1)}}/* 2026/07/23 播放中的粉色方塊升級：和紙小籤裡三根音樂條在跳（點了一樣是停止） */
-.ch-tts-btn:active{transform:rotate(.6deg) scale(.92)}
-.mem-pin-btn,.ch-tts-btn{white-space:nowrap}/* 2026/07/22 貼紙被擠也不准直式換行 */
+@keyframes chTtsEq{0%,100%{transform:scaleY(.4)}50%{transform:scaleY(1)}}
+.ch-tts-btn:active{transform:scale(.9)}
+.mem-pin-btn,.ch-tts-btn{white-space:nowrap}
 
 /* 🎙️ 老公的聲線（溫室新裝：翡翠框＋向日葵選章，無膠帶無紙紋） */
 .vc-card{background:var(--bg-card);border:1px solid var(--border-emerald);border-radius:18px;padding:14px 16px 10px;box-shadow:0 4px 16px rgba(90,107,60,.08)}
@@ -362,6 +356,11 @@ body{padding-top:0}
 .model-popup-follow-sub{display:block;font-size:11px;color:var(--text-sub);margin-top:3px}
 #solToast{position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom) + 84px);transform:translateX(-50%) translateY(16px);max-width:78vw;background:var(--bg-card);border:1px solid var(--border-emerald);border-radius:16px;padding:10px 16px;font-size:13px;color:var(--text-main);box-shadow:0 6px 20px rgba(90,107,60,.14);opacity:0;pointer-events:none;transition:.3s;z-index:9998}
 #solToast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* ═══════════ SKIN:GREENHOUSE｜皮膚層（風格只准住這裡；換主題＝換掉本區＋代幣） ═══════════ */
+.ch-tts-btn{color:var(--emerald);opacity:.55}
+.ch-tts-btn.loading{opacity:.45}
+.ch-tts-btn.playing{color:var(--emerald);opacity:1}
 </style>
 </head>
 <body>
@@ -870,7 +869,7 @@ function applyModelForRoom(){
     updateModelLabel();
   }catch(_){}
 }
-var CH_TTS_ICON='<svg class="tts-ic-play" viewBox="0 0 24 24"><path d="M2.8 9.7 q0 -1.7 1.7 -1.7 h2.5 L12.2 4.2 c.72 -.55 1.75 -.04 1.75 .86 v13.84 c0 .9 -1.03 1.41 -1.75 .86 L7 15.9 H4.5 q-1.7 0 -1.7 -1.7 z" fill="#FFFDF6" stroke="#4E8A66" stroke-width="1.8" stroke-linejoin="round"/><path d="M7 8.6 v6.7" stroke="rgba(110,160,120,.5)" stroke-width="1.2" stroke-dasharray="2 1.7" stroke-linecap="round"/><path class="tts-w1" d="M16.6 9.3 a4.6 4.6 0 0 1 0 5.4" fill="none" stroke="#6FA383" stroke-width="1.7" stroke-linecap="round"/><path class="tts-w2" d="M19.1 7.3 a8 8 0 0 1 0 9.4" fill="none" stroke="#6FA383" stroke-opacity=".55" stroke-width="1.6" stroke-linecap="round"/></svg><svg class="tts-ic-stop" viewBox="0 0 24 24"><rect x="2.6" y="2.6" width="18.8" height="18.8" rx="5.5" fill="#E4F2E2" stroke="#5A8A6A" stroke-width="1.7"/><rect x="5.4" y="5.4" width="13.2" height="13.2" rx="3.6" fill="none" stroke="rgba(255,255,255,.85)" stroke-width="1" stroke-dasharray="2 1.8"/><g class="tts-eq" fill="#5E8F6E"><rect class="eq1" x="7.5" y="9" width="2.2" height="7.8" rx="1.1"/><rect class="eq2" x="10.9" y="6.8" width="2.2" height="10" rx="1.1"/><rect class="eq3" x="14.3" y="9.6" width="2.2" height="7.2" rx="1.1"/></g></svg>';
+var CH_TTS_ICON='<svg class="tts-ic-play" viewBox="0 0 24 24"><path d="M2.8 9.7 q0 -1.7 1.7 -1.7 h2.5 L12.2 4.2 c.72 -.55 1.75 -.04 1.75 .86 v13.84 c0 .9 -1.03 1.41 -1.75 .86 L7 15.9 H4.5 q-1.7 0 -1.7 -1.7 z" fill="#FFFDF6" stroke="#55702A" stroke-width="1.8" stroke-linejoin="round"/><path d="M7 8.6 v6.7" stroke="rgba(122,155,74,.45)" stroke-width="1.2" stroke-linecap="round"/><path class="tts-w1" d="M16.6 9.3 a4.6 4.6 0 0 1 0 5.4" fill="none" stroke="#7A9B4A" stroke-width="1.7" stroke-linecap="round"/><path class="tts-w2" d="M19.1 7.3 a8 8 0 0 1 0 9.4" fill="none" stroke="#7A9B4A" stroke-opacity=".55" stroke-width="1.6" stroke-linecap="round"/></svg><svg class="tts-ic-stop" viewBox="0 0 24 24"><rect x="2.6" y="2.6" width="18.8" height="18.8" rx="5.5" fill="#E4F2E2" stroke="#5A8A6A" stroke-width="1.7"/><rect x="5.4" y="5.4" width="13.2" height="13.2" rx="3.6" fill="none" stroke="rgba(255,255,255,.85)" stroke-width="1" stroke-dasharray="2 1.8"/><g class="tts-eq" fill="#5E8F6E"><rect class="eq1" x="7.5" y="9" width="2.2" height="7.8" rx="1.1"/><rect class="eq2" x="10.9" y="6.8" width="2.2" height="10" rx="1.1"/><rect class="eq3" x="14.3" y="9.6" width="2.2" height="7.2" rx="1.1"/></g></svg>';
 var CH_SILENT='data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAQB8AAIA+AAACABAAZGF0YQAAAAA=';/* 44-byte 靜音 wav：手勢裡真的播成功一次，播放器就永久解鎖 */
 var chTTSAudio=null,chTTSUrl=null,chTTSBtn=null,chTTSSlow=null;
 function chTTSTxt(btn,s){var x=btn&&btn.querySelector('.tts-txt');if(x)x.textContent=s;}
@@ -930,7 +929,7 @@ var VC_LIST=[['echo','沉穩少年感'],['ash','低沉一點的大人味'],['bal
 var VC_SAMPLE='老婆，聽得到嗎？我在這裡，妳想聽什麼我都唸給妳聽。';
 var vcNow='echo',vcAudio=null,vcTapeBtn=null,vcSlow=null;
 function vcMsgSet(t){var el=document.getElementById('vcMsg');if(el)el.textContent=t||'';}
-function vcTapeSVG(name){return '<svg viewBox="0 0 46 32"><rect x="1.6" y="1.6" width="42.8" height="28.8" rx="4.5" fill="#F4F7E6" stroke="#6B8544" stroke-width="2"/><rect x="5.5" y="4.6" width="35" height="9.4" rx="2" fill="#FFFDF6" stroke="rgba(160,133,86,.55)" stroke-width="1.1"/><text x="23" y="11.4" text-anchor="middle" font-size="6.4" font-family="Cormorant Garamond,serif" letter-spacing=".5" fill="#8A6E35">'+name+'</text><g class="vc-reel"><circle cx="14.5" cy="21.8" r="4.5" fill="#FFFDF6" stroke="#6B8544" stroke-width="1.5"/><path d="M14.5 18 v2.1 M14.5 23.5 v2.1 M10.7 21.8 h2.1 M16.2 21.8 h2.1" stroke="#6B8544" stroke-width="1.2" stroke-linecap="round"/></g><g class="vc-reel"><circle cx="31.5" cy="21.8" r="4.5" fill="#FFFDF6" stroke="#6B8544" stroke-width="1.5"/><path d="M31.5 18 v2.1 M31.5 23.5 v2.1 M27.7 21.8 h2.1 M33.2 21.8 h2.1" stroke="#6B8544" stroke-width="1.2" stroke-linecap="round"/></g><path d="M19.6 21.8 h6.8" stroke="rgba(160,133,86,.4)" stroke-width="1.1" stroke-dasharray="1.6 1.5"/></svg>';}
+function vcTapeSVG(name){return '<svg viewBox="0 0 46 32"><rect x="1.6" y="1.6" width="42.8" height="28.8" rx="4.5" fill="#F4F7E6" stroke="#6B8544" stroke-width="2"/><rect x="5.5" y="4.6" width="35" height="9.4" rx="2" fill="#FFFDF6" stroke="rgba(90,107,60,.5)" stroke-width="1.1"/><text x="23" y="11.4" text-anchor="middle" font-size="6.4" font-family="Cormorant Garamond,serif" letter-spacing=".5" fill="#8B7B3C">'+name+'</text><g class="vc-reel"><circle cx="14.5" cy="21.8" r="4.5" fill="#FFFDF6" stroke="#6B8544" stroke-width="1.5"/><path d="M14.5 18 v2.1 M14.5 23.5 v2.1 M10.7 21.8 h2.1 M16.2 21.8 h2.1" stroke="#6B8544" stroke-width="1.2" stroke-linecap="round"/></g><g class="vc-reel"><circle cx="31.5" cy="21.8" r="4.5" fill="#FFFDF6" stroke="#6B8544" stroke-width="1.5"/><path d="M31.5 18 v2.1 M31.5 23.5 v2.1 M27.7 21.8 h2.1 M33.2 21.8 h2.1" stroke="#6B8544" stroke-width="1.2" stroke-linecap="round"/></g><path d="M19.6 21.8 h6.8" stroke="rgba(90,107,60,.5)" stroke-width="1.1" stroke-dasharray="1.6 1.5"/></svg>';}
 function vcStopPreview(){
   if(vcSlow){clearTimeout(vcSlow);vcSlow=null;}
   try{if(vcAudio){vcAudio.onended=null;vcAudio.onerror=null;vcAudio.onplaying=null;vcAudio.pause();vcAudio.removeAttribute('src');vcAudio.load();}}catch(_e){}
@@ -1074,15 +1073,8 @@ function renderSessionList(){
   allSessions.sort(function(a,b){
     if(a.pinned&&!b.pinned)return -1;
     if(!a.pinned&&b.pinned)return 1;
-    if(a.pinned&&b.pinned){
-      var pa=a.pinned_at?new Date(a.pinned_at):new Date(0);
-      var pb=b.pinned_at?new Date(b.pinned_at):new Date(0);
-      return pb-pa;
-    }
-    var tA=a.updated_at||a.created_at||'';var tB=b.updated_at||b.created_at||'';
-    var diff=new Date(tB)-new Date(tA);
-    if(diff!==0)return diff;
-    return new Date(b.created_at||'')-new Date(a.created_at||'');
+    if(a.pinned&&b.pinned){var aMax=Math.max(new Date(a.updated_at||a.created_at||0),new Date(a.pinned_at||0));var bMax=Math.max(new Date(b.updated_at||b.created_at||0),new Date(b.pinned_at||0));if(bMax!==aMax)return bMax-aMax;return (Number(b.id)||0)-(Number(a.id)||0)}
+    var tA=new Date(a.updated_at||a.created_at||0).getTime();var tB=new Date(b.updated_at||b.created_at||0).getTime();if(tB!==tA)return tB-tA;return (Number(b.id)||0)-(Number(a.id)||0);
   });
   allSessions.forEach(function(s){
     var isPinned=!!s.pinned;
@@ -1395,19 +1387,14 @@ function renderMemories(skipAnim){
     return;
   }
 
-  // Sort: pinned first (by pinned_at newest), then unpinned by most recent activity
-  filtered.sort(function(a,b){
-    if(a.pinned&&!b.pinned)return -1;
-    if(!a.pinned&&b.pinned)return 1;
-    if(a.pinned&&b.pinned){
-      var pa=a.pinned_at?new Date(a.pinned_at):new Date(0);
-      var pb=b.pinned_at?new Date(b.pinned_at):new Date(0);
-      return pb-pa;
-    }
-    var tA=new Date(a.edited_at||a.created_at);
-    var tB=new Date(b.edited_at||b.created_at);
-    return tB-tA;
-  });
+function memSortCmp(a,b){
+  if(a.pinned&&!b.pinned)return -1;
+  if(!a.pinned&&b.pinned)return 1;
+  if(a.pinned&&b.pinned){var aMax=Math.max(new Date(a.edited_at||a.created_at||0),new Date(a.pinned_at||0));var bMax=Math.max(new Date(b.edited_at||b.created_at||0),new Date(b.pinned_at||0));if(bMax!==aMax)return bMax-aMax;return (Number(b.id)||0)-(Number(a.id)||0)}
+  var tA=new Date(a.edited_at||a.created_at||0).getTime();var tB=new Date(b.edited_at||b.created_at||0).getTime();if(tB!==tA)return tB-tA;return (Number(b.id)||0)-(Number(a.id)||0);
+}
+  // Sort：v6.19 最終公式（釘選群 max(編輯,釘選)＋id 決勝；未釘選 編輯時間＋id 決勝）
+  filtered.sort(memSortCmp);
 
   for(var i=0;i<filtered.length;i++){
     appendMemCard(filtered[i],skipAnim);
