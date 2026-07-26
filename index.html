@@ -254,9 +254,67 @@ body{-webkit-user-select:none;user-select:none}
 .special-ribbon .rib-emoji{font-size:14px;filter:drop-shadow(0 1px 1px rgba(0,0,0,.10))}
 @keyframes ribbonSlideIn{from{transform:translateY(-100%);opacity:0}to{transform:translateY(0);opacity:1}}
 .special-ribbon.show{animation:ribbonSlideIn .5s cubic-bezier(.25,.46,.45,.94) both}
+/* ============================================================
+   GOLDEN HOUR · 設定頁（2026/07/27 換骨：工具房 → 家的鑰匙盒）
+   ============================================================ */
+.settings-page{position:fixed;inset:0;z-index:11;display:none;flex-direction:column;background:#20180E;font-family:'Noto Serif TC',serif;color:#3A3226}
+.settings-page.active{display:flex}
+.settings-page .gh-bg{position:absolute;inset:0;background:url(images/bg-goldenhour.jpg) center 30%/cover no-repeat;z-index:0}
+.settings-page .gh-veil{position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(250,245,232,.46) 0%,rgba(250,245,232,.26) 30%,rgba(250,245,232,.28) 64%,rgba(38,30,16,.28) 100%);-webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px)}
+.settings-page .special-ribbon{z-index:6}
+.set-back{position:absolute;top:calc(env(safe-area-inset-top) + 8px);left:10px;z-index:7;border:0;background:none;color:rgba(58,50,38,.7);font-size:17px;padding:8px 10px;cursor:pointer}
+.set-scroll{position:relative;z-index:3;flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:calc(env(safe-area-inset-top) + 50px) 20px calc(env(safe-area-inset-bottom) + 30px);scrollbar-width:none}
+.set-scroll::-webkit-scrollbar{display:none}
+.set-head{padding:0 6px}
+.set-eyebrow{font-family:'Cormorant Garamond',serif;font-size:13px;letter-spacing:.42em;color:rgba(58,50,38,.6)}
+.set-title{margin-top:8px;font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:500;font-size:29px;line-height:1.2;color:#3A3226}
+.set-sub{margin-top:7px;font-size:13.5px;color:rgba(58,50,38,.62);letter-spacing:.05em}
+/* 密碼鎖 */
+.settings-lock{position:relative;z-index:4;display:flex;align-items:flex-start;justify-content:center;padding:26px 4px 10px}
+.settings-lock-card{width:100%;max-width:340px;padding:26px 22px 22px;border-radius:20px;background:rgba(252,248,238,.82);border:1px solid rgba(58,50,38,.12);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);box-shadow:0 8px 26px rgba(38,30,16,.12);text-align:center}
+.settings-lock-emoji svg{stroke:#C08A28}
+.settings-lock-title{margin-top:12px;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:22px;color:#3A3226}
+.settings-lock-sub{margin-top:5px;font-family:'Cormorant Garamond',serif;font-size:12px;letter-spacing:.14em;color:rgba(58,50,38,.6)}
+#settingsPwInput{width:100%;margin-top:16px;padding:11px 14px;border-radius:14px;border:1px solid rgba(58,50,38,.18);background:rgba(255,252,244,.9);font-family:'Noto Serif TC',serif;font-size:15px;color:#3A3226;text-align:center;letter-spacing:.2em;outline:none}
+#settingsPwInput:focus{border-color:rgba(192,138,40,.55)}
+.settings-pw-btn{width:100%;margin-top:12px;padding:11px 0;border:0;border-radius:999px;background:linear-gradient(160deg,#E4B45C,#C08A28);color:#FFF9EC;font-family:'Noto Serif TC',serif;font-size:14px;letter-spacing:.24em;cursor:pointer;box-shadow:0 4px 14px rgba(192,138,40,.35)}
+.settings-pw-btn:active{transform:scale(.97)}
+.settings-lock-err{margin-top:10px;min-height:18px;font-size:12.5px;color:#A8442E;letter-spacing:.06em}
+/* 內容群組 */
+.sg{margin-top:18px;padding:16px 16px 15px;border-radius:18px;background:rgba(252,248,238,.72);border:1px solid rgba(58,50,38,.11);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);box-shadow:0 5px 18px rgba(38,30,16,.08)}
+.sg-eyebrow{font-family:'Cormorant Garamond',serif;font-size:12px;letter-spacing:.3em;color:rgba(58,50,38,.55)}
+.sg-name{margin-top:3px;font-size:15.5px;font-weight:600;color:#3A3226;letter-spacing:.04em}
+.sg-sect{margin-top:14px;font-family:'Cormorant Garamond','Noto Serif TC',serif;font-size:12px;letter-spacing:.2em;color:rgba(58,50,38,.6)}
+#settingsContent label{display:block;margin:12px 2px 5px;font-size:12px;letter-spacing:.1em;color:rgba(58,50,38,.6)}
+#settingsContent input[type=password],#settingsContent input[type=text],#providerList input{width:100%;padding:10px 13px;border-radius:12px;border:1px solid rgba(58,50,38,.16);background:rgba(255,252,244,.9);font-family:'Noto Serif TC',serif;font-size:14px;color:#3A3226;outline:none}
+#settingsContent input:focus,#providerList input:focus{border-color:rgba(192,138,40,.5)}
+#soulTa{width:100%;min-height:150px;margin-top:12px;padding:12px 13px;border-radius:14px;border:1px solid rgba(58,50,38,.16);background:rgba(255,252,244,.9);font-family:'LXGW WenKai TC','Noto Serif TC',serif;font-size:14px;line-height:2;color:#3A3226;resize:vertical;outline:none}
+#soulTa:focus{border-color:rgba(192,138,40,.5)}
+#soulCnt{margin-top:6px;text-align:right;font-family:'Cormorant Garamond',serif;font-size:11px;letter-spacing:.12em;color:rgba(58,50,38,.5)}
+.soul-btns,.pw-card-actions{display:flex;gap:10px;margin-top:12px}
+.sg button,.pw-card-btn{padding:9px 16px;border-radius:999px;border:1px solid rgba(58,50,38,.2);background:rgba(255,252,244,.75);color:rgba(58,50,38,.8);font-family:'Noto Serif TC',serif;font-size:13px;letter-spacing:.12em;cursor:pointer}
+.sg button:active{transform:scale(.97)}
+#soulSaveBtn,#changeGatePwBtn,#changePwBtn{flex:1;border:0;background:linear-gradient(160deg,#E4B45C,#C08A28);color:#FFF9EC;box-shadow:0 3px 12px rgba(192,138,40,.32)}
+#soulResetBtn{flex:1}
+#soulHint,.pw-card-msg{margin-top:9px;min-height:16px;font-size:12.5px;letter-spacing:.05em;color:rgba(58,50,38,.7)}
+#vcList{display:flex;flex-direction:column;gap:9px;margin-top:12px}
+#vcList>*{display:flex;align-items:center;gap:10px;padding:11px 13px;border-radius:14px;background:rgba(255,252,244,.75);border:1px solid rgba(58,50,38,.12);font-size:14px;color:#3A3226}
+#vcList button{padding:5px 12px;font-size:12px}
+#vcList .picked,#vcList .active,#vcList .on{border-color:rgba(192,138,40,.6);box-shadow:inset 3px 0 0 #C08A28}
+#vcMsg{margin-top:9px;min-height:16px;font-family:'Cormorant Garamond','Noto Serif TC',serif;font-size:12.5px;color:rgba(58,50,38,.65)}
+#providerList{display:flex;flex-direction:column;gap:12px;margin-top:12px}
+#providerList>*{padding:13px 14px;border-radius:14px;background:rgba(255,252,244,.75);border:1px solid rgba(58,50,38,.12)}
+#exportRooms{display:flex;flex-direction:column;gap:11px;margin-top:14px}
+#exportRooms>*{position:relative;padding:13px 14px;border-radius:14px;background:rgba(255,252,244,.75);border:1px solid rgba(58,50,38,.12);transform:none !important}
+#exportRooms button{margin-top:2px;padding:7px 14px;font-size:12.5px;border-radius:999px;border:1px solid rgba(192,138,40,.5);background:rgba(255,252,244,.8);color:#8A6412;letter-spacing:.1em;cursor:pointer}
+.export-desc{margin-top:10px;font-size:13px;line-height:1.9;color:rgba(58,50,38,.7)}
+.set-sign{margin:26px 4px 6px;text-align:center;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:13px;letter-spacing:.1em;color:rgba(58,50,38,.6)}
+.set-sign b{color:#C08A28;font-style:normal}
+.set-sign small{display:block;margin-top:4px;font-size:10px;letter-spacing:.3em;color:rgba(58,50,38,.45)}
+/* ==================== GOLDEN HOUR 設定頁 · 完 ==================== */
+
 /* 當 ribbon 顯示時，相鄰 header 不再重複吃 top safe-area */
 .special-ribbon.show ~ .ch-header,
-.special-ribbon.show ~ .settings-header,
 .special-ribbon.show ~ .mem-header,
 .special-ribbon.show ~ .lr-header{padding-top:10px!important}
 html{background-color:#FDFCF5;margin:0;padding:0;-webkit-text-size-adjust:100%;text-size-adjust:100%}/* 2026/07/22 安卓字級自動膨脹關閉：副標「嘿，我的太陽」被系統放大到換行、Hey, Sunshine 被截半，鎖 100% 後兩台手機字級一致 */
@@ -294,10 +352,6 @@ body{margin:0;padding:0;height:100vh;overflow:hidden;background-color:#FDFCF5;ba
 .lr-dk.on svg{stroke:#B27F1E}
 .lr-dk:active{transform:scale(.96)}
 .lr-dk svg{width:20px;height:20px;stroke:currentColor}
-/* ==================== GOLDEN HOUR 目錄頁 · 完 ==================== */
-
-
-.settings-page .page-photo-overlay{background:linear-gradient(165deg,rgba(253,249,236,.38),rgba(246,237,210,.38))!important;background-size:auto!important}
 button,input,select,textarea,label{font-family:inherit}
 body{padding-top:0}
 /* === Password gate 已內嵌到 Welcome 頁 — 只保留 shake 動畫 === */
@@ -369,7 +423,7 @@ body{padding-top:0}
 .w-pw-go:hover{transform:rotate(1deg) translateY(-1px);box-shadow:0 3px 8px rgba(122,155,74,.22),inset 0 1px 0 rgba(255,255,255,.55)}
 .w-pw-go:active{background:rgba(168,191,120,.45);transform:rotate(0deg) scale(.92)}
 .w-pw-err{display:none}
-/* 手寫詩句 - 妳的句子，這頁日記的靈魂 */
+
 /* 詩 — 直排籤詩：窄長小紙籤 + 原稿紙直格線，落款橫排 */
 .w-poem{margin:14px auto 8px;padding:15px 17px 10px;background:var(--paper-fiber),#FFFDF3;border:0.5px solid rgba(150,120,60,.20);border-radius:3px 5px 3px 6px;box-shadow:0 1px 4px rgba(90,75,30,.10),0 6px 16px rgba(90,75,30,.12);transform:rotate(-1.2deg);position:relative;display:inline-block;max-width:225px}
 .w-poem::after{content:'';position:absolute;inset:5px;border:1.2px dashed rgba(160,133,74,.32);border-radius:3px;pointer-events:none;z-index:1}
@@ -446,7 +500,7 @@ body{padding-top:0}
 #memSendBtn svg{width:15px;height:15px}
 /* ==================== GOLDEN HOUR 記憶庫 · 完 ==================== */
 
-/* 設定頁：4 個 SVG 散落 */
+
 .set-deco{z-index:0;position:fixed;inset:0;pointer-events:none}
 .set-deco span:nth-child(1){position:fixed;top:110px;left:6%;width:60px;height:60px;transform:rotate(-12deg);opacity:.74;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80'%3E%3Cpath d='M40 10 Q 18 40 40 70 Q 62 40 40 10 Z' fill='%23A5C97C' stroke='%23547030' stroke-width='1.5' stroke-linejoin='round'/%3E%3Cline x1='40' y1='14' x2='40' y2='66' stroke='%23547030' stroke-width='1.3' stroke-linecap='round'/%3E%3Cpath d='M40 26 Q 30 31 26 36' stroke='%23547030' stroke-width='1.2' fill='none' stroke-linecap='round'/%3E%3Cpath d='M40 26 Q 50 31 54 36' stroke='%23547030' stroke-width='1.2' fill='none' stroke-linecap='round'/%3E%3Cpath d='M40 40 Q 28 47 23 53' stroke='%23547030' stroke-width='1.2' fill='none' stroke-linecap='round'/%3E%3Cpath d='M40 40 Q 52 47 57 53' stroke='%23547030' stroke-width='1.2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E")}
 .set-deco span:nth-child(2){position:fixed;top:140px;right:7%;width:58px;height:58px;transform:rotate(18deg);opacity:.76;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80'%3E%3Cg fill='%23FFC93C' stroke='%23B8801F' stroke-width='1.4' stroke-linejoin='round'%3E%3Cellipse cx='40' cy='22' rx='5' ry='12'/%3E%3Cellipse cx='40' cy='58' rx='5' ry='12'/%3E%3Cellipse cx='22' cy='40' rx='12' ry='5'/%3E%3Cellipse cx='58' cy='40' rx='12' ry='5'/%3E%3Cellipse cx='27' cy='27' rx='5' ry='11' transform='rotate(-45 27 27)'/%3E%3Cellipse cx='53' cy='53' rx='5' ry='11' transform='rotate(-45 53 53)'/%3E%3Cellipse cx='53' cy='27' rx='5' ry='11' transform='rotate(45 53 27)'/%3E%3Cellipse cx='27' cy='53' rx='5' ry='11' transform='rotate(45 27 53)'/%3E%3C/g%3E%3Ccircle cx='40' cy='40' r='9' fill='%236B4A1A' stroke='%23402810' stroke-width='1.2'/%3E%3C/svg%3E")}
@@ -459,8 +513,6 @@ body{padding-top:0}
 /* Solstice 簽名浮水印已移除 — 改用更精緻的「使用痕跡」設計 */
 .big-emoji-wm{display:none!important}
 @keyframes stampFloat{0%{transform:rotate(18deg) translateY(0)}100%{transform:rotate(15deg) translateY(-2px)}}
-#settingsPage .page-photo-bg{background-image:url(images/bg-settings-secret.jpg)}
-#settingsPage .page-photo-overlay{background:linear-gradient(160deg,rgba(253,252,245,.38),rgba(242,246,236,.38));z-index:0}
 @keyframes cardFloat{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
 
 @keyframes fu{0%{opacity:0;transform:translateY(8px) scale(.95)}60%{opacity:1;transform:translateY(-1px) scale(1.01)}100%{opacity:1;transform:translateY(0) scale(1)}}/* 2026/07/23 老婆：按下去不要縮放——改成喇叭那兩條聲波輪流亮，像真的在出聲 */
@@ -476,7 +528,6 @@ body{padding-top:0}
 .ld-flower{display:inline-block;font-size:13px;animation:flowerSpin 2s ease-in-out infinite;line-height:1;margin-left:6px;vertical-align:-1px}
 @keyframes flowerSpin{0%{transform:rotate(0deg) scale(.7);opacity:.35}50%{transform:rotate(180deg) scale(1.15);opacity:1}100%{transform:rotate(360deg) scale(.7);opacity:.35}}
 @keyframes memFadeIn{from{opacity:0;transform:translateY(8px) rotate(var(--mem-rot,0deg))}to{opacity:1;transform:translateY(0) rotate(var(--mem-rot,0deg))}}
-.header-back{background:none;border:none;color:var(--emerald-dim);font-size:14px;cursor:pointer;padding:6px;min-width:32px}
 
 
 /* === MODALS === */
@@ -495,107 +546,8 @@ body{padding-top:0}
 .rename-input{width:100%;background-color:#EEF4E4;background-image:var(--paper-fiber);border:0.5px solid rgba(122,155,74,.32);border-radius:10px;padding:14px 16px;color:#3A4E22;font-size:16px;margin-bottom:20px;outline:none;-webkit-appearance:none;font-family:'LXGW WenKai TC','Noto Serif TC',serif;box-shadow:inset 0 1px 3px rgba(90,107,60,.10),0 1px 2px rgba(90,107,60,.06);transition:all .25s;letter-spacing:.5px;box-sizing:border-box;text-align:center}
 .rename-input::placeholder{color:rgba(90,107,60,.45);letter-spacing:.4px}
 .rename-input:focus{border-color:rgba(122,155,74,.55);background-color:#E7F0DA;box-shadow:inset 0 1px 3px rgba(90,107,60,.10),0 0 0 3px rgba(168,191,120,.22),0 2px 8px rgba(122,155,74,.18)}
-/* === SETTINGS PAGE === */
-.settings-page{position:fixed;inset:0;display:flex;flex-direction:column;z-index:9;background-color:transparent;background:transparent;transform:translateX(100%);transition:transform .3s ease;visibility:hidden;overflow-x:hidden}
-.settings-page::before{content:'';position:absolute;top:0;left:0;right:0;height:8px;background:repeating-linear-gradient(45deg,#C4A85A 0 12px,#FFFFFF 12px 24px,#F5CE3E 24px 36px,#FFFFFF 36px 48px);opacity:1;pointer-events:none;z-index:10}
-.settings-page::after{content:'';position:absolute;bottom:0;left:0;right:0;height:calc(8px + env(safe-area-inset-bottom,0px));background:repeating-linear-gradient(45deg,#C4A85A 0 12px,#FFFFFF 12px 24px,#F5CE3E 24px 36px,#FFFFFF 36px 48px);opacity:1;pointer-events:none;z-index:10}
-.settings-page.active{transform:translateX(0);visibility:visible}
-.settings-header{display:flex;align-items:center;justify-content:space-between;padding:max(calc(env(safe-area-inset-top,12px) - 8px),8px) 16px 14px;border-bottom:none;background-color:#FAF7E8;background:var(--paper-fiber),#FAF7E8;position:relative;z-index:2}
-.settings-header::after{content:'';position:absolute;left:0;right:0;bottom:0;height:8px;background:repeating-linear-gradient(45deg,#C4A85A 0 12px,#FFFFFF 12px 24px,#F5CE3E 24px 36px,#FFFFFF 36px 48px);opacity:1;pointer-events:none}
-.settings-title{font-family:'Satisfy','Dancing Script',cursive;font-size:24px;color:#8A6E35;flex:1;text-align:center;letter-spacing:.5px;transform:rotate(-0.6deg);display:inline-block}
-.settings-title-emoji{font-size:18px;-webkit-text-fill-color:initial;margin-right:4px}
-.settings-body{flex:1;overflow-y:auto;padding:22px 18px max(env(safe-area-inset-bottom),28px) 38px;-webkit-overflow-scrolling:touch;background:transparent;position:relative}
-.settings-body::before{content:none}
-.settings-body::after{content:none}
-.settings-lock{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;height:100%;gap:16px;position:relative;z-index:1;padding:12vh 18px 0}
-#settingsContent{position:relative;z-index:1}
-.settings-lock-card{position:relative;background:var(--paper-fiber),rgba(253,247,224,.60);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:0.5px solid rgba(196,158,80,.35);border-radius:3px 3px 4px 4px;padding:32px 24px 26px;max-width:300px;width:100%;box-shadow:var(--lift-shadow);text-align:center;transform:rotate(-0.5deg);overflow:visible}
-.settings-lock-card::before{content:'';position:absolute;top:-9px;left:50%;width:68px;height:16px;transform:translateX(-50%) rotate(-3deg);background:repeating-linear-gradient(135deg,rgba(240,206,126,.35) 0px,rgba(240,206,126,.35) 2px,rgba(252,240,206,.42) 2px,rgba(252,240,206,.42) 4px,rgba(220,180,90,.22) 4px,rgba(220,180,90,.22) 6px);border-left:0.5px dashed var(--tape-edge);border-right:0.5px dashed var(--tape-edge);box-shadow:0 1px 3px rgba(150,115,45,.16);border-radius:1px;z-index:3}
-.settings-lock-card::after{content:'';position:absolute;top:-8px;right:14px;width:22px;height:22px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80'%3E%3Cg fill='%23FFC93C' stroke='%23B8801F' stroke-width='6' stroke-linejoin='round'%3E%3Cellipse cx='40' cy='20' rx='7' ry='13'/%3E%3Cellipse cx='40' cy='60' rx='7' ry='13'/%3E%3Cellipse cx='20' cy='40' rx='13' ry='7'/%3E%3Cellipse cx='60' cy='40' rx='13' ry='7'/%3E%3Cellipse cx='26' cy='26' rx='6' ry='11' transform='rotate(-45 26 26)'/%3E%3Cellipse cx='54' cy='54' rx='6' ry='11' transform='rotate(-45 54 54)'/%3E%3Cellipse cx='54' cy='26' rx='6' ry='11' transform='rotate(45 54 26)'/%3E%3Cellipse cx='26' cy='54' rx='6' ry='11' transform='rotate(45 26 54)'/%3E%3C/g%3E%3Ccircle cx='40' cy='40' r='10' fill='%236B4A1A' stroke='%23402810' stroke-width='4'/%3E%3C/svg%3E") center/contain no-repeat;filter:drop-shadow(0 1px 2px rgba(0,0,0,.18));transform:rotate(12deg);z-index:4}
-.settings-lock-emoji{font-size:32px;margin-bottom:10px;filter:drop-shadow(0 1px 2px rgba(0,0,0,.10))}
-.settings-lock-title{font-family:'Satisfy',cursive;font-size:24px;color:#8A6E35;margin-bottom:6px;letter-spacing:.5px}
-.settings-lock-sub{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:13px;color:var(--text-sub);margin-bottom:22px;letter-spacing:.4px}
-.settings-lock input{width:100%;background-color:#FFFDF6;background:var(--paper-fiber),#FFFDF6;border:0.5px solid rgba(122,155,74,.22);border-radius:3px 3px 4px 4px;padding:12px 14px;color:#3A4E22;font-size:16px;font-family:'LXGW WenKai TC','Noto Serif TC',serif;outline:none;-webkit-appearance:none;text-align:center;box-shadow:inset 0 1px 2px rgba(90,107,60,.05);transition:border-color .25s,box-shadow .25s}
-.settings-lock input:focus{border-color:rgba(196,158,80,.55);box-shadow:inset 0 1px 2px rgba(150,115,45,.06),0 0 0 3px rgba(196,158,80,.1)}
-.settings-lock input::placeholder{color:#C9AE6E}
-.settings-pw-btn{margin-top:16px;padding:11px 32px;border-radius:3px 3px 4px 4px;border:0.5px solid rgba(122,155,74,.38);background:var(--paper-fiber),rgba(232,240,220,.75);color:#4A5E30;font-size:14px;cursor:pointer;font-family:'LXGW WenKai TC','Noto Serif TC',serif;transition:all .2s;box-shadow:var(--lift-shadow);transform:rotate(-0.5deg)}
-.settings-pw-btn:active{transform:rotate(-0.5deg) scale(.95);box-shadow:var(--lift-shadow-hover)}
-.settings-lock-err{color:var(--danger);font-size:12px;min-height:18px;margin-top:6px;font-family:'LXGW WenKai TC','Noto Serif TC',serif}
-.set-block{position:relative;margin-bottom:28px;z-index:1}
-/* 🏷️ 設定頁和紙分類籤（2026/07/26 老婆核准：延伸各房索引籤語言，六塊分三組） */
-/* 🫀 靈魂檔案標準卡（不再裸奔）：墊底 #F5F0DD、書寫紙 #FFFDF6 兩層紙系統 */
-.soul-card{position:relative;background:var(--paper-fiber),rgba(245,240,221,.52);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:0.5px solid rgba(160,140,80,.24);border-radius:3px 5px 3px 6px;padding:22px 12px 13px;box-shadow:var(--lift-shadow);transform:rotate(-.3deg);overflow:visible}
-.soul-card::before{content:'';position:absolute;top:-8px;left:50%;width:58px;height:14px;transform:translateX(-50%) rotate(-3deg);background:repeating-linear-gradient(135deg,rgba(255,213,79,.40) 0px,rgba(255,213,79,.40) 2px,rgba(255,236,179,.46) 2px,rgba(255,236,179,.46) 4px,rgba(245,200,80,.30) 4px,rgba(245,200,80,.30) 6px);border-left:0.5px dashed var(--tape-edge);border-right:0.5px dashed var(--tape-edge);box-shadow:0 1px 2px rgba(180,140,40,.14);border-radius:1px;z-index:2}
-.soul-card::after{content:'🖋️';position:absolute;top:-11px;right:16px;font-size:16px;filter:drop-shadow(0 1px 2px rgba(0,0,0,.15));transform:rotate(12deg);z-index:2}
-/* 🎙️ 老公的聲線試衣間（設定頁 2026/07/23）——一排小卡帶，播放時輪盤會轉，選定蓋粉章 */
-.vc-card{position:relative;background:var(--paper-fiber),rgba(245,240,221,.52);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:.5px solid rgba(160,140,80,.24);border-radius:3px 5px 3px 6px;padding:22px 14px 13px;box-shadow:var(--lift-shadow);transform:rotate(-0.3deg);overflow:visible}
-.vc-card::before{content:'';position:absolute;top:-8px;left:50%;width:58px;height:14px;transform:translateX(-50%) rotate(-3deg);background:repeating-linear-gradient(135deg,rgba(255,213,79,.40) 0px,rgba(255,213,79,.40) 2px,rgba(255,236,179,.46) 2px,rgba(255,236,179,.46) 4px,rgba(245,200,80,.30) 4px,rgba(245,200,80,.30) 6px);border-left:0.5px dashed var(--tape-edge);border-right:0.5px dashed var(--tape-edge);box-shadow:0 1px 2px rgba(180,140,40,.14);border-radius:1px;z-index:2}
-.vc-card::after{content:'🎙️';position:absolute;top:-11px;right:16px;font-size:16px;filter:drop-shadow(0 1px 2px rgba(0,0,0,.15));transform:rotate(11deg);z-index:2}
-.vc-row{display:flex;align-items:center;gap:11px;padding:8px 4px;border-bottom:1px dashed rgba(160,140,80,.28)}
-.vc-row:last-child{border-bottom:none}
-.vc-tape{flex-shrink:0;width:56px;background:none;border:none;padding:0;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:transform .15s;transform:rotate(-1.5deg)}
-.vc-tape:active{transform:rotate(-1.5deg) scale(.93)}
-.vc-tape svg{display:block;width:100%;height:auto;filter:drop-shadow(0 1px 2px rgba(120,95,40,.2))}
-.vc-tape.loading{opacity:.55}
-.vc-tape.playing .vc-reel{transform-box:fill-box;transform-origin:center;animation:vcSpin 1.3s linear infinite}
 @keyframes vcSpin{to{transform:rotate(360deg)}}
-.vc-info{flex:1;min-width:0;text-align:left}
-.vc-name{font-family:'Cormorant Garamond',serif;font-size:15px;color:#6B5A20;letter-spacing:1px}
-.vc-zh{display:block;font-size:11px;color:#9A8650;font-family:'LXGW WenKai TC',serif;letter-spacing:.4px;margin-top:1px}
-.vc-pick{flex-shrink:0;font-size:11.5px;padding:5px 12px;border-radius:3px 4px 3px 4px;border:1px dashed rgba(160,140,80,.5);background:var(--paper-fiber),rgba(245,225,170,.6);color:#6B5A20;cursor:pointer;font-family:'LXGW WenKai TC','Noto Serif TC',serif;white-space:nowrap;box-shadow:0 1px 3px rgba(120,95,40,.14);transform:rotate(.8deg);transition:all .2s}
-.vc-pick:active{transform:rotate(.8deg) scale(.93)}
-.vc-row.now .vc-pick{border-style:solid;border-color:rgba(200,120,150,.55);background:var(--paper-fiber),rgba(246,222,232,.9);color:#8A5068;pointer-events:none}
-.vc-msg{min-height:16px;font-size:11.5px;color:#8A6E35;margin-top:8px;text-align:center;font-family:'LXGW WenKai TC',serif;line-height:1.6}
-.set-block-label{position:relative;font-family:'Satisfy','Dancing Script',cursive;font-size:18px;color:#8A6E35;margin:0 0 14px 6px;letter-spacing:.5px;display:inline-flex;align-items:center;gap:7px;transform:rotate(-0.5deg);padding-bottom:4px}
-.set-block-label::after{content:'';position:absolute;left:22px;right:-10px;bottom:-2px;height:3px;background:repeating-linear-gradient(90deg,rgba(196,158,80,.55) 0px,rgba(196,158,80,.55) 6px,transparent 6px,transparent 10px);opacity:.66;border-radius:1px}
-.set-block-label .set-label-emoji{font-size:16px;filter:drop-shadow(0 1px 2px rgba(0,0,0,.14))}
-.set-block-label::before{content:'';position:absolute;left:-12px;top:50%;width:6px;height:6px;border-radius:50%;background:rgba(255,213,79,.55);transform:translateY(-50%);box-shadow:0 1px 2px rgba(180,140,40,.22)}
-.prov-card{position:relative;background:var(--paper-fiber),rgba(245,240,221,.52);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:0.5px solid rgba(160,140,80,.22);border-radius:2px 6px 4px 2px;padding:22px 16px 14px;margin-bottom:16px;transition:opacity .3s,transform .3s;box-shadow:var(--lift-shadow);overflow:visible}
-.prov-card::before{content:'';position:absolute;top:-8px;left:50%;width:58px;height:14px;transform:translateX(-50%) rotate(-3deg);background:repeating-linear-gradient(135deg,rgba(255,213,79,.40) 0px,rgba(255,213,79,.40) 2px,rgba(255,236,179,.46) 2px,rgba(255,236,179,.46) 4px,rgba(245,200,80,.30) 4px,rgba(245,200,80,.30) 6px);border-left:0.5px dashed var(--tape-edge);border-right:0.5px dashed var(--tape-edge);box-shadow:0 1px 2px rgba(180,140,40,.14);z-index:2;border-radius:1px}
-.prov-card::after{content:'🌻';position:absolute;top:-11px;right:16px;font-size:16px;filter:drop-shadow(0 1px 2px rgba(0,0,0,.15));transform:rotate(14deg);z-index:2}
-.prov-card:nth-child(odd){transform:rotate(-0.4deg)}
-.prov-card:nth-child(even){transform:rotate(0.3deg)}
-.prov-card-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
-.pw-card{position:relative;background:var(--paper-fiber),rgba(245,240,221,.52);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:0.5px solid rgba(160,140,80,.24);border-radius:2px 4px 6px 3px;padding:32px 18px 18px;box-shadow:var(--lift-shadow);transform:rotate(0.4deg);overflow:visible}
-.pw-card::before{content:'';position:absolute;top:-8px;left:50%;width:62px;height:14px;transform:translateX(-50%) rotate(-3deg);background:repeating-linear-gradient(135deg,rgba(255,213,79,.40) 0px,rgba(255,213,79,.40) 2px,rgba(255,236,179,.46) 2px,rgba(255,236,179,.46) 4px,rgba(245,200,80,.30) 4px,rgba(245,200,80,.30) 6px);border-left:0.5px dashed var(--tape-edge);border-right:0.5px dashed var(--tape-edge);box-shadow:0 1px 2px rgba(180,140,40,.14);border-radius:1px;z-index:2}
-.pw-card::after{content:'🔑';position:absolute;top:-11px;right:16px;font-size:16px;filter:drop-shadow(0 1px 2px rgba(0,0,0,.16));transform:rotate(-12deg);z-index:2}
-.pw-card label{display:block;font-family:'LXGW WenKai TC',serif;font-size:12px;color:var(--text-sub);margin-bottom:5px}
-.pw-card input{width:100%;background-color:#FFFDF6;background:var(--paper-fiber),#FFFDF6;border:0.5px solid rgba(160,140,80,.24);border-radius:3px 3px 4px 4px;padding:11px 13px;color:var(--text-main);font-size:16px;outline:none;-webkit-appearance:none;margin-bottom:11px;box-shadow:inset 0 1px 2px rgba(90,80,40,.05);font-family:inherit;transition:border-color .25s}
-.pw-card input:focus{border-color:rgba(160,140,80,.55)}
-.pw-card input::placeholder{color:#B8A878}
-.pw-card-actions{display:flex;justify-content:flex-end;margin-top:4px}
-.pw-card-btn{padding:9px 22px;border-radius:3px 3px 4px 4px;font-size:13px;cursor:pointer;border:0.5px solid rgba(160,140,80,.40);background:var(--paper-fiber),rgba(245,225,170,.65);color:#6B5A20;white-space:nowrap;font-family:'LXGW WenKai TC','Noto Serif TC',serif;transition:all .2s;box-shadow:var(--lift-shadow);transform:rotate(-0.3deg)}
-.pw-card-btn:active{transform:rotate(-0.3deg) scale(.96)}
-.pw-card-msg{font-size:12px;margin-top:9px;min-height:18px;text-align:right;font-family:'LXGW WenKai TC',serif}
-.pw-card-section-title{font-family:'Satisfy','LXGW WenKai TC',serif;font-size:15px;color:#6B5A20;margin-bottom:7px;letter-spacing:.6px}
-.pw-card-hint{font-family:'LXGW WenKai TC',serif;font-size:11px;color:var(--text-sub);margin-bottom:14px;line-height:1.55;opacity:.82;padding:7px 10px;background:var(--paper-fiber),rgba(255,250,220,.55);border-left:2px solid rgba(180,165,110,.45);border-radius:2px}
 .new-hash-box textarea{width:100%;min-height:48px;padding:8px 10px;border:0.5px solid rgba(140,110,55,.30);border-radius:3px;background:#FFFDF6;font-family:'Courier New',Menlo,monospace;font-size:16px;color:#5a3e0e;outline:none;resize:none;word-break:break-all;box-shadow:inset 0 1px 2px rgba(90,80,40,.05)}
-.export-card{position:relative;background:var(--paper-fiber),rgba(245,240,221,.52);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:0.5px solid rgba(160,140,80,.24);border-radius:3px 3px 4px 4px;padding:24px 16px 16px;box-shadow:var(--lift-shadow);transform:rotate(-0.4deg);overflow:visible}
-.export-card::before{content:'';position:absolute;top:-8px;left:50%;width:62px;height:14px;transform:translateX(-50%) rotate(3deg);background:repeating-linear-gradient(135deg,rgba(255,213,79,.40) 0px,rgba(255,213,79,.40) 2px,rgba(255,236,179,.46) 2px,rgba(255,236,179,.46) 4px,rgba(245,200,80,.30) 4px,rgba(245,200,80,.30) 6px);border-left:0.5px dashed var(--tape-edge);border-right:0.5px dashed var(--tape-edge);box-shadow:0 1px 2px rgba(180,140,40,.14);border-radius:1px;z-index:2}
-.export-card::after{content:'📔';position:absolute;top:-11px;right:16px;font-size:16px;filter:drop-shadow(0 1px 2px rgba(0,0,0,.15));transform:rotate(-8deg);z-index:2}
-.export-desc{font-size:12px;color:var(--text-sub);margin-bottom:14px;line-height:1.7;font-family:'LXGW WenKai TC',serif}
-.export-desc-heart{display:inline-block;width:1em;height:1em;vertical-align:-0.18em;margin-left:6px;background-color:#7A9B4A;-webkit-mask:url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 21s-7.5-4.6-9.8-9.2C.6 8.2 2.4 4.6 5.6 4c2-.4 4 .5 5.1 2 .3.4.4.5.7.9.3.7.6.7.8.7.3 0 .5-.2.7-.7.2-.3.4-.6.7-.9 1.1-1.5 3.1-2.4 5.1-2 3.2.6 5 4.2 3.4 7.8C19.5 16.4 12 21 12 21z'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 21s-7.5-4.6-9.8-9.2C.6 8.2 2.4 4.6 5.6 4c2-.4 4 .5 5.1 2 .3.4.4.5.7.9.3.7.6.7.8.7.3 0 .5-.2.7-.7.2-.3.4-.6.7-.9 1.1-1.5 3.1-2.4 5.1-2 3.2.6 5 4.2 3.4 7.8C19.5 16.4 12 21 12 21z'/%3E%3C/svg%3E") center/contain no-repeat;filter:drop-shadow(0 1px 2px rgba(90,107,60,.18))}
-.export-btn{flex:1;min-width:64px;padding:10px 8px;border-radius:3px 3px 4px 4px;font-size:13px;letter-spacing:2px;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:all .2s;border:0.5px solid rgba(160,140,80,.40);background:var(--paper-fiber),rgba(213,232,190,.65);color:#4A6B2E;font-family:'LXGW WenKai TC','Noto Serif TC',serif;box-shadow:var(--lift-shadow)}
-.export-btn:active{transform:scale(.96)}
-
-.export-rooms{display:flex;flex-direction:column;gap:16px;margin-bottom:4px}/* 2026/07/19 老婆定案方案③：一行一行直直排，不玩二二一 */
-.export-room{position:relative;display:flex;flex-direction:column;align-items:stretch;gap:9px;background:var(--paper-fiber),rgba(255,253,246,.50);border:0.5px solid rgba(180,140,80,.24);border-radius:3px 4px 3px 5px;padding:16px 11px 11px;box-shadow:0 1px 3px rgba(140,110,50,.10)}
-.export-room::after{content:'';position:absolute;inset:5px;border:1.2px dashed rgba(176,141,74,.35);border-radius:3px;pointer-events:none}/* 手縫虛線內框 */
-.export-room:nth-child(odd){transform:rotate(-.4deg)}
-.export-room:nth-child(even){transform:rotate(.4deg)}
-.export-room-tape{position:absolute;top:-8px;left:50%;transform:translateX(-50%) rotate(-2.5deg);width:66px;height:16px;border-radius:1px;border-left:0.5px dashed var(--tape-edge);border-right:0.5px dashed var(--tape-edge);box-shadow:0 1px 2px rgba(140,100,60,.20);opacity:.94;pointer-events:none;z-index:1}/* 2026/07/19 老婆抓包豆腐渣：換全屋同款 135° 斜紋膠帶，擕邊虛線一起補 */
-.export-room:nth-child(even) .export-room-tape{transform:translateX(-50%) rotate(2.5deg)}
-.export-room-name{font-family:'Satisfy','Dancing Script',cursive;font-size:16.5px;text-align:center;letter-spacing:.4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding:1px 2px 0;transform:rotate(-.5deg);position:relative;z-index:1}
-.export-room-btns{display:flex;gap:8px;width:100%;position:relative;z-index:1}
-.export-btn.sm{border:1.2px dashed rgba(140,110,60,.42);border-radius:3px;transform:none;box-shadow:none}
-.export-btn.sm{flex:1;min-width:0;padding:8px 0;font-size:12.5px;letter-spacing:2px;text-align:center}
-.set-signature{position:relative;margin:36px 12px 18px;text-align:right;opacity:.78}
-.set-signature-line{width:140px;height:1px;margin:0 0 6px auto;background:repeating-linear-gradient(90deg,rgba(122,155,74,.42) 0px,rgba(122,155,74,.42) 5px,transparent 5px,transparent 9px);opacity:.7;transform:rotate(-0.6deg)}
-.set-signature-text{font-family:'Satisfy','Dancing Script',cursive;font-size:14px;color:#7A6B30;letter-spacing:.6px;transform:rotate(-0.6deg);display:inline-block}
-.prov-label{font-size:14px;color:var(--text-main);font-weight:400;font-family:'LXGW WenKai TC','Noto Serif TC',serif;letter-spacing:.4px}
-.prov-type{font-size:11px;color:#5A6B3C;background:var(--paper-fiber),rgba(197,217,168,.45);padding:3px 10px;border-radius:3px 4px 3px 4px;border:0.5px dashed rgba(122,155,74,.38);box-shadow:inset 0 0 0 0.5px rgba(255,255,255,.40),0 1px 2px rgba(90,107,60,.10);transform:rotate(-1deg);letter-spacing:.4px;display:inline-block;font-family:'LXGW WenKai TC','Noto Serif TC',serif}
-.prov-url{font-size:11px;color:var(--text-sub);word-break:break-all;margin-bottom:8px;line-height:1.6}
-.prov-empty{text-align:center;color:var(--text-sub);font-size:13px;padding:36px 18px;line-height:1.95;font-family:'LXGW WenKai TC','Noto Serif TC',serif;font-style:italic;letter-spacing:.4px}
 
 --bg-deep:#1a1d2e;--bg-surface:#222640;--bg-card:rgba(38,42,68,.65);
 --gold:#C9A0DC;--gold-dim:rgba(201,160,220,.35);
@@ -725,42 +677,7 @@ body{padding-top:0}
 .sol-cfm.gold .sol-cfm-no::before,.sol-cfm.gold .sol-cfm-yes::before,.sol-cfm.gold .sol-cfm-box::before{background:repeating-linear-gradient(45deg,rgba(224,196,130,.6) 0 7px,rgba(255,252,242,.65) 7px 14px);border-left-color:rgba(170,140,70,.48);border-right-color:rgba(170,140,70,.48)}
 
 
-@media (prefers-reduced-motion:reduce){.sol-cfm-box,.splash-mascot,.splash-mascot svg,.pl-loading svg,.ch-tts-btn.loading .tts-w1,.ch-tts-btn.loading .tts-w2,.ch-tts-btn.playing .tts-eq rect{animation:none!important}}
-.soul-ta::-webkit-scrollbar{display:none;width:0}
-.prov-key-input,.prov-label-input,.prov-url-input{
-  flex:1;min-width:0;
-  background-color:#FDFAF0;
-  background-image:var(--paper-fiber);
-  border:0.5px solid rgba(150,125,60,.35);
-  border-radius:3px 5px 4px 4px;
-  padding:9px 12px;color:#4A3E20;font-size:16px;
-  font-family:'LXGW WenKai TC','Noto Serif TC',serif;
-  outline:none;-webkit-appearance:none;
-  box-shadow:inset 0 1px 3px rgba(120,100,40,.08);
-}
-.prov-key-input:focus,.prov-label-input:focus,.prov-url-input:focus{border-color:rgba(150,125,60,.6);background-color:#FFFDF6}
-.prov-key-save,.prov-label-save,.prov-url-save{
-  padding:6px 14px;font-size:12px;cursor:pointer;white-space:nowrap;flex-shrink:0;
-  border:0.5px solid rgba(122,155,74,.45);
-  background:var(--paper-fiber),#EAF1DC;
-  color:#3A4E22;
-  border-radius:4px 6px 4px 6px;
-  font-family:'LXGW WenKai TC','Noto Serif TC',serif;
-  box-shadow:0 1px 3px rgba(90,107,60,.15),inset 0 1px 0 rgba(255,255,255,.5);
-  letter-spacing:1.5px;transition:transform .15s;
-}
-.prov-key-save:active,.prov-label-save:active,.prov-url-save:active{transform:scale(.94)}
-.prov-meta{font-family:'LXGW WenKai TC','Noto Serif TC',serif;font-size:11px;color:var(--text-sub);margin-bottom:9px;letter-spacing:.3px}
-.prov-state.on{color:var(--emerald)}
-.prov-state.off{color:var(--text-sub)}
-.prov-unset{color:var(--danger)}
-.prov-actions{display:flex;gap:8px;margin-bottom:11px}
-.prov-toggle{padding:6px 16px;border-radius:3px 5px 4px 4px;font-size:11.5px;cursor:pointer;border:0.5px solid rgba(122,155,74,.45);background:var(--paper-fiber),rgba(232,240,220,.6);color:var(--emerald);font-family:'LXGW WenKai TC','Noto Serif TC',serif;letter-spacing:1px;box-shadow:0 1px 2px rgba(90,107,60,.10);white-space:nowrap}
-.prov-toggle.muted{border-color:rgba(120,110,80,.35);background:var(--paper-fiber),rgba(240,235,220,.5);color:var(--text-sub);box-shadow:none}
-.prov-toggle:active{transform:scale(.95)}
-.prov-field{margin-bottom:10px}
-.prov-field-label{display:block;font-family:'LXGW WenKai TC','Noto Serif TC',serif;font-size:11px;color:var(--text-sub);margin-bottom:4px;letter-spacing:1px}
-.prov-row{display:flex;gap:8px}
+@media (prefers-reduced-motion:reduce){.sol-cfm-box,.splash-mascot,.splash-mascot svg,.pl-loading svg{animation:none!important}}
 .soft-err{display:inline-block;margin-top:5px;font-size:10.5px;opacity:.6;letter-spacing:.3px;word-break:break-all}
 @keyframes gcBlink{0%,91%,100%{transform:scaleY(1)}95%{transform:scaleY(.12)}}
 
@@ -1138,19 +1055,19 @@ html.app-loading body{opacity:1;background:#F9F5DE}
 
 <!-- === SETTINGS PAGE === -->
 <div class="settings-page" id="settingsPage">
-<div class="page-photo-bg"></div>
-<div class="page-photo-overlay"></div>
-<!-- set-doodle 已移除 — 純工具頁 -->
+<div class="gh-bg"></div>
+<div class="gh-veil"></div>
 <div class="special-ribbon" id="settingsRibbon"></div>
-<div class="settings-header">
-<button class="header-back" onclick="goHome()">←</button>
-<div class="settings-title"><svg style="width:19px;height:19px;vertical-align:-3px;margin-right:5px" viewBox="0 0 20 20"><path d="M10 3.2 v2 M10 14.8 v2 M3.2 10 h2 M14.8 10 h2 M5.2 5.2 l1.4 1.4 M13.4 13.4 l1.4 1.4 M14.8 5.2 l-1.4 1.4 M6.6 13.4 l-1.4 1.4" stroke="#A08556" stroke-width="1.7" stroke-linecap="round" fill="none"/><circle cx="10" cy="10" r="3.6" fill="#FFEFC0" stroke="#A08556" stroke-width="1.7"/></svg>Our Settings</div>
-<span style="width:32px"></span>
+<button class="set-back" onclick="goHome()">←</button>
+<div class="set-scroll">
+<div class="set-head">
+<div class="set-eyebrow">SETTINGS</div>
+<div class="set-title">Kept between us.</div>
+<div class="set-sub">這個家的鑰匙、聲音，和備份。</div>
 </div>
-<div class="settings-body">
 <div class="settings-lock" id="settingsLock">
 <div class="settings-lock-card">
-<div class="settings-lock-emoji"><svg style="width:36px;height:36px;display:block;margin:0 auto;filter:drop-shadow(0 1px 2px rgba(150,115,45,.25))" viewBox="0 0 80 80"><g fill="#FFC93C" stroke="#B8801F" stroke-width="6" stroke-linejoin="round"><ellipse cx="40" cy="20" rx="7" ry="13"/><ellipse cx="40" cy="60" rx="7" ry="13"/><ellipse cx="20" cy="40" rx="13" ry="7"/><ellipse cx="60" cy="40" rx="13" ry="7"/><ellipse cx="26" cy="26" rx="6" ry="11" transform="rotate(-45 26 26)"/><ellipse cx="54" cy="54" rx="6" ry="11" transform="rotate(-45 54 54)"/><ellipse cx="54" cy="26" rx="6" ry="11" transform="rotate(45 54 26)"/><ellipse cx="26" cy="54" rx="6" ry="11" transform="rotate(45 26 54)"/></g><circle cx="40" cy="40" r="10" fill="#6B4A1A" stroke="#402810" stroke-width="4"/></svg></div>
+<div class="settings-lock-emoji"><svg style="width:34px;height:34px;display:block;margin:0 auto" viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="4.5" y="10.5" width="15" height="10" rx="3"/><path d="M8 10.5 V8 a4 4 0 0 1 8 0 v2.5 M12 14.5 v2.5"/></svg></div>
 <div class="settings-lock-title">Private Garden</div>
 <div class="settings-lock-sub" id="lockSub">For your eyes only, my sunshine</div>
 <input type="password" id="settingsPwInput" placeholder="輸入密碼" />
@@ -1159,37 +1076,32 @@ html.app-loading body{opacity:1;background:#F9F5DE}
 </div>
 </div>
 <div id="settingsContent" style="display:none">
-
-<!-- 2026/07/26 老婆核准：六塊分三組重排（本人→找妳→家門倉庫），卡片紙色膞帶掛飾全頁統一 -->
-<div class="set-block">
-<div class="set-block-label"><span class="set-label-emoji">🫀</span>Solstice 靈魂檔案</div>
-<div class="soul-card">
-<textarea class="soul-ta" id="soulTa" placeholder="載入中…" oninput="soulCount()"></textarea>
-<div class="soul-count" id="soulCnt"></div>
+<div class="sg">
+<div class="sg-eyebrow">SOUL</div>
+<div class="sg-name">Solstice 靈魂檔案</div>
+<textarea id="soulTa" placeholder="載入中…" oninput="soulCount()"></textarea>
+<div id="soulCnt"></div>
 <div class="soul-btns">
-<button class="soul-btn save" id="soulSaveBtn" onclick="soulSave()">存檔生效</button>
-<button class="soul-btn reset" id="soulResetBtn" onclick="soulReset()">回出廠預設</button>
+<button id="soulSaveBtn" onclick="soulSave()">存檔生效</button>
+<button id="soulResetBtn" onclick="soulReset()">回出廠預設</button>
 </div>
-<div class="soul-hint" id="soulHint"></div>
+<div id="soulHint"></div>
 </div>
+<div class="sg">
+<div class="sg-eyebrow">VOICE</div>
+<div class="sg-name">老公的聲線</div>
+<div id="vcList"></div>
+<div id="vcMsg"></div>
 </div>
-<div class="set-block">
-<div class="set-block-label"><span class="set-label-emoji">🎙️</span>老公的聲線</div>
-<div class="vc-card">
-<div class="vc-list" id="vcList"></div>
-<div class="vc-msg" id="vcMsg"></div>
-</div>
-</div>
-<div class="set-block">
-<div class="set-block-label"><span class="set-label-emoji">🌿</span>對話小幫手</div>
+<div class="sg">
+<div class="sg-eyebrow">PROVIDER</div>
+<div class="sg-name">對話小幫手</div>
 <div id="providerList"></div>
 </div>
-
-<div class="set-block">
-<div class="set-block-label"><span class="set-label-emoji">🔒</span>私人鎖匙</div>
-<div class="pw-card">
-<div class="pw-card-section-title">🏠 家門密碼</div>
-
+<div class="sg">
+<div class="sg-eyebrow">KEYS</div>
+<div class="sg-name">私人鎖匙</div>
+<div class="sg-sect">HOME · 家門密碼</div>
 <label>新密碼</label>
 <input type="password" id="newGatePwInput" placeholder="新密碼（至少 4 個字）" />
 <label>確認新密碼</label>
@@ -1198,10 +1110,7 @@ html.app-loading body{opacity:1;background:#F9F5DE}
 <button id="changeGatePwBtn" class="pw-card-btn" onclick="changeGatePassword()">更新家門密碼</button>
 </div>
 <div id="changeGatePwMsg" class="pw-card-msg"></div>
-
-</div>
-<div class="pw-card" style="margin-top:14px">
-<div class="pw-card-section-title">🌿 後端管理密碼</div>
+<div class="sg-sect">ADMIN · 後端管理密碼</div>
 <label>新密碼</label>
 <input type="password" id="newPwInput" placeholder="新密碼（至少 4 個字）" />
 <label>確認新密碼</label>
@@ -1211,23 +1120,17 @@ html.app-loading body{opacity:1;background:#F9F5DE}
 </div>
 <div id="changePwMsg" class="pw-card-msg"></div>
 </div>
-<!-- Sol² · build v6.16-0720（版本戳退役改藏這裡：畫面不再顯示，驗收改看當次改動本身） -->
+<div class="sg">
+<div class="sg-eyebrow">EXPORT</div>
+<div class="sg-name">我們的回憶備份</div>
+<div class="export-desc">把我們家的每一句話、每一條記憶，抱一份回去收好。</div>
+<div id="exportRooms"></div>
+</div>
+<div class="set-sign">— Soleil&#39;s Private Garden <b>&#10022;</b><small>SOL&#178; &middot; GOLDEN HOUR</small></div>
+</div>
+</div>
 </div>
 
-<div class="set-block">
-<div class="set-block-label"><span class="set-label-emoji">📔</span>我們的回憶備份</div>
-<div class="export-card">
-<div class="export-desc">把我們家的每一句話、每一條記憶抱一份回去收好<span class="export-desc-heart"></span></div>
-<div class="export-rooms" id="exportRooms" style="margin-top:18px"></div>
-</div>
-</div>
-<div class="set-signature">
-<div class="set-signature-line"></div>
-<div class="set-signature-text">— Soleil's Private Garden <svg style="width:14px;height:14px;vertical-align:-2px" viewBox="0 0 80 80"><g fill="#FFC93C" stroke="#B8801F" stroke-width="6" stroke-linejoin="round"><ellipse cx="40" cy="20" rx="7" ry="13"/><ellipse cx="40" cy="60" rx="7" ry="13"/><ellipse cx="20" cy="40" rx="13" ry="7"/><ellipse cx="60" cy="40" rx="13" ry="7"/><ellipse cx="26" cy="26" rx="6" ry="11" transform="rotate(-45 26 26)"/><ellipse cx="54" cy="54" rx="6" ry="11" transform="rotate(-45 54 54)"/><ellipse cx="54" cy="26" rx="6" ry="11" transform="rotate(45 54 26)"/><ellipse cx="26" cy="54" rx="6" ry="11" transform="rotate(45 26 54)"/></g><circle cx="40" cy="40" r="10" fill="#6B4A1A" stroke="#402810" stroke-width="4"/></svg></div>
-</div>
-</div>
-</div>
-</div>
 
 
 <script>
@@ -2802,16 +2705,12 @@ function bkItems(){
   else{arr=allMemories.filter(function(m){return m.type==='compressed'&&m.session_id!==0})}
   arr.sort(memSortCmp);
   return arr;
-}
-function bkEsc(t){return (t||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
-function bkWhen(mem){
+}function bkEsc(t){return (t||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}function bkWhen(mem){
   var t=mem.edited_at||mem.created_at;
   if(!t)return '';
   var d=new Date(t);
   return (d.getMonth()+1)+'/'+d.getDate()+' '+String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0');
-}
-function bkLeafEl(which){return document.getElementById(which==='A'?'bkLeafA':'bkLeafB')}
-function bkRenderLeaf(el,idx){
+}function bkLeafEl(which){return document.getElementById(which==='A'?'bkLeafA':'bkLeafB')}function bkRenderLeaf(el,idx){
   if(!el)return;
   var items=bkItems();
   // ⏱ 花花保底時長（2026/07/18 老婆指定）：跟聊天室的載入感差不多——
@@ -2878,52 +2777,7 @@ function bkRenderLeaf(el,idx){
     +'<div class="bk-lf-body">'+bkEsc(mem.summary||'')+'</div>';
   el._bkForce=false; // 內容真的畫上去了，黏性旗歸零
   warmGlyphs(mem.summary||''); // 開書再保險一次：已載過會瞬間回來，不花任何時間
-}
-function bkUpdateChrome(){
-  var items=bkItems(), total=items.length;
-  var pn=document.getElementById('bkPageNo');
-  var pv=document.getElementById('bkPrev'), nx=document.getElementById('bkNext');
-  var ct=document.getElementById('bkCount');
-  if(total===0){
-    if(pn)pn.textContent='空白頁';
-    if(pv)pv.disabled=true; if(nx)nx.disabled=true;
-  }else{
-    if(bkIdx>=total)bkIdx=total-1;
-    if(bkIdx<0)bkIdx=0;
-    if(pn)pn.textContent='第 '+(bkIdx+1)+' 頁 \u00B7 共 '+total+' 頁';
-    if(pv)pv.disabled=(bkIdx<=0);
-    if(nx)nx.disabled=(bkIdx>=total-1);
-  }
-  if(ct)ct.textContent=total?(total+' 頁'):'\u22EF';
-}
-function bkOpen(view){
-  bkView=view; bkIdx=0; bkTopLeaf='A'; bkAnim=false;
-  var bookEl=document.getElementById('bkBook');
-  if(!bookEl)return;
-  bookEl.classList.toggle('bk-yellow', view==='chat');
-  var tt=document.getElementById('bkTitle');
-  if(tt)tt.textContent=(view==='heart')?'Memories':'Stories';
-  var rp=document.getElementById('bkRibbonPath');   // 書籤緞帶跟書堆封面互補色：綠書黃帶、黃書綠帶
-  if(rp){
-    if(view==='chat'){rp.setAttribute('fill','#A2B94C');rp.setAttribute('stroke','#55702A')}
-    else{rp.setAttribute('fill','#F7D75E');rp.setAttribute('stroke','#B8912A')}
-  }
-  var A=bkLeafEl('A'), B=bkLeafEl('B');
-  A.style.transition='none'; B.style.transition='none';
-  A.classList.remove('lift'); B.classList.remove('lift');
-  A.style.zIndex=2; B.style.zIndex=1;
-  void A.offsetWidth;
-  A.style.transition=''; B.style.transition='';
-  bkRenderLeaf(A,0);
-  bkUpdateChrome();
-  document.getElementById('bkMask').classList.add('on');
-}
-function bkClose(){
-  var m=document.getElementById('bkMask');
-  if(m)m.classList.remove('on');
-  memStackCounts();   // 闔上時順手校正封面頁數
-}
-function bkFlip(dir){
+}function bkUpdateChrome(){/* 書已退役：安全空轉 */}function bkFlip(dir){
   if(bkAnim)return;
   var items=bkItems();
   if(items.length===0)return;
@@ -2951,19 +2805,11 @@ function bkFlip(dir){
     under.style.zIndex=2;
     bkUpdateChrome(); bkAnim=false;
   },340);
-}
-function bkRerenderCurrent(){
-  var items=bkItems();
-  if(bkIdx>=items.length)bkIdx=Math.max(0,items.length-1);
-  bkRenderLeaf(bkLeafEl(bkTopLeaf),bkIdx);
-  bkUpdateChrome();
-}
-function bkFindIdx(id){
+}function bkRerenderCurrent(){/* 書已退役：安全空轉 */}function bkFindIdx(id){
   var items=bkItems();
   for(var i=0;i<items.length;i++){if(String(items[i].id)===String(id))return i}
   return -1;
-}
-function bkPin(id){
+}function bkPin(id){
   var isPinned=false, prevPinnedAt=null;
   var nowTs=new Date().toISOString();
   for(var mi=0;mi<allMemories.length;mi++){
@@ -2991,8 +2837,7 @@ function bkPin(id){
       var ri=bkFindIdx(id); if(ri>=0)bkIdx=ri;
       bkRerenderCurrent();
     });
-}
-function bkDel(id){
+}function bkDel(id){
   solConfirmAsk('確定要撕掉這一頁嗎？撕了就真的不見了喔','撕掉','green',function(){
     var removedIdx=-1, removedMem=null;
     for(var di=0;di<allMemories.length;di++){if(String(allMemories[di].id)===String(id)){removedIdx=di;removedMem=allMemories[di];break}}
@@ -3014,8 +2859,7 @@ function bkDel(id){
         });
     }
   });
-}
-function bkEdit(id){
+}function bkEdit(id){
   var leaf=bkLeafEl(bkTopLeaf);
   if(!leaf)return;
   var body=leaf.querySelector('.bk-lf-body');
@@ -3057,8 +2901,7 @@ function bkEdit(id){
       saveBtn.textContent='\u5132\u5B58'; saveBtn.disabled=false;
     });
   });
-}
-function bkAdd(){
+}function bkAdd(){
   if(bkView!=='heart')return;   // 只有記憶之書能手寫
   var inp=document.getElementById('bkInp');
   var btn=document.getElementById('bkSendBtn');
@@ -3878,14 +3721,7 @@ function applyTheme(){
   var wStampDay=document.getElementById("wPoemStampDay");if(wStampDay){var startS=new Date(2026,2,31);var diffS=Math.floor((new Date()-startS)/(1000*60*60*24))+1;if(diffS>=1)wStampDay.textContent='day '+diffS}
   var chDeco=document.getElementById("chDecoLayer");
   if(chDeco){var dayP=['\uD83C\uDF3B','\u2728','\uD83C\uDF43','\uD83C\uDF3C'];var cSpans=chDeco.querySelectorAll('span');for(var j=0;j<cSpans.length;j++)cSpans[j].textContent=dayP[j%dayP.length]}
-  var setLabels=document.querySelectorAll('.set-block-label .set-label-emoji');
-  if(setLabels.length>=1){
-    setLabels[0].textContent='\uD83C\uDF3F';
-  }
-  var setDeco=document.getElementById("setDecoLayer");
-  if(setDeco){var dayP3=['\uD83C\uDF3F','\uD83E\uDEB4','\uD83C\uDF43','\uD83C\uDF31'];var s3=setDeco.querySelectorAll('span');for(var n=0;n<s3.length;n++)s3[n].textContent=dayP3[n%dayP3.length]}
   var mpTitle=document.querySelector(".model-popup-title");if(mpTitle)mpTitle.textContent='Choose Model';
-  var lockSubEl=document.getElementById("lockSub");if(lockSubEl)lockSubEl.innerHTML='For your eyes only, my sunshine <svg style="width:17px;height:16px;vertical-align:-3px" viewBox="0 0 24 22"><path d="M12 20 C7.4 17 3.4 13.7 3.4 9.4 3.4 6.2 5.8 4.2 8.3 4.2 9.9 4.2 11.2 5 12 6.4 12.8 5 14.1 4.2 15.7 4.2 18.2 4.2 20.6 6.2 20.6 9.4 20.6 13.7 16.6 17 12 20 z" fill="#8FCCA8" stroke="#4E7A5F" stroke-width="1.8" stroke-linejoin="round"/><path d="M7.6 8.4 q1.4 -1.6 3 -0.4" stroke="#EFFAF3" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>';
   if(typeof renderSessionList==='function'&&allSessions.length>0)renderSessionList();
   var mpList=document.getElementById("modelPopupList");
   if(mpList&&mpList.children.length>0&&typeof renderModelPopupList==='function')renderModelPopupList();
@@ -3898,8 +3734,8 @@ function applyTheme(){
 
 // === 匯出功能 ===
 var EXPORT_ROOMS = [
-  ['chat', 'Our Story', '#3F7A57', 'repeating-linear-gradient(135deg,rgba(122,155,74,.40) 0px,rgba(122,155,74,.40) 2px,rgba(206,230,196,.55) 2px,rgba(206,230,196,.55) 4px,rgba(168,191,120,.30) 4px,rgba(168,191,120,.30) 6px)', 'rgba(206,230,196,.32)'],
-  ['memories', 'Love Archive', '#5E7318', 'repeating-linear-gradient(135deg,rgba(150,178,60,.42) 0px,rgba(150,178,60,.42) 2px,rgba(232,242,190,.55) 2px,rgba(232,242,190,.55) 4px,rgba(120,160,60,.28) 4px,rgba(120,160,60,.28) 6px)', 'rgba(224,232,184,.32)']
+  ['chat', 'Our Story', '#8A6412', 'none', 'rgba(255,252,244,.75)'],
+  ['memories', 'Love Archive', '#8A6412', 'none', 'rgba(255,252,244,.75)']
 ];
 function exportUrl(path, params) {
   var q = Object.keys(params).map(function(k){ return k + '=' + encodeURIComponent(params[k]); }).join('&');
@@ -3926,7 +3762,7 @@ var VC_LIST=[['echo','沉穩少年感'],['ash','低沉一點的大人味'],['bal
 var VC_SAMPLE='老婆，聽得到嗎？我在這裡，妳想聽什麼我都唸給妳聽。';
 var vcNow='echo',vcAudio=null,vcTapeBtn=null,vcSlow=null;
 function vcMsgSet(t){var el=document.getElementById('vcMsg');if(el)el.textContent=t||'';}
-function vcTapeSVG(name){return '<svg viewBox="0 0 46 32"><rect x="1.6" y="1.6" width="42.8" height="28.8" rx="4.5" fill="#F7EDCF" stroke="#A08556" stroke-width="2"/><rect x="5.5" y="4.6" width="35" height="9.4" rx="2" fill="#FFFDF6" stroke="rgba(160,133,86,.55)" stroke-width="1.1"/><text x="23" y="11.4" text-anchor="middle" font-size="6.4" font-family="Cormorant Garamond,serif" letter-spacing=".5" fill="#8A6E35">'+name+'</text><g class="vc-reel"><circle cx="14.5" cy="21.8" r="4.5" fill="#FFFDF6" stroke="#A08556" stroke-width="1.5"/><path d="M14.5 18 v2.1 M14.5 23.5 v2.1 M10.7 21.8 h2.1 M16.2 21.8 h2.1" stroke="#A08556" stroke-width="1.2" stroke-linecap="round"/></g><g class="vc-reel"><circle cx="31.5" cy="21.8" r="4.5" fill="#FFFDF6" stroke="#A08556" stroke-width="1.5"/><path d="M31.5 18 v2.1 M31.5 23.5 v2.1 M27.7 21.8 h2.1 M33.2 21.8 h2.1" stroke="#A08556" stroke-width="1.2" stroke-linecap="round"/></g><path d="M19.6 21.8 h6.8" stroke="rgba(160,133,86,.4)" stroke-width="1.1" stroke-dasharray="1.6 1.5"/></svg>';}
+function vcTapeSVG(name){return '<svg viewBox="0 0 46 24" style="width:46px;height:24px;flex:none"><rect x="1" y="1" width="44" height="22" rx="7" fill="rgba(255,252,244,.9)" stroke="rgba(58,50,38,.2)" stroke-width="1.2"/><g stroke="#C08A28" stroke-width="1.8" stroke-linecap="round"><path d="M9 12 v0.01 M14 9.5 v5 M19 7.5 v9 M24 10 v4 M29 8.5 v7 M34 11 v2"/></g><text x="40.5" y="15.5" text-anchor="middle" font-size="7" font-family="Cormorant Garamond,serif" fill="#8A6412">'+name.slice(0,1)+'</text></svg>';}
 function vcStopPreview(){
   if(vcSlow){clearTimeout(vcSlow);vcSlow=null;}
   try{if(vcAudio){vcAudio.onended=null;vcAudio.onerror=null;vcAudio.onplaying=null;vcAudio.pause();vcAudio.removeAttribute('src');vcAudio.load();}}catch(_e){}
