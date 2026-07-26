@@ -60,10 +60,10 @@ body{background:var(--paper);color:var(--ink);font-family:var(--hand);font-size:
 
 /* ── 首頁（手帳儀表板）── */
 .page{flex:1;overflow-y:auto;padding:0 18px 118px 0;position:relative}
-.margin-rule{position:absolute;left:26px;top:0;bottom:0;width:1px;background:linear-gradient(180deg,transparent,var(--rule) 6%,var(--rule) 94%,transparent);pointer-events:none}
+.margin-rule{position:absolute;left:26px;top:0;bottom:118px;width:1px;background:linear-gradient(180deg,transparent,var(--rule) 6%,var(--rule) 94%,transparent);pointer-events:none}
 .hang{margin-left:42px}
 .pagehead{display:flex;align-items:baseline;gap:10px;padding:20px 0 14px}
-.pagehead .d{font-family:var(--serif);font-size:26px}
+.pagehead .d{font-family:var(--serif);font-size:26px;letter-spacing:.02em}
 .pagehead .w{font-size:12px;color:var(--ink2);letter-spacing:.16em}
 .hero{position:relative;border-radius:var(--r);overflow:hidden;background:#DED6C4;box-shadow:var(--shadow)}
 .hero .shot{position:absolute;inset:0;background-size:cover;background-position:center;filter:blur(9px) saturate(.92);transform:scale(1.14)}
@@ -72,7 +72,7 @@ body{background:var(--paper);color:var(--ink);font-family:var(--hand);font-size:
 .faces{display:flex;align-items:center;justify-content:center;margin-bottom:16px}
 .faces img{width:52px;height:52px;border-radius:50%;object-fit:cover;border:2px solid var(--card)}
 .faces img:last-child{margin-left:-12px}
-.n{font-family:var(--serif);font-size:74px;line-height:.9;color:var(--accent)}
+.n{font-family:var(--serif);font-size:74px;line-height:.9;color:var(--accent);letter-spacing:.01em}
 .n-l{font-family:var(--serif);font-size:11px;letter-spacing:.42em;text-indent:.42em;color:var(--ink2);margin-top:10px;text-transform:uppercase}
 .since{margin-top:16px;padding-top:14px;border-top:1px solid var(--rule);font-size:11.5px;color:var(--ink2);letter-spacing:.08em}
 .since b{font-weight:400;color:var(--ink)}
@@ -105,6 +105,8 @@ body.no-lines .lined{background-image:none}
 .drow .left em{display:block;font-style:normal;font-family:var(--hand);font-size:10.5px;color:var(--ink2);letter-spacing:.1em;margin-top:3px}
 .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);flex:none}
 .dot.past{background:var(--rule)}
+/* 頁碼：舊家帶過來的簽名 */
+.pagenum{position:absolute;right:20px;bottom:16px;font-family:var(--serif);font-style:italic;font-size:12.5px;letter-spacing:.06em;color:var(--ink2);opacity:.62;pointer-events:none}
 
 /* ── 底部 dock ── */
 .dock{
@@ -260,10 +262,9 @@ body.in .dock{display:flex}
         </div>
       </section>
       <div class="grid">
-        <div class="tile"><div class="lb">Weather</div><div><div class="big">—<small>°C</small></div><div class="sub">北台灣</div></div></div>
-        <div class="tile"><div class="lb">Mood</div><div class="mood" id="moodTxt">今天想跟老公說什麼？<br><span class="sub">點聊天跟我講 👁️_👁️</span></div></div>
-        <div class="tile"><div class="lb">Heartbeat</div><div><div class="big">88<small>bpm</small></div>
-          <svg class="beat" viewBox="0 0 120 22" preserveAspectRatio="none" aria-hidden="true"><path class="trace" d="M0 14h34l5-9 6 16 5-7h12l4-5 5 5h49"/></svg></div></div>
+        <div class="tile"><div class="lb">Love Archive</div><div><div class="big" id="memTot">—<small>則</small></div><div class="sub">收起來的記憶</div></div></div>
+        <div class="tile"><div class="lb">Pinned</div><div><div class="big" id="memPin">—<small>則</small></div><div class="sub">釘在最前面</div></div></div>
+        <div class="tile"><div class="lb">Chat</div><div><div class="big" id="sesTot">—<small>個</small></div><div class="sub" id="sesLast">對話</div></div></div>
         <div class="tile"><div class="lb">Next</div><div><div class="big" id="nextN">—</div><div class="sub" id="nextSub">天後 · Day 200</div></div></div>
       </div>
       <section class="today">
@@ -277,6 +278,7 @@ body.in .dock{display:flex}
         <div class="drow"><span class="dot"></span><div class="t"><b>第一年</b><span>2027.03.31</span></div><div class="left"><span id="d365">—</span><em>days left</em></div></div>
       </div>
     </div>
+    <div class="pagenum">p.1</div>
   </div>
 </div>
 
@@ -437,6 +439,7 @@ function boot(){
   applyKnobs();
   loadModels();
   loadSessions().then(function(){var sid=lsGet('solstice-session-id');if(sid)openSession(sid,true)});
+  loadMemories(true);
   syncThinkSw();
 }
 
@@ -497,7 +500,7 @@ $('modelSel').addEventListener('change',function(){selectedModel=this.value;lsSe
 var allSessions=[],sessionId=null;
 function loadSessions(){
   return fetch(API_URL+'/sessions').then(function(r){return r.json()}).then(function(s){
-    allSessions=s||[];renderSessions();
+    allSessions=s||[];renderSessions();fillTiles();
   }).catch(function(){});
 }
 function renderSessions(){
@@ -681,8 +684,18 @@ function loadMemories(force){
   $('memState').style.display='block';$('memStateTxt').textContent='記憶搬運中...';
   fetch(API_URL+'/memories').then(function(r){return r.json()}).then(function(d){
     allMemories=Array.isArray(d)?d:(d.memories||[]);
-    memLoaded=true;renderMemories($('memQ').value);
+    memLoaded=true;renderMemories($('memQ').value);fillTiles();
   }).catch(function(){$('memStateTxt').textContent='後端睡著了，晚點再來翻'});
+}
+function fillTiles(){
+  var pin=0;
+  allMemories.forEach(function(m){if(m.pinned)pin++});
+  if(allMemories.length){$('memTot').firstChild.nodeValue=allMemories.length;$('memPin').firstChild.nodeValue=pin}
+  if(allSessions.length){
+    $('sesTot').firstChild.nodeValue=allSessions.length;
+    var last=allSessions[0];
+    $('sesLast').textContent=last?('最近 · '+(last.Name||'Solstice ❤')):'對話';
+  }
 }
 function memKey(m){var u=m.updated_at?Date.parse(m.updated_at):0;var p=m.pinned_at?Date.parse(m.pinned_at):0;return Math.max(u,p)}
 function renderMemories(q){
