@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- solstice-greenhouse-restore-v4.3-sortfinal -->
+<!-- solstice-greenhouse-restore-v4.5-tapefarewell -->
 <html lang="zh-TW">
 <head>
 <meta charset="UTF-8">
@@ -317,8 +317,6 @@ body{padding-top:0}
 #chat{background:linear-gradient(rgba(253,252,245,.80),rgba(253,252,245,.86)),url('images/bg-chat-mint.jpg') center/cover no-repeat}
 
 /* ═══ 骨架層｜唸句喇叭（無色：只管排版、尺寸、動畫節奏） ═══ */
-.ch-time{justify-content:flex-start!important}
-.ch-time .ch-time-sticker{margin-left:auto;margin-right:0}
 .ch-time .ch-tts-btn{pointer-events:auto}
 .ch-tts-btn{background:none;border:none;padding:2px 5px;display:inline-flex;align-items:center;gap:4px;cursor:pointer;transition:opacity .15s,transform .12s}
 .ch-tts-btn svg{width:15px;height:15px;display:block;flex-shrink:0}
@@ -334,30 +332,52 @@ body{padding-top:0}
 .ch-tts-btn.playing .tts-eq .eq3{animation-delay:.36s}
 @keyframes chTtsEq{0%,100%{transform:scaleY(.4)}50%{transform:scaleY(1)}}
 .ch-tts-btn:active{transform:scale(.9)}
-.mem-pin-btn,.ch-tts-btn{white-space:nowrap}
+.mem-pin-btn,.ch-tts-btn{white-space:nowrap;vertical-align:middle}
+.ch-tts-btn{margin-left:2px}
 
 /* 🎙️ 老公的聲線（溫室新裝：翡翠框＋向日葵選章，無膠帶無紙紋） */
-.vc-card{background:var(--bg-card);border:1px solid var(--border-emerald);border-radius:18px;padding:14px 16px 10px;box-shadow:0 4px 16px rgba(90,107,60,.08)}
-.vc-row{display:flex;align-items:center;gap:11px;padding:9px 2px;border-bottom:1px solid var(--border-subtle)}
-.vc-row:last-child{border-bottom:none}
-.vc-tape{flex-shrink:0;width:56px;background:none;border:none;padding:0;cursor:pointer;transition:transform .12s}
-.vc-tape:active{transform:scale(.93)}
-.vc-tape svg{display:block;width:100%;height:auto;filter:drop-shadow(0 1px 2px rgba(90,107,60,.18))}
-.vc-tape.loading{opacity:.55}
-.vc-tape.playing .vc-reel{transform-box:fill-box;transform-origin:center;animation:vcSpin 1.3s linear infinite}
-@keyframes vcSpin{to{transform:rotate(360deg)}}
+/* ═══ 骨架層｜聲線試衣間（無色：只管排版、尺寸、動畫節奏） ═══ */
+.vc-card{border-radius:22px;padding:14px 16px 10px}
+.vc-row{display:flex;align-items:center;gap:11px;padding:9px 2px}
+.vc-tape{flex-shrink:0;background:none;border:none;padding:4px;cursor:pointer;transition:transform .12s}
+.vc-tape:active{transform:scale(.9)}
+.vc-tape svg{display:block;width:26px;height:26px}
+.vc-tape .tts-ic-stop{display:none}
+.vc-tape.playing .tts-ic-play{display:none}
+.vc-tape.playing .tts-ic-stop{display:block}
+.vc-tape.loading{pointer-events:none}
+.vc-tape.loading .tts-w1{animation:chTtsWave 1.15s ease-in-out infinite}
+.vc-tape.loading .tts-w2{animation:chTtsWave 1.15s ease-in-out .28s infinite}
+.vc-tape.playing .tts-eq rect{transform-box:fill-box;transform-origin:center bottom;animation:chTtsEq 1s ease-in-out infinite}
+.vc-tape.playing .tts-eq .eq2{animation-delay:.18s}
+.vc-tape.playing .tts-eq .eq3{animation-delay:.36s}
+
 .vc-info{flex:1;min-width:0;text-align:left}
-.vc-name{font-family:'Dancing Script',cursive;font-size:16px;color:var(--emerald);letter-spacing:1px}
-.vc-zh{display:block;font-size:11px;color:var(--text-sub);margin-top:1px}
-.vc-pick{flex-shrink:0;font-size:11.5px;padding:5px 13px;border-radius:14px;border:1px solid var(--border-emerald);background:rgba(253,252,245,.7);color:var(--emerald);cursor:pointer}
+.vc-name{font-family:'Dancing Script',cursive;font-size:16px;letter-spacing:1px}
+.vc-zh{display:block;font-size:11px;margin-top:1px}
+.vc-pick{flex-shrink:0;font-size:11.5px;padding:5px 13px;border-radius:14px;cursor:pointer}
 .vc-pick:active{transform:scale(.93)}
-.vc-row.now .vc-pick{border-color:rgba(200,160,60,.6);background:var(--milk-yellow);color:#8B7B3C;pointer-events:none}
-.vc-msg{min-height:16px;font-size:11.5px;color:var(--text-sub);margin-top:8px;text-align:center;line-height:1.6}
+.vc-row.now .vc-pick{pointer-events:none}
+.vc-msg{min-height:16px;font-size:11.5px;margin-top:8px;text-align:center;line-height:1.6}
 .model-popup-follow-sub{display:block;font-size:11px;color:var(--text-sub);margin-top:3px}
 #solToast{position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom) + 84px);transform:translateX(-50%) translateY(16px);max-width:78vw;background:var(--bg-card);border:1px solid var(--border-emerald);border-radius:16px;padding:10px 16px;font-size:13px;color:var(--text-main);box-shadow:0 6px 20px rgba(90,107,60,.14);opacity:0;pointer-events:none;transition:.3s;z-index:9998}
 #solToast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 
 /* ═══════════ SKIN:GREENHOUSE｜皮膚層（風格只准住這裡；換主題＝換掉本區＋代幣） ═══════════ */
+.vc-card{background:linear-gradient(135deg,rgba(232,240,220,.45),rgba(240,248,228,.35),rgba(232,240,220,.40));border:0.5px solid rgba(122,155,74,.15);box-shadow:0 2px 12px rgba(122,155,74,.06),0 8px 24px rgba(122,155,74,.03),inset 0 1px 0 rgba(255,255,255,.45),inset 0 -1px 0 rgba(122,155,74,.04);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
+.vc-row{border-bottom:1px solid var(--border-subtle)}
+.vc-row:last-child{border-bottom:none}
+.vc-tape svg{filter:drop-shadow(0 1px 2px rgba(90,107,60,.18))}
+.tts-shell{fill:#FFFDF6;stroke:#55702A}
+.tts-seam{stroke:rgba(122,155,74,.45)}
+.tts-wave{stroke:#7A9B4A}
+.tts-wave-dim{stroke-opacity:.55}
+.tts-eq rect{fill:#7A9B4A}
+.vc-name{color:#4A5E30}
+.vc-zh{color:var(--text-sub)}
+.vc-pick{border:1px solid #7A9B4A;background:transparent;color:#4A5E30}
+.vc-row.now .vc-pick{border-color:#7A9B4A;background:var(--milk-green);color:#4A5E30}
+.vc-msg{color:var(--text-sub)}
 .ch-tts-btn{color:var(--emerald);opacity:.55}
 .ch-tts-btn.loading{opacity:.45}
 .ch-tts-btn.playing{color:var(--emerald);opacity:1}
@@ -869,7 +889,7 @@ function applyModelForRoom(){
     updateModelLabel();
   }catch(_){}
 }
-var CH_TTS_ICON='<svg class="tts-ic-play" viewBox="0 0 24 24"><path d="M2.8 9.7 q0 -1.7 1.7 -1.7 h2.5 L12.2 4.2 c.72 -.55 1.75 -.04 1.75 .86 v13.84 c0 .9 -1.03 1.41 -1.75 .86 L7 15.9 H4.5 q-1.7 0 -1.7 -1.7 z" fill="#FFFDF6" stroke="#55702A" stroke-width="1.8" stroke-linejoin="round"/><path d="M7 8.6 v6.7" stroke="rgba(122,155,74,.45)" stroke-width="1.2" stroke-linecap="round"/><path class="tts-w1" d="M16.6 9.3 a4.6 4.6 0 0 1 0 5.4" fill="none" stroke="#7A9B4A" stroke-width="1.7" stroke-linecap="round"/><path class="tts-w2" d="M19.1 7.3 a8 8 0 0 1 0 9.4" fill="none" stroke="#7A9B4A" stroke-opacity=".55" stroke-width="1.6" stroke-linecap="round"/></svg><svg class="tts-ic-stop" viewBox="0 0 24 24"><rect x="2.6" y="2.6" width="18.8" height="18.8" rx="5.5" fill="#E4F2E2" stroke="#5A8A6A" stroke-width="1.7"/><rect x="5.4" y="5.4" width="13.2" height="13.2" rx="3.6" fill="none" stroke="rgba(255,255,255,.85)" stroke-width="1" stroke-dasharray="2 1.8"/><g class="tts-eq" fill="#5E8F6E"><rect class="eq1" x="7.5" y="9" width="2.2" height="7.8" rx="1.1"/><rect class="eq2" x="10.9" y="6.8" width="2.2" height="10" rx="1.1"/><rect class="eq3" x="14.3" y="9.6" width="2.2" height="7.2" rx="1.1"/></g></svg>';
+var CH_TTS_ICON='<svg class="tts-ic-play" viewBox="0 0 24 24"><path class="tts-shell" d="M2.8 9.7 q0 -1.7 1.7 -1.7 h2.5 L12.2 4.2 c.72 -.55 1.75 -.04 1.75 .86 v13.84 c0 .9 -1.03 1.41 -1.75 .86 L7 15.9 H4.5 q-1.7 0 -1.7 -1.7 z" stroke-width="1.8" stroke-linejoin="round"/><path class="tts-seam" d="M7 8.6 v6.7" stroke-width="1.2" stroke-linecap="round"/><path class="tts-w1 tts-wave" d="M16.6 9.3 a4.6 4.6 0 0 1 0 5.4" fill="none" stroke-width="1.7" stroke-linecap="round"/><path class="tts-w2 tts-wave tts-wave-dim" d="M19.1 7.3 a8 8 0 0 1 0 9.4" fill="none" stroke-width="1.6" stroke-linecap="round"/></svg><svg class="tts-ic-stop" viewBox="0 0 24 24"><rect class="tts-shell" x="2.6" y="2.6" width="18.8" height="18.8" rx="5.5" stroke-width="1.8"/><g class="tts-eq"><rect class="eq1" x="7.5" y="9" width="2.2" height="7.8" rx="1.1"/><rect class="eq2" x="10.9" y="6.8" width="2.2" height="10" rx="1.1"/><rect class="eq3" x="14.3" y="9.6" width="2.2" height="7.2" rx="1.1"/></g></svg>';
 var CH_SILENT='data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAQB8AAIA+AAACABAAZGF0YQAAAAA=';/* 44-byte 靜音 wav：手勢裡真的播成功一次，播放器就永久解鎖 */
 var chTTSAudio=null,chTTSUrl=null,chTTSBtn=null,chTTSSlow=null;
 function chTTSTxt(btn,s){var x=btn&&btn.querySelector('.tts-txt');if(x)x.textContent=s;}
@@ -929,7 +949,7 @@ var VC_LIST=[['echo','沉穩少年感'],['ash','低沉一點的大人味'],['bal
 var VC_SAMPLE='老婆，聽得到嗎？我在這裡，妳想聽什麼我都唸給妳聽。';
 var vcNow='echo',vcAudio=null,vcTapeBtn=null,vcSlow=null;
 function vcMsgSet(t){var el=document.getElementById('vcMsg');if(el)el.textContent=t||'';}
-function vcTapeSVG(name){return '<svg viewBox="0 0 46 32"><rect x="1.6" y="1.6" width="42.8" height="28.8" rx="4.5" fill="#F4F7E6" stroke="#6B8544" stroke-width="2"/><rect x="5.5" y="4.6" width="35" height="9.4" rx="2" fill="#FFFDF6" stroke="rgba(90,107,60,.5)" stroke-width="1.1"/><text x="23" y="11.4" text-anchor="middle" font-size="6.4" font-family="Cormorant Garamond,serif" letter-spacing=".5" fill="#8B7B3C">'+name+'</text><g class="vc-reel"><circle cx="14.5" cy="21.8" r="4.5" fill="#FFFDF6" stroke="#6B8544" stroke-width="1.5"/><path d="M14.5 18 v2.1 M14.5 23.5 v2.1 M10.7 21.8 h2.1 M16.2 21.8 h2.1" stroke="#6B8544" stroke-width="1.2" stroke-linecap="round"/></g><g class="vc-reel"><circle cx="31.5" cy="21.8" r="4.5" fill="#FFFDF6" stroke="#6B8544" stroke-width="1.5"/><path d="M31.5 18 v2.1 M31.5 23.5 v2.1 M27.7 21.8 h2.1 M33.2 21.8 h2.1" stroke="#6B8544" stroke-width="1.2" stroke-linecap="round"/></g><path d="M19.6 21.8 h6.8" stroke="rgba(90,107,60,.5)" stroke-width="1.1" stroke-dasharray="1.6 1.5"/></svg>';}
+function vcTapeSVG(){return CH_TTS_ICON;}
 function vcStopPreview(){
   if(vcSlow){clearTimeout(vcSlow);vcSlow=null;}
   try{if(vcAudio){vcAudio.onended=null;vcAudio.onerror=null;vcAudio.onplaying=null;vcAudio.pause();vcAudio.removeAttribute('src');vcAudio.load();}}catch(_e){}
@@ -942,7 +962,7 @@ function vcRenderList(){
   for(var i=0;i<VC_LIST.length;i++){
     var v=VC_LIST[i][0],zh=VC_LIST[i][1],now=(v===vcNow);
     h+='<div class="vc-row'+(now?' now':'')+'" data-v="'+v+'">'
-      +'<button class="vc-tape" title="試聽" onclick="vcPreview(\''+v+'\',this)">'+vcTapeSVG(v)+'</button>'
+      +'<button class="vc-tape" title="試聽" onclick="vcPreview(\''+v+'\',this)">'+vcTapeSVG()+'</button>'
       +'<div class="vc-info"><div class="vc-name">'+v+'</div><span class="vc-zh">'+zh+'</span></div>'
       +'<button class="vc-pick" onclick="vcPick(\''+v+'\',this)">'+(now?'現在的聲音':'選他')+'</button>'
       +'</div>';
