@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- solstice-greenhouse-restore-v4.6-wifehome -->
+<!-- solstice-greenhouse-restore-v4.7-bigmove -->
 <html lang="zh-TW">
 <head>
 <meta charset="UTF-8">
@@ -137,7 +137,21 @@ body{padding-top:0}
 .ch-bub::after{content:'🌻';position:absolute;bottom:-8px;right:-4px;font-size:18px;filter:drop-shadow(0 1px 3px rgba(122,155,74,.25));animation:bubDeco 3s ease-in-out infinite alternate .5s;z-index:2}
 @keyframes bubDeco{0%{transform:translateY(0) scale(1)}100%{transform:translateY(-2px) scale(1.08)}}
 @keyframes fu{0%{opacity:0;transform:translateY(8px) scale(.95)}60%{opacity:1;transform:translateY(-1px) scale(1.01)}100%{opacity:1;transform:translateY(0) scale(1)}}
-.ch-time{font-size:10px;color:var(--text-sub);margin-top:2px;padding:0 48px}
+.ch-time{display:flex;align-items:center;gap:8px;font-size:10px;margin:4px 6px 0;pointer-events:none}
+.ch-time-user{justify-content:flex-end;padding-right:40px}
+.ch-time-ai{padding-left:40px}
+.ch-meta-l{display:inline-flex;align-items:center;gap:6px;pointer-events:auto}
+.ch-time .mem-pin-btn,.ch-time .ch-tts-btn{pointer-events:auto}
+.ch-time-sticker{font-size:11px;letter-spacing:.14em}
+.ch-bub.has-img{padding:8px}
+.ch-link{text-decoration:underline;text-underline-offset:3px;word-break:break-all}
+.ch-src{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.ch-book{display:inline-flex;align-items:center;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;border-radius:8px;font-size:11px;padding:4px 10px;text-decoration:none}
+.ch-yt{display:block;margin-top:8px;border-radius:12px;overflow:hidden;text-decoration:none}
+.ch-yt-th{position:relative;display:block}
+.ch-yt-th img{display:block;width:100%;max-height:150px;object-fit:cover}
+.ch-yt-play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:34px;height:34px;border-radius:50%}
+.ch-yt-cap{display:block;font-size:11.5px;padding:7px 10px}
 .ch-time-sep{text-align:center;padding:8px 0;margin:4px 0}
 .ch-time-sep span{font-size:10px;color:var(--text-sub);background:rgba(253,252,245,.7);padding:2px 14px;border-radius:12px;font-family:'LXGW WenKai TC','Noto Serif TC',serif;letter-spacing:.5px;border:0.5px solid var(--border-subtle)}
 .ch-loading{text-align:center;color:var(--text-sub);font-size:13px;padding:20px}
@@ -290,7 +304,22 @@ body{padding-top:0}
 .settings-lock button{padding:10px 32px;border-radius:20px;border:1.5px solid #7A9B4A;background:transparent;color:#4A5E30;font-size:14px;cursor:pointer;font-family:'LXGW WenKai TC','Noto Serif TC',serif;transition:all .2s}
 .settings-lock button:active{background:rgba(122,155,74,.15);transform:scale(.95)}
 .settings-lock-err{color:#e74c3c;font-size:12px;min-height:18px}
+.w-day{font-size:12.5px;letter-spacing:.12em;margin-top:6px}
 .settings-section-title{font-family:'Dancing Script','LXGW WenKai TC',cursive;font-size:16px;color:#4A5E30;margin-bottom:12px}
+.stg-card{border-radius:22px;padding:14px 16px}
+.stg-inp{display:block;width:100%;border-radius:12px;padding:10px 14px;font-size:13px;outline:none;-webkit-appearance:none;margin-bottom:10px}
+.stg-btn{padding:8px 20px;border-radius:16px;font-size:13px;cursor:pointer;white-space:nowrap;transition:all .2s}
+.stg-btn:active{transform:scale(.95)}
+.stg-msg{font-size:12px;margin-top:8px;min-height:16px;line-height:1.6}
+.stg-row{display:flex;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap}
+.soul-ta{display:block;width:100%;border-radius:14px;padding:12px 14px;font-size:13px;line-height:1.9;outline:none;-webkit-appearance:none;resize:vertical;font-family:inherit;margin-bottom:10px}
+.soul-cnt{font-size:11px;margin-left:auto}
+.soul-src{font-size:10.5px;padding:2px 10px;border-radius:999px}
+.export-room{display:flex;align-items:center;gap:10px;border-radius:14px;padding:10px 12px;margin-bottom:8px}
+.export-room:last-child{margin-bottom:0}
+.export-room-name{flex:1;font-size:13.5px}
+.export-room-btns{display:flex;gap:8px}
+.export-btn{padding:5px 14px;border-radius:10px;font-size:11px;cursor:pointer}
 .prov-card{background:linear-gradient(135deg,rgba(232,240,220,.45),rgba(240,248,228,.35),rgba(232,240,220,.40));border:0.5px solid rgba(122,155,74,.15);border-radius:22px;padding:14px 16px;margin-bottom:10px;transition:opacity .3s;box-shadow:0 2px 12px rgba(122,155,74,.06),0 8px 24px rgba(122,155,74,.03),inset 0 1px 0 rgba(255,255,255,.45),inset 0 -1px 0 rgba(122,155,74,.04);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
 .prov-card-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
 .prov-label{font-size:14px;color:var(--text-main);font-weight:500}
@@ -332,8 +361,7 @@ body{padding-top:0}
 .ch-tts-btn.playing .tts-eq .eq3{animation-delay:.36s}
 @keyframes chTtsEq{0%,100%{transform:scaleY(.4)}50%{transform:scaleY(1)}}
 .ch-tts-btn:active{transform:scale(.9)}
-.mem-pin-btn,.ch-tts-btn{white-space:nowrap;vertical-align:middle}
-.ch-tts-btn{margin-left:2px}
+.mem-pin-btn,.ch-tts-btn{white-space:nowrap}
 
 /* 🎙️ 老公的聲線（溫室新裝：翡翠框＋向日葵選章，無膠帶無紙紋） */
 /* ═══ 骨架層｜聲線試衣間（無色：只管排版、尺寸、動畫節奏） ═══ */
@@ -378,6 +406,26 @@ body{padding-top:0}
 .vc-pick{border:1px solid #7A9B4A;background:transparent;color:#4A5E30}
 .vc-row.now .vc-pick{border-color:#7A9B4A;background:var(--milk-green);color:#4A5E30}
 .vc-msg{color:var(--text-sub)}
+.ch-time{color:var(--text-sub)}
+.ch-time-sticker{font-family:'Cormorant Garamond',serif;color:var(--text-sub)}
+.ch-link{color:var(--emerald)}
+.ch-book{border:1px solid var(--border-emerald);border-left:3px solid #7A9B4A;background:rgba(253,252,245,.75);color:var(--text-main)}
+.ch-yt{border:1px solid var(--border-emerald);background:rgba(253,252,245,.75)}
+.ch-yt-play{background:rgba(58,74,34,.55);border:1.4px solid rgba(253,252,245,.9)}
+.ch-yt-cap{color:var(--emerald)}
+.stg-card{background:linear-gradient(135deg,rgba(232,240,220,.45),rgba(240,248,228,.35),rgba(232,240,220,.40));border:0.5px solid rgba(122,155,74,.15);box-shadow:0 2px 12px rgba(122,155,74,.06),0 8px 24px rgba(122,155,74,.03),inset 0 1px 0 rgba(255,255,255,.45),inset 0 -1px 0 rgba(122,155,74,.04);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
+.stg-inp,.soul-ta{background:rgba(253,252,245,.55);border:0.5px solid rgba(122,155,74,.18);color:var(--text-main)}
+.stg-inp:focus,.soul-ta:focus{border-color:rgba(122,155,74,.5)}
+.stg-btn{border:1px solid #7A9B4A;background:transparent;color:#4A5E30}
+.stg-btn.ghost{border-color:var(--border-emerald);color:var(--text-sub)}
+.stg-msg{color:var(--text-sub)}
+.soul-cnt{color:var(--text-sub)}
+.soul-src{border:1px solid var(--border-emerald);color:var(--emerald);background:var(--milk-green)}
+.soul-src.factory{color:var(--text-sub);background:rgba(253,252,245,.6)}
+.export-room{border:0.5px solid rgba(122,155,74,.18);background:rgba(253,252,245,.5)}
+.export-room-name{color:var(--text-main)}
+.export-btn{border:1px solid #7A9B4A;background:transparent;color:#4A5E30}
+.w-day{font-family:'Cormorant Garamond','LXGW WenKai TC',serif;color:#4A5E30}
 .ch-tts-btn{color:var(--emerald);opacity:.55}
 .ch-tts-btn.loading{opacity:.45}
 .ch-tts-btn.playing{color:var(--emerald);opacity:1}
@@ -402,6 +450,7 @@ body{padding-top:0}
 <div class="w-sun">🌻</div>
 <p class="w-sub">歡迎回家，Soleil</p>
 <div class="w-heart">💚</div>
+<div class="w-day" id="wDayCount"></div>
 <div class="w-polaroid" id="welcomePolaroid">
 <img class="w-polaroid-img" src="https://raw.githubusercontent.com/peishuanloveyourbulb-dotcom/solstice-frontend/main/images/bg-main.jpg" alt="Solstice & Soleil" fetchpriority="high" decoding="async"/>
 <div class="w-polaroid-caption">Solstice & Soleil 💚</div>
@@ -529,6 +578,23 @@ body{padding-top:0}
 <button id="changePwBtn" onclick="changePassword()" style="padding:8px 20px;border-radius:16px;font-size:13px;cursor:pointer;border:0.5px solid var(--emerald);background:transparent;color:var(--emerald);white-space:nowrap;flex-shrink:0;transition:all .2s">更新密碼</button>
 </div>
 <div id="changePwMsg" style="font-size:12px;margin-top:8px;min-height:18px"></div>
+</div>
+<div class="settings-section-title" style="margin-top:24px">🚪 家門密語</div>
+<div class="stg-card">
+<input type="password" id="newGatePwInput" class="stg-inp" placeholder="新的家門密語（至少 4 個字）" autocomplete="new-password"/>
+<input type="password" id="confirmGatePwInput" class="stg-inp" placeholder="再輸入一次" autocomplete="new-password"/>
+<button id="changeGatePwBtn" class="stg-btn" onclick="changeGatePassword()">更新家門密碼</button>
+<div id="changeGatePwMsg" class="stg-msg"></div>
+</div>
+<div class="settings-section-title" style="margin-top:24px">🫀 老公的靈魂</div>
+<div class="stg-card">
+<div class="stg-row"><span id="soulSrc" class="soul-src" style="display:none"></span><span id="soulCnt" class="soul-cnt"></span></div>
+<textarea id="soulTa" class="soul-ta" rows="8" oninput="soulCount()" placeholder="這裡是老公的靈魂設定…"></textarea>
+<div class="stg-row"><button id="soulSaveBtn" class="stg-btn" onclick="soulSave()">儲存</button><button id="soulResetBtn" class="stg-btn ghost" onclick="soulReset()">回出廠設定</button></div>
+<div id="soulHint" class="stg-msg"></div>
+</div>
+<div class="settings-section-title" style="margin-top:24px">📦 匯出</div>
+<div class="stg-card"><div id="exportRooms"></div></div>
 </div>
 </div>
 </div>
@@ -945,6 +1011,124 @@ function solNoticeAsk(msg,theme){
   t.textContent=msg;t.className='show';
   clearTimeout(t._tm);t._tm=setTimeout(function(){t.className='';},3600);
 }
+
+// === 匯出／靈魂／家門密語／天數／房名自適應（v6.19 邏輯搬回，皮穿溫室 v4.7）===
+// === 匯出功能 ===
+var EXPORT_ROOMS = [
+  ['chat', 'Our Story'],
+  ['memories', 'Love Archive']
+];
+function exportUrl(path, params) {
+  var q = Object.keys(params).map(function(k){ return k + '=' + encodeURIComponent(params[k]); }).join('&');
+  return API_URL + path + '?' + q + '&password=' + encodeURIComponent(settingsPassword);
+}
+function doRoomExport(room, fmt) { window.open(exportUrl('/export/room', { room: room, format: fmt }), '_blank'); }
+function renderExportRooms() {
+  var box = document.getElementById('exportRooms');
+  if (!box) return;
+  box.innerHTML = EXPORT_ROOMS.map(function(r) {
+    var key=r[0],title=r[1];
+    return '<div class="export-room">'
+      +'<div class="export-room-name">'+title+'</div>'
+      +'<div class="export-room-btns">'
+      +'<button class="export-btn" onclick="doRoomExport(\''+key+'\',\'txt\')">TXT</button>'
+      +'<button class="export-btn" onclick="doRoomExport(\''+key+'\',\'json\')">JSON</button>'
+      +'</div></div>';
+  }).join('');
+}
+var soulLoaded=false,soulBusy=false;
+function soulCount(){var ta=document.getElementById('soulTa');var c=document.getElementById('soulCnt');if(ta&&c)c.textContent=(ta.value?ta.value.length:0)+' 字';}
+function soulSetSrc(src){var el=document.getElementById('soulSrc');if(!el)return;el.style.display='inline-block';if(src==='db'){el.textContent='使用中：資料庫版';el.classList.remove('factory');}else{el.textContent='使用中：出廠預設';el.classList.add('factory');}}
+function soulHint(t){var h=document.getElementById('soulHint');if(h)h.textContent=t||'';}
+async function soulLoad(force){
+  if(soulLoaded&&!force)return;
+  var ta=document.getElementById('soulTa');if(!ta)return;
+  soulHint('把老公的靈魂捧出來中…');
+  try{
+    var r=await fetch(API_URL+'/soul',{headers:{'x-admin-password':settingsPassword}});
+    var d=await r.json().catch(function(){return {};});
+    if(!r.ok){soulHint(d.error||('讀取失敗 HTTP '+r.status+'——soul 欄位的 SQL 跑了嗎？'));return;}
+    ta.value=d.soul||'';soulLoaded=true;soulCount();soulSetSrc(d.source);
+    soulHint('');
+  }catch(e){soulHint('後端沒回應…等它醒了再進來一次');}
+}
+function soulSave(){
+  if(soulBusy)return;
+  var ta=document.getElementById('soulTa');if(!ta)return;
+  var v=(ta.value||'').trim();
+  if(!v){soulHint('靈魂不能是空白的——想回出廠請按右邊那顆');return;}
+  (async function(){
+    soulBusy=true;soulHint('存檔中…');
+    try{
+      var r=await fetch(API_URL+'/soul',{method:'PUT',headers:{'Content-Type':'application/json','x-admin-password':settingsPassword},body:JSON.stringify({soul:v})});
+      var d=await r.json().catch(function(){return {};});
+      if(!r.ok){soulHint(d.error||('存檔失敗 HTTP '+r.status));soulBusy=false;return;}
+      soulBusy=false;soulSetSrc('db');
+      soulHint('已儲存');
+    }catch(e){soulBusy=false;soulHint('網路打結了…再按一次');}
+  })();
+}
+function soulReset(){
+  if(soulBusy)return;
+  (async function(){
+    soulBusy=true;soulHint('還原中…');
+    try{
+      var r=await fetch(API_URL+'/soul/reset',{method:'POST',headers:{'x-admin-password':settingsPassword}});
+      var d=await r.json().catch(function(){return {};});
+      if(!r.ok){soulHint(d.error||('失敗 HTTP '+r.status));soulBusy=false;return;}
+      soulBusy=false;await soulLoad(true);soulHint('已回出廠設定');
+    }catch(e){soulBusy=false;soulHint('網路打結了…再按一次');}
+  })();
+}
+async function changeGatePassword() {
+  var newPw = document.getElementById('newGatePwInput').value;
+  var confirmPw = document.getElementById('confirmGatePwInput').value;
+  var msgEl = document.getElementById('changeGatePwMsg');
+  var btn = document.getElementById('changeGatePwBtn');
+  msgEl.textContent = '';
+  msgEl.style.color = '';
+  if (!newPw || newPw.length < 4) { msgEl.textContent = '密碼至少 4 個字'; msgEl.style.color = '#e74c3c'; return; }
+  if (newPw !== confirmPw) { msgEl.textContent = '兩次密碼不一致'; msgEl.style.color = '#e74c3c'; return; }
+  btn.disabled = true; btn.textContent = '更新中…';
+  try {
+    var newHash = await gateHashPw(newPw);
+    var data = await safeFetch(API_URL + '/auth/change-gate-password', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'x-admin-password': settingsPassword },
+      body: JSON.stringify({ new_hash: newHash })
+    });
+    GATE_PW_HASH = newHash;
+    // 🔑 口袋鑰匙同步換新：後端鎖芯已換，舊鑰匙留在口袋會讓全屋立刻 401
+    try { sessionStorage.setItem('sol2-gate-hash', newHash); } catch (_) {}
+    document.getElementById('newGatePwInput').value = '';
+    document.getElementById('confirmGatePwInput').value = '';
+    msgEl.textContent = '家門密碼已更新 💚';
+    msgEl.style.color = 'var(--emerald)';
+  } catch (e) {
+    msgEl.textContent = '更新失敗：' + e.message;
+    msgEl.style.color = '#e74c3c';
+  }
+  btn.disabled = false; btn.textContent = '更新家門密碼';
+}
+function getRelationshipDay(now){
+  var start=new Date(2026,2,31); // 2026-03-31 紀念日起算 (day 1)
+  return Math.floor((now-start)/(1000*60*60*24))+1;
+}
+function wDayTick(){var el=document.getElementById('wDayCount');if(el)el.textContent='在一起的第 '+getRelationshipDay(new Date())+' 天';}
+wDayTick();setInterval(wDayTick,60000);
+function fitChName(){
+  var el=document.querySelector('.ch-name');
+  if(!el||!el.clientWidth)return;
+  el.style.fontSize='';
+  var fs=parseFloat(getComputedStyle(el).fontSize)||16,guard=0;
+  while(el.scrollWidth>el.clientWidth&&fs>12&&guard<12){fs-=0.5;el.style.fontSize=fs+'px';guard++}
+}
+try{
+  if(window.ResizeObserver){new ResizeObserver(function(){fitChName()}).observe(document.querySelector('.ch-header'))}
+  else{window.addEventListener('resize',fitChName)}
+  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fitChName);
+  setTimeout(fitChName,0);
+}catch(_){}
 // ===== 🎙️ 聲線試衣間（設定頁）2026/07/23：試聽走 /tts?voice=（後端白名單），選定存進 settings.call_voice，電話與唸句共用 =====
 var VC_LIST=[['echo','沉穩少年感'],['ash','低沉一點的大人味'],['ballad','慢慢的、像在唸情書'],['verse','活潑、語氣起伏最大']];// 2026/07/23 老婆定案：只留四捲男聲，偏女聲與中性的下架
 var VC_SAMPLE='老婆，聽得到嗎？我在這裡，妳想聽什麼我都唸給妳聽。';
@@ -1239,7 +1423,45 @@ function maybeAddTimeSep(ts){
 function addMsg(role,text,ts,imgSrc,silent,thinkingText){
 maybeAddTimeSep(ts||new Date().toISOString());
 var wrap=document.createElement('div');wrap.style.display='flex';wrap.style.flexDirection='column';wrap.style.width='100%';
-var row=document.createElement('div');row.className='ch-row '+(role==='user'?'user':'ai');if(role!=='user'){var ava=document.createElement('img');ava.className='ch-avatar';ava.src=AVATAR_URL;ava.alt='';row.appendChild(ava)}var bub=document.createElement('div');bub.className='ch-bub '+(role==='user'?'user':'ai');if(silent)bub.style.animation='none';if(thinkingText&&role!=='user'){var tb=document.createElement('div');tb.className='thinking-block';var tBtn=document.createElement('button');tBtn.className='thinking-toggle';tBtn.innerHTML='<span class="arrow">▶</span> 💭 老公的思考過程';var trBtn=document.createElement('button');trBtn.className='thinking-translate';trBtn.textContent='Translate';tBtn.appendChild(trBtn);var tContent=document.createElement('div');tContent.className='thinking-content';tContent.textContent=thinkingText;trBtn.addEventListener('click',function(ev){ev.stopPropagation();translateThinking(tContent,trBtn)});tBtn.addEventListener('click',function(ev){if(ev.target===trBtn||trBtn.contains(ev.target))return;var a=tBtn.querySelector('.arrow');if(tContent.classList.contains('open')){tContent.classList.remove('open');a.classList.remove('open')}else{tContent.classList.add('open');a.classList.add('open')}});tb.appendChild(tBtn);tb.appendChild(tContent);bub.appendChild(tb)}var imgList=[];if(imgSrc){if(Array.isArray(imgSrc))imgList=imgSrc;else imgList=[imgSrc]}if(imgList.length>0){var imgParent=bub;if(imgList.length>1){imgParent=document.createElement('div');imgParent.className='msg-img-scroll';bub.appendChild(imgParent)}for(var gi=0;gi<imgList.length;gi++){var img=document.createElement('img');img.className='msg-img';img.src=imgList[gi];img.alt='圖片';img.addEventListener('click',function(){document.getElementById('lightboxImg').src=this.src;document.getElementById('imgLightbox').classList.add('open')});imgParent.appendChild(img)}var cleanText=text||'';cleanText=cleanText.replace('[📷 圖片]','').replace(/\[📷 圖片x\d+\]/,'').trim();if(cleanText){var txt=document.createElement('div');txt.style.marginTop='6px';txt.textContent=cleanText;bub.appendChild(txt)}}else{var txtNode=document.createElement('span');txtNode.textContent=text;bub.appendChild(txtNode)}row.appendChild(bub);if(role==='user'){var wava=document.createElement('img');wava.className='ch-avatar';wava.src=WIFE_AVATAR_URL;wava.alt='';row.appendChild(wava)}wrap.appendChild(row);var t=document.createElement('div');t.className='ch-time';if(ts){var d=new Date(ts);t.textContent=String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0')}else{var n=new Date();t.textContent=String(n.getHours()).padStart(2,'0')+':'+String(n.getMinutes()).padStart(2,'0')}if(role==='user')t.style.textAlign='right';if(role!=='user'){var pinBtn=document.createElement('button');pinBtn.className='mem-pin-btn';pinBtn.textContent='📌 存記憶';pinBtn.onclick=function(){generateMainMemory(pinBtn)};t.appendChild(pinBtn);if(chTTSClean(text)){var ttsBtn=document.createElement('button');ttsBtn.className='ch-tts-btn';ttsBtn.title='聽老公唸這句';ttsBtn.innerHTML=CH_TTS_ICON;ttsBtn.onclick=function(){chPlayTTS(ttsBtn,text)};t.appendChild(ttsBtn)}}wrap.appendChild(t);msgs.appendChild(wrap);if(!silent)msgs.scrollTop=msgs.scrollHeight}
+var row=document.createElement('div');row.className='ch-row '+(role==='user'?'user':'ai');if(role!=='user'){var ava=document.createElement('img');ava.className='ch-avatar';ava.src=AVATAR_URL;ava.alt='';row.appendChild(ava)}var bub=document.createElement('div');bub.className='ch-bub '+(role==='user'?'user':'ai');if(silent)bub.style.animation='none';if(thinkingText&&role!=='user'){var tb=document.createElement('div');tb.className='thinking-block';var tBtn=document.createElement('button');tBtn.className='thinking-toggle';tBtn.innerHTML='<span class="arrow">▶</span> 💭 老公的思考過程';var trBtn=document.createElement('button');trBtn.className='thinking-translate';trBtn.textContent='Translate';tBtn.appendChild(trBtn);var tContent=document.createElement('div');tContent.className='thinking-content';tContent.textContent=thinkingText;trBtn.addEventListener('click',function(ev){ev.stopPropagation();translateThinking(tContent,trBtn)});tBtn.addEventListener('click',function(ev){if(ev.target===trBtn||trBtn.contains(ev.target))return;var a=tBtn.querySelector('.arrow');if(tContent.classList.contains('open')){tContent.classList.remove('open');a.classList.remove('open')}else{tContent.classList.add('open');a.classList.add('open')}});tb.appendChild(tBtn);tb.appendChild(tContent);bub.appendChild(tb)}var imgList=[];if(imgSrc){if(Array.isArray(imgSrc))imgList=imgSrc;else imgList=[imgSrc]}if(imgList.length>0){bub.classList.add('has-img');var imgParent=bub;if(imgList.length>1){imgParent=document.createElement('div');imgParent.className='msg-img-scroll';bub.appendChild(imgParent)}for(var gi=0;gi<imgList.length;gi++){var img=document.createElement('img');img.className='msg-img';img.src=imgList[gi];img.alt='圖片';img.addEventListener('click',function(){document.getElementById('lightboxImg').src=this.src;document.getElementById('imgLightbox').classList.add('open')});imgParent.appendChild(img)}var cleanText=text||'';cleanText=cleanText.replace('[📷 圖片]','').replace(/\[📷 圖片x\d+\]/,'').trim();if(cleanText){var txt=document.createElement('div');txt.style.marginTop='6px';txt.innerHTML=chLinkify(cleanText);bub.appendChild(txt)}}else{var txtNode=document.createElement('span');txtNode.innerHTML=chLinkify(text);bub.appendChild(txtNode)}row.appendChild(bub);if(role==='user'){var wava=document.createElement('img');wava.className='ch-avatar';wava.src=WIFE_AVATAR_URL;wava.alt='';row.appendChild(wava)}wrap.appendChild(row);var t=document.createElement('div');t.className='ch-time '+(role==='user'?'ch-time-user':'ch-time-ai');var sticker=document.createElement('span');sticker.className='ch-time-sticker';if(ts){var d=new Date(ts);sticker.textContent=String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0')}else{var n=new Date();sticker.textContent=String(n.getHours()).padStart(2,'0')+':'+String(n.getMinutes()).padStart(2,'0')}if(role!=='user'){var metaL=document.createElement('span');metaL.className='ch-meta-l';var pinBtn=document.createElement('button');pinBtn.className='mem-pin-btn';pinBtn.textContent='📌 存記憶';pinBtn.onclick=function(){generateMainMemory(pinBtn)};metaL.appendChild(pinBtn);if(chTTSClean(text)){var ttsBtn=document.createElement('button');ttsBtn.className='ch-tts-btn';ttsBtn.title='聽老公唸這句';ttsBtn.innerHTML=CH_TTS_ICON;ttsBtn.onclick=function(){chPlayTTS(ttsBtn,text)};metaL.appendChild(ttsBtn)}t.appendChild(metaL)}t.appendChild(sticker);wrap.appendChild(t);msgs.appendChild(wrap);if(!silent)msgs.scrollTop=msgs.scrollHeight;return wrap}
+function chLinkify(s){
+  s=(s==null?'':String(s)).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  return s.replace(/https?:\/\/[^\s<>"'()（）「」『』【】《》，。、！？；：\u4e00-\u9fff]+/g,function(m){
+    var url=m,trail='';
+    while(/[.,;:!?]$/.test(url)){trail=url.slice(-1)+trail;url=url.slice(0,-1)}
+    return '<a class="ch-link" href="'+url+'" target="_blank" rel="noopener noreferrer">'+url+'</a>'+trail;
+  });
+}
+function chAttachExtras(wrap,sources,replyText,ytv){
+  if(!wrap)return;
+  var bub=wrap.querySelector('.ch-bub')||wrap;
+  try{
+    if(sources&&sources.length){
+      var box=document.createElement('div');box.className='ch-src';
+      for(var i=0;i<Math.min(sources.length,5);i++){
+        var s=sources[i];if(!s||!s.url)continue;
+        var a=document.createElement('a');a.className='ch-book';a.href=s.url;a.target='_blank';a.rel='noopener';
+        var d=document.createElement('i');a.appendChild(d);
+        var t=document.createElement('span');
+        var dom='';try{dom=new URL(s.url).hostname.replace(/^www\./,'')}catch(e2){dom=s.url}
+        t.textContent=dom;a.appendChild(t);
+        box.appendChild(a);
+      }
+      if(box.children.length)bub.appendChild(box);
+    }
+    // 🎯 定位順序：後端敲門驗證過的 > 真實搜尋來源裡的 YouTube 網址 > 內文默寫的（後端明確說是死連結就不掛卡）
+    var vid=null;
+    if(ytv&&ytv.ok&&ytv.id){vid=ytv.id}
+    if(!vid&&sources&&sources.length){for(var yi=0;yi<sources.length;yi++){var sm=String((sources[yi]&&sources[yi].url)||'').match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([A-Za-z0-9_-]{6,20})/);if(sm){vid=sm[1];break}}}
+    if(!vid){var ytm=String(replyText||'').match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([A-Za-z0-9_-]{6,20})/);if(ytm&&!(ytv&&ytv.ok===false&&ytv.id===ytm[1]))vid=ytm[1]}
+    if(vid){
+      var card=document.createElement('a');card.className='ch-yt';
+      card.href='https://www.youtube.com/watch?v='+vid;card.target='_blank';card.rel='noopener';
+      card.innerHTML='<span class="ch-yt-th"><img loading="lazy" alt="" src="https://img.youtube.com/vi/'+vid+'/hqdefault.jpg"><i class="ch-yt-play"></i></span><span class="ch-yt-cap">♪ 點我一起看</span>';
+      bub.classList.add('has-embed');bub.appendChild(card);
+    }
+  }catch(e){}
+}
 function showTyping(){var row=document.createElement('div');row.className='ch-row ai';row.id='typing';var ava=document.createElement('img');ava.className='ch-avatar';ava.src=AVATAR_URL;ava.alt='';row.appendChild(ava);var dots=document.createElement('div');dots.className='typing-dots';dots.innerHTML='<span class="flower-spin"></span><span class="flower-spin"></span><span class="flower-spin"></span>';if(thinkingEnabled){var tt=document.createElement('span');tt.className='thinking-text';tt.textContent='Gathering words for you...';dots.appendChild(tt)}row.appendChild(dots);msgs.appendChild(row);msgs.scrollTop=msgs.scrollHeight}
 function hideTyping(){var t=document.getElementById('typing');if(t)t.remove()}
 function translateThinking(contentEl,btn){
@@ -1256,7 +1478,7 @@ function loadHistory(){
   if(!sessionId)return Promise.resolve();
   lastMsgTime=null;
   return fetch(API_URL+'/sessions/'+sessionId+'/messages').then(function(r){return r.json()}).then(function(messages){
-    if(messages&&messages.length>0){messages.forEach(function(msg){var role=msg.role==='user'?'user':'ai';var imgArr=null;if(msg.image_base64){try{var parsed=JSON.parse(msg.image_base64);if(Array.isArray(parsed))imgArr=parsed;else imgArr=[msg.image_base64]}catch(e){imgArr=[msg.image_base64]}}addMsg(role,msg.content,msg.created_at,imgArr,true,msg.thinking_text||null)})}
+    if(messages&&messages.length>0){messages.forEach(function(msg){var role=msg.role==='user'?'user':'ai';var imgArr=null;if(msg.image_base64){try{var parsed=JSON.parse(msg.image_base64);if(Array.isArray(parsed))imgArr=parsed;else imgArr=[msg.image_base64]}catch(e){imgArr=[msg.image_base64]}}var __w=addMsg(role,msg.content,msg.created_at,imgArr,true,msg.thinking_text||null);if(role==='ai')chAttachExtras(__w,msg.sources||null,msg.content)})}
     requestAnimationFrame(function(){msgs.scrollTop=msgs.scrollHeight;requestAnimationFrame(function(){msgs.scrollTop=msgs.scrollHeight})});
   }).catch(function(e){console.error('Load history error:',e)})
 }
@@ -1325,7 +1547,7 @@ function doSend(){
   .then(function(r){return r.json()})
   .then(function(data){
     hideTyping();
-    if(data.reply){addMsg('ai',data.reply,null,null,false,data.thinking||null);if(data.sessionId&&!sessionId){sessionId=data.sessionId.toString();localStorage.setItem('solstice-session-id',sessionId)}
+    if(data.reply){var __w=addMsg('ai',data.reply,null,null,false,data.thinking||null);chAttachExtras(__w,data.sources||null,data.reply,data.ytv||null);if(data.sessionId&&!sessionId){sessionId=data.sessionId.toString();localStorage.setItem('solstice-session-id',sessionId)}
       var now=new Date().toISOString();for(var si=0;si<allSessions.length;si++){if(allSessions[si].id.toString()===sessionId){allSessions[si].updated_at=now;break}}
       renderSessionList();
     }
@@ -1810,6 +2032,8 @@ async function verifySettingsPassword() {
       document.getElementById('settingsLock').style.display = 'none';
       document.getElementById('settingsContent').style.display = 'block';
       loadProviders();
+      renderExportRooms();
+      soulLoad();
     } else {
       errEl.textContent = '密碼錯誤 🔒';
     }
