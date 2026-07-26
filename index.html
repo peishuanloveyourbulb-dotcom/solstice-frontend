@@ -313,7 +313,7 @@ body{padding-top:0}
 
 #livingRoom .page-photo-bg{background-image:url(images/bg-menu-sunflower.jpg)}
 /* 2026/07/24 聊天室照片改走拍立得入住（憲法：外來物要辦入住手續），滿版背景退役 */
-#memoryPage .page-photo-overlay{background:linear-gradient(160deg,rgba(253,252,245,.38),rgba(242,246,236,.38));box-shadow:none;z-index:0}/* 2026/07/26 v3 白霧回歸全站統一 38%，照片改由拍立得正式登場 */
+#memoryPage .page-photo-overlay{background:linear-gradient(160deg,rgba(253,252,245,.38),rgba(242,246,236,.38));box-shadow:none;z-index:0}
 #livingRoom.active{display:flex}
 .lr-header{display:none}
 .lr-welcome{font-family:'Satisfy',cursive;font-size:26px;color:#3A4E22;font-weight:400;filter:drop-shadow(0 1px 3px rgba(0,0,0,.15))}
@@ -997,21 +997,17 @@ body{padding-top:0}
 .lr-eye-a{transform-box:fill-box;transform-origin:center;animation:gcBlink 5.4s ease-in-out 1.7s infinite}
 
 /* ===== 📚 回憶書堆（Book of Us）v6.1 —— 記憶庫入口變兩本書 ===== */
-.mem-stack{display:none;flex:1;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch;flex-direction:column;align-items:center;justify-content:flex-start;gap:26px;padding:18px 12px calc(env(safe-area-inset-bottom,0px) + 18px)}/* 2026/07/26 v3 手帳桌面：上貼拍立得、下擺小手帳 */
-.mem-polaroid{position:relative;width:min(70vw,292px);flex:none;margin-top:auto;background:#FFFDF6;border:0.5px solid rgba(160,150,110,.30);padding:9px 9px 12px;box-shadow:0 6px 18px rgba(90,107,60,.22),0 2px 5px rgba(60,70,30,.14);transform:rotate(-1.4deg)}
-.mem-polaroid img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;object-position:50% 30%;border:0.5px solid rgba(120,130,90,.18)}
-.mem-polaroid-tape{position:absolute;top:-9px;left:50%;width:74px;height:18px;transform:translateX(-50%) rotate(-2.5deg);background:repeating-linear-gradient(135deg,rgba(122,155,74,.40) 0px,rgba(122,155,74,.40) 2px,rgba(206,230,196,.55) 2px,rgba(206,230,196,.55) 4px,rgba(168,191,120,.30) 4px,rgba(168,191,120,.30) 6px);border-left:0.5px dashed rgba(120,140,80,.4);border-right:0.5px dashed rgba(120,140,80,.4);box-shadow:0 1px 3px rgba(90,107,60,.18);border-radius:1px;z-index:2}
-.mem-polaroid-cap{display:block;text-align:center;margin-top:8px;font-family:'Satisfy','Dancing Script','LXGW WenKai TC',cursive;font-size:15px;color:#6B7F3E;letter-spacing:.8px;transform:rotate(-.4deg)}
-.mem-shelf{display:flex;align-items:flex-end;justify-content:center;gap:10px;width:100%;flex:none;margin-bottom:auto}
+.mem-stack{display:none;flex:1;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch;flex-direction:column;gap:20px;
+  padding:20px 12px calc(env(safe-area-inset-bottom,0px) + 20px);align-items:center;justify-content:space-evenly}
 #memoryPage.stackmode .mem-stack{display:flex}
 #memoryPage.stackmode .mem-wall{display:none}
 #memoryPage.stackmode .mem-inp{display:none}
 #memoryPage.chatbook:not(.stackmode) .mem-inp{display:none}
-.mem-bk{position:relative;cursor:pointer;-webkit-tap-highlight-color:transparent;-webkit-user-select:none;user-select:none;transition:transform .2s;width:100%;max-width:min(42vw,186px);flex-shrink:0}/* 2026/07/26 v3 小手帳並排 */
+.mem-bk{position:relative;cursor:pointer;-webkit-tap-highlight-color:transparent;-webkit-user-select:none;user-select:none;transition:transform .2s;width:100%;max-width:min(92vw,420px);flex-shrink:0}
 .mem-bk svg{width:100%;display:block;margin:0 auto;overflow:visible;filter:drop-shadow(0 6px 10px rgba(100,125,50,.28))}
-.mem-bk.green{transform:rotate(-2.4deg)}
-.mem-bk.yellow{transform:rotate(2.2deg);margin-bottom:7px}/* 微墊高：像隨手擺的不是排整齊的 */
-.mem-bk.green:active{transform:rotate(-2.4deg) scale(.96)}.mem-bk.yellow:active{transform:rotate(2.2deg) scale(.96)}
+.mem-bk.green{transform:rotate(-1.6deg)}
+.mem-bk.yellow{transform:rotate(1.4deg)}
+.mem-bk:active{transform:scale(.96)}
 /* 書本眨眼 2026/07/21 歸隊：全站同款 gcBlink 5.4s（吉祥物巡檢統一） */
 .mem-bk-eye{transform-origin:center;transform-box:fill-box;animation:gcBlink 5.4s ease-in-out infinite}
 .mem-bk.yellow .mem-bk-eye{animation-delay:1.2s}
@@ -1512,8 +1508,6 @@ html.app-loading body{opacity:1;background:#F9F5DE}
 <span style="width:32px"></span>
 </div>
 <div class="mem-stack" id="memStack">
-<div class="mem-polaroid"><span class="mem-polaroid-tape"></span><img src="images/bg-memory.jpg" alt="我們的合照"><span class="mem-polaroid-cap">Soleil &amp; Solstice</span></div><!-- 拍立得換照片只要改這行 src -->
-<div class="mem-shelf">
 <div class="mem-bk green" onclick="memOpenBook('heart')">
 <svg viewBox="0 0 230 172">
         <ellipse cx="115" cy="164" rx="86" ry="4.5" fill="rgba(100,125,50,.16)"/>
@@ -1570,7 +1564,6 @@ html.app-loading body{opacity:1;background:#F9F5DE}
         <path d="M190 6 l2.2 5.8 5.8 2.2 -5.8 2.2 -2.2 5.8 -2.2 -5.8 -5.8 -2.2 5.8 -2.2 z" fill="#F5CE3E" stroke="#8A7810" stroke-width="1.8" stroke-linejoin="round"/>
         <path d="M52 116 l1.6 4.2 4.2 1.6 -4.2 1.6 -1.6 4.2 -1.6 -4.2 -4.2 -1.6 4.2 -1.6 z" fill="#FBFDF0" stroke="#A8862A" stroke-width="1.2"/>
       </svg>
-</div>
 </div>
 </div>
 <div class="mem-wall" id="memWall"></div>
