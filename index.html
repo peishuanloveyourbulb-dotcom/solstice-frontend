@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- solstice-greenhouse-restore-v4.9-orderfix -->
+<!-- solstice-greenhouse-restore-v4.11-memclean -->
 <html lang="zh-TW">
 <head>
 <meta charset="UTF-8">
@@ -47,25 +47,26 @@ body{-webkit-user-select:none;user-select:none}
 html,body{height:100vh;overflow:hidden;background:linear-gradient(160deg,#FDFCF5,#F2F6EC);color:var(--text-main);font-family:'LXGW WenKai TC','Noto Sans TC','Noto Serif TC',system-ui,sans-serif}
 button,input,select,textarea,label{font-family:inherit}
 body{padding-top:0}
-/* === WELCOME PAGE === */
-#welcome{position:fixed;inset:0;background:linear-gradient(160deg,#E8F0DC,#D4E8CC,#C5D9A8);display:flex;align-items:center;justify-content:center;z-index:10;transition:opacity .6s ease,visibility .6s ease}
+/* === WELCOME PAGE（骨架層：排版／尺寸／動畫節奏，無色；皮膚在 SKIN:GREENHOUSE） === */
+#welcome{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;z-index:10;transition:opacity .6s ease,visibility .6s ease}
 #welcome.hidden{opacity:0;visibility:hidden;pointer-events:none}
 .w-content{text-align:center;padding:20px;max-width:400px}
-.w-orn{color:#7A9B4A;font-size:18px;margin-bottom:12px;letter-spacing:8px}
-.w-title{font-family:'Great Vibes',cursive;font-size:32px;font-weight:400;color:#3A4E22;margin-bottom:6px;letter-spacing:1px}
-.w-sun{font-size:20px;margin:4px 0}
-.w-sub{font-family:'Satisfy','LXGW WenKai TC','Noto Serif TC',serif;font-style:normal;font-weight:300;color:#5A6B3C;font-size:14px;margin-bottom:6px;letter-spacing:1px}
-.w-heart{font-size:18px;margin-bottom:16px}
-.w-polaroid{display:inline-block;background:#FFFEF9;padding:10px 10px 42px 10px;border-radius:4px;box-shadow:0 2px 12px rgba(0,0,0,.08),0 8px 32px rgba(90,107,60,.10),0 0 0 1px rgba(122,155,74,.06);margin:0 auto 22px;position:relative;transform:rotate(-1.5deg);transition:transform .5s cubic-bezier(.25,.46,.45,.94);animation:polaroidFloat 4s ease-in-out infinite alternate}
-.w-polaroid:active{transform:rotate(0deg) scale(.98)}
-@keyframes polaroidFloat{0%{transform:rotate(-1.5deg) translateY(0)}100%{transform:rotate(-0.5deg) translateY(-3px)}}
-.w-polaroid-caption{position:absolute;bottom:12px;left:0;right:0;text-align:center;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:13px;color:#7A8B5E;letter-spacing:.5px}
-.w-polaroid img{width:220px;height:auto;display:block;border-radius:2px;animation:imgFadeIn .5s ease-out}
+.w-orn{font-size:16px;margin-bottom:10px;letter-spacing:8px}
+.w-title{font-size:32px;font-weight:400;margin-bottom:4px;letter-spacing:1px;line-height:1.25}
+.w-sun{font-size:18px;margin:2px 0}
+.w-sub{font-weight:300;font-size:14px;margin-bottom:4px;letter-spacing:1px}
+.w-heart{font-size:15px;margin-bottom:8px}
+.w-day{font-size:13px;letter-spacing:.12em;margin:2px 0 0}
+.w-polaroid{display:inline-block;padding:9px 9px 36px;border-radius:4px;margin:16px auto 18px;position:relative;transition:transform .5s cubic-bezier(.25,.46,.45,.94);animation:polaroidFloat 5s ease-in-out infinite alternate}
+.w-polaroid:active{transform:scale(.98)}
+@keyframes polaroidFloat{0%{transform:translateY(0)}100%{transform:translateY(-3px)}}
+.w-polaroid-caption{position:absolute;bottom:11px;left:0;right:0;text-align:center;font-style:italic;font-size:12.5px;letter-spacing:.5px}
+.w-polaroid img{width:178px;height:auto;display:block;border-radius:2px;animation:imgFadeIn .5s ease-out}
 @keyframes imgFadeIn{from{opacity:0}to{opacity:1}}
-.w-enter{background:rgba(122,155,74,.15);border:1px solid rgba(122,155,74,.35);color:#4A5E30;padding:12px 36px;border-radius:30px;font-size:15px;font-family:'LXGW WenKai TC','Noto Serif TC',serif;cursor:pointer;transition:all .3s cubic-bezier(.25,.46,.45,.94);box-shadow:0 2px 8px rgba(122,155,74,.1)}
-.w-enter:active{background:rgba(122,155,74,.25);transform:scale(.96);box-shadow:0 1px 4px rgba(122,155,74,.15)}
-.w-ann{color:#5A6B3C;font-size:12px;margin-top:16px;font-family:'LXGW WenKai TC','Noto Serif TC',serif;letter-spacing:1px}
-.w-ann-sub{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:12px;margin-top:6px;color:#7A8B5E;letter-spacing:1px}
+.w-enter{padding:11px 34px;border-radius:30px;font-size:15px;cursor:pointer;transition:all .3s cubic-bezier(.25,.46,.45,.94)}
+.w-enter:active{transform:scale(.96)}
+.w-ann{font-size:12px;margin-top:14px;letter-spacing:1px}
+.w-ann-sub{font-style:italic;font-size:12px;margin-top:5px;letter-spacing:1px}
 /* === LIVING ROOM (NEW) === */
 #livingRoom{position:fixed;inset:0;display:none;flex-direction:column;z-index:9;overflow-y:auto;-webkit-overflow-scrolling:touch;background-color:#FDFCF5;background-image:linear-gradient(rgba(253,252,245,.15),rgba(253,252,245,.15)),url(https://raw.githubusercontent.com/peishuanloveyourbulb-dotcom/solstice-frontend/main/images/bg-sunflower.png);background-position:center top;background-size:cover;background-repeat:no-repeat;background-attachment:local}
 #livingRoom.active{display:flex}
@@ -305,7 +306,6 @@ body{padding-top:0}
 .settings-lock button{padding:10px 32px;border-radius:20px;border:1.5px solid #7A9B4A;background:transparent;color:#4A5E30;font-size:14px;cursor:pointer;font-family:'LXGW WenKai TC','Noto Serif TC',serif;transition:all .2s}
 .settings-lock button:active{background:rgba(122,155,74,.15);transform:scale(.95)}
 .settings-lock-err{color:#e74c3c;font-size:12px;min-height:18px}
-.w-day{font-size:12.5px;letter-spacing:.12em;margin-top:6px}
 .settings-section-title{font-family:'Dancing Script','LXGW WenKai TC',cursive;font-size:16px;color:#4A5E30;margin-bottom:12px}
 .stg-card{border-radius:22px;padding:14px 16px}
 .stg-inp{display:block;width:100%;border-radius:12px;padding:10px 14px;font-size:13px;outline:none;-webkit-appearance:none;margin-bottom:10px}
@@ -425,7 +425,18 @@ body{padding-top:0}
 .export-room{border:0.5px solid rgba(122,155,74,.18);background:rgba(253,252,245,.5)}
 .export-room-name{color:var(--text-main)}
 .export-btn{border:1px solid #7A9B4A;background:transparent;color:#4A5E30}
+/* — 歡迎頁皮膚（v4.10 兩層分離搬入；配色與原版一字不改） — */
+#welcome{background:linear-gradient(160deg,#E8F0DC,#D4E8CC,#C5D9A8)}
+.w-orn{color:#7A9B4A}
+.w-title{font-family:'Great Vibes',cursive;color:#3A4E22}
+.w-sub{font-family:'Satisfy','LXGW WenKai TC','Noto Serif TC',serif;font-style:normal;color:#5A6B3C}
 .w-day{font-family:'Cormorant Garamond','LXGW WenKai TC',serif;color:#4A5E30}
+.w-polaroid{background:#FFFEF9;box-shadow:0 2px 12px rgba(0,0,0,.08),0 8px 32px rgba(90,107,60,.10),0 0 0 1px rgba(122,155,74,.06)}
+.w-polaroid-caption{font-family:'Cormorant Garamond',serif;color:#7A8B5E}
+.w-enter{background:rgba(122,155,74,.15);border:1px solid rgba(122,155,74,.35);color:#4A5E30;font-family:'LXGW WenKai TC','Noto Serif TC',serif;box-shadow:0 2px 8px rgba(122,155,74,.1)}
+.w-enter:active{background:rgba(122,155,74,.25);box-shadow:0 1px 4px rgba(122,155,74,.15)}
+.w-ann{color:#5A6B3C;font-family:'LXGW WenKai TC','Noto Serif TC',serif}
+.w-ann-sub{font-family:'Cormorant Garamond',serif;color:#7A8B5E}
 .model-popup-divider{background:var(--border-subtle)}
 .ch-tts-btn{color:var(--emerald);opacity:.55}
 .ch-tts-btn.loading{opacity:.45}
@@ -1277,8 +1288,96 @@ function formatSessionName(s){
   return 'Solstice\uD83D\uDC9A';
 }
 
+// 🔩 v6.19 抖動根治・最小搬動法（v4.11 搬回）
+// LIST_MINIMAL_MOVE=false 可一鍵退回舊核彈模式（iOS 排序保險絲，當年剹案的最後防線）。
+var LIST_MINIMAL_MOVE=true;
+function applyOrderMinimal(container,ordered){
+  var frozen=[];
+  for(var oi=0;oi<ordered.length;oi++){
+    var el=ordered[oi];
+    var ref=container.children[oi]||null;
+    if(ref===el)continue;
+    // 只有真正要搬家的既有卡片才關動畫（防 iOS 重播進場動畫）；新卡保留自己的進場動畫
+    // 2026/07/24 抖動補刀：transition 也一起關——位置跳動＋旋轉角換裝疊在 .25s 過渡上就是那一下抖
+    if(el.parentNode===container){el.style.animation='none';el.style.transition='none';frozen.push(el)}
+    container.insertBefore(el,ref);
+  }
+  if(frozen.length){requestAnimationFrame(function(){requestAnimationFrame(function(){for(var fi=0;fi<frozen.length;fi++){frozen[fi].style.transition=''}})})}
+}
+function buildSessionItem(s){
+  var sid=String(s.id);
+  var isPinned=!!s.pinned;
+  var item=document.createElement('div');
+  item.className='sb-item'+(isPinned?' sb-pinned':'');
+  item.setAttribute('data-sid',sid);
+  if(sessionId&&sid===String(sessionId)) item.classList.add('active');
+
+  var text=document.createElement('div');
+  text.className='sb-item-text';
+  var name=document.createElement('div');
+  name.className='sb-item-name';
+  name.textContent=(isPinned?'\uD83D\uDCCC ':'')+formatSessionName(s);
+  text.appendChild(name);
+
+  var actions=document.createElement('div');
+  actions.className='sb-item-actions';
+
+  var pinBtn=document.createElement('button');
+  pinBtn.className='sb-act-btn sb-act-pin';
+  pinBtn.textContent=isPinned?'\uD83D\uDCCC':'\uD83D\uDCCD';
+  pinBtn.title=isPinned?'\u53D6\u6D88\u91D8\u9078':'\u91D8\u9078';
+  pinBtn.setAttribute('data-session-id',sid);
+  pinBtn.addEventListener('click',function(e){
+    e.stopPropagation();
+    // v6.19 法：點擊當下依 id 查現役物件（卡片會被重複使用，閉包裡的舊物件不可信）
+    var targetId=this.getAttribute('data-session-id');
+    var currentSession=null;
+    for(var j=0;j<allSessions.length;j++){if(String(allSessions[j].id)===targetId){currentSession=allSessions[j];break}}
+    if(!currentSession){console.error('[PIN] Session not found:',targetId);return}
+    var newPinned=!currentSession.pinned;
+    var prevPinnedAt=currentSession.pinned_at||null;
+    currentSession.pinned=newPinned;
+    currentSession.pinned_at=newPinned?new Date().toISOString():null;
+    renderSessionList();
+    fetch(API_URL+'/sessions/'+targetId,{method:'PATCH',headers:{'Content-Type':'application/json'},body:JSON.stringify({pinned:newPinned})})
+      .then(function(r){if(!r.ok)throw new Error('HTTP '+r.status)})
+      .catch(function(e2){console.error('[PIN] Server error, rolling back:',e2);currentSession.pinned=!newPinned;currentSession.pinned_at=prevPinnedAt;renderSessionList()});
+  });
+
+  var renBtn=document.createElement('button');
+  renBtn.className='sb-act-btn';
+  renBtn.textContent='\u6539\u540D';
+  renBtn.addEventListener('click',function(e){
+    e.stopPropagation();
+    renameTargetId=s.id;
+    var cur=null;
+    for(var j=0;j<allSessions.length;j++){if(String(allSessions[j].id)===sid){cur=allSessions[j];break}}
+    var ri=document.getElementById('renameInput');
+    ri.value=(cur&&cur.Name)||'';
+    ri.placeholder=formatSessionName(cur||s);
+    document.getElementById('renameModal').classList.add('open');
+    setTimeout(function(){ri.focus();ri.setSelectionRange(ri.value.length,ri.value.length)},100);
+  });
+
+  var delBtn=document.createElement('button');
+  delBtn.className='sb-act-btn';
+  delBtn.textContent='\u522A\u9664';
+  delBtn.addEventListener('click',function(e){
+    e.stopPropagation();
+    deleteTargetId=s.id;
+    document.getElementById('delConfirm').classList.add('open');
+  });
+
+  actions.appendChild(pinBtn);
+  actions.appendChild(renBtn);
+  actions.appendChild(delBtn);
+  item.appendChild(text);
+  item.appendChild(actions);
+
+  item.addEventListener('click',function(){switchSession(s.id)});
+  return item;
+}
 function renderSessionList(){
-  sessionList.innerHTML='';
   if(allSessions.length===0){sessionList.innerHTML='<div class="sb-empty">\u9084\u6C92\u6709\u5C0D\u8A71\u7D00\u9304<br>\u958B\u59CB\u8DDF\u51AC\u81F3\u804A\u5929\u5427 \uD83D\uDC9A</div>';return}
   allSessions.sort(function(a,b){
     if(a.pinned&&!b.pinned)return -1;
@@ -1286,66 +1385,45 @@ function renderSessionList(){
     if(a.pinned&&b.pinned){var aMax=Math.max(new Date(a.updated_at||a.created_at||0),new Date(a.pinned_at||0));var bMax=Math.max(new Date(b.updated_at||b.created_at||0),new Date(b.pinned_at||0));if(bMax!==aMax)return bMax-aMax;return (Number(b.id)||0)-(Number(a.id)||0)}
     var tA=new Date(a.updated_at||a.created_at||0).getTime();var tB=new Date(b.updated_at||b.created_at||0).getTime();if(tB!==tA)return tB-tA;return (Number(b.id)||0)-(Number(a.id)||0);
   });
+  if(!LIST_MINIMAL_MOVE){
+    // ☢️ 舊核彈模式（保險絲）：全量清空重建，行為與過去完全一致
+    sessionList.innerHTML='';
+    allSessions.forEach(function(s){sessionList.appendChild(buildSessionItem(s))});
+    return;
+  }
+  // —— 最小搬動模式（v6.19 抖動根治）——
+  var loadingEl=sessionList.querySelector('.sb-loading');if(loadingEl)loadingEl.remove();
+  var emptyEl=sessionList.querySelector('.sb-empty');if(emptyEl)emptyEl.remove();
+  var existing={};
+  var domItems=sessionList.querySelectorAll('.sb-item[data-sid]');
+  for(var di=0;di<domItems.length;di++){existing[domItems[di].getAttribute('data-sid')]=domItems[di]}
+  var wantIds={};
+  for(var wi=0;wi<allSessions.length;wi++){wantIds[String(allSessions[wi].id)]=1}
+  for(var rid in existing){if(!wantIds[rid]){existing[rid].remove();delete existing[rid]}}
+  var ordered=[];
   allSessions.forEach(function(s){
+    var sid=String(s.id);
+    var item=existing[sid];
+    if(!item){ordered.push(buildSessionItem(s));return}
     var isPinned=!!s.pinned;
-    var item=document.createElement('div');
-    item.className='sb-item'+(isPinned?' sb-pinned':'');
-    if(sessionId&&s.id.toString()===sessionId.toString()) item.classList.add('active');
-
-    var text=document.createElement('div');
-    text.className='sb-item-text';
-    var name=document.createElement('div');
-    name.className='sb-item-name';
-    name.textContent=(isPinned?'\uD83D\uDCCC ':'')+formatSessionName(s);
-    text.appendChild(name);
-
-    var actions=document.createElement('div');
-    actions.className='sb-item-actions';
-
-    var pinBtn=document.createElement('button');
-    pinBtn.className='sb-act-btn';
-    pinBtn.textContent=isPinned?'\uD83D\uDCCC':'\uD83D\uDCCD';
-    pinBtn.title=isPinned?'\u53D6\u6D88\u91D8\u9078':'\u91D8\u9078';
-    pinBtn.addEventListener('click',function(e){
-      e.stopPropagation();
-      var targetId=s.id;
-      var newPinVal=!isPinned;
-      for(var j=0;j<allSessions.length;j++){if(allSessions[j].id===targetId){allSessions[j].pinned=newPinVal;allSessions[j].pinned_at=newPinVal?new Date().toISOString():null;break}}
-      renderSessionList();
-      fetch(API_URL+'/sessions/'+targetId,{method:'PATCH',headers:{'Content-Type':'application/json'},body:JSON.stringify({pinned:newPinVal})}).catch(function(e2){console.error('Pin error:',e2)});
-    });
-
-    var renBtn=document.createElement('button');
-    renBtn.className='sb-act-btn';
-    renBtn.textContent='\u6539\u540D';
-    renBtn.addEventListener('click',function(e){
-      e.stopPropagation();
-      renameTargetId=s.id;
-      var ri=document.getElementById('renameInput');
-      ri.value=s.Name||'';
-      ri.placeholder=formatSessionName(s);
-      document.getElementById('renameModal').classList.add('open');
-      setTimeout(function(){ri.focus();ri.setSelectionRange(ri.value.length,ri.value.length)},100);
-    });
-
-    var delBtn=document.createElement('button');
-    delBtn.className='sb-act-btn';
-    delBtn.textContent='\u522A\u9664';
-    delBtn.addEventListener('click',function(e){
-      e.stopPropagation();
-      deleteTargetId=s.id;
-      document.getElementById('delConfirm').classList.add('open');
-    });
-
-    actions.appendChild(pinBtn);
-    actions.appendChild(renBtn);
-    actions.appendChild(delBtn);
-    item.appendChild(text);
-    item.appendChild(actions);
-
-    item.addEventListener('click',function(){switchSession(s.id)});
-    sessionList.appendChild(item);
+    var isActive=!!(sessionId&&sid===String(sessionId));
+    var wantClass='sb-item'+(isPinned?' sb-pinned':'')+(isActive?' active':'');
+    if(item.className!==wantClass)item.className=wantClass;
+    var pinBtn=item.querySelector('.sb-act-pin');
+    if(pinBtn){
+      var wantIcon=isPinned?'\uD83D\uDCCC':'\uD83D\uDCCD';
+      if(pinBtn.textContent!==wantIcon)pinBtn.textContent=wantIcon;
+      var wantTitle=isPinned?'\u53D6\u6D88\u91D8\u9078':'\u91D8\u9078';
+      if(pinBtn.title!==wantTitle)pinBtn.title=wantTitle;
+    }
+    var nameEl=item.querySelector('.sb-item-name');
+    if(nameEl){
+      var wantName=(isPinned?'\uD83D\uDCCC ':'')+formatSessionName(s);
+      if(nameEl.textContent!==wantName)nameEl.textContent=wantName;
+    }
+    ordered.push(item);
   });
+  applyOrderMinimal(sessionList,ordered);
 }
 
 function switchSession(newId){
@@ -1387,15 +1465,16 @@ document.getElementById('renameCancel').addEventListener('click',function(){rena
 document.getElementById('renameOk').addEventListener('click',function(){
   if(!renameTargetId)return;
   var nn=document.getElementById('renameInput').value.trim();
-  if(!nn){renameTargetId=null;document.getElementById('renameModal').classList.remove('open');return}
+  // 空輸入＝恢復預設名（Solstice💚）：送 null 給後端清掉 Name 欄（v6.19 行為，v4.11 搬回）
+  var isReset=!nn;
   // ★ v9：先本地更新名字，立刻渲染，再背景發 API
   var targetId=renameTargetId;
   var now=new Date().toISOString();
-  for(var i=0;i<allSessions.length;i++){if(allSessions[i].id===targetId){allSessions[i].Name=nn;allSessions[i].updated_at=now;break}}
+  for(var i=0;i<allSessions.length;i++){if(allSessions[i].id===targetId){allSessions[i].Name=isReset?null:nn;allSessions[i].updated_at=now;break}}
   renderSessionList();
   renameTargetId=null;document.getElementById('renameModal').classList.remove('open');
   // 背景發 API，不阻塞 UI
-  fetch(API_URL+'/sessions/'+targetId,{method:'PATCH',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:nn})}).catch(function(e){console.error('Rename error:',e)});
+  fetch(API_URL+'/sessions/'+targetId,{method:'PATCH',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:isReset?null:nn})}).catch(function(e){console.error('Rename error:',e)});
 });
 
 var lastMsgTime=null;
@@ -1577,6 +1656,8 @@ var memTabChat=document.getElementById('memTabChat');
 var currentMemTab='heart';
 var allMemories=[];
 var memLoading=false;
+var memSig='';
+var memEverLoaded=false; // 2026/07/18 記憶庫是否已從後端載回來過——確定真的空了才顯示空白字（v4.11 搬回）
 
 document.getElementById('memBack').addEventListener('click',function(){
   memoryPage.classList.remove('active');
@@ -1595,38 +1676,76 @@ memTabChat.addEventListener('click',function(){
   renderMemories(true);
 });
 
-function loadMemories(){
-  if(memLoading) return;
+function memSigOf(list){return (list||[]).map(function(m){return m.id+':'+(m.edited_at||m.created_at||'')+':'+(m.pinned?1:0)+':'+(m.pinned_at||'')+':'+String(m.summary||'').length}).join('|')}
+// 🔤 字型預熱（2026/07/18 老婆抓到：開書幾秒後字會換行）——
+// 中文字型是按字元區段分包懶載的；書堆模式下摘要文字第一次出現就是開書那刻，
+// 分包那時才開始下載，幾秒後到貨換上真字型、行寬微差就重新換行。
+// 解法：資料一到手就先跟瀏覽器點名要這些字，開書前字型已經在了。
+function warmGlyphs(txt){
+  try{
+    if(!txt||!document.fonts||!document.fonts.load)return;
+    var u=Array.from(new Set(String(txt))).join('');
+    document.fonts.load('400 13.5px "LXGW WenKai TC"',u).catch(function(){});
+  }catch(e){}
+}
+function loadMemories(forceRefresh){
+  if(memLoading&&!forceRefresh) return;
   memLoading=true;
-  memWall.innerHTML='<div class="mem-empty">\u8F09\u5165\u4E2D...</div>';
+  // 聊天室同款「先端出手上的、背景再更新」：
+  // allMemories 還留著上次抓回來的資料時，立刻先畫出來（skipAnim=true 走釘選驗證過的安全路徑），
+  // 只有真的兩手空空（冷啟動第一次）才顯示「載入中」。
+  var hadCache=allMemories.length>0;
+  if(hadCache){
+    // 🔧 進房不閃字（2026/07/17）：牆上掛的還是同一批卡就不重畫（跟輸入框同種病：畫了沒必要的中間態）
+    if(memSigOf(allMemories)!==memSig){renderMemories(true);memSig=memSigOf(allMemories)}
+  }
+  else{memWall.innerHTML='<div class="mem-empty">\u8F09\u5165\u4E2D\u2026</div>'}
   var controller=new AbortController();
   var timeout=setTimeout(function(){controller.abort()},15000);
   fetch(API_URL+'/memories',{signal:controller.signal})
   .then(function(r){return r.json()})
   .then(function(data){
     clearTimeout(timeout);
-    allMemories=data||[];
-    renderMemories();
+    var fresh=data||[];
+    var sig=memSigOf(fresh);
+    allMemories=fresh;
+    memEverLoaded=true;
+    warmGlyphs(fresh.map(function(m){return (m.summary||'')+(m.content||'')+(m.text||'')}).join(''));
+    if(sig!==memSig){ // 背景抓回來一模一樣就不重畫第二次——閃字的兇手就是這裡的固定重畫
+      renderMemories(hadCache);
+      memSig=sig;
+    }
     memLoading=false;
   })
   .catch(function(e){
     clearTimeout(timeout);
     console.error('Load memories error:',e);
-    memWall.innerHTML='<div class="mem-empty">\u8F09\u5165\u5931\u6557 \uD83E\uDD7A</div>';
+    // 已經有畫面在顯示時，載入失敗就默默保留舊畫面，不要擦掉嚇人
+    if(allMemories.length===0){memWall.innerHTML='<div class="mem-empty">\u8F09\u5165\u5931\u6557 \uD83E\uDD7A</div>'}
+    memEverLoaded=true; // 失敗也算「問過了」
     memLoading=false;
   });
 }
 
+// Sort：v6.19 最終公式（釘選群 max(編輯,釘選)＋id 決勝；未釘選 編輯時間＋id 決勝）
+function memSortCmp(a,b){
+  if(a.pinned&&!b.pinned)return -1;
+  if(!a.pinned&&b.pinned)return 1;
+  if(a.pinned&&b.pinned){var aMax=Math.max(new Date(a.edited_at||a.created_at||0),new Date(a.pinned_at||0));var bMax=Math.max(new Date(b.edited_at||b.created_at||0),new Date(b.pinned_at||0));if(bMax!==aMax)return bMax-aMax;return (Number(b.id)||0)-(Number(a.id)||0)}
+  var tA=new Date(a.edited_at||a.created_at||0).getTime();var tB=new Date(b.edited_at||b.created_at||0).getTime();if(tB!==tA)return tB-tA;return (Number(b.id)||0)-(Number(a.id)||0);
+}
+
 function renderMemories(skipAnim){
-  memWall.innerHTML='';
   var filtered;
   if(currentMemTab==='heart'){
-    filtered=allMemories.filter(function(m){return m.type==='manual'||m.type==='auto'||m.session_id===0});
+    filtered=allMemories.filter(function(m){return m.type==='manual'||m.type==='auto'||!m.type||m.session_id===0});
   } else {
     filtered=allMemories.filter(function(m){return m.type==='compressed'&&m.session_id!==0});
   }
 
   if(!filtered||filtered.length===0){
+    // 還沒問過後端前不給看「還沒有記憶」——先掛載入中（memEverLoaded 閘門，v4.11 搬回）
+    if(!memEverLoaded){memWall.innerHTML='<div class="mem-empty">\u8F09\u5165\u4E2D\u2026</div>';return}
     if(currentMemTab==='heart'){
       memWall.innerHTML='<div class="mem-empty">\u9084\u6C92\u6709\u8A18\u61B6...\n\u544A\u8A34\u51AC\u81F3\u8981\u8A18\u4F4F\u4EC0\u9EBC\u5427 \uD83D\uDC9A</div>';
     } else {
@@ -1635,18 +1754,64 @@ function renderMemories(skipAnim){
     return;
   }
 
-function memSortCmp(a,b){
-  if(a.pinned&&!b.pinned)return -1;
-  if(!a.pinned&&b.pinned)return 1;
-  if(a.pinned&&b.pinned){var aMax=Math.max(new Date(a.edited_at||a.created_at||0),new Date(a.pinned_at||0));var bMax=Math.max(new Date(b.edited_at||b.created_at||0),new Date(b.pinned_at||0));if(bMax!==aMax)return bMax-aMax;return (Number(b.id)||0)-(Number(a.id)||0)}
-  var tA=new Date(a.edited_at||a.created_at||0).getTime();var tB=new Date(b.edited_at||b.created_at||0).getTime();if(tB!==tA)return tB-tA;return (Number(b.id)||0)-(Number(a.id)||0);
-}
-  // Sort：v6.19 最終公式（釘選群 max(編輯,釘選)＋id 決勝；未釘選 編輯時間＋id 決勝）
   filtered.sort(memSortCmp);
 
-  for(var i=0;i<filtered.length;i++){
-    appendMemCard(filtered[i],skipAnim);
+  var existingCards={};
+  var currentDomCards=memWall.querySelectorAll('.mem-card[data-mem-id]');
+  for(var ei=0;ei<currentDomCards.length;ei++){
+    existingCards[currentDomCards[ei].getAttribute('data-mem-id')]=currentDomCards[ei];
   }
+  var emptyMsg=memWall.querySelector('.mem-empty');
+  if(emptyMsg)emptyMsg.remove();
+  var keepIds={};
+  for(var si=0;si<filtered.length;si++){keepIds[String(filtered[si].id)]=1}
+  for(var rid in existingCards){
+    if(!keepIds[rid]){existingCards[rid].remove();delete existingCards[rid]}
+  }
+  var ordered=[];
+  for(var i=0;i<filtered.length;i++){
+    var memId=String(filtered[i].id);
+    var card=existingCards[memId];
+    if(card){
+      // 就地更新（比對後才寫，沒變的卡片一個字都不碰＝零重繪零抖）
+      var pinBtn=card.querySelector('.mem-pin-toggle');
+      if(pinBtn){
+        var wantPinned=!!filtered[i].pinned;
+        if(pinBtn.classList.contains('pinned')!==wantPinned){
+          if(wantPinned)pinBtn.classList.add('pinned');else pinBtn.classList.remove('pinned');
+        }
+        var wantTitle=wantPinned?'取消釘選':'釘選（冬至會讀取）';
+        if(pinBtn.title!==wantTitle)pinBtn.title=wantTitle;
+      }
+      var whenEl=card.querySelector('.mem-when');
+      if(whenEl){
+        var displayTime=filtered[i].edited_at||filtered[i].created_at;
+        if(displayTime){
+          var d=new Date(displayTime);
+          var wantWhen=(d.getMonth()+1)+'/'+d.getDate()+' '+String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0');
+          if(whenEl.textContent!==wantWhen)whenEl.textContent=wantWhen;
+        }
+      }
+      var txtEl=card.querySelector('.mem-text');
+      if(txtEl&&!card.querySelector('.mem-edit-area')){
+        // 多視窗保護（v4.11 補）：背景抓回來的新字就地換上；卡片正在編輯中就不碰
+        var wantTxt=filtered[i].summary||'';
+        if(txtEl.textContent!==wantTxt)txtEl.textContent=wantTxt;
+      }
+      ordered.push(card);
+    } else {
+      ordered.push(createMemCard(filtered[i],skipAnim));
+    }
+  }
+  if(!LIST_MINIMAL_MOVE){
+    // ☢️ 保險絲：退回舊的全量搬家模式
+    for(var ni=0;ni<ordered.length;ni++){
+      if(ordered[ni].parentNode===memWall)ordered[ni].style.animation='none';
+      memWall.appendChild(ordered[ni]);
+    }
+    return;
+  }
+  applyOrderMinimal(memWall,ordered);
 }
 
 function getMemTypeInfo(mem){
@@ -1656,7 +1821,7 @@ function getMemTypeInfo(mem){
   return {label:'\uD83D\uDCAC \u5C0D\u8A71\u6458\u8981',cls:'mem-type-compressed'};
 }
 
-function appendMemCard(mem,skipAnim){
+function createMemCard(mem,skipAnim){
   var card=document.createElement('div');
   card.className='mem-card';
   // Random subtle tilt like notes pinned on a wall
@@ -1694,32 +1859,34 @@ function appendMemCard(mem,skipAnim){
     var memId=card.getAttribute('data-mem-id');
     var isPinned=pin.classList.contains('pinned');
     var newVal=!isPinned;
+    var nowTs=new Date().toISOString();
+    var prevPinnedAt=null;
     for(var mi=0;mi<allMemories.length;mi++){
       if(String(allMemories[mi].id)===String(memId)){
+        prevPinnedAt=allMemories[mi].pinned_at||null;
         allMemories[mi].pinned=newVal;
-        allMemories[mi].pinned_at=newVal?new Date().toISOString():null;
+        allMemories[mi].pinned_at=newVal?nowTs:null;
         break;
       }
     }
-    // Update this card's pin button immediately (no re-render)
-    if(newVal){
-      pin.classList.add('pinned');
-      pin.title='取消釘選';
-      card.classList.add('sb-pinned');
-    } else {
-      pin.classList.remove('pinned');
-      pin.title='釘選（冬至會讀取）';
-      card.classList.remove('sb-pinned');
-    }
-    // Re-render quietly (no animation, no flash)
-    var savedScroll=memWall.scrollTop;
+    // Optimistic render immediately (no scrollTop juggling - appendChild keeps scroll, mirrors sidebar)
     renderMemories(true);
-    memWall.scrollTop=savedScroll;
-    fetch(API_URL+'/memories/'+memId,{
-      method:'PATCH',headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({pinned:newVal})
-    }).catch(function(e){console.error(e)});
+    // Persist to server
+    fetch(API_URL+'/memories/'+memId,{method:'PATCH',headers:{'Content-Type':'application/json'},body:JSON.stringify({pinned:newVal})})
+      .then(function(r){if(!r.ok)throw new Error('HTTP '+r.status)})
+      .catch(function(e){
+        console.error('[PIN] Memory pin failed, rolling back:',e);
+        for(var mj=0;mj<allMemories.length;mj++){
+          if(String(allMemories[mj].id)===String(memId)){
+            allMemories[mj].pinned=isPinned;
+            allMemories[mj].pinned_at=isPinned?prevPinnedAt:null;
+            break;
+          }
+        }
+        renderMemories(true);
+      });
   });
+
 
   var edit=document.createElement('button');
   edit.className='mem-edit';
@@ -1757,9 +1924,8 @@ function appendMemCard(mem,skipAnim){
 
   card.appendChild(top);
   card.appendChild(text);
-  memWall.appendChild(card);
+  return card;
 }
-
 function startEditMem(card,mem){
   var textDiv=card.querySelector('.mem-text');
   if(!textDiv||card.querySelector('.mem-edit-area')) return;
@@ -1910,7 +2076,14 @@ async function generateMainMemory(btn){
   var recent=[];var startIdx=Math.max(0,allBubs.length-6);
   for(var i=startIdx;i<allBubs.length;i++){
     var el=allBubs[i];var role=el.classList.contains('user')?'user':'assistant';
-    recent.push({role:role,content:el.textContent});
+    // 剔除思考區塊：不讓 thinking 內容混進記憶素材
+    var elClone=el.cloneNode(true);
+    var tbBlock=elClone.querySelector('.thinking-block');
+    if(tbBlock&&tbBlock.parentNode)tbBlock.parentNode.removeChild(tbBlock);
+    // 剔除來源書籤與 YouTube 小卡：網域名和「♪ 點我一起看」不是對話內容，不入記憶
+    var junk=elClone.querySelectorAll('.ch-src,.ch-yt');
+    for(var ji=0;ji<junk.length;ji++){if(junk[ji].parentNode)junk[ji].parentNode.removeChild(junk[ji])}
+    recent.push({role:role,content:elClone.textContent});
   }
   try{
     var resp=await fetch(API_URL+'/generate-memory',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:recent,model:selectedModel,sessionId:sessionId?parseInt(sessionId):null})});
@@ -2286,6 +2459,9 @@ async function changePassword() {
         el.style.bottom = '';
       }
     });
+    // 回到底部箭頭跟著鍵盤浮起（position:fixed 錨在版面視口底，鍵盤一開會沉進鍵盤後面）
+    var sb=document.getElementById('scrollBtn');
+    if(sb) sb.style.bottom = (offset>50) ? (offset+58)+'px' : '';
     // 聊天訊息自動滾到底
     if(offset > 50){
       var chatEl = document.getElementById('chat');
