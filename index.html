@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- solstice-greenhouse-restore-v2-gate -->
+<!-- solstice-greenhouse-restore-v3-c1 -->
 <html lang="zh-TW">
 <head>
 <meta charset="UTF-8">
@@ -16,6 +16,10 @@
 <link rel="preload" as="image" href="https://raw.githubusercontent.com/peishuanloveyourbulb-dotcom/solstice-frontend/main/images/bg-main.jpg">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
+/* C1 長按複製解封（照 v6.19 規則）：整體關 tap 藍光與反白，訊息內文/思考框/輸入框放行 */
+*{-webkit-tap-highlight-color:transparent}
+body{-webkit-user-select:none;user-select:none}
+.ch-bub,.ch-bub *,.thinking-content,.thinking-content *,input,textarea{-webkit-user-select:text;user-select:text}
 :root{
 --bg-deep:#FDFCF5;
 --bg-card:rgba(255,248,225,.55);
@@ -308,6 +312,9 @@ body{padding-top:0}
 .gate-err{min-height:16px;margin-top:10px;font-size:12px;color:#C0392B}
 @keyframes gateShake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
 .gate-shake{animation:gateShake .4s ease}
+
+/* C1 聊天室背景合照：bg-chat-mint 掛回牆上，奶白紗簾保泡泡可讀 */
+#chat{background:linear-gradient(rgba(253,252,245,.80),rgba(253,252,245,.86)),url('images/bg-chat-mint.jpg') center/cover no-repeat}
 </style>
 </head>
 <body>
@@ -692,6 +699,71 @@ function selectModelFromPopup(id){
   renderModelPopupList();
   setTimeout(closeModelPopup,200);
 }
+// 🔍 網頁搜尋開關：跟思考開關並排、同款記憶——開著的那一句才會上網查
+var webSearchOn=localStorage.getItem('solstice-websearch')==='true';
+function toggleWebSearch(){
+  webSearchOn=!webSearchOn;
+  localStorage.setItem('solstice-websearch',webSearchOn?'true':'false');
+  syncWebSearchBtn();
+}
+function syncWebSearchBtn(){
+  var track=document.getElementById('swTrack');
+  var label=document.getElementById('swLabel');
+  if(track){if(webSearchOn)track.classList.add('active');else track.classList.remove('active')}
+  if(label){if(webSearchOn)label.classList.add('active');else label.classList.remove('active')}
+}
+// 📍 Here 開關：帶著位置聊天——搜吃的搜得準、關心跟著妳走、推播寫信也吃得到
+var locOn=localStorage.getItem('solstice-loc')==='true';
+var locData=null;try{locData=JSON.parse(localStorage.getItem('solstice-loc-data')||'null')}catch(e){}
+function syncLocBtn(){
+  var track=document.getElementById('locTrack');
+  var label=document.getElementById('locLabel');
+  if(track){if(locOn)track.classList.add('active');else track.classList.remove('active')}
+  if(label){if(locOn)label.classList.add('active');else label.classList.remove('active')}
+}
+function toggleLoc(){
+  locOn=!locOn;
+  localStorage.setItem('solstice-loc',locOn?'true':'false');
+  syncLocBtn();
+  if(locOn)locRefresh(true); // 打開的那一下就去要一次授權
+}
+function locRefresh(force){
+  if(!locOn||!navigator.geolocation)return;
+  if(!force&&locData&&(Date.now()-locData.ts)<10*60000)return; // 十分鐘內的定位還新鮮
+  navigator.geolocation.getCurrentPosition(function(pos){
+    // 座標換城市名：只把經緯度丟給免鑰匙的反查服務，換回「城市＋縣市」兩個詞，其他什麼都不送
+    fetch('https://api.bigdatacloud.net/data/reverse-geocode-client?latitude='+pos.coords.latitude+'&longitude='+pos.coords.longitude+'&localityLanguage=zh-Hant')
+      .then(function(r){return r.json()})
+      .then(function(g){
+        var city=g.city||g.locality||'';
+        if(city){locData={city:city,area:g.principalSubdivision||'',ts:Date.now()};
+          try{localStorage.setItem('solstice-loc-data',JSON.stringify(locData))}catch(e){}}
+      }).catch(function(){});
+  },function(){/* 她按了拒絕或抓不到：安安靜靜，不彈任何字 */},{enableHighAccuracy:false,maximumAge:600000,timeout:8000});
+}
+document.addEventListener('visibilitychange',function(){if(!document.hidden)locRefresh(false)});
+function solInpFit(el, max){
+  var sh = el.scrollHeight, cur = el.clientHeight;
+  if (sh > cur + 1) { el.style.height = Math.min(sh, max) + 'px'; return; }
+  var g = el._fitGhost;
+  if (!g) {
+    g = el._fitGhost = document.createElement('div');
+    var cs = getComputedStyle(el);
+    ['fontFamily','fontSize','fontStyle','fontWeight','lineHeight','letterSpacing','paddingTop','paddingBottom','paddingLeft','paddingRight','boxSizing','wordBreak','overflowWrap','minHeight'].forEach(function(p){ g.style[p] = cs[p]; });
+    g.style.whiteSpace = 'pre-wrap';
+    g.style.position = 'absolute';
+    g.style.visibility = 'hidden';
+    g.style.pointerEvents = 'none';
+    g.style.left = '-9999px';
+    g.style.top = '0';
+    g.style.border = '0';
+    document.body.appendChild(g);
+  }
+  g.style.width = el.clientWidth + 'px';
+  g.textContent = (el.value || '') + '\u200b';
+  var need = Math.min(g.offsetHeight, max);
+  if (Math.abs(need - cur) > 1) el.style.height = need + 'px';
+}
 function toggleThinking(){
   thinkingEnabled=!thinkingEnabled;
   localStorage.setItem('solstice-thinking',thinkingEnabled?'true':'false');
@@ -766,7 +838,7 @@ document.getElementById('modelSelect').addEventListener('change',function(){
   updateModelLabel();
 });
 loadModels();
-initThinkingBtn();
+initThinkingBtn();syncWebSearchBtn();syncLocBtn();
 function openSidebar(){sidebar.classList.add('open');sidebarOverlay.classList.add('open');loadSessions()}
 function closeSidebar(){sidebar.classList.remove('open');sidebarOverlay.classList.remove('open')}
 document.getElementById('menuBtn').addEventListener('click',openSidebar);
@@ -959,7 +1031,7 @@ function loadHistory(){
     requestAnimationFrame(function(){msgs.scrollTop=msgs.scrollHeight;requestAnimationFrame(function(){msgs.scrollTop=msgs.scrollHeight})});
   }).catch(function(e){console.error('Load history error:',e)})
 }
-inp.addEventListener('input',function(){sendBtn.disabled=!inp.value.trim()&&pendingImages.length===0});
+inp.addEventListener('input',function(){solInpFit(inp,120);sendBtn.disabled=!inp.value.trim()&&pendingImages.length===0});
 var pendingImages=[];
 function compressImage(file,callback){
   var img=new Image();
@@ -1014,6 +1086,8 @@ function doSend(){
   if(v)addMsg('user',v,null,allImgs);else if(allImgs)addMsg('user','[📷 圖片]',null,allImgs);
   var body={message:v||'',model:selectedModel};
   if(thinkingEnabled)body.thinking=true;
+  if(webSearchOn)body.webSearch=true;
+  if(locOn){if(locData&&locData.city)body.userLoc=locData;locRefresh(false)}
   if(pendingImages.length>0){body.image_base64=pendingImages[0];if(pendingImages.length>1)body.extra_images=pendingImages.slice(1)}
   if(sessionId){body.sessionId=parseInt(sessionId)}
   inp.value='';inp.style.height='auto';sendBtn.disabled=true;
@@ -1785,12 +1859,14 @@ async function changePassword() {
 <div class="model-popup-overlay" id="modelPopupOverlay" onclick="closeModelPopup()"></div>
 <div class="model-popup" id="modelPopup">
 <div class="model-popup-handle"></div>
-<div class="think-toggle-row">
-<div class="model-popup-title" style="margin-bottom:0;flex:1;text-align:center;padding-left:70px">Choose Model 💚</div>
-<div style="display:flex;align-items:center;gap:6px;flex-shrink:0">
-<span class="think-toggle-label" id="thinkLabel">Think</span>
-<div class="think-toggle-track" id="thinkTrack" onclick="toggleThinking()"><div class="think-toggle-knob"></div></div>
-</div>
+<div class="model-popup-title" style="text-align:center">Choose Model 💚</div>
+<div class="think-toggle-row" style="justify-content:center;gap:18px;margin-bottom:10px">
+<div style="display:flex;align-items:center;gap:6px"><span class="think-toggle-label" id="thinkLabel">Think</span>
+<div class="think-toggle-track" id="thinkTrack" onclick="toggleThinking()"><div class="think-toggle-knob"></div></div></div>
+<div style="display:flex;align-items:center;gap:6px"><span class="think-toggle-label" id="swLabel">Web</span>
+<div class="think-toggle-track" id="swTrack" onclick="toggleWebSearch()"><div class="think-toggle-knob"></div></div></div>
+<div style="display:flex;align-items:center;gap:6px"><span class="think-toggle-label" id="locLabel">Here</span>
+<div class="think-toggle-track" id="locTrack" onclick="toggleLoc()"><div class="think-toggle-knob"></div></div></div>
 </div>
 <div class="model-popup-list" id="modelPopupList"></div>
 </div>
