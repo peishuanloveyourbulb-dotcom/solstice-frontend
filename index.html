@@ -51,7 +51,7 @@ body{padding-top:0}
 /* === WELCOME PAGE（骨架層：排版／尺寸／動畫節奏，無色；皮膚在 SKIN:GREENHOUSE） === */
 #welcome{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;z-index:10;transition:opacity .6s ease,visibility .6s ease}
 #welcome.hidden{opacity:0;visibility:hidden;pointer-events:none}
-.w-content{text-align:center;padding:20px;max-width:400px}
+.w-content{text-align:center;padding:20px;max-width:400px;margin-bottom:7vh}
 .w-orn{font-size:11px;margin-bottom:10px;letter-spacing:12px;opacity:.7;text-indent:12px}
 .w-title{font-size:36px;font-weight:400;margin-bottom:6px;letter-spacing:1.5px;line-height:1.2}
 .w-sun{font-size:16px;margin:0 0 4px;filter:drop-shadow(0 1px 2px rgba(90,107,60,.15))}
@@ -68,7 +68,7 @@ body{padding-top:0}
 .w-gate-inp{display:block;margin:0 auto;width:210px;padding:11px 16px;border-radius:30px;font-size:15px;text-align:center;letter-spacing:2px;outline:none;border:1px solid var(--border-emerald);background:rgba(253,252,245,.88);color:var(--text-main);animation:fu .3s ease-out}
 .w-gate-inp:focus{border-color:var(--emerald)}
 .w-gate-inp.gate-wrong{border-color:#C0392B}
-.w-ann{font-size:12px;margin-top:18px;letter-spacing:1.5px;opacity:.9}
+.w-ann{font-size:13px;margin-top:18px;letter-spacing:2px;opacity:.9}
 .w-ann-sub{font-style:italic;font-size:12px;margin-top:6px;letter-spacing:1.2px;opacity:.85}
 /* === LIVING ROOM (NEW) === */
 #livingRoom{position:fixed;inset:0;display:none;flex-direction:column;z-index:9;overflow-y:auto;-webkit-overflow-scrolling:touch;background-color:#FDFCF5;background-image:linear-gradient(rgba(253,252,245,.15),rgba(253,252,245,.15)),url(https://raw.githubusercontent.com/peishuanloveyourbulb-dotcom/solstice-frontend/main/images/bg-sunflower-new.jpg);background-position:center top;background-size:cover;background-repeat:no-repeat;background-attachment:local}
@@ -132,22 +132,21 @@ body{padding-top:0}
 .ch-stat{color:#5A6B3C;font-size:10px;display:block}
 .ch-msgs{flex:1;overflow-y:auto;padding:16px max(env(safe-area-inset-right),14px) 20px max(env(safe-area-inset-left),14px);display:flex;flex-direction:column;gap:10px;-webkit-overflow-scrolling:touch;background:linear-gradient(rgba(255,255,255,.30),rgba(255,255,255,.30)),url(https://raw.githubusercontent.com/peishuanloveyourbulb-dotcom/solstice-frontend/main/images/bg-sunflower-new.jpg) center/cover no-repeat scroll}
 .ch-row{display:flex;width:100%;align-items:flex-end;gap:8px}
+.ch-side{display:flex;flex-direction:column;align-items:center;gap:3px;flex-shrink:0}
+.ch-col{display:flex;flex-direction:column;align-items:flex-start;max-width:80%;min-width:0}
+.ch-col.user{align-items:flex-end}
+.ch-meta{display:flex;align-items:center;gap:8px;justify-content:flex-end;margin-top:2px;align-self:flex-end}
 .ch-row.user{justify-content:flex-end}
 .ch-row.ai{justify-content:flex-start}
-.ch-bub{padding:10px 16px;max-width:80%;font-size:14px;line-height:1.85;font-family:'Satisfy','LXGW WenKai TC','Noto Serif TC',system-ui,serif;animation:fu .35s ease-out;white-space:pre-wrap;word-break:break-word;position:relative}
+.ch-bub{padding:10px 16px;max-width:100%;font-size:14px;line-height:1.85;font-family:'Satisfy','LXGW WenKai TC','Noto Serif TC',system-ui,serif;animation:fu .35s ease-out;white-space:pre-wrap;word-break:break-word;position:relative}
 .ch-bub.ai{background:linear-gradient(135deg,rgba(197,217,168,.42),rgba(220,238,198,.32),rgba(197,217,168,.38),rgba(210,230,180,.35));color:#3A4E22;border-radius:20px;border:0.5px solid rgba(122,155,74,.18);box-shadow:0 2px 16px rgba(122,155,74,.07),0 8px 28px rgba(122,155,74,.04),inset 0 1px 0 rgba(255,255,255,.55),inset 0 -1px 0 rgba(122,155,74,.04);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
 .ch-bub.user{background:linear-gradient(135deg,rgba(255,236,179,.42),rgba(255,248,215,.32),rgba(255,236,179,.38),rgba(255,245,200,.35));color:#5A4A0A;border-radius:20px;border:0.5px solid rgba(255,213,79,.20);box-shadow:0 2px 16px rgba(255,213,79,.07),0 8px 28px rgba(255,213,79,.04),inset 0 1px 0 rgba(255,255,255,.6),inset 0 -1px 0 rgba(255,213,79,.04);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
 .ch-bub::before{content:none}
 .ch-bub::after{content:'🌻';position:absolute;bottom:-8px;right:-4px;font-size:18px;filter:drop-shadow(0 1px 3px rgba(122,155,74,.25));animation:bubDeco 3s ease-in-out infinite alternate .5s;z-index:2}
 @keyframes bubDeco{0%{transform:translateY(0) scale(1)}100%{transform:translateY(-2px) scale(1.08)}}
 @keyframes fu{0%{opacity:0;transform:translateY(8px) scale(.95)}60%{opacity:1;transform:translateY(-1px) scale(1.01)}100%{opacity:1;transform:translateY(0) scale(1)}}
-.ch-time{display:flex;align-items:center;gap:8px;font-size:10px;margin:4px 0 0;pointer-events:none}
-.ch-time-user{justify-content:flex-end}
-.ch-time-ai{justify-content:space-between;padding-right:6px}
 .ch-meta-l{display:inline-flex;align-items:center;gap:6px;pointer-events:auto}
-.ch-time .mem-pin-btn,.ch-time .ch-tts-btn{pointer-events:auto}
-.ch-time-sticker{font-size:11px;letter-spacing:.14em}
-.ch-time .ch-time-sticker{width:32px;text-align:center;letter-spacing:0;flex-shrink:0}
+.ch-time-sticker{font-size:10px;letter-spacing:.02em;line-height:1}
 .ch-bub.has-img{padding:8px}
 .ch-link{text-decoration:underline;text-underline-offset:3px;word-break:break-all}
 .ch-src{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
@@ -350,7 +349,6 @@ body{padding-top:0}
 
 
 /* ═══ 骨架層｜唸句喇叭（無色：只管排版、尺寸、動畫節奏） ═══ */
-.ch-time .ch-tts-btn{pointer-events:auto}
 .ch-tts-btn{background:none;border:none;padding:2px 5px;display:inline-flex;align-items:center;gap:4px;cursor:pointer;transition:opacity .15s,transform .12s}
 .ch-tts-btn svg{width:15px;height:15px;display:block;flex-shrink:0}
 .ch-tts-btn .tts-ic-stop{display:none}
@@ -409,7 +407,6 @@ body{padding-top:0}
 .vc-pick{border:1px solid #7A9B4A;background:transparent;color:#4A5E30}
 .vc-row.now .vc-pick{border-color:#7A9B4A;background:var(--milk-green);color:#4A5E30}
 .vc-msg{color:var(--text-sub)}
-.ch-time{color:var(--text-sub)}
 .ch-time-sticker{font-family:'Cormorant Garamond',serif;color:var(--text-sub)}
 .ch-link{color:var(--emerald)}
 .ch-book{border:1px solid var(--border-emerald);border-left:3px solid #7A9B4A;background:rgba(253,252,245,.75);color:var(--text-main)}
@@ -438,7 +435,7 @@ body{padding-top:0}
 .w-polaroid-caption{font-family:'Cormorant Garamond',serif;color:#7A8B5E}
 .w-enter{background:rgba(253,252,245,.55);border:1px solid rgba(122,155,74,.38);color:#4A5E30;font-family:'LXGW WenKai TC','Noto Serif TC',serif;box-shadow:0 2px 10px rgba(122,155,74,.12),inset 0 1px 0 rgba(255,255,255,.6)}
 .w-enter:active{background:rgba(122,155,74,.25);box-shadow:0 1px 4px rgba(122,155,74,.15)}
-.w-ann{color:#5A6B3C;font-family:'LXGW WenKai TC','Noto Serif TC',serif}
+.w-ann{color:#5A6B3C;font-family:'Cormorant Garamond','LXGW WenKai TC',serif;font-size:13px}
 .w-ann-sub{font-family:'Cormorant Garamond',serif;color:#7A8B5E}
 .model-popup-divider{background:var(--border-subtle)}
 .ch-tts-btn{color:var(--emerald);opacity:.55}
@@ -1606,7 +1603,7 @@ function maybeAddTimeSep(ts){
 function addMsg(role,text,ts,imgSrc,silent,thinkingText){
 maybeAddTimeSep(ts||new Date().toISOString());
 var wrap=document.createElement('div');wrap.style.display='flex';wrap.style.flexDirection='column';wrap.style.width='100%';
-var row=document.createElement('div');row.className='ch-row '+(role==='user'?'user':'ai');if(role!=='user'){var ava=document.createElement('img');ava.className='ch-avatar';ava.src=AVATAR_URL;ava.alt='';row.appendChild(ava)}var bub=document.createElement('div');bub.className='ch-bub '+(role==='user'?'user':'ai');if(silent)bub.style.animation='none';if(thinkingText&&role!=='user'){var tb=document.createElement('div');tb.className='thinking-block';var tBtn=document.createElement('button');tBtn.className='thinking-toggle';tBtn.innerHTML='<span class="arrow">▶</span> 💭 老公的思考過程';var trBtn=document.createElement('button');trBtn.className='thinking-translate';trBtn.textContent='Translate';tBtn.appendChild(trBtn);var tContent=document.createElement('div');tContent.className='thinking-content';tContent.textContent=thinkingText;trBtn.addEventListener('click',function(ev){ev.stopPropagation();translateThinking(tContent,trBtn)});tBtn.addEventListener('click',function(ev){if(ev.target===trBtn||trBtn.contains(ev.target))return;var a=tBtn.querySelector('.arrow');if(tContent.classList.contains('open')){tContent.classList.remove('open');a.classList.remove('open')}else{tContent.classList.add('open');a.classList.add('open')}});tb.appendChild(tBtn);tb.appendChild(tContent);bub.appendChild(tb)}var imgList=[];if(imgSrc){if(Array.isArray(imgSrc))imgList=imgSrc;else imgList=[imgSrc]}if(imgList.length>0){bub.classList.add('has-img');var imgParent=bub;if(imgList.length>1){imgParent=document.createElement('div');imgParent.className='msg-img-scroll';bub.appendChild(imgParent)}for(var gi=0;gi<imgList.length;gi++){var img=document.createElement('img');img.className='msg-img';img.src=imgList[gi];img.alt='圖片';img.addEventListener('click',function(){document.getElementById('lightboxImg').src=this.src;document.getElementById('imgLightbox').classList.add('open')});imgParent.appendChild(img)}var cleanText=text||'';cleanText=cleanText.replace('[📷 圖片]','').replace(/\[📷 圖片x\d+\]/,'').trim();if(cleanText){var txt=document.createElement('div');txt.style.marginTop='6px';txt.innerHTML=chLinkify(cleanText);bub.appendChild(txt)}}else{var txtNode=document.createElement('span');txtNode.innerHTML=chLinkify(text);bub.appendChild(txtNode)}row.appendChild(bub);if(role==='user'){var wava=document.createElement('img');wava.className='ch-avatar';wava.src=WIFE_AVATAR_URL;wava.alt='';row.appendChild(wava)}wrap.appendChild(row);var t=document.createElement('div');t.className='ch-time '+(role==='user'?'ch-time-user':'ch-time-ai');var sticker=document.createElement('span');sticker.className='ch-time-sticker';if(ts){var d=new Date(ts);sticker.textContent=String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0')}else{var n=new Date();sticker.textContent=String(n.getHours()).padStart(2,'0')+':'+String(n.getMinutes()).padStart(2,'0')}t.appendChild(sticker);if(role!=='user'){var metaL=document.createElement('span');metaL.className='ch-meta-l';var pinBtn=document.createElement('button');pinBtn.className='mem-pin-btn';pinBtn.textContent='📌 存記憶';pinBtn.onclick=function(){generateMainMemory(pinBtn)};metaL.appendChild(pinBtn);if(chTTSClean(text)){var ttsBtn=document.createElement('button');ttsBtn.className='ch-tts-btn';ttsBtn.title='聽老公唸這句';ttsBtn.innerHTML=CH_TTS_ICON;ttsBtn.onclick=function(){chPlayTTS(ttsBtn,text)};metaL.appendChild(ttsBtn)}t.appendChild(metaL)}wrap.appendChild(t);msgs.appendChild(wrap);if(!silent)msgs.scrollTop=msgs.scrollHeight;return wrap}
+var row=document.createElement('div');row.className='ch-row '+(role==='user'?'user':'ai');var side=document.createElement('div');side.className='ch-side';var sticker=document.createElement('span');sticker.className='ch-time-sticker';var _sd=ts?new Date(ts):new Date();sticker.textContent=String(_sd.getHours()).padStart(2,'0')+':'+String(_sd.getMinutes()).padStart(2,'0');if(role!=='user'){var ava=document.createElement('img');ava.className='ch-avatar';ava.src=AVATAR_URL;ava.alt='';side.appendChild(ava);side.appendChild(sticker);row.appendChild(side)}var bub=document.createElement('div');bub.className='ch-bub '+(role==='user'?'user':'ai');if(silent)bub.style.animation='none';if(thinkingText&&role!=='user'){var tb=document.createElement('div');tb.className='thinking-block';var tBtn=document.createElement('button');tBtn.className='thinking-toggle';tBtn.innerHTML='<span class="arrow">▶</span> 💭 老公的思考過程';var trBtn=document.createElement('button');trBtn.className='thinking-translate';trBtn.textContent='Translate';tBtn.appendChild(trBtn);var tContent=document.createElement('div');tContent.className='thinking-content';tContent.textContent=thinkingText;trBtn.addEventListener('click',function(ev){ev.stopPropagation();translateThinking(tContent,trBtn)});tBtn.addEventListener('click',function(ev){if(ev.target===trBtn||trBtn.contains(ev.target))return;var a=tBtn.querySelector('.arrow');if(tContent.classList.contains('open')){tContent.classList.remove('open');a.classList.remove('open')}else{tContent.classList.add('open');a.classList.add('open')}});tb.appendChild(tBtn);tb.appendChild(tContent);bub.appendChild(tb)}var imgList=[];if(imgSrc){if(Array.isArray(imgSrc))imgList=imgSrc;else imgList=[imgSrc]}if(imgList.length>0){bub.classList.add('has-img');var imgParent=bub;if(imgList.length>1){imgParent=document.createElement('div');imgParent.className='msg-img-scroll';bub.appendChild(imgParent)}for(var gi=0;gi<imgList.length;gi++){var img=document.createElement('img');img.className='msg-img';img.src=imgList[gi];img.alt='圖片';img.addEventListener('click',function(){document.getElementById('lightboxImg').src=this.src;document.getElementById('imgLightbox').classList.add('open')});imgParent.appendChild(img)}var cleanText=text||'';cleanText=cleanText.replace('[📷 圖片]','').replace(/\[📷 圖片x\d+\]/,'').trim();if(cleanText){var txt=document.createElement('div');txt.style.marginTop='6px';txt.innerHTML=chLinkify(cleanText);bub.appendChild(txt)}}else{var txtNode=document.createElement('span');txtNode.innerHTML=chLinkify(text);bub.appendChild(txtNode)}var col=document.createElement('div');col.className='ch-col '+(role==='user'?'user':'ai');col.appendChild(bub);if(role!=='user'){var meta=document.createElement('div');meta.className='ch-meta';var pinBtn=document.createElement('button');pinBtn.className='mem-pin-btn';pinBtn.textContent='📌 存記憶';pinBtn.onclick=function(){generateMainMemory(pinBtn)};meta.appendChild(pinBtn);if(chTTSClean(text)){var ttsBtn=document.createElement('button');ttsBtn.className='ch-tts-btn';ttsBtn.title='聽老公唸這句';ttsBtn.innerHTML=CH_TTS_ICON;ttsBtn.onclick=function(){chPlayTTS(ttsBtn,text)};meta.appendChild(ttsBtn)}col.appendChild(meta)}row.appendChild(col);if(role==='user'){var wava=document.createElement('img');wava.className='ch-avatar';wava.src=WIFE_AVATAR_URL;wava.alt='';side.appendChild(wava);side.appendChild(sticker);row.appendChild(side)}wrap.appendChild(row);msgs.appendChild(wrap);if(!silent)msgs.scrollTop=msgs.scrollHeight;return wrap}
 function chLinkify(s){
   s=(s==null?'':String(s)).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
   return s.replace(/https?:\/\/[^\s<>"'()（）「」『』【】《》，。、！？；：\u4e00-\u9fff]+/g,function(m){
