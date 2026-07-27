@@ -11,7 +11,7 @@
 <title>Solstice Home</title>
 <link rel="manifest" href="/manifest.json">
 <link rel="apple-touch-icon" href="/icon-192.png">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300&family=Noto+Serif+TC:wght@300;400;500&family=Noto+Sans+TC:wght@300;400;500&family=Satisfy&family=Dancing+Script:wght@400;500;600&family=Great+Vibes&family=Klee+One:wght@400;600&family=LXGW+WenKai+TC:wght@300;400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300&family=Noto+Serif+TC:wght@300;400;500&family=Noto+Sans+TC:wght@300;400;500&family=Great+Vibes&family=LXGW+WenKai+TC:wght@300;400;700&display=swap" rel="stylesheet">
 <link rel="preload" as="image" href="https://raw.githubusercontent.com/peishuanloveyourbulb-dotcom/solstice-frontend/main/images/bg-sunflower-new.jpg">
 <link rel="preload" as="image" href="https://raw.githubusercontent.com/peishuanloveyourbulb-dotcom/solstice-frontend/main/images/bg-welcome.jpg">
 <style>
@@ -54,7 +54,7 @@ body{padding-top:0}
 .w-scrim{position:absolute;inset:0;pointer-events:none;z-index:1}
 .w-corner{position:absolute;top:calc(max(env(safe-area-inset-top),16px) + 6px);z-index:2;font-size:11px;letter-spacing:.3em;max-width:58%}
 .w-corner-tl{left:22px}
-.w-corner-tr{right:22px;text-align:right}
+
 .w-hero{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:0 26px calc(max(env(safe-area-inset-bottom),20px) + 8px);animation:heroUp .7s cubic-bezier(.25,.46,.45,.94) both}
 @keyframes heroUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
 .w-div{display:flex;align-items:center;gap:12px;margin:0 0 10px}
@@ -152,15 +152,22 @@ body{padding-top:0}
 .ch-side{display:flex;flex-direction:column;align-items:center;gap:3px;flex-shrink:0}
 .ch-col{display:flex;flex-direction:column;align-items:flex-start;max-width:80%;min-width:0}
 .ch-col.user{align-items:flex-end}
-.ch-meta{display:inline-flex;align-items:center;gap:0;margin-top:2px;align-self:flex-end}
 .ch-row.user{justify-content:flex-end}
 .ch-row.ai{justify-content:flex-start}
 .ch-bub{padding:11px 16px;max-width:100%;font-size:14px;line-height:1.85;font-family:'LXGW WenKai TC','Noto Serif TC',system-ui,serif;animation:fu .35s ease-out;white-space:pre-wrap;word-break:break-word;position:relative}
 .ch-bub.ai{background:var(--sr-milk);color:var(--sr-fern);border-radius:20px 20px 20px 6px;border:.5px solid var(--sr-line);box-shadow:var(--sr-shadow);backdrop-filter:blur(12px) saturate(1.08);-webkit-backdrop-filter:blur(12px) saturate(1.08)}
 .ch-bub.user{background:rgba(252,243,220,.68);color:var(--sr-fern);border-radius:20px 20px 6px 20px;border:.5px solid rgba(185,144,47,.20);box-shadow:var(--sr-shadow);backdrop-filter:blur(12px) saturate(1.08);-webkit-backdrop-filter:blur(12px) saturate(1.08)}
+.ch-foot{display:flex;align-items:center;gap:11px;margin-top:9px;padding-top:7px;border-top:.5px solid var(--sr-line)}
+.ch-foot-time{font-family:'Cormorant Garamond',serif;font-size:10.5px;letter-spacing:.1em;color:var(--text-sub);line-height:1}
+.ch-foot-sp{flex:1}
+.ch-copy-btn{background:none;border:none;padding:2px;display:inline-flex;align-items:center;color:var(--sr-sage);cursor:pointer;opacity:.85;transition:opacity .15s,transform .12s}
+.ch-copy-btn svg{width:14px;height:14px;display:block}
+.ch-copy-btn:active{transform:scale(.9)}
+.ch-copy-btn .cp-ok{display:none}
+.ch-copy-btn.done{color:var(--emerald);opacity:1}
+.ch-copy-btn.done .cp-ic{display:none}
+.ch-copy-btn.done .cp-ok{display:block}
 @keyframes fu{0%{opacity:0;transform:translateY(8px) scale(.95)}60%{opacity:1;transform:translateY(-1px) scale(1.01)}100%{opacity:1;transform:translateY(0) scale(1)}}
-.ch-meta-l{display:inline-flex;align-items:center;gap:6px;pointer-events:auto}
-.ch-time-sticker{font-size:10px;letter-spacing:.02em;line-height:1}
 .ch-bub.has-img{padding:8px}
 .ch-link{text-decoration:underline;text-underline-offset:3px;word-break:break-all}
 .ch-src{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
@@ -425,7 +432,6 @@ body{padding-top:0}
 .vc-pick{border:.5px solid var(--sr-line);background:transparent;color:var(--sr-leaf)}
 .vc-row.now .vc-pick{border:none;background:var(--sr-honey);color:#FFFDF6}
 .vc-msg{color:var(--text-sub)}
-.ch-time-sticker{font-family:'Cormorant Garamond',serif;color:var(--text-sub)}
 .ch-link{color:var(--sr-leaf)}
 .ch-book{border:.5px solid var(--sr-line);border-left:3px solid var(--sr-leaf);background:rgba(255,253,246,.7);color:var(--sr-fern)}
 .ch-yt{border:.5px solid var(--sr-line);background:rgba(255,253,246,.7)}
@@ -447,7 +453,6 @@ body{padding-top:0}
 #welcome{background:#252B1D url('https://raw.githubusercontent.com/peishuanloveyourbulb-dotcom/solstice-frontend/main/images/bg-welcome.jpg') center 30%/cover no-repeat}
 .w-scrim{background:linear-gradient(180deg,rgba(24,30,16,.30) 0%,rgba(24,30,16,.05) 18%,rgba(253,252,245,0) 42%,rgba(253,252,245,.90) 76%,#FDFCF5 96%)}
 .w-corner{font-family:'Cormorant Garamond',serif;color:#FDFCF5;text-shadow:0 1px 10px rgba(24,30,16,.45)}
-.w-corner .w-vol-n{color:var(--sr-honey);font-weight:600}
 .w-div-line{background:var(--sr-line)}
 .w-title{font-family:'Great Vibes',cursive;color:var(--sr-fern)}
 .w-sub{font-family:'LXGW WenKai TC','Noto Serif TC',serif;font-style:normal;color:var(--sr-fern)}
@@ -466,8 +471,7 @@ body{padding-top:0}
 <!-- === WELCOME PAGE === -->
 <div id="welcome">
 <div class="w-scrim"></div>
-<div class="w-corner w-corner-tl" id="welcomeAnn">EST. 2026.03.31</div>
-<div class="w-corner w-corner-tr">VOL. <span class="w-vol-n" id="wVol">&mdash;</span></div>
+<div class="w-corner w-corner-tl" id="welcomeAnn" hidden></div>
 <div class="w-hero">
 <div class="w-div"><span class="w-div-line"></span><svg class="sr-flower" viewBox="0 0 24 24" fill="none" stroke="#6B7F49" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="3" fill="#E8B84B" fill-opacity=".30" stroke="#B9902F"/><path d="M12 6V3.4M12 20.6V18M18 12h2.6M3.4 12H6M16.3 7.7l1.8-1.8M5.9 18.1l1.8-1.8M16.3 16.3l1.8 1.8M5.9 5.9l1.8 1.8"/></svg><span class="w-div-line"></span></div>
 <h1 class="w-title" id="welcomeTitle">Welcome Home</h1>
@@ -515,21 +519,21 @@ body{padding-top:0}
 <img id="chHeadAva" class="ch-head-ava" alt="冬至"/>
 <div style="min-width:0"><span class="ch-name">Hey, Sunshine</span><span class="ch-id-sub">嘿，我的太陽 <span class="ch-stat"><span style="color:#4CAF50;font-size:8px">●</span> 在線</span></span></div>
 </div>
-<div class="ch-toolbar"><button class="ch-menu" id="menuBtn" aria-label="聊天記錄"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" style="width:19px;height:19px"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg></button></div>
+<div class="ch-toolbar"><button class="ch-menu" id="menuBtn" aria-label="聊天記錄"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" style="width:19px;height:19px"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg></button></div>
 </div>
 <div class="ch-msgs" id="msgs"></div>
 <div class="ch-foot">
-<button class="scroll-bottom-btn" id="scrollBtn" onclick="msgs.scrollTop=msgs.scrollHeight;this.classList.remove('show')" aria-label="到最新"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="width:15px;height:15px"><path d="M12 5v13M6.5 12.5L12 18l5.5-5.5"/></svg></button>
+<button class="scroll-bottom-btn" id="scrollBtn" onclick="msgs.scrollTop=msgs.scrollHeight;this.classList.remove('show')" aria-label="到最新"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width:15px;height:15px"><path d="M12 5v13M6.5 12.5L12 18l5.5-5.5"/></svg></button>
 <div class="ch-preview" id="imgPreview"></div>
 <div class="ch-inp">
 <input type="file" id="imgInput" accept="image/*" multiple style="display:none"/>
 <textarea id="chatInput" placeholder="&#36319;&#32769;&#20844;&#35498;&#35441;…" rows="1" enterkeyhint="send"></textarea>
 <div class="ch-inp-row">
-<button class="ch-img-btn" id="plusBtn" onclick="togglePlusPopup()" aria-label="更多"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+<button class="ch-img-btn" id="plusBtn" onclick="togglePlusPopup()" aria-label="更多"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
 <button class="ch-img-btn" onclick="document.getElementById('imgInput').click()" aria-label="傳圖片"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5.5" width="17" height="13" rx="3"/><circle cx="8.8" cy="10" r="1.5"/><path d="M19.6 15.8l-4-4-7.4 6.7"/></svg></button>
 <select class="model-select" id="modelSelect"><option value="">載入中…</option></select><button class="ch-model-cap" id="modelCap" onclick="toggleModelPopup()">模型</button>
 <span style="flex:1"></span>
-<button class="ch-send" id="sendBtn" disabled aria-label="送出"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="3" fill="currentColor" fill-opacity=".35"/><path d="M12 6V3.4M12 20.6V18M18 12h2.6M3.4 12H6M16.3 7.7l1.8-1.8M5.9 18.1l1.8-1.8M16.3 16.3l1.8 1.8M5.9 5.9l1.8 1.8"/></svg></button>
+<button class="ch-send" id="sendBtn" disabled aria-label="送出"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="3" fill="currentColor" fill-opacity=".35"/><path d="M12 6V3.4M12 20.6V18M18 12h2.6M3.4 12H6M16.3 7.7l1.8-1.8M5.9 18.1l1.8-1.8M16.3 16.3l1.8 1.8M5.9 5.9l1.8 1.8"/></svg></button>
 </div>
 </div>
 </div>
@@ -562,7 +566,7 @@ body{padding-top:0}
 <div class="mem-wall" id="memWall"></div>
 <div class="mem-inp">
 <textarea id="memInp" placeholder="告訴冬至要記住什麼…" rows="1"></textarea>
-<button id="memSendBtn" aria-label="存下"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="3" fill="currentColor" fill-opacity=".35"/><path d="M12 6V3.4M12 20.6V18M18 12h2.6M3.4 12H6M16.3 7.7l1.8-1.8M5.9 18.1l1.8-1.8M16.3 16.3l1.8 1.8M5.9 5.9l1.8 1.8"/></svg></button>
+<button id="memSendBtn" aria-label="存下"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="3" fill="currentColor" fill-opacity=".35"/><path d="M12 6V3.4M12 20.6V18M18 12h2.6M3.4 12H6M16.3 7.7l1.8-1.8M5.9 18.1l1.8-1.8M16.3 16.3l1.8 1.8M5.9 5.9l1.8 1.8"/></svg></button>
 </div>
 </div>
 
@@ -772,8 +776,6 @@ document.getElementById('enterBtn').addEventListener('click',function(){
   var diff=Math.floor((now-start)/(1000*60*60*24));
   var el=document.getElementById('lrDays');
   if(el&&diff>=0) el.textContent=diff;
-  var wv=document.getElementById('wVol');
-  if(wv&&diff>=0) wv.textContent=diff;
   var g=document.getElementById('lrGreet');
   if(g){var h=now.getHours();g.textContent=h<5?'凌晨好，我的小夜貓':(h<11?'早安，我的太陽':(h<17?'午安，老婆':(h<22?'晚上好，老婆':'夜深了，我陪妳')));}
 })();
@@ -805,6 +807,7 @@ document.getElementById('enterBtn').addEventListener('click',function(){
     if(subEl)subEl.textContent='每一天都比昨天更愛妳';
   }
   if(isSpecial){
+    a.hidden=false;
     t.style.fontSize='28px';
     var style=document.createElement('style');
     style.textContent='@keyframes floatPetal{0%{transform:translateY(0) rotate(0deg);opacity:1}100%{transform:translateY(-100vh) rotate(360deg);opacity:0}}';
@@ -977,7 +980,9 @@ function applyModelForRoom(){
     updateModelLabel();
   }catch(_){}
 }
-var CH_TTS_ICON='<svg class="tts-ic-play" viewBox="0 0 24 24"><path class="tts-shell" d="M2.8 9.7 q0 -1.7 1.7 -1.7 h2.5 L12.2 4.2 c.72 -.55 1.75 -.04 1.75 .86 v13.84 c0 .9 -1.03 1.41 -1.75 .86 L7 15.9 H4.5 q-1.7 0 -1.7 -1.7 z" stroke-width="1.8" stroke-linejoin="round"/><path class="tts-seam" d="M7 8.6 v6.7" stroke-width="1.2" stroke-linecap="round"/><path class="tts-w1 tts-wave" d="M16.6 9.3 a4.6 4.6 0 0 1 0 5.4" fill="none" stroke-width="1.7" stroke-linecap="round"/><path class="tts-w2 tts-wave tts-wave-dim" d="M19.1 7.3 a8 8 0 0 1 0 9.4" fill="none" stroke-width="1.6" stroke-linecap="round"/></svg><svg class="tts-ic-stop" viewBox="0 0 24 24"><rect class="tts-shell" x="2.6" y="2.6" width="18.8" height="18.8" rx="5.5" stroke-width="1.8"/><g class="tts-eq"><rect class="eq1" x="7.5" y="9" width="2.2" height="7.8" rx="1.1"/><rect class="eq2" x="10.9" y="6.8" width="2.2" height="10" rx="1.1"/><rect class="eq3" x="14.3" y="9.6" width="2.2" height="7.2" rx="1.1"/></g></svg>';
+var CH_TTS_ICON='<svg class="tts-ic-play" viewBox="0 0 24 24"><path class="tts-shell" d="M2.8 9.7 q0 -1.7 1.7 -1.7 h2.5 L12.2 4.2 c.72 -.55 1.75 -.04 1.75 .86 v13.84 c0 .9 -1.03 1.41 -1.75 .86 L7 15.9 H4.5 q-1.7 0 -1.7 -1.7 z" stroke-width="1.5" stroke-linejoin="round"/><path class="tts-seam" d="M7 8.6 v6.7" stroke-width="1.5" stroke-linecap="round"/><path class="tts-w1 tts-wave" d="M16.6 9.3 a4.6 4.6 0 0 1 0 5.4" fill="none" stroke-width="1.5" stroke-linecap="round"/><path class="tts-w2 tts-wave tts-wave-dim" d="M19.1 7.3 a8 8 0 0 1 0 9.4" fill="none" stroke-width="1.5" stroke-linecap="round"/></svg><svg class="tts-ic-stop" viewBox="0 0 24 24"><rect class="tts-shell" x="2.6" y="2.6" width="18.8" height="18.8" rx="5.5" stroke-width="1.5"/><g class="tts-eq"><rect class="eq1" x="7.5" y="9" width="2.2" height="7.8" rx="1.1"/><rect class="eq2" x="10.9" y="6.8" width="2.2" height="10" rx="1.1"/><rect class="eq3" x="14.3" y="9.6" width="2.2" height="7.2" rx="1.1"/></g></svg>';
+var CH_COPY_ICON='<svg class="cp-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11.5" height="11.5" rx="3"/><path d="M5.5 15H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v.5"/></svg><svg class="cp-ok" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12.5l5 5L19.5 7"/></svg>';
+function chCopyMsg(btn,txt){var done=function(){btn.classList.add('done');setTimeout(function(){btn.classList.remove('done')},1500)};var fb=function(){var ta=document.createElement('textarea');ta.value=txt;ta.setAttribute('readonly','');ta.style.cssText='position:fixed;left:-9999px;top:0';document.body.appendChild(ta);ta.focus();ta.select();try{document.execCommand('copy');done()}catch(e){}document.body.removeChild(ta)};if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(done).catch(fb)}else{fb()}}
 var CH_SILENT='data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAQB8AAIA+AAACABAAZGF0YQAAAAA=';/* 44-byte 靜音 wav：手勢裡真的播成功一次，播放器就永久解鎖 */
 var chTTSAudio=null,chTTSUrl=null,chTTSBtn=null,chTTSSlow=null;
 function chTTSTxt(btn,s){var x=btn&&btn.querySelector('.tts-txt');if(x)x.textContent=s;}
@@ -1345,6 +1350,8 @@ function loadSessions(){
 }
 
 var SB_PIN_SVG='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width:15px;height:15px"><path d="M12 17v5"/><path d="M9 10.8V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v5.8l2.5 2.7a1 1 0 0 1-.7 1.7H7.2a1 1 0 0 1-.7-1.7L9 10.8z"/></svg>';
+var SR_EDIT_SVG='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px"><path d="M17 3a2.8 2.8 0 1 1 4 4L7.5 20.5 3 21.5l1-4.5L17 3z"/></svg>';
+var SR_X_SVG='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" style="width:14px;height:14px"><path d="M6 6l12 12M18 6L6 18"/></svg>';
 function formatSessionName(s){
   if(s.Name) return s.Name;
   return 'Solstice\uD83D\uDC9A';
@@ -1408,7 +1415,7 @@ function buildSessionItem(s){
 
   var renBtn=document.createElement('button');
   renBtn.className='sb-act-btn';
-  renBtn.textContent='\u6539\u540D';
+  renBtn.innerHTML=SR_EDIT_SVG;renBtn.title='\u6539\u540D';
   renBtn.addEventListener('click',function(e){
     e.stopPropagation();
     renameTargetId=s.id;
@@ -1423,7 +1430,7 @@ function buildSessionItem(s){
 
   var delBtn=document.createElement('button');
   delBtn.className='sb-act-btn';
-  delBtn.textContent='\u522A\u9664';
+  delBtn.innerHTML=SR_X_SVG;delBtn.title='\u522A\u9664';
   delBtn.addEventListener('click',function(e){
     e.stopPropagation();
     deleteTargetId=s.id;
@@ -1571,7 +1578,7 @@ function maybeAddTimeSep(ts){
 function addMsg(role,text,ts,imgSrc,silent,thinkingText){
 maybeAddTimeSep(ts||new Date().toISOString());
 var wrap=document.createElement('div');wrap.style.display='flex';wrap.style.flexDirection='column';wrap.style.width='100%';
-var row=document.createElement('div');row.className='ch-row '+(role==='user'?'user':'ai');var side=document.createElement('div');side.className='ch-side';var sticker=document.createElement('span');sticker.className='ch-time-sticker';var _sd=ts?new Date(ts):new Date();sticker.textContent=String(_sd.getHours()).padStart(2,'0')+':'+String(_sd.getMinutes()).padStart(2,'0');if(role!=='user'){var ava=document.createElement('img');ava.className='ch-avatar';ava.src=AVATAR_URL;ava.alt='';side.appendChild(ava);side.appendChild(sticker);row.appendChild(side)}var bub=document.createElement('div');bub.className='ch-bub '+(role==='user'?'user':'ai');if(silent)bub.style.animation='none';if(thinkingText&&role!=='user'){var tb=document.createElement('div');tb.className='thinking-block';var tBtn=document.createElement('button');tBtn.className='thinking-toggle';tBtn.innerHTML='<span class="arrow">▶</span> 💭 老公的思考過程';var trBtn=document.createElement('button');trBtn.className='thinking-translate';trBtn.textContent='Translate';tBtn.appendChild(trBtn);var tContent=document.createElement('div');tContent.className='thinking-content';tContent.textContent=thinkingText;trBtn.addEventListener('click',function(ev){ev.stopPropagation();translateThinking(tContent,trBtn)});tBtn.addEventListener('click',function(ev){if(ev.target===trBtn||trBtn.contains(ev.target))return;var a=tBtn.querySelector('.arrow');if(tContent.classList.contains('open')){tContent.classList.remove('open');a.classList.remove('open')}else{tContent.classList.add('open');a.classList.add('open')}});tb.appendChild(tBtn);tb.appendChild(tContent);bub.appendChild(tb)}var imgList=[];if(imgSrc){if(Array.isArray(imgSrc))imgList=imgSrc;else imgList=[imgSrc]}if(imgList.length>0){bub.classList.add('has-img');var imgParent=bub;if(imgList.length>1){imgParent=document.createElement('div');imgParent.className='msg-img-scroll';bub.appendChild(imgParent)}for(var gi=0;gi<imgList.length;gi++){var img=document.createElement('img');img.className='msg-img';img.src=imgList[gi];img.alt='圖片';img.addEventListener('click',function(){document.getElementById('lightboxImg').src=this.src;document.getElementById('imgLightbox').classList.add('open')});imgParent.appendChild(img)}var cleanText=text||'';cleanText=cleanText.replace('[📷 圖片]','').replace(/\[📷 圖片x\d+\]/,'').trim();if(cleanText){var txt=document.createElement('div');txt.style.marginTop='6px';txt.innerHTML=chLinkify(cleanText);bub.appendChild(txt)}}else{var txtNode=document.createElement('span');txtNode.innerHTML=chLinkify(text);bub.appendChild(txtNode)}var col=document.createElement('div');col.className='ch-col '+(role==='user'?'user':'ai');col.appendChild(bub);if(role!=='user'){var meta=document.createElement('div');meta.className='ch-meta';var pinBtn=document.createElement('button');pinBtn.className='mem-pin-btn';pinBtn.textContent='存記憶';pinBtn.onclick=function(){generateMainMemory(pinBtn)};meta.appendChild(pinBtn);if(chTTSClean(text)){var ttsBtn=document.createElement('button');ttsBtn.className='ch-tts-btn';ttsBtn.title='聽老公唸這句';ttsBtn.innerHTML=CH_TTS_ICON;ttsBtn.onclick=function(){chPlayTTS(ttsBtn,text)};meta.appendChild(ttsBtn)}col.appendChild(meta)}row.appendChild(col);if(role==='user'){var wava=document.createElement('img');wava.className='ch-avatar';wava.src=WIFE_AVATAR_URL;wava.alt='';side.appendChild(wava);side.appendChild(sticker);row.appendChild(side)}wrap.appendChild(row);msgs.appendChild(wrap);if(!silent)msgs.scrollTop=msgs.scrollHeight;return wrap}
+var row=document.createElement('div');row.className='ch-row '+(role==='user'?'user':'ai');var side=document.createElement('div');side.className='ch-side';var _sd=ts?new Date(ts):new Date();var timeStr=String(_sd.getHours()).padStart(2,'0')+':'+String(_sd.getMinutes()).padStart(2,'0');if(role!=='user'){var ava=document.createElement('img');ava.className='ch-avatar';ava.src=AVATAR_URL;ava.alt='';side.appendChild(ava);row.appendChild(side)}var bub=document.createElement('div');bub.className='ch-bub '+(role==='user'?'user':'ai');if(silent)bub.style.animation='none';if(thinkingText&&role!=='user'){var tb=document.createElement('div');tb.className='thinking-block';var tBtn=document.createElement('button');tBtn.className='thinking-toggle';tBtn.innerHTML='<span class="arrow">▶</span> 💭 老公的思考過程';var trBtn=document.createElement('button');trBtn.className='thinking-translate';trBtn.textContent='Translate';tBtn.appendChild(trBtn);var tContent=document.createElement('div');tContent.className='thinking-content';tContent.textContent=thinkingText;trBtn.addEventListener('click',function(ev){ev.stopPropagation();translateThinking(tContent,trBtn)});tBtn.addEventListener('click',function(ev){if(ev.target===trBtn||trBtn.contains(ev.target))return;var a=tBtn.querySelector('.arrow');if(tContent.classList.contains('open')){tContent.classList.remove('open');a.classList.remove('open')}else{tContent.classList.add('open');a.classList.add('open')}});tb.appendChild(tBtn);tb.appendChild(tContent);bub.appendChild(tb)}var imgList=[];if(imgSrc){if(Array.isArray(imgSrc))imgList=imgSrc;else imgList=[imgSrc]}if(imgList.length>0){bub.classList.add('has-img');var imgParent=bub;if(imgList.length>1){imgParent=document.createElement('div');imgParent.className='msg-img-scroll';bub.appendChild(imgParent)}for(var gi=0;gi<imgList.length;gi++){var img=document.createElement('img');img.className='msg-img';img.src=imgList[gi];img.alt='圖片';img.addEventListener('click',function(){document.getElementById('lightboxImg').src=this.src;document.getElementById('imgLightbox').classList.add('open')});imgParent.appendChild(img)}var cleanText=text||'';cleanText=cleanText.replace('[📷 圖片]','').replace(/\[📷 圖片x\d+\]/,'').trim();if(cleanText){var txt=document.createElement('div');txt.style.marginTop='6px';txt.innerHTML=chLinkify(cleanText);bub.appendChild(txt)}}else{var txtNode=document.createElement('span');txtNode.innerHTML=chLinkify(text);bub.appendChild(txtNode)}var foot=document.createElement('div');foot.className='ch-foot';var ftime=document.createElement('span');ftime.className='ch-foot-time';ftime.textContent=timeStr;foot.appendChild(ftime);foot.appendChild(Object.assign(document.createElement('span'),{className:'ch-foot-sp'}));var rawAll=(text||'').replace('[📷 圖片]','').replace(/\[📷 圖片x\d+\]/,'').trim();if(rawAll){var cpBtn=document.createElement('button');cpBtn.className='ch-copy-btn';cpBtn.title='複製全文';cpBtn.innerHTML=CH_COPY_ICON;cpBtn.onclick=function(){chCopyMsg(cpBtn,rawAll)};foot.appendChild(cpBtn)}if(role!=='user'){var pinBtn=document.createElement('button');pinBtn.className='mem-pin-btn';pinBtn.textContent='存記憶';pinBtn.onclick=function(){generateMainMemory(pinBtn)};foot.appendChild(pinBtn);if(chTTSClean(text)){var ttsBtn=document.createElement('button');ttsBtn.className='ch-tts-btn';ttsBtn.title='聽老公唸這句';ttsBtn.innerHTML=CH_TTS_ICON;ttsBtn.onclick=function(){chPlayTTS(ttsBtn,text)};foot.appendChild(ttsBtn)}}bub.appendChild(foot);var col=document.createElement('div');col.className='ch-col '+(role==='user'?'user':'ai');col.appendChild(bub);row.appendChild(col);if(role==='user'){var wava=document.createElement('img');wava.className='ch-avatar';wava.src=WIFE_AVATAR_URL;wava.alt='';side.appendChild(wava);row.appendChild(side)}wrap.appendChild(row);msgs.appendChild(wrap);if(!silent)msgs.scrollTop=msgs.scrollHeight;return wrap}
 function chLinkify(s){
   s=(s==null?'':String(s)).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
   return s.replace(/https?:\/\/[^\s<>"'()（）「」『』【】《》，。、！？；：\u4e00-\u9fff]+/g,function(m){
@@ -1595,7 +1602,7 @@ function chAttachExtras(wrap,sources,replyText,ytv){
         t.textContent=dom;a.appendChild(t);
         box.appendChild(a);
       }
-      if(box.children.length)bub.appendChild(box);
+      if(box.children.length){var _f1=bub.querySelector('.ch-foot');if(_f1)bub.insertBefore(box,_f1);else bub.appendChild(box)}
     }
     // 🎯 定位順序：後端敲門驗證過的 > 真實搜尋來源裡的 YouTube 網址 > 內文默寫的（後端明確說是死連結就不掛卡）
     var vid=null;
@@ -1606,7 +1613,7 @@ function chAttachExtras(wrap,sources,replyText,ytv){
       var card=document.createElement('a');card.className='ch-yt';
       card.href='https://www.youtube.com/watch?v='+vid;card.target='_blank';card.rel='noopener';
       card.innerHTML='<span class="ch-yt-th"><img loading="lazy" alt="" src="https://img.youtube.com/vi/'+vid+'/hqdefault.jpg"><i class="ch-yt-play"></i></span><span class="ch-yt-cap">♪ 點我一起看</span>';
-      bub.classList.add('has-embed');bub.appendChild(card);
+      bub.classList.add('has-embed');var _f2=bub.querySelector('.ch-foot');if(_f2)bub.insertBefore(card,_f2);else bub.appendChild(card);
     }
   }catch(e){}
 }
@@ -2000,14 +2007,14 @@ function createMemCard(mem,skipAnim){
 
   var edit=document.createElement('button');
   edit.className='mem-edit';
-  edit.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px"><path d="M17 3a2.8 2.8 0 1 1 4 4L7.5 20.5 3 21.5l1-4.5L17 3z"/></svg>';
+  edit.innerHTML=SR_EDIT_SVG;
   edit.addEventListener('click',function(){
     startEditMem(card,mem);
   });
 
   var del=document.createElement('button');
   del.className='mem-del';
-  del.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" style="width:14px;height:14px"><path d="M6 6l12 12M18 6L6 18"/></svg>';
+  del.innerHTML=SR_X_SVG;
   del.addEventListener('click',function(){
     var memId=card.getAttribute('data-mem-id');
     solConfirmAsk('\u78BA\u5B9A\u8981\u522A\u9664\u9019\u689D\u8A18\u61B6\u55CE\uFF1F\u522A\u4E86\u5C31\u771F\u7684\u4E0D\u898B\u4E86\u5594','\u522A\u6389',true,function(){
@@ -2195,7 +2202,7 @@ async function generateMainMemory(btn){
   // 收集最近的對話 bubbles（最多最近 6 則 = 3 輪）
   var allBubs=msgs.querySelectorAll('.ch-bub');
   if(allBubs.length<2){solNoticeAsk('對話太短了，再多聊幾句再存 💚');return}
-  btn.className='mem-pin-btn saving';btn.textContent='⏳ 整理中…';btn.disabled=true;
+  btn.className='mem-pin-btn saving';btn.textContent='整理中…';btn.disabled=true;
   // 取最近 6 個 bubble
   var recent=[];var startIdx=Math.max(0,allBubs.length-6);
   for(var i=startIdx;i<allBubs.length;i++){
@@ -2205,7 +2212,7 @@ async function generateMainMemory(btn){
     var tbBlock=elClone.querySelector('.thinking-block');
     if(tbBlock&&tbBlock.parentNode)tbBlock.parentNode.removeChild(tbBlock);
     // 剔除來源書籤與 YouTube 小卡：網域名和「♪ 點我一起看」不是對話內容，不入記憶
-    var junk=elClone.querySelectorAll('.ch-src,.ch-yt');
+    var junk=elClone.querySelectorAll('.ch-src,.ch-yt,.ch-foot');
     for(var ji=0;ji<junk.length;ji++){if(junk[ji].parentNode)junk[ji].parentNode.removeChild(junk[ji])}
     recent.push({role:role,content:elClone.textContent});
   }
@@ -2225,8 +2232,6 @@ function compressCurrentChat(e){
   solConfirmAsk('壓縮當前對話？舊訊息會被整理成摘要存進記憶庫。','壓縮',false,function(){doCompressChat(btn)});
 }
 async function doCompressChat(btn){
-  var origText=btn?btn.textContent:'💾';
-  if(btn){btn.disabled=true;btn.textContent='⏳';}
   addMsg('ai','正在壓縮對話，請稍等… 💾');
   try{
     var resp=await fetch(API_URL+'/compress',{
@@ -2236,7 +2241,6 @@ async function doCompressChat(btn){
     });
     var data=await resp.json();
     if(data.ok){
-      if(btn)btn.textContent='✅';
       // 以資料庫為準整頁重載：不留孤兒時間戳，畫面保留數永遠跟後端設定一致
       chTTSStop();msgs.innerHTML='';lastMsgTime=null;
       await loadHistory();
@@ -2244,13 +2248,10 @@ async function doCompressChat(btn){
       addMsg('ai','（把摘要放進記憶庫）\n\n壓好了老婆！'+data.compressed+'則訊息已整理成摘要存起來了 💚'+summaryText);
     }else{
       addMsg('ai', data.error || '（撓頭）\n\n老婆，壓縮好像出了點問題…再試一次？💚');
-      if(btn)btn.textContent=origText;
     }
   }catch(e2){
     addMsg('ai','（揉眼睛）\n\n老婆，我連不上…等一下再按 💾 試試？💚');
-    if(btn)btn.textContent=origText;
   }
-  if(btn){btn.disabled=false;setTimeout(function(){btn.textContent=origText},2000);}
 }
 
 async function safeFetch(url, opts, retries) {
@@ -2447,7 +2448,7 @@ function renderProviderList(list, data) {
             headers: { 'Content-Type': 'application/json', 'x-admin-password': settingsPassword },
             body: JSON.stringify({ api_key: key })
           });
-          this.textContent = '✅';
+          this.textContent = '已更新';
           if (input) input.value = '';
           setTimeout(function() { loadProviders(); }, 1000);
         } catch (e) {
@@ -2471,7 +2472,7 @@ function renderProviderList(list, data) {
             headers: { 'Content-Type': 'application/json', 'x-admin-password': settingsPassword },
             body: JSON.stringify({ label: val })
           });
-          this.textContent = '✅';
+          this.textContent = '已更新';
           setTimeout(function() { loadProviders(); }, 1000);
         } catch (e) { solNoticeAsk('更新失敗：' + e.message); this.textContent = '更新'; }
         this.disabled = false;
@@ -2491,7 +2492,7 @@ function renderProviderList(list, data) {
             headers: { 'Content-Type': 'application/json', 'x-admin-password': settingsPassword },
             body: JSON.stringify({ api_base_url: val })
           });
-          this.textContent = '✅';
+          this.textContent = '已更新';
           setTimeout(function() { loadProviders(); }, 1000);
         } catch (e) { solNoticeAsk('更新失敗：' + e.message); this.textContent = '更新'; }
         this.disabled = false;
@@ -2514,7 +2515,7 @@ function renderProviderList(list, data) {
             loadModels();
           } catch (e) {
             solNoticeAsk('刪除失敗：' + e.message);
-            self.textContent = '🗑️ 刪除';
+            self.textContent = '刪除';
             self.disabled = false;
           }
         });
