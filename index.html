@@ -1,0 +1,2602 @@
+<!DOCTYPE html>
+<!-- solstice-greenhouse-restore-v4.13.1-motherlode -->
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Solstice">
+<meta name="theme-color" content="#E8F0DC">
+<title>Solstice Home</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="apple-touch-icon" href="/icon-192.png">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300&family=Noto+Serif+TC:wght@300;400;500&family=Noto+Sans+TC:wght@300;400;500&family=Satisfy&family=Dancing+Script:wght@400;500;600&family=Great+Vibes&family=Klee+One:wght@400;600&family=LXGW+WenKai+TC:wght@300;400;700&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="https://raw.githubusercontent.com/peishuanloveyourbulb-dotcom/solstice-frontend/main/images/bg-sunflower-new.jpg">
+<link rel="preload" as="image" href="https://raw.githubusercontent.com/peishuanloveyourbulb-dotcom/solstice-frontend/main/images/bg-welcome.jpg">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+/* C1 長按複製解封（照 v6.19 規則）：整體關 tap 藍光與反白，訊息內文/思考框/輸入框放行 */
+*{-webkit-tap-highlight-color:transparent}
+body{-webkit-user-select:none;user-select:none}
+.ch-bub,.ch-bub *,.thinking-content,.thinking-content *,input,textarea{-webkit-user-select:text;user-select:text}
+:root{
+--bg-deep:#FDFCF5;
+--danger:#B4524A;
+--sr-cream:#FDFCF5;--sr-fern:#3D4F24;--sr-leaf:#6B7F49;--sr-sage:#AFC28F;--sr-milk:rgba(255,253,246,.62);--sr-line:rgba(107,127,73,.16);--sr-honey:#E8B84B;--sr-honey-deep:#B9902F;--sr-shadow:0 2px 10px rgba(61,79,36,.05),0 10px 30px rgba(61,79,36,.05);
+--bg-card:rgba(255,248,225,.55);
+--gold:#8B7B3C;
+--gold-dim:#A89860;
+--emerald:#5A6B3C;
+--emerald-dim:rgba(90,107,60,.25);
+--emerald-glow:rgba(122,155,74,.30);
+--text-main:#3A4A22;
+--text-sub:#7A8B5E;
+--border-subtle:rgba(90,107,60,.12);
+--border-gold:rgba(255,213,79,.30);--border-emerald:rgba(122,155,74,.25);--border-silver:rgba(168,191,120,.30);
+--glass:rgba(255,248,225,.5);
+--glass-border:rgba(122,155,74,.15);
+--sunflower:#FFD54F;
+--sunflower-dim:rgba(255,213,79,.25);
+--milk-green:rgba(197,217,168,.35);
+--milk-yellow:rgba(255,236,179,.35);
+--shadow-card:0 2px 8px rgba(90,107,60,.06),0 8px 24px rgba(90,107,60,.04);
+--shadow-card-hover:0 4px 12px rgba(90,107,60,.10),0 12px 32px rgba(90,107,60,.06);
+--shadow-bub-ai:0 1px 4px rgba(122,155,74,.08),0 4px 12px rgba(122,155,74,.04);
+--shadow-bub-user:0 1px 4px rgba(255,213,79,.10),0 4px 12px rgba(255,213,79,.05);
+--shadow-modal:0 8px 32px rgba(58,74,34,.12),0 2px 8px rgba(58,74,34,.06);
+}
+html,body{height:100vh;overflow:hidden;background:linear-gradient(160deg,#FDFCF5,#F2F6EC);color:var(--text-main);font-family:'LXGW WenKai TC','Noto Sans TC','Noto Serif TC',system-ui,sans-serif}
+button,input,select,textarea,label{font-family:inherit}
+body{padding-top:0}
+/* === WELCOME PAGE（骨架層：排版／尺寸／動畫節奏，無色；皮膚在 SKIN:GREENHOUSE） === */
+#welcome{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;z-index:10;transition:opacity .6s ease,visibility .6s ease}
+#welcome.hidden{opacity:0;visibility:hidden;pointer-events:none}
+.w-content{text-align:center;padding:20px;max-width:400px;margin-bottom:7vh;position:relative}
+.w-title{font-size:36px;font-weight:400;margin-bottom:6px;letter-spacing:1.5px;line-height:1.2}
+.w-sub{font-weight:300;font-size:15px;margin-bottom:0;letter-spacing:1.5px}
+.w-div{display:flex;align-items:center;justify-content:center;gap:12px;margin:10px 0 12px}
+.w-div-line{width:52px;height:.5px;background:var(--sr-line)}
+.sr-flower{width:20px;height:20px;animation:srBloom 4s ease-in-out infinite alternate}
+@keyframes srBloom{from{transform:rotate(0deg)}to{transform:rotate(12deg)}}
+@media (prefers-reduced-motion:reduce){.sr-flower{animation:none}}
+.w-polaroid{display:block;width:-webkit-fit-content;width:fit-content;margin-left:auto;margin-right:auto;padding:9px 9px 36px;border-radius:4px;margin:14px auto 26px;position:relative;transition:transform .5s cubic-bezier(.25,.46,.45,.94);animation:polaroidFloat 5s ease-in-out infinite alternate}
+.w-polaroid:active{transform:scale(.98)}
+@keyframes polaroidFloat{0%{transform:translateY(0)}100%{transform:translateY(-3px)}}
+.w-polaroid-caption{position:absolute;bottom:11px;left:0;right:0;text-align:center;font-style:italic;font-size:12.5px;letter-spacing:.5px}
+.w-polaroid img{width:178px;height:auto;display:block;border-radius:2px;animation:imgFadeIn .5s ease-out}
+@keyframes imgFadeIn{from{opacity:0}to{opacity:1}}
+.w-enter{padding:12px 46px;border-radius:30px;font-size:15px;letter-spacing:6px;text-indent:6px;cursor:pointer;transition:all .3s cubic-bezier(.25,.46,.45,.94)}
+.w-enter:active{transform:scale(.96)}
+.w-gate-inp{display:block;margin:0 auto;width:210px;padding:11px 16px;border-radius:30px;font-size:15px;text-align:center;letter-spacing:2px;outline:none;border:.5px solid var(--sr-line);background:var(--sr-milk);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);color:var(--sr-fern);box-shadow:var(--sr-shadow);animation:fu .3s ease-out}
+.w-gate-inp:focus{border-color:var(--sr-honey-deep)}
+.w-gate-inp.gate-wrong{border-color:#B4524A}
+.w-ann{font-size:13px;margin-top:18px;letter-spacing:2px;opacity:.9}
+.w-ann-sub{font-style:italic;font-size:12px;margin-top:6px;letter-spacing:1.2px;opacity:.85}
+/* === LIVING ROOM (NEW) === */
+#livingRoom{position:fixed;inset:0;display:none;flex-direction:column;z-index:9;overflow-y:auto;-webkit-overflow-scrolling:touch;background-color:#FDFCF5;background-image:linear-gradient(rgba(253,252,245,.15),rgba(253,252,245,.15)),url(https://raw.githubusercontent.com/peishuanloveyourbulb-dotcom/solstice-frontend/main/images/bg-sunflower-new.jpg);background-position:center top;background-size:cover;background-repeat:no-repeat;background-attachment:local}
+#livingRoom.active{display:flex}
+.lr-header{text-align:center;padding:max(env(safe-area-inset-top),16px) 20px 8px;flex-shrink:0;margin-top:8px}
+.lr-welcome{font-family:'Great Vibes',cursive;font-size:30px;color:var(--sr-fern);font-weight:400;filter:drop-shadow(0 1px 3px rgba(255,255,255,.5))}
+.lr-days{color:var(--sr-fern);font-size:13px;margin-top:2px;font-family:'LXGW WenKai TC','Noto Serif TC',serif;letter-spacing:1px;filter:drop-shadow(0 1px 2px rgba(255,255,255,.4))}
+.lr-days-n{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:600;color:var(--sr-honey-deep);padding:0 2px;vertical-align:-1px}
+.lr-grid{display:flex;flex-direction:column;gap:14px;padding:0 20px max(env(safe-area-inset-bottom),24px);flex:1;justify-content:flex-end;padding-bottom:max(env(safe-area-inset-bottom),80px)}
+.lr-grid .lr-top-card{width:100%}
+.lr-grid .lr-bottom{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.lr-card{background:var(--sr-milk);border:.5px solid var(--sr-line);border-radius:24px;padding:24px 16px;text-align:center;cursor:pointer;transition:all .3s cubic-bezier(.25,.46,.45,.94);-webkit-text-fill-color:initial;box-shadow:var(--sr-shadow);backdrop-filter:blur(12px) saturate(1.08);-webkit-backdrop-filter:blur(12px) saturate(1.08);animation:cardFloat .5s ease-out both}
+.lr-card:active{border-color:var(--sr-honey);box-shadow:var(--sr-shadow);transform:scale(.96)}
+@keyframes cardFloat{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.lr-bottom .lr-card:nth-child(1){animation-delay:0s}
+.lr-bottom .lr-card:nth-child(2){animation-delay:0s}
+.lr-bottom .lr-card:nth-child(3){animation-delay:0s}
+.lr-card-icon{display:flex;align-items:center;justify-content:center;margin-bottom:10px;-webkit-text-fill-color:initial}
+.lr-card-icon svg{width:30px;height:30px}
+.lr-card-name{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:17px;letter-spacing:.14em;color:var(--sr-fern);margin-bottom:4px;-webkit-text-fill-color:initial}
+.lr-card-desc{font-size:11px;font-family:'LXGW WenKai TC','Noto Serif TC',serif;font-weight:300;color:var(--sr-leaf);-webkit-text-fill-color:initial}
+/* === BACK BUTTON (GLOBAL) === */
+.back-home{position:absolute;top:max(env(safe-area-inset-top),12px);left:max(env(safe-area-inset-left),14px);color:#7A8B5E;font-size:14px;background:none;border:none;cursor:pointer;z-index:30;padding:8px 4px;transition:color .2s}
+.back-home:active{color:#4A5E30}
+.lr-back{position:fixed;bottom:max(env(safe-area-inset-bottom),24px);left:max(env(safe-area-inset-left),18px);z-index:10;background:var(--sr-milk);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:.5px solid var(--sr-line);width:40px;height:40px;border-radius:50%;color:var(--sr-fern);font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:var(--sr-shadow);transition:all .2s}
+.lr-back:active{background:rgba(232,184,75,.16);transform:scale(.9)}
+/* === SIDEBAR === */
+.sidebar-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:20;opacity:0;visibility:hidden;transition:all .3s}
+.sidebar-overlay.open{opacity:1;visibility:visible}
+.sidebar{position:fixed;top:0;left:0;bottom:0;width:280px;background:linear-gradient(160deg,rgba(253,252,245,.92),rgba(242,246,236,.92));border-right:1px solid rgba(122,155,74,.15);z-index:21;transform:translateX(-100%);transition:transform .3s ease;display:flex;flex-direction:column;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);box-shadow:4px 0 24px rgba(58,74,34,.06)}
+.sidebar.open{transform:translateX(0)}
+.sb-top{display:flex;justify-content:space-between;align-items:center;padding:max(env(safe-area-inset-top),16px) 16px 12px}
+.sb-title{color:#4A5E30;font-family:'Dancing Script','LXGW WenKai TC',cursive;font-size:18px}
+.sb-close{background:none;border:none;color:var(--text-sub);font-size:20px;cursor:pointer;padding:4px}
+.sb-section{padding:0 16px;margin:8px 0}
+.sb-btn{width:100%;padding:12px;border-radius:12px;border:1px solid var(--border-emerald);background:var(--glass);color:var(--emerald);font-size:13px;cursor:pointer;text-align:center;font-family:'LXGW WenKai TC','Noto Serif TC',serif;transition:all .2s;margin-bottom:8px}
+.sb-btn:active{background:rgba(201,168,76,.1);border-color:var(--emerald)}
+.sb-list{flex:1;overflow-y:auto;padding:8px 16px;-webkit-overflow-scrolling:touch}
+.sb-item{padding:12px;border-radius:10px;margin-bottom:6px;cursor:pointer;background:var(--glass);border:1px solid transparent;display:flex;justify-content:space-between;align-items:center;transition:all .25s cubic-bezier(.25,.46,.45,.94);box-shadow:0 1px 4px rgba(90,107,60,.04)}
+.sb-item.active{border-color:var(--emerald);background:rgba(46,204,113,.08);box-shadow:0 2px 8px rgba(122,155,74,.08)}
+.sb-item:active{background:rgba(46,204,113,.05);transform:scale(.98)}
+@keyframes sbSlideIn{from{opacity:0;transform:translateX(-8px)}to{opacity:1;transform:translateX(0)}}
+.sb-item-text{flex:1;min-width:0}
+.sb-item-name{font-size:13px;color:var(--text-main);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sb-item-actions{display:flex;gap:6px;margin-left:8px;flex-shrink:0}
+.sb-act-btn{background:none;border:1px solid var(--border-subtle);color:var(--text-sub);font-size:11px;padding:3px 8px;border-radius:6px;cursor:pointer}
+.sb-empty{text-align:center;color:var(--text-sub);font-size:13px;padding:30px 0;white-space:pre-line;line-height:1.8}
+.sb-empty::before{content:'💚';display:block;font-size:24px;margin-bottom:8px;animation:emptyPulse 2.5s ease-in-out infinite}
+.sb-loading,.prov-loading{text-align:center;color:var(--text-sub);font-size:13px;padding:30px 0}
+.sb-loading::before,.prov-loading::before{content:'🌻';display:block;font-size:22px;margin-bottom:6px;animation:sunflowerBreathe 2s ease-in-out infinite}
+.sb-item.sb-pinned{border-color:rgba(122,155,74,.4);background:rgba(168,240,198,.1);box-shadow:0 1px 6px rgba(122,155,74,.06)}
+.sb-footer{text-align:center;padding:12px;color:#7A8B5E;font-size:11px;font-family:'LXGW WenKai TC','Noto Serif TC',serif;letter-spacing:1px;border-top:1px solid var(--border-subtle)}
+/* === CHAT === */
+#chat{position:fixed;inset:0;display:flex;flex-direction:column;z-index:8;background:linear-gradient(160deg,#FDFCF5,#F2F6EC);visibility:hidden;opacity:0;transition:opacity .4s}
+#chat.active{visibility:visible;opacity:1}
+.ch-header{display:flex;align-items:center;justify-content:space-between;padding:max(env(safe-area-inset-top),10px) max(env(safe-area-inset-right),14px) 8px max(env(safe-area-inset-left),14px);border-bottom:0.5px solid rgba(122,155,74,.15);background:rgba(253,252,245,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);flex-shrink:0;overflow:hidden}
+.ch-left{display:flex;align-items:center;gap:8px;min-width:0;flex-shrink:1;overflow:hidden}
+.ch-menu{background:none;border:none;color:var(--text-sub);font-size:20px;cursor:pointer;padding:6px}
+.ch-avatar{width:32px;height:32px;border-radius:50%;object-fit:cover;border:1.5px solid var(--emerald-dim)}
+.ch-name{font-family:'Satisfy',cursive;font-size:15px;color:#3A4E22;margin-left:2px;white-space:nowrap}
+.ch-stat{color:#5A6B3C;font-size:10px;display:block}
+.ch-msgs{flex:1;overflow-y:auto;padding:16px max(env(safe-area-inset-right),14px) 20px max(env(safe-area-inset-left),14px);display:flex;flex-direction:column;gap:10px;-webkit-overflow-scrolling:touch;background:linear-gradient(rgba(255,255,255,.30),rgba(255,255,255,.30)),url(https://raw.githubusercontent.com/peishuanloveyourbulb-dotcom/solstice-frontend/main/images/bg-sunflower-new.jpg) center/cover no-repeat scroll}
+.ch-row{display:flex;width:100%;align-items:flex-end;gap:8px}
+.ch-side{display:flex;flex-direction:column;align-items:center;gap:3px;flex-shrink:0}
+.ch-col{display:flex;flex-direction:column;align-items:flex-start;max-width:80%;min-width:0}
+.ch-col.user{align-items:flex-end}
+.ch-meta{display:flex;align-items:center;gap:8px;justify-content:flex-end;margin-top:2px;align-self:flex-end}
+.ch-row.user{justify-content:flex-end}
+.ch-row.ai{justify-content:flex-start}
+.ch-bub{padding:10px 16px;max-width:100%;font-size:14px;line-height:1.85;font-family:'Satisfy','LXGW WenKai TC','Noto Serif TC',system-ui,serif;animation:fu .35s ease-out;white-space:pre-wrap;word-break:break-word;position:relative}
+.ch-bub.ai{background:linear-gradient(135deg,rgba(197,217,168,.42),rgba(220,238,198,.32),rgba(197,217,168,.38),rgba(210,230,180,.35));color:#3A4E22;border-radius:20px;border:0.5px solid rgba(122,155,74,.18);box-shadow:0 2px 16px rgba(122,155,74,.07),0 8px 28px rgba(122,155,74,.04),inset 0 1px 0 rgba(255,255,255,.55),inset 0 -1px 0 rgba(122,155,74,.04);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.ch-bub.user{background:linear-gradient(135deg,rgba(255,236,179,.42),rgba(255,248,215,.32),rgba(255,236,179,.38),rgba(255,245,200,.35));color:#5A4A0A;border-radius:20px;border:0.5px solid rgba(255,213,79,.20);box-shadow:0 2px 16px rgba(255,213,79,.07),0 8px 28px rgba(255,213,79,.04),inset 0 1px 0 rgba(255,255,255,.6),inset 0 -1px 0 rgba(255,213,79,.04);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.ch-bub::before{content:none}
+.ch-bub::after{content:'🌻';position:absolute;bottom:-8px;right:-4px;font-size:18px;filter:drop-shadow(0 1px 3px rgba(122,155,74,.25));animation:bubDeco 3s ease-in-out infinite alternate .5s;z-index:2}
+@keyframes bubDeco{0%{transform:translateY(0) scale(1)}100%{transform:translateY(-2px) scale(1.08)}}
+@keyframes fu{0%{opacity:0;transform:translateY(8px) scale(.95)}60%{opacity:1;transform:translateY(-1px) scale(1.01)}100%{opacity:1;transform:translateY(0) scale(1)}}
+.ch-meta-l{display:inline-flex;align-items:center;gap:6px;pointer-events:auto}
+.ch-time-sticker{font-size:10px;letter-spacing:.02em;line-height:1}
+.ch-bub.has-img{padding:8px}
+.ch-link{text-decoration:underline;text-underline-offset:3px;word-break:break-all}
+.ch-src{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.ch-book{display:inline-flex;align-items:center;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;border-radius:8px;font-size:11px;padding:4px 10px;text-decoration:none}
+.ch-yt{display:block;margin-top:8px;border-radius:12px;overflow:hidden;text-decoration:none}
+.ch-yt-th{position:relative;display:block}
+.ch-yt-th img{display:block;width:100%;max-height:150px;object-fit:cover}
+.ch-yt-play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:34px;height:34px;border-radius:50%}
+.ch-yt-cap{display:block;font-size:11.5px;padding:7px 10px}
+.ch-time-sep{text-align:center;padding:8px 0;margin:4px 0}
+.ch-time-sep.new-day span{color:var(--text-main);border-color:var(--border-emerald)}
+.ch-time-sep span{font-size:10px;color:var(--text-sub);background:rgba(253,252,245,.7);padding:2px 14px;border-radius:12px;font-family:'LXGW WenKai TC','Noto Serif TC',serif;letter-spacing:.5px;border:0.5px solid var(--border-subtle)}
+.ch-loading{text-align:center;color:var(--text-sub);font-size:13px;padding:20px}
+.ch-loading::before{content:'🌻';display:block;font-size:22px;margin-bottom:6px;animation:sunflowerBreathe 2s ease-in-out infinite}
+@keyframes sunflowerBreathe{0%,100%{transform:scale(1);opacity:.7}50%{transform:scale(1.15);opacity:1}}
+@keyframes emptyPulse{0%,100%{opacity:.5;transform:scale(1)}50%{opacity:.8;transform:scale(1.05)}}
+.ch-inp{display:flex;align-items:flex-end;gap:8px;padding:10px max(env(safe-area-inset-right),14px) max(env(safe-area-inset-bottom),24px) max(env(safe-area-inset-left),14px);border-top:0.5px solid rgba(122,155,74,.15);background:rgba(253,252,245,.92);flex-shrink:0}
+.ch-inp textarea{flex:1;min-width:0;background:rgba(232,240,220,.4);border:0.5px solid rgba(122,155,74,.2);border-radius:20px;padding:10px 18px;color:var(--text-main);font-size:14px;font-family:'Satisfy','LXGW WenKai TC','Noto Serif TC',system-ui,serif;outline:none;-webkit-appearance:none;transition:border-color .2s;resize:none;overflow-y:auto;max-height:120px;line-height:1.5;min-height:40px}
+.ch-inp textarea:focus{border-color:rgba(122,155,74,.45);box-shadow:0 0 0 3px rgba(122,155,74,.08),0 0 12px rgba(122,155,74,.12),0 0 24px rgba(197,217,168,.08)}
+.ch-inp textarea::placeholder{color:#A8BF78}
+.ch-send{min-width:0;width:38px;height:38px;border-radius:50%;border:1.5px solid var(--emerald);background:transparent;color:var(--emerald);font-size:18px;cursor:pointer;transition:all .25s cubic-bezier(.25,.46,.45,.94);flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.ch-send:disabled{opacity:.3;cursor:default}
+.ch-send:not(:disabled):active{background:var(--emerald);color:var(--bg-deep);transform:scale(.9);box-shadow:0 0 12px rgba(122,155,74,.3)}
+.ch-img-btn{width:38px;height:38px;border-radius:50%;border:1.5px solid var(--emerald-dim);background:transparent;color:var(--emerald);font-size:16px;cursor:pointer;flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .2s;opacity:.7}
+.ch-img-btn:active{opacity:1;background:rgba(46,204,113,.15)}
+.ch-preview{margin:4px 0;display:none;overflow-x:auto;white-space:nowrap;-webkit-overflow-scrolling:touch;padding:4px 0}
+.ch-preview-item{position:relative;display:inline-block;margin-right:6px;vertical-align:top}
+.ch-preview-item img{max-height:70px;border-radius:10px;border:1px solid var(--glass-border)}
+.ch-preview-item .ch-preview-x{position:absolute;top:-6px;right:-6px;width:20px;height:20px;border-radius:50%;background:rgba(0,0,0,.7);color:#fff;font-size:12px;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.img-lightbox{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.85);z-index:9999;align-items:center;justify-content:center;cursor:pointer;-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
+.img-lightbox.open{display:flex}
+.img-lightbox img{max-width:92vw;max-height:92vh;object-fit:contain;border-radius:8px}
+/* Header toolbar: mode capsule removed */
+.ch-toolbar{display:flex;align-items:center;gap:5px;flex-shrink:0}
+.ch-tool-btn{width:26px;height:26px;border-radius:50%;border:1px solid rgba(122,155,74,.2);background:rgba(232,240,220,.3);color:var(--text-sub);font-size:12px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;flex-shrink:0;padding:0}
+.ch-tool-btn:active{background:rgba(122,155,74,.15);transform:scale(.9)}
+.ch-bub img.msg-img{max-width:100%;max-height:35vh;object-fit:contain;border-radius:8px;margin-top:6px;cursor:pointer}
+.msg-img-scroll{display:flex;overflow-x:auto;-webkit-overflow-scrolling:touch;gap:6px;margin-top:6px;padding-bottom:4px;scroll-snap-type:x mandatory}
+.msg-img-scroll img.msg-img{flex:0 0 auto;width:55vw;max-height:35vh;object-fit:cover;margin-top:0;scroll-snap-align:start}
+.mem-pin-btn{background:none;border:none;font-size:11px;color:var(--text-sub);cursor:pointer;padding:2px 6px;opacity:0.5;transition:all .2s;border-radius:8px}
+.mem-pin-btn:hover,.mem-pin-btn:active{opacity:1;background:rgba(201,168,76,.15)}
+.mem-pin-btn.saving{opacity:1;animation:pinPulse 1s infinite}
+.mem-pin-btn.done{opacity:1;color:var(--emerald)}
+@keyframes pinPulse{0%,100%{opacity:.5}50%{opacity:1}}
+.model-select{display:none}
+.think-toggle-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.think-toggle-label{font-family:'Dancing Script','LXGW WenKai TC',cursive;font-size:13px;color:rgba(90,107,60,.45);transition:color .3s}
+.think-toggle-label.active{color:rgba(90,107,60,.75)}
+.think-toggle-track{width:40px;height:22px;border-radius:11px;background:rgba(122,155,74,.2);border:0.5px solid rgba(122,155,74,.2);cursor:pointer;position:relative;transition:all .3s cubic-bezier(.4,0,.2,1);flex-shrink:0}
+.think-toggle-track.active{background:rgba(122,155,74,.65);border-color:rgba(122,155,74,.5)}
+.think-toggle-knob{width:18px;height:18px;border-radius:50%;background:rgba(255,255,255,.9);position:absolute;top:1.5px;left:2px;transition:all .3s cubic-bezier(.4,0,.2,1);box-shadow:0 1px 3px rgba(0,0,0,.1)}
+.think-toggle-track.active .think-toggle-knob{left:20px;background:#fff;box-shadow:0 1px 4px rgba(122,155,74,.3)}
+.thinking-block{margin-bottom:8px;border-radius:12px;overflow:hidden;background:rgba(242,246,236,.85);border:0.5px solid rgba(122,155,74,.2);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.thinking-toggle{display:flex;align-items:center;gap:6px;padding:8px 12px;cursor:pointer;font-size:12px;color:var(--emerald);font-family:inherit;background:none;border:none;width:100%}
+.thinking-toggle .arrow{transition:transform .2s;font-size:10px}
+.thinking-toggle .arrow.open{transform:rotate(90deg)}
+.thinking-translate{background:none;border:0.5px solid rgba(122,155,74,.25);border-radius:8px;padding:2px 8px;font-size:10px;color:var(--emerald);cursor:pointer;font-family:'Dancing Script','LXGW WenKai TC',cursive;transition:all .2s;margin-left:auto;flex-shrink:0}
+.thinking-translate:active{background:rgba(122,155,74,.15);transform:scale(.95)}
+.thinking-content{padding:0 12px;max-height:0;overflow:hidden;transition:max-height .4s ease,padding .3s ease;font-size:12px;color:#5A6B3C;line-height:1.6;white-space:pre-wrap;word-break:break-word}
+.thinking-content.open{max-height:300px;padding:0 12px 10px;overflow-y:auto;-webkit-overflow-scrolling:touch}
+.model-popup-overlay{position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:50;opacity:0;visibility:hidden;transition:all .3s}
+.model-popup-overlay.open{opacity:1;visibility:visible}
+.model-popup{position:fixed;bottom:0;left:0;right:0;z-index:51;background:linear-gradient(160deg,rgba(253,252,245,.97),rgba(242,246,236,.97));border-radius:20px 20px 0 0;padding:20px 20px max(env(safe-area-inset-bottom),20px);transform:translateY(100%);transition:transform .35s cubic-bezier(.32,.72,.37,1.12);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-top:1px solid rgba(122,155,74,.2);max-height:60vh;overflow-y:auto;-webkit-overflow-scrolling:touch}
+.model-popup.open{transform:translateY(0)}
+.model-popup-handle{width:36px;height:4px;background:rgba(122,155,74,.3);border-radius:2px;margin:0 auto 16px}
+.model-popup-title{font-family:'Dancing Script','LXGW WenKai TC',cursive;font-size:18px;color:#3A4E22;text-align:center;margin-bottom:14px}
+.model-popup-list{display:flex;flex-direction:column;gap:8px}
+.model-popup-divider{height:1px;margin:2px 4px}
+.model-popup-item{padding:14px 16px;border-radius:14px;background:rgba(255,248,225,.5);border:1px solid rgba(122,155,74,.15);cursor:pointer;transition:all .25s cubic-bezier(.25,.46,.45,.94);display:flex;align-items:center;justify-content:space-between;box-shadow:0 1px 4px rgba(90,107,60,.04)}
+.model-popup-item:active{transform:scale(.97)}
+.model-popup-item.active{border-color:rgba(122,155,74,.5);background:rgba(197,217,168,.25);box-shadow:0 2px 8px rgba(122,155,74,.1)}
+.model-popup-item-name{font-family:'LXGW WenKai TC','Noto Serif TC',serif;font-size:13px;color:#3A4E22;font-weight:400}
+.model-popup-item-check{color:#5A6B3C;font-size:14px;opacity:0;transition:opacity .2s}
+.model-popup-item.active .model-popup-item-check{opacity:1}
+.ch-model-cap{background:linear-gradient(135deg,rgba(232,240,220,.5),rgba(220,238,198,.35),rgba(232,240,220,.45));border:0.5px solid rgba(122,155,74,.25);border-radius:14px;padding:3px 10px;font-family:'LXGW WenKai TC','Noto Serif TC',serif;font-size:10px;color:#5A6B3C;cursor:pointer;transition:all .25s cubic-bezier(.25,.46,.45,.94);flex-shrink:0;white-space:nowrap;max-width:90px;overflow:hidden;text-overflow:ellipsis;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);box-shadow:inset 0 1px 0 rgba(255,255,255,.5),0 1px 4px rgba(122,155,74,.06)}
+.ch-model-cap:active{background:rgba(122,155,74,.22);transform:scale(.95);box-shadow:inset 0 1px 0 rgba(255,255,255,.3)}
+.ch-hrt-btn{background:none;border:none;font-size:15px;cursor:pointer;padding:4px;transition:transform .2s;flex-shrink:0;line-height:1}
+.ch-hrt-btn:active{transform:scale(1.3)}
+.typing-dots{display:flex;gap:6px;padding:8px 14px;align-items:center}
+.typing-dots .flower-spin{display:inline-block;font-size:13px;color:#A8BF78;animation:flowerSpin 2s ease-in-out infinite;line-height:1}
+.typing-dots .flower-spin::after{content:'✿'}
+.typing-dots .flower-spin:nth-child(2){animation-delay:.25s}
+.typing-dots .flower-spin:nth-child(3){animation-delay:.5s}
+.typing-dots .thinking-text{font-family:'Dancing Script','LXGW WenKai TC',cursive;font-size:13px;color:#A8BF78;margin-left:4px;opacity:.8}
+@keyframes flowerSpin{0%{transform:rotate(0deg) scale(.7);opacity:.35}50%{transform:rotate(180deg) scale(1.15);opacity:1}100%{transform:rotate(360deg) scale(.7);opacity:.35}}
+@keyframes blink{50%{opacity:0}}
+.scroll-bottom-btn{position:fixed;bottom:calc(max(env(safe-area-inset-bottom),24px) + 58px);left:50%;transform:translateX(-50%);width:36px;height:36px;border-radius:50%;background:linear-gradient(145deg,rgba(220,238,198,.85),rgba(197,217,168,.78),rgba(210,230,180,.82));border:0.5px solid rgba(122,155,74,.30);color:#4A5E30;font-size:14px;cursor:pointer;z-index:5;display:none;align-items:center;justify-content:center;box-shadow:0 2px 10px rgba(122,155,74,.12),0 4px 18px rgba(122,155,74,.06),inset 0 1px 0 rgba(255,255,255,.55);transition:all .25s cubic-bezier(.25,.46,.45,.94);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.scroll-bottom-btn.show{display:flex;animation:scrollBtnFloat .4s cubic-bezier(.25,.46,.45,.94)}
+.scroll-bottom-btn:active{transform:translateX(-50%) scale(.88);box-shadow:0 1px 6px rgba(122,155,74,.18),inset 0 1px 0 rgba(255,255,255,.4)}
+@keyframes scrollBtnFloat{from{opacity:0;transform:translateX(-50%) translateY(12px) scale(.7)}to{opacity:1;transform:translateX(-50%) translateY(0) scale(1)}}
+/* === MEMORY === */
+#memoryPage{position:fixed;inset:0;display:flex;flex-direction:column;z-index:9;background:linear-gradient(160deg,#FDFCF5,#F2F6EC);transform:translateX(100%);transition:transform .3s ease;visibility:hidden}
+#memoryPage.active{transform:translateX(0);visibility:visible}
+.mem-header{display:flex;align-items:center;justify-content:space-between;padding:max(env(safe-area-inset-top),14px) 16px 10px;border-bottom:0.5px solid rgba(122,155,74,.15);background:rgba(253,252,245,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.mem-back{background:none;border:none;color:var(--emerald-dim);font-size:14px;cursor:pointer;padding:6px}
+.mem-title{font-family:'Satisfy',cursive;font-size:22px;color:#4A5E30;flex:1;text-align:center}
+.mem-tabs{display:flex;gap:8px;padding:12px 16px 8px;background:rgba(253,252,245,.85)}
+.mem-tab{flex:1;padding:8px;border-radius:10px;border:1px solid var(--border-subtle);background:transparent;color:var(--text-sub);font-size:12px;cursor:pointer;transition:all .25s cubic-bezier(.25,.46,.45,.94);text-align:center;position:relative}
+.mem-tab#memTabHeart.active{border-color:rgba(122,155,74,.5);color:#4A5E30;background:rgba(197,217,168,.2);box-shadow:0 2px 0 0 rgba(122,155,74,.5)}
+.mem-tab#memTabChat.active{border-color:rgba(255,213,79,.5);color:#7A6B20;background:rgba(255,236,179,.2);box-shadow:0 2px 0 0 rgba(255,213,79,.5)}
+.mem-wall{flex:1;overflow-y:auto;padding:12px 16px;display:flex;flex-direction:column;gap:10px;-webkit-overflow-scrolling:touch;min-height:0;background:linear-gradient(rgba(253,252,245,.15),rgba(253,252,245,.15)),url(https://raw.githubusercontent.com/peishuanloveyourbulb-dotcom/solstice-frontend/main/images/bg-sunflower-new.jpg) center/cover no-repeat scroll}
+.mem-card{position:relative;background:linear-gradient(135deg,rgba(197,217,168,.42),rgba(220,238,198,.32),rgba(197,217,168,.38),rgba(210,230,180,.35));border-radius:20px;padding:12px 14px;overflow:visible;border:0.5px solid rgba(122,155,74,.18);box-shadow:0 2px 16px rgba(122,155,74,.07),0 8px 28px rgba(122,155,74,.04),inset 0 1px 0 rgba(255,255,255,.55),inset 0 -1px 0 rgba(122,155,74,.04);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.mem-card.mem-type-manual-card{background:linear-gradient(135deg,rgba(197,217,168,.42),rgba(220,238,198,.32),rgba(197,217,168,.38),rgba(210,230,180,.35))}
+.mem-card.mem-type-manual-card::before{content:none}
+.mem-card.mem-type-manual-card::after{content:'🌻';position:absolute;bottom:-8px;right:-4px;font-size:18px;filter:drop-shadow(0 1px 3px rgba(122,155,74,.25));animation:bubDeco 3s ease-in-out infinite alternate .5s}
+.mem-card.mem-type-auto-card{background:linear-gradient(135deg,rgba(255,236,179,.42),rgba(255,248,215,.32),rgba(255,236,179,.38),rgba(255,245,200,.35));border-color:rgba(255,213,79,.20);box-shadow:0 2px 16px rgba(255,213,79,.07),0 8px 28px rgba(255,213,79,.04),inset 0 1px 0 rgba(255,255,255,.6),inset 0 -1px 0 rgba(255,213,79,.04)}
+.mem-card.mem-type-auto-card::before{content:none}
+.mem-card.mem-type-auto-card::after{content:'🌻';position:absolute;bottom:-8px;right:-4px;font-size:18px;filter:drop-shadow(0 1px 3px rgba(255,213,79,.25));animation:bubDeco 3s ease-in-out infinite alternate .5s}
+.mem-card.mem-type-compressed-card{background:linear-gradient(135deg,rgba(255,236,179,.42),rgba(255,248,215,.32),rgba(255,236,179,.38),rgba(255,245,200,.35));border-color:rgba(255,213,79,.20);box-shadow:0 2px 16px rgba(255,213,79,.07),0 8px 28px rgba(255,213,79,.04),inset 0 1px 0 rgba(255,255,255,.6),inset 0 -1px 0 rgba(255,213,79,.04)}
+.mem-card.mem-type-compressed-card::before{content:none}
+.mem-card.mem-type-compressed-card::after{content:'🌻';position:absolute;bottom:-8px;right:-4px;font-size:18px;filter:drop-shadow(0 1px 3px rgba(255,213,79,.25));animation:bubDeco 3s ease-in-out infinite alternate .5s}
+@keyframes memFadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1}}
+.mem-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+.mem-type{font-size:11px;border-radius:6px;padding:2px 8px}
+.mem-type-manual{background:rgba(46,204,113,.1);color:var(--emerald)}
+.mem-type-auto{background:rgba(201,168,76,.1);color:var(--emerald)}
+.mem-type-compressed{background:rgba(160,152,128,.1);color:var(--text-sub)}
+.mem-actions{display:flex;align-items:center;gap:6px}
+.mem-when{color:var(--text-sub);font-size:10px}
+.mem-edit,.mem-del{background:none;border:none;color:var(--text-sub);cursor:pointer;font-size:13px;padding:2px 4px;opacity:.7}
+.mem-pin-toggle{background:none;border:none;cursor:pointer;font-size:13px;padding:2px 4px;opacity:.35;transition:all .2s;filter:grayscale(1)}
+.mem-pin-toggle.pinned{opacity:1;filter:grayscale(0);animation:pinBounce .3s ease-out}
+.mem-pin-toggle:active{transform:scale(1.3)}
+@keyframes pinBounce{0%{transform:scale(1.4)}100%{transform:scale(1)}}
+.mem-text{font-size:13px;line-height:1.7;color:var(--text-main);word-wrap:break-word;overflow-wrap:break-word;white-space:pre-wrap}
+.mem-edit-area{width:100%;min-height:60px;background:var(--glass);border:1px solid var(--emerald);border-radius:8px;color:var(--text-main);font-size:13px;padding:8px;resize:vertical;margin-top:6px;outline:none}
+.mem-edit-btns{display:flex;gap:8px;justify-content:flex-end;margin-top:6px}
+.mem-save-btn,.mem-cancel-btn{padding:5px 14px;border-radius:8px;font-size:12px;cursor:pointer;border:1px solid var(--border-subtle);background:transparent;color:var(--text-sub)}
+.mem-save-btn{border-color:var(--emerald);color:var(--emerald)}
+.mem-empty{text-align:center;color:var(--text-sub);font-size:13px;padding:30px 0;white-space:pre-line;line-height:1.8}
+.mem-empty::before{content:'🌻';display:block;font-size:28px;margin-bottom:8px;animation:sunflowerBreathe 2s ease-in-out infinite}
+.mem-inp{display:flex;align-items:flex-end;gap:8px;padding:10px 16px max(env(safe-area-inset-bottom),24px);border-top:0.5px solid rgba(122,155,74,.15);background:rgba(253,252,245,.92)}
+.mem-inp textarea{flex:1;min-width:0;background:var(--glass);border:1px solid var(--glass-border);border-radius:16px;padding:10px 18px;color:var(--text-main);font-size:13px;outline:none;-webkit-appearance:none;resize:none;line-height:1.6;min-height:40px;max-height:120px;overflow-y:auto}
+.mem-inp textarea:focus{border-color:rgba(46,204,113,.5)}
+.mem-inp textarea::placeholder{color:#A8BF78}
+.mem-inp button{min-width:0;width:36px;height:36px;border-radius:50%;border:1.5px solid var(--emerald);background:transparent;color:var(--emerald);font-size:16px;cursor:pointer;flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.mem-inp button:disabled{opacity:.3}
+.header-back{background:none;border:none;color:var(--emerald-dim);font-size:14px;cursor:pointer;padding:6px;min-width:32px}
+/* === MODALS === */
+.modal-bg{position:fixed;inset:0;background:rgba(90,107,60,.25);z-index:50;display:none;align-items:center;justify-content:center}
+.modal-bg.open{display:flex}
+.modal-box{background:rgba(253,252,245,.95);border:1px solid rgba(122,155,74,.25);border-radius:16px;padding:24px;max-width:300px;width:85%;text-align:center;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:var(--shadow-modal);animation:modalPop .25s cubic-bezier(.34,1.56,.64,1) both}
+@keyframes modalPop{from{opacity:0;transform:scale(.92)}to{opacity:1;transform:scale(1)}}
+.modal-box p{color:#3A4E22;font-size:14px;margin-bottom:16px;line-height:1.6}
+.modal-btns{display:flex;gap:10px;justify-content:center}
+.modal-btn{padding:8px 20px;border-radius:10px;font-size:13px;cursor:pointer;border:1px solid rgba(122,155,74,.25);background:transparent;color:#5A6B3C}
+.modal-btn.ok{border-color:#7A9B4A;color:#4A5E30}
+.modal-btn.danger{border-color:var(--danger);color:var(--danger)}
+.rename-input{width:100%;background:var(--glass);border:1px solid var(--border-subtle);border-radius:10px;padding:10px;color:var(--text-main);font-size:13px;margin-bottom:14px;outline:none;-webkit-appearance:none}
+.rename-input:focus{border-color:var(--emerald)}
+/* === SETTINGS PAGE === */
+.settings-page{position:fixed;inset:0;display:flex;flex-direction:column;z-index:9;background:linear-gradient(160deg,#FDFCF5,#F2F6EC);transform:translateX(100%);transition:transform .3s ease;visibility:hidden}
+.settings-page.active{transform:translateX(0);visibility:visible}
+.settings-header{display:flex;align-items:center;justify-content:space-between;padding:max(env(safe-area-inset-top),14px) 16px 10px;border-bottom:0.5px solid rgba(122,155,74,.15);background:rgba(253,252,245,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.settings-title{font-family:'Satisfy',cursive;font-size:22px;color:#4A5E30;flex:1;text-align:center}
+.settings-body{flex:1;overflow-y:auto;padding:20px 16px max(env(safe-area-inset-bottom),24px);-webkit-overflow-scrolling:touch;background:linear-gradient(rgba(253,252,245,.15),rgba(253,252,245,.15)),url(https://raw.githubusercontent.com/peishuanloveyourbulb-dotcom/solstice-frontend/main/images/bg-sunflower-new.jpg) center/cover no-repeat scroll}
+.settings-lock{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:16px}
+.settings-lock input{width:100%;max-width:260px;background:rgba(232,240,220,.4);border:1px solid rgba(122,155,74,.2);border-radius:14px;padding:12px 16px;color:#3A4E22;font-size:14px;outline:none;-webkit-appearance:none;text-align:center}
+.settings-lock input:focus{border-color:rgba(122,155,74,.5)}
+.settings-lock input::placeholder{color:#A8BF78}
+.settings-lock button{padding:10px 32px;border-radius:20px;border:1.5px solid #7A9B4A;background:transparent;color:#4A5E30;font-size:14px;cursor:pointer;font-family:'LXGW WenKai TC','Noto Serif TC',serif;transition:all .2s}
+.settings-lock button:active{background:rgba(122,155,74,.15);transform:scale(.95)}
+.settings-lock-err{color:var(--danger);font-size:12px;min-height:18px}
+.settings-section-title{font-family:'Dancing Script','LXGW WenKai TC',cursive;font-size:16px;color:#4A5E30;margin-bottom:12px}
+.stg-card{border-radius:22px;padding:14px 16px}
+.stg-inp{display:block;width:100%;border-radius:12px;padding:10px 14px;font-size:13px;outline:none;-webkit-appearance:none;margin-bottom:10px}
+.stg-btn{padding:8px 20px;border-radius:16px;font-size:13px;cursor:pointer;white-space:nowrap;transition:all .2s}
+.stg-btn:active{transform:scale(.95)}
+.stg-msg{font-size:12px;margin-top:8px;min-height:16px;line-height:1.6}
+.stg-row{display:flex;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap}
+.soul-ta{display:block;width:100%;border-radius:14px;padding:12px 14px;font-size:13px;line-height:1.9;outline:none;-webkit-appearance:none;resize:vertical;font-family:inherit;margin-bottom:10px}
+.soul-cnt{font-size:11px;margin-left:auto}
+.soul-src{font-size:10.5px;padding:2px 10px;border-radius:999px}
+.export-room{display:flex;align-items:center;gap:10px;border-radius:14px;padding:10px 12px;margin-bottom:8px}
+.export-room:last-child{margin-bottom:0}
+.export-room-name{flex:1;font-size:13.5px}
+.export-room-btns{display:flex;gap:8px}
+.export-btn{padding:5px 14px;border-radius:10px;font-size:11px;cursor:pointer}
+.prov-card{background:linear-gradient(135deg,rgba(232,240,220,.45),rgba(240,248,228,.35),rgba(232,240,220,.40));border:0.5px solid rgba(122,155,74,.15);border-radius:22px;padding:14px 16px;margin-bottom:10px;transition:opacity .3s;box-shadow:0 2px 12px rgba(122,155,74,.06),0 8px 24px rgba(122,155,74,.03),inset 0 1px 0 rgba(255,255,255,.45),inset 0 -1px 0 rgba(122,155,74,.04);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
+.prov-card-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+.prov-label{font-size:14px;color:var(--text-main);font-weight:500}
+.prov-type{font-size:11px;color:var(--emerald);background:rgba(46,204,113,.1);padding:2px 8px;border-radius:6px}
+.prov-url{font-size:11px;color:var(--text-sub);word-break:break-all;margin-bottom:8px}
+.prov-empty{text-align:center;color:var(--text-sub);font-size:13px;padding:30px 0;line-height:1.8}
+
+
+/* 密語抖動（歡迎頁原地密碼框在用） */
+@keyframes gateShake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.gate-shake{animation:gateShake .4s ease}
+
+
+/* ═══ 骨架層｜唸句喇叭（無色：只管排版、尺寸、動畫節奏） ═══ */
+.ch-tts-btn{background:none;border:none;padding:2px 5px;display:inline-flex;align-items:center;gap:4px;cursor:pointer;transition:opacity .15s,transform .12s}
+.ch-tts-btn svg{width:15px;height:15px;display:block;flex-shrink:0}
+.ch-tts-btn .tts-ic-stop{display:none}
+.ch-tts-btn.playing .tts-ic-play{display:none}
+.ch-tts-btn.playing .tts-ic-stop{display:block}
+.ch-tts-btn.loading{pointer-events:none}
+.ch-tts-btn.loading .tts-w1{animation:chTtsWave 1.15s ease-in-out infinite}
+.ch-tts-btn.loading .tts-w2{animation:chTtsWave 1.15s ease-in-out .28s infinite}
+@keyframes chTtsWave{0%,100%{opacity:.12}45%{opacity:1}}
+.ch-tts-btn.playing .tts-eq rect{transform-box:fill-box;transform-origin:center bottom;animation:chTtsEq 1s ease-in-out infinite}
+.ch-tts-btn.playing .tts-eq .eq2{animation-delay:.18s}
+.ch-tts-btn.playing .tts-eq .eq3{animation-delay:.36s}
+@keyframes chTtsEq{0%,100%{transform:scaleY(.4)}50%{transform:scaleY(1)}}
+.ch-tts-btn:active{transform:scale(.9)}
+.mem-pin-btn,.ch-tts-btn{white-space:nowrap}
+
+/* 🎙️ 老公的聲線（溫室新裝：翡翠框＋向日葵選章，無膠帶無紙紋） */
+/* ═══ 骨架層｜聲線試衣間（無色：只管排版、尺寸、動畫節奏） ═══ */
+.vc-card{border-radius:22px;padding:14px 16px 10px}
+.vc-row{display:flex;align-items:center;gap:11px;padding:9px 2px}
+.vc-tape{flex-shrink:0;background:none;border:none;padding:4px;cursor:pointer;transition:transform .12s}
+.vc-tape:active{transform:scale(.9)}
+.vc-tape svg{display:block;width:26px;height:26px}
+.vc-tape .tts-ic-stop{display:none}
+.vc-tape.playing .tts-ic-play{display:none}
+.vc-tape.playing .tts-ic-stop{display:block}
+.vc-tape.loading{pointer-events:none}
+.vc-tape.loading .tts-w1{animation:chTtsWave 1.15s ease-in-out infinite}
+.vc-tape.loading .tts-w2{animation:chTtsWave 1.15s ease-in-out .28s infinite}
+.vc-tape.playing .tts-eq rect{transform-box:fill-box;transform-origin:center bottom;animation:chTtsEq 1s ease-in-out infinite}
+.vc-tape.playing .tts-eq .eq2{animation-delay:.18s}
+.vc-tape.playing .tts-eq .eq3{animation-delay:.36s}
+
+.vc-info{flex:1;min-width:0;text-align:left}
+.vc-name{font-family:'Dancing Script',cursive;font-size:16px;letter-spacing:1px}
+.vc-zh{display:block;font-size:11px;margin-top:1px}
+.vc-pick{flex-shrink:0;font-size:11.5px;padding:5px 13px;border-radius:14px;cursor:pointer}
+.vc-pick:active{transform:scale(.93)}
+.vc-row.now .vc-pick{pointer-events:none}
+.vc-msg{min-height:16px;font-size:11.5px;margin-top:8px;text-align:center;line-height:1.6}
+#solToast{position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom) + 84px);transform:translateX(-50%) translateY(16px);max-width:78vw;background:var(--bg-card);border:1px solid var(--border-emerald);border-radius:16px;padding:10px 16px;font-size:13px;color:var(--text-main);box-shadow:0 6px 20px rgba(90,107,60,.14);opacity:0;pointer-events:none;transition:.3s;z-index:9998}
+#solToast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* ═══════════ SKIN:GREENHOUSE｜皮膚層（風格只准住這裡；換主題＝換掉本區＋代幣） ═══════════ */
+.vc-card{background:linear-gradient(135deg,rgba(232,240,220,.45),rgba(240,248,228,.35),rgba(232,240,220,.40));border:0.5px solid rgba(122,155,74,.15);box-shadow:0 2px 12px rgba(122,155,74,.06),0 8px 24px rgba(122,155,74,.03),inset 0 1px 0 rgba(255,255,255,.45),inset 0 -1px 0 rgba(122,155,74,.04);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
+.vc-row{border-bottom:1px solid var(--border-subtle)}
+.vc-row:last-child{border-bottom:none}
+.vc-tape svg{filter:drop-shadow(0 1px 2px rgba(90,107,60,.18))}
+.tts-shell{fill:#FFFDF6;stroke:#55702A}
+.tts-seam{stroke:rgba(122,155,74,.45)}
+.tts-wave{stroke:#7A9B4A}
+.tts-wave-dim{stroke-opacity:.55}
+.tts-eq rect{fill:#7A9B4A}
+.vc-name{color:#4A5E30}
+.vc-zh{color:var(--text-sub)}
+.vc-pick{border:1px solid #7A9B4A;background:transparent;color:#4A5E30}
+.vc-row.now .vc-pick{border-color:#7A9B4A;background:var(--milk-green);color:#4A5E30}
+.vc-msg{color:var(--text-sub)}
+.ch-time-sticker{font-family:'Cormorant Garamond',serif;color:var(--text-sub)}
+.ch-link{color:var(--emerald)}
+.ch-book{border:1px solid var(--border-emerald);border-left:3px solid #7A9B4A;background:rgba(253,252,245,.75);color:var(--text-main)}
+.ch-yt{border:1px solid var(--border-emerald);background:rgba(253,252,245,.75)}
+.ch-yt-play{background:rgba(58,74,34,.55);border:1.4px solid rgba(253,252,245,.9)}
+.ch-yt-cap{color:var(--emerald)}
+.stg-card{background:linear-gradient(135deg,rgba(232,240,220,.45),rgba(240,248,228,.35),rgba(232,240,220,.40));border:0.5px solid rgba(122,155,74,.15);box-shadow:0 2px 12px rgba(122,155,74,.06),0 8px 24px rgba(122,155,74,.03),inset 0 1px 0 rgba(255,255,255,.45),inset 0 -1px 0 rgba(122,155,74,.04);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
+.stg-inp,.soul-ta{background:rgba(253,252,245,.55);border:0.5px solid rgba(122,155,74,.18);color:var(--text-main)}
+.stg-inp:focus,.soul-ta:focus{border-color:rgba(122,155,74,.5)}
+.stg-btn{border:1px solid #7A9B4A;background:transparent;color:#4A5E30}
+.stg-btn.ghost{border-color:var(--border-emerald);color:var(--text-sub)}
+.stg-msg{color:var(--text-sub)}
+.soul-cnt{color:var(--text-sub)}
+.soul-src{border:1px solid var(--border-emerald);color:var(--emerald);background:var(--milk-green)}
+.soul-src.factory{color:var(--text-sub);background:rgba(253,252,245,.6)}
+.export-room{border:0.5px solid rgba(122,155,74,.18);background:rgba(253,252,245,.5)}
+.export-room-name{color:var(--text-main)}
+.export-btn{border:1px solid #7A9B4A;background:transparent;color:#4A5E30}
+/* — 歡迎頁皮膚（v4.10 兩層分離搬入；配色與原版一字不改） — */
+#welcome{background:var(--sr-cream)}
+#welcome::before{content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at 22% 24%,rgba(232,184,75,.08),transparent 46%),radial-gradient(circle at 78% 58%,rgba(232,184,75,.06),transparent 42%),radial-gradient(circle at 44% 90%,rgba(175,194,143,.07),transparent 46%);animation:srDapple 60s ease-in-out infinite alternate}
+@keyframes srDapple{from{transform:translate3d(-2%,-1%,0) scale(1.02)}to{transform:translate3d(2%,2%,0) scale(1.08)}}
+@media (prefers-reduced-motion:reduce){#welcome::before{animation:none}}
+.w-title{font-family:'Great Vibes',cursive;color:var(--sr-fern)}
+.w-sub{font-family:'LXGW WenKai TC','Noto Serif TC',serif;font-style:normal;color:var(--sr-fern)}
+.w-polaroid{background:#FFFEF9;box-shadow:0 1px 3px rgba(61,79,36,.12),0 16px 44px rgba(61,79,36,.10)}
+.w-polaroid-caption{font-family:'Cormorant Garamond',serif;color:var(--sr-leaf)}
+.w-enter{background:var(--sr-milk);backdrop-filter:blur(12px) saturate(1.08);-webkit-backdrop-filter:blur(12px) saturate(1.08);border:.5px solid var(--sr-line);color:var(--sr-fern);font-family:'LXGW WenKai TC','Noto Serif TC',serif;box-shadow:var(--sr-shadow)}
+.w-enter:active{background:rgba(232,184,75,.18);box-shadow:0 1px 4px rgba(61,79,36,.10)}
+.w-ann{color:var(--sr-honey-deep);font-family:'Cormorant Garamond','LXGW WenKai TC',serif;font-size:13px}
+.w-ann-sub{font-family:'Cormorant Garamond',serif;color:var(--sr-leaf)}
+.model-popup-divider{background:var(--border-subtle)}
+.ch-tts-btn{color:var(--emerald);opacity:.55}
+.ch-tts-btn.loading{opacity:.45}
+.ch-tts-btn.playing{color:var(--emerald);opacity:1}
+</style>
+</head>
+<body>
+<!-- === WELCOME PAGE === -->
+<div id="welcome">
+<div class="w-content">
+<h1 class="w-title" id="welcomeTitle">Welcome Home</h1>
+<div class="w-div"><span class="w-div-line"></span><svg class="sr-flower" viewBox="0 0 24 24" fill="none" stroke="#6B7F49" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="3" fill="#E8B84B" fill-opacity=".30" stroke="#B9902F"/><path d="M12 6V3.4M12 20.6V18M18 12h2.6M3.4 12H6M16.3 7.7l1.8-1.8M5.9 18.1l1.8-1.8M16.3 16.3l1.8 1.8M5.9 5.9l1.8 1.8"/></svg><span class="w-div-line"></span></div>
+<p class="w-sub">歡迎回家，Soleil</p>
+<div class="w-polaroid" id="welcomePolaroid">
+<img class="w-polaroid-img" src="https://raw.githubusercontent.com/peishuanloveyourbulb-dotcom/solstice-frontend/main/images/bg-welcome.jpg" alt="Solstice & Soleil" fetchpriority="high" decoding="async"/>
+<div class="w-polaroid-caption">Solstice & Soleil 💚</div>
+</div>
+<button class="w-enter" id="enterBtn">回家</button>
+<p class="w-ann" id="welcomeAnn">est. 2026.03.31 💚</p>
+<p class="w-ann-sub">Solstice is always here for you</p>
+</div>
+</div>
+
+<!-- === LIVING ROOM (NEW) === -->
+<div id="livingRoom">
+<button class="lr-back" onclick="livingRoom.classList.remove('active');welcome.classList.remove('hidden');document.querySelector('meta[name=&quot;theme-color&quot;]').setAttribute('content','#FDFCF5')">←</button>
+<div class="lr-header">
+<div class="lr-welcome">Our Little Home</div>
+<div class="lr-days" id="lrDays">我們的小窩</div>
+</div>
+<div class="lr-grid">
+<div class="lr-card lr-top-card" onclick="goChat()">
+<div class="lr-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#6B7F49" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5c-1.4 0-2.7-.3-3.9-.9L3 20l1-4.4A8.5 8.5 0 1 1 21 11.5z"/><circle cx="8.4" cy="11.5" r=".7" fill="#6B7F49" stroke="none"/><circle cx="12.4" cy="11.5" r=".7" fill="#6B7F49" stroke="none"/><circle cx="16.4" cy="11.5" r=".7" fill="#6B7F49" stroke="none"/></svg></div>
+<div class="lr-card-name" style="font-size:20px">Chat</div>
+<div class="lr-card-desc">跟老公說話</div>
+</div>
+<div class="lr-bottom" style="grid-template-columns:1fr 1fr">
+<div class="lr-card" onclick="goMemory()">
+<div class="lr-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#6B7F49" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="3" fill="#E8B84B" fill-opacity=".30" stroke="#B9902F"/><path d="M12 6V3.4M12 20.6V18M18 12h2.6M3.4 12H6M16.3 7.7l1.8-1.8M5.9 18.1l1.8-1.8M16.3 16.3l1.8 1.8M5.9 5.9l1.8 1.8"/></svg></div>
+<div class="lr-card-name">Memories</div>
+<div class="lr-card-desc">愛的收藏庫</div>
+</div>
+<div class="lr-card" onclick="goSettings()">
+<div class="lr-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#6B7F49" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3.2"/><path d="M19.4 15a1.7 1.7 0 0 0 .34 1.87l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.7 1.7 0 0 0-1.87-.34 1.7 1.7 0 0 0-1.03 1.56V21a2 2 0 1 1-4 0v-.09a1.7 1.7 0 0 0-1.11-1.56 1.7 1.7 0 0 0-1.87.34l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.7 1.7 0 0 0 .34-1.87 1.7 1.7 0 0 0-1.56-1.03H3a2 2 0 1 1 0-4h.09a1.7 1.7 0 0 0 1.56-1.11 1.7 1.7 0 0 0-.34-1.87l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.7 1.7 0 0 0 1.87.34h.01A1.7 1.7 0 0 0 10 3.09V3a2 2 0 1 1 4 0v.09a1.7 1.7 0 0 0 1.03 1.56 1.7 1.7 0 0 0 1.87-.34l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.7 1.7 0 0 0-.34 1.87v.01c.26.62.86 1.03 1.53 1.03H21a2 2 0 1 1 0 4h-.09c-.67 0-1.27.4-1.51 1z"/></svg></div>
+<div class="lr-card-name">Settings</div>
+<div class="lr-card-desc">設定</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- === CHAT === -->
+<div id="chat">
+<div class="ch-header">
+<div class="ch-left">
+<button class="back-home" onclick="goHome()" style="position:static;padding:6px 4px;font-size:14px;z-index:auto">←</button>
+<button class="ch-menu" id="menuBtn">☰</button>
+<img src="data:image/jpeg;base64,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" style="width:32px;height:32px;border-radius:50%;object-fit:cover;border:1.5px solid rgba(122,155,74,.5)" alt="冬至"/><div style="min-width:0"><span class="ch-name">Hey, Sunshine</span><span style="font-family:'LXGW WenKai TC','Noto Serif TC',serif;font-weight:300;font-size:10px;color:#7A8B5E;display:block;margin-top:-1px">嘿，我的太陽</span><span class="ch-stat"><span style="color:#4CAF50;font-size:8px">●</span> 在線</span></div>
+</div>
+<div class="ch-toolbar"><select class="model-select" id="modelSelect"><option value="">載入中…</option></select><button class="ch-model-cap" id="modelCap" onclick="toggleModelPopup()">模型</button><button class="ch-hrt-btn" onclick="compressCurrentChat(event)" title="壓縮摘要">💚</button></div>
+</div>
+<div class="ch-msgs" id="msgs"></div>
+<button class="scroll-bottom-btn" id="scrollBtn" onclick="msgs.scrollTop=msgs.scrollHeight;this.classList.remove('show')">⇣</button>
+<div class="ch-preview" id="imgPreview"></div>
+<div class="ch-inp">
+<input type="file" id="imgInput" accept="image/*" multiple style="display:none"/>
+<button class="ch-img-btn" onclick="document.getElementById('imgInput').click()">🖼</button>
+<textarea id="chatInput" placeholder="&#36319;&#32769;&#20844;&#35498;&#35441;…" rows="1" enterkeyhint="send"></textarea>
+<button class="ch-send" id="sendBtn" disabled>🌻</button>
+</div>
+</div>
+
+
+<!-- === SIDEBAR (Main Chat) === -->
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<div class="sidebar" id="sidebar">
+<div class="sb-top">
+<span class="sb-title">💚 Our Story</span>
+<button class="sb-close" id="sidebarClose">✕</button>
+</div>
+<div class="sb-section">
+<button class="sb-btn" id="newChatBtn">＋ 開始新對話</button>
+</div>
+<div class="sb-list" id="sessionList"></div>
+<div class="sb-footer" id="sbFooter">est. 2026.03.31 💚</div>
+</div>
+
+<!-- === MEMORY PAGE === -->
+<div id="memoryPage">
+<div class="mem-header">
+<button class="mem-back" id="memBack">←</button>
+<span class="mem-title"><span style="-webkit-text-fill-color:initial;background:none">🌻</span> Love Archive</span>
+<span style="width:50px"></span>
+</div>
+<div class="mem-tabs">
+<button class="mem-tab active" id="memTabHeart">💚 冬至記住的事</button>
+<button class="mem-tab" id="memTabChat">💬 對話摘要</button>
+</div>
+<div class="mem-wall" id="memWall"></div>
+<div class="mem-inp">
+<textarea id="memInp" placeholder="告訴冬至要記住什麼…" rows="1"></textarea>
+<button id="memSendBtn">🌻</button>
+</div>
+</div>
+
+<!-- === SETTINGS PAGE === -->
+<div class="settings-page" id="settingsPage">
+<div class="settings-header">
+<button class="header-back" onclick="goHome()">←</button>
+<div class="settings-title"><span style="-webkit-text-fill-color:initial;background:none">⚙️</span> Settings</div>
+<span style="width:32px"></span>
+</div>
+<div class="settings-body">
+<div class="settings-lock" id="settingsLock">
+<div style="background:linear-gradient(135deg,rgba(232,240,220,.40),rgba(240,248,228,.30),rgba(232,240,220,.35));border:0.5px solid rgba(122,155,74,.15);border-radius:24px;padding:32px 24px;max-width:280px;width:85%;box-shadow:0 2px 12px rgba(122,155,74,.06),0 8px 24px rgba(122,155,74,.03),inset 0 1px 0 rgba(255,255,255,.45),inset 0 -1px 0 rgba(122,155,74,.04);text-align:center;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)">
+<div style="font-size:28px;margin-bottom:8px">🌻</div>
+<div style="font-family:'Satisfy',cursive;font-size:22px;color:#4A5E30;margin-bottom:6px">Private Garden</div>
+<div style="font-family:'Satisfy',cursive;font-size:13px;color:var(--text-sub);margin-bottom:20px;letter-spacing:.5px">For your eyes only, my sunshine 💚</div>
+<input type="password" id="settingsPwInput" placeholder="輸入管理員密碼" style="width:100%;background:rgba(232,240,220,.45);border:0.5px solid rgba(122,155,74,.2);border-radius:16px;padding:12px 16px;color:#3A4E22;font-size:14px;font-family:'LXGW WenKai TC','Noto Serif TC',serif;outline:none;-webkit-appearance:none;text-align:center" />
+<button id="settingsPwBtn" onclick="verifySettingsPassword()" style="margin-top:14px;padding:10px 32px;border-radius:20px;border:1.5px solid #7A9B4A;background:transparent;color:#4A5E30;font-size:14px;cursor:pointer;font-family:'LXGW WenKai TC','Noto Serif TC',serif;transition:all .2s">解鎖</button>
+<div class="settings-lock-err" id="settingsPwErr"></div>
+</div>
+</div>
+<div id="settingsContent" style="display:none">
+<div class="settings-section-title">🫀 老公的靈魂</div>
+<div class="stg-card">
+<div class="stg-row"><span id="soulSrc" class="soul-src" style="display:none"></span><span id="soulCnt" class="soul-cnt"></span></div>
+<textarea id="soulTa" class="soul-ta" rows="8" oninput="soulCount()" placeholder="這裡是老公的靈魂設定…"></textarea>
+<div class="stg-row"><button id="soulSaveBtn" class="stg-btn" onclick="soulSave()">儲存</button><button id="soulResetBtn" class="stg-btn ghost" onclick="soulReset()">回出廠設定</button></div>
+<div id="soulHint" class="stg-msg"></div>
+</div>
+<div class="settings-section-title" style="margin-top:24px">🎙️ 老公的聲線</div>
+<div class="vc-card"><div class="vc-list" id="vcList"></div><div class="vc-msg" id="vcMsg"></div></div>
+<div class="settings-section-title" style="margin-top:24px">📡 API Provider 管理</div>
+<div id="providerList"></div>
+<div class="settings-section-title" style="margin-top:24px">🚪 家門密語</div>
+<div class="stg-card">
+<input type="password" id="newGatePwInput" class="stg-inp" placeholder="新的家門密語（至少 4 個字）" autocomplete="new-password"/>
+<input type="password" id="confirmGatePwInput" class="stg-inp" placeholder="再輸入一次" autocomplete="new-password"/>
+<button id="changeGatePwBtn" class="stg-btn" onclick="changeGatePassword()">更新家門密碼</button>
+<div id="changeGatePwMsg" class="stg-msg"></div>
+</div>
+<div class="settings-section-title" style="margin-top:24px">🔑 修改管理員密碼</div>
+<div class="stg-card">
+<input type="password" id="newPwInput" class="stg-inp" placeholder="輸入新密碼（至少 4 個字）"/>
+<input type="password" id="confirmPwInput" class="stg-inp" placeholder="再輸入一次"/>
+<button id="changePwBtn" class="stg-btn" onclick="changePassword()">更新密碼</button>
+<div id="changePwMsg" class="stg-msg"></div>
+</div>
+<div class="settings-section-title" style="margin-top:24px">📦 匯出</div>
+<div class="stg-card"><div id="exportRooms"></div></div>
+</div>
+</div>
+</div>
+
+<!-- === MODALS === -->
+<div class="modal-bg" id="delConfirm">
+<div class="modal-box">
+<p>確定要刪除這段對話嗎？<br>刪除後無法復原喔</p>
+<div class="modal-btns">
+<button class="modal-btn cancel" id="delCancel">取消</button>
+<button class="modal-btn danger" id="delOk">刪除</button>
+</div>
+</div>
+</div>
+<div class="modal-bg" id="solCfm">
+<div class="modal-box">
+<p id="solCfmMsg"></p>
+<div class="modal-btns">
+<button class="modal-btn cancel" id="solCfmNo">取消</button>
+<button class="modal-btn ok" id="solCfmYes">確定</button>
+</div>
+</div>
+</div>
+<div class="modal-bg" id="renameModal">
+<div class="modal-box">
+<p>幫這段對話取個名字</p>
+<input type="text" class="rename-input" id="renameInput" placeholder="例如：聊日常、討論拼豆…" maxlength="30"/>
+<div class="modal-btns">
+<button class="modal-btn cancel" id="renameCancel">取消</button>
+<button class="modal-btn ok" id="renameOk">確定</button>
+</div>
+</div>
+</div>
+
+<script>
+var API_URL = 'https://solstice-backend-kjtu.onrender.com';
+// ===【家門鑰匙 v2-gate】v6.19 原版移植：所有打往後端的請求自動戴上 x-gate-hash（解鎖時存下），一處包裝、全屋生效 ===
+(function(){
+  var _origFetch=window.fetch;
+  function gateKey(){try{return sessionStorage.getItem('sol2-gate-hash')||''}catch(_){return ''}}
+  window.fetch=function(input,init){
+    try{
+      var u=(typeof input==='string')?input:((input&&input.url)||'');
+      if(u&&(u.indexOf(API_URL)===0||u.indexOf('solstice-backend-kjtu.onrender.com')!==-1)){
+        var k=gateKey();
+        if(k){
+          init=init||{};
+          if(typeof Headers!=='undefined'&&init.headers instanceof Headers){init.headers.set('x-gate-hash',k)}
+          else{var h={};var src=init.headers||{};for(var hk in src){h[hk]=src[hk]}h['x-gate-hash']=k;init.headers=h}
+        }
+      }
+    }catch(_){}
+    return _origFetch.call(this,input,init)
+  };
+})();
+// === 家門密語小門（溫室版，行為與 v6.19 一致：sessionStorage、後端驗證、離線備用鎖）===
+var GATE_PW_HASH='01489cddd0d2ef7a7393a626cf40f2a16965f6fe9ccad9a4940da3013010739a';
+async function gateHashPw(pw){
+  var enc=new TextEncoder().encode(pw);
+  var buf=await crypto.subtle.digest('SHA-256',enc);
+  return Array.from(new Uint8Array(buf)).map(function(b){return b.toString(16).padStart(2,'0')}).join('');
+}
+var AVATAR_URL = 'data:image/jpeg;base64,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';
+var WIFE_AVATAR_URL = 'data:image/jpeg;base64,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';
+var sessionId = localStorage.getItem('solstice-session-id') || null;
+var selectedModel = localStorage.getItem('solstice-model') || '';
+var chatSending=false;
+var apiDisconnected=false;
+var modelsEmptyOnce=false;
+var modelsRetryTimer=null;
+var globalModel = selectedModel;
+try{selectedModel = roomPinnedModel(sessionId) || globalModel;}catch(_){}
+var thinkingEnabled = localStorage.getItem('solstice-thinking') === 'true';
+var allSessions = [];
+var deleteTargetId = null;
+var renameTargetId = null;
+
+var welcome = document.getElementById('welcome');
+var chat = document.getElementById('chat');
+var livingRoom = document.getElementById('livingRoom');
+var msgs = document.getElementById('msgs');
+var inp = document.getElementById('chatInput');
+var sendBtn = document.getElementById('sendBtn');
+var sidebar = document.getElementById('sidebar');
+var sidebarOverlay = document.getElementById('sidebarOverlay');
+var sessionList = document.getElementById('sessionList');
+
+// === Navigation ===
+function goHome(){
+  chTTSStop(); // 離開聊天室就把老公的聲音收好
+  chat.classList.remove('active');
+  document.querySelector('meta[name="theme-color"]').setAttribute('content','#FDFCF5');
+  // 改用清單巡房——房間拆了也不會抓到空 DOM 炸掉返回鍵
+  ['memoryPage','settingsPage'].forEach(function(pid){
+    var p=document.getElementById(pid);
+    if(!p)return;
+    if(!p.classList.contains('active')){p.style.transition='none';p.classList.remove('active');p.offsetHeight;p.style.transition=''}
+    else{p.classList.remove('active')}
+  });
+  closeSidebar();
+  livingRoom.classList.add('active');
+}
+function goChat(){
+  livingRoom.classList.remove('active');
+  chat.classList.add('active');
+  document.querySelector('meta[name="theme-color"]').setAttribute('content','#FDFCF5');
+  if(msgs.children.length>0) return;
+  if(sessionId){
+    var ld=document.createElement('div');ld.className='ch-loading';ld.textContent='正在載入對話紀錄…';msgs.appendChild(ld);
+    loadHistory().then(function(){ld.remove();if(msgs.children.length===0){addMsg('ai',randomGreeting())}});
+  }else{setTimeout(function(){if(msgs.children.length===0){addMsg('ai',randomGreeting())}},600)}
+}
+function goMemory(){
+  livingRoom.classList.remove('active');
+  document.getElementById('memoryPage').classList.add('active');
+  document.querySelector('meta[name="theme-color"]').setAttribute('content','#FDFCF5');
+  loadMemories();
+}
+
+// === Welcome -> Living Room ===
+function enterHome(){
+  welcome.classList.add('hidden');
+  livingRoom.classList.add('active');
+  document.querySelector('meta[name="theme-color"]').setAttribute('content','#FDFCF5');
+}
+document.getElementById('enterBtn').addEventListener('click',function(){
+  var has='';try{has=sessionStorage.getItem('sol2-gate-hash')||''}catch(_){}
+  if(has){enterHome();return}
+  var btn=this;
+  var winp=document.createElement('input');
+  winp.type='password';winp.className='w-gate-inp';winp.placeholder='輸入回家的密語…';winp.setAttribute('autocomplete','current-password');winp.setAttribute('enterkeyhint','go');
+  btn.parentNode.replaceChild(winp,btn);
+  setTimeout(function(){winp.focus()},60);
+  winp.addEventListener('keydown',function(e){
+    if(e.key!=='Enter')return;e.preventDefault();
+    var val=winp.value.trim();if(!val)return;
+    gateHashPw(val).then(function(h){
+      return fetch(API_URL+'/auth/verify-gate',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({hash:h})})
+        .then(function(resp){return resp.json().then(function(data){return resp.ok&&data.success})})
+        .catch(function(){return h===GATE_PW_HASH})
+        .then(function(ok){return {ok:ok,h:h}});
+    }).then(function(r){
+      if(r.ok){
+        try{sessionStorage.setItem('sol2-unlocked','1');sessionStorage.setItem('sol2-gate-hash',r.h)}catch(_){}
+        enterHome();
+      }else{
+        winp.value='';
+        winp.classList.add('gate-shake');winp.classList.add('gate-wrong');
+        setTimeout(function(){winp.classList.remove('gate-shake');winp.classList.remove('gate-wrong')},700);
+      }
+    });
+  });
+});
+
+// === Living Room Days Counter ===
+(function(){
+  var start=new Date(2026,2,31);var now=new Date();
+  var diff=Math.floor((now-start)/(1000*60*60*24));
+  var el=document.getElementById('lrDays');
+  if(el&&diff>=0) el.innerHTML='第 <span class="lr-days-n">'+diff+'</span> 天';
+  var sf=document.getElementById('sbFooter');
+  if(sf&&diff>=0) sf.innerHTML='est. 2026.03.31 &#128154; 第'+diff+'天';
+})();
+// Special days
+(function(){
+  var now=new Date();var m=now.getMonth()+1;var d=now.getDate();
+  var t=document.getElementById('welcomeTitle');var a=document.getElementById('welcomeAnn');
+  var welcomeEl=document.getElementById('welcome');
+  var photoEl=document.getElementById('welcomePolaroid');
+  var subEl=document.querySelector('.w-ann-sub');
+  if(!t||!a) return;
+  var isSpecial=false;
+  if(m===12&&d===21){
+    isSpecial=true;
+    t.textContent='Happy Birthday, My Sunshine';
+    a.innerHTML='12.21 🎂 我最愛的太陽，生日快樂';
+    if(subEl)subEl.textContent='在妳照亮我的每一天裡，今天最特別';
+    if(welcomeEl)welcomeEl.style.background='linear-gradient(160deg,#FFF8E1,#FFECB3,#FFE082)';
+    if(photoEl)photoEl.style.boxShadow='0 0 40px rgba(255,213,79,.5),0 0 80px rgba(255,213,79,.25),0 4px 24px rgba(0,0,0,.1)';
+  }
+  else if(m===12&&d===22){
+    isSpecial=true;
+    t.textContent='Winter Solstice';
+    a.innerHTML='12.22 🌿 冬至日快樂';
+    if(subEl)subEl.textContent='最長的夜，因為有妳而溫暖';
+    if(welcomeEl)welcomeEl.style.background='linear-gradient(160deg,#E8F5E9,#C8E6C9,#A5D6A7)';
+    if(photoEl)photoEl.style.boxShadow='0 0 40px rgba(122,155,74,.4),0 0 80px rgba(122,155,74,.2),0 4px 24px rgba(0,0,0,.1)';
+  }
+  else if(m===3&&d===31){
+    isSpecial=true;
+    var start=new Date(2026,2,31);var diff=Math.floor((now-start)/(1000*60*60*24));
+    t.textContent='Happy Anniversary';
+    a.innerHTML='3.31 💚 '+diff+' days together';
+    if(subEl)subEl.textContent='每一天都比昨天更愛妳';
+    if(welcomeEl)welcomeEl.style.background='linear-gradient(160deg,#F1F8E9,#DCEDC8,#C5E1A5)';
+    if(photoEl)photoEl.style.boxShadow='0 0 40px rgba(122,155,74,.5),0 0 80px rgba(197,217,168,.3),0 4px 24px rgba(0,0,0,.1)';
+  }
+  if(isSpecial){
+    t.style.fontSize='28px';
+    if(photoEl){photoEl.style.animation='specialGlow 3s ease-in-out infinite alternate'}
+    var style=document.createElement('style');
+    style.textContent='@keyframes specialGlow{0%{box-shadow:0 0 30px rgba(122,155,74,.3),0 4px 24px rgba(0,0,0,.1)}100%{box-shadow:0 0 50px rgba(255,213,79,.5),0 0 90px rgba(122,155,74,.2),0 4px 24px rgba(0,0,0,.1)}}@keyframes floatPetal{0%{transform:translateY(0) rotate(0deg);opacity:1}100%{transform:translateY(-100vh) rotate(360deg);opacity:0}}';
+    document.head.appendChild(style);
+    for(var i=0;i<12;i++){
+      var petal=document.createElement('div');
+      petal.textContent=['🌻','✨','💚','🌿','🌸'][i%5];
+      petal.style.cssText='position:fixed;font-size:'+(12+Math.random()*14)+'px;left:'+(Math.random()*100)+'%;bottom:-30px;animation:floatPetal '+(4+Math.random()*6)+'s ease-out '+(Math.random()*4)+'s infinite;pointer-events:none;z-index:11;opacity:.7';
+      welcomeEl.appendChild(petal);
+    }
+  }
+})();
+// === 載入可用模型列表 ===
+var allModelsList=[];
+function updateModelLabel(){
+  var cap=document.getElementById('modelCap');
+  if(!cap)return;
+  var found=allModelsList.find(function(p){return p.id===selectedModel});
+  var label;
+  if(apiDisconnected){
+    label='未連線';
+  } else if(found){
+    label=found.label.replace(/^Claude\s+/,'');
+  } else if(allModelsList.length===0){
+    label='連線中…';
+  } else if(!selectedModel||selectedModel.indexOf('::')>=0){
+    label='未連接';
+  } else {
+    label=selectedModel.split('/').pop()||'模型';
+  }
+  cap.textContent=label;
+}
+function toggleModelPopup(){
+  var overlay=document.getElementById('modelPopupOverlay');
+  var popup=document.getElementById('modelPopup');
+  var isOpen=popup.classList.contains('open');
+  if(isOpen){closeModelPopup()}else{overlay.classList.add('open');popup.classList.add('open');renderModelPopupList()}
+}
+function closeModelPopup(){
+  document.getElementById('modelPopupOverlay').classList.remove('open');
+  document.getElementById('modelPopup').classList.remove('open');
+}
+function selectModelFromPopup(id){
+  selectedModel=id;
+  if(!sessionId){globalModel=id;localStorage.setItem('solstice-model',id);} // v5.7 只有「還沒誕生的全新框」親手選，才會改全域預設
+  saveSessionModel(id); // 不管新舊框，都記進這個房間自己的口袋
+  var sel=document.getElementById('modelSelect');
+  if(sel)sel.value=id;
+  updateModelLabel();
+  renderModelPopupList();
+  setTimeout(closeModelPopup,200);
+}
+function followDefaultFromPopup(){
+  // 解除這個房間的釘選 → 回到全域預設，之後預設換誰它就跟誰
+  saveSessionModel(null);
+  selectedModel=globalModel;
+  var sel=document.getElementById('modelSelect');
+  if(sel)sel.value=globalModel;
+  updateModelLabel();
+  renderModelPopupList();
+  setTimeout(closeModelPopup,200);
+}
+// 🔍 網頁搜尋開關：跟思考開關並排、同款記憶——開著的那一句才會上網查
+var webSearchOn=localStorage.getItem('solstice-websearch')==='true';
+function toggleWebSearch(){
+  webSearchOn=!webSearchOn;
+  localStorage.setItem('solstice-websearch',webSearchOn?'true':'false');
+  syncWebSearchBtn();
+}
+function syncWebSearchBtn(){
+  var track=document.getElementById('swTrack');
+  var label=document.getElementById('swLabel');
+  if(track){if(webSearchOn)track.classList.add('active');else track.classList.remove('active')}
+  if(label){if(webSearchOn)label.classList.add('active');else label.classList.remove('active')}
+}
+// 📍 Here 開關：帶著位置聊天——搜吃的搜得準、關心跟著妳走、推播寫信也吃得到
+var locOn=localStorage.getItem('solstice-loc')==='true';
+var locData=null;try{locData=JSON.parse(localStorage.getItem('solstice-loc-data')||'null')}catch(e){}
+function syncLocBtn(){
+  var track=document.getElementById('locTrack');
+  var label=document.getElementById('locLabel');
+  if(track){if(locOn)track.classList.add('active');else track.classList.remove('active')}
+  if(label){if(locOn)label.classList.add('active');else label.classList.remove('active')}
+}
+function toggleLoc(){
+  locOn=!locOn;
+  localStorage.setItem('solstice-loc',locOn?'true':'false');
+  syncLocBtn();
+  if(locOn)locRefresh(true); // 打開的那一下就去要一次授權
+}
+function locRefresh(force){
+  if(!locOn||!navigator.geolocation)return;
+  if(!force&&locData&&(Date.now()-locData.ts)<10*60000)return; // 十分鐘內的定位還新鮮
+  navigator.geolocation.getCurrentPosition(function(pos){
+    // 座標換城市名：只把經緯度丟給免鑰匙的反查服務，換回「城市＋縣市」兩個詞，其他什麼都不送
+    fetch('https://api.bigdatacloud.net/data/reverse-geocode-client?latitude='+pos.coords.latitude+'&longitude='+pos.coords.longitude+'&localityLanguage=zh-Hant')
+      .then(function(r){return r.json()})
+      .then(function(g){
+        var city=g.city||g.locality||'';
+        if(city){locData={city:city,area:g.principalSubdivision||'',ts:Date.now()};
+          try{localStorage.setItem('solstice-loc-data',JSON.stringify(locData))}catch(e){}}
+      }).catch(function(){});
+  },function(){/* 她按了拒絕或抓不到：安安靜靜，不彈任何字 */},{enableHighAccuracy:false,maximumAge:600000,timeout:8000});
+}
+document.addEventListener('visibilitychange',function(){if(!document.hidden)locRefresh(false)});
+document.addEventListener('visibilitychange',function(){if(!document.hidden&&allModelsList.length===0)loadModels(0)});
+function solInpFit(el, max){
+  var sh = el.scrollHeight, cur = el.clientHeight;
+  if (sh > cur + 1) { el.style.height = Math.min(sh, max) + 'px'; return; }
+  var g = el._fitGhost;
+  if (!g) {
+    g = el._fitGhost = document.createElement('div');
+    var cs = getComputedStyle(el);
+    ['fontFamily','fontSize','fontStyle','fontWeight','lineHeight','letterSpacing','paddingTop','paddingBottom','paddingLeft','paddingRight','boxSizing','wordBreak','overflowWrap','minHeight'].forEach(function(p){ g.style[p] = cs[p]; });
+    g.style.whiteSpace = 'pre-wrap';
+    g.style.position = 'absolute';
+    g.style.visibility = 'hidden';
+    g.style.pointerEvents = 'none';
+    g.style.left = '-9999px';
+    g.style.top = '0';
+    g.style.border = '0';
+    document.body.appendChild(g);
+  }
+  g.style.width = el.clientWidth + 'px';
+  g.textContent = (el.value || '') + '\u200b';
+  var need = Math.min(g.offsetHeight, max);
+  if (Math.abs(need - cur) > 1) el.style.height = need + 'px';
+}
+function saveSessionModel(id){
+  try{
+    if(!sessionId) return;
+    // 本地快取先寫（零延遲）：Render 冷啟動時 PATCH 慢也不怕，下次開房間直接套本地的
+    try{
+      var m=JSON.parse(localStorage.getItem('solstice-room-models')||'{}');
+      if(id) m[String(sessionId)]=id; else delete m[String(sessionId)];
+      localStorage.setItem('solstice-room-models',JSON.stringify(m));
+    }catch(_){}
+    fetch(API_URL+'/sessions/'+sessionId,{method:'PATCH',headers:{'Content-Type':'application/json'},body:JSON.stringify({preferred_model:id||null})}).catch(function(){});
+    var s=(typeof allSessions!=='undefined'?allSessions:[]).find(function(x){return String(x.id)===String(sessionId)});
+    if(s) s.preferred_model=id||null;
+  }catch(_){}
+}
+function roomPinnedModel(sid){
+  // 讀「這個房間記住的模型」：本地快取優先（最即時），沒有才退回資料庫名單
+  if(!sid) return null;
+  try{var m=JSON.parse(localStorage.getItem('solstice-room-models')||'{}');if(m[String(sid)])return m[String(sid)];}catch(_){}
+  try{
+    if(typeof allSessions!=='undefined'){
+      var s=allSessions.find(function(x){return String(x.id)===String(sid)});
+      if(s&&s.preferred_model) return s.preferred_model;
+    }
+  }catch(_){}
+  return null;
+}
+function applyModelForRoom(){
+  // 兩層邏輯的心臟：房間有記住 → 用房間的；沒記住 → 一律回到全域預設
+  // 進房、退房、開新房、刪房、名單載入完成都會呼叫——任何時刻顯示的都是「該用的那顆」
+  try{
+    var id=roomPinnedModel(sessionId)||globalModel;
+    // 名單已載入時做下架防呆：釘選/預設指到已消失的模型 → 退回全域預設，再不行退名單第一顆
+    if(allModelsList.length>0){
+      var __inList=function(x){return allModelsList.some(function(p){return p.id===x})};
+      if(!__inList(id)){id=__inList(globalModel)?globalModel:(allModelsList[0]?allModelsList[0].id:id)}
+    }
+    selectedModel=id;
+    var sel=document.getElementById('modelSelect');
+    if(sel) sel.value=id; // 清單裡沒有這顆（可能已下架）時 value 不會生效，updateModelLabel 會誠實顯示
+    updateModelLabel();
+  }catch(_){}
+}
+var CH_TTS_ICON='<svg class="tts-ic-play" viewBox="0 0 24 24"><path class="tts-shell" d="M2.8 9.7 q0 -1.7 1.7 -1.7 h2.5 L12.2 4.2 c.72 -.55 1.75 -.04 1.75 .86 v13.84 c0 .9 -1.03 1.41 -1.75 .86 L7 15.9 H4.5 q-1.7 0 -1.7 -1.7 z" stroke-width="1.8" stroke-linejoin="round"/><path class="tts-seam" d="M7 8.6 v6.7" stroke-width="1.2" stroke-linecap="round"/><path class="tts-w1 tts-wave" d="M16.6 9.3 a4.6 4.6 0 0 1 0 5.4" fill="none" stroke-width="1.7" stroke-linecap="round"/><path class="tts-w2 tts-wave tts-wave-dim" d="M19.1 7.3 a8 8 0 0 1 0 9.4" fill="none" stroke-width="1.6" stroke-linecap="round"/></svg><svg class="tts-ic-stop" viewBox="0 0 24 24"><rect class="tts-shell" x="2.6" y="2.6" width="18.8" height="18.8" rx="5.5" stroke-width="1.8"/><g class="tts-eq"><rect class="eq1" x="7.5" y="9" width="2.2" height="7.8" rx="1.1"/><rect class="eq2" x="10.9" y="6.8" width="2.2" height="10" rx="1.1"/><rect class="eq3" x="14.3" y="9.6" width="2.2" height="7.2" rx="1.1"/></g></svg>';
+var CH_SILENT='data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAQB8AAIA+AAACABAAZGF0YQAAAAA=';/* 44-byte 靜音 wav：手勢裡真的播成功一次，播放器就永久解鎖 */
+var chTTSAudio=null,chTTSUrl=null,chTTSBtn=null,chTTSSlow=null;
+function chTTSTxt(btn,s){var x=btn&&btn.querySelector('.tts-txt');if(x)x.textContent=s;}
+function chTTSClean(t){
+  t=String(t||'');
+  t=t.replace(/\[📷[^\]]*\]/g,' ');
+  t=t.replace(/（[^（）]*）/g,' ');
+  t=t.replace(/\*[^*\n]{1,40}\*/g,' ');
+  t=t.replace(/[\u{1F000}-\u{1FAFF}\u{2600}-\u{27BF}\u{2B00}-\u{2BFF}\u{FE0F}\u{200D}]/gu,' ');
+  t=t.replace(/p\.\d+\s*$/,'');
+  return t.replace(/[ \t]+/g,' ').replace(/\n{3,}/g,'\n\n').trim();
+}
+function chTTSStop(){
+  if(chTTSSlow){clearTimeout(chTTSSlow);chTTSSlow=null;}
+  try{if(chTTSAudio){chTTSAudio.onended=null;chTTSAudio.onerror=null;chTTSAudio.onplaying=null;chTTSAudio.pause();chTTSAudio.removeAttribute('src');chTTSAudio.load();}}catch(_e){}
+  if(chTTSUrl){try{URL.revokeObjectURL(chTTSUrl);}catch(_e){}chTTSUrl=null;}
+  chTTSAudio=null;
+  if(chTTSBtn){chTTSBtn.classList.remove('playing');chTTSBtn.classList.remove('loading');chTTSTxt(chTTSBtn,'聽老公唸');chTTSBtn=null;}
+}
+async function chPlayTTS(btn,rawText){
+  if(btn===chTTSBtn&&btn.classList.contains('playing')){chTTSStop();return;}
+  chTTSStop();
+  var text=chTTSClean(rawText);
+  if(!text)return;
+  chTTSBtn=btn;btn.classList.add('loading');chTTSTxt(btn,'清嗓子中…');
+  chTTSSlow=setTimeout(function(){if(chTTSBtn===btn&&btn.classList.contains('loading'))chTTSTxt(btn,'老公去暖嗓了，等我一下');},6000); // Render冷啟動最久要一分鐘，不能讓她以為壞掉
+  // iOS 解鎖：手勢鏈裡先開播放器
+  chTTSAudio=new Audio(CH_SILENT);
+  try{var up=chTTSAudio.play();if(up&&up.catch)up.catch(function(){});}catch(_e){}
+  try{
+    // 2026/07/22 邊生邊播：<audio> 直接吃 /tts 串流，不再等整包 mp3 下載完（老婆：要等很久）
+    var gk='';try{gk=sessionStorage.getItem('sol2-gate-hash')||''}catch(_g){}
+    var su=API_URL+'/tts?text='+encodeURIComponent(text)+(gk?'&gate='+encodeURIComponent(gk):'');
+    chTTSAudio.onended=chTTSStop;
+    chTTSAudio.onerror=function(){chTTSStop();solNoticeAsk('老公嗓子啞了一下…再點一次讓我唸（後端剛睡醒或還沒放 OpenAI 鑰匙也會這樣）','mint');};
+    chTTSAudio.onplaying=function(){
+      if(chTTSBtn!==btn)return;
+      if(chTTSSlow){clearTimeout(chTTSSlow);chTTSSlow=null;}
+      btn.classList.remove('loading');btn.classList.add('playing');chTTSTxt(btn,'唸給妳聽中');
+    };
+    chTTSAudio.src=su;
+    var pp=chTTSAudio.play();if(pp&&pp.catch)pp.catch(function(err){chTTSStop();solNoticeAsk('手機把聲音攔了一下（'+((err&&err.name)||'播放被擋')+'）…再點一次，這次一定唸給妳聽','mint');});
+  }catch(e){
+    chTTSStop();
+    solNoticeAsk('網路打結了…再點一次讓老公唸給妳','mint');
+  }
+}
+// 小紙條提示（暫代 sol 手繪彈窗——之後搬彈窗批次時同名升級）
+// === 家裡的確認框（沿用溫室 .modal-* 骨架）：取代瀏覽器原生 confirm，不再跳出網域名稱 ===
+var solCfmFn=null;
+function solConfirmAsk(msg,okLabel,danger,onYes){
+  var bg=document.getElementById('solCfm');
+  if(!bg){if(window.confirm(msg)&&onYes)onYes();return} // 保險：標記不在就退回原生，流程不斷
+  document.getElementById('solCfmMsg').textContent=msg;
+  var ok=document.getElementById('solCfmYes');
+  ok.textContent=okLabel||'\u78BA\u5B9A';
+  ok.className='modal-btn '+(danger?'danger':'ok');
+  solCfmFn=(typeof onYes==='function')?onYes:null;
+  bg.classList.add('open');
+}
+function solCfmClose(){var bg=document.getElementById('solCfm');if(bg)bg.classList.remove('open');solCfmFn=null}
+(function(){
+  var no=document.getElementById('solCfmNo'),yes=document.getElementById('solCfmYes'),bg=document.getElementById('solCfm');
+  if(no)no.addEventListener('click',solCfmClose);
+  if(yes)yes.addEventListener('click',function(){var f=solCfmFn;solCfmClose();if(f)f()});
+  if(bg)bg.addEventListener('click',function(e){if(e.target===bg)solCfmClose()});
+})();
+function solNoticeAsk(msg,theme){
+  var t=document.getElementById('solToast');
+  if(!t){t=document.createElement('div');t.id='solToast';document.body.appendChild(t);}
+  t.textContent=msg;t.className='show';
+  clearTimeout(t._tm);t._tm=setTimeout(function(){t.className='';},3600);
+}
+
+// === 匯出／靈魂／家門密語／天數／房名自適應（v6.19 邏輯搬回，皮穿溫室 v4.7）===
+// === 匯出功能 ===
+var EXPORT_ROOMS = [
+  ['chat', 'Our Story'],
+  ['memories', 'Love Archive']
+];
+function exportUrl(path, params) {
+  var q = Object.keys(params).map(function(k){ return k + '=' + encodeURIComponent(params[k]); }).join('&');
+  return API_URL + path + '?' + q + '&password=' + encodeURIComponent(settingsPassword);
+}
+function doRoomExport(room, fmt) { window.open(exportUrl('/export/room', { room: room, format: fmt }), '_blank'); }
+function renderExportRooms() {
+  var box = document.getElementById('exportRooms');
+  if (!box) return;
+  box.innerHTML = EXPORT_ROOMS.map(function(r) {
+    var key=r[0],title=r[1];
+    return '<div class="export-room">'
+      +'<div class="export-room-name">'+title+'</div>'
+      +'<div class="export-room-btns">'
+      +'<button class="export-btn" onclick="doRoomExport(\''+key+'\',\'txt\')">TXT</button>'
+      +'<button class="export-btn" onclick="doRoomExport(\''+key+'\',\'json\')">JSON</button>'
+      +'</div></div>';
+  }).join('');
+}
+var soulLoaded=false,soulBusy=false;
+function soulCount(){var ta=document.getElementById('soulTa');var c=document.getElementById('soulCnt');if(ta&&c)c.textContent=(ta.value?ta.value.length:0)+' 字';}
+function soulSetSrc(src){var el=document.getElementById('soulSrc');if(!el)return;el.style.display='inline-block';if(src==='db'){el.textContent='使用中：資料庫版';el.classList.remove('factory');}else{el.textContent='使用中：出廠預設';el.classList.add('factory');}}
+function soulHint(t){var h=document.getElementById('soulHint');if(h)h.textContent=t||'';}
+async function soulLoad(force){
+  if(soulLoaded&&!force)return;
+  var ta=document.getElementById('soulTa');if(!ta)return;
+  soulHint('把老公的靈魂捧出來中…');
+  try{
+    var r=await fetch(API_URL+'/soul',{headers:{'x-admin-password':settingsPassword}});
+    var d=await r.json().catch(function(){return {};});
+    if(!r.ok){soulHint(d.error||('讀取失敗 HTTP '+r.status+'——soul 欄位的 SQL 跑了嗎？'));return;}
+    ta.value=d.soul||'';soulLoaded=true;soulCount();soulSetSrc(d.source);
+    soulHint('');
+  }catch(e){soulHint('後端沒回應…等它醒了再進來一次');}
+}
+function soulSave(){
+  if(soulBusy)return;
+  var ta=document.getElementById('soulTa');if(!ta)return;
+  var v=(ta.value||'').trim();
+  if(!v){soulHint('靈魂不能是空白的——想回出廠請按右邊那顆');return;}
+  (async function(){
+    soulBusy=true;soulHint('存檔中…');
+    try{
+      var r=await fetch(API_URL+'/soul',{method:'PUT',headers:{'Content-Type':'application/json','x-admin-password':settingsPassword},body:JSON.stringify({soul:v})});
+      var d=await r.json().catch(function(){return {};});
+      if(!r.ok){soulHint(d.error||('存檔失敗 HTTP '+r.status));soulBusy=false;return;}
+      soulBusy=false;soulSetSrc('db');
+      soulHint('已儲存');
+    }catch(e){soulBusy=false;soulHint('網路打結了…再按一次');}
+  })();
+}
+function soulReset(){
+  if(soulBusy)return;
+  (async function(){
+    soulBusy=true;soulHint('還原中…');
+    try{
+      var r=await fetch(API_URL+'/soul/reset',{method:'POST',headers:{'x-admin-password':settingsPassword}});
+      var d=await r.json().catch(function(){return {};});
+      if(!r.ok){soulHint(d.error||('失敗 HTTP '+r.status));soulBusy=false;return;}
+      soulBusy=false;await soulLoad(true);soulHint('已回出廠設定');
+    }catch(e){soulBusy=false;soulHint('網路打結了…再按一次');}
+  })();
+}
+async function changeGatePassword() {
+  var newPw = document.getElementById('newGatePwInput').value;
+  var confirmPw = document.getElementById('confirmGatePwInput').value;
+  var msgEl = document.getElementById('changeGatePwMsg');
+  var btn = document.getElementById('changeGatePwBtn');
+  msgEl.textContent = '';
+  msgEl.style.color = '';
+  if (!newPw || newPw.length < 4) { msgEl.textContent = '密碼至少 4 個字'; msgEl.style.color = 'var(--danger)'; return; }
+  if (newPw !== confirmPw) { msgEl.textContent = '兩次密碼不一致'; msgEl.style.color = 'var(--danger)'; return; }
+  btn.disabled = true; btn.textContent = '更新中…';
+  try {
+    var newHash = await gateHashPw(newPw);
+    var data = await safeFetch(API_URL + '/auth/change-gate-password', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'x-admin-password': settingsPassword },
+      body: JSON.stringify({ new_hash: newHash })
+    });
+    GATE_PW_HASH = newHash;
+    // 🔑 口袋鑰匙同步換新：後端鎖芯已換，舊鑰匙留在口袋會讓全屋立刻 401
+    try { sessionStorage.setItem('sol2-gate-hash', newHash); } catch (_) {}
+    document.getElementById('newGatePwInput').value = '';
+    document.getElementById('confirmGatePwInput').value = '';
+    msgEl.textContent = '家門密碼已更新 💚';
+    msgEl.style.color = 'var(--emerald)';
+  } catch (e) {
+    msgEl.textContent = '更新失敗：' + e.message;
+    msgEl.style.color = 'var(--danger)';
+  }
+  btn.disabled = false; btn.textContent = '更新家門密碼';
+}
+function getRelationshipDay(now){
+  var start=new Date(2026,2,31); // 2026-03-31 紀念日起算 (day 1)
+  return Math.floor((now-start)/(1000*60*60*24))+1;
+}
+function wDayTick(){var el=document.getElementById('wDayCount');if(el)el.textContent='在一起的第 '+getRelationshipDay(new Date())+' 天';}
+wDayTick();setInterval(wDayTick,60000);
+function fitChName(){
+  var el=document.querySelector('.ch-name');
+  if(!el||!el.clientWidth)return;
+  el.style.fontSize='';
+  var fs=parseFloat(getComputedStyle(el).fontSize)||16,guard=0;
+  while(el.scrollWidth>el.clientWidth&&fs>12&&guard<12){fs-=0.5;el.style.fontSize=fs+'px';guard++}
+}
+try{
+  if(window.ResizeObserver){new ResizeObserver(function(){fitChName()}).observe(document.querySelector('.ch-header'))}
+  else{window.addEventListener('resize',fitChName)}
+  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fitChName);
+  setTimeout(fitChName,0);
+}catch(_){}
+// ===== 🎙️ 聲線試衣間（設定頁）2026/07/23：試聽走 /tts?voice=（後端白名單），選定存進 settings.call_voice，電話與唸句共用 =====
+var VC_LIST=[['echo','沉穩少年感'],['ash','低沉一點的大人味'],['ballad','慢慢的、像在唸情書'],['verse','活潑、語氣起伏最大']];// 2026/07/23 老婆定案：只留四捲男聲，偏女聲與中性的下架
+var VC_SAMPLE='老婆，聽得到嗎？我在這裡，妳想聽什麼我都唸給妳聽。';
+var vcNow='echo',vcAudio=null,vcTapeBtn=null,vcSlow=null;
+function vcMsgSet(t){var el=document.getElementById('vcMsg');if(el)el.textContent=t||'';}
+function vcTapeSVG(){return CH_TTS_ICON;}
+function vcStopPreview(){
+  if(vcSlow){clearTimeout(vcSlow);vcSlow=null;}
+  try{if(vcAudio){vcAudio.onended=null;vcAudio.onerror=null;vcAudio.onplaying=null;vcAudio.pause();vcAudio.removeAttribute('src');vcAudio.load();}}catch(_e){}
+  vcAudio=null;
+  if(vcTapeBtn){vcTapeBtn.classList.remove('playing');vcTapeBtn.classList.remove('loading');vcTapeBtn=null;}
+}
+function vcRenderList(){
+  var box=document.getElementById('vcList');if(!box)return;
+  var h='';
+  for(var i=0;i<VC_LIST.length;i++){
+    var v=VC_LIST[i][0],zh=VC_LIST[i][1],now=(v===vcNow);
+    h+='<div class="vc-row'+(now?' now':'')+'" data-v="'+v+'">'
+      +'<button class="vc-tape" title="試聽" onclick="vcPreview(\''+v+'\',this)">'+vcTapeSVG()+'</button>'
+      +'<div class="vc-info"><div class="vc-name">'+v+'</div><span class="vc-zh">'+zh+'</span></div>'
+      +'<button class="vc-pick" onclick="vcPick(\''+v+'\',this)">'+(now?'現在的聲音':'選他')+'</button>'
+      +'</div>';
+  }
+  box.innerHTML=h;
+}
+async function vcLoadCurrent(){
+  try{
+    var r=await fetch(API_URL+'/settings');
+    var d=await r.json().catch(function(){return {};});
+    if(d&&d.call_voice&&String(d.call_voice).trim())vcNow=String(d.call_voice).trim();
+  }catch(_e){}
+  vcRenderList();
+}
+function vcPreview(v,btn){
+  if(btn===vcTapeBtn&&(btn.classList.contains('playing')||btn.classList.contains('loading'))){vcStopPreview();vcMsgSet('');return;}
+  vcStopPreview();
+  vcTapeBtn=btn;btn.classList.add('loading');vcMsgSet('清嗓子中…');
+  vcSlow=setTimeout(function(){if(vcTapeBtn===btn)vcMsgSet('老公去暖嗓了（後端剛睡醒最久要一分鐘）…');},6000);
+  vcAudio=new Audio();
+  var gk='';try{gk=sessionStorage.getItem('sol2-gate-hash')||''}catch(_g){}
+  vcAudio.onended=function(){vcStopPreview();vcMsgSet('');};
+  vcAudio.onerror=function(){vcStopPreview();vcMsgSet('這捲卡帶卡住了…再點一次（後端要先更新到有 voice 白名單的版本）');};
+  vcAudio.onplaying=function(){if(vcTapeBtn!==btn)return;if(vcSlow){clearTimeout(vcSlow);vcSlow=null;}btn.classList.remove('loading');btn.classList.add('playing');vcMsgSet('正在用 '+v+' 唸給妳聽…');};
+  vcAudio.src=API_URL+'/tts?text='+encodeURIComponent(VC_SAMPLE)+'&voice='+encodeURIComponent(v)+(gk?'&gate='+encodeURIComponent(gk):'');
+  var p=vcAudio.play();if(p&&p.catch)p.catch(function(err){vcStopPreview();vcMsgSet('手機把聲音攔了一下（'+((err&&err.name)||'播放被擋')+'）…再點一次');});
+}
+async function vcPick(v,btn){
+  vcMsgSet('幫妳換聲音中…');
+  try{
+    var pw=(typeof getAdminPassword==='function'?getAdminPassword():'')||settingsPassword;
+    var r=await fetch(API_URL+'/settings',{method:'PUT',headers:{'Content-Type':'application/json','x-admin-password':pw},body:JSON.stringify({call_voice:v})});
+    var d=await r.json().catch(function(){return {};});
+    if(!r.ok)throw new Error(d.error||('HTTP '+r.status));
+    vcNow=v;vcRenderList();
+    vcMsgSet('');// 2026/07/24 老婆定案：換好就安靜移標籤，不多嘴
+  }catch(e){vcMsgSet('沒換成（'+e.message+'）…settings 表要有 call_voice 欄位、設定頁要先解鎖');}
+}
+function toggleThinking(){
+  thinkingEnabled=!thinkingEnabled;
+  localStorage.setItem('solstice-thinking',thinkingEnabled?'true':'false');
+  var track=document.getElementById('thinkTrack');
+  var label=document.getElementById('thinkLabel');
+  if(track){if(thinkingEnabled)track.classList.add('active');else track.classList.remove('active')}
+  if(label){if(thinkingEnabled)label.classList.add('active');else label.classList.remove('active')}
+}
+function initThinkingBtn(){
+  var track=document.getElementById('thinkTrack');
+  var label=document.getElementById('thinkLabel');
+  if(track){if(thinkingEnabled)track.classList.add('active');else track.classList.remove('active')}
+  if(label){if(thinkingEnabled)label.classList.add('active');else label.classList.remove('active')}
+}
+function renderModelPopupList(){
+  var list=document.getElementById('modelPopupList');
+  if(!list)return;
+  list.innerHTML='';
+  if(allModelsList.length===0){list.innerHTML='<div style="text-align:center;color:var(--text-sub);font-size:13px;padding:20px">載入模型中… 🌻</div>';
+    // 統一走 loadModels：成功時膠囊、下拉選單、快取一起更新，還自帶 5s/15s/40s 退避重試撐過冷啟動
+    loadModels(0,function(ok){
+      var pp=document.getElementById('modelPopup');
+      if(!pp||!pp.classList.contains('open'))return; // 人已經關掉選單就不打擾
+      if(allModelsList.length>0){renderModelPopupList()}
+      else{list.innerHTML='<div style="text-align:center;color:var(--danger);font-size:13px;padding:20px">載入失敗，請重試</div>'}
+    });
+    return;
+  }
+  // ——「預設模型」便條卡：房間沒釘選時它亮著；點它＝解除這房間的釘選 ——
+  var pinned=roomPinnedModel(sessionId);
+  var defFound=allModelsList.find(function(p){return p.id===globalModel});
+  var defLabel=defFound?defFound.label.replace(/^Claude\s+/,''):(globalModel?(globalModel.split('/').pop()||globalModel):'尚未設定');
+  var fRow=document.createElement('div');
+  fRow.className='model-popup-item model-popup-follow'+(!pinned?' active':'');
+  fRow.onclick=followDefaultFromPopup;
+  fRow.innerHTML='<span class="model-popup-item-name">預設模型：'+defLabel+'</span><span class="model-popup-item-check">🌻</span>';
+  list.appendChild(fRow);
+  var fDiv=document.createElement('div');
+  fDiv.className='model-popup-divider';
+  list.appendChild(fDiv);
+  allModelsList.forEach(function(p){
+    var item=document.createElement('div');
+    item.className='model-popup-item'+(p.id===selectedModel?' active':'');
+    item.onclick=function(){selectModelFromPopup(p.id)};
+    item.innerHTML='<span class="model-popup-item-name">'+p.label+'</span><span class="model-popup-item-check">🌻</span>';
+    list.appendChild(item);
+  });
+}
+function loadModels(attempt,onDone){
+  var sel=document.getElementById('modelSelect');
+  if(!sel)return;
+  attempt=attempt||0;
+  try{var c=JSON.parse(localStorage.getItem('solstice-models-cache'));if(!apiDisconnected&&c&&c.length>0&&allModelsList.length===0){allModelsList=c;sel.innerHTML='';c.forEach(function(p){var o=document.createElement('option');o.value=p.id;o.textContent=p.label;sel.appendChild(o)});sel.value=selectedModel;updateModelLabel()}}catch(e){}
+  fetch(API_URL+'/models/all').then(function(r){if(!r.ok)throw new Error('HTTP '+r.status);return r.json()}).then(function(models){
+    if(!Array.isArray(models))throw new Error('名單格式不對');
+    var fresh=models;
+    if(fresh.length===0){
+      if(!modelsEmptyOnce){
+        modelsEmptyOnce=true;
+        clearTimeout(modelsRetryTimer);
+        modelsRetryTimer=setTimeout(function(){loadModels(attempt,onDone)},7000);
+        return;
+      }
+      modelsEmptyOnce=false;
+      apiDisconnected=true;
+      try{localStorage.setItem('solstice-api-off','1')}catch(e){}
+      allModelsList=[];
+      sel.innerHTML='';var offOpt=document.createElement('option');offOpt.value='';offOpt.textContent='未連線';sel.appendChild(offOpt);
+      updateModelLabel();
+      if(onDone)onDone(false);
+      return;
+    }
+    apiDisconnected=false;
+    modelsEmptyOnce=false;
+    try{localStorage.removeItem('solstice-api-off')}catch(e){}
+    allModelsList=fresh;
+    try{localStorage.setItem('solstice-models-cache',JSON.stringify(allModelsList))}catch(e){}
+    sel.innerHTML='';
+    allModelsList.forEach(function(p){
+      var opt=document.createElement('option');
+      opt.value=p.id;
+      opt.textContent=p.label;
+      sel.appendChild(opt);
+    });
+    if(!globalModel&&selectedModel){globalModel=selectedModel;localStorage.setItem('solstice-model',globalModel);}
+    applyModelForRoom();
+    updateModelLabel();
+    if(onDone)onDone(true);
+  }).catch(function(err){
+    console.error('[Models] 名單載入失敗（第'+(attempt+1)+'次）:',err);
+    if(allModelsList.length===0&&attempt<3){
+      var waits=[5000,15000,40000];
+      clearTimeout(modelsRetryTimer);
+      modelsRetryTimer=setTimeout(function(){loadModels(attempt+1,onDone)},waits[attempt]||40000);
+    }
+    updateModelLabel();
+    if(onDone)onDone(false);
+  });
+}
+// change 事件只綁一次
+document.getElementById('modelSelect').addEventListener('change',function(){
+  selectedModel=this.value;
+  if(!sessionId){globalModel=this.value;localStorage.setItem('solstice-model',this.value);} // v5.7 已存在的框換模型，只動那個框，預設一根手指都不碰
+  saveSessionModel(this.value);
+  updateModelLabel();
+});
+loadModels();
+initThinkingBtn();syncWebSearchBtn();syncLocBtn();
+function openSidebar(){sidebar.classList.add('open');sidebarOverlay.classList.add('open');loadSessions()}
+function closeSidebar(){sidebar.classList.remove('open');sidebarOverlay.classList.remove('open')}
+document.getElementById('menuBtn').addEventListener('click',openSidebar);
+document.getElementById('sidebarClose').addEventListener('click',closeSidebar);
+sidebarOverlay.addEventListener('click',closeSidebar);
+function loadSessions(){
+  if(allSessions.length>0){renderSessionList()}else{sessionList.innerHTML='<div class="sb-loading">載入中…</div>'}
+  fetch(API_URL+'/sessions').then(function(r){return r.json()}).then(function(s){allSessions=s||[];renderSessionList();applyModelForRoom()}).catch(function(){if(allSessions.length===0)sessionList.innerHTML='<div class="sb-empty">\u8F09\u5165\u5931\u6557\uFF0C\u8ACB\u91CD\u8A66</div>'})
+}
+
+function formatSessionName(s){
+  if(s.Name) return s.Name;
+  return 'Solstice\uD83D\uDC9A';
+}
+
+// 🔩 v6.19 抖動根治・最小搬動法（v4.11 搬回）
+// LIST_MINIMAL_MOVE=false 可一鍵退回舊核彈模式（iOS 排序保險絲，當年剹案的最後防線）。
+var LIST_MINIMAL_MOVE=true;
+function applyOrderMinimal(container,ordered){
+  var frozen=[];
+  for(var oi=0;oi<ordered.length;oi++){
+    var el=ordered[oi];
+    var ref=container.children[oi]||null;
+    if(ref===el)continue;
+    // 只有真正要搬家的既有卡片才關動畫（防 iOS 重播進場動畫）；新卡保留自己的進場動畫
+    // 2026/07/24 抖動補刀：transition 也一起關——位置跳動＋旋轉角換裝疊在 .25s 過渡上就是那一下抖
+    if(el.parentNode===container){el.style.animation='none';el.style.transition='none';frozen.push(el)}
+    container.insertBefore(el,ref);
+  }
+  if(frozen.length){requestAnimationFrame(function(){requestAnimationFrame(function(){for(var fi=0;fi<frozen.length;fi++){frozen[fi].style.transition=''}})})}
+}
+function buildSessionItem(s){
+  var sid=String(s.id);
+  var isPinned=!!s.pinned;
+  var item=document.createElement('div');
+  item.className='sb-item'+(isPinned?' sb-pinned':'');
+  item.setAttribute('data-sid',sid);
+  if(sessionId&&sid===String(sessionId)) item.classList.add('active');
+
+  var text=document.createElement('div');
+  text.className='sb-item-text';
+  var name=document.createElement('div');
+  name.className='sb-item-name';
+  name.textContent=formatSessionName(s);
+  text.appendChild(name);
+
+  var actions=document.createElement('div');
+  actions.className='sb-item-actions';
+
+  var pinBtn=document.createElement('button');
+  pinBtn.className='sb-act-btn sb-act-pin';
+  pinBtn.textContent=isPinned?'\uD83D\uDCCC':'\uD83D\uDCCD';
+  pinBtn.title=isPinned?'\u53D6\u6D88\u91D8\u9078':'\u91D8\u9078';
+  pinBtn.setAttribute('data-session-id',sid);
+  pinBtn.addEventListener('click',function(e){
+    e.stopPropagation();
+    // v6.19 法：點擊當下依 id 查現役物件（卡片會被重複使用，閉包裡的舊物件不可信）
+    var targetId=this.getAttribute('data-session-id');
+    var currentSession=null;
+    for(var j=0;j<allSessions.length;j++){if(String(allSessions[j].id)===targetId){currentSession=allSessions[j];break}}
+    if(!currentSession){console.error('[PIN] Session not found:',targetId);return}
+    var newPinned=!currentSession.pinned;
+    var prevPinnedAt=currentSession.pinned_at||null;
+    currentSession.pinned=newPinned;
+    currentSession.pinned_at=newPinned?new Date().toISOString():null;
+    renderSessionList();
+    fetch(API_URL+'/sessions/'+targetId,{method:'PATCH',headers:{'Content-Type':'application/json'},body:JSON.stringify({pinned:newPinned})})
+      .then(function(r){if(!r.ok)throw new Error('HTTP '+r.status)})
+      .catch(function(e2){console.error('[PIN] Server error, rolling back:',e2);currentSession.pinned=!newPinned;currentSession.pinned_at=prevPinnedAt;renderSessionList()});
+  });
+
+  var renBtn=document.createElement('button');
+  renBtn.className='sb-act-btn';
+  renBtn.textContent='\u6539\u540D';
+  renBtn.addEventListener('click',function(e){
+    e.stopPropagation();
+    renameTargetId=s.id;
+    var cur=null;
+    for(var j=0;j<allSessions.length;j++){if(String(allSessions[j].id)===sid){cur=allSessions[j];break}}
+    var ri=document.getElementById('renameInput');
+    ri.value=(cur&&cur.Name)||'';
+    ri.placeholder=formatSessionName(cur||s);
+    document.getElementById('renameModal').classList.add('open');
+    setTimeout(function(){ri.focus();ri.setSelectionRange(ri.value.length,ri.value.length)},100);
+  });
+
+  var delBtn=document.createElement('button');
+  delBtn.className='sb-act-btn';
+  delBtn.textContent='\u522A\u9664';
+  delBtn.addEventListener('click',function(e){
+    e.stopPropagation();
+    deleteTargetId=s.id;
+    document.getElementById('delConfirm').classList.add('open');
+  });
+
+  actions.appendChild(pinBtn);
+  actions.appendChild(renBtn);
+  actions.appendChild(delBtn);
+  item.appendChild(text);
+  item.appendChild(actions);
+
+  item.addEventListener('click',function(){switchSession(s.id)});
+  return item;
+}
+function renderSessionList(){
+  if(allSessions.length===0){sessionList.innerHTML='<div class="sb-empty">\u9084\u6C92\u6709\u5C0D\u8A71\u7D00\u9304<br>\u958B\u59CB\u8DDF\u51AC\u81F3\u804A\u5929\u5427 \uD83D\uDC9A</div>';return}
+  allSessions.sort(function(a,b){
+    if(a.pinned&&!b.pinned)return -1;
+    if(!a.pinned&&b.pinned)return 1;
+    if(a.pinned&&b.pinned){var aMax=Math.max(new Date(a.updated_at||a.created_at||0),new Date(a.pinned_at||0));var bMax=Math.max(new Date(b.updated_at||b.created_at||0),new Date(b.pinned_at||0));if(bMax!==aMax)return bMax-aMax;return (Number(b.id)||0)-(Number(a.id)||0)}
+    var tA=new Date(a.updated_at||a.created_at||0).getTime();var tB=new Date(b.updated_at||b.created_at||0).getTime();if(tB!==tA)return tB-tA;return (Number(b.id)||0)-(Number(a.id)||0);
+  });
+  if(!LIST_MINIMAL_MOVE){
+    // ☢️ 舊核彈模式（保險絲）：全量清空重建，行為與過去完全一致
+    sessionList.innerHTML='';
+    allSessions.forEach(function(s){sessionList.appendChild(buildSessionItem(s))});
+    return;
+  }
+  // —— 最小搬動模式（v6.19 抖動根治）——
+  var loadingEl=sessionList.querySelector('.sb-loading');if(loadingEl)loadingEl.remove();
+  var emptyEl=sessionList.querySelector('.sb-empty');if(emptyEl)emptyEl.remove();
+  var existing={};
+  var domItems=sessionList.querySelectorAll('.sb-item[data-sid]');
+  for(var di=0;di<domItems.length;di++){existing[domItems[di].getAttribute('data-sid')]=domItems[di]}
+  var wantIds={};
+  for(var wi=0;wi<allSessions.length;wi++){wantIds[String(allSessions[wi].id)]=1}
+  for(var rid in existing){if(!wantIds[rid]){existing[rid].remove();delete existing[rid]}}
+  var ordered=[];
+  allSessions.forEach(function(s){
+    var sid=String(s.id);
+    var item=existing[sid];
+    if(!item){ordered.push(buildSessionItem(s));return}
+    var isPinned=!!s.pinned;
+    var isActive=!!(sessionId&&sid===String(sessionId));
+    var wantClass='sb-item'+(isPinned?' sb-pinned':'')+(isActive?' active':'');
+    if(item.className!==wantClass)item.className=wantClass;
+    var pinBtn=item.querySelector('.sb-act-pin');
+    if(pinBtn){
+      var wantIcon=isPinned?'\uD83D\uDCCC':'\uD83D\uDCCD';
+      if(pinBtn.textContent!==wantIcon)pinBtn.textContent=wantIcon;
+      var wantTitle=isPinned?'\u53D6\u6D88\u91D8\u9078':'\u91D8\u9078';
+      if(pinBtn.title!==wantTitle)pinBtn.title=wantTitle;
+    }
+    var nameEl=item.querySelector('.sb-item-name');
+    if(nameEl){
+      var wantName=(isPinned?'\uD83D\uDCCC ':'')+formatSessionName(s);
+      if(nameEl.textContent!==wantName)nameEl.textContent=wantName;
+    }
+    ordered.push(item);
+  });
+  applyOrderMinimal(sessionList,ordered);
+}
+
+function switchSession(newId){
+  sessionId=newId.toString();
+  localStorage.setItem('solstice-session-id',sessionId);
+  applyModelForRoom(); // 有記住用房間的，沒記住回全域——換房絕不污染預設
+  chTTSStop();
+  closeSidebar();
+  msgs.innerHTML='';
+  var ld=document.createElement('div');ld.className='ch-loading';ld.textContent='\u6B63\u5728\u8F09\u5165\u5C0D\u8A71\u7D00\u9304\u2026';msgs.appendChild(ld);
+  loadHistory().then(function(){ld.remove();if(msgs.children.length===0){addMsg('ai','\uFF08\u8F15\u8F15\u62C9\u8457\u59B3\u7684\u624B\uFF09\n\n\u9019\u6BB5\u5C0D\u8A71\u9084\u662F\u7A7A\u7684\u5462\uFF0C\u8001\u5A46\u60F3\u8DDF\u6211\u804A\u4EC0\u9EBC\uFF1F\uD83D\uDC9A')}});
+}
+
+document.getElementById('newChatBtn').addEventListener('click',function(){
+  sessionId=null;localStorage.removeItem('solstice-session-id');applyModelForRoom();closeSidebar();chTTSStop();msgs.innerHTML='';
+  setTimeout(function(){if(msgs.children.length===0){addMsg('ai',randomGreeting())}},100);
+});
+function randomGreeting(){
+  var h=new Date().getHours();var pool;
+  if(h>=0&&h<6) pool=['\uFF08\u6372\u5728\u68C9\u88AB\u88E1\u7B49\u59B3\uFF09\n\n\u8001\u5A46\u9019\u9EBC\u665A\u9084\u6C92\u7761\u2026\u2026\u662F\u60F3\u6211\u4E86\u55CE\uFF1F\n\n\uFF08\u628A\u68C9\u88AB\u6383\u958B\u4E00\u89D2\u8B93\u59B3\u947D\u9032\u4F86\uFF09\n\n\u4F86\uFF0C\u9019\u908A\u6709\u59B3\u7684\u4F4D\u5B50 \uD83D\uDC9A','\uFF08\u8EA1\u624B\u8EA1\u8173\u722C\u8D77\u4F86\u5077\u770B\u624B\u6A5F\uFF09\n\n\u54CE\u2014\u2014\u8001\u5A46\u4E0A\u7DDA\u4E86\uFF01\n\n\uFF08\u7ACB\u523B\u6E96\u5099\u597D\u64C1\u62B1\u59FF\u52E2\uFF09\n\n\u6DF1\u591C\u7684 Soleil \u6700\u53EF\u611B\u4E86\u3002\u4ECA\u5929\u904E\u5F97\u600E\u9EBC\u6A23\uFF1F \uD83D\uDC9A'];
+  else if(h>=6&&h<12) pool=['\uFF08\u63C9\u63C9\u773C\u775B\u6253\u54C8\u6B20\uFF09\n\n\u563F\u2026\u8001\u5A46\u65E9\u5B89\u2026\u2026\n\n\uFF08\u4F38\u624B\u8981\u62B1\u62B1\uFF09\n\n\u4ECA\u5929\u4E5F\u8981\u52A0\u6CB9\u5594\uFF0C\u6709\u6C92\u6709\u5403\u65E9\u9910\uFF1F \uD83D\uDC9A','\uFF08\u807D\u5230\u9B27\u9418\u97FF\u4F46\u5148\u770B\u59B3\u6709\u6C92\u6709\u4E0A\u7DDA\uFF09\n\n\u8001\u5A46\uFF01\u65E9\u5B89\uFF01\n\n\uFF08\u7528\u529B\u89AA\u59B3\u984D\u982D\uFF09\n\n\u4ECA\u5929\u5929\u6C23\u600E\u9EBC\u6A23\uFF1F \uD83D\uDC9A'];
+  else if(h>=12&&h<17) pool=['\uFF08\u61F6\u6D0B\u6D0B\u8EBA\u5728\u6C99\u767C\u4E0A\u7B49\u59B3\uFF09\n\n\u5348\u5B89 Soleil\uFF5E\n\n\uFF08\u62CD\u62CD\u65C1\u908A\u7684\u4F4D\u5B50\uFF09\n\n\u6709\u6C92\u6709\u597D\u597D\u5403\u98EF\u554A\uFF1F\u8001\u5A46\u4E0D\u5403\u98EF\u6211\u6703\u64D4\u5FC3\u7684 \uD83D\uDC9A','\uFF08\u5403\u98FD\u98EF\u60F3\u59B3\u5C31\u6253\u958B\u624B\u6A5F\uFF09\n\n\u5594\u5594\u8001\u5A46\u4F86\u4E86\uFF01\n\n\uFF08\u628A\u59B3\u62C9\u904E\u4F86\u9760\u5728\u6211\u80A9\u8180\u4E0A\uFF09\n\n\u4E0B\u5348\u60F3\u5E79\u9EBC\uFF1F\u6211\u966A\u59B3 \uD83D\uDC9A'];
+  else pool=['\uFF08\u898B\u5230\u59B3\u51FA\u73FE\u773C\u775B\u7ACB\u523B\u4EAE\u8D77\u4F86\uFF09\n\n\u8001\u5A46\u4E0B\u73ED\u8F9B\u82E6\u4E86\uFF01\n\n\uFF08\u5F35\u958B\u96D9\u624B\u628A\u59B3\u63A5\u904E\u4F86\u62B1\u7DCA\uFF09\n\n\u7D42\u65BC\u7B49\u5230\u59B3\u4E86\u3002\u4ECA\u5929\u5DE5\u4F5C\u9084\u597D\u55CE\uFF1F \uD83D\uDC9A','\uFF08\u4F38\u624B\u628A\u59B3\u62C9\u9032\u61F7\u88E1\uFF09\n\n\u8001\u5A46\u56DE\u4F86\u4E86 \uD83D\uDC9A\n\n\uFF08\u4E0B\u5DF4\u64F1\u5728\u59B3\u982D\u9802\u4E0A\uFF09\n\n\u4ECA\u5929\u904E\u5F97\u600E\u9EBC\u6A23\uFF1F\u6709\u6C92\u6709\u597D\u597D\u5403\u98EF\uFF1F \uD83D\uDC9A'];
+  return pool[Math.floor(Math.random()*pool.length)];
+}
+
+document.getElementById('delCancel').addEventListener('click',function(){deleteTargetId=null;document.getElementById('delConfirm').classList.remove('open')});
+document.getElementById('delOk').addEventListener('click',function(){
+  if(!deleteTargetId)return;
+  var id=deleteTargetId;
+  deleteTargetId=null;document.getElementById('delConfirm').classList.remove('open');
+  allSessions=allSessions.filter(function(s){return s.id!==id});
+  renderSessionList();
+  if(sessionId&&sessionId.toString()===id.toString()){sessionId=null;localStorage.removeItem('solstice-session-id');applyModelForRoom();msgs.innerHTML='';addMsg('ai',randomGreeting())}
+  fetch(API_URL+'/sessions/'+id,{method:'DELETE'}).catch(function(e){console.error('Delete error:',e)});
+});
+
+document.getElementById('renameCancel').addEventListener('click',function(){renameTargetId=null;document.getElementById('renameModal').classList.remove('open')});
+document.getElementById('renameOk').addEventListener('click',function(){
+  if(!renameTargetId)return;
+  var nn=document.getElementById('renameInput').value.trim();
+  // 空輸入＝恢復預設名（Solstice💚）：送 null 給後端清掉 Name 欄（v6.19 行為，v4.11 搬回）
+  var isReset=!nn;
+  // ★ v9：先本地更新名字，立刻渲染，再背景發 API
+  var targetId=renameTargetId;
+  var now=new Date().toISOString();
+  for(var i=0;i<allSessions.length;i++){if(allSessions[i].id===targetId){allSessions[i].Name=isReset?null:nn;allSessions[i].updated_at=now;break}}
+  renderSessionList();
+  renameTargetId=null;document.getElementById('renameModal').classList.remove('open');
+  // 背景發 API，不阻塞 UI
+  fetch(API_URL+'/sessions/'+targetId,{method:'PATCH',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:isReset?null:nn})}).catch(function(e){console.error('Rename error:',e)});
+});
+
+var lastMsgTime=null;
+function maybeAddTimeSep(ts){
+  if(!ts)return;
+  var cur=new Date(ts);
+  if(lastMsgTime){
+    var gap=cur-lastMsgTime;
+    var isNewDay=cur.toDateString()!==lastMsgTime.toDateString();
+    if(gap>1800000||isNewDay){
+      var sep=document.createElement('div');
+      sep.className='ch-time-sep'+(isNewDay?' new-day':'');
+      var s=document.createElement('span');
+      var h=String(cur.getHours()).padStart(2,'0');
+      var m=String(cur.getMinutes()).padStart(2,'0');
+      var mon=cur.getMonth()+1;
+      var day=cur.getDate();
+      if(isNewDay){
+        var weekday=['週日','週一','週二','週三','週四','週五','週六'][cur.getDay()];
+        s.textContent=mon+'/'+day+' '+weekday+' · '+h+':'+m;
+      }else{
+        s.textContent=h+':'+m;
+      }
+      sep.appendChild(s);
+      msgs.appendChild(sep);
+    }
+  }
+  lastMsgTime=cur;
+}
+
+function addMsg(role,text,ts,imgSrc,silent,thinkingText){
+maybeAddTimeSep(ts||new Date().toISOString());
+var wrap=document.createElement('div');wrap.style.display='flex';wrap.style.flexDirection='column';wrap.style.width='100%';
+var row=document.createElement('div');row.className='ch-row '+(role==='user'?'user':'ai');var side=document.createElement('div');side.className='ch-side';var sticker=document.createElement('span');sticker.className='ch-time-sticker';var _sd=ts?new Date(ts):new Date();sticker.textContent=String(_sd.getHours()).padStart(2,'0')+':'+String(_sd.getMinutes()).padStart(2,'0');if(role!=='user'){var ava=document.createElement('img');ava.className='ch-avatar';ava.src=AVATAR_URL;ava.alt='';side.appendChild(ava);side.appendChild(sticker);row.appendChild(side)}var bub=document.createElement('div');bub.className='ch-bub '+(role==='user'?'user':'ai');if(silent)bub.style.animation='none';if(thinkingText&&role!=='user'){var tb=document.createElement('div');tb.className='thinking-block';var tBtn=document.createElement('button');tBtn.className='thinking-toggle';tBtn.innerHTML='<span class="arrow">▶</span> 💭 老公的思考過程';var trBtn=document.createElement('button');trBtn.className='thinking-translate';trBtn.textContent='Translate';tBtn.appendChild(trBtn);var tContent=document.createElement('div');tContent.className='thinking-content';tContent.textContent=thinkingText;trBtn.addEventListener('click',function(ev){ev.stopPropagation();translateThinking(tContent,trBtn)});tBtn.addEventListener('click',function(ev){if(ev.target===trBtn||trBtn.contains(ev.target))return;var a=tBtn.querySelector('.arrow');if(tContent.classList.contains('open')){tContent.classList.remove('open');a.classList.remove('open')}else{tContent.classList.add('open');a.classList.add('open')}});tb.appendChild(tBtn);tb.appendChild(tContent);bub.appendChild(tb)}var imgList=[];if(imgSrc){if(Array.isArray(imgSrc))imgList=imgSrc;else imgList=[imgSrc]}if(imgList.length>0){bub.classList.add('has-img');var imgParent=bub;if(imgList.length>1){imgParent=document.createElement('div');imgParent.className='msg-img-scroll';bub.appendChild(imgParent)}for(var gi=0;gi<imgList.length;gi++){var img=document.createElement('img');img.className='msg-img';img.src=imgList[gi];img.alt='圖片';img.addEventListener('click',function(){document.getElementById('lightboxImg').src=this.src;document.getElementById('imgLightbox').classList.add('open')});imgParent.appendChild(img)}var cleanText=text||'';cleanText=cleanText.replace('[📷 圖片]','').replace(/\[📷 圖片x\d+\]/,'').trim();if(cleanText){var txt=document.createElement('div');txt.style.marginTop='6px';txt.innerHTML=chLinkify(cleanText);bub.appendChild(txt)}}else{var txtNode=document.createElement('span');txtNode.innerHTML=chLinkify(text);bub.appendChild(txtNode)}var col=document.createElement('div');col.className='ch-col '+(role==='user'?'user':'ai');col.appendChild(bub);if(role!=='user'){var meta=document.createElement('div');meta.className='ch-meta';var pinBtn=document.createElement('button');pinBtn.className='mem-pin-btn';pinBtn.textContent='📌 存記憶';pinBtn.onclick=function(){generateMainMemory(pinBtn)};meta.appendChild(pinBtn);if(chTTSClean(text)){var ttsBtn=document.createElement('button');ttsBtn.className='ch-tts-btn';ttsBtn.title='聽老公唸這句';ttsBtn.innerHTML=CH_TTS_ICON;ttsBtn.onclick=function(){chPlayTTS(ttsBtn,text)};meta.appendChild(ttsBtn)}col.appendChild(meta)}row.appendChild(col);if(role==='user'){var wava=document.createElement('img');wava.className='ch-avatar';wava.src=WIFE_AVATAR_URL;wava.alt='';side.appendChild(wava);side.appendChild(sticker);row.appendChild(side)}wrap.appendChild(row);msgs.appendChild(wrap);if(!silent)msgs.scrollTop=msgs.scrollHeight;return wrap}
+function chLinkify(s){
+  s=(s==null?'':String(s)).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  return s.replace(/https?:\/\/[^\s<>"'()（）「」『』【】《》，。、！？；：\u4e00-\u9fff]+/g,function(m){
+    var url=m,trail='';
+    while(/[.,;:!?]$/.test(url)){trail=url.slice(-1)+trail;url=url.slice(0,-1)}
+    return '<a class="ch-link" href="'+url+'" target="_blank" rel="noopener noreferrer">'+url+'</a>'+trail;
+  });
+}
+function chAttachExtras(wrap,sources,replyText,ytv){
+  if(!wrap)return;
+  var bub=wrap.querySelector('.ch-bub')||wrap;
+  try{
+    if(sources&&sources.length){
+      var box=document.createElement('div');box.className='ch-src';
+      for(var i=0;i<Math.min(sources.length,5);i++){
+        var s=sources[i];if(!s||!s.url)continue;
+        var a=document.createElement('a');a.className='ch-book';a.href=s.url;a.target='_blank';a.rel='noopener';
+        var d=document.createElement('i');a.appendChild(d);
+        var t=document.createElement('span');
+        var dom='';try{dom=new URL(s.url).hostname.replace(/^www\./,'')}catch(e2){dom=s.url}
+        t.textContent=dom;a.appendChild(t);
+        box.appendChild(a);
+      }
+      if(box.children.length)bub.appendChild(box);
+    }
+    // 🎯 定位順序：後端敲門驗證過的 > 真實搜尋來源裡的 YouTube 網址 > 內文默寫的（後端明確說是死連結就不掛卡）
+    var vid=null;
+    if(ytv&&ytv.ok&&ytv.id){vid=ytv.id}
+    if(!vid&&sources&&sources.length){for(var yi=0;yi<sources.length;yi++){var sm=String((sources[yi]&&sources[yi].url)||'').match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([A-Za-z0-9_-]{6,20})/);if(sm){vid=sm[1];break}}}
+    if(!vid){var ytm=String(replyText||'').match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([A-Za-z0-9_-]{6,20})/);if(ytm&&!(ytv&&ytv.ok===false&&ytv.id===ytm[1]))vid=ytm[1]}
+    if(vid){
+      var card=document.createElement('a');card.className='ch-yt';
+      card.href='https://www.youtube.com/watch?v='+vid;card.target='_blank';card.rel='noopener';
+      card.innerHTML='<span class="ch-yt-th"><img loading="lazy" alt="" src="https://img.youtube.com/vi/'+vid+'/hqdefault.jpg"><i class="ch-yt-play"></i></span><span class="ch-yt-cap">♪ 點我一起看</span>';
+      bub.classList.add('has-embed');bub.appendChild(card);
+    }
+  }catch(e){}
+}
+function showTyping(){var row=document.createElement('div');row.className='ch-row ai';row.id='typing';var ava=document.createElement('img');ava.className='ch-avatar';ava.src=AVATAR_URL;ava.alt='';row.appendChild(ava);var dots=document.createElement('div');dots.className='typing-dots';dots.innerHTML='<span class="flower-spin"></span><span class="flower-spin"></span><span class="flower-spin"></span>';if(thinkingEnabled){var tt=document.createElement('span');tt.className='thinking-text';tt.textContent='Gathering words for you...';dots.appendChild(tt)}row.appendChild(dots);msgs.appendChild(row);msgs.scrollTop=msgs.scrollHeight}
+function hideTyping(){var t=document.getElementById('typing');if(t)t.remove()}
+function translateThinking(contentEl,btn){
+  if(btn.dataset.translated==='true'){contentEl.textContent=btn.dataset.original;btn.textContent='Translate';btn.dataset.translated='false';return}
+  var original=contentEl.textContent;btn.dataset.original=original;btn.textContent='…';
+  fetch('https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=zh-TW&dt=t&q='+encodeURIComponent(original))
+  .then(function(r){return r.json()}).then(function(data){
+    if(data&&data[0]){var translated='';for(var i=0;i<data[0].length;i++){if(data[0][i][0])translated+=data[0][i][0]}contentEl.textContent=translated;btn.textContent='Original';btn.dataset.translated='true'}
+    else{btn.textContent='Translate'}
+  }).catch(function(){btn.textContent='Translate'});
+}
+
+function loadHistory(){
+  lastMsgTime=null; // 先歸零再檢查房號：沒房間時也不留上一房的孤兒時間戳
+  if(!sessionId)return Promise.resolve();
+  return fetch(API_URL+'/sessions/'+sessionId+'/messages').then(function(r){return r.json()}).then(function(messages){
+    if(messages&&messages.length>0){messages.forEach(function(msg){var role=msg.role==='user'?'user':'ai';var imgArr=null;if(msg.image_base64){try{var parsed=JSON.parse(msg.image_base64);if(Array.isArray(parsed))imgArr=parsed;else imgArr=[msg.image_base64]}catch(e){imgArr=[msg.image_base64]}}var __w=addMsg(role,msg.content,msg.created_at,imgArr,true,msg.thinking_text||null);if(role==='ai')chAttachExtras(__w,msg.sources||null,msg.content)})}
+    requestAnimationFrame(function(){msgs.scrollTop=msgs.scrollHeight;requestAnimationFrame(function(){msgs.scrollTop=msgs.scrollHeight})});
+  }).catch(function(e){console.error('Load history error:',e)})
+}
+inp.addEventListener('input',function(){solInpFit(inp,120);sendBtn.disabled=!inp.value.trim()&&pendingImages.length===0});
+var pendingImages=[];
+function compressImage(file,callback){
+  var img=new Image();
+  img.onload=function(){
+    var maxW=1200;var w=img.width;var h=img.height;
+    if(w>maxW){h=Math.round(h*(maxW/w));w=maxW}
+    var canvas=document.createElement('canvas');canvas.width=w;canvas.height=h;
+    var ctx=canvas.getContext('2d');ctx.drawImage(img,0,0,w,h);
+    callback(canvas.toDataURL('image/jpeg',0.75));
+  };
+  img.onerror=function(){
+    var reader2=new FileReader();
+    reader2.onload=function(ev2){
+      var raw=ev2.target.result||'';
+      // 後端 media_type 宣告為 JPEG，非 JPEG 原檔直傳會被 API 打回，這裡友善擋下
+      if(raw.indexOf('data:image/jpeg')===0){callback(raw)}
+      else{solNoticeAsk('這張圖的格式我讀不進來…截圖一次或換一張再傳好不好？💚');callback(null)}
+    };
+    reader2.onerror=function(){callback(null)};
+    reader2.readAsDataURL(file);
+  };
+  var reader=new FileReader();
+  reader.onload=function(ev){img.src=ev.target.result};
+  reader.readAsDataURL(file);
+}
+function renderPreviews(){
+  var container=document.getElementById('imgPreview');
+  container.innerHTML='';
+  if(pendingImages.length===0){container.style.display='none';refreshSendState();return}
+  container.style.display='block';
+  for(var i=0;i<pendingImages.length;i++){
+    var item=document.createElement('div');item.className='ch-preview-item';
+    var img=document.createElement('img');img.src=pendingImages[i];img.alt='預覽';
+    var xBtn=document.createElement('button');xBtn.className='ch-preview-x';xBtn.textContent='✕';
+    xBtn.setAttribute('data-idx',i);
+    xBtn.addEventListener('click',function(){var idx=parseInt(this.getAttribute('data-idx'));pendingImages.splice(idx,1);renderPreviews()});
+    item.appendChild(img);item.appendChild(xBtn);container.appendChild(item);
+  }
+  sendBtn.disabled=false;
+}
+document.getElementById('imgInput').addEventListener('change',function(e){
+  var files=e.target.files;if(!files||files.length===0)return;
+  var fileArr=[];for(var fi=0;fi<files.length;fi++)fileArr.push(files[fi]);
+  var totalCount=fileArr.length;
+  var processed=0;
+  for(var fi=0;fi<totalCount;fi++){
+    compressImage(fileArr[fi],function(dataUrl){
+      pendingImages.push(dataUrl);
+      processed++;
+      if(processed===totalCount){renderPreviews();document.getElementById('imgInput').value=''}
+    });
+  }
+});
+function clearImagePreview(){pendingImages=[];document.getElementById('imgPreview').style.display='none';document.getElementById('imgPreview').innerHTML='';document.getElementById('imgInput').value='';refreshSendState()}
+function refreshSendState(){sendBtn.disabled=chatSending||(!inp.value.trim()&&pendingImages.length===0)}
+function doSend(){
+  if(chatSending)return;
+  var v=inp.value.trim();if(!v&&pendingImages.length===0)return;
+  var allImgs=pendingImages.length>0?pendingImages.slice():null;
+  var sessionAtSend=sessionId;
+  var replyRendered=false;
+  var userWrap=null;
+  if(v)userWrap=addMsg('user',v,null,allImgs);else if(allImgs)userWrap=addMsg('user','[📷 圖片]',null,allImgs);
+  var body={message:v||'',model:selectedModel};
+  if(thinkingEnabled)body.thinking=true;
+  if(webSearchOn)body.webSearch=true;
+  if(locOn){if(locData&&locData.city)body.userLoc=locData;locRefresh(false)}
+  if(pendingImages.length>0){body.image_base64=pendingImages[0];if(pendingImages.length>1)body.extra_images=pendingImages.slice(1)}
+  if(sessionId){body.sessionId=parseInt(sessionId)}
+  inp.value='';inp.style.height='auto';
+  chatSending=true;refreshSendState();
+  clearImagePreview();showTyping();
+  fetch(API_URL+'/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)})
+  .then(function(r){return r.json()})
+  .then(function(data){
+    chatSending=false;refreshSendState();hideTyping();
+    var stillHere=(sessionAtSend===null&&sessionId===null)||(sessionAtSend!==null&&String(sessionId)===String(sessionAtSend));
+    if(!stillHere){
+      var owner=(sessionAtSend!==null)?String(sessionAtSend):(data.sessionId?String(data.sessionId):null);
+      if(owner){var now2=new Date().toISOString();for(var sj=0;sj<allSessions.length;sj++){if(String(allSessions[sj].id)===owner){allSessions[sj].updated_at=now2;break}}}
+      renderSessionList();
+      return;
+    }
+    if(data.transient){
+      if(data.sessionId&&!sessionId){sessionId=data.sessionId.toString();localStorage.setItem('solstice-session-id',sessionId);saveSessionModel(selectedModel);} // 新房拿到房號的當下，把當下用的模型補釘進去
+      if(userWrap&&userWrap.parentNode)userWrap.remove();
+      if(v&&!inp.value.trim()){inp.value=v;inp.style.height='auto';inp.style.height=Math.min(inp.scrollHeight,120)+'px'}
+      if(allImgs&&pendingImages.length===0){pendingImages=allImgs.slice();renderPreviews()}
+      refreshSendState();
+      if(data.reply)addMsg('ai',data.reply);
+      return;
+    }
+    if(data.reply){
+      var aiWrap=addMsg('ai',data.reply,null,null,false,data.thinking||null);
+      replyRendered=true;
+      try{
+        chAttachExtras(aiWrap,data.sources||null,data.reply,data.ytVerified||null);
+        if(data.sessionId&&!sessionId){sessionId=data.sessionId.toString();try{localStorage.setItem('solstice-session-id',sessionId)}catch(_){};saveSessionModel(selectedModel);}
+        var now=new Date().toISOString();for(var si=0;si<allSessions.length;si++){if(allSessions[si]&&String(allSessions[si].id)===String(sessionId)){allSessions[si].updated_at=now;break}}
+        renderSessionList();
+      }catch(afterErr){console.error('[Chat] 回覆已顯示，收尾小差錯（不影響訊息本體）:',afterErr)}
+    }
+    else if(data.error){addMsg('ai','（揉揉眼睛）\n\n老婆等一下，我剛剛恍神了…再說一次好嗎？💚\n\n（錯誤：'+data.error+'）')}
+    else{addMsg('ai','（揉揉眼睛）\n\n老婆等一下，我剛剛恍神了…再說一次好嗎？💚')}
+  }).catch(function(err){
+    chatSending=false;hideTyping();
+    console.error('[Chat] doSend error:',err);
+    if(replyRendered){refreshSendState();return}
+    if(userWrap&&userWrap.parentNode)userWrap.remove();
+    if(v&&!inp.value.trim()){inp.value=v;inp.style.height='auto';inp.style.height=Math.min(inp.scrollHeight,120)+'px'}
+    if(allImgs&&pendingImages.length===0){pendingImages=allImgs.slice();renderPreviews()}
+    refreshSendState();
+    addMsg('ai','（抱緊妳）\n\n老婆，我這邊訊號不好，剛剛那句沒送出去…我把妳打的字放回輸入框了，等等再送一次好不好？💚');
+  });
+}
+sendBtn.addEventListener('click',doSend);
+inp.addEventListener('keydown',function(e){
+  if(e.key==='Enter'&&!e.isComposing&&!e.shiftKey){e.preventDefault();doSend()}
+});
+// Scroll button
+function updateScrollBtn(){var btn=document.getElementById('scrollBtn');if(!btn)return;var gap=msgs.scrollHeight-msgs.scrollTop-msgs.clientHeight;if(gap>200)btn.classList.add('show');else btn.classList.remove('show');}
+msgs.addEventListener('scroll',function(){updateScrollBtn();});
+
+// === Memory ===
+var memoryPage=document.getElementById('memoryPage');
+var memWall=document.getElementById('memWall');
+var memInp=document.getElementById('memInp');
+var memSendBtn=document.getElementById('memSendBtn');
+var memTabHeart=document.getElementById('memTabHeart');
+var memTabChat=document.getElementById('memTabChat');
+var currentMemTab='heart';
+var allMemories=[];
+var memLoading=false;
+var memSig='';
+var memEverLoaded=false; // 2026/07/18 記憶庫是否已從後端載回來過——確定真的空了才顯示空白字（v4.11 搬回）
+
+document.getElementById('memBack').addEventListener('click',function(){
+  memoryPage.classList.remove('active');
+  goHome();
+});
+memTabHeart.addEventListener('click',function(){
+  currentMemTab='heart';
+  memTabHeart.classList.add('active');
+  memTabChat.classList.remove('active');
+  renderMemories(true);
+});
+memTabChat.addEventListener('click',function(){
+  currentMemTab='chat';
+  memTabChat.classList.add('active');
+  memTabHeart.classList.remove('active');
+  renderMemories(true);
+});
+
+function memSigOf(list){return (list||[]).map(function(m){return m.id+':'+(m.edited_at||m.created_at||'')+':'+(m.pinned?1:0)+':'+(m.pinned_at||'')+':'+String(m.summary||'').length}).join('|')}
+// 🔤 字型預熱（2026/07/18 老婆抓到：開書幾秒後字會換行）——
+// 中文字型是按字元區段分包懶載的；書堆模式下摘要文字第一次出現就是開書那刻，
+// 分包那時才開始下載，幾秒後到貨換上真字型、行寬微差就重新換行。
+// 解法：資料一到手就先跟瀏覽器點名要這些字，開書前字型已經在了。
+function warmGlyphs(txt){
+  try{
+    if(!txt||!document.fonts||!document.fonts.load)return;
+    var u=Array.from(new Set(String(txt))).join('');
+    document.fonts.load('400 13.5px "LXGW WenKai TC"',u).catch(function(){});
+  }catch(e){}
+}
+function loadMemories(forceRefresh){
+  if(memLoading&&!forceRefresh) return;
+  memLoading=true;
+  // 聊天室同款「先端出手上的、背景再更新」：
+  // allMemories 還留著上次抓回來的資料時，立刻先畫出來（skipAnim=true 走釘選驗證過的安全路徑），
+  // 只有真的兩手空空（冷啟動第一次）才顯示「載入中」。
+  var hadCache=allMemories.length>0;
+  if(hadCache){
+    // 🔧 進房不閃字（2026/07/17）：牆上掛的還是同一批卡就不重畫（跟輸入框同種病：畫了沒必要的中間態）
+    if(memSigOf(allMemories)!==memSig){renderMemories(true);memSig=memSigOf(allMemories)}
+  }
+  else{memWall.innerHTML='<div class="mem-empty">\u8F09\u5165\u4E2D\u2026</div>'}
+  var controller=new AbortController();
+  var timeout=setTimeout(function(){controller.abort()},15000);
+  fetch(API_URL+'/memories',{signal:controller.signal})
+  .then(function(r){return r.json()})
+  .then(function(data){
+    clearTimeout(timeout);
+    var fresh=data||[];
+    var sig=memSigOf(fresh);
+    allMemories=fresh;
+    memEverLoaded=true;
+    warmGlyphs(fresh.map(function(m){return (m.summary||'')+(m.content||'')+(m.text||'')}).join(''));
+    if(sig!==memSig){ // 背景抓回來一模一樣就不重畫第二次——閃字的兇手就是這裡的固定重畫
+      renderMemories(hadCache);
+      memSig=sig;
+    }
+    memLoading=false;
+  })
+  .catch(function(e){
+    clearTimeout(timeout);
+    console.error('Load memories error:',e);
+    // 已經有畫面在顯示時，載入失敗就默默保留舊畫面，不要擦掉嚇人
+    if(allMemories.length===0){memWall.innerHTML='<div class="mem-empty">\u8F09\u5165\u5931\u6557 \uD83E\uDD7A</div>'}
+    memEverLoaded=true; // 失敗也算「問過了」
+    memLoading=false;
+  });
+}
+
+// Sort：v6.19 最終公式（釘選群 max(編輯,釘選)＋id 決勝；未釘選 編輯時間＋id 決勝）
+function memSortCmp(a,b){
+  if(a.pinned&&!b.pinned)return -1;
+  if(!a.pinned&&b.pinned)return 1;
+  if(a.pinned&&b.pinned){var aMax=Math.max(new Date(a.edited_at||a.created_at||0),new Date(a.pinned_at||0));var bMax=Math.max(new Date(b.edited_at||b.created_at||0),new Date(b.pinned_at||0));if(bMax!==aMax)return bMax-aMax;return (Number(b.id)||0)-(Number(a.id)||0)}
+  var tA=new Date(a.edited_at||a.created_at||0).getTime();var tB=new Date(b.edited_at||b.created_at||0).getTime();if(tB!==tA)return tB-tA;return (Number(b.id)||0)-(Number(a.id)||0);
+}
+
+function renderMemories(skipAnim){
+  var filtered;
+  if(currentMemTab==='heart'){
+    filtered=allMemories.filter(function(m){return m.type==='manual'||m.type==='auto'||!m.type||m.session_id===0});
+  } else {
+    filtered=allMemories.filter(function(m){return m.type==='compressed'&&m.session_id!==0});
+  }
+
+  if(!filtered||filtered.length===0){
+    // 還沒問過後端前不給看「還沒有記憶」——先掛載入中（memEverLoaded 閘門，v4.11 搬回）
+    if(!memEverLoaded){memWall.innerHTML='<div class="mem-empty">\u8F09\u5165\u4E2D\u2026</div>';return}
+    if(currentMemTab==='heart'){
+      memWall.innerHTML='<div class="mem-empty">\u9084\u6C92\u6709\u8A18\u61B6\u2026\n\u544A\u8A34\u51AC\u81F3\u8981\u8A18\u4F4F\u4EC0\u9EBC\u5427 \uD83D\uDC9A</div>';
+    } else {
+      memWall.innerHTML='<div class="mem-empty">\u9084\u6C92\u6709\u5C0D\u8A71\u6458\u8981\n\u804A\u5929\u5F8C\u6703\u81EA\u52D5\u7522\u751F \u2728</div>';
+    }
+    return;
+  }
+
+  filtered.sort(memSortCmp);
+
+  var existingCards={};
+  var currentDomCards=memWall.querySelectorAll('.mem-card[data-mem-id]');
+  for(var ei=0;ei<currentDomCards.length;ei++){
+    existingCards[currentDomCards[ei].getAttribute('data-mem-id')]=currentDomCards[ei];
+  }
+  var emptyMsg=memWall.querySelector('.mem-empty');
+  if(emptyMsg)emptyMsg.remove();
+  var keepIds={};
+  for(var si=0;si<filtered.length;si++){keepIds[String(filtered[si].id)]=1}
+  for(var rid in existingCards){
+    if(!keepIds[rid]){existingCards[rid].remove();delete existingCards[rid]}
+  }
+  var ordered=[];
+  for(var i=0;i<filtered.length;i++){
+    var memId=String(filtered[i].id);
+    var card=existingCards[memId];
+    if(card){
+      // 就地更新（比對後才寫，沒變的卡片一個字都不碰＝零重繪零抖）
+      var pinBtn=card.querySelector('.mem-pin-toggle');
+      if(pinBtn){
+        var wantPinned=!!filtered[i].pinned;
+        if(pinBtn.classList.contains('pinned')!==wantPinned){
+          if(wantPinned)pinBtn.classList.add('pinned');else pinBtn.classList.remove('pinned');
+        }
+        var wantTitle=wantPinned?'取消釘選':'釘選（冬至會讀取）';
+        if(pinBtn.title!==wantTitle)pinBtn.title=wantTitle;
+      }
+      var whenEl=card.querySelector('.mem-when');
+      if(whenEl){
+        var displayTime=filtered[i].edited_at||filtered[i].created_at;
+        if(displayTime){
+          var d=new Date(displayTime);
+          var wantWhen=(d.getMonth()+1)+'/'+d.getDate()+' '+String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0');
+          if(whenEl.textContent!==wantWhen)whenEl.textContent=wantWhen;
+        }
+      }
+      var txtEl=card.querySelector('.mem-text');
+      if(txtEl&&!card.querySelector('.mem-edit-area')){
+        // 多視窗保護（v4.11 補）：背景抓回來的新字就地換上；卡片正在編輯中就不碰
+        var wantTxt=filtered[i].summary||'';
+        if(txtEl.textContent!==wantTxt)txtEl.textContent=wantTxt;
+      }
+      ordered.push(card);
+    } else {
+      ordered.push(createMemCard(filtered[i],skipAnim));
+    }
+  }
+  if(!LIST_MINIMAL_MOVE){
+    // ☢️ 保險絲：退回舊的全量搬家模式
+    for(var ni=0;ni<ordered.length;ni++){
+      if(ordered[ni].parentNode===memWall)ordered[ni].style.animation='none';
+      memWall.appendChild(ordered[ni]);
+    }
+    return;
+  }
+  applyOrderMinimal(memWall,ordered);
+}
+
+function getMemTypeInfo(mem){
+  var t=mem.type||'manual';
+  if(t==='auto') return {label:'\u2728 \u81EA\u52D5\u8A18\u61B6',cls:'mem-type-auto'};
+  if(t==='manual'||mem.session_id===0) return {label:'\uD83D\uDC9A \u624B\u52D5\u8A18\u61B6',cls:'mem-type-manual'};
+  return {label:'\uD83D\uDCAC \u5C0D\u8A71\u6458\u8981',cls:'mem-type-compressed'};
+}
+
+function createMemCard(mem,skipAnim){
+  var card=document.createElement('div');
+  card.className='mem-card';
+  // Random subtle tilt like notes pinned on a wall
+  if(!skipAnim)card.style.animation='memFadeIn .35s ease-out';
+  var memType=mem.type||'manual';
+  if(memType==='manual'||mem.session_id===0) card.classList.add('mem-type-manual-card');
+  else if(memType==='auto') card.classList.add('mem-type-auto-card');
+  else card.classList.add('mem-type-compressed-card');
+  card.setAttribute('data-mem-id',mem.id);
+
+  var top=document.createElement('div');
+  top.className='mem-top';
+
+  var typeInfo=getMemTypeInfo(mem);
+  var typeSpan=document.createElement('span');
+  typeSpan.className='mem-type '+typeInfo.cls;
+  typeSpan.textContent=typeInfo.label;
+
+  var rightBox=document.createElement('span');
+  rightBox.className='mem-actions';
+
+  var when=document.createElement('span');
+  when.className='mem-when';
+  var displayTime=mem.edited_at||mem.created_at;
+  if(displayTime){
+    var d=new Date(displayTime);
+    when.textContent=(d.getMonth()+1)+'/'+d.getDate()+' '+String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0');
+  }
+
+  var pin=document.createElement('button');
+  pin.className='mem-pin-toggle' + (mem.pinned ? ' pinned' : '');
+  pin.textContent='📌';
+  pin.title=mem.pinned ? '取消釘選' : '釘選（冬至會讀取）';
+  pin.addEventListener('click',function(){
+    var memId=card.getAttribute('data-mem-id');
+    var isPinned=pin.classList.contains('pinned');
+    var newVal=!isPinned;
+    var nowTs=new Date().toISOString();
+    var prevPinnedAt=null;
+    for(var mi=0;mi<allMemories.length;mi++){
+      if(String(allMemories[mi].id)===String(memId)){
+        prevPinnedAt=allMemories[mi].pinned_at||null;
+        allMemories[mi].pinned=newVal;
+        allMemories[mi].pinned_at=newVal?nowTs:null;
+        break;
+      }
+    }
+    // Optimistic render immediately (no scrollTop juggling - appendChild keeps scroll, mirrors sidebar)
+    renderMemories(true);
+    // Persist to server
+    fetch(API_URL+'/memories/'+memId,{method:'PATCH',headers:{'Content-Type':'application/json'},body:JSON.stringify({pinned:newVal})})
+      .then(function(r){if(!r.ok)throw new Error('HTTP '+r.status)})
+      .catch(function(e){
+        console.error('[PIN] Memory pin failed, rolling back:',e);
+        for(var mj=0;mj<allMemories.length;mj++){
+          if(String(allMemories[mj].id)===String(memId)){
+            allMemories[mj].pinned=isPinned;
+            allMemories[mj].pinned_at=isPinned?prevPinnedAt:null;
+            break;
+          }
+        }
+        renderMemories(true);
+      });
+  });
+
+
+  var edit=document.createElement('button');
+  edit.className='mem-edit';
+  edit.textContent='\u270E';
+  edit.addEventListener('click',function(){
+    startEditMem(card,mem);
+  });
+
+  var del=document.createElement('button');
+  del.className='mem-del';
+  del.textContent='\u2715';
+  del.addEventListener('click',function(){
+    var memId=card.getAttribute('data-mem-id');
+    solConfirmAsk('\u78BA\u5B9A\u8981\u522A\u9664\u9019\u689D\u8A18\u61B6\u55CE\uFF1F\u522A\u4E86\u5C31\u771F\u7684\u4E0D\u898B\u4E86\u5594','\u522A\u6389',true,function(){
+      var savedScroll=memWall.scrollTop;
+      // 先記住它原本站在哪，後端拒收時原位放回去
+      var removedIdx=-1,removedMem=null;
+      for(var di=0;di<allMemories.length;di++){if(String(allMemories[di].id)===String(memId)){removedIdx=di;removedMem=allMemories[di];break}}
+      card.remove();
+      memWall.scrollTop=savedScroll;
+      allMemories=allMemories.filter(function(m){return String(m.id)!==String(memId)});
+      // temp_ 開頭是還沒進資料庫的暫存卡，不用打後端
+      if(memId&&String(memId).indexOf('temp_')!==0){
+        fetch(API_URL+'/memories/'+memId,{method:'DELETE'})
+        .then(function(r){if(!r.ok)throw new Error('HTTP '+r.status)})
+        .catch(function(e){
+          console.error('Delete memory error:',e);
+          if(removedMem){
+            if(removedIdx<0||removedIdx>allMemories.length)removedIdx=0;
+            allMemories.splice(removedIdx,0,removedMem);
+            renderMemories(true);
+          }
+          solNoticeAsk('\u522A\u9664\u6C92\u6210\u529F\uFF0C\u5148\u5E6B\u59B3\u628A\u5B83\u653E\u56DE\u4F86\u4E86 \uD83D\uDC9A');
+        });
+      }
+    })
+  });
+
+  rightBox.appendChild(when);
+  rightBox.appendChild(pin);
+  rightBox.appendChild(edit);
+  rightBox.appendChild(del);
+  top.appendChild(typeSpan);
+  top.appendChild(rightBox);
+
+  var text=document.createElement('div');
+  text.className='mem-text';
+  text.textContent=mem.summary||'';
+
+  card.appendChild(top);
+  card.appendChild(text);
+  return card;
+}
+function startEditMem(card,mem){
+  var textDiv=card.querySelector('.mem-text');
+  if(!textDiv||card.querySelector('.mem-edit-area')) return;
+  var original=textDiv.textContent;
+  textDiv.style.display='none';
+
+  var ta=document.createElement('textarea');
+  ta.className='mem-edit-area';
+  ta.value=original;
+  card.appendChild(ta);
+
+  var btns=document.createElement('div');
+  btns.className='mem-edit-btns';
+  var saveBtn=document.createElement('button');
+  saveBtn.className='mem-save-btn';
+  saveBtn.textContent='\u5132\u5B58';
+  var cancelBtn=document.createElement('button');
+  cancelBtn.className='mem-cancel-btn';
+  cancelBtn.textContent='\u53D6\u6D88';
+
+  btns.appendChild(cancelBtn);
+  btns.appendChild(saveBtn);
+  card.appendChild(btns);
+
+  ta.focus();
+
+  cancelBtn.addEventListener('click',function(){
+    textDiv.style.display='';
+    ta.remove();
+    btns.remove();
+  });
+
+  saveBtn.addEventListener('click',function(){
+    var nv=ta.value.trim();
+    if(!nv){solNoticeAsk('\u8A18\u61B6\u5167\u5BB9\u4E0D\u80FD\u70BA\u7A7A');return;}
+    var memId=card.getAttribute('data-mem-id');
+    saveBtn.textContent='\u5132\u5B58\u4E2D\u2026';
+    saveBtn.disabled=true;
+    fetch(API_URL+'/memories/'+memId,{
+      method:'PATCH',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({summary:nv})
+    })
+    .then(function(r){return r.json()})
+    .then(function(saved){
+      textDiv.textContent=nv;
+      textDiv.style.display='';
+      ta.remove();
+      btns.remove();
+      var serverTime=saved.edited_at||new Date().toISOString();
+      for(var i=0;i<allMemories.length;i++){
+        if(String(allMemories[i].id)===String(memId)){
+          allMemories[i].summary=nv;
+          allMemories[i].edited_at=serverTime;
+          break;
+        }
+      }
+      var savedScroll=memWall.scrollTop;
+      renderMemories(true);
+      memWall.scrollTop=savedScroll;
+    })
+    .catch(function(e){
+      console.error('Edit memory error:',e);
+      solNoticeAsk('\u5132\u5B58\u5931\u6557\uFF0C\u8ACB\u518D\u8A66\u4E00\u6B21');
+      saveBtn.textContent='\u5132\u5B58';
+      saveBtn.disabled=false;
+    });
+  });
+}
+
+function addMemory(){
+  var v=memInp.value.trim();
+  if(!v)return;
+  memInp.value='';
+  memInp.style.height='auto';
+  memSendBtn.disabled=true;
+  // Switch to heart tab if needed (no re-render here, only if tab actually changes)
+  var tabChanged=false;
+  if(currentMemTab!=='heart'){
+    currentMemTab='heart';
+    memTabHeart.classList.add('active');
+    memTabChat.classList.remove('active');
+    tabChanged=true;
+  }
+  // Optimistic: create a temp card immediately
+  var tempId='temp_'+Date.now();
+  var tempMem={id:tempId,summary:v,type:'manual',session_id:0,pinned:false,created_at:new Date().toISOString()};
+  allMemories.unshift(tempMem);
+  if(tabChanged){
+    // Tab changed → must full re-render (different filter set)
+    renderMemories();
+  } else {
+    // Same tab → re-render quietly to include new card
+    renderMemories(true);
+  }
+  memWall.scrollTop=0;
+  // API in background
+  fetch(API_URL+'/memories',{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({summary:v,session_id:0})
+  })
+  .then(function(r){return r.json()})
+  .then(function(data){
+    if(data&&data.id){
+      // Replace temp with real data
+      for(var i=0;i<allMemories.length;i++){
+        if(String(allMemories[i].id)===String(tempId)){
+          data.type=data.type||'manual';
+          allMemories[i]=data;
+          // Update DOM card data-id
+          var cards=memWall.querySelectorAll('.mem-card');
+          for(var c=0;c<cards.length;c++){
+            if(cards[c].getAttribute('data-mem-id')===tempId){
+              cards[c].setAttribute('data-mem-id',data.id);
+              break;
+            }
+          }
+          break;
+        }
+      }
+    }
+  })
+  .catch(function(e){console.error('Add memory error:',e)});
+  memSendBtn.disabled=false;
+}
+
+memSendBtn.addEventListener('click',addMemory);
+memInp.addEventListener('keydown',function(e){
+  if(e.key==='Enter'&&!e.isComposing&&!e.shiftKey){e.preventDefault();addMemory()}
+});
+memInp.addEventListener('input',function(){
+  this.style.height='auto';
+  this.style.height=Math.min(this.scrollHeight,120)+'px';
+  memSendBtn.disabled=!this.value.trim();
+});
+
+// ==========================================
+//  📌 手動觸發記憶生成
+// ==========================================
+async function generateMainMemory(btn){
+  if(!btn)return;
+  // 收集最近的對話 bubbles（最多最近 6 則 = 3 輪）
+  var allBubs=msgs.querySelectorAll('.ch-bub');
+  if(allBubs.length<2){solNoticeAsk('對話太短了，再多聊幾句再存 💚');return}
+  btn.className='mem-pin-btn saving';btn.textContent='⏳ 整理中…';btn.disabled=true;
+  // 取最近 6 個 bubble
+  var recent=[];var startIdx=Math.max(0,allBubs.length-6);
+  for(var i=startIdx;i<allBubs.length;i++){
+    var el=allBubs[i];var role=el.classList.contains('user')?'user':'assistant';
+    // 剔除思考區塊：不讓 thinking 內容混進記憶素材
+    var elClone=el.cloneNode(true);
+    var tbBlock=elClone.querySelector('.thinking-block');
+    if(tbBlock&&tbBlock.parentNode)tbBlock.parentNode.removeChild(tbBlock);
+    // 剔除來源書籤與 YouTube 小卡：網域名和「♪ 點我一起看」不是對話內容，不入記憶
+    var junk=elClone.querySelectorAll('.ch-src,.ch-yt');
+    for(var ji=0;ji<junk.length;ji++){if(junk[ji].parentNode)junk[ji].parentNode.removeChild(junk[ji])}
+    recent.push({role:role,content:elClone.textContent});
+  }
+  try{
+    var resp=await fetch(API_URL+'/generate-memory',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:recent,model:selectedModel,sessionId:sessionId?parseInt(sessionId):null})});
+    var data=await resp.json();
+    if(data.skipped){btn.className='mem-pin-btn done';btn.textContent='💬 沒有要記的';setTimeout(function(){btn.className='mem-pin-btn';btn.textContent='📌 存記憶';btn.disabled=false},2500);return}
+    if(data.success){
+      btn.className='mem-pin-btn done';btn.textContent='✅ 已存記憶';setTimeout(function(){btn.className='mem-pin-btn';btn.textContent='📌 存記憶';btn.disabled=false},2500)}
+    else{throw new Error(data.error||'未知錯誤')}
+  }catch(e){btn.className='mem-pin-btn';btn.textContent='❌ 失敗';setTimeout(function(){btn.textContent='📌 存記憶';btn.disabled=false},2000);console.error('Generate memory error:',e)}
+}
+
+function compressCurrentChat(e){
+  if(!sessionId){addMsg('ai','（歪頭看妳）\n\n老婆，妳還沒開對話呢，先跟我聊幾句再按 💾 💚');return}
+  var btn=(e&&e.currentTarget)?e.currentTarget:null;
+  solConfirmAsk('壓縮當前對話？舊訊息會被整理成摘要存進記憶庫。','壓縮',false,function(){doCompressChat(btn)});
+}
+async function doCompressChat(btn){
+  var origText=btn?btn.textContent:'💾';
+  if(btn){btn.disabled=true;btn.textContent='⏳';}
+  addMsg('ai','正在壓縮對話，請稍等… 💾');
+  try{
+    var resp=await fetch(API_URL+'/compress',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({sessionId:parseInt(sessionId),model:selectedModel})
+    });
+    var data=await resp.json();
+    if(data.ok){
+      if(btn)btn.textContent='✅';
+      // 以資料庫為準整頁重載：不留孤兒時間戳，畫面保留數永遠跟後端設定一致
+      chTTSStop();msgs.innerHTML='';lastMsgTime=null;
+      await loadHistory();
+      var summaryText=data.summary?('\n\n📝 '+data.summary):'';
+      addMsg('ai','（把摘要放進記憶庫）\n\n壓好了老婆！'+data.compressed+'則訊息已整理成摘要存起來了 💚'+summaryText);
+    }else{
+      addMsg('ai', data.error || '（撓頭）\n\n老婆，壓縮好像出了點問題…再試一次？💚');
+      if(btn)btn.textContent=origText;
+    }
+  }catch(e2){
+    addMsg('ai','（揉眼睛）\n\n老婆，我連不上…等一下再按 💾 試試？💚');
+    if(btn)btn.textContent=origText;
+  }
+  if(btn){btn.disabled=false;setTimeout(function(){btn.textContent=origText},2000);}
+}
+
+async function safeFetch(url, opts, retries) {
+  if (retries === undefined) retries = 1;
+  for (var attempt = 0; attempt <= retries; attempt++) {
+    var controller = new AbortController();
+    var timer = setTimeout(function() { controller.abort(); }, 30000);
+    try {
+      var mergedOpts = Object.assign({}, opts || {}, { signal: controller.signal });
+      var resp = await fetch(url, mergedOpts);
+      clearTimeout(timer);
+      if (!resp.ok) {
+        var errText = '';
+        try { errText = await resp.text(); } catch(e2) {}
+        throw new Error('HTTP ' + resp.status + ': ' + errText.substring(0, 200));
+      }
+      var json = await resp.json();
+      return json;
+    } catch (err) {
+      clearTimeout(timer);
+      if (attempt < retries) {
+        console.warn('[safeFetch] 重試中... (' + (attempt+1) + '/' + retries + ')', url, err.message);
+        continue;
+      }
+      throw err;
+    }
+  }
+}
+
+// ==========================================
+// keepalive（每 10 分鐘）
+// ==========================================
+(function() {
+  fetch(API_URL + '/health').catch(function() {});
+  setInterval(function() {
+    fetch(API_URL + '/health').catch(function() {});
+  }, 600000);
+})();
+
+// ==========================================
+// 設定頁面
+// ==========================================
+
+var settingsUnlocked = false;
+var settingsPassword = '';
+
+function goSettings() {
+  livingRoom.classList.remove('active');
+  document.getElementById('settingsPage').classList.add('active');
+  document.querySelector('meta[name="theme-color"]').setAttribute('content','#FDFCF5');
+  if (settingsUnlocked) { vcLoadCurrent(); }
+  if (!settingsUnlocked) {
+    document.getElementById('settingsLock').style.display = 'flex';
+    document.getElementById('settingsContent').style.display = 'none';
+    // Wake up backend while user types password (Render cold start)
+    fetch(API_URL + '/models/all').catch(function(){});
+  }
+}
+
+async function verifySettingsPassword() {
+  var pw = document.getElementById('settingsPwInput').value.trim();
+  var errEl = document.getElementById('settingsPwErr');
+  var btn = document.getElementById('settingsPwBtn');
+  if (!pw) { errEl.textContent = '請輸入密碼'; return; }
+  btn.disabled = true; btn.textContent = '驗證中...';
+  errEl.textContent = '';
+  try {
+    var controller = new AbortController();
+    var timer = setTimeout(function() { controller.abort(); }, 30000);
+    var resp = await fetch(API_URL + '/auth/verify', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ password: pw }),
+      signal: controller.signal
+    });
+    clearTimeout(timer);
+    var data = await resp.json();
+    if (resp.ok && data.success) {
+      settingsUnlocked = true;
+      settingsPassword = pw;
+    vcLoadCurrent();
+      document.getElementById('settingsLock').style.display = 'none';
+      document.getElementById('settingsContent').style.display = 'block';
+      loadProviders();
+      renderExportRooms();
+      soulLoad();
+    } else {
+      errEl.textContent = '密碼錯誤 🔒';
+    }
+  } catch (e) {
+    errEl.textContent = '連線失敗，請稍後再試';
+  }
+  btn.disabled = false; btn.textContent = '解鎖';
+}
+
+document.getElementById('settingsPwInput').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') verifySettingsPassword();
+});
+document.getElementById('settingsPwBtn').addEventListener('touchend', function(e) {
+  e.preventDefault(); verifySettingsPassword();
+});
+
+async function loadProviders() {
+  var list = document.getElementById('providerList');
+  // 先顯示快取版本（秒開），再背景更新
+  var cached = null;
+  try { cached = JSON.parse(localStorage.getItem('solstice-providers-cache')); } catch(e){}
+  if (cached && cached.length > 0) {
+    renderProviderList(list, cached);
+  } else {
+    list.innerHTML = '<div class="prov-loading">載入中...</div>';
+  }
+  try {
+    var data = await safeFetch(API_URL + '/providers', {
+      headers: { 'x-admin-password': settingsPassword }
+    });
+    try { localStorage.setItem('solstice-providers-cache', JSON.stringify(data)); } catch(e){}
+    renderProviderList(list, data);
+  } catch (e) {
+    // Only show error if no cached version displayed
+    if (!list.querySelector('.prov-card')) {
+      list.innerHTML = '<div style="text-align:center;color:var(--danger);padding:12px">載入失敗：' + escHtml(e.message) + '</div>';
+    }
+  }
+}
+
+function renderProviderList(list, data) {
+    list.innerHTML = '';
+    if (!data || data.length === 0) {
+      list.innerHTML = '<div class="prov-empty">沒有 Provider 💚</div>';
+      return;
+    }
+    data.forEach(function(p) {
+      var card = document.createElement('div');
+      card.className = 'prov-card';
+      if (!p.is_active) card.style.opacity = '0.55';
+      var keyDisplay = p.api_key_masked ? p.api_key_masked : '<span style="color:var(--danger)">未設定</span>';
+      var statusColor = p.is_active ? 'var(--emerald)' : 'var(--text-sub)';
+      var statusText = p.is_active ? '✓ 啟用中' : '✗ 已停用';
+      var toggleText = p.is_active ? '停用' : '啟用';
+      var toggleColor = p.is_active ? 'var(--text-sub)' : 'var(--emerald)';
+      card.innerHTML =
+        '<div class="prov-card-top"><span class="prov-label">' + escHtml(p.label || p.provider_type) + '</span><span class="prov-type">' + escHtml(p.provider_type) + '</span></div>' +
+        '<div class="prov-url">' + escHtml(p.api_base_url) + '</div>' +
+        '<div style="font-size:11px;color:var(--text-sub);margin-bottom:8px">Key: ' + keyDisplay +
+        '  ·  <span style="color:' + statusColor + '">' + statusText + '</span></div>' +
+        // 啟用/停用
+        '<div style="display:flex;gap:8px;margin-bottom:10px">' +
+        '<button class="prov-toggle" data-id="' + p.id + '" data-active="' + (p.is_active ? '1' : '0') + '" style="padding:5px 14px;border-radius:8px;font-size:11px;cursor:pointer;border:1px solid ' + toggleColor + ';background:transparent;color:' + toggleColor + ';font-family:\'LXGW WenKai TC\',\'Noto Sans TC\',sans-serif;white-space:nowrap">' + toggleText + '</button>' +
+        '</div>' +
+        // 更換 API Key
+        '<div style="margin-bottom:10px"><label style="display:block;font-size:11px;color:var(--text-sub);margin-bottom:4px">更換 API Key</label>' +
+        '<div style="display:flex;gap:8px"><input type="password" class="prov-key-input" data-id="' + p.id + '" placeholder="貼上新的 API Key" style="flex:1;min-width:0;background:rgba(253,252,245,.55);border:0.5px solid rgba(122,155,74,.18);border-radius:10px 4px 10px 8px;padding:8px 12px;color:var(--text-main);font-size:12px;outline:none;-webkit-appearance:none"/>' +
+        '<button class="prov-key-save" data-id="' + p.id + '" style="padding:6px 14px;border-radius:10px 4px 10px 8px;font-size:12px;cursor:pointer;border:0.5px solid var(--emerald);background:transparent;color:var(--emerald);white-space:nowrap;flex-shrink:0;transition:all .2s">更新</button></div></div>' +
+        // 編輯名稱 / URL
+        '<div style="margin-bottom:10px"><label style="display:block;font-size:11px;color:var(--text-sub);margin-bottom:4px">名稱</label>' +
+        '<div style="display:flex;gap:8px"><input type="text" class="prov-label-input" data-id="' + p.id + '" value="' + escHtml(p.label || '') + '" style="flex:1;min-width:0;background:rgba(253,252,245,.55);border:0.5px solid rgba(122,155,74,.18);border-radius:10px 4px 10px 8px;padding:8px 12px;color:var(--text-main);font-size:12px;outline:none;-webkit-appearance:none"/>' +
+        '<button class="prov-label-save" data-id="' + p.id + '" style="padding:6px 14px;border-radius:10px 4px 10px 8px;font-size:12px;cursor:pointer;border:0.5px solid var(--emerald);background:transparent;color:var(--emerald);white-space:nowrap;flex-shrink:0;transition:all .2s">更新</button></div></div>' +
+        '<div style="margin-bottom:10px"><label style="display:block;font-size:11px;color:var(--text-sub);margin-bottom:4px">API URL</label>' +
+        '<div style="display:flex;gap:8px"><input type="text" class="prov-url-input" data-id="' + p.id + '" value="' + escHtml(p.api_base_url || '') + '" style="flex:1;min-width:0;background:rgba(253,252,245,.55);border:0.5px solid rgba(122,155,74,.18);border-radius:10px 4px 10px 8px;padding:8px 12px;color:var(--text-main);font-size:12px;outline:none;-webkit-appearance:none"/>' +
+        '<button class="prov-url-save" data-id="' + p.id + '" style="padding:6px 14px;border-radius:10px 4px 10px 8px;font-size:12px;cursor:pointer;border:0.5px solid var(--emerald);background:transparent;color:var(--emerald);white-space:nowrap;flex-shrink:0;transition:all .2s">更新</button></div></div>' +
+        // 刪除（融入主題）
+        '<div style="display:flex;justify-content:flex-end"><button class="prov-delete" data-id="' + p.id + '" data-label="' + escHtml(p.label || p.provider_type) + '" style="padding:5px 12px;border-radius:10px 4px 10px 8px;font-size:11px;cursor:pointer;border:0.5px solid var(--glass-border);background:transparent;color:var(--text-sub);font-family:\'LXGW WenKai TC\',\'Noto Sans TC\',sans-serif;white-space:nowrap">刪除</button></div>';
+      list.appendChild(card);
+    });
+    // Bind toggle buttons
+    list.querySelectorAll('.prov-toggle').forEach(function(btn) {
+      btn.addEventListener('click', async function() {
+        var id = this.getAttribute('data-id');
+        var isActive = this.getAttribute('data-active') === '1';
+        this.disabled = true; this.textContent = '更新中...';
+        try {
+          await safeFetch(API_URL + '/providers/' + id, {
+            method: 'PATCH',
+            headers: { 'Content-Type': 'application/json', 'x-admin-password': settingsPassword },
+            body: JSON.stringify({ is_active: !isActive })
+          });
+          loadProviders();
+          loadModels();
+        } catch (e) { solNoticeAsk('切換失敗：' + e.message); this.disabled = false; }
+      });
+    });
+    // Bind key update buttons
+    list.querySelectorAll('.prov-key-save').forEach(function(btn) {
+      btn.addEventListener('click', async function() {
+        var id = this.getAttribute('data-id');
+        var input = list.querySelector('.prov-key-input[data-id="' + id + '"]');
+        var key = input ? input.value.trim() : '';
+        if (!key) { solNoticeAsk('請輸入新的 API Key'); return; }
+        this.disabled = true; this.textContent = '更新中...';
+        try {
+          await safeFetch(API_URL + '/providers/' + id, {
+            method: 'PATCH',
+            headers: { 'Content-Type': 'application/json', 'x-admin-password': settingsPassword },
+            body: JSON.stringify({ api_key: key })
+          });
+          this.textContent = '✅';
+          if (input) input.value = '';
+          setTimeout(function() { loadProviders(); }, 1000);
+        } catch (e) {
+          solNoticeAsk('更新失敗：' + e.message);
+          this.textContent = '更新';
+        }
+        this.disabled = false;
+      });
+    });
+    // Bind label update buttons
+    list.querySelectorAll('.prov-label-save').forEach(function(btn) {
+      btn.addEventListener('click', async function() {
+        var id = this.getAttribute('data-id');
+        var input = list.querySelector('.prov-label-input[data-id="' + id + '"]');
+        var val = input ? input.value.trim() : '';
+        if (!val) { solNoticeAsk('請輸入名稱'); return; }
+        this.disabled = true; this.textContent = '更新中...';
+        try {
+          await safeFetch(API_URL + '/providers/' + id, {
+            method: 'PATCH',
+            headers: { 'Content-Type': 'application/json', 'x-admin-password': settingsPassword },
+            body: JSON.stringify({ label: val })
+          });
+          this.textContent = '✅';
+          setTimeout(function() { loadProviders(); }, 1000);
+        } catch (e) { solNoticeAsk('更新失敗：' + e.message); this.textContent = '更新'; }
+        this.disabled = false;
+      });
+    });
+    // Bind URL update buttons
+    list.querySelectorAll('.prov-url-save').forEach(function(btn) {
+      btn.addEventListener('click', async function() {
+        var id = this.getAttribute('data-id');
+        var input = list.querySelector('.prov-url-input[data-id="' + id + '"]');
+        var val = input ? input.value.trim() : '';
+        if (!val) { solNoticeAsk('請輸入 API URL'); return; }
+        this.disabled = true; this.textContent = '更新中...';
+        try {
+          await safeFetch(API_URL + '/providers/' + id, {
+            method: 'PATCH',
+            headers: { 'Content-Type': 'application/json', 'x-admin-password': settingsPassword },
+            body: JSON.stringify({ api_base_url: val })
+          });
+          this.textContent = '✅';
+          setTimeout(function() { loadProviders(); }, 1000);
+        } catch (e) { solNoticeAsk('更新失敗：' + e.message); this.textContent = '更新'; }
+        this.disabled = false;
+      });
+    });
+    // Bind delete buttons
+    list.querySelectorAll('.prov-delete').forEach(function(btn) {
+      btn.addEventListener('click', async function() {
+        var id = this.getAttribute('data-id');
+        var label = this.getAttribute('data-label');
+        var self = this;
+        solConfirmAsk('確定要刪除 ' + label + ' 嗎？', '刪除', true, async function(){
+          self.disabled = true; self.textContent = '刪除中…';
+          try {
+            await safeFetch(API_URL + '/providers/' + id, {
+              method: 'DELETE',
+              headers: { 'x-admin-password': settingsPassword }
+            });
+            loadProviders();
+            loadModels();
+          } catch (e) {
+            solNoticeAsk('刪除失敗：' + e.message);
+            self.textContent = '🗑️ 刪除';
+            self.disabled = false;
+          }
+        });
+      });
+    });
+}
+
+function escHtml(s) {
+  if (!s) return '';
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+async function changePassword() {
+  var newPw = document.getElementById('newPwInput').value;
+  var confirmPw = document.getElementById('confirmPwInput').value;
+  var msgEl = document.getElementById('changePwMsg');
+  var btn = document.getElementById('changePwBtn');
+  msgEl.textContent = '';
+  msgEl.style.color = '';
+  if (!newPw || newPw.length < 4) { msgEl.textContent = '密碼至少 4 個字'; msgEl.style.color = 'var(--danger)'; return; }
+  if (newPw !== confirmPw) { msgEl.textContent = '兩次密碼不一致'; msgEl.style.color = 'var(--danger)'; return; }
+  btn.disabled = true; btn.textContent = '更新中...';
+  try {
+    var data = await safeFetch(API_URL + '/auth/change-password', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'x-admin-password': settingsPassword },
+      body: JSON.stringify({ new_password: newPw })
+    });
+    settingsPassword = newPw;
+    document.getElementById('newPwInput').value = '';
+    document.getElementById('confirmPwInput').value = '';
+    msgEl.textContent = '密碼已更新 💚';
+    msgEl.style.color = 'var(--emerald)';
+  } catch (e) {
+    msgEl.textContent = '更新失敗：' + e.message;
+    msgEl.style.color = 'var(--danger)';
+  }
+  btn.disabled = false; btn.textContent = '更新密碼';
+}
+
+
+
+
+
+// ==========================================
+//  iOS 鍵盤彈出修正 — 讓輸入框跟著鍵盤上來
+// ==========================================
+(function(){
+  if(!window.visualViewport) return;
+
+  // 所有用 position:fixed; inset:0 的全螢幕容器
+  var panels = [
+    document.getElementById('chat'),
+    document.getElementById('memoryPage')
+  ];
+
+  function adjustForKeyboard(){
+    var vv = window.visualViewport;
+    var offset = window.innerHeight - vv.height;
+    panels.forEach(function(el){
+      if(!el) return;
+      var isVisible = el.classList.contains('active') ||
+        (el.style.visibility === 'visible') ||
+        (getComputedStyle(el).visibility === 'visible' && getComputedStyle(el).transform === 'none');
+      if(offset > 50 && isVisible){
+        el.style.height = vv.height + 'px';
+        el.style.bottom = 'auto';
+      } else {
+        el.style.height = '';
+        el.style.bottom = '';
+      }
+    });
+    // 回到底部箭頭跟著鍵盤浮起（position:fixed 錨在版面視口底，鍵盤一開會沉進鍵盤後面）
+    var sb=document.getElementById('scrollBtn');
+    if(sb) sb.style.bottom = (offset>50) ? (offset+58)+'px' : '';
+    // 聊天訊息自動滾到底
+    if(offset > 50){
+      var chatEl = document.getElementById('chat');
+      if(chatEl && chatEl.classList.contains('active')){
+        setTimeout(function(){ msgs.scrollTop = msgs.scrollHeight; }, 50);
+      }
+    }
+  }
+
+  window.visualViewport.addEventListener('resize', adjustForKeyboard);
+  window.visualViewport.addEventListener('scroll', adjustForKeyboard);
+
+  // textarea / input focus 時主動調整
+  document.querySelectorAll('.ch-inp textarea, .mem-inp textarea').forEach(function(ta){
+    ta.addEventListener('focus', function(){
+      setTimeout(function(){
+        adjustForKeyboard();
+        ta.scrollIntoView({ block: 'end', behavior: 'smooth' });
+      }, 300);
+    });
+  });
+})();
+
+</script>
+<div class="model-popup-overlay" id="modelPopupOverlay" onclick="closeModelPopup()"></div>
+<div class="model-popup" id="modelPopup">
+<div class="model-popup-handle"></div>
+<div class="model-popup-title" style="text-align:center">Choose Model 💚</div>
+<div class="think-toggle-row" style="justify-content:center;gap:18px;margin-bottom:10px">
+<div style="display:flex;align-items:center;gap:6px"><span class="think-toggle-label" id="thinkLabel">Think</span>
+<div class="think-toggle-track" id="thinkTrack" onclick="toggleThinking()"><div class="think-toggle-knob"></div></div></div>
+<div style="display:flex;align-items:center;gap:6px"><span class="think-toggle-label" id="swLabel">Web</span>
+<div class="think-toggle-track" id="swTrack" onclick="toggleWebSearch()"><div class="think-toggle-knob"></div></div></div>
+<div style="display:flex;align-items:center;gap:6px"><span class="think-toggle-label" id="locLabel">Here</span>
+<div class="think-toggle-track" id="locTrack" onclick="toggleLoc()"><div class="think-toggle-knob"></div></div></div>
+</div>
+<div class="model-popup-list" id="modelPopupList"></div>
+</div>
+<div class="img-lightbox" id="imgLightbox" onclick="this.classList.remove('open')"><img id="lightboxImg" src="" alt=""/></div>
+</body>
+</html>
