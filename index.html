@@ -304,9 +304,9 @@ body{padding-top:0}
 #memoryPage.active{transform:translateX(0);visibility:visible}
 .mem-header{display:flex;align-items:center;gap:8px;padding:max(env(safe-area-inset-top),12px) 16px 10px;border-bottom:.5px solid var(--sr-line);background:rgba(255,253,246,.42);backdrop-filter:blur(18px) saturate(1.1);-webkit-backdrop-filter:blur(18px) saturate(1.1)}
 .mem-back{background:none;border:none;color:var(--sr-leaf);font-size:14px;cursor:pointer;padding:6px}
-.mem-title{flex:1;min-width:0}
-.mem-title-main{font-family:'Great Vibes',cursive;font-size:21px;line-height:1.35;color:var(--sr-fern);padding-left:4px;display:block}
-.mem-title-sub{font-family:'LXGW WenKai TC','Noto Serif TC',serif;font-weight:300;font-size:10px;color:var(--sr-leaf);display:block;margin-top:-2px}
+.mem-title{flex:0 1 auto;min-width:0}
+.mem-title-main{font-family:'Great Vibes',cursive;font-size:21px;line-height:1.35;color:var(--sr-fern);padding-left:4px;display:block;white-space:nowrap}
+.mem-title-sub{font-family:'LXGW WenKai TC','Noto Serif TC',serif;font-weight:300;font-size:10px;color:var(--sr-leaf);display:block;margin-top:-2px;white-space:nowrap}
 .mem-tabs{display:flex;gap:22px;padding:10px 20px 0;background:rgba(255,253,246,.42);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom:.5px solid var(--sr-line)}
 .mem-tab{flex:0 0 auto;padding:8px 2px 10px;border:none;border-bottom:2px solid transparent;background:transparent;color:var(--sr-sage);font-size:13px;letter-spacing:.08em;font-family:'LXGW WenKai TC','Noto Serif TC',serif;cursor:pointer;transition:all .25s;position:relative;margin-bottom:-1px}
 .mem-tab.active{color:var(--sr-fern);border-bottom-color:var(--sr-honey)}
@@ -1907,6 +1907,7 @@ memTabHeart.addEventListener('click',function(){
   currentMemTab='heart';
   memTabHeart.classList.add('active');
   memTabChat.classList.remove('active');memTabHb.classList.remove('active');
+  if(memoryPage.classList.contains('hb-mode')){memWall.innerHTML='';memSig=''} // 心聲卡不准被記憶牆回收再利用（刪除彈窗串台事件血訓）
   memoryPage.classList.remove('hb-mode');
   renderMemories(true);
 });
@@ -1914,6 +1915,7 @@ memTabChat.addEventListener('click',function(){
   currentMemTab='chat';
   memTabChat.classList.add('active');
   memTabHeart.classList.remove('active');memTabHb.classList.remove('active');
+  if(memoryPage.classList.contains('hb-mode')){memWall.innerHTML='';memSig=''} // 同上：換房先清場
   memoryPage.classList.remove('hb-mode');
   renderMemories(true);
 });
