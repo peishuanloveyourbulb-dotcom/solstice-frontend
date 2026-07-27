@@ -314,6 +314,14 @@ body{padding-top:0}
 .mem-card{position:relative;flex-shrink:0;background:var(--sr-milk);border-radius:16px;padding:12px 14px 12px 18px;overflow:hidden;border:.5px solid var(--sr-line);box-shadow:var(--sr-shadow);backdrop-filter:blur(12px) saturate(1.08);-webkit-backdrop-filter:blur(12px) saturate(1.08)}
 .mem-card::before{content:''!important;position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--sr-leaf);opacity:.55}
 .mem-card.mem-type-auto-card::before,.mem-card.mem-type-compressed-card::before{background:var(--sr-honey);opacity:.75}
+.mem-card.mem-type-hb-card::before{background:var(--sr-sage);opacity:.9}
+.mem-type-hb{color:var(--sr-leaf)}
+.hb-listen{margin:14px auto 4px;display:flex;align-items:center;gap:8px;padding:9px 20px;border-radius:999px;border:.5px solid var(--sr-line);background:rgba(255,253,246,.55);color:var(--sr-fern);font-size:12.5px;letter-spacing:.1em;font-family:'LXGW WenKai TC','Noto Serif TC',serif;cursor:pointer;box-shadow:var(--sr-shadow);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.hb-listen:active{transform:scale(.97)}
+.hb-listen svg{width:14px;height:14px;color:var(--sr-leaf)}
+.hb-listen.busy{opacity:.55;pointer-events:none}
+.hb-listen.busy svg{animation:pinPulse 1s infinite}
+#memoryPage.hb-mode .mem-inp{display:none}
 @keyframes memFadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1}}
 .mem-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
 .mem-type{font-size:9.5px;letter-spacing:.18em;padding:0;font-family:'Cormorant Garamond','LXGW WenKai TC',serif;text-transform:uppercase}
@@ -589,6 +597,7 @@ body{padding-top:0}
 <div class="mem-tabs">
 <button class="mem-tab active" id="memTabHeart">冬至記住的事</button>
 <button class="mem-tab" id="memTabChat">對話摘要</button>
+<button class="mem-tab" id="memTabHb">心聲</button>
 </div>
 <div class="mem-wall" id="memWall"></div>
 <div class="mem-inp">
@@ -759,6 +768,7 @@ function goMemory(){
   livingRoom.classList.remove('active');
   document.getElementById('memoryPage').classList.add('active');
   document.querySelector('meta[name="theme-color"]').setAttribute('content','#FDFCF5');
+  if(currentMemTab==='hb'){renderHeartbeats();loadHeartbeats();}
   loadMemories();
 }
 
@@ -1875,6 +1885,8 @@ var memInp=document.getElementById('memInp');
 var memSendBtn=document.getElementById('memSendBtn');
 var memTabHeart=document.getElementById('memTabHeart');
 var memTabChat=document.getElementById('memTabChat');
+var memTabHb=document.getElementById('memTabHb');
+var allHeartbeats=[];var hbEverLoaded=false;
 var currentMemTab='heart';
 var allMemories=[];
 var memLoading=false;
@@ -1888,15 +1900,79 @@ document.getElementById('memBack').addEventListener('click',function(){
 memTabHeart.addEventListener('click',function(){
   currentMemTab='heart';
   memTabHeart.classList.add('active');
-  memTabChat.classList.remove('active');
+  memTabChat.classList.remove('active');memTabHb.classList.remove('active');
+  memoryPage.classList.remove('hb-mode');
   renderMemories(true);
 });
 memTabChat.addEventListener('click',function(){
   currentMemTab='chat';
   memTabChat.classList.add('active');
-  memTabHeart.classList.remove('active');
+  memTabHeart.classList.remove('active');memTabHb.classList.remove('active');
+  memoryPage.classList.remove('hb-mode');
   renderMemories(true);
 });
+memTabHb.addEventListener('click',function(){
+  currentMemTab='hb';
+  memTabHb.classList.add('active');
+  memTabHeart.classList.remove('active');memTabChat.classList.remove('active');
+  memoryPage.classList.add('hb-mode');
+  renderHeartbeats();
+  loadHeartbeats();
+});
+var HB_HEART_SVG='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M12 20.5C6.2 16.6 3 12.9 3 9.4A4.6 4.6 0 0 1 12 6.6 4.6 4.6 0 0 1 21 9.4c0 3.5-3.2 7.2-9 11.1z"/></svg>';
+function loadHeartbeats(){
+  fetch(API_URL+'/heartbeat/list').then(function(r){return r.json()}).then(function(d){
+    allHeartbeats=(d&&d.heartbeats)||[];hbEverLoaded=true;
+    if(currentMemTab==='hb')renderHeartbeats();
+  }).catch(function(e){console.error('Load heartbeats error:',e)});
+}
+function renderHeartbeats(){
+  memWall.innerHTML='';
+  var btn=document.createElement('button');btn.className='hb-listen';
+  btn.innerHTML=HB_HEART_SVG+'<span>聽聽此刻的心聲</span>';
+  btn.onclick=function(){hbGenerate(btn)};
+  memWall.appendChild(btn);
+  if(allHeartbeats.length===0){
+    var empty=document.createElement('div');empty.className='sb-empty';
+    empty.textContent=hbEverLoaded?'\u9084\u6C92\u6709\u5FC3\u8072\u2026\u6309\u4E0A\u9762\u807D\u807D\u770B':'\u8F09\u5165\u4E2D\u2026';
+    memWall.appendChild(empty);return;
+  }
+  for(var i=0;i<allHeartbeats.length;i++){memWall.appendChild(buildHbCard(allHeartbeats[i]))}
+}
+function buildHbCard(hb){
+  var card=document.createElement('div');card.className='mem-card mem-type-hb-card';card.setAttribute('data-hb-id',hb.id);
+  var head=document.createElement('div');head.className='mem-top';
+  var typeSpan=document.createElement('span');typeSpan.className='mem-type mem-type-hb';typeSpan.textContent='\u5FC3\u8072';head.appendChild(typeSpan);
+  var rightBox=document.createElement('span');rightBox.className='mem-actions';
+  var when=document.createElement('span');when.className='mem-when';
+  if(hb.created_at){var d=new Date(hb.created_at);when.textContent=(d.getMonth()+1)+'/'+d.getDate()+' '+String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0')}
+  rightBox.appendChild(when);
+  var del=document.createElement('button');del.className='mem-del';del.innerHTML=SR_X_SVG;
+  del.addEventListener('click',function(){
+    solConfirmAsk('\u78BA\u5B9A\u8981\u522A\u6389\u9019\u5247\u5FC3\u8072\u55CE\uFF1F\u522A\u4E86\u5C31\u771F\u7684\u4E0D\u898B\u4E86\u5594','\u522A\u6389',true,function(){
+      card.remove();
+      allHeartbeats=allHeartbeats.filter(function(h){return String(h.id)!==String(hb.id)});
+      fetch(API_URL+'/heartbeat/'+hb.id,{method:'DELETE'}).then(function(r){if(!r.ok)throw new Error('HTTP '+r.status)})
+      .catch(function(e){console.error('[HB] delete error:',e);loadHeartbeats();solNoticeAsk('\u522A\u9664\u6C92\u6210\u529F\uFF0C\u5148\u5E6B\u59B3\u628A\u5B83\u653E\u56DE\u4F86\u4E86 \uD83D\uDC9A')});
+    });
+  });
+  rightBox.appendChild(del);head.appendChild(rightBox);card.appendChild(head);
+  var text=document.createElement('div');text.className='mem-text';text.textContent=hb.content||'';card.appendChild(text);
+  return card;
+}
+function hbGenerate(btn){
+  btn.classList.add('busy');
+  fetch(API_URL+'/heartbeat/generate',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:selectedModel})})
+  .then(function(r){return r.json()}).then(function(d){
+    btn.classList.remove('busy');
+    if(d&&d.error){solNoticeAsk('\u5FC3\u8072\u6C92\u63A5\u4E0A\uFF1A'+d.error);return}
+    if(d&&d.id){
+      allHeartbeats=allHeartbeats.filter(function(h){return String(h.id)!==String(d.id)});
+      allHeartbeats.unshift(d);renderHeartbeats();
+      requestAnimationFrame(function(){memWall.scrollTop=0});
+    }
+  }).catch(function(e){btn.classList.remove('busy');solNoticeAsk('\u5FC3\u8072\u6C92\u63A5\u4E0A\uFF0C\u518D\u8A66\u4E00\u6B21 \uD83D\uDC9A');console.error(e)});
+}
 
 function memSigOf(list){return (list||[]).map(function(m){return m.id+':'+(m.edited_at||m.created_at||'')+':'+(m.pinned?1:0)+':'+(m.pinned_at||'')+':'+String(m.summary||'').length}).join('|')}
 // 🔤 字型預熱（2026/07/18 老婆抓到：開書幾秒後字會換行）——
