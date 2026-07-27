@@ -117,10 +117,11 @@ body{padding-top:0}
 .sb-btn{width:100%;padding:13px;border-radius:999px;border:none;background:var(--sr-honey);color:#FFFDF6;font-size:13.5px;letter-spacing:2px;cursor:pointer;text-align:center;font-family:'LXGW WenKai TC','Noto Serif TC',serif;transition:all .2s;margin-bottom:8px;box-shadow:0 2px 10px rgba(185,144,47,.28)}
 .sb-btn:active{background:var(--sr-honey-deep);transform:scale(.98)}
 .sb-list{flex:1;overflow-y:auto;padding:6px 22px 12px;-webkit-overflow-scrolling:touch}
-.sb-item{position:relative;padding:16px 6px;border-radius:0;margin:0;cursor:pointer;background:transparent;border:none;border-bottom:.5px solid var(--sr-line);display:flex;justify-content:space-between;align-items:center;transition:background .2s}
+.sb-item{position:relative;padding:16px 6px 16px 16px;border-radius:0;margin:0;cursor:pointer;background:transparent;border:none;border-bottom:.5px solid var(--sr-line);display:flex;justify-content:space-between;align-items:center;transition:background .2s}
+.sb-item::before{content:'';position:absolute;left:2px;top:17px;bottom:17px;width:3px;border-radius:2px;background:var(--sr-sage);opacity:.55}
 .sb-item.active{background:transparent}
-.sb-item.active .sb-item-name{color:var(--sr-honey-deep);font-weight:600}
-.sb-item.active .sb-item-name::before{content:'';display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--sr-honey);margin-right:8px;vertical-align:2px}
+.sb-item.active .sb-item-name{color:var(--sr-fern);font-weight:600}
+.sb-item.active .sb-item-name::before{content:'';display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--sr-leaf);margin-right:8px;vertical-align:2px}
 .sb-item:active{background:rgba(232,184,75,.10)}
 @keyframes sbSlideIn{from{opacity:0;transform:translateX(-8px)}to{opacity:1;transform:translateX(0)}}
 .sb-item-text{flex:1;min-width:0}
@@ -134,9 +135,9 @@ body{padding-top:0}
 .sb-empty::before{content:'\2740';display:block;font-size:22px;color:var(--sr-sage);margin-bottom:8px;animation:emptyPulse 2.5s ease-in-out infinite}
 .sb-loading,.prov-loading{text-align:center;color:var(--text-sub);font-size:13px;padding:30px 0}
 .sb-loading::before,.prov-loading::before{content:'\2740';display:block;font-size:20px;color:var(--sr-sage);margin-bottom:6px;animation:sunflowerBreathe 2s ease-in-out infinite}
-.sb-item.sb-pinned{padding-left:16px}
-.sb-item.sb-pinned::before{content:'';position:absolute;left:2px;top:17px;bottom:17px;width:3px;border-radius:2px;background:var(--sr-honey);opacity:.85}
+.sb-item.sb-pinned::before{background:var(--sr-honey);opacity:.85}
 .sb-item.sb-pinned .sb-item-name{color:var(--sr-honey-deep)}
+.sb-item.sb-pinned.active .sb-item-name::before{background:var(--sr-honey)}
 /* === CHAT === */
 #chat{position:fixed;inset:0;display:flex;flex-direction:column;z-index:8;background:linear-gradient(160deg,#FDFCF5,#F2F6EC);visibility:hidden;opacity:0;transition:opacity .4s}
 #chat.active{visibility:visible;opacity:1}
@@ -169,6 +170,12 @@ body{padding-top:0}
 .ch-copy-btn.done{color:var(--emerald);opacity:1}
 .ch-copy-btn.done .cp-ic{display:none}
 .ch-copy-btn.done .cp-ok{display:block}
+.ch-bfoot .ch-tts-btn{color:var(--sr-sage);opacity:.85}
+.ch-bfoot .ch-tts-btn svg{width:14px;height:14px}
+.ch-bfoot .tts-shell{fill:none;stroke:var(--sr-sage)}
+.ch-bfoot .tts-seam{stroke:var(--sr-sage);stroke-opacity:.6}
+.ch-bfoot .tts-wave{stroke:var(--sr-sage)}
+.ch-bfoot .tts-eq rect{fill:var(--sr-sage)}
 .ch-regen-btn,.ch-edit-btn{background:none;border:none;padding:2px;display:inline-flex;align-items:center;color:var(--sr-sage);cursor:pointer;opacity:.85;transition:opacity .15s,transform .12s}
 .ch-regen-btn svg,.ch-edit-btn svg{width:14px;height:14px;display:block}
 .ch-regen-btn:active,.ch-edit-btn:active{transform:scale(.9)}
@@ -235,10 +242,14 @@ body{padding-top:0}
 .ch-bub img.msg-img{max-width:100%;max-height:35vh;object-fit:contain;border-radius:8px;margin-top:6px;cursor:pointer}
 .msg-img-scroll{display:flex;overflow-x:auto;-webkit-overflow-scrolling:touch;gap:6px;margin-top:6px;padding-bottom:4px;scroll-snap-type:x mandatory}
 .msg-img-scroll img.msg-img{flex:0 0 auto;width:55vw;max-height:35vh;object-fit:cover;margin-top:0;scroll-snap-align:start}
-.mem-pin-btn{background:none;border:none;font-size:10.5px;letter-spacing:.06em;font-family:'LXGW WenKai TC',serif;color:var(--sr-leaf);cursor:pointer;padding:2px 2px 2px 4px;opacity:.7;transition:all .2s}
-.mem-pin-btn:hover,.mem-pin-btn:active{opacity:1;background:rgba(201,168,76,.15)}
-.mem-pin-btn.saving{opacity:1;animation:pinPulse 1s infinite}
+.mem-pin-btn{background:none;border:none;padding:2px;display:inline-flex;align-items:center;color:var(--sr-sage);cursor:pointer;opacity:.85;transition:opacity .15s,transform .12s}
+.mem-pin-btn svg{width:14px;height:14px;display:block}
+.mem-pin-btn:active{transform:scale(.9)}
+.mem-pin-btn .ms-ok{display:none}
+.mem-pin-btn.saving{opacity:1;animation:pinPulse 1s infinite;pointer-events:none}
 .mem-pin-btn.done{opacity:1;color:var(--emerald)}
+.mem-pin-btn.done .ms-ic{display:none}
+.mem-pin-btn.done .ms-ok{display:block}
 @keyframes pinPulse{0%,100%{opacity:.5}50%{opacity:1}}
 .model-select{display:none}
 .think-toggle-label{font-family:'Cormorant Garamond','LXGW WenKai TC',serif;font-size:13px;letter-spacing:.08em;color:var(--sr-sage);transition:color .3s}
@@ -1428,6 +1439,7 @@ function loadSessions(){
 var SB_PIN_SVG='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width:15px;height:15px"><path d="M12 17v5"/><path d="M9 10.8V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v5.8l2.5 2.7a1 1 0 0 1-.7 1.7H7.2a1 1 0 0 1-.7-1.7L9 10.8z"/></svg>';
 var SR_EDIT_SVG='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px"><path d="M17 3a2.8 2.8 0 1 1 4 4L7.5 20.5 3 21.5l1-4.5L17 3z"/></svg>';
 var SR_REGEN_SVG='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px"><path d="M20 12a8 8 0 1 1-2.34-5.66"/><path d="M20 3.5V7h-3.5"/></svg>';
+var MEM_SAVE_SVG='<svg class="ms-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3.5h10a1.2 1.2 0 0 1 1.2 1.2V20.5L12 16.4 5.8 20.5V4.7A1.2 1.2 0 0 1 7 3.5z"/></svg><svg class="ms-ok" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12.5l5 5L19.5 7"/></svg>';
 var SR_X_SVG='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" style="width:14px;height:14px"><path d="M6 6l12 12M18 6L6 18"/></svg>';
 function formatSessionName(s){
   if(s.Name) return s.Name;
@@ -1669,7 +1681,7 @@ function maybeAddTimeSep(ts){
 function addMsg(role,text,ts,imgSrc,silent,thinkingText,msgId){
 maybeAddTimeSep(ts||new Date().toISOString());
 var wrap=document.createElement('div');wrap.style.display='flex';wrap.style.flexDirection='column';wrap.style.width='100%';
-var row=document.createElement('div');row.className='ch-row '+(role==='user'?'user':'ai');var side=document.createElement('div');side.className='ch-side';var _sd=ts?new Date(ts):new Date();var timeStr=String(_sd.getHours()).padStart(2,'0')+':'+String(_sd.getMinutes()).padStart(2,'0');if(role!=='user'){var ava=document.createElement('img');ava.className='ch-avatar';ava.src=AVATAR_URL;ava.alt='';side.appendChild(ava);row.appendChild(side)}var bub=document.createElement('div');bub.className='ch-bub '+(role==='user'?'user':'ai');if(silent)bub.style.animation='none';if(thinkingText&&role!=='user'){var tb=document.createElement('div');tb.className='thinking-block';var tBtn=document.createElement('button');tBtn.className='thinking-toggle';tBtn.innerHTML='<span class="arrow">▶</span> 💭 老公的思考過程';var trBtn=document.createElement('button');trBtn.className='thinking-translate';trBtn.textContent='Translate';tBtn.appendChild(trBtn);var tContent=document.createElement('div');tContent.className='thinking-content';tContent.textContent=thinkingText;trBtn.addEventListener('click',function(ev){ev.stopPropagation();translateThinking(tContent,trBtn)});tBtn.addEventListener('click',function(ev){if(ev.target===trBtn||trBtn.contains(ev.target))return;var a=tBtn.querySelector('.arrow');if(tContent.classList.contains('open')){tContent.classList.remove('open');a.classList.remove('open')}else{tContent.classList.add('open');a.classList.add('open')}});tb.appendChild(tBtn);tb.appendChild(tContent);bub.appendChild(tb)}var imgList=[];if(imgSrc){if(Array.isArray(imgSrc))imgList=imgSrc;else imgList=[imgSrc]}if(imgList.length>0){bub.classList.add('has-img');var imgParent=bub;if(imgList.length>1){imgParent=document.createElement('div');imgParent.className='msg-img-scroll';bub.appendChild(imgParent)}for(var gi=0;gi<imgList.length;gi++){var img=document.createElement('img');img.className='msg-img';img.src=imgList[gi];img.alt='圖片';img.addEventListener('click',function(){document.getElementById('lightboxImg').src=this.src;document.getElementById('imgLightbox').classList.add('open')});imgParent.appendChild(img)}var cleanText=text||'';cleanText=cleanText.replace('[📷 圖片]','').replace(/\[📷 圖片x\d+\]/,'').trim();if(cleanText){var txt=document.createElement('div');txt.className='ch-text';txt.style.marginTop='6px';txt.innerHTML=chLinkify(cleanText);bub.appendChild(txt)}}else{var txtNode=document.createElement('span');txtNode.className='ch-text';txtNode.innerHTML=chLinkify(text);bub.appendChild(txtNode)}var foot=document.createElement('div');foot.className='ch-bfoot';var ftime=document.createElement('span');ftime.className='ch-bfoot-time';ftime.textContent=timeStr;foot.appendChild(ftime);foot.appendChild(Object.assign(document.createElement('span'),{className:'ch-bfoot-sp'}));var rawAll=(text||'').replace('[📷 圖片]','').replace(/\[📷 圖片x\d+\]/,'').trim();bub._raw=rawAll;if(msgId)wrap.setAttribute('data-msg-id',msgId);if(rawAll){var cpBtn=document.createElement('button');cpBtn.className='ch-copy-btn';cpBtn.title='複製全文';cpBtn.innerHTML=CH_COPY_ICON;cpBtn.onclick=function(){chCopyMsg(cpBtn,bub._raw)};foot.appendChild(cpBtn)}if(role!=='user'){if(chTTSClean(text)){var ttsBtn=document.createElement('button');ttsBtn.className='ch-tts-btn';ttsBtn.title='聽老公唸這句';ttsBtn.innerHTML=CH_TTS_ICON;ttsBtn.onclick=function(){chPlayTTS(ttsBtn,text)};foot.appendChild(ttsBtn)}var pinBtn=document.createElement('button');pinBtn.className='mem-pin-btn';pinBtn.textContent='存記憶';pinBtn.onclick=function(){generateMainMemory(pinBtn)};foot.appendChild(pinBtn);var rgBtn=document.createElement('button');rgBtn.className='ch-regen-btn';rgBtn.title='重新回覆';rgBtn.innerHTML=SR_REGEN_SVG;rgBtn.onclick=function(){chRegenFrom(wrap,rgBtn)};foot.appendChild(rgBtn);}else{var edBtn=document.createElement('button');edBtn.className='ch-edit-btn';edBtn.title='改寫這句';edBtn.innerHTML=SR_EDIT_SVG;edBtn.onclick=function(){chStartEdit(wrap,bub)};foot.appendChild(edBtn);}bub.appendChild(foot);var col=document.createElement('div');col.className='ch-col '+(role==='user'?'user':'ai');col.appendChild(bub);row.appendChild(col);if(role==='user'){var wava=document.createElement('img');wava.className='ch-avatar';wava.src=WIFE_AVATAR_URL;wava.alt='';side.appendChild(wava);row.appendChild(side)}wrap.appendChild(row);msgs.appendChild(wrap);if(!silent)msgs.scrollTop=msgs.scrollHeight;return wrap}
+var row=document.createElement('div');row.className='ch-row '+(role==='user'?'user':'ai');var side=document.createElement('div');side.className='ch-side';var _sd=ts?new Date(ts):new Date();var timeStr=String(_sd.getHours()).padStart(2,'0')+':'+String(_sd.getMinutes()).padStart(2,'0');if(role!=='user'){var ava=document.createElement('img');ava.className='ch-avatar';ava.src=AVATAR_URL;ava.alt='';side.appendChild(ava);row.appendChild(side)}var bub=document.createElement('div');bub.className='ch-bub '+(role==='user'?'user':'ai');if(silent)bub.style.animation='none';if(thinkingText&&role!=='user'){var tb=document.createElement('div');tb.className='thinking-block';var tBtn=document.createElement('button');tBtn.className='thinking-toggle';tBtn.innerHTML='<span class="arrow">▶</span> 💭 老公的思考過程';var trBtn=document.createElement('button');trBtn.className='thinking-translate';trBtn.textContent='Translate';tBtn.appendChild(trBtn);var tContent=document.createElement('div');tContent.className='thinking-content';tContent.textContent=thinkingText;trBtn.addEventListener('click',function(ev){ev.stopPropagation();translateThinking(tContent,trBtn)});tBtn.addEventListener('click',function(ev){if(ev.target===trBtn||trBtn.contains(ev.target))return;var a=tBtn.querySelector('.arrow');if(tContent.classList.contains('open')){tContent.classList.remove('open');a.classList.remove('open')}else{tContent.classList.add('open');a.classList.add('open')}});tb.appendChild(tBtn);tb.appendChild(tContent);bub.appendChild(tb)}var imgList=[];if(imgSrc){if(Array.isArray(imgSrc))imgList=imgSrc;else imgList=[imgSrc]}if(imgList.length>0){bub.classList.add('has-img');var imgParent=bub;if(imgList.length>1){imgParent=document.createElement('div');imgParent.className='msg-img-scroll';bub.appendChild(imgParent)}for(var gi=0;gi<imgList.length;gi++){var img=document.createElement('img');img.className='msg-img';img.src=imgList[gi];img.alt='圖片';img.addEventListener('click',function(){document.getElementById('lightboxImg').src=this.src;document.getElementById('imgLightbox').classList.add('open')});imgParent.appendChild(img)}var cleanText=text||'';cleanText=cleanText.replace('[📷 圖片]','').replace(/\[📷 圖片x\d+\]/,'').trim();if(cleanText){var txt=document.createElement('div');txt.className='ch-text';txt.style.marginTop='6px';txt.innerHTML=chLinkify(cleanText);bub.appendChild(txt)}}else{var txtNode=document.createElement('span');txtNode.className='ch-text';txtNode.innerHTML=chLinkify(text);bub.appendChild(txtNode)}var foot=document.createElement('div');foot.className='ch-bfoot';var ftime=document.createElement('span');ftime.className='ch-bfoot-time';ftime.textContent=timeStr;foot.appendChild(ftime);foot.appendChild(Object.assign(document.createElement('span'),{className:'ch-bfoot-sp'}));var rawAll=(text||'').replace('[📷 圖片]','').replace(/\[📷 圖片x\d+\]/,'').trim();bub._raw=rawAll;if(msgId)wrap.setAttribute('data-msg-id',msgId);if(rawAll){var cpBtn=document.createElement('button');cpBtn.className='ch-copy-btn';cpBtn.title='複製全文';cpBtn.innerHTML=CH_COPY_ICON;cpBtn.onclick=function(){chCopyMsg(cpBtn,bub._raw)};foot.appendChild(cpBtn)}if(role!=='user'){if(chTTSClean(text)){var ttsBtn=document.createElement('button');ttsBtn.className='ch-tts-btn';ttsBtn.title='聽老公唸這句';ttsBtn.innerHTML=CH_TTS_ICON;ttsBtn.onclick=function(){chPlayTTS(ttsBtn,text)};foot.appendChild(ttsBtn)}var pinBtn=document.createElement('button');pinBtn.className='mem-pin-btn';pinBtn.title='存記憶';pinBtn.innerHTML=MEM_SAVE_SVG;pinBtn.onclick=function(){generateMainMemory(pinBtn)};foot.appendChild(pinBtn);var rgBtn=document.createElement('button');rgBtn.className='ch-regen-btn';rgBtn.title='重新回覆';rgBtn.innerHTML=SR_REGEN_SVG;rgBtn.onclick=function(){chRegenFrom(wrap,rgBtn)};foot.appendChild(rgBtn);}else{var edBtn=document.createElement('button');edBtn.className='ch-edit-btn';edBtn.title='改寫這句';edBtn.innerHTML=SR_EDIT_SVG;edBtn.onclick=function(){chStartEdit(wrap,bub)};foot.appendChild(edBtn);}bub.appendChild(foot);var col=document.createElement('div');col.className='ch-col '+(role==='user'?'user':'ai');col.appendChild(bub);row.appendChild(col);if(role==='user'){var wava=document.createElement('img');wava.className='ch-avatar';wava.src=WIFE_AVATAR_URL;wava.alt='';side.appendChild(wava);row.appendChild(side)}wrap.appendChild(row);msgs.appendChild(wrap);if(!silent)msgs.scrollTop=msgs.scrollHeight;return wrap}
 function chLinkify(s){
   s=(s==null?'':String(s)).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
   return s.replace(/https?:\/\/[^\s<>"'()（）「」『』【】《》，。、！？；：\u4e00-\u9fff]+/g,function(m){
@@ -2294,7 +2306,7 @@ async function generateMainMemory(btn){
   // 收集最近的對話 bubbles（最多最近 6 則 = 3 輪）
   var allBubs=msgs.querySelectorAll('.ch-bub');
   if(allBubs.length<2){solNoticeAsk('對話太短了，再多聊幾句再存 💚');return}
-  btn.className='mem-pin-btn saving';btn.textContent='整理中…';btn.disabled=true;
+  btn.className='mem-pin-btn saving';btn.disabled=true;
   // 取最近 6 個 bubble
   var recent=[];var startIdx=Math.max(0,allBubs.length-6);
   for(var i=startIdx;i<allBubs.length;i++){
@@ -2311,11 +2323,11 @@ async function generateMainMemory(btn){
   try{
     var resp=await fetch(API_URL+'/generate-memory',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:recent,model:selectedModel,sessionId:sessionId?parseInt(sessionId):null})});
     var data=await resp.json();
-    if(data.skipped){btn.className='mem-pin-btn done';btn.textContent='沒有要記的';setTimeout(function(){btn.className='mem-pin-btn';btn.textContent='存記憶';btn.disabled=false},2500);return}
+    if(data.skipped){btn.className='mem-pin-btn';btn.disabled=false;solNoticeAsk('這段沒什麼要記的，多聊幾句再存 💚');return}
     if(data.success){
-      btn.className='mem-pin-btn done';btn.textContent='已存記憶 ✓';setTimeout(function(){btn.className='mem-pin-btn';btn.textContent='存記憶';btn.disabled=false},2500)}
+      btn.className='mem-pin-btn done';setTimeout(function(){btn.className='mem-pin-btn';btn.disabled=false},2500)}
     else{throw new Error(data.error||'未知錯誤')}
-  }catch(e){btn.className='mem-pin-btn';btn.textContent='失敗，再試一次';setTimeout(function(){btn.textContent='存記憶';btn.disabled=false},2000);console.error('Generate memory error:',e)}
+  }catch(e){btn.className='mem-pin-btn';btn.disabled=false;solNoticeAsk('存記憶沒成功，再試一次 💚');console.error('Generate memory error:',e)}
 }
 
 function compressCurrentChat(e){
