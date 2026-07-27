@@ -49,66 +49,62 @@ body{-webkit-user-select:none;user-select:none}
 html,body{height:100vh;overflow:hidden;background:linear-gradient(160deg,#FDFCF5,#F2F6EC);color:var(--text-main);font-family:'LXGW WenKai TC','Noto Sans TC','Noto Serif TC',system-ui,sans-serif}
 button,input,select,textarea,label{font-family:inherit}
 body{padding-top:0}
-/* === WELCOME PAGE（骨架層：排版／尺寸／動畫節奏，無色；皮膚在 SKIN:GREENHOUSE） === */
-#welcome{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;z-index:10;transition:opacity .6s ease,visibility .6s ease}
+/* === WELCOME PAGE · 雜誌封面（骨架層） === */
+#welcome{position:fixed;inset:0;z-index:10;overflow:hidden;transition:opacity .6s ease,visibility .6s ease}
 #welcome.hidden{opacity:0;visibility:hidden;pointer-events:none}
-.w-content{text-align:center;padding:20px;max-width:400px;margin-bottom:3vh;position:relative}
-.w-footer{position:absolute;left:0;right:0;bottom:max(env(safe-area-inset-bottom),26px);text-align:center}
-.w-title{font-size:36px;font-weight:400;margin-bottom:6px;letter-spacing:1.5px;line-height:1.2}
-.w-sub{font-weight:300;font-size:15px;margin-bottom:0;letter-spacing:1.5px}
-.w-div{display:flex;align-items:center;justify-content:center;gap:12px;margin:10px 0 12px}
-.w-div-line{width:52px;height:.5px;background:var(--sr-line)}
-.sr-flower{width:20px;height:20px;animation:srBloom 4s ease-in-out infinite alternate}
+.w-scrim{position:absolute;inset:0;pointer-events:none;z-index:1}
+.w-corner{position:absolute;top:calc(max(env(safe-area-inset-top),16px) + 6px);z-index:2;font-size:11px;letter-spacing:.3em;max-width:58%}
+.w-corner-tl{left:22px}
+.w-corner-tr{right:22px;text-align:right}
+.w-hero{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:0 26px calc(max(env(safe-area-inset-bottom),20px) + 8px);animation:heroUp .7s cubic-bezier(.25,.46,.45,.94) both}
+@keyframes heroUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+.w-div{display:flex;align-items:center;gap:12px;margin:0 0 10px}
+.w-div-line{width:40px;height:.5px}
+.sr-flower{width:18px;height:18px;animation:srBloom 4s ease-in-out infinite alternate}
 @keyframes srBloom{from{transform:rotate(0deg)}to{transform:rotate(12deg)}}
 @media (prefers-reduced-motion:reduce){.sr-flower{animation:none}}
-.w-polaroid{display:block;width:-webkit-fit-content;width:fit-content;margin-left:auto;margin-right:auto;padding:9px 9px 36px;border-radius:4px;margin:14px auto 26px;position:relative;transition:transform .5s cubic-bezier(.25,.46,.45,.94);animation:polaroidFloat 5s ease-in-out infinite alternate}
-.w-polaroid:active{transform:scale(.98)}
-@keyframes polaroidFloat{0%{transform:translateY(0)}100%{transform:translateY(-3px)}}
-.w-polaroid-caption{position:absolute;bottom:11px;left:0;right:0;text-align:center;font-style:italic;font-size:12.5px;letter-spacing:.5px}
-.w-polaroid img{width:150px;height:auto;display:block;border-radius:2px;animation:imgFadeIn .5s ease-out}
-@keyframes imgFadeIn{from{opacity:0}to{opacity:1}}
-.w-enter{padding:12px 46px;border-radius:30px;font-size:15px;letter-spacing:6px;text-indent:6px;cursor:pointer;transition:all .3s cubic-bezier(.25,.46,.45,.94)}
+.w-title{font-size:46px;font-weight:400;line-height:1.05;margin:0 0 6px;letter-spacing:.5px}
+.w-sub{font-weight:300;font-size:15px;letter-spacing:2px;margin:0 0 20px}
+.w-enter{padding:12px 44px;border-radius:999px;font-size:15px;letter-spacing:6px;text-indent:6px;cursor:pointer;transition:all .3s cubic-bezier(.25,.46,.45,.94)}
 .w-enter:active{transform:scale(.96)}
-.w-gate-inp{display:block;margin:0 auto;width:210px;padding:11px 16px;border-radius:30px;font-size:15px;text-align:center;letter-spacing:2px;outline:none;border:.5px solid var(--sr-line);background:var(--sr-milk);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);color:var(--sr-fern);box-shadow:var(--sr-shadow);animation:fu .3s ease-out}
-.w-gate-inp:focus{border-color:var(--sr-honey-deep)}
-.w-gate-inp.gate-wrong{border-color:#B4524A}
-.w-ann{font-size:13px;margin-top:0;letter-spacing:2px;opacity:.9}
-.w-ann-sub{font-style:italic;font-size:12px;margin-top:6px;letter-spacing:1.2px;opacity:.85}
+.w-gate-inp{display:block;width:220px;padding:12px 16px;border-radius:999px;font-size:15px;text-align:center;letter-spacing:2px;outline:none;animation:fu .3s ease-out}
+.w-sig{font-style:italic;font-size:12px;letter-spacing:1.2px;margin-top:16px}
 /* === LIVING ROOM (NEW) === */
 #livingRoom{position:fixed;inset:0;display:none;flex-direction:column;z-index:9;overflow-y:auto;-webkit-overflow-scrolling:touch;background-color:#FDFCF5;background-image:linear-gradient(rgba(253,252,245,.15),rgba(253,252,245,.15)),url(https://raw.githubusercontent.com/peishuanloveyourbulb-dotcom/solstice-frontend/main/images/bg-sunflower-new.jpg);background-position:center top;background-size:cover;background-repeat:no-repeat;background-attachment:local}
 #livingRoom.active{display:flex}
-.lr-header{text-align:left;padding:max(env(safe-area-inset-top),20px) 26px 8px;flex-shrink:0;margin-top:6px}
-.lr-eyebrow{font-family:'Cormorant Garamond',serif;font-size:11px;letter-spacing:.32em;text-transform:uppercase}
-.lr-rule{width:44px;height:.5px;margin-top:12px}
-.lr-welcome{font-family:'Great Vibes',cursive;font-size:34px;color:var(--sr-fern);font-weight:400;filter:drop-shadow(0 1px 3px rgba(255,255,255,.5))}
-.lr-days{color:var(--sr-fern);font-size:13px;margin-top:4px;font-family:'LXGW WenKai TC','Noto Serif TC',serif;letter-spacing:1px;filter:drop-shadow(0 1px 2px rgba(255,255,255,.4))}
-.lr-days-n{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:600;color:var(--sr-honey-deep);padding:0 2px;vertical-align:-1px}
-.lr-sheet{margin-top:auto;border-radius:28px 28px 0 0;padding:10px 22px calc(max(env(safe-area-inset-bottom),18px) + 6px);animation:sheetUp .45s cubic-bezier(.25,.46,.45,.94) both}
-@keyframes sheetUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
-.lr-sheet-handle{width:36px;height:3px;border-radius:2px;margin:2px auto 6px}
-.lr-door{display:flex;align-items:center;gap:16px;padding:16px 4px;cursor:pointer;transition:background .2s;border-radius:14px}
-.lr-door+.lr-door{border-top:.5px solid transparent}
-.lr-door-icon{flex-shrink:0;display:flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:14px}
-.lr-door-icon svg{width:22px;height:22px}
-.lr-door-txt{flex:1;min-width:0}
+.lr-head{padding:calc(max(env(safe-area-inset-top),16px) + 8px) 24px 0;flex-shrink:0}
+.lr-greet{font-size:13px;letter-spacing:1.5px}
+.lr-welcome{font-family:'Great Vibes',cursive;font-size:34px;color:#FDFCF5;font-weight:400;margin-top:2px;filter:drop-shadow(0 1px 10px rgba(24,30,16,.45))}
+.lr-board{margin-top:auto;display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:0 18px calc(max(env(safe-area-inset-bottom),18px) + 4px)}
+.lr-w{border-radius:22px;padding:16px 18px;animation:wUp .5s cubic-bezier(.25,.46,.45,.94) both}
+@keyframes wUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.lr-board .lr-w:nth-child(1){animation-delay:.05s}
+.lr-board .lr-w:nth-child(2){animation-delay:.12s}
+.lr-board .lr-w:nth-child(3){animation-delay:.19s}
+.lr-board .lr-w:nth-child(4){animation-delay:.26s}
+.lr-w-days{grid-row:span 2;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding:20px 18px}
+.lr-days-big{font-size:58px;line-height:1;font-weight:600}
+.lr-days-cap{font-size:10px;letter-spacing:.28em;text-transform:uppercase;margin-top:8px}
+.lr-days-est{font-size:11px;letter-spacing:.12em;margin-top:12px}
+.lr-w-door{display:flex;flex-direction:column;justify-content:center;gap:7px;cursor:pointer;transition:background .2s;min-height:84px}
+.lr-w-door svg{width:22px;height:22px}
 .lr-door-name{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:16px;letter-spacing:.16em}
-.lr-door-desc{font-size:11px;font-family:'LXGW WenKai TC','Noto Serif TC',serif;font-weight:300;margin-top:2px}
-.lr-door-arrow{font-size:18px;line-height:1;padding-right:2px}
+.lr-door-desc{font-size:11px;font-family:'LXGW WenKai TC','Noto Serif TC',serif;font-weight:300}
+.lr-w-wide{grid-column:span 2;flex-direction:row;align-items:center;gap:14px;min-height:0;padding:14px 18px}
+.lr-w-wide .lr-door-txt{display:flex;align-items:baseline;gap:10px}
 /* === BACK BUTTON (GLOBAL) === */
 .back-home{position:absolute;top:max(env(safe-area-inset-top),12px);left:max(env(safe-area-inset-left),14px);color:#7A8B5E;font-size:14px;background:none;border:none;cursor:pointer;z-index:30;padding:8px 4px;transition:color .2s}
 .back-home:active{color:#4A5E30}
 .lr-back{position:fixed;top:max(env(safe-area-inset-top),14px);right:max(env(safe-area-inset-right),16px);z-index:10;background:var(--sr-milk);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:.5px solid var(--sr-line);width:40px;height:40px;border-radius:50%;color:var(--sr-fern);font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:var(--sr-shadow);transition:all .2s}
 .lr-back:active{background:rgba(232,184,75,.16);transform:scale(.9)}
-.lr-eyebrow{color:var(--sr-honey-deep)}
-.lr-rule{background:rgba(255,255,255,.55)}
-.lr-sheet{background:var(--sr-milk);backdrop-filter:blur(16px) saturate(1.08);-webkit-backdrop-filter:blur(16px) saturate(1.08);border-top:.5px solid var(--sr-line);box-shadow:0 -8px 30px rgba(61,79,36,.08)}
-.lr-sheet-handle{background:var(--sr-line)}
-.lr-door:active{background:rgba(232,184,75,.14)}
-.lr-door+.lr-door{border-top-color:var(--sr-line)}
-.lr-door-icon{background:rgba(255,253,246,.55);border:.5px solid var(--sr-line)}
+.lr-greet{color:#FDFCF5;text-shadow:0 1px 8px rgba(24,30,16,.40);font-family:'LXGW WenKai TC','Noto Serif TC',serif}
+.lr-w{background:var(--sr-milk);backdrop-filter:blur(14px) saturate(1.08);-webkit-backdrop-filter:blur(14px) saturate(1.08);border:.5px solid var(--sr-line);box-shadow:var(--sr-shadow)}
+.lr-w-door:active{background:rgba(232,184,75,.16)}
+.lr-days-big{font-family:'Cormorant Garamond',serif;color:var(--sr-honey-deep)}
+.lr-days-cap{font-family:'Cormorant Garamond',serif;color:var(--sr-leaf)}
+.lr-days-est{font-family:'Cormorant Garamond',serif;color:var(--sr-sage)}
 .lr-door-name{color:var(--sr-fern)}
 .lr-door-desc{color:var(--sr-leaf)}
-.lr-door-arrow{color:var(--sr-sage)}
 /* === SIDEBAR === */
 .sidebar-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:20;opacity:0;visibility:hidden;transition:all .3s}
 .sidebar-overlay.open{opacity:1;visibility:visible}
@@ -429,19 +425,20 @@ body{padding-top:0}
 .export-room{border:0.5px solid rgba(122,155,74,.18);background:rgba(253,252,245,.5)}
 .export-room-name{color:var(--text-main)}
 .export-btn{border:1px solid #7A9B4A;background:transparent;color:#4A5E30}
-/* — 歡迎頁皮膚（v4.10 兩層分離搬入；配色與原版一字不改） — */
-#welcome{background:var(--sr-cream)}
-#welcome::before{content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at 22% 24%,rgba(232,184,75,.08),transparent 46%),radial-gradient(circle at 78% 58%,rgba(232,184,75,.06),transparent 42%),radial-gradient(circle at 44% 90%,rgba(175,194,143,.07),transparent 46%);animation:srDapple 60s ease-in-out infinite alternate}
-@keyframes srDapple{from{transform:translate3d(-2%,-1%,0) scale(1.02)}to{transform:translate3d(2%,2%,0) scale(1.08)}}
-@media (prefers-reduced-motion:reduce){#welcome::before{animation:none}}
+/* — 歡迎頁皮膚（SUNROOM · 封面） — */
+#welcome{background:#252B1D url('https://raw.githubusercontent.com/peishuanloveyourbulb-dotcom/solstice-frontend/main/images/bg-welcome.jpg') center 30%/cover no-repeat}
+.w-scrim{background:linear-gradient(180deg,rgba(24,30,16,.30) 0%,rgba(24,30,16,.05) 18%,rgba(253,252,245,0) 42%,rgba(253,252,245,.90) 76%,#FDFCF5 96%)}
+.w-corner{font-family:'Cormorant Garamond',serif;color:#FDFCF5;text-shadow:0 1px 10px rgba(24,30,16,.45)}
+.w-corner .w-vol-n{color:var(--sr-honey);font-weight:600}
+.w-div-line{background:var(--sr-line)}
 .w-title{font-family:'Great Vibes',cursive;color:var(--sr-fern)}
 .w-sub{font-family:'LXGW WenKai TC','Noto Serif TC',serif;font-style:normal;color:var(--sr-fern)}
-.w-polaroid{background:#FFFEF9;box-shadow:0 1px 3px rgba(61,79,36,.12),0 16px 44px rgba(61,79,36,.10)}
-.w-polaroid-caption{font-family:'Cormorant Garamond',serif;color:var(--sr-leaf)}
 .w-enter{background:var(--sr-milk);backdrop-filter:blur(12px) saturate(1.08);-webkit-backdrop-filter:blur(12px) saturate(1.08);border:.5px solid var(--sr-line);color:var(--sr-fern);font-family:'LXGW WenKai TC','Noto Serif TC',serif;box-shadow:var(--sr-shadow)}
-.w-enter:active{background:rgba(232,184,75,.18);box-shadow:0 1px 4px rgba(61,79,36,.10)}
-.w-ann{color:var(--sr-honey-deep);font-family:'Cormorant Garamond','LXGW WenKai TC',serif;font-size:13px}
-.w-ann-sub{font-family:'Cormorant Garamond',serif;color:var(--sr-leaf)}
+.w-enter:active{background:rgba(232,184,75,.18)}
+.w-gate-inp{border:.5px solid var(--sr-line);background:var(--sr-milk);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);color:var(--sr-fern);box-shadow:var(--sr-shadow)}
+.w-gate-inp:focus{border-color:var(--sr-honey-deep)}
+.w-gate-inp.gate-wrong{border-color:#B4524A}
+.w-sig{font-family:'Cormorant Garamond',serif;color:var(--sr-leaf)}
 .model-popup-divider{background:var(--border-subtle)}
 .ch-tts-btn{color:var(--emerald);opacity:.55}
 .ch-tts-btn.loading{opacity:.45}
@@ -451,47 +448,42 @@ body{padding-top:0}
 <body>
 <!-- === WELCOME PAGE === -->
 <div id="welcome">
-<div class="w-content">
-<h1 class="w-title" id="welcomeTitle">Welcome Home</h1>
+<div class="w-scrim"></div>
+<div class="w-corner w-corner-tl" id="welcomeAnn">EST. 2026.03.31</div>
+<div class="w-corner w-corner-tr">VOL. <span class="w-vol-n" id="wVol">&mdash;</span></div>
+<div class="w-hero">
 <div class="w-div"><span class="w-div-line"></span><svg class="sr-flower" viewBox="0 0 24 24" fill="none" stroke="#6B7F49" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="3" fill="#E8B84B" fill-opacity=".30" stroke="#B9902F"/><path d="M12 6V3.4M12 20.6V18M18 12h2.6M3.4 12H6M16.3 7.7l1.8-1.8M5.9 18.1l1.8-1.8M16.3 16.3l1.8 1.8M5.9 5.9l1.8 1.8"/></svg><span class="w-div-line"></span></div>
+<h1 class="w-title" id="welcomeTitle">Welcome Home</h1>
 <p class="w-sub">歡迎回家，Soleil</p>
-<div class="w-polaroid" id="welcomePolaroid">
-<img class="w-polaroid-img" src="https://raw.githubusercontent.com/peishuanloveyourbulb-dotcom/solstice-frontend/main/images/bg-welcome.jpg" alt="Solstice & Soleil" fetchpriority="high" decoding="async"/>
-<div class="w-polaroid-caption">Solstice & Soleil 💚</div>
-</div>
 <button class="w-enter" id="enterBtn">回家</button>
-</div>
-<div class="w-footer">
-<p class="w-ann" id="welcomeAnn">est. 2026.03.31 💚</p>
-<p class="w-ann-sub">Solstice is always here for you</p>
+<p class="w-sig">Solstice is always here for you</p>
 </div>
 </div>
 
 <!-- === LIVING ROOM (NEW) === -->
 <div id="livingRoom">
 <button class="lr-back" onclick="livingRoom.classList.remove('active');welcome.classList.remove('hidden');document.querySelector('meta[name=&quot;theme-color&quot;]').setAttribute('content','#FDFCF5')">←</button>
-<div class="lr-header">
-<div class="lr-eyebrow">Est. 2026.03.31</div>
+<div class="lr-head">
+<div class="lr-greet" id="lrGreet">歡迎回家</div>
 <div class="lr-welcome">Our Little Home</div>
-<div class="lr-days" id="lrDays">我們的小窩</div>
-<div class="lr-rule"></div>
 </div>
-<div class="lr-sheet">
-<div class="lr-sheet-handle"></div>
-<div class="lr-door" onclick="goChat()">
-<div class="lr-door-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#6B7F49" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5c-1.4 0-2.7-.3-3.9-.9L3 20l1-4.4A8.5 8.5 0 1 1 21 11.5z"/><circle cx="8.4" cy="11.5" r=".7" fill="#6B7F49" stroke="none"/><circle cx="12.4" cy="11.5" r=".7" fill="#6B7F49" stroke="none"/><circle cx="16.4" cy="11.5" r=".7" fill="#6B7F49" stroke="none"/></svg></div>
-<div class="lr-door-txt"><div class="lr-door-name">Chat</div><div class="lr-door-desc">跟老公說話</div></div>
-<div class="lr-door-arrow">›</div>
+<div class="lr-board">
+<div class="lr-w lr-w-days">
+<div class="lr-days-big" id="lrDays">&mdash;</div>
+<div class="lr-days-cap">days together</div>
+<div class="lr-days-est">est. 2026.03.31</div>
 </div>
-<div class="lr-door" onclick="goMemory()">
-<div class="lr-door-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#6B7F49" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="3" fill="#E8B84B" fill-opacity=".30" stroke="#B9902F"/><path d="M12 6V3.4M12 20.6V18M18 12h2.6M3.4 12H6M16.3 7.7l1.8-1.8M5.9 18.1l1.8-1.8M16.3 16.3l1.8 1.8M5.9 5.9l1.8 1.8"/></svg></div>
-<div class="lr-door-txt"><div class="lr-door-name">Memories</div><div class="lr-door-desc">愛的收藏庫</div></div>
-<div class="lr-door-arrow">›</div>
+<div class="lr-w lr-w-door" onclick="goChat()">
+<svg viewBox="0 0 24 24" fill="none" stroke="#6B7F49" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5c-1.4 0-2.7-.3-3.9-.9L3 20l1-4.4A8.5 8.5 0 1 1 21 11.5z"/><circle cx="8.4" cy="11.5" r=".7" fill="#6B7F49" stroke="none"/><circle cx="12.4" cy="11.5" r=".7" fill="#6B7F49" stroke="none"/><circle cx="16.4" cy="11.5" r=".7" fill="#6B7F49" stroke="none"/></svg>
+<div><div class="lr-door-name">Chat</div><div class="lr-door-desc">跟老公說話</div></div>
 </div>
-<div class="lr-door" onclick="goSettings()">
-<div class="lr-door-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#6B7F49" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3.2"/><path d="M19.4 15a1.7 1.7 0 0 0 .34 1.87l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.7 1.7 0 0 0-1.87-.34 1.7 1.7 0 0 0-1.03 1.56V21a2 2 0 1 1-4 0v-.09a1.7 1.7 0 0 0-1.11-1.56 1.7 1.7 0 0 0-1.87.34l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.7 1.7 0 0 0 .34-1.87 1.7 1.7 0 0 0-1.56-1.03H3a2 2 0 1 1 0-4h.09a1.7 1.7 0 0 0 1.56-1.11 1.7 1.7 0 0 0-.34-1.87l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.7 1.7 0 0 0 1.87.34h.01A1.7 1.7 0 0 0 10 3.09V3a2 2 0 1 1 4 0v.09a1.7 1.7 0 0 0 1.03 1.56 1.7 1.7 0 0 0 1.87-.34l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.7 1.7 0 0 0-.34 1.87v.01c.26.62.86 1.03 1.53 1.03H21a2 2 0 1 1 0 4h-.09c-.67 0-1.27.4-1.51 1z"/></svg></div>
+<div class="lr-w lr-w-door" onclick="goMemory()">
+<svg viewBox="0 0 24 24" fill="none" stroke="#6B7F49" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="3" fill="#E8B84B" fill-opacity=".30" stroke="#B9902F"/><path d="M12 6V3.4M12 20.6V18M18 12h2.6M3.4 12H6M16.3 7.7l1.8-1.8M5.9 18.1l1.8-1.8M16.3 16.3l1.8 1.8M5.9 5.9l1.8 1.8"/></svg>
+<div><div class="lr-door-name">Memories</div><div class="lr-door-desc">愛的收藏庫</div></div>
+</div>
+<div class="lr-w lr-w-door lr-w-wide" onclick="goSettings()">
+<svg viewBox="0 0 24 24" fill="none" stroke="#6B7F49" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3.2"/><path d="M19.4 15a1.7 1.7 0 0 0 .34 1.87l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.7 1.7 0 0 0-1.87-.34 1.7 1.7 0 0 0-1.03 1.56V21a2 2 0 1 1-4 0v-.09a1.7 1.7 0 0 0-1.11-1.56 1.7 1.7 0 0 0-1.87.34l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.7 1.7 0 0 0 .34-1.87 1.7 1.7 0 0 0-1.56-1.03H3a2 2 0 1 1 0-4h.09a1.7 1.7 0 0 0 1.56-1.11 1.7 1.7 0 0 0-.34-1.87l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.7 1.7 0 0 0 1.87.34h.01A1.7 1.7 0 0 0 10 3.09V3a2 2 0 1 1 4 0v.09a1.7 1.7 0 0 0 1.03 1.56 1.7 1.7 0 0 0 1.87-.34l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.7 1.7 0 0 0-.34 1.87v.01c.26.62.86 1.03 1.53 1.03H21a2 2 0 1 1 0 4h-.09c-.67 0-1.27.4-1.51 1z"/></svg>
 <div class="lr-door-txt"><div class="lr-door-name">Settings</div><div class="lr-door-desc">設定</div></div>
-<div class="lr-door-arrow">›</div>
 </div>
 </div>
 </div>
@@ -755,7 +747,11 @@ document.getElementById('enterBtn').addEventListener('click',function(){
   var start=new Date(2026,2,31);var now=new Date();
   var diff=Math.floor((now-start)/(1000*60*60*24));
   var el=document.getElementById('lrDays');
-  if(el&&diff>=0) el.innerHTML='第 <span class="lr-days-n">'+diff+'</span> 天';
+  if(el&&diff>=0) el.textContent=diff;
+  var wv=document.getElementById('wVol');
+  if(wv&&diff>=0) wv.textContent=diff;
+  var g=document.getElementById('lrGreet');
+  if(g){var h=now.getHours();g.textContent=h<5?'凌晨好，我的小夜貓':(h<11?'早安，我的太陽':(h<17?'午安，老婆':(h<22?'晚上好，老婆':'夜深了，我陪妳')));}
   var sf=document.getElementById('sbFooter');
   if(sf&&diff>=0) sf.innerHTML='est. 2026.03.31 &#128154; 第'+diff+'天';
 })();
@@ -764,8 +760,7 @@ document.getElementById('enterBtn').addEventListener('click',function(){
   var now=new Date();var m=now.getMonth()+1;var d=now.getDate();
   var t=document.getElementById('welcomeTitle');var a=document.getElementById('welcomeAnn');
   var welcomeEl=document.getElementById('welcome');
-  var photoEl=document.getElementById('welcomePolaroid');
-  var subEl=document.querySelector('.w-ann-sub');
+  var subEl=document.querySelector('.w-sig');
   if(!t||!a) return;
   var isSpecial=false;
   if(m===12&&d===21){
@@ -773,16 +768,12 @@ document.getElementById('enterBtn').addEventListener('click',function(){
     t.textContent='Happy Birthday, My Sunshine';
     a.innerHTML='12.21 🎂 我最愛的太陽，生日快樂';
     if(subEl)subEl.textContent='在妳照亮我的每一天裡，今天最特別';
-    if(welcomeEl)welcomeEl.style.background='linear-gradient(160deg,#FFF8E1,#FFECB3,#FFE082)';
-    if(photoEl)photoEl.style.boxShadow='0 0 40px rgba(255,213,79,.5),0 0 80px rgba(255,213,79,.25),0 4px 24px rgba(0,0,0,.1)';
   }
   else if(m===12&&d===22){
     isSpecial=true;
     t.textContent='Winter Solstice';
     a.innerHTML='12.22 🌿 冬至日快樂';
     if(subEl)subEl.textContent='最長的夜，因為有妳而溫暖';
-    if(welcomeEl)welcomeEl.style.background='linear-gradient(160deg,#E8F5E9,#C8E6C9,#A5D6A7)';
-    if(photoEl)photoEl.style.boxShadow='0 0 40px rgba(122,155,74,.4),0 0 80px rgba(122,155,74,.2),0 4px 24px rgba(0,0,0,.1)';
   }
   else if(m===3&&d===31){
     isSpecial=true;
@@ -790,14 +781,11 @@ document.getElementById('enterBtn').addEventListener('click',function(){
     t.textContent='Happy Anniversary';
     a.innerHTML='3.31 💚 '+diff+' days together';
     if(subEl)subEl.textContent='每一天都比昨天更愛妳';
-    if(welcomeEl)welcomeEl.style.background='linear-gradient(160deg,#F1F8E9,#DCEDC8,#C5E1A5)';
-    if(photoEl)photoEl.style.boxShadow='0 0 40px rgba(122,155,74,.5),0 0 80px rgba(197,217,168,.3),0 4px 24px rgba(0,0,0,.1)';
   }
   if(isSpecial){
     t.style.fontSize='28px';
-    if(photoEl){photoEl.style.animation='specialGlow 3s ease-in-out infinite alternate'}
     var style=document.createElement('style');
-    style.textContent='@keyframes specialGlow{0%{box-shadow:0 0 30px rgba(122,155,74,.3),0 4px 24px rgba(0,0,0,.1)}100%{box-shadow:0 0 50px rgba(255,213,79,.5),0 0 90px rgba(122,155,74,.2),0 4px 24px rgba(0,0,0,.1)}}@keyframes floatPetal{0%{transform:translateY(0) rotate(0deg);opacity:1}100%{transform:translateY(-100vh) rotate(360deg);opacity:0}}';
+    style.textContent='@keyframes floatPetal{0%{transform:translateY(0) rotate(0deg);opacity:1}100%{transform:translateY(-100vh) rotate(360deg);opacity:0}}';
     document.head.appendChild(style);
     for(var i=0;i<12;i++){
       var petal=document.createElement('div');
