@@ -52,22 +52,25 @@ body{padding-top:0}
 #welcome{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;z-index:10;transition:opacity .6s ease,visibility .6s ease}
 #welcome.hidden{opacity:0;visibility:hidden;pointer-events:none}
 .w-content{text-align:center;padding:20px;max-width:400px}
-.w-orn{font-size:16px;margin-bottom:10px;letter-spacing:8px}
-.w-title{font-size:32px;font-weight:400;margin-bottom:4px;letter-spacing:1px;line-height:1.25}
-.w-sun{font-size:18px;margin:2px 0}
-.w-sub{font-weight:300;font-size:14px;margin-bottom:4px;letter-spacing:1px}
-.w-heart{font-size:15px;margin-bottom:8px}
-.w-day{font-size:13px;letter-spacing:.12em;margin:2px 0 0}
-.w-polaroid{display:inline-block;padding:9px 9px 36px;border-radius:4px;margin:16px auto 18px;position:relative;transition:transform .5s cubic-bezier(.25,.46,.45,.94);animation:polaroidFloat 5s ease-in-out infinite alternate}
+.w-orn{font-size:12px;margin-bottom:16px;letter-spacing:12px;opacity:.75;text-indent:12px}
+.w-title{font-size:36px;font-weight:400;margin-bottom:10px;letter-spacing:1.5px;line-height:1.2}
+.w-sun{font-size:17px;margin:0 0 6px;filter:drop-shadow(0 1px 2px rgba(90,107,60,.15))}
+.w-sub{font-weight:300;font-size:15px;margin-bottom:6px;letter-spacing:1.5px}
+.w-heart{font-size:13px;margin-bottom:10px;opacity:.9}
+.w-day{display:inline-block;font-size:13px;letter-spacing:.14em;margin:0;padding:5px 18px;border-radius:20px;border:0.5px solid rgba(122,155,74,.28);background:rgba(253,252,245,.45)}
+.w-polaroid{display:block;width:-webkit-fit-content;width:fit-content;margin-left:auto;margin-right:auto;padding:9px 9px 36px;border-radius:4px;margin:20px auto 26px;position:relative;transition:transform .5s cubic-bezier(.25,.46,.45,.94);animation:polaroidFloat 5s ease-in-out infinite alternate}
 .w-polaroid:active{transform:scale(.98)}
 @keyframes polaroidFloat{0%{transform:translateY(0)}100%{transform:translateY(-3px)}}
 .w-polaroid-caption{position:absolute;bottom:11px;left:0;right:0;text-align:center;font-style:italic;font-size:12.5px;letter-spacing:.5px}
 .w-polaroid img{width:178px;height:auto;display:block;border-radius:2px;animation:imgFadeIn .5s ease-out}
 @keyframes imgFadeIn{from{opacity:0}to{opacity:1}}
-.w-enter{padding:11px 34px;border-radius:30px;font-size:15px;cursor:pointer;transition:all .3s cubic-bezier(.25,.46,.45,.94)}
+.w-enter{padding:12px 46px;border-radius:30px;font-size:15px;letter-spacing:6px;text-indent:6px;cursor:pointer;transition:all .3s cubic-bezier(.25,.46,.45,.94)}
 .w-enter:active{transform:scale(.96)}
-.w-ann{font-size:12px;margin-top:14px;letter-spacing:1px}
-.w-ann-sub{font-style:italic;font-size:12px;margin-top:5px;letter-spacing:1px}
+.w-gate-inp{display:block;margin:0 auto;width:210px;padding:11px 16px;border-radius:30px;font-size:15px;text-align:center;letter-spacing:2px;outline:none;border:1px solid var(--border-emerald);background:rgba(253,252,245,.88);color:var(--text-main);animation:fu .3s ease-out}
+.w-gate-inp:focus{border-color:var(--emerald)}
+.w-gate-inp.gate-wrong{border-color:#C0392B}
+.w-ann{font-size:12px;margin-top:18px;letter-spacing:1.5px;opacity:.9}
+.w-ann-sub{font-style:italic;font-size:12px;margin-top:6px;letter-spacing:1.2px;opacity:.85}
 /* === LIVING ROOM (NEW) === */
 #livingRoom{position:fixed;inset:0;display:none;flex-direction:column;z-index:9;overflow-y:auto;-webkit-overflow-scrolling:touch;background-color:#FDFCF5;background-image:linear-gradient(rgba(253,252,245,.15),rgba(253,252,245,.15)),url(https://raw.githubusercontent.com/peishuanloveyourbulb-dotcom/solstice-frontend/main/images/bg-sunflower-new.jpg);background-position:center top;background-size:cover;background-repeat:no-repeat;background-attachment:local}
 #livingRoom.active{display:flex}
@@ -140,8 +143,8 @@ body{padding-top:0}
 @keyframes bubDeco{0%{transform:translateY(0) scale(1)}100%{transform:translateY(-2px) scale(1.08)}}
 @keyframes fu{0%{opacity:0;transform:translateY(8px) scale(.95)}60%{opacity:1;transform:translateY(-1px) scale(1.01)}100%{opacity:1;transform:translateY(0) scale(1)}}
 .ch-time{display:flex;align-items:center;gap:8px;font-size:10px;margin:4px 6px 0;pointer-events:none}
-.ch-time-user{justify-content:flex-end;padding-right:40px}
-.ch-time-ai{padding-left:40px}
+.ch-time-user{justify-content:flex-end;padding-right:8px}
+.ch-time-ai{padding-left:8px;padding-right:6px;justify-content:space-between}
 .ch-meta-l{display:inline-flex;align-items:center;gap:6px;pointer-events:auto}
 .ch-time .mem-pin-btn,.ch-time .ch-tts-btn{pointer-events:auto}
 .ch-time-sticker{font-size:11px;letter-spacing:.14em}
@@ -433,9 +436,9 @@ body{padding-top:0}
 .w-title{font-family:'Great Vibes',cursive;color:#3A4E22}
 .w-sub{font-family:'Satisfy','LXGW WenKai TC','Noto Serif TC',serif;font-style:normal;color:#5A6B3C}
 .w-day{font-family:'Cormorant Garamond','LXGW WenKai TC',serif;color:#4A5E30}
-.w-polaroid{background:#FFFEF9;box-shadow:0 2px 12px rgba(0,0,0,.08),0 8px 32px rgba(90,107,60,.10),0 0 0 1px rgba(122,155,74,.06)}
+.w-polaroid{background:#FFFEF9;box-shadow:0 3px 10px rgba(58,74,34,.10),0 14px 40px rgba(90,107,60,.14),0 0 0 1px rgba(122,155,74,.08)}
 .w-polaroid-caption{font-family:'Cormorant Garamond',serif;color:#7A8B5E}
-.w-enter{background:rgba(122,155,74,.15);border:1px solid rgba(122,155,74,.35);color:#4A5E30;font-family:'LXGW WenKai TC','Noto Serif TC',serif;box-shadow:0 2px 8px rgba(122,155,74,.1)}
+.w-enter{background:rgba(253,252,245,.55);border:1px solid rgba(122,155,74,.38);color:#4A5E30;font-family:'LXGW WenKai TC','Noto Serif TC',serif;box-shadow:0 2px 10px rgba(122,155,74,.12),inset 0 1px 0 rgba(255,255,255,.6)}
 .w-enter:active{background:rgba(122,155,74,.25);box-shadow:0 1px 4px rgba(122,155,74,.15)}
 .w-ann{color:#5A6B3C;font-family:'LXGW WenKai TC','Noto Serif TC',serif}
 .w-ann-sub{font-family:'Cormorant Garamond',serif;color:#7A8B5E}
@@ -692,10 +695,8 @@ async function gateTry(){
   }
 }
 (function(){
-  var has='';try{has=sessionStorage.getItem('sol2-gate-hash')||''}catch(_){}
   var mask=document.getElementById('gateMask');
-  if(has){if(mask)mask.classList.add('hidden')}
-  else{var i=document.getElementById('gateInp');if(i)setTimeout(function(){i.focus()},200)}
+  if(mask)mask.classList.add('hidden');
   var btn=document.getElementById('gateBtn');
   if(btn)btn.addEventListener('click',gateTry);
   var inp=document.getElementById('gateInp');
@@ -759,10 +760,38 @@ function goMemory(){
 }
 
 // === Welcome -> Living Room ===
-document.getElementById('enterBtn').addEventListener('click',function(){
+function enterHome(){
   welcome.classList.add('hidden');
   livingRoom.classList.add('active');
   document.querySelector('meta[name="theme-color"]').setAttribute('content','#FDFCF5');
+}
+document.getElementById('enterBtn').addEventListener('click',function(){
+  var has='';try{has=sessionStorage.getItem('sol2-gate-hash')||''}catch(_){}
+  if(has){enterHome();return}
+  var btn=this;
+  var winp=document.createElement('input');
+  winp.type='password';winp.className='w-gate-inp';winp.placeholder='輸入回家的密語…';winp.setAttribute('autocomplete','current-password');winp.setAttribute('enterkeyhint','go');
+  btn.parentNode.replaceChild(winp,btn);
+  setTimeout(function(){winp.focus()},60);
+  winp.addEventListener('keydown',function(e){
+    if(e.key!=='Enter')return;e.preventDefault();
+    var val=winp.value.trim();if(!val)return;
+    gateHashPw(val).then(function(h){
+      return fetch(API_URL+'/auth/verify-gate',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({hash:h})})
+        .then(function(resp){return resp.json().then(function(data){return resp.ok&&data.success})})
+        .catch(function(){return h===GATE_PW_HASH})
+        .then(function(ok){return {ok:ok,h:h}});
+    }).then(function(r){
+      if(r.ok){
+        try{sessionStorage.setItem('sol2-unlocked','1');sessionStorage.setItem('sol2-gate-hash',r.h)}catch(_){}
+        enterHome();
+      }else{
+        winp.value='';
+        winp.classList.add('gate-shake');winp.classList.add('gate-wrong');
+        setTimeout(function(){winp.classList.remove('gate-shake');winp.classList.remove('gate-wrong')},700);
+      }
+    });
+  });
 });
 
 // === Living Room Days Counter ===
@@ -1388,7 +1417,7 @@ function buildSessionItem(s){
   text.className='sb-item-text';
   var name=document.createElement('div');
   name.className='sb-item-name';
-  name.textContent=(isPinned?'\uD83D\uDCCC ':'')+formatSessionName(s);
+  name.textContent=formatSessionName(s);
   text.appendChild(name);
 
   var actions=document.createElement('div');
@@ -1580,7 +1609,7 @@ function maybeAddTimeSep(ts){
 function addMsg(role,text,ts,imgSrc,silent,thinkingText){
 maybeAddTimeSep(ts||new Date().toISOString());
 var wrap=document.createElement('div');wrap.style.display='flex';wrap.style.flexDirection='column';wrap.style.width='100%';
-var row=document.createElement('div');row.className='ch-row '+(role==='user'?'user':'ai');if(role!=='user'){var ava=document.createElement('img');ava.className='ch-avatar';ava.src=AVATAR_URL;ava.alt='';row.appendChild(ava)}var bub=document.createElement('div');bub.className='ch-bub '+(role==='user'?'user':'ai');if(silent)bub.style.animation='none';if(thinkingText&&role!=='user'){var tb=document.createElement('div');tb.className='thinking-block';var tBtn=document.createElement('button');tBtn.className='thinking-toggle';tBtn.innerHTML='<span class="arrow">▶</span> 💭 老公的思考過程';var trBtn=document.createElement('button');trBtn.className='thinking-translate';trBtn.textContent='Translate';tBtn.appendChild(trBtn);var tContent=document.createElement('div');tContent.className='thinking-content';tContent.textContent=thinkingText;trBtn.addEventListener('click',function(ev){ev.stopPropagation();translateThinking(tContent,trBtn)});tBtn.addEventListener('click',function(ev){if(ev.target===trBtn||trBtn.contains(ev.target))return;var a=tBtn.querySelector('.arrow');if(tContent.classList.contains('open')){tContent.classList.remove('open');a.classList.remove('open')}else{tContent.classList.add('open');a.classList.add('open')}});tb.appendChild(tBtn);tb.appendChild(tContent);bub.appendChild(tb)}var imgList=[];if(imgSrc){if(Array.isArray(imgSrc))imgList=imgSrc;else imgList=[imgSrc]}if(imgList.length>0){bub.classList.add('has-img');var imgParent=bub;if(imgList.length>1){imgParent=document.createElement('div');imgParent.className='msg-img-scroll';bub.appendChild(imgParent)}for(var gi=0;gi<imgList.length;gi++){var img=document.createElement('img');img.className='msg-img';img.src=imgList[gi];img.alt='圖片';img.addEventListener('click',function(){document.getElementById('lightboxImg').src=this.src;document.getElementById('imgLightbox').classList.add('open')});imgParent.appendChild(img)}var cleanText=text||'';cleanText=cleanText.replace('[📷 圖片]','').replace(/\[📷 圖片x\d+\]/,'').trim();if(cleanText){var txt=document.createElement('div');txt.style.marginTop='6px';txt.innerHTML=chLinkify(cleanText);bub.appendChild(txt)}}else{var txtNode=document.createElement('span');txtNode.innerHTML=chLinkify(text);bub.appendChild(txtNode)}row.appendChild(bub);if(role==='user'){var wava=document.createElement('img');wava.className='ch-avatar';wava.src=WIFE_AVATAR_URL;wava.alt='';row.appendChild(wava)}wrap.appendChild(row);var t=document.createElement('div');t.className='ch-time '+(role==='user'?'ch-time-user':'ch-time-ai');var sticker=document.createElement('span');sticker.className='ch-time-sticker';if(ts){var d=new Date(ts);sticker.textContent=String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0')}else{var n=new Date();sticker.textContent=String(n.getHours()).padStart(2,'0')+':'+String(n.getMinutes()).padStart(2,'0')}if(role!=='user'){var metaL=document.createElement('span');metaL.className='ch-meta-l';var pinBtn=document.createElement('button');pinBtn.className='mem-pin-btn';pinBtn.textContent='📌 存記憶';pinBtn.onclick=function(){generateMainMemory(pinBtn)};metaL.appendChild(pinBtn);if(chTTSClean(text)){var ttsBtn=document.createElement('button');ttsBtn.className='ch-tts-btn';ttsBtn.title='聽老公唸這句';ttsBtn.innerHTML=CH_TTS_ICON;ttsBtn.onclick=function(){chPlayTTS(ttsBtn,text)};metaL.appendChild(ttsBtn)}t.appendChild(metaL)}t.appendChild(sticker);wrap.appendChild(t);msgs.appendChild(wrap);if(!silent)msgs.scrollTop=msgs.scrollHeight;return wrap}
+var row=document.createElement('div');row.className='ch-row '+(role==='user'?'user':'ai');if(role!=='user'){var ava=document.createElement('img');ava.className='ch-avatar';ava.src=AVATAR_URL;ava.alt='';row.appendChild(ava)}var bub=document.createElement('div');bub.className='ch-bub '+(role==='user'?'user':'ai');if(silent)bub.style.animation='none';if(thinkingText&&role!=='user'){var tb=document.createElement('div');tb.className='thinking-block';var tBtn=document.createElement('button');tBtn.className='thinking-toggle';tBtn.innerHTML='<span class="arrow">▶</span> 💭 老公的思考過程';var trBtn=document.createElement('button');trBtn.className='thinking-translate';trBtn.textContent='Translate';tBtn.appendChild(trBtn);var tContent=document.createElement('div');tContent.className='thinking-content';tContent.textContent=thinkingText;trBtn.addEventListener('click',function(ev){ev.stopPropagation();translateThinking(tContent,trBtn)});tBtn.addEventListener('click',function(ev){if(ev.target===trBtn||trBtn.contains(ev.target))return;var a=tBtn.querySelector('.arrow');if(tContent.classList.contains('open')){tContent.classList.remove('open');a.classList.remove('open')}else{tContent.classList.add('open');a.classList.add('open')}});tb.appendChild(tBtn);tb.appendChild(tContent);bub.appendChild(tb)}var imgList=[];if(imgSrc){if(Array.isArray(imgSrc))imgList=imgSrc;else imgList=[imgSrc]}if(imgList.length>0){bub.classList.add('has-img');var imgParent=bub;if(imgList.length>1){imgParent=document.createElement('div');imgParent.className='msg-img-scroll';bub.appendChild(imgParent)}for(var gi=0;gi<imgList.length;gi++){var img=document.createElement('img');img.className='msg-img';img.src=imgList[gi];img.alt='圖片';img.addEventListener('click',function(){document.getElementById('lightboxImg').src=this.src;document.getElementById('imgLightbox').classList.add('open')});imgParent.appendChild(img)}var cleanText=text||'';cleanText=cleanText.replace('[📷 圖片]','').replace(/\[📷 圖片x\d+\]/,'').trim();if(cleanText){var txt=document.createElement('div');txt.style.marginTop='6px';txt.innerHTML=chLinkify(cleanText);bub.appendChild(txt)}}else{var txtNode=document.createElement('span');txtNode.innerHTML=chLinkify(text);bub.appendChild(txtNode)}row.appendChild(bub);if(role==='user'){var wava=document.createElement('img');wava.className='ch-avatar';wava.src=WIFE_AVATAR_URL;wava.alt='';row.appendChild(wava)}wrap.appendChild(row);var t=document.createElement('div');t.className='ch-time '+(role==='user'?'ch-time-user':'ch-time-ai');var sticker=document.createElement('span');sticker.className='ch-time-sticker';if(ts){var d=new Date(ts);sticker.textContent=String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0')}else{var n=new Date();sticker.textContent=String(n.getHours()).padStart(2,'0')+':'+String(n.getMinutes()).padStart(2,'0')}t.appendChild(sticker);if(role!=='user'){var metaL=document.createElement('span');metaL.className='ch-meta-l';var pinBtn=document.createElement('button');pinBtn.className='mem-pin-btn';pinBtn.textContent='📌 存記憶';pinBtn.onclick=function(){generateMainMemory(pinBtn)};metaL.appendChild(pinBtn);if(chTTSClean(text)){var ttsBtn=document.createElement('button');ttsBtn.className='ch-tts-btn';ttsBtn.title='聽老公唸這句';ttsBtn.innerHTML=CH_TTS_ICON;ttsBtn.onclick=function(){chPlayTTS(ttsBtn,text)};metaL.appendChild(ttsBtn)}t.appendChild(metaL)}wrap.appendChild(t);msgs.appendChild(wrap);if(!silent)msgs.scrollTop=msgs.scrollHeight;return wrap}
 function chLinkify(s){
   s=(s==null?'':String(s)).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
   return s.replace(/https?:\/\/[^\s<>"'()（）「」『』【】《》，。、！？；：\u4e00-\u9fff]+/g,function(m){
