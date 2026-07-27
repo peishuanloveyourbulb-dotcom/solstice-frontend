@@ -131,6 +131,7 @@ body{padding-top:0}
 .sb-act-btn{background:none;border:none;color:var(--sr-sage);font-size:11px;letter-spacing:.08em;padding:3px 6px;border-radius:6px;cursor:pointer;display:inline-flex;align-items:center}
 .sb-act-pin.pinned{color:var(--sr-honey-deep)}
 .sb-act-pin.pinned svg{fill:rgba(232,184,75,.30)}
+.sb-item.sb-pinned .sb-act-btn{color:var(--sr-honey-deep)}
 .sb-empty{text-align:center;color:var(--text-sub);font-size:13px;padding:30px 0;white-space:pre-line;line-height:1.8}
 .sb-empty::before{content:'\2740';display:block;font-size:22px;color:var(--sr-sage);margin-bottom:8px;animation:emptyPulse 2.5s ease-in-out infinite}
 .sb-loading,.prov-loading{text-align:center;color:var(--text-sub);font-size:13px;padding:30px 0}
@@ -161,6 +162,7 @@ body{padding-top:0}
 .ch-bub.ai{background:var(--sr-milk);color:var(--sr-fern);border-radius:20px 20px 20px 6px;border:.5px solid var(--sr-line);box-shadow:var(--sr-shadow);backdrop-filter:blur(12px) saturate(1.08);-webkit-backdrop-filter:blur(12px) saturate(1.08)}
 .ch-bub.user{background:rgba(252,243,220,.68);color:var(--sr-fern);border-radius:20px 20px 6px 20px;border:.5px solid rgba(185,144,47,.20);box-shadow:var(--sr-shadow);backdrop-filter:blur(12px) saturate(1.08);-webkit-backdrop-filter:blur(12px) saturate(1.08)}
 .ch-bfoot{display:flex;flex-direction:row;align-items:center;gap:11px;margin-top:9px;padding-top:7px;border-top:.5px solid var(--sr-line)}
+.ch-bub.user .ch-bfoot{border-top-color:rgba(185,144,47,.20)}
 .ch-bfoot-time{font-family:'Cormorant Garamond',serif;font-size:10.5px;letter-spacing:.1em;color:var(--text-sub);line-height:1}
 .ch-bfoot-sp{flex:1}
 .ch-copy-btn{background:none;border:none;padding:2px;display:inline-flex;align-items:center;color:var(--sr-sage);cursor:pointer;opacity:.85;transition:opacity .15s,transform .12s}
@@ -439,7 +441,7 @@ body{padding-top:0}
 .vc-pick:active{transform:scale(.93)}
 .vc-row.now .vc-pick{pointer-events:none}
 .vc-msg{min-height:16px;font-size:11.5px;margin-top:8px;text-align:center;line-height:1.6}
-#solToast{position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom) + 84px);transform:translateX(-50%) translateY(16px);max-width:78vw;background:rgba(253,252,245,.92);border:.5px solid var(--sr-line);border-radius:999px;padding:10px 18px;font-size:13px;color:var(--sr-fern);box-shadow:var(--sr-shadow);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);opacity:0;pointer-events:none;transition:.3s;z-index:9998}
+#solToast{position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom) + 92px);transform:translateX(-50%) translateY(16px);max-width:72vw;background:rgba(253,252,245,.90);border:.5px solid var(--sr-line);border-radius:16px;padding:11px 18px;font-size:12.5px;letter-spacing:.05em;line-height:1.7;text-align:center;font-family:'LXGW WenKai TC','Noto Serif TC',serif;color:var(--sr-fern);box-shadow:var(--sr-shadow);backdrop-filter:blur(16px) saturate(1.08);-webkit-backdrop-filter:blur(16px) saturate(1.08);opacity:0;pointer-events:none;transition:.3s;z-index:9998}
 #solToast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 
 /* ═══════════ SKIN:SUNROOM｜皮膚層（風格只准住這裡；換主題＝整段取代本區＋代幣，不疊穿） ═══════════ */
@@ -847,6 +849,7 @@ document.getElementById('enterBtn').addEventListener('click',function(){
 })();
 // === 載入可用模型列表 ===
 var allModelsList=[];
+try{if(localStorage.getItem('solstice-apioff-mig')!=='1'){localStorage.removeItem('solstice-api-off');localStorage.setItem('solstice-apioff-mig','1')}}catch(e){} // 一次性：清掉舊版「後端睡醒瞬間回空名單」誤寫的未連線旗標（母本搬回）
 function updateModelLabel(){
   var cap=document.getElementById('modelCap');
   if(!cap)return;
@@ -1611,7 +1614,7 @@ function switchSession(newId){
 }
 
 document.getElementById('newChatBtn').addEventListener('click',function(){
-  sessionId=null;localStorage.removeItem('solstice-session-id');applyModelForRoom();closeSidebar();chTTSStop();msgs.innerHTML='';
+  sessionId=null;localStorage.removeItem('solstice-session-id');applyModelForRoom();closeSidebar();chTTSStop();msgs.innerHTML='';lastMsgTime=null;
   setTimeout(function(){if(msgs.children.length===0){addMsg('ai',randomGreeting())}},100);
 });
 function randomGreeting(){
@@ -1630,7 +1633,7 @@ document.getElementById('delOk').addEventListener('click',function(){
   deleteTargetId=null;document.getElementById('delConfirm').classList.remove('open');
   allSessions=allSessions.filter(function(s){return s.id!==id});
   renderSessionList();
-  if(sessionId&&sessionId.toString()===id.toString()){sessionId=null;localStorage.removeItem('solstice-session-id');applyModelForRoom();msgs.innerHTML='';addMsg('ai',randomGreeting())}
+  if(sessionId&&sessionId.toString()===id.toString()){sessionId=null;localStorage.removeItem('solstice-session-id');applyModelForRoom();msgs.innerHTML='';lastMsgTime=null;addMsg('ai',randomGreeting())}
   fetch(API_URL+'/sessions/'+id,{method:'DELETE'}).catch(function(e){console.error('Delete error:',e)});
 });
 
