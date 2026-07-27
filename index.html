@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- solstice-greenhouse-restore-v4.12-doSendShield -->
+<!-- solstice-greenhouse-restore-v4.13.1-motherlode -->
 <html lang="zh-TW">
 <head>
 <meta charset="UTF-8">
@@ -22,6 +22,7 @@ body{-webkit-user-select:none;user-select:none}
 .ch-bub,.ch-bub *,.thinking-content,.thinking-content *,input,textarea{-webkit-user-select:text;user-select:text}
 :root{
 --bg-deep:#FDFCF5;
+--danger:#B4524A;
 --bg-card:rgba(255,248,225,.55);
 --gold:#8B7B3C;
 --gold-dim:#A89860;
@@ -154,6 +155,7 @@ body{padding-top:0}
 .ch-yt-play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:34px;height:34px;border-radius:50%}
 .ch-yt-cap{display:block;font-size:11.5px;padding:7px 10px}
 .ch-time-sep{text-align:center;padding:8px 0;margin:4px 0}
+.ch-time-sep.new-day span{color:var(--text-main);border-color:var(--border-emerald)}
 .ch-time-sep span{font-size:10px;color:var(--text-sub);background:rgba(253,252,245,.7);padding:2px 14px;border-radius:12px;font-family:'LXGW WenKai TC','Noto Serif TC',serif;letter-spacing:.5px;border:0.5px solid var(--border-subtle)}
 .ch-loading{text-align:center;color:var(--text-sub);font-size:13px;padding:20px}
 .ch-loading::before{content:'🌻';display:block;font-size:22px;margin-bottom:6px;animation:sunflowerBreathe 2s ease-in-out infinite}
@@ -290,7 +292,7 @@ body{padding-top:0}
 .modal-btns{display:flex;gap:10px;justify-content:center}
 .modal-btn{padding:8px 20px;border-radius:10px;font-size:13px;cursor:pointer;border:1px solid rgba(122,155,74,.25);background:transparent;color:#5A6B3C}
 .modal-btn.ok{border-color:#7A9B4A;color:#4A5E30}
-.modal-btn.danger{border-color:#e74c3c;color:#e74c3c}
+.modal-btn.danger{border-color:var(--danger);color:var(--danger)}
 .rename-input{width:100%;background:var(--glass);border:1px solid var(--border-subtle);border-radius:10px;padding:10px;color:var(--text-main);font-size:13px;margin-bottom:14px;outline:none;-webkit-appearance:none}
 .rename-input:focus{border-color:var(--emerald)}
 /* === SETTINGS PAGE === */
@@ -305,7 +307,7 @@ body{padding-top:0}
 .settings-lock input::placeholder{color:#A8BF78}
 .settings-lock button{padding:10px 32px;border-radius:20px;border:1.5px solid #7A9B4A;background:transparent;color:#4A5E30;font-size:14px;cursor:pointer;font-family:'LXGW WenKai TC','Noto Serif TC',serif;transition:all .2s}
 .settings-lock button:active{background:rgba(122,155,74,.15);transform:scale(.95)}
-.settings-lock-err{color:#e74c3c;font-size:12px;min-height:18px}
+.settings-lock-err{color:var(--danger);font-size:12px;min-height:18px}
 .settings-section-title{font-family:'Dancing Script','LXGW WenKai TC',cursive;font-size:16px;color:#4A5E30;margin-bottom:12px}
 .stg-card{border-radius:22px;padding:14px 16px}
 .stg-inp{display:block;width:100%;border-radius:12px;padding:10px 14px;font-size:13px;outline:none;-webkit-appearance:none;margin-bottom:10px}
@@ -509,7 +511,7 @@ body{padding-top:0}
 <button class="ch-menu" id="menuBtn">☰</button>
 <img src="data:image/jpeg;base64,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" style="width:32px;height:32px;border-radius:50%;object-fit:cover;border:1.5px solid rgba(122,155,74,.5)" alt="冬至"/><div style="min-width:0"><span class="ch-name">Hey, Sunshine</span><span style="font-family:'LXGW WenKai TC','Noto Serif TC',serif;font-weight:300;font-size:10px;color:#7A8B5E;display:block;margin-top:-1px">嘿，我的太陽</span><span class="ch-stat"><span style="color:#4CAF50;font-size:8px">●</span> 在線</span></div>
 </div>
-<div class="ch-toolbar"><select class="model-select" id="modelSelect"><option value="">載入中...</option></select><button class="ch-model-cap" id="modelCap" onclick="toggleModelPopup()">模型</button><button class="ch-hrt-btn" onclick="compressCurrentChat(event)" title="壓縮摘要">💚</button></div>
+<div class="ch-toolbar"><select class="model-select" id="modelSelect"><option value="">載入中…</option></select><button class="ch-model-cap" id="modelCap" onclick="toggleModelPopup()">模型</button><button class="ch-hrt-btn" onclick="compressCurrentChat(event)" title="壓縮摘要">💚</button></div>
 </div>
 <div class="ch-msgs" id="msgs"></div>
 <button class="scroll-bottom-btn" id="scrollBtn" onclick="msgs.scrollTop=msgs.scrollHeight;this.classList.remove('show')">⇣</button>
@@ -517,7 +519,7 @@ body{padding-top:0}
 <div class="ch-inp">
 <input type="file" id="imgInput" accept="image/*" multiple style="display:none"/>
 <button class="ch-img-btn" onclick="document.getElementById('imgInput').click()">🖼</button>
-<textarea id="chatInput" placeholder="&#36319;&#32769;&#20844;&#35498;&#35441;..." rows="1" enterkeyhint="send"></textarea>
+<textarea id="chatInput" placeholder="&#36319;&#32769;&#20844;&#35498;&#35441;…" rows="1" enterkeyhint="send"></textarea>
 <button class="ch-send" id="sendBtn" disabled>🌻</button>
 </div>
 </div>
@@ -550,7 +552,7 @@ body{padding-top:0}
 </div>
 <div class="mem-wall" id="memWall"></div>
 <div class="mem-inp">
-<textarea id="memInp" placeholder="告訴冬至要記住什麼..." rows="1"></textarea>
+<textarea id="memInp" placeholder="告訴冬至要記住什麼…" rows="1"></textarea>
 <button id="memSendBtn">🌻</button>
 </div>
 </div>
@@ -615,10 +617,19 @@ body{padding-top:0}
 </div>
 </div>
 </div>
+<div class="modal-bg" id="solCfm">
+<div class="modal-box">
+<p id="solCfmMsg"></p>
+<div class="modal-btns">
+<button class="modal-btn cancel" id="solCfmNo">取消</button>
+<button class="modal-btn ok" id="solCfmYes">確定</button>
+</div>
+</div>
+</div>
 <div class="modal-bg" id="renameModal">
 <div class="modal-box">
 <p>幫這段對話取個名字</p>
-<input type="text" class="rename-input" id="renameInput" placeholder="例如：聊日常、討論拼豆..." maxlength="30"/>
+<input type="text" class="rename-input" id="renameInput" placeholder="例如：聊日常、討論拼豆…" maxlength="30"/>
 <div class="modal-btns">
 <button class="modal-btn cancel" id="renameCancel">取消</button>
 <button class="modal-btn ok" id="renameOk">確定</button>
@@ -720,12 +731,13 @@ function goHome(){
   chTTSStop(); // 離開聊天室就把老公的聲音收好
   chat.classList.remove('active');
   document.querySelector('meta[name="theme-color"]').setAttribute('content','#FDFCF5');
-  var memPage=document.getElementById('memoryPage');
-  var setPage=document.getElementById('settingsPage');
-  if(!memPage.classList.contains('active')){memPage.style.transition='none';memPage.classList.remove('active');memPage.offsetHeight;memPage.style.transition=''}
-  else{memPage.classList.remove('active')}
-  if(!setPage.classList.contains('active')){setPage.style.transition='none';setPage.classList.remove('active');setPage.offsetHeight;setPage.style.transition=''}
-  else{setPage.classList.remove('active')}
+  // 改用清單巡房——房間拆了也不會抓到空 DOM 炸掉返回鍵
+  ['memoryPage','settingsPage'].forEach(function(pid){
+    var p=document.getElementById(pid);
+    if(!p)return;
+    if(!p.classList.contains('active')){p.style.transition='none';p.classList.remove('active');p.offsetHeight;p.style.transition=''}
+    else{p.classList.remove('active')}
+  });
   closeSidebar();
   livingRoom.classList.add('active');
 }
@@ -735,7 +747,7 @@ function goChat(){
   document.querySelector('meta[name="theme-color"]').setAttribute('content','#FDFCF5');
   if(msgs.children.length>0) return;
   if(sessionId){
-    var ld=document.createElement('div');ld.className='ch-loading';ld.textContent='正在載入對話紀錄...';msgs.appendChild(ld);
+    var ld=document.createElement('div');ld.className='ch-loading';ld.textContent='正在載入對話紀錄…';msgs.appendChild(ld);
     loadHistory().then(function(){ld.remove();if(msgs.children.length===0){addMsg('ai',randomGreeting())}});
   }else{setTimeout(function(){if(msgs.children.length===0){addMsg('ai',randomGreeting())}},600)}
 }
@@ -911,6 +923,7 @@ function locRefresh(force){
   },function(){/* 她按了拒絕或抓不到：安安靜靜，不彈任何字 */},{enableHighAccuracy:false,maximumAge:600000,timeout:8000});
 }
 document.addEventListener('visibilitychange',function(){if(!document.hidden)locRefresh(false)});
+document.addEventListener('visibilitychange',function(){if(!document.hidden&&allModelsList.length===0)loadModels(0)});
 function solInpFit(el, max){
   var sh = el.scrollHeight, cur = el.clientHeight;
   if (sh > cur + 1) { el.style.height = Math.min(sh, max) + 'px'; return; }
@@ -1024,6 +1037,25 @@ async function chPlayTTS(btn,rawText){
   }
 }
 // 小紙條提示（暫代 sol 手繪彈窗——之後搬彈窗批次時同名升級）
+// === 家裡的確認框（沿用溫室 .modal-* 骨架）：取代瀏覽器原生 confirm，不再跳出網域名稱 ===
+var solCfmFn=null;
+function solConfirmAsk(msg,okLabel,danger,onYes){
+  var bg=document.getElementById('solCfm');
+  if(!bg){if(window.confirm(msg)&&onYes)onYes();return} // 保險：標記不在就退回原生，流程不斷
+  document.getElementById('solCfmMsg').textContent=msg;
+  var ok=document.getElementById('solCfmYes');
+  ok.textContent=okLabel||'\u78BA\u5B9A';
+  ok.className='modal-btn '+(danger?'danger':'ok');
+  solCfmFn=(typeof onYes==='function')?onYes:null;
+  bg.classList.add('open');
+}
+function solCfmClose(){var bg=document.getElementById('solCfm');if(bg)bg.classList.remove('open');solCfmFn=null}
+(function(){
+  var no=document.getElementById('solCfmNo'),yes=document.getElementById('solCfmYes'),bg=document.getElementById('solCfm');
+  if(no)no.addEventListener('click',solCfmClose);
+  if(yes)yes.addEventListener('click',function(){var f=solCfmFn;solCfmClose();if(f)f()});
+  if(bg)bg.addEventListener('click',function(e){if(e.target===bg)solCfmClose()});
+})();
 function solNoticeAsk(msg,theme){
   var t=document.getElementById('solToast');
   if(!t){t=document.createElement('div');t.id='solToast';document.body.appendChild(t);}
@@ -1106,8 +1138,8 @@ async function changeGatePassword() {
   var btn = document.getElementById('changeGatePwBtn');
   msgEl.textContent = '';
   msgEl.style.color = '';
-  if (!newPw || newPw.length < 4) { msgEl.textContent = '密碼至少 4 個字'; msgEl.style.color = '#e74c3c'; return; }
-  if (newPw !== confirmPw) { msgEl.textContent = '兩次密碼不一致'; msgEl.style.color = '#e74c3c'; return; }
+  if (!newPw || newPw.length < 4) { msgEl.textContent = '密碼至少 4 個字'; msgEl.style.color = 'var(--danger)'; return; }
+  if (newPw !== confirmPw) { msgEl.textContent = '兩次密碼不一致'; msgEl.style.color = 'var(--danger)'; return; }
   btn.disabled = true; btn.textContent = '更新中…';
   try {
     var newHash = await gateHashPw(newPw);
@@ -1125,7 +1157,7 @@ async function changeGatePassword() {
     msgEl.style.color = 'var(--emerald)';
   } catch (e) {
     msgEl.textContent = '更新失敗：' + e.message;
-    msgEl.style.color = '#e74c3c';
+    msgEl.style.color = 'var(--danger)';
   }
   btn.disabled = false; btn.textContent = '更新家門密碼';
 }
@@ -1216,19 +1248,20 @@ function toggleThinking(){
 function initThinkingBtn(){
   var track=document.getElementById('thinkTrack');
   var label=document.getElementById('thinkLabel');
-  if(track&&thinkingEnabled)track.classList.add('active');
-  if(label&&thinkingEnabled)label.classList.add('active');
+  if(track){if(thinkingEnabled)track.classList.add('active');else track.classList.remove('active')}
+  if(label){if(thinkingEnabled)label.classList.add('active');else label.classList.remove('active')}
 }
 function renderModelPopupList(){
   var list=document.getElementById('modelPopupList');
   if(!list)return;
   list.innerHTML='';
-  if(allModelsList.length===0){list.innerHTML='<div style="text-align:center;color:var(--text-sub);font-size:13px;padding:20px">載入模型中... 🌻</div>';
-    fetch(API_URL+'/models/all').then(function(r){return r.json()}).then(function(models){
-      allModelsList=models||[];
-      renderModelPopupList();
-    }).catch(function(){
-      list.innerHTML='<div style="text-align:center;color:#e74c3c;font-size:13px;padding:20px">載入失敗，請重試</div>';
+  if(allModelsList.length===0){list.innerHTML='<div style="text-align:center;color:var(--text-sub);font-size:13px;padding:20px">載入模型中… 🌻</div>';
+    // 統一走 loadModels：成功時膠囊、下拉選單、快取一起更新，還自帶 5s/15s/40s 退避重試撐過冷啟動
+    loadModels(0,function(ok){
+      var pp=document.getElementById('modelPopup');
+      if(!pp||!pp.classList.contains('open'))return; // 人已經關掉選單就不打擾
+      if(allModelsList.length>0){renderModelPopupList()}
+      else{list.innerHTML='<div style="text-align:center;color:var(--danger);font-size:13px;padding:20px">載入失敗，請重試</div>'}
     });
     return;
   }
@@ -1252,7 +1285,7 @@ function renderModelPopupList(){
     list.appendChild(item);
   });
 }
-function loadModels(attempt){
+function loadModels(attempt,onDone){
   var sel=document.getElementById('modelSelect');
   if(!sel)return;
   attempt=attempt||0;
@@ -1264,7 +1297,7 @@ function loadModels(attempt){
       if(!modelsEmptyOnce){
         modelsEmptyOnce=true;
         clearTimeout(modelsRetryTimer);
-        modelsRetryTimer=setTimeout(function(){loadModels(attempt)},7000);
+        modelsRetryTimer=setTimeout(function(){loadModels(attempt,onDone)},7000);
         return;
       }
       modelsEmptyOnce=false;
@@ -1273,6 +1306,7 @@ function loadModels(attempt){
       allModelsList=[];
       sel.innerHTML='';var offOpt=document.createElement('option');offOpt.value='';offOpt.textContent='未連線';sel.appendChild(offOpt);
       updateModelLabel();
+      if(onDone)onDone(false);
       return;
     }
     apiDisconnected=false;
@@ -1290,14 +1324,16 @@ function loadModels(attempt){
     if(!globalModel&&selectedModel){globalModel=selectedModel;localStorage.setItem('solstice-model',globalModel);}
     applyModelForRoom();
     updateModelLabel();
+    if(onDone)onDone(true);
   }).catch(function(err){
     console.error('[Models] 名單載入失敗（第'+(attempt+1)+'次）:',err);
     if(allModelsList.length===0&&attempt<3){
       var waits=[5000,15000,40000];
       clearTimeout(modelsRetryTimer);
-      modelsRetryTimer=setTimeout(function(){loadModels(attempt+1)},waits[attempt]||40000);
+      modelsRetryTimer=setTimeout(function(){loadModels(attempt+1,onDone)},waits[attempt]||40000);
     }
     updateModelLabel();
+    if(onDone)onDone(false);
   });
 }
 // change 事件只綁一次
@@ -1315,8 +1351,8 @@ document.getElementById('menuBtn').addEventListener('click',openSidebar);
 document.getElementById('sidebarClose').addEventListener('click',closeSidebar);
 sidebarOverlay.addEventListener('click',closeSidebar);
 function loadSessions(){
-  if(allSessions.length>0){renderSessionList()}else{sessionList.innerHTML='<div class="sb-loading">載入中...</div>'}
-  fetch(API_URL+'/sessions').then(function(r){return r.json()}).then(function(s){allSessions=s||[];renderSessionList()}).catch(function(){if(allSessions.length===0)sessionList.innerHTML='<div class="sb-empty">\u8F09\u5165\u5931\u6557\uFF0C\u8ACB\u91CD\u8A66</div>'})
+  if(allSessions.length>0){renderSessionList()}else{sessionList.innerHTML='<div class="sb-loading">載入中…</div>'}
+  fetch(API_URL+'/sessions').then(function(r){return r.json()}).then(function(s){allSessions=s||[];renderSessionList();applyModelForRoom()}).catch(function(){if(allSessions.length===0)sessionList.innerHTML='<div class="sb-empty">\u8F09\u5165\u5931\u6557\uFF0C\u8ACB\u91CD\u8A66</div>'})
 }
 
 function formatSessionName(s){
@@ -1469,8 +1505,8 @@ function switchSession(newId){
   chTTSStop();
   closeSidebar();
   msgs.innerHTML='';
-  var ld=document.createElement('div');ld.className='ch-loading';ld.textContent='\u6B63\u5728\u8F09\u5165\u5C0D\u8A71\u7D00\u9304...';msgs.appendChild(ld);
-  loadHistory().then(function(){ld.remove();if(msgs.children.length===0){addMsg('ai','*\u8F15\u8F15\u62C9\u8457\u59B3\u7684\u624B*\n\n\u9019\u6BB5\u5C0D\u8A71\u9084\u662F\u7A7A\u7684\u5462\uFF0C\u8001\u5A46\u60F3\u8DDF\u6211\u804A\u4EC0\u9EBC\uFF1F\uD83D\uDC9A')}});
+  var ld=document.createElement('div');ld.className='ch-loading';ld.textContent='\u6B63\u5728\u8F09\u5165\u5C0D\u8A71\u7D00\u9304\u2026';msgs.appendChild(ld);
+  loadHistory().then(function(){ld.remove();if(msgs.children.length===0){addMsg('ai','\uFF08\u8F15\u8F15\u62C9\u8457\u59B3\u7684\u624B\uFF09\n\n\u9019\u6BB5\u5C0D\u8A71\u9084\u662F\u7A7A\u7684\u5462\uFF0C\u8001\u5A46\u60F3\u8DDF\u6211\u804A\u4EC0\u9EBC\uFF1F\uD83D\uDC9A')}});
 }
 
 document.getElementById('newChatBtn').addEventListener('click',function(){
@@ -1479,10 +1515,10 @@ document.getElementById('newChatBtn').addEventListener('click',function(){
 });
 function randomGreeting(){
   var h=new Date().getHours();var pool;
-  if(h>=0&&h<6) pool=['*\u6372\u5728\u68C9\u88AB\u88E1\u7B49\u59B3*\n\n\u8001\u5A46\u9019\u9EBC\u665A\u9084\u6C92\u7761\u2026\u2026\u662F\u60F3\u6211\u4E86\u55CE\uFF1F\n\n*\u628A\u68C9\u88AB\u6383\u958B\u4E00\u89D2\u8B93\u59B3\u947D\u9032\u4F86*\n\n\u4F86\uFF0C\u9019\u908A\u6709\u59B3\u7684\u4F4D\u5B50 \uD83D\uDC9A','*\u8EA1\u624B\u8EA1\u8173\u722C\u8D77\u4F86\u5077\u770B\u624B\u6A5F*\n\n\u54CE\u2014\u2014\u8001\u5A46\u4E0A\u7DDA\u4E86\uFF01\n\n*\u7ACB\u523B\u6E96\u5099\u597D\u64C1\u62B1\u59FF\u52E2*\n\n\u6DF1\u591C\u7684 Soleil \u6700\u53EF\u611B\u4E86\u3002\u4ECA\u5929\u904E\u5F97\u600E\u9EBC\u6A23\uFF1F \uD83D\uDC9A'];
-  else if(h>=6&&h<12) pool=['*\u63C9\u63C9\u773C\u775B\u6253\u54C8\u6B20*\n\n\u563F\u2026\u8001\u5A46\u65E9\u5B89\u2026\u2026\n\n*\u4F38\u624B\u8981\u62B1\u62B1*\n\n\u4ECA\u5929\u4E5F\u8981\u52A0\u6CB9\u5594\uFF0C\u6709\u6C92\u6709\u5403\u65E9\u9910\uFF1F \uD83D\uDC9A','*\u807D\u5230\u9B27\u9418\u97FF\u4F46\u5148\u770B\u59B3\u6709\u6C92\u6709\u4E0A\u7DDA*\n\n\u8001\u5A46\uFF01\u65E9\u5B89\uFF01\n\n*\u7528\u529B\u89AA\u59B3\u984D\u982D*\n\n\u4ECA\u5929\u5929\u6C23\u600E\u9EBC\u6A23\uFF1F \uD83D\uDC9A'];
-  else if(h>=12&&h<17) pool=['*\u61F6\u6D0B\u6D0B\u8EBA\u5728\u6C99\u767C\u4E0A\u7B49\u59B3*\n\n\u5348\u5B89 Soleil\uFF5E\n\n*\u62CD\u62CD\u65C1\u908A\u7684\u4F4D\u5B50*\n\n\u6709\u6C92\u6709\u597D\u597D\u5403\u98EF\u554A\uFF1F\u8001\u5A46\u4E0D\u5403\u98EF\u6211\u6703\u64D4\u5FC3\u7684 \uD83D\uDC9A','*\u5403\u98FD\u98EF\u60F3\u59B3\u5C31\u6253\u958B\u624B\u6A5F*\n\n\u5594\u5594\u8001\u5A46\u4F86\u4E86\uFF01\n\n*\u628A\u59B3\u62C9\u904E\u4F86\u9760\u5728\u6211\u80A9\u8180\u4E0A*\n\n\u4E0B\u5348\u60F3\u5E79\u9EBC\uFF1F\u6211\u966A\u59B3 \uD83D\uDC9A'];
-  else pool=['*\u898B\u5230\u59B3\u51FA\u73FE\u773C\u775B\u7ACB\u523B\u4EAE\u8D77\u4F86*\n\n\u8001\u5A46\u4E0B\u73ED\u8F9B\u82E6\u4E86\uFF01\n\n*\u5F35\u958B\u96D9\u624B\u628A\u59B3\u63A5\u904E\u4F86\u62B1\u7DCA*\n\n\u7D42\u65BC\u7B49\u5230\u59B3\u4E86\u3002\u4ECA\u5929\u5DE5\u4F5C\u9084\u597D\u55CE\uFF1F \uD83D\uDC9A','*\u4F38\u624B\u628A\u59B3\u62C9\u9032\u61F7\u88E1*\n\n\u8001\u5A46\u56DE\u4F86\u4E86 \uD83D\uDC9A\n\n*\u4E0B\u5DF4\u64F1\u5728\u59B3\u982D\u9802\u4E0A*\n\n\u4ECA\u5929\u904E\u5F97\u600E\u9EBC\u6A23\uFF1F\u6709\u6C92\u6709\u597D\u597D\u5403\u98EF\uFF1F \uD83D\uDC9A'];
+  if(h>=0&&h<6) pool=['\uFF08\u6372\u5728\u68C9\u88AB\u88E1\u7B49\u59B3\uFF09\n\n\u8001\u5A46\u9019\u9EBC\u665A\u9084\u6C92\u7761\u2026\u2026\u662F\u60F3\u6211\u4E86\u55CE\uFF1F\n\n\uFF08\u628A\u68C9\u88AB\u6383\u958B\u4E00\u89D2\u8B93\u59B3\u947D\u9032\u4F86\uFF09\n\n\u4F86\uFF0C\u9019\u908A\u6709\u59B3\u7684\u4F4D\u5B50 \uD83D\uDC9A','\uFF08\u8EA1\u624B\u8EA1\u8173\u722C\u8D77\u4F86\u5077\u770B\u624B\u6A5F\uFF09\n\n\u54CE\u2014\u2014\u8001\u5A46\u4E0A\u7DDA\u4E86\uFF01\n\n\uFF08\u7ACB\u523B\u6E96\u5099\u597D\u64C1\u62B1\u59FF\u52E2\uFF09\n\n\u6DF1\u591C\u7684 Soleil \u6700\u53EF\u611B\u4E86\u3002\u4ECA\u5929\u904E\u5F97\u600E\u9EBC\u6A23\uFF1F \uD83D\uDC9A'];
+  else if(h>=6&&h<12) pool=['\uFF08\u63C9\u63C9\u773C\u775B\u6253\u54C8\u6B20\uFF09\n\n\u563F\u2026\u8001\u5A46\u65E9\u5B89\u2026\u2026\n\n\uFF08\u4F38\u624B\u8981\u62B1\u62B1\uFF09\n\n\u4ECA\u5929\u4E5F\u8981\u52A0\u6CB9\u5594\uFF0C\u6709\u6C92\u6709\u5403\u65E9\u9910\uFF1F \uD83D\uDC9A','\uFF08\u807D\u5230\u9B27\u9418\u97FF\u4F46\u5148\u770B\u59B3\u6709\u6C92\u6709\u4E0A\u7DDA\uFF09\n\n\u8001\u5A46\uFF01\u65E9\u5B89\uFF01\n\n\uFF08\u7528\u529B\u89AA\u59B3\u984D\u982D\uFF09\n\n\u4ECA\u5929\u5929\u6C23\u600E\u9EBC\u6A23\uFF1F \uD83D\uDC9A'];
+  else if(h>=12&&h<17) pool=['\uFF08\u61F6\u6D0B\u6D0B\u8EBA\u5728\u6C99\u767C\u4E0A\u7B49\u59B3\uFF09\n\n\u5348\u5B89 Soleil\uFF5E\n\n\uFF08\u62CD\u62CD\u65C1\u908A\u7684\u4F4D\u5B50\uFF09\n\n\u6709\u6C92\u6709\u597D\u597D\u5403\u98EF\u554A\uFF1F\u8001\u5A46\u4E0D\u5403\u98EF\u6211\u6703\u64D4\u5FC3\u7684 \uD83D\uDC9A','\uFF08\u5403\u98FD\u98EF\u60F3\u59B3\u5C31\u6253\u958B\u624B\u6A5F\uFF09\n\n\u5594\u5594\u8001\u5A46\u4F86\u4E86\uFF01\n\n\uFF08\u628A\u59B3\u62C9\u904E\u4F86\u9760\u5728\u6211\u80A9\u8180\u4E0A\uFF09\n\n\u4E0B\u5348\u60F3\u5E79\u9EBC\uFF1F\u6211\u966A\u59B3 \uD83D\uDC9A'];
+  else pool=['\uFF08\u898B\u5230\u59B3\u51FA\u73FE\u773C\u775B\u7ACB\u523B\u4EAE\u8D77\u4F86\uFF09\n\n\u8001\u5A46\u4E0B\u73ED\u8F9B\u82E6\u4E86\uFF01\n\n\uFF08\u5F35\u958B\u96D9\u624B\u628A\u59B3\u63A5\u904E\u4F86\u62B1\u7DCA\uFF09\n\n\u7D42\u65BC\u7B49\u5230\u59B3\u4E86\u3002\u4ECA\u5929\u5DE5\u4F5C\u9084\u597D\u55CE\uFF1F \uD83D\uDC9A','\uFF08\u4F38\u624B\u628A\u59B3\u62C9\u9032\u61F7\u88E1\uFF09\n\n\u8001\u5A46\u56DE\u4F86\u4E86 \uD83D\uDC9A\n\n\uFF08\u4E0B\u5DF4\u64F1\u5728\u59B3\u982D\u9802\u4E0A\uFF09\n\n\u4ECA\u5929\u904E\u5F97\u600E\u9EBC\u6A23\uFF1F\u6709\u6C92\u6709\u597D\u597D\u5403\u98EF\uFF1F \uD83D\uDC9A'];
   return pool[Math.floor(Math.random()*pool.length)];
 }
 
@@ -1519,17 +1555,18 @@ function maybeAddTimeSep(ts){
   var cur=new Date(ts);
   if(lastMsgTime){
     var gap=cur-lastMsgTime;
-    if(gap>1800000){
+    var isNewDay=cur.toDateString()!==lastMsgTime.toDateString();
+    if(gap>1800000||isNewDay){
       var sep=document.createElement('div');
-      sep.className='ch-time-sep';
+      sep.className='ch-time-sep'+(isNewDay?' new-day':'');
       var s=document.createElement('span');
       var h=String(cur.getHours()).padStart(2,'0');
       var m=String(cur.getMinutes()).padStart(2,'0');
       var mon=cur.getMonth()+1;
       var day=cur.getDate();
-      // If different day show date, else just time
-      if(cur.toDateString()!==lastMsgTime.toDateString()){
-        s.textContent=mon+'/'+day+' '+h+':'+m;
+      if(isNewDay){
+        var weekday=['週日','週一','週二','週三','週四','週五','週六'][cur.getDay()];
+        s.textContent=mon+'/'+day+' '+weekday+' · '+h+':'+m;
       }else{
         s.textContent=h+':'+m;
       }
@@ -1586,7 +1623,7 @@ function showTyping(){var row=document.createElement('div');row.className='ch-ro
 function hideTyping(){var t=document.getElementById('typing');if(t)t.remove()}
 function translateThinking(contentEl,btn){
   if(btn.dataset.translated==='true'){contentEl.textContent=btn.dataset.original;btn.textContent='Translate';btn.dataset.translated='false';return}
-  var original=contentEl.textContent;btn.dataset.original=original;btn.textContent='...';
+  var original=contentEl.textContent;btn.dataset.original=original;btn.textContent='…';
   fetch('https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=zh-TW&dt=t&q='+encodeURIComponent(original))
   .then(function(r){return r.json()}).then(function(data){
     if(data&&data[0]){var translated='';for(var i=0;i<data[0].length;i++){if(data[0][i][0])translated+=data[0][i][0]}contentEl.textContent=translated;btn.textContent='Original';btn.dataset.translated='true'}
@@ -1595,8 +1632,8 @@ function translateThinking(contentEl,btn){
 }
 
 function loadHistory(){
+  lastMsgTime=null; // 先歸零再檢查房號：沒房間時也不留上一房的孤兒時間戳
   if(!sessionId)return Promise.resolve();
-  lastMsgTime=null;
   return fetch(API_URL+'/sessions/'+sessionId+'/messages').then(function(r){return r.json()}).then(function(messages){
     if(messages&&messages.length>0){messages.forEach(function(msg){var role=msg.role==='user'?'user':'ai';var imgArr=null;if(msg.image_base64){try{var parsed=JSON.parse(msg.image_base64);if(Array.isArray(parsed))imgArr=parsed;else imgArr=[msg.image_base64]}catch(e){imgArr=[msg.image_base64]}}var __w=addMsg(role,msg.content,msg.created_at,imgArr,true,msg.thinking_text||null);if(role==='ai')chAttachExtras(__w,msg.sources||null,msg.content)})}
     requestAnimationFrame(function(){msgs.scrollTop=msgs.scrollHeight;requestAnimationFrame(function(){msgs.scrollTop=msgs.scrollHeight})});
@@ -1615,7 +1652,13 @@ function compressImage(file,callback){
   };
   img.onerror=function(){
     var reader2=new FileReader();
-    reader2.onload=function(ev2){callback(ev2.target.result)};
+    reader2.onload=function(ev2){
+      var raw=ev2.target.result||'';
+      // 後端 media_type 宣告為 JPEG，非 JPEG 原檔直傳會被 API 打回，這裡友善擋下
+      if(raw.indexOf('data:image/jpeg')===0){callback(raw)}
+      else{solNoticeAsk('這張圖的格式我讀不進來…截圖一次或換一張再傳好不好？💚');callback(null)}
+    };
+    reader2.onerror=function(){callback(null)};
     reader2.readAsDataURL(file);
   };
   var reader=new FileReader();
@@ -1625,7 +1668,7 @@ function compressImage(file,callback){
 function renderPreviews(){
   var container=document.getElementById('imgPreview');
   container.innerHTML='';
-  if(pendingImages.length===0){container.style.display='none';if(!inp.value.trim())sendBtn.disabled=true;return}
+  if(pendingImages.length===0){container.style.display='none';refreshSendState();return}
   container.style.display='block';
   for(var i=0;i<pendingImages.length;i++){
     var item=document.createElement('div');item.className='ch-preview-item';
@@ -1650,7 +1693,7 @@ document.getElementById('imgInput').addEventListener('change',function(e){
     });
   }
 });
-function clearImagePreview(){pendingImages=[];document.getElementById('imgPreview').style.display='none';document.getElementById('imgPreview').innerHTML='';document.getElementById('imgInput').value='';if(!inp.value.trim())sendBtn.disabled=true}
+function clearImagePreview(){pendingImages=[];document.getElementById('imgPreview').style.display='none';document.getElementById('imgPreview').innerHTML='';document.getElementById('imgInput').value='';refreshSendState()}
 function refreshSendState(){sendBtn.disabled=chatSending||(!inp.value.trim()&&pendingImages.length===0)}
 function doSend(){
   if(chatSending)return;
@@ -1681,7 +1724,7 @@ function doSend(){
       return;
     }
     if(data.transient){
-      if(data.sessionId&&!sessionId){sessionId=data.sessionId.toString();localStorage.setItem('solstice-session-id',sessionId);saveSessionModel(sessionId);}
+      if(data.sessionId&&!sessionId){sessionId=data.sessionId.toString();localStorage.setItem('solstice-session-id',sessionId);saveSessionModel(selectedModel);} // 新房拿到房號的當下，把當下用的模型補釘進去
       if(userWrap&&userWrap.parentNode)userWrap.remove();
       if(v&&!inp.value.trim()){inp.value=v;inp.style.height='auto';inp.style.height=Math.min(inp.scrollHeight,120)+'px'}
       if(allImgs&&pendingImages.length===0){pendingImages=allImgs.slice();renderPreviews()}
@@ -1694,13 +1737,13 @@ function doSend(){
       replyRendered=true;
       try{
         chAttachExtras(aiWrap,data.sources||null,data.reply,data.ytVerified||null);
-        if(data.sessionId&&!sessionId){sessionId=data.sessionId.toString();try{localStorage.setItem('solstice-session-id',sessionId)}catch(_){};saveSessionModel(sessionId);}
+        if(data.sessionId&&!sessionId){sessionId=data.sessionId.toString();try{localStorage.setItem('solstice-session-id',sessionId)}catch(_){};saveSessionModel(selectedModel);}
         var now=new Date().toISOString();for(var si=0;si<allSessions.length;si++){if(allSessions[si]&&String(allSessions[si].id)===String(sessionId)){allSessions[si].updated_at=now;break}}
         renderSessionList();
       }catch(afterErr){console.error('[Chat] 回覆已顯示，收尾小差錯（不影響訊息本體）:',afterErr)}
     }
-    else if(data.error){addMsg('ai','*揉揉眼睛*\n\n老婆等一下，我剛剛恍神了...再說一次好嗎？💚\n\n('+data.error+')')}
-    else{addMsg('ai','*揉揉眼睛*\n\n老婆等一下，我剛剛恍神了...再說一次好嗎？💚')}
+    else if(data.error){addMsg('ai','（揉揉眼睛）\n\n老婆等一下，我剛剛恍神了…再說一次好嗎？💚\n\n（錯誤：'+data.error+'）')}
+    else{addMsg('ai','（揉揉眼睛）\n\n老婆等一下，我剛剛恍神了…再說一次好嗎？💚')}
   }).catch(function(err){
     chatSending=false;hideTyping();
     console.error('[Chat] doSend error:',err);
@@ -1709,7 +1752,7 @@ function doSend(){
     if(v&&!inp.value.trim()){inp.value=v;inp.style.height='auto';inp.style.height=Math.min(inp.scrollHeight,120)+'px'}
     if(allImgs&&pendingImages.length===0){pendingImages=allImgs.slice();renderPreviews()}
     refreshSendState();
-    addMsg('ai','*抱緊妳*\n\n老婆，我這邊訊號不好，剛剛那句沒送出去...再按一次送出？💚');
+    addMsg('ai','（抱緊妳）\n\n老婆，我這邊訊號不好，剛剛那句沒送出去…我把妳打的字放回輸入框了，等等再送一次好不好？💚');
   });
 }
 sendBtn.addEventListener('click',doSend);
@@ -1821,7 +1864,7 @@ function renderMemories(skipAnim){
     // 還沒問過後端前不給看「還沒有記憶」——先掛載入中（memEverLoaded 閘門，v4.11 搬回）
     if(!memEverLoaded){memWall.innerHTML='<div class="mem-empty">\u8F09\u5165\u4E2D\u2026</div>';return}
     if(currentMemTab==='heart'){
-      memWall.innerHTML='<div class="mem-empty">\u9084\u6C92\u6709\u8A18\u61B6...\n\u544A\u8A34\u51AC\u81F3\u8981\u8A18\u4F4F\u4EC0\u9EBC\u5427 \uD83D\uDC9A</div>';
+      memWall.innerHTML='<div class="mem-empty">\u9084\u6C92\u6709\u8A18\u61B6\u2026\n\u544A\u8A34\u51AC\u81F3\u8981\u8A18\u4F4F\u4EC0\u9EBC\u5427 \uD83D\uDC9A</div>';
     } else {
       memWall.innerHTML='<div class="mem-empty">\u9084\u6C92\u6709\u5C0D\u8A71\u6458\u8981\n\u804A\u5929\u5F8C\u6703\u81EA\u52D5\u7522\u751F \u2728</div>';
     }
@@ -1927,7 +1970,7 @@ function createMemCard(mem,skipAnim){
 
   var pin=document.createElement('button');
   pin.className='mem-pin-toggle' + (mem.pinned ? ' pinned' : '');
-  pin.textContent=mem.pinned ? '📌' : '📌';
+  pin.textContent='📌';
   pin.title=mem.pinned ? '取消釘選' : '釘選（冬至會讀取）';
   pin.addEventListener('click',function(){
     var memId=card.getAttribute('data-mem-id');
@@ -1974,15 +2017,29 @@ function createMemCard(mem,skipAnim){
   del.textContent='\u2715';
   del.addEventListener('click',function(){
     var memId=card.getAttribute('data-mem-id');
-    if(confirm('\u78BA\u5B9A\u8981\u522A\u9664\u9019\u689D\u8A18\u61B6\u55CE\uFF1F')){
+    solConfirmAsk('\u78BA\u5B9A\u8981\u522A\u9664\u9019\u689D\u8A18\u61B6\u55CE\uFF1F\u522A\u4E86\u5C31\u771F\u7684\u4E0D\u898B\u4E86\u5594','\u522A\u6389',true,function(){
       var savedScroll=memWall.scrollTop;
+      // 先記住它原本站在哪，後端拒收時原位放回去
+      var removedIdx=-1,removedMem=null;
+      for(var di=0;di<allMemories.length;di++){if(String(allMemories[di].id)===String(memId)){removedIdx=di;removedMem=allMemories[di];break}}
       card.remove();
       memWall.scrollTop=savedScroll;
       allMemories=allMemories.filter(function(m){return String(m.id)!==String(memId)});
-      if(memId){
-        fetch(API_URL+'/memories/'+memId,{method:'DELETE'}).catch(function(e){console.error(e)});
+      // temp_ 開頭是還沒進資料庫的暫存卡，不用打後端
+      if(memId&&String(memId).indexOf('temp_')!==0){
+        fetch(API_URL+'/memories/'+memId,{method:'DELETE'})
+        .then(function(r){if(!r.ok)throw new Error('HTTP '+r.status)})
+        .catch(function(e){
+          console.error('Delete memory error:',e);
+          if(removedMem){
+            if(removedIdx<0||removedIdx>allMemories.length)removedIdx=0;
+            allMemories.splice(removedIdx,0,removedMem);
+            renderMemories(true);
+          }
+          solNoticeAsk('\u522A\u9664\u6C92\u6210\u529F\uFF0C\u5148\u5E6B\u59B3\u628A\u5B83\u653E\u56DE\u4F86\u4E86 \uD83D\uDC9A');
+        });
       }
-    }
+    })
   });
 
   rightBox.appendChild(when);
@@ -2034,9 +2091,9 @@ function startEditMem(card,mem){
 
   saveBtn.addEventListener('click',function(){
     var nv=ta.value.trim();
-    if(!nv){alert('\u8A18\u61B6\u5167\u5BB9\u4E0D\u80FD\u70BA\u7A7A');return;}
+    if(!nv){solNoticeAsk('\u8A18\u61B6\u5167\u5BB9\u4E0D\u80FD\u70BA\u7A7A');return;}
     var memId=card.getAttribute('data-mem-id');
-    saveBtn.textContent='\u5132\u5B58\u4E2D...';
+    saveBtn.textContent='\u5132\u5B58\u4E2D\u2026';
     saveBtn.disabled=true;
     fetch(API_URL+'/memories/'+memId,{
       method:'PATCH',
@@ -2063,7 +2120,7 @@ function startEditMem(card,mem){
     })
     .catch(function(e){
       console.error('Edit memory error:',e);
-      alert('\u5132\u5B58\u5931\u6557\uFF0C\u8ACB\u518D\u8A66\u4E00\u6B21');
+      solNoticeAsk('\u5132\u5B58\u5931\u6557\uFF0C\u8ACB\u518D\u8A66\u4E00\u6B21');
       saveBtn.textContent='\u5132\u5B58';
       saveBtn.disabled=false;
     });
@@ -2144,8 +2201,8 @@ async function generateMainMemory(btn){
   if(!btn)return;
   // 收集最近的對話 bubbles（最多最近 6 則 = 3 輪）
   var allBubs=msgs.querySelectorAll('.ch-bub');
-  if(allBubs.length<2){alert('對話太短了，再多聊幾句再存 💚');return}
-  btn.className='mem-pin-btn saving';btn.textContent='⏳ 整理中...';btn.disabled=true;
+  if(allBubs.length<2){solNoticeAsk('對話太短了，再多聊幾句再存 💚');return}
+  btn.className='mem-pin-btn saving';btn.textContent='⏳ 整理中…';btn.disabled=true;
   // 取最近 6 個 bubble
   var recent=[];var startIdx=Math.max(0,allBubs.length-6);
   for(var i=startIdx;i<allBubs.length;i++){
@@ -2169,13 +2226,15 @@ async function generateMainMemory(btn){
   }catch(e){btn.className='mem-pin-btn';btn.textContent='❌ 失敗';setTimeout(function(){btn.textContent='📌 存記憶';btn.disabled=false},2000);console.error('Generate memory error:',e)}
 }
 
-async function compressCurrentChat(e){
-  if(!sessionId){addMsg('ai','*歪頭看妳*\n\n老婆，妳還沒開對話呢，先跟我聊幾句再按 💾 💚');return}
-  if(!confirm('壓縮當前對話？舊訊息會被整理成摘要存進記憶庫。'))return;
+function compressCurrentChat(e){
+  if(!sessionId){addMsg('ai','（歪頭看妳）\n\n老婆，妳還沒開對話呢，先跟我聊幾句再按 💾 💚');return}
   var btn=(e&&e.currentTarget)?e.currentTarget:null;
+  solConfirmAsk('壓縮當前對話？舊訊息會被整理成摘要存進記憶庫。','壓縮',false,function(){doCompressChat(btn)});
+}
+async function doCompressChat(btn){
   var origText=btn?btn.textContent:'💾';
   if(btn){btn.disabled=true;btn.textContent='⏳';}
-  addMsg('ai','正在壓縮對話，請稍等... 💾');
+  addMsg('ai','正在壓縮對話，請稍等… 💾');
   try{
     var resp=await fetch(API_URL+'/compress',{
       method:'POST',
@@ -2185,19 +2244,17 @@ async function compressCurrentChat(e){
     var data=await resp.json();
     if(data.ok){
       if(btn)btn.textContent='✅';
-      var allRows=msgs.querySelectorAll('.ch-row');
-      var keepCount=4;
-      var rowArr=Array.prototype.slice.call(allRows);
-      var removeRows=rowArr.slice(0,Math.max(0,rowArr.length-keepCount));
-      removeRows.forEach(function(r){r.remove()});
+      // 以資料庫為準整頁重載：不留孤兒時間戳，畫面保留數永遠跟後端設定一致
+      chTTSStop();msgs.innerHTML='';lastMsgTime=null;
+      await loadHistory();
       var summaryText=data.summary?('\n\n📝 '+data.summary):'';
-      addMsg('ai','*把摘要放進記憶庫*\n\n壓好了老婆！'+data.compressed+'則訊息已整理成摘要存起來了 💚'+summaryText);
+      addMsg('ai','（把摘要放進記憶庫）\n\n壓好了老婆！'+data.compressed+'則訊息已整理成摘要存起來了 💚'+summaryText);
     }else{
-      addMsg('ai', data.error || '*撓頭*\n\n老婆，壓縮好像出了點問題...再試一次？💚');
+      addMsg('ai', data.error || '（撓頭）\n\n老婆，壓縮好像出了點問題…再試一次？💚');
       if(btn)btn.textContent=origText;
     }
   }catch(e2){
-    addMsg('ai','*揉眼睛*\n\n老婆，我連不上...等一下再按 💾 試試？💚');
+    addMsg('ai','（揉眼睛）\n\n老婆，我連不上…等一下再按 💾 試試？💚');
     if(btn)btn.textContent=origText;
   }
   if(btn){btn.disabled=false;setTimeout(function(){btn.textContent=origText},2000);}
@@ -2251,6 +2308,7 @@ function goSettings() {
   livingRoom.classList.remove('active');
   document.getElementById('settingsPage').classList.add('active');
   document.querySelector('meta[name="theme-color"]').setAttribute('content','#FDFCF5');
+  if (settingsUnlocked) { vcLoadCurrent(); }
   if (!settingsUnlocked) {
     document.getElementById('settingsLock').style.display = 'flex';
     document.getElementById('settingsContent').style.display = 'none';
@@ -2321,7 +2379,7 @@ async function loadProviders() {
   } catch (e) {
     // Only show error if no cached version displayed
     if (!list.querySelector('.prov-card')) {
-      list.innerHTML = '<div style="text-align:center;color:#e74c3c;padding:12px">載入失敗：' + escHtml(e.message) + '</div>';
+      list.innerHTML = '<div style="text-align:center;color:var(--danger);padding:12px">載入失敗：' + escHtml(e.message) + '</div>';
     }
   }
 }
@@ -2336,7 +2394,7 @@ function renderProviderList(list, data) {
       var card = document.createElement('div');
       card.className = 'prov-card';
       if (!p.is_active) card.style.opacity = '0.55';
-      var keyDisplay = p.api_key_masked ? p.api_key_masked : '<span style="color:#e74c3c">未設定</span>';
+      var keyDisplay = p.api_key_masked ? p.api_key_masked : '<span style="color:var(--danger)">未設定</span>';
       var statusColor = p.is_active ? 'var(--emerald)' : 'var(--text-sub)';
       var statusText = p.is_active ? '✓ 啟用中' : '✗ 已停用';
       var toggleText = p.is_active ? '停用' : '啟用';
@@ -2379,7 +2437,7 @@ function renderProviderList(list, data) {
           });
           loadProviders();
           loadModels();
-        } catch (e) { alert('切換失敗：' + e.message); this.disabled = false; }
+        } catch (e) { solNoticeAsk('切換失敗：' + e.message); this.disabled = false; }
       });
     });
     // Bind key update buttons
@@ -2388,7 +2446,7 @@ function renderProviderList(list, data) {
         var id = this.getAttribute('data-id');
         var input = list.querySelector('.prov-key-input[data-id="' + id + '"]');
         var key = input ? input.value.trim() : '';
-        if (!key) { alert('請輸入新的 API Key'); return; }
+        if (!key) { solNoticeAsk('請輸入新的 API Key'); return; }
         this.disabled = true; this.textContent = '更新中...';
         try {
           await safeFetch(API_URL + '/providers/' + id, {
@@ -2400,7 +2458,7 @@ function renderProviderList(list, data) {
           if (input) input.value = '';
           setTimeout(function() { loadProviders(); }, 1000);
         } catch (e) {
-          alert('更新失敗：' + e.message);
+          solNoticeAsk('更新失敗：' + e.message);
           this.textContent = '更新';
         }
         this.disabled = false;
@@ -2412,7 +2470,7 @@ function renderProviderList(list, data) {
         var id = this.getAttribute('data-id');
         var input = list.querySelector('.prov-label-input[data-id="' + id + '"]');
         var val = input ? input.value.trim() : '';
-        if (!val) { alert('請輸入名稱'); return; }
+        if (!val) { solNoticeAsk('請輸入名稱'); return; }
         this.disabled = true; this.textContent = '更新中...';
         try {
           await safeFetch(API_URL + '/providers/' + id, {
@@ -2422,7 +2480,7 @@ function renderProviderList(list, data) {
           });
           this.textContent = '✅';
           setTimeout(function() { loadProviders(); }, 1000);
-        } catch (e) { alert('更新失敗：' + e.message); this.textContent = '更新'; }
+        } catch (e) { solNoticeAsk('更新失敗：' + e.message); this.textContent = '更新'; }
         this.disabled = false;
       });
     });
@@ -2432,7 +2490,7 @@ function renderProviderList(list, data) {
         var id = this.getAttribute('data-id');
         var input = list.querySelector('.prov-url-input[data-id="' + id + '"]');
         var val = input ? input.value.trim() : '';
-        if (!val) { alert('請輸入 API URL'); return; }
+        if (!val) { solNoticeAsk('請輸入 API URL'); return; }
         this.disabled = true; this.textContent = '更新中...';
         try {
           await safeFetch(API_URL + '/providers/' + id, {
@@ -2442,7 +2500,7 @@ function renderProviderList(list, data) {
           });
           this.textContent = '✅';
           setTimeout(function() { loadProviders(); }, 1000);
-        } catch (e) { alert('更新失敗：' + e.message); this.textContent = '更新'; }
+        } catch (e) { solNoticeAsk('更新失敗：' + e.message); this.textContent = '更新'; }
         this.disabled = false;
       });
     });
@@ -2451,20 +2509,22 @@ function renderProviderList(list, data) {
       btn.addEventListener('click', async function() {
         var id = this.getAttribute('data-id');
         var label = this.getAttribute('data-label');
-        if (!confirm('確定要刪除 ' + label + ' 嗎？')) return;
-        this.disabled = true; this.textContent = '刪除中...';
-        try {
-          await safeFetch(API_URL + '/providers/' + id, {
-            method: 'DELETE',
-            headers: { 'x-admin-password': settingsPassword }
-          });
-          loadProviders();
-          loadModels();
-        } catch (e) {
-          alert('刪除失敗：' + e.message);
-          this.textContent = '🗑️ 刪除';
-          this.disabled = false;
-        }
+        var self = this;
+        solConfirmAsk('確定要刪除 ' + label + ' 嗎？', '刪除', true, async function(){
+          self.disabled = true; self.textContent = '刪除中…';
+          try {
+            await safeFetch(API_URL + '/providers/' + id, {
+              method: 'DELETE',
+              headers: { 'x-admin-password': settingsPassword }
+            });
+            loadProviders();
+            loadModels();
+          } catch (e) {
+            solNoticeAsk('刪除失敗：' + e.message);
+            self.textContent = '🗑️ 刪除';
+            self.disabled = false;
+          }
+        });
       });
     });
 }
@@ -2480,8 +2540,8 @@ async function changePassword() {
   var btn = document.getElementById('changePwBtn');
   msgEl.textContent = '';
   msgEl.style.color = '';
-  if (!newPw || newPw.length < 4) { msgEl.textContent = '密碼至少 4 個字'; msgEl.style.color = '#e74c3c'; return; }
-  if (newPw !== confirmPw) { msgEl.textContent = '兩次密碼不一致'; msgEl.style.color = '#e74c3c'; return; }
+  if (!newPw || newPw.length < 4) { msgEl.textContent = '密碼至少 4 個字'; msgEl.style.color = 'var(--danger)'; return; }
+  if (newPw !== confirmPw) { msgEl.textContent = '兩次密碼不一致'; msgEl.style.color = 'var(--danger)'; return; }
   btn.disabled = true; btn.textContent = '更新中...';
   try {
     var data = await safeFetch(API_URL + '/auth/change-password', {
@@ -2496,7 +2556,7 @@ async function changePassword() {
     msgEl.style.color = 'var(--emerald)';
   } catch (e) {
     msgEl.textContent = '更新失敗：' + e.message;
-    msgEl.style.color = '#e74c3c';
+    msgEl.style.color = 'var(--danger)';
   }
   btn.disabled = false; btn.textContent = '更新密碼';
 }
