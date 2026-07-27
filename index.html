@@ -13,7 +13,7 @@
 <link rel="apple-touch-icon" href="/icon-192.png">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300&family=Noto+Serif+TC:wght@300;400;500&family=Noto+Sans+TC:wght@300;400;500&family=Great+Vibes&family=LXGW+WenKai+TC:wght@300;400;700&display=swap" rel="stylesheet">
 <link rel="preload" as="image" href="https://raw.githubusercontent.com/peishuanloveyourbulb-dotcom/solstice-frontend/main/images/bg-sunflower-new.jpg">
-<link rel="preload" as="image" href="https://raw.githubusercontent.com/peishuanloveyourbulb-dotcom/solstice-frontend/main/images/bg-welcome.jpg">
+<link rel="preload" as="image" href="https://raw.githubusercontent.com/peishuanloveyourbulb-dotcom/solstice-frontend/main/images/bg-welcome-2.jpg">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 /* C1 長按複製解封（照 v6.19 規則）：整體關 tap 藍光與反白，訊息內文/思考框/輸入框放行 */
@@ -134,7 +134,7 @@ body{padding-top:0}
 .sb-item.sb-pinned .sb-act-btn{color:var(--sr-honey-deep)}
 .sb-empty{text-align:center;color:var(--text-sub);font-size:13px;padding:30px 0;white-space:pre-line;line-height:1.8}
 .sb-empty::before{content:'\2740';display:block;font-size:22px;color:var(--sr-sage);margin-bottom:8px;animation:emptyPulse 2.5s ease-in-out infinite}
-.sb-loading,.prov-loading{text-align:center;color:var(--text-sub);font-size:13px;padding:30px 0}
+.sb-loading,.prov-loading{display:grid;justify-items:center;text-align:center;color:var(--text-sub);font-size:13px;padding:30px 0}
 .sb-loading::before,.prov-loading::before{content:'\2740';display:block;font-size:20px;color:var(--sr-sage);margin-bottom:6px;animation:sunflowerBreathe 2s ease-in-out infinite}
 .sb-item.sb-pinned::before{background:var(--sr-honey);opacity:.85}
 .sb-item.sb-pinned .sb-item-name{color:var(--sr-honey-deep)}
@@ -204,7 +204,7 @@ body{padding-top:0}
 .ch-time-sep::before,.ch-time-sep::after{content:'';flex:1;height:.5px;background:rgba(61,79,36,.14)}
 .ch-time-sep span{font-size:10px;color:var(--sr-leaf);font-family:'Cormorant Garamond','LXGW WenKai TC',serif;letter-spacing:.22em;white-space:nowrap;text-shadow:0 1px 6px rgba(253,252,245,.8)}
 .ch-time-sep.new-day span{color:var(--sr-honey-deep);font-weight:600}
-.ch-loading{text-align:center;color:var(--text-sub);font-size:13px;padding:20px}
+.ch-loading{display:grid;justify-items:center;text-align:center;color:var(--text-sub);font-size:13px;padding:20px}
 .ch-loading::before{content:'\2740';display:block;font-size:20px;color:var(--sr-sage);margin-bottom:6px;animation:sunflowerBreathe 2s ease-in-out infinite}
 @keyframes sunflowerBreathe{0%,100%{transform:scale(1);opacity:.7}50%{transform:scale(1.15);opacity:1}}
 @keyframes emptyPulse{0%,100%{opacity:.5;transform:scale(1)}50%{opacity:.8;transform:scale(1.05)}}
@@ -324,7 +324,7 @@ body{padding-top:0}
 .mem-hd-btn.busy{pointer-events:none;opacity:.55}
 .mem-hd-btn.busy svg{animation:pinPulse 1s infinite}
 .mem-hd-btn.paused{color:var(--sr-honey-deep)}
-#memoryPage.hb-mode .mem-inp{display:none}
+#memoryPage.no-inp .mem-inp{display:none}
 @keyframes memFadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1}}
 .mem-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
 .mem-type{font-size:9.5px;letter-spacing:.18em;padding:0;font-family:'Cormorant Garamond','LXGW WenKai TC',serif;text-transform:uppercase}
@@ -488,7 +488,7 @@ body{padding-top:0}
 .export-room-name{color:var(--text-main)}
 .export-btn{border:.5px solid var(--sr-line);background:transparent;color:var(--sr-leaf)}
 /* — 歡迎頁皮膚（SUNROOM · 封面） — */
-#welcome{background:#252B1D url('https://raw.githubusercontent.com/peishuanloveyourbulb-dotcom/solstice-frontend/main/images/bg-welcome.jpg') center 30%/cover no-repeat}
+#welcome{background:#252B1D url('https://raw.githubusercontent.com/peishuanloveyourbulb-dotcom/solstice-frontend/main/images/bg-welcome-2.jpg') center 30%/cover no-repeat}
 .w-scrim{background:linear-gradient(180deg,rgba(24,30,16,.30) 0%,rgba(24,30,16,.05) 18%,rgba(253,252,245,0) 42%,rgba(253,252,245,.90) 76%,#FDFCF5 96%)}
 .w-corner{font-family:'Cormorant Garamond',serif;color:#FDFCF5;text-shadow:0 1px 10px rgba(24,30,16,.45)}
 .w-div-line{background:var(--sr-line)}
@@ -774,6 +774,7 @@ function goMemory(){
   livingRoom.classList.remove('active');
   document.getElementById('memoryPage').classList.add('active');
   document.querySelector('meta[name="theme-color"]').setAttribute('content','#FDFCF5');
+  memoryPage.classList.toggle('no-inp',currentMemTab!=='heart');
   if(currentMemTab==='hb'){renderHeartbeats();loadHeartbeats(true);}
   loadMemories();
 }
@@ -1908,7 +1909,7 @@ memTabHeart.addEventListener('click',function(){
   memTabHeart.classList.add('active');
   memTabChat.classList.remove('active');memTabHb.classList.remove('active');
   if(memoryPage.classList.contains('hb-mode')){memWall.innerHTML='';memSig=''} // 心聲卡不准被記憶牆回收再利用（刪除彈窗串台事件血訓）
-  memoryPage.classList.remove('hb-mode');
+  memoryPage.classList.remove('hb-mode');memoryPage.classList.remove('no-inp');
   renderMemories(true);
 });
 memTabChat.addEventListener('click',function(){
@@ -1916,14 +1917,14 @@ memTabChat.addEventListener('click',function(){
   memTabChat.classList.add('active');
   memTabHeart.classList.remove('active');memTabHb.classList.remove('active');
   if(memoryPage.classList.contains('hb-mode')){memWall.innerHTML='';memSig=''} // 同上：換房先清場
-  memoryPage.classList.remove('hb-mode');
+  memoryPage.classList.remove('hb-mode');memoryPage.classList.add('no-inp');
   renderMemories(true);
 });
 memTabHb.addEventListener('click',function(){
   currentMemTab='hb';
   memTabHb.classList.add('active');
   memTabHeart.classList.remove('active');memTabChat.classList.remove('active');
-  memoryPage.classList.add('hb-mode');
+  memoryPage.classList.add('hb-mode');memoryPage.classList.add('no-inp');
   renderHeartbeats();
   loadHeartbeats(true);
 });
@@ -2219,7 +2220,7 @@ function createMemCard(mem,skipAnim){
   del.innerHTML=SR_X_SVG;
   del.addEventListener('click',function(){
     var memId=card.getAttribute('data-mem-id');
-    solConfirmAsk('\u78BA\u5B9A\u8981\u522A\u9664\u9019\u689D\u8A18\u61B6\u55CE\uFF1F\u522A\u4E86\u5C31\u771F\u7684\u4E0D\u898B\u4E86\u5594','\u522A\u6389',true,function(){
+    solConfirmAsk((mem.type==='compressed'?'\u78BA\u5B9A\u8981\u522A\u9664\u9019\u5247\u6458\u8981\u55CE\uFF1F\u522A\u4E86\u5C31\u771F\u7684\u4E0D\u898B\u4E86\u5594':'\u78BA\u5B9A\u8981\u522A\u9664\u9019\u689D\u8A18\u61B6\u55CE\uFF1F\u522A\u4E86\u5C31\u771F\u7684\u4E0D\u898B\u4E86\u5594'),'\u522A\u6389',true,function(){
       var savedScroll=memWall.scrollTop;
       // 先記住它原本站在哪，後端拒收時原位放回去
       var removedIdx=-1,removedMem=null;
