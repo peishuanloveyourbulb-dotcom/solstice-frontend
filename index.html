@@ -150,7 +150,7 @@ body{padding-top:0}
 .ch-head-ava{width:38px;height:38px;border-radius:50%;object-fit:cover;border:1.5px solid rgba(107,127,73,.35);flex-shrink:0}
 .ch-name{font-family:'Great Vibes',cursive;font-size:19px;line-height:1.35;color:var(--sr-fern);padding-left:4px;white-space:nowrap;display:block}
 .ch-id-sub{font-family:'LXGW WenKai TC','Noto Serif TC',serif;font-weight:300;font-size:10px;color:var(--sr-leaf);display:block;margin-top:-1px;white-space:nowrap}
-.ch-msgs{flex:1;overflow-y:auto;padding:16px max(env(safe-area-inset-right),14px) 20px max(env(safe-area-inset-left),14px);display:flex;flex-direction:column;gap:10px;-webkit-overflow-scrolling:touch;background:transparent}
+.ch-msgs{flex:1;overflow-y:auto;padding:16px max(env(safe-area-inset-right),14px) calc(max(env(safe-area-inset-bottom),16px) + 118px) max(env(safe-area-inset-left),14px);display:flex;flex-direction:column;gap:10px;-webkit-overflow-scrolling:touch;background:transparent}
 .ch-row{display:flex;width:100%;align-items:flex-end;gap:8px}
 .ch-side{display:flex;flex-direction:column;align-items:center;gap:3px;flex-shrink:0}
 .ch-col{display:flex;flex-direction:column;align-items:flex-start;max-width:80%;min-width:0}
@@ -294,7 +294,8 @@ body{padding-top:0}
 .typing-dots .thinking-text{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:12.5px;color:var(--sr-sage);margin-left:4px;letter-spacing:.04em}
 @keyframes flowerSpin{0%{transform:rotate(0deg) scale(.7);opacity:.35}50%{transform:rotate(180deg) scale(1.15);opacity:1}100%{transform:rotate(360deg) scale(.7);opacity:.35}}
 
-.ch-foot{position:relative;flex-shrink:0;display:flex;flex-direction:column}
+.ch-foot{position:absolute;left:0;right:0;bottom:0;z-index:6;display:flex;flex-direction:column;background:none;pointer-events:none}
+.ch-foot>*{pointer-events:auto}
 .scroll-bottom-btn{position:absolute;top:-44px;left:50%;transform:translateX(-50%);width:34px;height:34px;border-radius:50%;background:var(--sr-milk);border:.5px solid var(--sr-line);color:var(--sr-leaf);cursor:pointer;z-index:5;display:none;align-items:center;justify-content:center;box-shadow:var(--sr-shadow);transition:all .25s cubic-bezier(.25,.46,.45,.94);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
 .scroll-bottom-btn.show{display:flex;animation:scrollBtnFloat .4s cubic-bezier(.25,.46,.45,.94)}
 .scroll-bottom-btn:active{transform:translateX(-50%) scale(.88);background:rgba(232,184,75,.14)}
