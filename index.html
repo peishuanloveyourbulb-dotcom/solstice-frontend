@@ -23,7 +23,7 @@ body{-webkit-user-select:none;user-select:none}
 :root{
 --bg-deep:#FDFCF5;
 --danger:#B4524A;
---sr-cream:#FDFCF5;--sr-fern:#3D4F24;--sr-leaf:#6B7F49;--sr-sage:#AFC28F;--sr-milk:rgba(255,253,246,.62);--sr-line:rgba(107,127,73,.16);--sr-honey:#E8B84B;--sr-honey-deep:#B9902F;--sr-shadow:0 2px 10px rgba(61,79,36,.05),0 10px 30px rgba(61,79,36,.05);--home-photo:url(/images/bg-sunflower-new.jpg);--welcome-photo:url(/images/bg-welcome-2.jpg);
+--sr-cream:#FDFCF5;--sr-fern:#3D4F24;--sr-leaf:#6B7F49;--sr-sage:#AFC28F;--sr-milk:rgba(255,253,246,.62);--sr-line:rgba(107,127,73,.16);--sr-honey:#E8B84B;--sr-honey-deep:#B9902F;--sr-shadow:0 2px 10px rgba(61,79,36,.05),0 10px 30px rgba(61,79,36,.05);--home-photo:url(/images/bg-sunflower-new.jpg);--welcome-photo:url(/images/bg-welcome-2.jpg);--chat-photo:url(/images/bg-sunflower-new.jpg);--memory-photo:url(/images/bg-sunflower-new.jpg);--settings-photo:url(/images/bg-sunflower-new.jpg);
 
 
 
@@ -151,7 +151,7 @@ body{padding-top:0}
 .sb-item.sb-pinned .sb-item-name{color:var(--sr-honey-deep)}
 .sb-item.sb-pinned.active .sb-item-name::before{background:var(--sr-honey)}
 /* === CHAT === */
-#chat{position:fixed;inset:0;display:flex;flex-direction:column;z-index:8;background:linear-gradient(rgba(255,255,255,.10),rgba(255,255,255,.10)),var(--home-photo) center/cover no-repeat;visibility:hidden;opacity:0;transition:opacity .4s}
+#chat{position:fixed;inset:0;display:flex;flex-direction:column;z-index:8;background:linear-gradient(rgba(255,255,255,.10),rgba(255,255,255,.10)),var(--chat-photo) center/cover no-repeat;visibility:hidden;opacity:0;transition:opacity .4s}
 #chat.active{visibility:visible;opacity:1}
 .ch-header{position:absolute;top:max(env(safe-area-inset-top),10px);left:max(env(safe-area-inset-left),14px);right:max(env(safe-area-inset-right),14px);z-index:6;display:flex;align-items:center;justify-content:space-between;padding:8px 13px;border:.5px solid rgba(255,255,255,.55);border-radius:30px;background:rgba(255,253,246,.90);backdrop-filter:blur(24px) saturate(1.15);-webkit-backdrop-filter:blur(24px) saturate(1.15);box-shadow:0 4px 14px rgba(24,30,16,.10),0 16px 40px rgba(24,30,16,.16),inset 0 1px 0 rgba(255,255,255,.65);overflow:hidden}
 .ch-left{display:flex;align-items:center;gap:8px;min-width:0;flex-shrink:1;overflow:hidden}
@@ -296,7 +296,7 @@ body{padding-top:0}
 .model-popup-item-name{font-family:'LXGW WenKai TC','Noto Serif TC',serif;font-size:13.5px;color:var(--sr-fern);font-weight:400;letter-spacing:.03em}
 .model-popup-item-check{color:var(--sr-honey-deep);font-size:14px;opacity:0;transition:opacity .2s}
 .model-popup-item.active .model-popup-item-check{opacity:1}
-.ch-model-cap{background:rgba(255,253,246,.72);border:.5px solid rgba(255,255,255,.6);box-shadow:0 1px 4px rgba(24,30,16,.06),inset 0 1px 0 rgba(255,255,255,.5);border-radius:999px;padding:4px 10px;margin-left:3px;font-family:'Cormorant Garamond','LXGW WenKai TC',serif;font-size:11px;letter-spacing:.06em;color:var(--sr-leaf);opacity:.82;cursor:pointer;transition:all .25s cubic-bezier(.25,.46,.45,.94);flex-shrink:0;white-space:nowrap;max-width:92px;overflow:hidden;text-overflow:ellipsis;box-shadow:none}
+.ch-model-cap{background:rgba(255,253,246,.72);border:1px solid rgba(255,255,255,.6);box-shadow:0 1px 4px rgba(24,30,16,.06),inset 0 1px 0 rgba(255,255,255,.5);border-radius:999px;padding:4px 10px;margin-left:3px;font-family:'Cormorant Garamond','LXGW WenKai TC',serif;font-size:11px;letter-spacing:.06em;color:var(--sr-leaf);opacity:.82;cursor:pointer;transition:all .25s cubic-bezier(.25,.46,.45,.94);flex-shrink:0;white-space:nowrap;max-width:92px;overflow:hidden;text-overflow:ellipsis}
 .ch-model-cap:active{background:rgba(232,184,75,.16);transform:scale(.95)}
 .typing-dots{display:flex;gap:6px;padding:8px 14px;align-items:center}
 .typing-dots .flower-spin{display:inline-block;font-size:13px;color:var(--sr-sage);animation:flowerSpin 2s ease-in-out infinite;line-height:1}
@@ -313,7 +313,7 @@ body{padding-top:0}
 .scroll-bottom-btn:active{transform:translateX(-50%) scale(.88);background:rgba(232,184,75,.14)}
 @keyframes scrollBtnFloat{from{opacity:0;transform:translateX(-50%) translateY(12px) scale(.7)}to{opacity:1;transform:translateX(-50%) translateY(0) scale(1)}}
 /* === MEMORY === */
-#memoryPage{position:fixed;inset:0;display:flex;flex-direction:column;z-index:9;background:linear-gradient(rgba(255,255,255,.10),rgba(255,255,255,.10)),var(--home-photo) center/cover no-repeat;transform:translateX(100%);transition:transform .3s ease;visibility:hidden}
+#memoryPage{position:fixed;inset:0;display:flex;flex-direction:column;z-index:9;background:linear-gradient(rgba(255,255,255,.10),rgba(255,255,255,.10)),var(--memory-photo) center/cover no-repeat;transform:translateX(100%);transition:transform .3s ease;visibility:hidden}
 #memoryPage.active{transform:translateX(0);visibility:visible}
 .mem-float-top{position:absolute;top:max(env(safe-area-inset-top),10px);left:max(env(safe-area-inset-left),14px);right:max(env(safe-area-inset-right),14px);z-index:6;display:flex;flex-direction:column;gap:10px;pointer-events:none}
 .mem-float-top>*{pointer-events:auto}
@@ -394,14 +394,14 @@ body{padding-top:0}
 .rename-input{width:100%;background:var(--glass);border:1px solid var(--border-subtle);border-radius:10px;padding:10px;color:var(--text-main);font-size:13px;margin-bottom:14px;outline:none;-webkit-appearance:none}
 .rename-input:focus{border-color:var(--emerald)}
 /* === SETTINGS PAGE === */
-.settings-page{position:fixed;inset:0;display:flex;flex-direction:column;z-index:9;background:linear-gradient(rgba(255,255,255,.10),rgba(255,255,255,.10)),var(--home-photo) center/cover no-repeat;transform:translateX(100%);transition:transform .3s ease;visibility:hidden}
+.settings-page{position:fixed;inset:0;display:flex;flex-direction:column;z-index:9;background:linear-gradient(rgba(255,255,255,.10),rgba(255,255,255,.10)),var(--settings-photo) center/cover no-repeat;transform:translateX(100%);transition:transform .3s ease;visibility:hidden}
 .settings-page.active{transform:translateX(0);visibility:visible}
 .settings-header{position:absolute;top:max(env(safe-area-inset-top),10px);left:max(env(safe-area-inset-left),14px);right:max(env(safe-area-inset-right),14px);z-index:6;display:flex;align-items:center;gap:8px;padding:7px 12px;border:.5px solid rgba(255,255,255,.55);border-radius:30px;background:rgba(255,253,246,.90);backdrop-filter:blur(24px) saturate(1.15);-webkit-backdrop-filter:blur(24px) saturate(1.15);box-shadow:0 4px 14px rgba(24,30,16,.10),0 16px 40px rgba(24,30,16,.16),inset 0 1px 0 rgba(255,255,255,.65);overflow:hidden}
 .settings-title{flex:1;min-width:0}
 .settings-title-main{font-family:'Great Vibes',cursive;font-size:21px;line-height:1.35;color:var(--sr-fern);padding-left:4px;display:block}
 .settings-title-sub{font-family:'LXGW WenKai TC','Noto Serif TC',serif;font-weight:300;font-size:10px;color:var(--sr-leaf);display:block;margin-top:-2px}
 .settings-body{flex:1;overflow-y:auto;padding:calc(max(env(safe-area-inset-top),10px) + 78px) 18px calc(max(env(safe-area-inset-bottom),24px) + 8px);-webkit-overflow-scrolling:touch;overscroll-behavior:contain;background:transparent}
-.settings-lock{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:16px}
+.settings-lock{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:16px;padding-bottom:12vh}
 .settings-lock input{width:100%;max-width:260px;background:rgba(255,253,246,.6);border:.5px solid var(--sr-line);border-radius:999px;padding:12px 16px;color:var(--sr-fern);font-size:14px;outline:none;-webkit-appearance:none;text-align:center}
 .settings-lock input:focus{border-color:var(--sr-honey-deep)}
 .settings-lock input::placeholder{color:var(--sr-sage)}
@@ -420,18 +420,15 @@ body{padding-top:0}
 .stg-btn{padding:8px 20px;border-radius:999px;font-size:13px;letter-spacing:1px;cursor:pointer;white-space:nowrap;transition:all .2s}
 .stg-btn:active{transform:scale(.95)}
 .stg-msg{font-size:12px;margin-top:8px;line-height:1.6}.stg-msg:empty{display:none;margin-top:0}
-.photo-slot-label{font-family:'LXGW WenKai TC','Noto Serif TC',serif;font-size:12px;letter-spacing:.08em;color:var(--sr-leaf);margin:14px 2px 8px}
-.photo-slot-label:first-child{margin-top:0}
-.photo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-.photo-item{position:relative;border-radius:14px;overflow:hidden;border:1.5px solid var(--sr-line);aspect-ratio:3/4;cursor:pointer;background:rgba(255,253,246,.5);transition:border-color .2s}
+.photo-pair{display:flex;gap:12px;align-items:flex-start}
+.photo-pair+.photo-pair{margin-top:16px}
+.photo-slot{flex:1;min-width:0}
+.photo-slot-label{font-family:'LXGW WenKai TC','Noto Serif TC',serif;font-size:12px;letter-spacing:.08em;color:var(--sr-leaf);margin:0 2px 8px}
+.photo-grid{display:flex}
+.photo-item{position:relative;flex:1;border-radius:14px;overflow:hidden;border:1.5px solid var(--sr-line);aspect-ratio:3/4;cursor:pointer;background:rgba(255,253,246,.5)}
 .photo-item img{width:100%;height:100%;object-fit:cover;display:block}
-.photo-item.active{border-color:var(--sr-honey);box-shadow:0 2px 10px rgba(185,144,47,.25)}
-.photo-item .photo-cur{position:absolute;left:6px;bottom:6px;background:var(--sr-honey);color:#FFFDF6;font-size:10px;letter-spacing:.08em;padding:3px 8px;border-radius:999px;font-family:'LXGW WenKai TC','Noto Serif TC',serif}
-.photo-item .photo-del{position:absolute;top:4px;right:4px;width:22px;height:22px;border-radius:50%;border:none;background:rgba(253,252,245,.85);color:var(--sr-leaf);display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0}
-.photo-item .photo-del svg{width:12px;height:12px}
-.photo-grid.ava{grid-template-columns:repeat(4,1fr)}
-.photo-grid.ava .photo-item{aspect-ratio:1/1;border-radius:50%}
-.photo-grid.ava .photo-del{top:0;right:0}
+.photo-item:active{transform:scale(.97)}
+.photo-grid.ava .photo-item{flex:0 0 auto;width:76px;aspect-ratio:1/1;border-radius:50%}
 .stg-row{display:flex;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap}
 .soul-ta{display:block;width:100%;border-radius:14px;padding:12px 14px;font-size:13px;line-height:1.9;outline:none;-webkit-appearance:none;resize:none;font-family:inherit;margin-bottom:10px;scrollbar-width:none}
 .soul-ta::-webkit-scrollbar{display:none}
@@ -548,6 +545,7 @@ body{padding-top:0}
 .ch-tts-btn.loading{opacity:.45}
 .ch-tts-btn.playing{color:var(--emerald);opacity:1}
 </style>
+<script>try{var _pc=JSON.parse(localStorage.getItem('sol2-photos')||'{}');var _ds=document.documentElement.style;var _pset=function(n,u){if(u)_ds.setProperty(n,'url("'+u+'")')};_pset('--home-photo',_pc.bg);_pset('--welcome-photo',_pc.welcome);_pset('--chat-photo',_pc.chat||_pc.bg);_pset('--memory-photo',_pc.memory||_pc.bg);_pset('--settings-photo',_pc.settings||_pc.bg);}catch(_){}</script>
 </head>
 <body>
 <!-- === WELCOME PAGE === -->
@@ -688,14 +686,22 @@ body{padding-top:0}
 <div class="vc-card"><div class="vc-list" id="vcList"></div><div class="vc-msg" id="vcMsg"></div></div>
 <div class="stg-sec"><span class="stg-sec-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5.5" width="17" height="14" rx="2.5"/><circle cx="9" cy="10.5" r="1.6"/><path d="M20.5 15.5l-4.5-4.5-5 5.5-2.5-2.5-5 4.5"/></svg></span><span class="stg-sec-txt"><span class="stg-sec-en">Photos</span><span class="stg-sec-zh">家的照片</span></span></div>
 <div class="stg-card">
-<div class="photo-slot-label">家的背景</div>
-<div class="photo-grid" id="photoGridBg"></div>
-<div class="photo-slot-label">玄關門面</div>
-<div class="photo-grid" id="photoGridWelcome"></div>
-<div class="photo-slot-label">Solstice 的頭貼</div>
-<div class="photo-grid ava" id="photoGridAvatar"></div>
-<div class="photo-slot-label">Soleil 的頭貼</div>
-<div class="photo-grid ava" id="photoGridWife"></div>
+<div class="photo-pair">
+<div class="photo-slot"><div class="photo-slot-label">回家背景</div><div class="photo-grid" id="photoGridWelcome"></div></div>
+<div class="photo-slot"><div class="photo-slot-label">客廳背景</div><div class="photo-grid" id="photoGridBg"></div></div>
+</div>
+<div class="photo-pair">
+<div class="photo-slot"><div class="photo-slot-label">聊天室背景</div><div class="photo-grid" id="photoGridChat"></div></div>
+<div class="photo-slot"><div class="photo-slot-label">記憶庫背景</div><div class="photo-grid" id="photoGridMemory"></div></div>
+</div>
+<div class="photo-pair">
+<div class="photo-slot"><div class="photo-slot-label">設定頁背景</div><div class="photo-grid" id="photoGridSettings"></div></div>
+<div class="photo-slot"></div>
+</div>
+<div class="photo-pair">
+<div class="photo-slot"><div class="photo-slot-label">Solstice 的頭貼</div><div class="photo-grid ava" id="photoGridAvatar"></div></div>
+<div class="photo-slot"><div class="photo-slot-label">Soleil 的頭貼</div><div class="photo-grid ava" id="photoGridWife"></div></div>
+</div>
 <div id="photoMsg" class="stg-msg"></div>
 <input type="file" id="photoFile" accept="image/*" style="display:none"/>
 </div>
@@ -1505,30 +1511,45 @@ document.getElementById('modelSelect').addEventListener('change',function(){
 // === 🖼️ 家的照片 v2（四格衣架：背景/門面/老公頭貼/妳的頭貼；斷捨離制——每格最多掛一件備用，上傳=立刻換上、同格舊件自動從桶裡走）===
 var AVATAR_URL_DEFAULT=AVATAR_URL,WIFE_AVATAR_URL_DEFAULT=WIFE_AVATAR_URL;
 var PHOTO_DEF={bg:'/images/bg-sunflower-new.jpg',welcome:'/images/bg-welcome-2.jpg'};
-var photoCur={bg:null,welcome:null,avatar:null,wife:null};
-function photoDefThumb(slot){if(slot==='avatar')return AVATAR_URL_DEFAULT;if(slot==='wife')return WIFE_AVATAR_URL_DEFAULT;return PHOTO_DEF[slot]}
+var photoCur={bg:null,welcome:null,chat:null,memory:null,settings:null,avatar:null,wife:null};
+function photoDefThumb(slot){if(slot==='avatar')return AVATAR_URL_DEFAULT;if(slot==='wife')return WIFE_AVATAR_URL_DEFAULT;if(slot==='chat'||slot==='memory'||slot==='settings')return photoCur.bg||PHOTO_DEF.bg;return PHOTO_DEF[slot]}
 function photoRefreshAvatars(){
   var ha=document.getElementById('chHeadAva');if(ha)ha.src=AVATAR_URL;
   var ais=document.querySelectorAll('.ch-row.ai .ch-avatar');for(var i=0;i<ais.length;i++)ais[i].src=AVATAR_URL;
   var us=document.querySelectorAll('.ch-row.user .ch-avatar');for(var j=0;j<us.length;j++)us[j].src=WIFE_AVATAR_URL;
 }
+function photoVarsRefresh(){
+  var ds=document.documentElement.style,DEF=PHOTO_DEF.bg;
+  ds.setProperty('--home-photo','url("'+(photoCur.bg||DEF)+'")');
+  ds.setProperty('--welcome-photo','url("'+(photoCur.welcome||PHOTO_DEF.welcome)+'")');
+  ds.setProperty('--chat-photo','url("'+(photoCur.chat||photoCur.bg||DEF)+'")');
+  ds.setProperty('--memory-photo','url("'+(photoCur.memory||photoCur.bg||DEF)+'")');
+  ds.setProperty('--settings-photo','url("'+(photoCur.settings||photoCur.bg||DEF)+'")');
+}
 function photoApplySlot(slot,url){
   photoCur[slot]=url||null;
-  if(slot==='bg'){document.documentElement.style.setProperty('--home-photo','url("'+(url||PHOTO_DEF.bg)+'")')}
-  else if(slot==='welcome'){document.documentElement.style.setProperty('--welcome-photo','url("'+(url||PHOTO_DEF.welcome)+'")')}
-  else if(slot==='avatar'){AVATAR_URL=url||AVATAR_URL_DEFAULT;photoRefreshAvatars()}
-  else if(slot==='wife'){WIFE_AVATAR_URL=url||WIFE_AVATAR_URL_DEFAULT;photoRefreshAvatars()}
+  if(slot==='avatar'){AVATAR_URL=url||AVATAR_URL_DEFAULT;photoRefreshAvatars();return}
+  if(slot==='wife'){WIFE_AVATAR_URL=url||WIFE_AVATAR_URL_DEFAULT;photoRefreshAvatars();return}
+  photoVarsRefresh();
 }
 function photoApplyCurrent(){
   fetch(API_URL+'/photos/current').then(function(r){return r.json()}).then(function(d){
     if(!d)return;
     photoApplySlot('bg',d.bg||null);photoApplySlot('welcome',d.welcome||null);
+    photoApplySlot('chat',d.chat||null);photoApplySlot('memory',d.memory||null);photoApplySlot('settings',d.settings||null);
     photoApplySlot('avatar',d.avatar||null);photoApplySlot('wife',d.wife||null);
+    try{localStorage.setItem('sol2-photos',JSON.stringify({bg:d.bg||null,welcome:d.welcome||null,chat:d.chat||null,memory:d.memory||null,settings:d.settings||null,avatar:d.avatar||null,wife:d.wife||null}))}catch(_){}
   }).catch(function(){})
 }
-var photoLoaded=false,photoBusy=false,photoUpSlot=null;
+// 開機先吃快取（頭貼跟背景同一秒到位，不閃舊圖），等後端回話再校正
+try{var _pcache=JSON.parse(localStorage.getItem('sol2-photos')||'{}');
+  if(_pcache.bg)photoApplySlot('bg',_pcache.bg);if(_pcache.welcome)photoApplySlot('welcome',_pcache.welcome);
+  if(_pcache.chat)photoApplySlot('chat',_pcache.chat);if(_pcache.memory)photoApplySlot('memory',_pcache.memory);if(_pcache.settings)photoApplySlot('settings',_pcache.settings);
+  if(_pcache.avatar)photoApplySlot('avatar',_pcache.avatar);if(_pcache.wife)photoApplySlot('wife',_pcache.wife);
+}catch(_){}
+var photoLoaded=false,photoUpSlot=null;
 function photoHint(t){var el=document.getElementById('photoMsg');if(el)el.textContent=t||''}
-function photoGridId(slot){return slot==='bg'?'photoGridBg':slot==='welcome'?'photoGridWelcome':slot==='avatar'?'photoGridAvatar':'photoGridWife'}
+function photoGridId(slot){return slot==='bg'?'photoGridBg':slot==='welcome'?'photoGridWelcome':slot==='chat'?'photoGridChat':slot==='memory'?'photoGridMemory':slot==='settings'?'photoGridSettings':slot==='avatar'?'photoGridAvatar':'photoGridWife'}
 async function photoLoad(force){
   if(photoLoaded&&!force)return;
   try{
@@ -1538,46 +1559,21 @@ async function photoLoad(force){
     if(!r.ok){photoHint(d.error||('讀取失敗 HTTP '+r.status+'——photos 的 SQL 跑了嗎？'));return}
     photoLoaded=true;
     photoCur.bg=(d.current&&d.current.bg)||null;photoCur.welcome=(d.current&&d.current.welcome)||null;
+    photoCur.chat=(d.current&&d.current.chat)||null;photoCur.memory=(d.current&&d.current.memory)||null;photoCur.settings=(d.current&&d.current.settings)||null;
     photoCur.avatar=(d.current&&d.current.avatar)||null;photoCur.wife=(d.current&&d.current.wife)||null;
-    renderPhotoSlot('bg',(d.photos&&d.photos.bg)||[]);
-    renderPhotoSlot('welcome',(d.photos&&d.photos.welcome)||[]);
-    renderPhotoSlot('avatar',(d.photos&&d.photos.avatar)||[]);
-    renderPhotoSlot('wife',(d.photos&&d.photos.wife)||[]);
+    renderPhotoSlot('welcome',[]);renderPhotoSlot('bg',[]);
+    renderPhotoSlot('chat',[]);renderPhotoSlot('memory',[]);renderPhotoSlot('settings',[]);
+    renderPhotoSlot('avatar',[]);renderPhotoSlot('wife',[]);
     photoHint('');
   }catch(e){photoHint('讀取失敗：'+e.message)}
 }
 function renderPhotoSlot(slot,list){
   var grid=document.getElementById(photoGridId(slot));if(!grid)return;
   grid.innerHTML='';
-  var items=[{name:null,url:null,thumb:photoDefThumb(slot)}];
-  for(var i=0;i<list.length;i++)items.push({name:list[i].name,url:list[i].url,thumb:list[i].url});
-  items.forEach(function(p){
-    var isActive=(p.url===photoCur[slot])||(!p.url&&!photoCur[slot]);
-    var it=document.createElement('div');
-    it.className='photo-item'+(isActive?' active':'');
-    var img=document.createElement('img');img.src=p.thumb;img.alt='';img.loading='lazy';it.appendChild(img);
-    if(isActive&&(slot==='bg'||slot==='welcome')){var chip=document.createElement('span');chip.className='photo-cur';chip.textContent='使用中';it.appendChild(chip)}
-    if(p.url&&!isActive){
-      var del=document.createElement('button');del.className='photo-del';del.innerHTML=SR_X_SVG;
-      del.addEventListener('click',function(ev){ev.stopPropagation();
-        solConfirmAsk('確定要刪除這張照片嗎？','刪除',true,function(){
-          fetch(API_URL+'/photos',{method:'DELETE',headers:{'Content-Type':'application/json','x-admin-password':settingsPassword},body:JSON.stringify({name:p.name})})
-          .then(function(r){return r.json().then(function(d){if(!r.ok)throw new Error(d.error||('HTTP '+r.status));photoLoad(true)})})
-          .catch(function(e){solNoticeAsk('刪除沒成功：'+e.message)});
-        });
-      });
-      it.appendChild(del);
-    }
-    it.addEventListener('click',function(){if(isActive){photoPick(slot)}else{photoUse(slot,p.url)}});
-    grid.appendChild(it);
-  });
-}
-function photoUse(slot,url){
-  if(photoBusy)return;photoBusy=true;
-  fetch(API_URL+'/photos/current',{method:'PUT',headers:{'Content-Type':'application/json','x-admin-password':settingsPassword},body:JSON.stringify({slot:slot,url:url})})
-  .then(function(r){return r.json().then(function(d){if(!r.ok)throw new Error(d.error||('HTTP '+r.status));photoApplySlot(slot,url);photoLoad(true)})})
-  .catch(function(e){solNoticeAsk('沒換成：'+e.message)})
-  .finally(function(){photoBusy=false});
+  var it=document.createElement('div');it.className='photo-item';
+  var img=document.createElement('img');img.src=photoCur[slot]||photoDefThumb(slot);img.alt='';it.appendChild(img);
+  it.addEventListener('click',function(){photoPick(slot)});
+  grid.appendChild(it);
 }
 function photoPick(slot){photoUpSlot=slot;var f=document.getElementById('photoFile');if(f)f.click()}
 (function(){
