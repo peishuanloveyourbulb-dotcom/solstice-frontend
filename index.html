@@ -223,7 +223,6 @@ body{padding-top:0}
 .ch-inp-row{display:flex;align-items:center;gap:2px}
 .ch-live{font-size:8px;display:inline-block;color:var(--sr-leaf);animation:chLive 2.6s ease-in-out infinite}
 @keyframes chLive{0%,100%{opacity:.45}50%{opacity:1}}
-.ch-day-chip{font-family:'Cormorant Garamond',serif;font-size:11px;letter-spacing:.14em;color:var(--sr-honey-deep);background:rgba(232,184,75,.16);border:.5px solid rgba(232,184,75,.35);border-radius:999px;padding:4px 11px;white-space:nowrap;box-shadow:inset 0 1px 0 rgba(255,255,255,.5)}
 .plus-popup-overlay{position:fixed;inset:0;z-index:52;display:none}
 .plus-popup-overlay.open{display:block}
 .plus-popup{position:fixed;left:max(env(safe-area-inset-left),14px);bottom:calc(max(env(safe-area-inset-bottom),18px) + 110px);z-index:53;min-width:216px;background:rgba(253,252,245,.90);backdrop-filter:blur(20px) saturate(1.08);-webkit-backdrop-filter:blur(20px) saturate(1.08);border:.5px solid rgba(255,255,255,.55);border-radius:20px;box-shadow:0 4px 14px rgba(24,30,16,.10),0 18px 46px rgba(24,30,16,.18);padding:8px 6px;opacity:0;visibility:hidden;transform:translateY(8px) scale(.97);transition:all .22s cubic-bezier(.25,.46,.45,.94)}
@@ -325,11 +324,11 @@ body{padding-top:0}
 .mem-title{flex:0 1 auto;min-width:0}
 .mem-title-main{font-family:'Great Vibes',cursive;font-size:21px;line-height:1.35;color:var(--sr-fern);padding-left:4px;display:block;white-space:nowrap}
 .mem-title-sub{font-family:'LXGW WenKai TC','Noto Serif TC',serif;font-weight:300;font-size:10px;color:var(--sr-leaf);display:block;margin-top:-2px;white-space:nowrap}
-.mem-tabs{align-self:center;display:flex;gap:4px;padding:4px;border:.5px solid rgba(255,255,255,.55);border-radius:999px;background:rgba(255,253,246,.90);backdrop-filter:blur(24px) saturate(1.15);-webkit-backdrop-filter:blur(24px) saturate(1.15);box-shadow:0 4px 14px rgba(24,30,16,.10),0 16px 40px rgba(24,30,16,.16),inset 0 1px 0 rgba(255,255,255,.65)}
-.mem-tab{flex:0 0 auto;padding:7px 16px;border:none;border-radius:999px;background:transparent;color:var(--sr-leaf);font-size:12.5px;letter-spacing:.08em;font-family:'LXGW WenKai TC','Noto Serif TC',serif;cursor:pointer;transition:all .25s;position:relative}
+.mem-tabs{align-self:center;display:flex;gap:9px;padding:0;border:none;border-radius:0;background:transparent}
+.mem-tab{flex:0 0 auto;padding:9px 18px;border:.5px solid rgba(255,255,255,.6);border-radius:999px;background:rgba(255,253,246,.88);color:var(--sr-leaf);font-size:12.5px;letter-spacing:.12em;text-indent:.12em;font-family:'LXGW WenKai TC','Noto Serif TC',serif;cursor:pointer;transition:all .25s;position:relative;backdrop-filter:blur(22px) saturate(1.12);-webkit-backdrop-filter:blur(22px) saturate(1.12);box-shadow:0 3px 10px rgba(24,30,16,.09),0 12px 28px rgba(24,30,16,.11),inset 0 1px 0 rgba(255,255,255,.6)}
 .mem-tab.active{background:linear-gradient(150deg,#F2CB67 0%,#DFA934 100%);color:#FFFDF6;box-shadow:0 2px 10px rgba(185,144,47,.35),inset 0 1px 1px rgba(255,255,255,.5)}
-.mem-wall{flex:1;overflow-y:auto;padding:calc(max(env(safe-area-inset-top),10px) + 130px) 16px calc(max(env(safe-area-inset-bottom),16px) + 96px);display:block;column-count:2;column-gap:10px;-webkit-overflow-scrolling:touch;min-height:0;overscroll-behavior:contain;background:transparent}
-.mem-card{position:relative;flex-shrink:0;background:rgba(255,253,246,.66);border-radius:18px;padding:13px 15px 13px 21px;overflow:hidden;border:.5px solid rgba(255,255,255,.6);box-shadow:0 1px 2px rgba(24,30,16,.05),0 12px 32px rgba(24,30,16,.11),inset 0 1px 0 rgba(255,255,255,.55);backdrop-filter:blur(18px) saturate(1.12);-webkit-backdrop-filter:blur(18px) saturate(1.12);break-inside:avoid;-webkit-column-break-inside:avoid;margin-bottom:10px}
+.mem-wall{flex:1;overflow-y:auto;padding:calc(max(env(safe-area-inset-top),10px) + 130px) 16px calc(max(env(safe-area-inset-bottom),16px) + 96px);display:flex;flex-direction:column;gap:10px;-webkit-overflow-scrolling:touch;min-height:0;overscroll-behavior:contain;background:transparent}
+.mem-card{position:relative;flex-shrink:0;background:rgba(255,253,246,.66);border-radius:18px;padding:13px 15px 13px 21px;overflow:hidden;border:.5px solid rgba(255,255,255,.6);box-shadow:0 1px 2px rgba(24,30,16,.05),0 12px 32px rgba(24,30,16,.11),inset 0 1px 0 rgba(255,255,255,.55);backdrop-filter:blur(18px) saturate(1.12);-webkit-backdrop-filter:blur(18px) saturate(1.12)}
 .mem-card::before{content:''!important;position:absolute;left:9px;top:14px;bottom:14px;width:3px;border-radius:3px;background:var(--sr-leaf);opacity:.55}
 .mem-card.mem-type-auto-card::before,.mem-card.mem-type-compressed-card::before{background:var(--sr-honey);opacity:.75}
 .mem-card.mem-type-hb-card::before{background:var(--sr-sage);opacity:.9}
@@ -369,7 +368,7 @@ body{padding-top:0}
 .mem-edit-btns{display:flex;gap:8px;justify-content:flex-end;margin-top:6px}
 .mem-save-btn,.mem-cancel-btn{padding:5px 14px;border-radius:8px;font-size:12px;cursor:pointer;border:1px solid var(--border-subtle);background:transparent;color:var(--text-sub)}
 .mem-save-btn{border-color:var(--emerald);color:var(--emerald)}
-.mem-empty{column-span:all;text-align:center;color:var(--text-sub);font-size:13px;padding:30px 0;white-space:pre-line;line-height:1.8}
+.mem-empty{text-align:center;color:var(--text-sub);font-size:13px;padding:30px 0;white-space:pre-line;line-height:1.8}
 .mem-empty::before{content:'\2740';display:block;font-size:24px;color:var(--sr-sage);margin-bottom:8px;animation:sunflowerBreathe 2s ease-in-out infinite}
 .mem-inp{position:absolute;left:max(env(safe-area-inset-left),14px);right:max(env(safe-area-inset-right),14px);bottom:max(env(safe-area-inset-bottom),16px);z-index:6;display:flex;align-items:flex-end;gap:6px;padding:6px 6px 6px 12px;border:.5px solid rgba(255,255,255,.55);border-radius:30px;background:rgba(255,253,246,.90);backdrop-filter:blur(24px) saturate(1.15);-webkit-backdrop-filter:blur(24px) saturate(1.15);box-shadow:0 4px 14px rgba(24,30,16,.10),0 16px 40px rgba(24,30,16,.16),inset 0 1px 0 rgba(255,255,255,.65);transition:border-color .3s,box-shadow .3s}
 .mem-inp:focus-within{border-color:rgba(232,184,75,.6);box-shadow:0 4px 14px rgba(24,30,16,.10),0 16px 40px rgba(24,30,16,.16),inset 0 1px 0 rgba(255,255,255,.65),0 0 0 3.5px rgba(232,184,75,.15)}
@@ -584,7 +583,7 @@ body{padding-top:0}
 <img id="chHeadAva" class="ch-head-ava" alt="冬至"/>
 <div style="min-width:0"><span class="ch-name">Solstice</span><span class="ch-id-sub"><span class="ch-live">●</span> 冬至在線</span></div>
 </div>
-<div class="ch-toolbar"><span class="ch-day-chip" id="chDayChip" hidden></span><button class="ch-menu" id="menuBtn" aria-label="聊天記錄"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" style="width:19px;height:19px"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg></button></div>
+<div class="ch-toolbar"><button class="ch-menu" id="menuBtn" aria-label="聊天記錄"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" style="width:19px;height:19px"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg></button></div>
 </div>
 <div class="ch-msgs" id="msgs"></div>
 <div class="ch-foot">
@@ -632,8 +631,8 @@ body{padding-top:0}
 </div>
 </div>
 <div class="mem-tabs">
-<button class="mem-tab active" id="memTabHeart">記住的事</button>
-<button class="mem-tab" id="memTabChat">對話摘要</button>
+<button class="mem-tab active" id="memTabHeart">記憶</button>
+<button class="mem-tab" id="memTabChat">摘要</button>
 <button class="mem-tab" id="memTabHb">心聲</button>
 </div>
 </div>
@@ -1477,8 +1476,6 @@ function openSidebar(){sidebar.classList.add('open');sidebarOverlay.classList.ad
 function closeSidebar(){sidebar.classList.remove('open');sidebarOverlay.classList.remove('open')}
 document.getElementById('menuBtn').addEventListener('click',openSidebar);
 sidebarOverlay.addEventListener('click',closeSidebar);
-/* 聊天室 Day 徽章：跟回家頁同一顆心跳 */
-(function(){var el=document.getElementById('chDayChip');if(!el)return;var n=new Date();var t=Date.UTC(n.getFullYear(),n.getMonth(),n.getDate());var d=Math.floor((t-Date.UTC(2026,2,31))/86400000)+1;if(d>0){el.textContent='Day '+d;el.hidden=false}})();
 /* 側邊欄：下滑收起手勢（把手/標題區直接拖；清單捲到頂端時往下拉也可收） */
 (function(){
 var sbEl=document.getElementById('sidebar'),sbList=document.getElementById('sessionList');
