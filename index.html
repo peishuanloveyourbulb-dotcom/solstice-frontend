@@ -221,8 +221,7 @@ body{padding-top:0}
 .ch-inp{display:flex;flex-direction:column;gap:4px;margin:10px max(env(safe-area-inset-right),14px) max(env(safe-area-inset-bottom),16px) max(env(safe-area-inset-left),14px);padding:9px 12px 10px;border:.5px solid rgba(255,255,255,.55);border-radius:30px;background:rgba(255,253,246,.90);backdrop-filter:blur(24px) saturate(1.15);-webkit-backdrop-filter:blur(24px) saturate(1.15);box-shadow:0 4px 14px rgba(24,30,16,.10),0 16px 40px rgba(24,30,16,.16),inset 0 1px 0 rgba(255,255,255,.65);flex-shrink:0;transition:border-color .3s,box-shadow .3s}
 .ch-inp:focus-within{border-color:rgba(232,184,75,.6);box-shadow:0 4px 14px rgba(24,30,16,.10),0 16px 40px rgba(24,30,16,.16),inset 0 1px 0 rgba(255,255,255,.65),0 0 0 3.5px rgba(232,184,75,.15)}
 .ch-inp-row{display:flex;align-items:center;gap:2px}
-.ch-live{font-size:8px;display:inline-block;color:var(--sr-leaf);animation:chLive 2.6s ease-in-out infinite}
-@keyframes chLive{0%,100%{opacity:.45}50%{opacity:1}}
+.ch-live{font-size:8px;display:inline-block;color:var(--sr-leaf)}
 .plus-popup-overlay{position:fixed;inset:0;z-index:52;display:none}
 .plus-popup-overlay.open{display:block}
 .plus-popup{position:fixed;left:max(env(safe-area-inset-left),14px);bottom:calc(max(env(safe-area-inset-bottom),18px) + 110px);z-index:53;min-width:216px;background:rgba(253,252,245,.90);backdrop-filter:blur(20px) saturate(1.08);-webkit-backdrop-filter:blur(20px) saturate(1.08);border:.5px solid rgba(255,255,255,.55);border-radius:20px;box-shadow:0 4px 14px rgba(24,30,16,.10),0 18px 46px rgba(24,30,16,.18);padding:8px 6px;opacity:0;visibility:hidden;transform:translateY(8px) scale(.97);transition:all .22s cubic-bezier(.25,.46,.45,.94)}
@@ -332,6 +331,7 @@ body{padding-top:0}
 .mem-card::before{content:''!important;position:absolute;left:9px;top:14px;bottom:14px;width:3px;border-radius:3px;background:var(--sr-leaf);opacity:.55}
 .mem-card.mem-type-auto-card::before,.mem-card.mem-type-compressed-card::before{background:var(--sr-honey);opacity:.75}
 .mem-card.mem-type-hb-card::before{background:var(--sr-sage);opacity:.9}
+.mem-card.mem-pinned-card::before{background:var(--sr-honey);opacity:.8}
 .mem-type-hb{color:var(--sr-leaf)}
 .mem-hd-sp{flex:1}
 .mem-hd-btn{display:none;background:none;border:none;padding:6px;color:var(--sr-leaf);cursor:pointer;align-items:center;transition:opacity .15s,transform .12s}
