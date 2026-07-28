@@ -329,8 +329,6 @@ body{padding-top:0}
 .mem-wall{flex:1;overflow-y:auto;padding:calc(max(env(safe-area-inset-top),10px) + 130px) 16px calc(max(env(safe-area-inset-bottom),16px) + 96px);display:flex;flex-direction:column;gap:10px;-webkit-overflow-scrolling:touch;min-height:0;overscroll-behavior:contain;background:transparent}
 .mem-card{position:relative;flex-shrink:0;background:rgba(255,253,246,.66);border-radius:18px;padding:13px 15px 13px 21px;overflow:hidden;border:.5px solid rgba(255,255,255,.6);box-shadow:0 1px 2px rgba(24,30,16,.05),0 12px 32px rgba(24,30,16,.11),inset 0 1px 0 rgba(255,255,255,.55);backdrop-filter:blur(18px) saturate(1.12);-webkit-backdrop-filter:blur(18px) saturate(1.12)}
 .mem-card::before{content:''!important;position:absolute;left:9px;top:14px;bottom:14px;width:3px;border-radius:3px;background:var(--sr-leaf);opacity:.55}
-.mem-card.mem-type-auto-card::before,.mem-card.mem-type-compressed-card::before{background:var(--sr-honey);opacity:.75}
-.mem-card.mem-type-hb-card::before{background:var(--sr-sage);opacity:.9}
 .mem-card.mem-pinned-card::before{background:var(--sr-honey);opacity:.8}
 .mem-type-hb{color:var(--sr-leaf)}
 .mem-hd-sp{flex:1}
@@ -352,8 +350,8 @@ body{padding-top:0}
 .mem-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
 .mem-type{font-size:9.5px;letter-spacing:.18em;padding:0;font-family:'Cormorant Garamond','LXGW WenKai TC',serif;text-transform:uppercase}
 .mem-type-manual{color:var(--sr-leaf)}
-.mem-type-auto{color:var(--sr-honey-deep)}
-.mem-type-compressed{color:var(--sr-honey-deep)}
+.mem-type-auto{color:var(--sr-leaf)}
+.mem-type-compressed{color:var(--sr-leaf)}
 .mem-actions{display:flex;align-items:center;gap:6px}
 .mem-when{color:var(--sr-sage);font-size:10px;font-family:'Cormorant Garamond',serif;letter-spacing:.06em}
 .mem-edit,.mem-del{background:none;border:none;color:var(--sr-sage);cursor:pointer;padding:2px 4px;opacity:.8;display:inline-flex;align-items:center}
@@ -361,6 +359,9 @@ body{padding-top:0}
 .mem-pin-toggle.pinned{opacity:1;color:var(--sr-honey-deep);animation:pinBounce .3s ease-out}
 .mem-pin-toggle.pinned svg{fill:rgba(232,184,75,.30)}
 .mem-card.mem-pinned-card{border-color:rgba(255,255,255,.7);background:rgba(252,244,222,.74)}
+.mem-card.mem-pinned-card .mem-type{color:var(--sr-honey-deep)}
+.mem-card.mem-pinned-card .mem-when{color:var(--sr-honey-deep)}
+.mem-card.mem-pinned-card .mem-edit,.mem-card.mem-pinned-card .mem-del{color:var(--sr-honey-deep)}
 .mem-pin-toggle:active{transform:scale(1.3)}
 @keyframes pinBounce{0%{transform:scale(1.4)}100%{transform:scale(1)}}
 .mem-text{font-size:13px;line-height:1.75;color:var(--sr-fern);word-wrap:break-word;overflow-wrap:break-word;white-space:pre-wrap}
