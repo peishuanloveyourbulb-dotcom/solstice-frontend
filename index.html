@@ -327,9 +327,8 @@ body{padding-top:0}
 .mem-tab{flex:0 0 auto;padding:9px 18px;border:.5px solid rgba(255,255,255,.6);border-radius:999px;background:rgba(255,253,246,.88);color:var(--sr-leaf);font-size:12.5px;letter-spacing:.12em;text-indent:.12em;font-family:'LXGW WenKai TC','Noto Serif TC',serif;cursor:pointer;transition:all .25s;position:relative;backdrop-filter:blur(22px) saturate(1.12);-webkit-backdrop-filter:blur(22px) saturate(1.12);box-shadow:0 3px 10px rgba(24,30,16,.09),0 12px 28px rgba(24,30,16,.11),inset 0 1px 0 rgba(255,255,255,.6)}
 .mem-tab.active{background:linear-gradient(150deg,#F2CB67 0%,#DFA934 100%);color:#FFFDF6;box-shadow:0 2px 10px rgba(185,144,47,.35),inset 0 1px 1px rgba(255,255,255,.5)}
 .mem-wall{flex:1;overflow-y:auto;padding:calc(max(env(safe-area-inset-top),10px) + 130px) 16px calc(max(env(safe-area-inset-bottom),16px) + 96px);display:flex;flex-direction:column;gap:10px;-webkit-overflow-scrolling:touch;min-height:0;overscroll-behavior:contain;background:transparent}
-.mem-card{position:relative;flex-shrink:0;background:rgba(255,253,246,.66);border-radius:18px;padding:13px 15px 13px 21px;overflow:hidden;border:.5px solid rgba(255,255,255,.6);box-shadow:0 1px 2px rgba(24,30,16,.05),0 12px 32px rgba(24,30,16,.11),inset 0 1px 0 rgba(255,255,255,.55);backdrop-filter:blur(18px) saturate(1.12);-webkit-backdrop-filter:blur(18px) saturate(1.12)}
-.mem-card::before{content:''!important;position:absolute;left:9px;top:14px;bottom:14px;width:3px;border-radius:3px;background:var(--sr-leaf);opacity:.55}
-.mem-card.mem-pinned-card::before{background:var(--sr-honey);opacity:.8}
+.mem-card{position:relative;flex-shrink:0;display:flex;flex-direction:column;align-self:flex-start;max-width:88%;background:rgba(255,253,246,.88);border-radius:20px 20px 20px 6px;padding:11px 16px;border:.5px solid var(--sr-line);box-shadow:var(--sr-shadow)}
+.mem-card::before{content:none!important;display:none}
 .mem-type-hb{color:var(--sr-leaf)}
 .mem-hd-sp{flex:1}
 .mem-hd-btn{display:none;background:none;border:none;padding:6px;color:var(--sr-leaf);cursor:pointer;align-items:center;transition:opacity .15s,transform .12s}
@@ -347,7 +346,7 @@ body{padding-top:0}
 .hb-switch:active{transform:scale(.96)}
 #memoryPage.no-inp .mem-inp{display:none}
 @keyframes memFadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1}}
-.mem-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+.mem-top{display:flex;justify-content:space-between;align-items:center;gap:10px;order:2;margin-top:9px;padding-top:7px;border-top:.5px solid var(--sr-line)}
 .mem-type{font-size:9.5px;letter-spacing:.18em;padding:0;font-family:'Cormorant Garamond','LXGW WenKai TC',serif;text-transform:uppercase}
 .mem-type-manual{color:var(--sr-leaf)}
 .mem-type-auto{color:var(--sr-leaf)}
@@ -358,7 +357,8 @@ body{padding-top:0}
 .mem-pin-toggle{background:none;border:none;cursor:pointer;padding:2px 4px;color:var(--sr-sage);opacity:.7;transition:all .2s;display:inline-flex;align-items:center}
 .mem-pin-toggle.pinned{opacity:1;color:var(--sr-honey-deep);animation:pinBounce .3s ease-out}
 .mem-pin-toggle.pinned svg{fill:rgba(232,184,75,.30)}
-.mem-card.mem-pinned-card{border-color:rgba(255,255,255,.7);background:rgba(252,244,222,.74)}
+.mem-card.mem-pinned-card{border-color:rgba(185,144,47,.20);background:rgba(252,243,220,.86)}
+.mem-card.mem-pinned-card .mem-top{border-top-color:rgba(185,144,47,.20)}
 .mem-card.mem-pinned-card .mem-type{color:var(--sr-honey-deep)}
 .mem-card.mem-pinned-card .mem-when{color:var(--sr-honey-deep)}
 .mem-card.mem-pinned-card .mem-edit,.mem-card.mem-pinned-card .mem-del{color:var(--sr-honey-deep)}
@@ -429,7 +429,6 @@ body{padding-top:0}
 .photo-item .photo-cur{position:absolute;left:6px;bottom:6px;background:var(--sr-honey);color:#FFFDF6;font-size:10px;letter-spacing:.08em;padding:3px 8px;border-radius:999px;font-family:'LXGW WenKai TC','Noto Serif TC',serif}
 .photo-item .photo-del{position:absolute;top:4px;right:4px;width:22px;height:22px;border-radius:50%;border:none;background:rgba(253,252,245,.85);color:var(--sr-leaf);display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0}
 .photo-item .photo-del svg{width:12px;height:12px}
-.photo-item.photo-add{display:flex;align-items:center;justify-content:center;border-style:dashed;color:var(--sr-sage);font-size:24px;background:rgba(255,253,246,.35)}
 .photo-grid.ava{grid-template-columns:repeat(4,1fr)}
 .photo-grid.ava .photo-item{aspect-ratio:1/1;border-radius:50%}
 .photo-grid.ava .photo-del{top:0;right:0}
@@ -689,13 +688,13 @@ body{padding-top:0}
 <div class="vc-card"><div class="vc-list" id="vcList"></div><div class="vc-msg" id="vcMsg"></div></div>
 <div class="stg-sec"><span class="stg-sec-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5.5" width="17" height="14" rx="2.5"/><circle cx="9" cy="10.5" r="1.6"/><path d="M20.5 15.5l-4.5-4.5-5 5.5-2.5-2.5-5 4.5"/></svg></span><span class="stg-sec-txt"><span class="stg-sec-en">Photos</span><span class="stg-sec-zh">家的照片</span></span></div>
 <div class="stg-card">
-<div class="photo-slot-label">家的背景 · 四個房間共用</div>
+<div class="photo-slot-label">家的背景</div>
 <div class="photo-grid" id="photoGridBg"></div>
-<div class="photo-slot-label">玄關門面 · 第一頁</div>
+<div class="photo-slot-label">玄關門面</div>
 <div class="photo-grid" id="photoGridWelcome"></div>
-<div class="photo-slot-label">老公的頭貼</div>
+<div class="photo-slot-label">Solstice 的頭貼</div>
 <div class="photo-grid ava" id="photoGridAvatar"></div>
-<div class="photo-slot-label">妳的頭貼</div>
+<div class="photo-slot-label">Soleil 的頭貼</div>
 <div class="photo-grid ava" id="photoGridWife"></div>
 <div id="photoMsg" class="stg-msg"></div>
 <input type="file" id="photoFile" accept="image/*" style="display:none"/>
@@ -1569,12 +1568,9 @@ function renderPhotoSlot(slot,list){
       });
       it.appendChild(del);
     }
-    it.addEventListener('click',function(){if(isActive)return;photoUse(slot,p.url)});
+    it.addEventListener('click',function(){if(isActive){photoPick(slot)}else{photoUse(slot,p.url)}});
     grid.appendChild(it);
   });
-  var add=document.createElement('div');add.className='photo-item photo-add';add.textContent='＋';
-  add.addEventListener('click',function(){photoPick(slot)});
-  grid.appendChild(add);
 }
 function photoUse(slot,url){
   if(photoBusy)return;photoBusy=true;
