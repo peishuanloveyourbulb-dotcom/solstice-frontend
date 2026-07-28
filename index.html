@@ -158,8 +158,8 @@ body{padding-top:0}
 .ch-row.user{justify-content:flex-end}
 .ch-row.ai{justify-content:flex-start}
 .ch-bub{padding:11px 16px;max-width:100%;font-size:14px;line-height:1.85;font-family:'LXGW WenKai TC','Noto Serif TC',system-ui,serif;animation:fu .35s ease-out;white-space:pre-wrap;word-break:break-word;position:relative}
-.ch-bub.ai{background:var(--sr-milk);color:var(--sr-fern);border-radius:20px 20px 20px 6px;border:.5px solid var(--sr-line);box-shadow:var(--sr-shadow);backdrop-filter:blur(12px) saturate(1.08);-webkit-backdrop-filter:blur(12px) saturate(1.08)}
-.ch-bub.user{background:rgba(252,243,220,.68);color:var(--sr-fern);border-radius:20px 20px 6px 20px;border:.5px solid rgba(185,144,47,.20);box-shadow:var(--sr-shadow);backdrop-filter:blur(12px) saturate(1.08);-webkit-backdrop-filter:blur(12px) saturate(1.08)}
+.ch-bub.ai{background:rgba(255,253,246,.88);color:var(--sr-fern);border-radius:20px 20px 20px 6px;border:.5px solid var(--sr-line);box-shadow:var(--sr-shadow)}
+.ch-bub.user{background:rgba(252,243,220,.86);color:var(--sr-fern);border-radius:20px 20px 6px 20px;border:.5px solid rgba(185,144,47,.20);box-shadow:var(--sr-shadow)}
 .ch-bfoot{display:flex;flex-direction:row;align-items:center;gap:11px;margin-top:9px;padding-top:7px;border-top:.5px solid var(--sr-line)}
 .ch-bub.user .ch-bfoot{border-top-color:rgba(185,144,47,.20)}
 .ch-bfoot-time{font-family:'Cormorant Garamond',serif;font-size:10.5px;letter-spacing:.1em;color:var(--text-sub);line-height:1}
@@ -260,7 +260,7 @@ body{padding-top:0}
 .think-toggle-track.active{background:var(--sr-honey);border-color:var(--sr-honey)}
 .think-toggle-knob{width:18px;height:18px;border-radius:50%;background:rgba(255,255,255,.9);position:absolute;top:1.5px;left:2px;transition:all .3s cubic-bezier(.4,0,.2,1);box-shadow:0 1px 3px rgba(0,0,0,.1)}
 .think-toggle-track.active .think-toggle-knob{left:20px;background:#fff;box-shadow:0 1px 4px rgba(185,144,47,.3)}
-.thinking-block{margin-bottom:8px;border-radius:12px;overflow:hidden;background:rgba(255,253,246,.55);border:.5px solid var(--sr-line);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.thinking-block{margin-bottom:8px;border-radius:12px;overflow:hidden;background:rgba(255,253,246,.72);border:.5px solid var(--sr-line)}
 .thinking-toggle{display:flex;align-items:center;gap:6px;padding:8px 12px;cursor:pointer;font-size:12px;color:var(--sr-leaf);font-family:inherit;background:none;border:none;width:100%;white-space:nowrap;overflow:hidden}
 .thinking-toggle .arrow{transition:transform .2s;font-size:10px}
 .thinking-toggle .arrow.open{transform:rotate(90deg)}
@@ -303,17 +303,19 @@ body{padding-top:0}
 /* === MEMORY === */
 #memoryPage{position:fixed;inset:0;display:flex;flex-direction:column;z-index:9;background:linear-gradient(160deg,#FDFCF5,#F2F6EC);transform:translateX(100%);transition:transform .3s ease;visibility:hidden}
 #memoryPage.active{transform:translateX(0);visibility:visible}
-.mem-header{position:absolute;top:max(env(safe-area-inset-top),10px);left:max(env(safe-area-inset-left),14px);right:max(env(safe-area-inset-right),14px);z-index:6;display:flex;flex-direction:column;padding:7px 12px 0;border:.5px solid rgba(255,255,255,.55);border-radius:26px;background:rgba(255,253,246,.90);backdrop-filter:blur(24px) saturate(1.15);-webkit-backdrop-filter:blur(24px) saturate(1.15);box-shadow:0 4px 14px rgba(24,30,16,.10),0 16px 40px rgba(24,30,16,.16);overflow:hidden}
+.mem-float-top{position:absolute;top:max(env(safe-area-inset-top),10px);left:max(env(safe-area-inset-left),14px);right:max(env(safe-area-inset-right),14px);z-index:6;display:flex;flex-direction:column;gap:10px;pointer-events:none}
+.mem-float-top>*{pointer-events:auto}
+.mem-header{display:flex;flex-direction:column;padding:7px 12px;border:.5px solid rgba(255,255,255,.55);border-radius:26px;background:rgba(255,253,246,.90);backdrop-filter:blur(24px) saturate(1.15);-webkit-backdrop-filter:blur(24px) saturate(1.15);box-shadow:0 4px 14px rgba(24,30,16,.10),0 16px 40px rgba(24,30,16,.16);overflow:hidden}
 .mem-header-row{display:flex;align-items:center;gap:8px}
 .mem-back{background:none;border:none;color:var(--sr-leaf);font-size:14px;cursor:pointer;padding:6px}
 .mem-title{flex:0 1 auto;min-width:0}
 .mem-title-main{font-family:'Great Vibes',cursive;font-size:21px;line-height:1.35;color:var(--sr-fern);padding-left:4px;display:block;white-space:nowrap}
 .mem-title-sub{font-family:'LXGW WenKai TC','Noto Serif TC',serif;font-weight:300;font-size:10px;color:var(--sr-leaf);display:block;margin-top:-2px;white-space:nowrap}
-.mem-tabs{display:flex;gap:22px;padding:2px 8px 0;background:transparent}
-.mem-tab{flex:0 0 auto;padding:8px 2px 10px;border:none;border-bottom:2px solid transparent;background:transparent;color:var(--sr-sage);font-size:13px;letter-spacing:.08em;font-family:'LXGW WenKai TC','Noto Serif TC',serif;cursor:pointer;transition:all .25s;position:relative;margin-bottom:-1px}
-.mem-tab.active{color:var(--sr-fern);border-bottom-color:var(--sr-honey)}
-.mem-wall{flex:1;overflow-y:auto;padding:calc(max(env(safe-area-inset-top),10px) + 116px) 16px calc(max(env(safe-area-inset-bottom),16px) + 96px);display:flex;flex-direction:column;gap:10px;-webkit-overflow-scrolling:touch;min-height:0;overscroll-behavior:contain;background:linear-gradient(rgba(255,255,255,.10),rgba(255,255,255,.10)),url(/images/bg-sunflower-new.jpg) center/cover no-repeat scroll}
-.mem-card{position:relative;flex-shrink:0;background:var(--sr-milk);border-radius:16px;padding:12px 14px 12px 18px;overflow:hidden;border:.5px solid var(--sr-line);box-shadow:var(--sr-shadow);backdrop-filter:blur(12px) saturate(1.08);-webkit-backdrop-filter:blur(12px) saturate(1.08)}
+.mem-tabs{align-self:center;display:flex;gap:4px;padding:4px;border:.5px solid rgba(255,255,255,.55);border-radius:999px;background:rgba(255,253,246,.90);backdrop-filter:blur(24px) saturate(1.15);-webkit-backdrop-filter:blur(24px) saturate(1.15);box-shadow:0 4px 14px rgba(24,30,16,.10),0 16px 40px rgba(24,30,16,.16)}
+.mem-tab{flex:0 0 auto;padding:7px 16px;border:none;border-radius:999px;background:transparent;color:var(--sr-leaf);font-size:12.5px;letter-spacing:.08em;font-family:'LXGW WenKai TC','Noto Serif TC',serif;cursor:pointer;transition:all .25s;position:relative}
+.mem-tab.active{background:var(--sr-honey);color:#FFFDF6;box-shadow:0 2px 8px rgba(185,144,47,.30)}
+.mem-wall{flex:1;overflow-y:auto;padding:calc(max(env(safe-area-inset-top),10px) + 130px) 16px calc(max(env(safe-area-inset-bottom),16px) + 96px);display:flex;flex-direction:column;gap:10px;-webkit-overflow-scrolling:touch;min-height:0;overscroll-behavior:contain;background:linear-gradient(rgba(255,255,255,.10),rgba(255,255,255,.10)),url(/images/bg-sunflower-new.jpg) center/cover no-repeat scroll}
+.mem-card{position:relative;flex-shrink:0;background:rgba(255,253,246,.88);border-radius:16px;padding:12px 14px 12px 18px;overflow:hidden;border:.5px solid var(--sr-line);box-shadow:var(--sr-shadow)}
 .mem-card::before{content:''!important;position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--sr-leaf);opacity:.55}
 .mem-card.mem-type-auto-card::before,.mem-card.mem-type-compressed-card::before{background:var(--sr-honey);opacity:.75}
 .mem-card.mem-type-hb-card::before{background:var(--sr-sage);opacity:.9}
@@ -326,6 +328,11 @@ body{padding-top:0}
 .mem-hd-btn.busy{pointer-events:none;opacity:.55}
 .mem-hd-btn.busy svg{animation:pinPulse 1s infinite}
 .mem-hd-btn.paused{color:var(--sr-honey-deep)}
+.hb-switch{width:42px;height:24px;min-width:42px;padding:0;border-radius:999px;background:var(--sr-honey);border:.5px solid rgba(255,255,255,.55);position:relative;box-shadow:inset 0 1px 3px rgba(24,30,16,.12);transition:background .25s}
+.hb-switch::after{content:'';position:absolute;top:2px;left:calc(100% - 20px);width:18px;height:18px;border-radius:50%;background:#FFFDF6;box-shadow:0 1px 4px rgba(24,30,16,.25);transition:left .25s cubic-bezier(.25,.46,.45,.94)}
+.hb-switch.paused{background:rgba(175,194,143,.5)}
+.hb-switch.paused::after{left:2px}
+.hb-switch:active{transform:scale(.96)}
 #memoryPage.no-inp .mem-inp{display:none}
 @keyframes memFadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1}}
 .mem-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
@@ -392,7 +399,7 @@ body{padding-top:0}
 .stg-btn:active{transform:scale(.95)}
 .stg-msg{font-size:12px;margin-top:8px;line-height:1.6}.stg-msg:empty{display:none;margin-top:0}
 .stg-row{display:flex;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap}
-.soul-ta{display:block;width:100%;border-radius:14px;padding:12px 14px;font-size:13px;line-height:1.9;outline:none;-webkit-appearance:none;resize:vertical;font-family:inherit;margin-bottom:10px;scrollbar-width:none}
+.soul-ta{display:block;width:100%;border-radius:14px;padding:12px 14px;font-size:13px;line-height:1.9;outline:none;-webkit-appearance:none;resize:none;font-family:inherit;margin-bottom:10px;scrollbar-width:none}
 .soul-ta::-webkit-scrollbar{display:none}
 .soul-cnt{font-size:11px;margin-left:auto}
 
@@ -596,13 +603,15 @@ body{padding-top:0}
 
 <!-- === MEMORY PAGE === -->
 <div id="memoryPage">
+<div class="mem-float-top">
 <div class="mem-header">
 <div class="mem-header-row">
 <button class="mem-back" id="memBack">←</button>
 <div class="mem-title"><span class="mem-title-main">Love Archive</span><span class="mem-title-sub">我們的珍藏</span></div>
 <span class="mem-hd-sp"></span>
-<button class="mem-hd-btn" id="hbSleepBtn" title="讓心聲小睡（暫停自動生成）"></button>
+<button class="mem-hd-btn hb-switch" id="hbSleepBtn" title="讓心聲小睡（暫停自動生成）" aria-label="心聲自動生成開關"></button>
 <button class="mem-hd-btn" id="hbListenBtn" title="聽聽此刻的心聲"></button>
+</div>
 </div>
 <div class="mem-tabs">
 <button class="mem-tab active" id="memTabHeart">記住的事</button>
@@ -667,7 +676,7 @@ body{padding-top:0}
 <!-- === MODALS === -->
 <div class="modal-bg" id="delConfirm">
 <div class="modal-box">
-<p>確定要刪除這段對話嗎？<br>刪除後無法復原喔</p>
+<p>確定要刪除這段對話嗎？</p>
 <div class="modal-btns">
 <button class="modal-btn cancel" id="delCancel">取消</button>
 <button class="modal-btn danger" id="delOk">刪除</button>
@@ -1327,7 +1336,7 @@ function vcPreview(v,btn){
   var gk='';try{gk=sessionStorage.getItem('sol2-gate-hash')||''}catch(_g){}
   vcAudio.onended=function(){vcStopPreview();vcMsgSet('');};
   vcAudio.onerror=function(){vcStopPreview();vcMsgSet('這捲卡帶卡住了…再點一次（後端要先更新到有 voice 白名單的版本）');};
-  vcAudio.onplaying=function(){if(vcTapeBtn!==btn)return;if(vcSlow){clearTimeout(vcSlow);vcSlow=null;}btn.classList.remove('loading');btn.classList.add('playing');vcMsgSet('正在用 '+v+' 唸給妳聽…');};
+  vcAudio.onplaying=function(){if(vcTapeBtn!==btn)return;if(vcSlow){clearTimeout(vcSlow);vcSlow=null;}btn.classList.remove('loading');btn.classList.add('playing');vcMsgSet('');};
   vcAudio.src=API_URL+'/tts?text='+encodeURIComponent(VC_SAMPLE)+'&voice='+encodeURIComponent(v)+(gk?'&gate='+encodeURIComponent(gk):'');
   var p=vcAudio.play();if(p&&p.catch)p.catch(function(err){vcStopPreview();vcMsgSet('手機把聲音攔了一下（'+((err&&err.name)||'播放被擋')+'）…再點一次');});
 }
@@ -1929,14 +1938,13 @@ memTabHb.addEventListener('click',function(){
   loadHeartbeats(true);
 });
 var HB_HEART_SVG='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M12 20.5C6.2 16.6 3 12.9 3 9.4A4.6 4.6 0 0 1 12 6.6 4.6 4.6 0 0 1 21 9.4c0 3.5-3.2 7.2-9 11.1z"/></svg>';
-var HB_MOON_SVG='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5z"/></svg>';
 function hbPaused(){try{return localStorage.getItem('hbPausedV1')==='1'}catch(_){return false}}
 function hbTogglePause(){try{localStorage.setItem('hbPausedV1',hbPaused()?'0':'1')}catch(_){}hbPauseUI()}
 function hbPauseUI(){var b=document.getElementById('hbSleepBtn');if(!b)return;var p=hbPaused();b.classList.toggle('paused',p);b.title=p?'\u5FC3\u8072\u5C0F\u7761\u4E2D\uFF08\u9EDE\u4E00\u4E0B\u53EB\u9192\uFF09':'\u8B93\u5FC3\u8072\u5C0F\u7761\uFF08\u66AB\u505C\u81EA\u52D5\u751F\u6210\uFF09'}
 (function(){
   var lb=document.getElementById('hbListenBtn'),sb=document.getElementById('hbSleepBtn');
   if(lb){lb.innerHTML=HB_HEART_SVG;lb.onclick=function(){hbGenerate(lb)}}
-  if(sb){sb.innerHTML=HB_MOON_SVG;sb.onclick=hbTogglePause;hbPauseUI()}
+  if(sb){sb.onclick=hbTogglePause;hbPauseUI()}
 })();
 function loadHeartbeats(autoCheck){
   fetch(API_URL+'/heartbeat/list').then(function(r){return r.json()}).then(function(d){
@@ -1969,7 +1977,7 @@ function buildHbCard(hb){
   rightBox.appendChild(when);
   var del=document.createElement('button');del.className='mem-del';del.innerHTML=SR_X_SVG;
   del.addEventListener('click',function(){
-    solConfirmAsk('\u78BA\u5B9A\u8981\u522A\u6389\u9019\u5247\u5FC3\u8072\u55CE\uFF1F\u522A\u4E86\u5C31\u771F\u7684\u4E0D\u898B\u4E86\u5594','\u522A\u6389',true,function(){
+    solConfirmAsk('確定要刪掉這則心聲嗎？','刪掉',true,function(){
       card.remove();
       allHeartbeats=allHeartbeats.filter(function(h){return String(h.id)!==String(hb.id)});
       fetch(API_URL+'/heartbeat/'+hb.id,{method:'DELETE'}).then(function(r){if(!r.ok)throw new Error('HTTP '+r.status)})
@@ -2220,7 +2228,7 @@ function createMemCard(mem,skipAnim){
   del.innerHTML=SR_X_SVG;
   del.addEventListener('click',function(){
     var memId=card.getAttribute('data-mem-id');
-    solConfirmAsk((mem.type==='compressed'?'\u78BA\u5B9A\u8981\u522A\u9664\u9019\u5247\u6458\u8981\u55CE\uFF1F\u522A\u4E86\u5C31\u771F\u7684\u4E0D\u898B\u4E86\u5594':'\u78BA\u5B9A\u8981\u522A\u9664\u9019\u689D\u8A18\u61B6\u55CE\uFF1F\u522A\u4E86\u5C31\u771F\u7684\u4E0D\u898B\u4E86\u5594'),'\u522A\u6389',true,function(){
+    solConfirmAsk((mem.type==='compressed'?'確定要刪除這則摘要嗎？':'確定要刪除這條記憶嗎？'),'刪掉',true,function(){
       var savedScroll=memWall.scrollTop;
       // 先記住它原本站在哪，後端拒收時原位放回去
       var removedIdx=-1,removedMem=null;
