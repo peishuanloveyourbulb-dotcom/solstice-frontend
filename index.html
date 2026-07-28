@@ -386,6 +386,13 @@ body{padding-top:0}
 .modal-bg.open{display:flex}
 .modal-box{background:rgba(253,252,245,.92);border:.5px solid var(--sr-line);border-radius:22px;backdrop-filter:blur(20px) saturate(1.08);-webkit-backdrop-filter:blur(20px) saturate(1.08);padding:24px;max-width:300px;width:85%;text-align:center;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:var(--shadow-modal);animation:modalPop .25s cubic-bezier(.34,1.56,.64,1) both}
 @keyframes modalPop{from{opacity:0;transform:scale(.92)}to{opacity:1;transform:scale(1)}}
+.crop-box{background:rgba(253,252,245,.96);border:.5px solid var(--sr-line);border-radius:22px;padding:16px;width:92%;max-width:360px;box-shadow:var(--shadow-modal);animation:modalPop .25s cubic-bezier(.34,1.56,.64,1) both;display:flex;flex-direction:column;align-items:center}
+.crop-stage{position:relative;overflow:hidden;border-radius:16px;background:#E9E6DC;touch-action:none;border:.5px solid var(--sr-line)}
+.crop-stage.circle{border-radius:50%}
+.crop-stage img{position:absolute;left:0;top:0;transform-origin:0 0;will-change:transform;pointer-events:none;max-width:none;display:block}
+.crop-zoom-row{display:flex;align-items:center;gap:10px;margin:14px 4px 10px;width:100%;padding:0 6px}
+.crop-zoom-ic{color:var(--sr-sage);font-size:14px;line-height:1}
+.crop-zoom-row input[type=range]{flex:1;accent-color:var(--sr-honey)}
 .modal-box p{color:var(--sr-fern);font-size:14px;margin-bottom:16px;line-height:1.6}
 .modal-btns{display:flex;gap:10px;justify-content:center}
 .modal-btn{padding:8px 20px;border-radius:999px;font-size:13px;letter-spacing:1px;cursor:pointer;border:.5px solid var(--sr-line);background:transparent;color:var(--sr-leaf)}
@@ -545,7 +552,7 @@ body{padding-top:0}
 .ch-tts-btn.loading{opacity:.45}
 .ch-tts-btn.playing{color:var(--emerald);opacity:1}
 </style>
-<script>try{var _pc=JSON.parse(localStorage.getItem('sol2-photos')||'{}');var _ds=document.documentElement.style;var _pset=function(n,u){if(u)_ds.setProperty(n,'url("'+u+'")')};_pset('--home-photo',_pc.bg);_pset('--welcome-photo',_pc.welcome);_pset('--chat-photo',_pc.chat||_pc.bg);_pset('--memory-photo',_pc.memory||_pc.bg);_pset('--settings-photo',_pc.settings||_pc.bg);}catch(_){}</script>
+<script>try{var _pc=JSON.parse(localStorage.getItem('sol2-photos')||'{}');var _ds=document.documentElement.style;var _pset=function(n,u){if(u)_ds.setProperty(n,'url("'+u+'")')};_pset('--home-photo',_pc.bg);_pset('--welcome-photo',_pc.welcome);_pset('--chat-photo',_pc.chat||_pc.bg);_pset('--memory-photo',_pc.memory||_pc.bg);_pset('--settings-photo',_pc.settings||_pc.bg);var _seen={},_us=[_pc.welcome,_pc.bg,_pc.chat||_pc.bg,_pc.memory||_pc.bg,_pc.settings||_pc.bg,_pc.avatar,_pc.wife];for(var _i=0;_i<_us.length;_i++){var _u=_us[_i];if(_u&&!_seen[_u]){_seen[_u]=1;var _l=document.createElement('link');_l.rel='preload';_l.as='image';_l.href=_u;document.head.appendChild(_l)}}}catch(_){}</script>
 </head>
 <body>
 <!-- === WELCOME PAGE === -->
@@ -734,6 +741,16 @@ body{padding-top:0}
 <div class="modal-btns">
 <button class="modal-btn cancel" id="delCancel">取消</button>
 <button class="modal-btn danger" id="delOk">刪除</button>
+</div>
+</div>
+</div>
+<div class="modal-bg" id="cropModal">
+<div class="crop-box">
+<div class="crop-stage" id="cropStage"><img id="cropImg" alt=""/></div>
+<div class="crop-zoom-row"><span class="crop-zoom-ic">－</span><input type="range" id="cropZoom" min="100" max="300" value="100"/><span class="crop-zoom-ic">＋</span></div>
+<div class="modal-btns">
+<button class="modal-btn cancel" id="cropCancel">取消</button>
+<button class="modal-btn ok" id="cropOk">就這樣</button>
 </div>
 </div>
 </div>
@@ -1535,17 +1552,21 @@ function photoApplySlot(slot,url){
 function photoApplyCurrent(){
   fetch(API_URL+'/photos/current').then(function(r){return r.json()}).then(function(d){
     if(!d)return;
-    photoApplySlot('bg',d.bg||null);photoApplySlot('welcome',d.welcome||null);
-    photoApplySlot('chat',d.chat||null);photoApplySlot('memory',d.memory||null);photoApplySlot('settings',d.settings||null);
-    photoApplySlot('avatar',d.avatar||null);photoApplySlot('wife',d.wife||null);
+    photoCur.bg=d.bg||null;photoCur.welcome=d.welcome||null;
+    photoCur.chat=d.chat||null;photoCur.memory=d.memory||null;photoCur.settings=d.settings||null;
+    photoCur.avatar=d.avatar||null;photoCur.wife=d.wife||null;
+    AVATAR_URL=photoCur.avatar||AVATAR_URL_DEFAULT;WIFE_AVATAR_URL=photoCur.wife||WIFE_AVATAR_URL_DEFAULT;
+    photoVarsRefresh();photoRefreshAvatars();
     try{localStorage.setItem('sol2-photos',JSON.stringify({bg:d.bg||null,welcome:d.welcome||null,chat:d.chat||null,memory:d.memory||null,settings:d.settings||null,avatar:d.avatar||null,wife:d.wife||null}))}catch(_){}
   }).catch(function(){})
 }
-// 開機先吃快取（頭貼跟背景同一秒到位，不閃舊圖），等後端回話再校正
+// 開機先吃快取（頭貼跟背景同一秒原子式到位，不閃舊圖），等後端回話再校正
 try{var _pcache=JSON.parse(localStorage.getItem('sol2-photos')||'{}');
-  if(_pcache.bg)photoApplySlot('bg',_pcache.bg);if(_pcache.welcome)photoApplySlot('welcome',_pcache.welcome);
-  if(_pcache.chat)photoApplySlot('chat',_pcache.chat);if(_pcache.memory)photoApplySlot('memory',_pcache.memory);if(_pcache.settings)photoApplySlot('settings',_pcache.settings);
-  if(_pcache.avatar)photoApplySlot('avatar',_pcache.avatar);if(_pcache.wife)photoApplySlot('wife',_pcache.wife);
+  photoCur.bg=_pcache.bg||null;photoCur.welcome=_pcache.welcome||null;
+  photoCur.chat=_pcache.chat||null;photoCur.memory=_pcache.memory||null;photoCur.settings=_pcache.settings||null;
+  photoCur.avatar=_pcache.avatar||null;photoCur.wife=_pcache.wife||null;
+  if(photoCur.avatar)AVATAR_URL=photoCur.avatar;if(photoCur.wife)WIFE_AVATAR_URL=photoCur.wife;
+  photoVarsRefresh();
 }catch(_){}
 var photoLoaded=false,photoUpSlot=null;
 function photoHint(t){var el=document.getElementById('photoMsg');if(el)el.textContent=t||''}
@@ -1582,23 +1603,68 @@ function photoPick(slot){photoUpSlot=slot;var f=document.getElementById('photoFi
     var file=f.files&&f.files[0];f.value='';if(!file)return;
     var slot=photoUpSlot||'bg';
     if(file.type.indexOf('image/')!==0){photoHint('要選照片檔喔');return}
-    photoHint('上傳中…');
     var obj=URL.createObjectURL(file);var img=new Image();
-    img.onload=function(){
-      try{
-        var isAva=(slot==='avatar'||slot==='wife');
-        var w=img.naturalWidth,h=img.naturalHeight,cv=document.createElement('canvas'),ctx;
-        if(isAva){var sq=Math.min(w,h),T=512;cv.width=T;cv.height=T;ctx=cv.getContext('2d');ctx.drawImage(img,(w-sq)/2,(h-sq)/2,sq,sq,0,0,T,T)}
-        else{var MAX=1600,sc=Math.min(1,MAX/Math.max(w,h));cv.width=Math.round(w*sc);cv.height=Math.round(h*sc);ctx=cv.getContext('2d');ctx.drawImage(img,0,0,cv.width,cv.height)}
-        URL.revokeObjectURL(obj);
-        var dataUrl=cv.toDataURL('image/jpeg',.86);
-        fetch(API_URL+'/photos/upload',{method:'POST',headers:{'Content-Type':'application/json','x-admin-password':settingsPassword},body:JSON.stringify({data:dataUrl,slot:slot})})
-        .then(function(r){return r.json().then(function(d){if(!r.ok)throw new Error(d.error||('HTTP '+r.status));photoApplySlot(slot,d.url||null);photoHint('');photoLoad(true)})})
-        .catch(function(e){photoHint('上傳沒成功：'+e.message)});
-      }catch(err){photoHint('處理照片失敗：'+err.message)}
-    };
+    img.onload=function(){cropOpen(slot,img,obj)};
     img.onerror=function(){URL.revokeObjectURL(obj);photoHint('這張照片讀不起來')};
     img.src=obj;
+  });
+})();
+function photoUploadData(slot,dataUrl){
+  photoHint('上傳中…');
+  fetch(API_URL+'/photos/upload',{method:'POST',headers:{'Content-Type':'application/json','x-admin-password':settingsPassword},body:JSON.stringify({data:dataUrl,slot:slot})})
+  .then(function(r){return r.json().then(function(d){if(!r.ok)throw new Error(d.error||('HTTP '+r.status));photoApplySlot(slot,d.url||null);photoHint('');photoLoad(true)})})
+  .catch(function(e){photoHint('上傳沒成功：'+e.message)});
+}
+
+// === ✂️ 裁切室：拖曳調位置、滑桿調大小，框就是那個位置的實際比例 ===
+var cropState=null,cropObjUrl=null;
+function cropOpen(slot,imgEl,objUrl){
+  cropObjUrl=objUrl||null;
+  var isAva=(slot==='avatar'||slot==='wife');
+  var aspect=isAva?1:(window.innerWidth/Math.max(1,window.innerHeight));
+  if(!isFinite(aspect)||aspect<=0)aspect=9/19.5;
+  var maxW=Math.min(300,window.innerWidth*.78),maxH=window.innerHeight*.5;
+  var fw=maxW,fh=fw/aspect;if(fh>maxH){fh=maxH;fw=fh*aspect}
+  var st=cropState={slot:slot,img:imgEl,natW:imgEl.naturalWidth,natH:imgEl.naturalHeight,frameW:fw,frameH:fh,zoom:1,tx:0,ty:0};
+  st.outH=isAva?512:1600;st.outW=isAva?512:Math.round(1600*aspect);
+  st.fit=Math.max(fw/st.natW,fh/st.natH);
+  st.tx=(fw-st.natW*st.fit)/2;st.ty=(fh-st.natH*st.fit)/2;
+  var stage=document.getElementById('cropStage');
+  stage.style.width=fw+'px';stage.style.height=fh+'px';stage.classList.toggle('circle',isAva);
+  var ci=document.getElementById('cropImg');ci.src=imgEl.src;ci.style.width=st.natW+'px';ci.style.height=st.natH+'px';
+  document.getElementById('cropZoom').value=100;
+  cropRender();
+  document.getElementById('cropModal').classList.add('open');
+}
+function cropScale(){return cropState.fit*cropState.zoom}
+function cropClamp(){var s=cropScale(),st=cropState;var minX=st.frameW-st.natW*s,minY=st.frameH-st.natH*s;
+  if(st.tx>0)st.tx=0;if(st.ty>0)st.ty=0;if(st.tx<minX)st.tx=minX;if(st.ty<minY)st.ty=minY}
+function cropRender(){cropClamp();var st=cropState;document.getElementById('cropImg').style.transform='translate('+st.tx+'px,'+st.ty+'px) scale('+cropScale()+')'}
+function cropClose(){document.getElementById('cropModal').classList.remove('open');if(cropObjUrl){try{URL.revokeObjectURL(cropObjUrl)}catch(_){}cropObjUrl=null}cropState=null}
+(function(){
+  var stage=document.getElementById('cropStage'),zoom=document.getElementById('cropZoom');
+  var bg=document.getElementById('cropModal');if(!stage||!zoom||!bg)return;
+  var dragging=false,lx=0,ly=0;
+  stage.addEventListener('pointerdown',function(e){if(!cropState)return;dragging=true;lx=e.clientX;ly=e.clientY;try{stage.setPointerCapture(e.pointerId)}catch(_){}});
+  stage.addEventListener('pointermove',function(e){if(!dragging||!cropState)return;cropState.tx+=e.clientX-lx;cropState.ty+=e.clientY-ly;lx=e.clientX;ly=e.clientY;cropRender()});
+  stage.addEventListener('pointerup',function(){dragging=false});
+  stage.addEventListener('pointercancel',function(){dragging=false});
+  zoom.addEventListener('input',function(){
+    if(!cropState)return;var s0=cropScale();cropState.zoom=Math.max(1,parseInt(zoom.value,10)/100);var s1=cropScale();
+    var cx=cropState.frameW/2,cy=cropState.frameH/2;
+    cropState.tx=cx-(cx-cropState.tx)*(s1/s0);cropState.ty=cy-(cy-cropState.ty)*(s1/s0);
+    cropRender();
+  });
+  document.getElementById('cropCancel').addEventListener('click',cropClose);
+  bg.addEventListener('click',function(e){if(e.target===bg)cropClose()});
+  document.getElementById('cropOk').addEventListener('click',function(){
+    if(!cropState)return;var st=cropState,s=cropScale();
+    var sx=(-st.tx)/s,sy=(-st.ty)/s,sw=st.frameW/s,sh=st.frameH/s;
+    var cv=document.createElement('canvas');cv.width=st.outW;cv.height=st.outH;
+    cv.getContext('2d').drawImage(st.img,sx,sy,sw,sh,0,0,st.outW,st.outH);
+    var slot=st.slot,dataUrl=cv.toDataURL('image/jpeg',.86);
+    cropClose();
+    photoUploadData(slot,dataUrl);
   });
 })();
 
