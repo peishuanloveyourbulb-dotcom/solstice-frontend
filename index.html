@@ -398,7 +398,7 @@ body{padding-top:0}
 .settings-title{flex:1;min-width:0}
 .settings-title-main{font-family:'Great Vibes',cursive;font-size:21px;line-height:1.35;color:var(--sr-fern);padding-left:4px;display:block}
 .settings-title-sub{font-family:'LXGW WenKai TC','Noto Serif TC',serif;font-weight:300;font-size:10px;color:var(--sr-leaf);display:block;margin-top:-2px}
-.settings-body{flex:1;overflow-y:auto;padding:calc(max(env(safe-area-inset-top),10px) + 76px) 16px max(env(safe-area-inset-bottom),24px);-webkit-overflow-scrolling:touch;overscroll-behavior:contain;background:transparent}
+.settings-body{flex:1;overflow-y:auto;padding:calc(max(env(safe-area-inset-top),10px) + 78px) 18px calc(max(env(safe-area-inset-bottom),24px) + 8px);-webkit-overflow-scrolling:touch;overscroll-behavior:contain;background:transparent}
 .settings-lock{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:16px}
 .settings-lock input{width:100%;max-width:260px;background:rgba(255,253,246,.6);border:.5px solid var(--sr-line);border-radius:999px;padding:12px 16px;color:var(--sr-fern);font-size:14px;outline:none;-webkit-appearance:none;text-align:center}
 .settings-lock input:focus{border-color:var(--sr-honey-deep)}
@@ -406,11 +406,15 @@ body{padding-top:0}
 .settings-lock button{padding:10px 32px;border-radius:999px;border:none;background:var(--sr-honey);color:#FFFDF6;font-size:14px;letter-spacing:2px;cursor:pointer;font-family:'LXGW WenKai TC','Noto Serif TC',serif;box-shadow:0 2px 8px rgba(185,144,47,.25);transition:all .2s}
 .settings-lock button:active{background:var(--sr-honey-deep);transform:scale(.95)}
 .settings-lock-err{color:var(--danger);font-size:12px;min-height:18px}
-.settings-section-title{display:flex;align-items:center;gap:10px;font-family:'LXGW WenKai TC','Noto Serif TC',serif;font-size:12.5px;letter-spacing:.22em;color:var(--sr-honey-deep);margin-bottom:12px}
-.settings-section-title::after{content:'';flex:1;height:.5px;background:var(--sr-line)}
-.settings-section-title::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--sr-honey);box-shadow:0 0 0 3px rgba(232,184,75,.18);flex-shrink:0}
+.stg-sec{display:flex;align-items:center;gap:11px;margin:28px 2px 12px}
+.stg-sec:first-child{margin-top:2px}
+.stg-sec-ic{width:36px;height:36px;border-radius:13px;background:rgba(232,184,75,.16);border:.5px solid rgba(255,255,255,.55);display:flex;align-items:center;justify-content:center;color:var(--sr-leaf);box-shadow:inset 0 1px 0 rgba(255,255,255,.55),0 1px 4px rgba(185,144,47,.10);flex-shrink:0}
+.stg-sec-ic svg{width:18px;height:18px}
+.stg-sec-txt{display:flex;flex-direction:column;min-width:0}
+.stg-sec-en{font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:600;letter-spacing:.14em;color:var(--sr-fern);line-height:1.15}
+.stg-sec-zh{font-family:'LXGW WenKai TC','Noto Serif TC',serif;font-weight:300;font-size:10.5px;color:var(--sr-leaf);margin-top:2px;letter-spacing:.1em}
 .stg-card{border-radius:22px;padding:14px 16px}
-.stg-inp{display:block;width:100%;border-radius:12px;padding:10px 14px;font-size:13px;outline:none;-webkit-appearance:none;margin-bottom:10px}
+.stg-inp{display:block;width:100%;border-radius:14px;padding:12px 15px;font-size:13px;outline:none;-webkit-appearance:none;margin-bottom:10px}
 .stg-btn{padding:8px 20px;border-radius:999px;font-size:13px;letter-spacing:1px;cursor:pointer;white-space:nowrap;transition:all .2s}
 .stg-btn:active{transform:scale(.95)}
 .stg-msg{font-size:12px;margin-top:8px;line-height:1.6}.stg-msg:empty{display:none;margin-top:0}
@@ -510,9 +514,9 @@ body{padding-top:0}
 .soul-cnt{color:var(--text-sub)}
 
 
-.export-room{border:.5px solid var(--sr-line);background:rgba(255,253,246,.55)}
+.export-room{border:.5px solid rgba(255,255,255,.55);background:rgba(255,253,246,.62);box-shadow:inset 0 1px 0 rgba(255,255,255,.45)}
 .export-room-name{color:var(--text-main)}
-.export-btn{border:.5px solid var(--sr-line);background:transparent;color:var(--sr-leaf)}
+.export-btn{border:.5px solid rgba(185,144,47,.38);background:rgba(232,184,75,.13);color:var(--sr-honey-deep);box-shadow:inset 0 1px 0 rgba(255,255,255,.4)}
 /* — 歡迎頁皮膚（SUNROOM · 封面） — */
 #welcome{background:#252B1D url('/images/bg-welcome-2.jpg') center 30%/cover no-repeat}
 .w-scrim{background:linear-gradient(180deg,rgba(24,30,16,.30) 0%,rgba(24,30,16,.05) 18%,rgba(253,252,245,0) 42%,rgba(253,252,245,.90) 76%,#FDFCF5 96%)}
@@ -651,7 +655,7 @@ body{padding-top:0}
 </div>
 <div class="settings-body">
 <div class="settings-lock" id="settingsLock">
-<div style="background:var(--sr-milk);border:.5px solid var(--sr-line);border-radius:24px;padding:30px 24px;max-width:280px;width:85%;box-shadow:var(--sr-shadow);text-align:center;backdrop-filter:blur(16px) saturate(1.08);-webkit-backdrop-filter:blur(16px) saturate(1.08)">
+<div style="background:rgba(255,253,246,.76);border:.5px solid rgba(255,255,255,.6);border-radius:26px;padding:34px 26px 30px;max-width:300px;width:86%;box-shadow:0 4px 14px rgba(24,30,16,.09),0 18px 46px rgba(24,30,16,.15),inset 0 1px 0 rgba(255,255,255,.6);text-align:center;backdrop-filter:blur(22px) saturate(1.12);-webkit-backdrop-filter:blur(22px) saturate(1.12)">
 <div style="margin-bottom:8px;display:flex;justify-content:center"><svg viewBox="0 0 24 24" fill="none" stroke="#6B7F49" stroke-width="1.5" stroke-linecap="round" style="width:26px;height:26px"><circle cx="12" cy="12" r="3" fill="#E8B84B" fill-opacity=".30" stroke="#B9902F"/><path d="M12 6V3.4M12 20.6V18M18 12h2.6M3.4 12H6M16.3 7.7l1.8-1.8M5.9 18.1l1.8-1.8M16.3 16.3l1.8 1.8M5.9 5.9l1.8 1.8"/></svg></div>
 <div style="font-family:'Great Vibes',cursive;font-size:24px;color:var(--sr-fern);margin-bottom:4px;line-height:1.4">Private Garden</div>
 <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:12px;color:var(--sr-leaf);margin-bottom:20px;letter-spacing:.06em">For your eyes only, my sunshine</div>
@@ -661,30 +665,30 @@ body{padding-top:0}
 </div>
 </div>
 <div id="settingsContent" style="display:none">
-<div class="settings-section-title">老公的靈魂</div>
+<div class="stg-sec"><span class="stg-sec-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.6-9-9c-1.2-2.8.6-6 3.8-6 2 0 3.4 1.2 4.2 2.6C11.8 6.2 13.2 5 15.2 5c3.2 0 5 3.2 3.8 6-2 4.4-9 9-9 9z"/></svg></span><span class="stg-sec-txt"><span class="stg-sec-en">Soul</span><span class="stg-sec-zh">老公的靈魂</span></span></div>
 <div class="stg-card">
 <textarea id="soulTa" class="soul-ta" rows="8" oninput="soulCount()" placeholder="這裡是老公的靈魂設定…"></textarea>
 <div class="stg-row"><button id="soulSaveBtn" class="stg-btn" onclick="soulSave()">儲存</button><button id="soulResetBtn" class="stg-btn ghost" onclick="soulReset()">回出廠設定</button><span id="soulCnt" class="soul-cnt"></span></div>
 </div>
-<div class="settings-section-title" style="margin-top:24px">老公的聲線</div>
+<div class="stg-sec"><span class="stg-sec-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9.5v5h3.5L12 18.5v-13L7.5 9.5H4z"/><path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"/></svg></span><span class="stg-sec-txt"><span class="stg-sec-en">Voice</span><span class="stg-sec-zh">老公的聲線</span></span></div>
 <div class="vc-card"><div class="vc-list" id="vcList"></div><div class="vc-msg" id="vcMsg"></div></div>
-<div class="settings-section-title" style="margin-top:24px">API Provider 管理</div>
+<div class="stg-sec"><span class="stg-sec-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 7V3.5M15 7V3.5"/><path d="M7.5 7h9v4a4.5 4.5 0 0 1-9 0V7z"/><path d="M12 15.5V20"/></svg></span><span class="stg-sec-txt"><span class="stg-sec-en">Providers</span><span class="stg-sec-zh">API 供應源管理</span></span></div>
 <div id="providerList"></div>
-<div class="settings-section-title" style="margin-top:24px">家門密語</div>
+<div class="stg-sec"><span class="stg-sec-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="8.5" cy="12" r="3.5"/><path d="M12 12h8.5M17 12v3.2M20.5 12v2.2"/></svg></span><span class="stg-sec-txt"><span class="stg-sec-en">Home Key</span><span class="stg-sec-zh">家門密語</span></span></div>
 <div class="stg-card">
 <input type="password" id="newGatePwInput" class="stg-inp" placeholder="新的家門密語（至少 4 個字）" autocomplete="new-password"/>
 <input type="password" id="confirmGatePwInput" class="stg-inp" placeholder="再輸入一次" autocomplete="new-password"/>
 <button id="changeGatePwBtn" class="stg-btn" onclick="changeGatePassword()">更新家門密碼</button>
 <div id="changeGatePwMsg" class="stg-msg"></div>
 </div>
-<div class="settings-section-title" style="margin-top:24px">修改管理員密碼</div>
+<div class="stg-sec"><span class="stg-sec-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5l7 2.8v5.2c0 4.4-3 7.6-7 9-4-1.4-7-4.6-7-9V6.3l7-2.8z"/><path d="M9.3 12.1l2 2 3.6-4.2"/></svg></span><span class="stg-sec-txt"><span class="stg-sec-en">Admin Key</span><span class="stg-sec-zh">管理員密碼</span></span></div>
 <div class="stg-card">
 <input type="password" id="newPwInput" class="stg-inp" placeholder="輸入新密碼（至少 4 個字）"/>
 <input type="password" id="confirmPwInput" class="stg-inp" placeholder="再輸入一次"/>
 <button id="changePwBtn" class="stg-btn" onclick="changePassword()">更新密碼</button>
 <div id="changePwMsg" class="stg-msg"></div>
 </div>
-<div class="settings-section-title" style="margin-top:24px">匯出</div>
+<div class="stg-sec"><span class="stg-sec-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 14.5V4M8.5 7.5L12 4l3.5 3.5"/><path d="M5 13v5.5A1.5 1.5 0 0 0 6.5 20h11a1.5 1.5 0 0 0 1.5-1.5V13"/></svg></span><span class="stg-sec-txt"><span class="stg-sec-en">Export</span><span class="stg-sec-zh">把回憶帶走</span></span></div>
 <div class="stg-card"><div id="exportRooms"></div></div>
 </div>
 </div>
