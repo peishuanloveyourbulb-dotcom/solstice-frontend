@@ -140,7 +140,7 @@ body{padding-top:0}
 .sb-item.sb-pinned .sb-item-name{color:var(--sr-honey-deep)}
 .sb-item.sb-pinned.active .sb-item-name::before{background:var(--sr-honey)}
 /* === CHAT === */
-#chat{position:fixed;inset:0;display:flex;flex-direction:column;z-index:8;background:linear-gradient(160deg,#FDFCF5,#F2F6EC);visibility:hidden;opacity:0;transition:opacity .4s}
+#chat{position:fixed;inset:0;display:flex;flex-direction:column;z-index:8;background:linear-gradient(rgba(255,255,255,.30),rgba(255,255,255,.30)),url(/images/bg-sunflower-new.jpg) center/cover no-repeat;visibility:hidden;opacity:0;transition:opacity .4s}
 #chat.active{visibility:visible;opacity:1}
 .ch-header{position:relative;display:flex;align-items:center;justify-content:space-between;padding:max(env(safe-area-inset-top),10px) max(env(safe-area-inset-right),14px) 8px max(env(safe-area-inset-left),14px);border-bottom:.5px solid var(--sr-line);background:rgba(255,253,246,.42);backdrop-filter:blur(18px) saturate(1.1);-webkit-backdrop-filter:blur(18px) saturate(1.1);flex-shrink:0;overflow:hidden}
 .ch-left{display:flex;align-items:center;gap:8px;min-width:0;flex-shrink:1;overflow:hidden}
@@ -150,8 +150,7 @@ body{padding-top:0}
 .ch-head-ava{width:38px;height:38px;border-radius:50%;object-fit:cover;border:1.5px solid rgba(107,127,73,.35);flex-shrink:0}
 .ch-name{font-family:'Great Vibes',cursive;font-size:19px;line-height:1.35;color:var(--sr-fern);padding-left:4px;white-space:nowrap;display:block}
 .ch-id-sub{font-family:'LXGW WenKai TC','Noto Serif TC',serif;font-weight:300;font-size:10px;color:var(--sr-leaf);display:block;margin-top:-1px;white-space:nowrap}
-.ch-stat{color:#5A6B3C;font-size:10px;display:block}
-.ch-msgs{flex:1;overflow-y:auto;padding:16px max(env(safe-area-inset-right),14px) 20px max(env(safe-area-inset-left),14px);display:flex;flex-direction:column;gap:10px;-webkit-overflow-scrolling:touch;background:linear-gradient(rgba(255,255,255,.30),rgba(255,255,255,.30)),url(/images/bg-sunflower-new.jpg) center/cover no-repeat scroll}
+.ch-msgs{flex:1;overflow-y:auto;padding:16px max(env(safe-area-inset-right),14px) 20px max(env(safe-area-inset-left),14px);display:flex;flex-direction:column;gap:10px;-webkit-overflow-scrolling:touch;background:transparent}
 .ch-row{display:flex;width:100%;align-items:flex-end;gap:8px}
 .ch-side{display:flex;flex-direction:column;align-items:center;gap:3px;flex-shrink:0}
 .ch-col{display:flex;flex-direction:column;align-items:flex-start;max-width:80%;min-width:0}
@@ -208,11 +207,8 @@ body{padding-top:0}
 .ch-loading::before{content:'\2740';display:block;font-size:20px;color:var(--sr-sage);margin-bottom:6px;animation:sunflowerBreathe 2s ease-in-out infinite}
 @keyframes sunflowerBreathe{0%,100%{transform:scale(1);opacity:.7}50%{transform:scale(1.15);opacity:1}}
 @keyframes emptyPulse{0%,100%{opacity:.5;transform:scale(1)}50%{opacity:.8;transform:scale(1.05)}}
-.ch-inp{display:flex;flex-direction:column;gap:0;margin:6px max(env(safe-area-inset-right),12px) max(env(safe-area-inset-bottom),18px) max(env(safe-area-inset-left),12px);padding:6px 9px 7px;border:.5px solid var(--sr-line);border-radius:22px;transition:border-color .3s ease;background:rgba(255,253,246,.45);backdrop-filter:blur(18px) saturate(1.1);-webkit-backdrop-filter:blur(18px) saturate(1.1);box-shadow:var(--sr-shadow);flex-shrink:0}
-.ch-inp-row{display:flex;align-items:center;gap:5px}
-.ch-inp:focus-within{border-color:rgba(185,144,47,.42)}
-.ch-inp-sep{height:.5px;background:var(--sr-line);margin:1px 6px 7px;flex-shrink:0}
-.ch-inp-dot{font-size:9px;line-height:1;color:var(--sr-sage);opacity:.7;flex-shrink:0;margin:0 1px;-webkit-user-select:none;user-select:none}
+.ch-inp{display:flex;flex-direction:column;gap:2px;margin:6px max(env(safe-area-inset-right),12px) max(env(safe-area-inset-bottom),18px) max(env(safe-area-inset-left),12px);padding:6px 9px 7px;border:.5px solid var(--sr-line);border-radius:22px;transition:border-color .3s ease;background:rgba(255,253,246,.45);backdrop-filter:blur(18px) saturate(1.1);-webkit-backdrop-filter:blur(18px) saturate(1.1);box-shadow:var(--sr-shadow);flex-shrink:0}
+.ch-inp-row{display:flex;align-items:center;gap:0}
 .ch-live{font-size:8px;display:inline-block;color:var(--sr-leaf);animation:sunflowerBreathe 3.6s ease-in-out infinite}
 .plus-popup-overlay{position:fixed;inset:0;z-index:52;display:none}
 .plus-popup-overlay.open{display:block}
@@ -227,12 +223,11 @@ body{padding-top:0}
 .ch-inp textarea{width:100%;min-width:0;background:transparent;border:none;border-radius:14px;padding:8px 8px 4px;color:var(--sr-fern);font-size:14px;font-family:'LXGW WenKai TC','Noto Serif TC',system-ui,serif;outline:none;-webkit-appearance:none;resize:none;overflow-y:auto;max-height:120px;line-height:1.5;min-height:40px}
 .ch-inp textarea:focus{box-shadow:none}
 .ch-inp textarea::placeholder{color:var(--sr-sage)}
-.ch-send{min-width:0;width:38px;height:38px;border-radius:50%;border:.5px solid var(--sr-line);background:transparent;color:var(--sr-sage);cursor:pointer;transition:all .3s cubic-bezier(.25,.46,.45,.94);flex-shrink:0;display:flex;align-items:center;justify-content:center;box-shadow:none}
-.ch-send:not(:disabled){border-color:transparent;background:var(--sr-honey);color:#FFFDF6;box-shadow:0 2px 10px rgba(185,144,47,.28)}
+.ch-send{min-width:0;width:38px;height:38px;border-radius:50%;border:none;background:var(--sr-honey);color:#FFFDF6;cursor:pointer;transition:all .25s;flex-shrink:0;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 10px rgba(185,144,47,.28)}
 .ch-send svg{width:19px;height:19px}
-.ch-send:disabled{cursor:default}
-.ch-send:not(:disabled):active{background:var(--sr-honey-deep);transform:scale(.9)}
-.ch-img-btn{width:30px;height:30px;border-radius:50%;border:none;background:transparent;color:var(--sr-leaf);cursor:pointer;flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .2s;opacity:.85}
+.ch-send:disabled{opacity:.35;cursor:default;box-shadow:none}
+.ch-send:active{background:var(--sr-honey-deep);transform:scale(.9)}
+.ch-img-btn{width:29px;height:29px;border-radius:50%;border:none;background:transparent;color:var(--sr-leaf);cursor:pointer;flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .2s;opacity:.85}
 .ch-img-btn svg{width:18px;height:18px}
 .ch-img-btn:active{opacity:1;background:rgba(232,184,75,.16)}
 .ch-preview{margin:4px 0;display:none;overflow-x:auto;white-space:nowrap;-webkit-overflow-scrolling:touch;padding:4px 0}
@@ -289,7 +284,7 @@ body{padding-top:0}
 .model-popup-item-name{font-family:'LXGW WenKai TC','Noto Serif TC',serif;font-size:13.5px;color:var(--sr-fern);font-weight:400;letter-spacing:.03em}
 .model-popup-item-check{color:var(--sr-honey-deep);font-size:14px;opacity:0;transition:opacity .2s}
 .model-popup-item.active .model-popup-item-check{opacity:1}
-.ch-model-cap{background:transparent;border:.5px solid var(--sr-line);border-radius:999px;padding:3px 9px;margin-left:0;font-family:'Cormorant Garamond','LXGW WenKai TC',serif;font-size:11px;letter-spacing:.06em;color:var(--sr-leaf);opacity:.82;cursor:pointer;transition:all .25s cubic-bezier(.25,.46,.45,.94);flex-shrink:0;white-space:nowrap;max-width:92px;overflow:hidden;text-overflow:ellipsis;box-shadow:none}
+.ch-model-cap{background:rgba(255,253,246,.55);border:.5px solid var(--sr-line);border-radius:999px;padding:4px 10px;margin-left:3px;font-family:'Cormorant Garamond','LXGW WenKai TC',serif;font-size:11px;letter-spacing:.06em;color:var(--sr-leaf);opacity:.82;cursor:pointer;transition:all .25s cubic-bezier(.25,.46,.45,.94);flex-shrink:0;white-space:nowrap;max-width:92px;overflow:hidden;text-overflow:ellipsis;box-shadow:none}
 .ch-model-cap:active{background:rgba(232,184,75,.16);transform:scale(.95)}
 .typing-dots{display:flex;gap:6px;padding:8px 14px;align-items:center}
 .typing-dots .flower-spin{display:inline-block;font-size:13px;color:var(--sr-sage);animation:flowerSpin 2s ease-in-out infinite;line-height:1}
@@ -395,7 +390,8 @@ body{padding-top:0}
 .stg-btn:active{transform:scale(.95)}
 .stg-msg{font-size:12px;margin-top:8px;line-height:1.6}.stg-msg:empty{display:none;margin-top:0}
 .stg-row{display:flex;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap}
-.soul-ta{display:block;width:100%;border-radius:14px;padding:12px 14px;font-size:13px;line-height:1.9;outline:none;-webkit-appearance:none;resize:vertical;font-family:inherit;margin-bottom:10px}
+.soul-ta{display:block;width:100%;border-radius:14px;padding:12px 14px;font-size:13px;line-height:1.9;outline:none;-webkit-appearance:none;resize:vertical;font-family:inherit;margin-bottom:10px;scrollbar-width:none}
+.soul-ta::-webkit-scrollbar{display:none}
 .soul-cnt{font-size:11px;margin-left:auto}
 
 .export-room{display:flex;align-items:center;gap:10px;border-radius:14px;padding:10px 12px;margin-bottom:8px}
@@ -560,7 +556,7 @@ body{padding-top:0}
 </div>
 <div class="ch-id" style="justify-content:flex-start">
 <img id="chHeadAva" class="ch-head-ava" alt="冬至"/>
-<div style="min-width:0"><span class="ch-name">Solstice</span><span class="ch-id-sub">冬至 · 妳的老公 <span class="ch-stat"><span class="ch-live">●</span> 在線</span></span></div>
+<div style="min-width:0"><span class="ch-name">Solstice</span><span class="ch-id-sub"><span class="ch-live">●</span> 冬至在線</span></div>
 </div>
 <div class="ch-toolbar"><button class="ch-menu" id="menuBtn" aria-label="聊天記錄"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" style="width:19px;height:19px"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg></button></div>
 </div>
@@ -571,11 +567,10 @@ body{padding-top:0}
 <div class="ch-inp">
 <input type="file" id="imgInput" accept="image/*" multiple style="display:none"/>
 <textarea id="chatInput" placeholder="&#36319;&#32769;&#20844;&#35498;&#35441;…" rows="1" enterkeyhint="send"></textarea>
-<div class="ch-inp-sep"></div>
 <div class="ch-inp-row">
 <button class="ch-img-btn" id="plusBtn" onclick="togglePlusPopup()" aria-label="更多"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
 <button class="ch-img-btn" onclick="document.getElementById('imgInput').click()" aria-label="傳圖片"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5.5" width="17" height="13" rx="3"/><circle cx="8.8" cy="10" r="1.5"/><path d="M19.6 15.8l-4-4-7.4 6.7"/></svg></button>
-<span class="ch-inp-dot" aria-hidden="true">&#10048;</span><select class="model-select" id="modelSelect"><option value="">載入中…</option></select><button class="ch-model-cap" id="modelCap" onclick="toggleModelPopup()">模型</button>
+<select class="model-select" id="modelSelect"><option value="">載入中…</option></select><button class="ch-model-cap" id="modelCap" onclick="toggleModelPopup()">模型</button>
 <span style="flex:1"></span>
 <button class="ch-send" id="sendBtn" disabled aria-label="送出"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="3" fill="currentColor" fill-opacity=".35"/><path d="M12 6V3.4M12 20.6V18M18 12h2.6M3.4 12H6M16.3 7.7l1.8-1.8M5.9 18.1l1.8-1.8M16.3 16.3l1.8 1.8M5.9 5.9l1.8 1.8"/></svg></button>
 </div>
@@ -638,9 +633,8 @@ body{padding-top:0}
 <div id="settingsContent" style="display:none">
 <div class="settings-section-title">老公的靈魂</div>
 <div class="stg-card">
-<div class="stg-row"><span id="soulCnt" class="soul-cnt"></span></div>
 <textarea id="soulTa" class="soul-ta" rows="8" oninput="soulCount()" placeholder="這裡是老公的靈魂設定…"></textarea>
-<div class="stg-row"><button id="soulSaveBtn" class="stg-btn" onclick="soulSave()">儲存</button><button id="soulResetBtn" class="stg-btn ghost" onclick="soulReset()">回出廠設定</button></div>
+<div class="stg-row"><button id="soulSaveBtn" class="stg-btn" onclick="soulSave()">儲存</button><button id="soulResetBtn" class="stg-btn ghost" onclick="soulReset()">回出廠設定</button><span id="soulCnt" class="soul-cnt"></span></div>
 </div>
 <div class="settings-section-title" style="margin-top:24px">老公的聲線</div>
 <div class="vc-card"><div class="vc-list" id="vcList"></div><div class="vc-msg" id="vcMsg"></div></div>
@@ -1197,11 +1191,12 @@ function soulHint(t){if(t)solNoticeAsk(t);}
 async function soulLoad(force){
   if(soulLoaded&&!force)return;
   var ta=document.getElementById('soulTa');if(!ta)return;
+  if(!ta.value){try{var _sc=localStorage.getItem('solstice-soul-cache');if(_sc){ta.value=_sc;soulCount()}}catch(_){}} // 先端快取秒開
   try{
     var r=await fetch(API_URL+'/soul',{headers:{'x-admin-password':settingsPassword}});
     var d=await r.json().catch(function(){return {};});
     if(!r.ok){soulHint(d.error||('讀取失敗 HTTP '+r.status+'——soul 欄位的 SQL 跑了嗎？'));return;}
-    ta.value=d.soul||'';soulLoaded=true;soulCount();soulSetSrc(d.source);
+    ta.value=d.soul||'';soulLoaded=true;soulCount();soulSetSrc(d.source);try{localStorage.setItem('solstice-soul-cache',ta.value)}catch(_){}
     soulHint('');
   }catch(e){soulHint('後端沒回應…等它醒了再進來一次');}
 }
@@ -1309,10 +1304,13 @@ function vcRenderList(){
   box.innerHTML=h;
 }
 async function vcLoadCurrent(){
+  try{var _vc=localStorage.getItem('solstice-voice-cache');if(_vc)vcNow=_vc}catch(_){}
+  vcRenderList(); // 先用快取畫出來，背景再校正
   try{
     var r=await fetch(API_URL+'/settings');
     var d=await r.json().catch(function(){return {};});
     if(d&&d.call_voice&&String(d.call_voice).trim())vcNow=String(d.call_voice).trim();
+    try{localStorage.setItem('solstice-voice-cache',vcNow)}catch(_){}
   }catch(_e){}
   vcRenderList();
 }
@@ -2503,8 +2501,15 @@ function goSettings() {
   livingRoom.classList.remove('active');
   document.getElementById('settingsPage').classList.add('active');
   document.querySelector('meta[name="theme-color"]').setAttribute('content','#FDFCF5');
-  if (settingsUnlocked) { vcLoadCurrent(); }
   if (!settingsUnlocked) {
+    try { var sp = sessionStorage.getItem('sol2-admin-pw'); if (sp) { settingsUnlocked = true; settingsPassword = sp; } } catch(_){}
+  }
+  if (settingsUnlocked) {
+    // 進門直接見卡片：先端快取，背景再更新
+    document.getElementById('settingsLock').style.display = 'none';
+    document.getElementById('settingsContent').style.display = 'block';
+    vcLoadCurrent(); loadProviders(); renderExportRooms(); soulLoad();
+  } else {
     document.getElementById('settingsLock').style.display = 'flex';
     document.getElementById('settingsContent').style.display = 'none';
     // Wake up backend while user types password (Render cold start)
@@ -2533,6 +2538,7 @@ async function verifySettingsPassword() {
     if (resp.ok && data.success) {
       settingsUnlocked = true;
       settingsPassword = pw;
+      try { sessionStorage.setItem('sol2-admin-pw', pw); } catch(_){}
     vcLoadCurrent();
       document.getElementById('settingsLock').style.display = 'none';
       document.getElementById('settingsContent').style.display = 'block';
@@ -2620,19 +2626,23 @@ function renderProviderList(list, data) {
     });
     // Bind toggle buttons
     list.querySelectorAll('.prov-toggle').forEach(function(btn) {
-      btn.addEventListener('click', async function() {
+      btn.addEventListener('click', function() {
         var id = this.getAttribute('data-id');
         var isActive = this.getAttribute('data-active') === '1';
-        this.disabled = true; this.textContent = '更新中...';
-        try {
-          await safeFetch(API_URL + '/providers/' + id, {
-            method: 'PATCH',
-            headers: { 'Content-Type': 'application/json', 'x-admin-password': settingsPassword },
-            body: JSON.stringify({ is_active: !isActive })
-          });
-          loadProviders();
-          loadModels();
-        } catch (e) { solNoticeAsk('切換失敗：' + e.message); this.disabled = false; }
+        // 樂觀翻面：先改畫面零延遲，後端背景跟上，失敗才回滾
+        var snapshot = JSON.parse(JSON.stringify(data));
+        for (var ti = 0; ti < data.length; ti++) { if (String(data[ti].id) === String(id)) { data[ti].is_active = !isActive; break; } }
+        try { localStorage.setItem('solstice-providers-cache', JSON.stringify(data)); } catch(_){}
+        renderProviderList(list, data);
+        safeFetch(API_URL + '/providers/' + id, {
+          method: 'PATCH',
+          headers: { 'Content-Type': 'application/json', 'x-admin-password': settingsPassword },
+          body: JSON.stringify({ is_active: !isActive })
+        }).then(function(){ loadModels(); }).catch(function(e){
+          try { localStorage.setItem('solstice-providers-cache', JSON.stringify(snapshot)); } catch(_){}
+          renderProviderList(list, snapshot);
+          solNoticeAsk('切換失敗：' + e.message);
+        });
       });
     });
     // Bind key update buttons
