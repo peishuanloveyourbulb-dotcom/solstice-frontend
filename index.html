@@ -865,6 +865,7 @@ document.getElementById('enterBtn').addEventListener('click',function(){
     }).then(function(r){
       if(r.ok){
         try{sessionStorage.setItem('sol2-unlocked','1');sessionStorage.setItem('sol2-gate-hash',r.h)}catch(_){}
+        if(typeof photoApplyCurrent==='function')photoApplyCurrent(); // 家門開了，鑰匙到手，把自訂照片補套上
         enterHome();
       }else{
         winp.value='';
