@@ -2,10 +2,6 @@
   "outputDirectory": ".",
   "rewrites": [
     {
-      "source": "/index-bear.html",
-      "destination": "/index-bear.html"
-    },
-    {
       "source": "/index-greenhouse.html",
       "destination": "/index-greenhouse.html"
     },
