@@ -302,7 +302,7 @@ body{padding-top:0}
 .scroll-bottom-btn:active{transform:translateX(-50%) scale(.88);background:rgba(232,184,75,.14)}
 @keyframes scrollBtnFloat{from{opacity:0;transform:translateX(-50%) translateY(12px) scale(.7)}to{opacity:1;transform:translateX(-50%) translateY(0) scale(1)}}
 /* === MEMORY === */
-#memoryPage{position:fixed;inset:0;display:flex;flex-direction:column;z-index:9;background:linear-gradient(160deg,#FDFCF5,#F2F6EC);transform:translateX(100%);transition:transform .3s ease;visibility:hidden}
+#memoryPage{position:fixed;inset:0;display:flex;flex-direction:column;z-index:9;background:linear-gradient(rgba(255,255,255,.10),rgba(255,255,255,.10)),url(/images/bg-sunflower-new.jpg) center/cover no-repeat;transform:translateX(100%);transition:transform .3s ease;visibility:hidden}
 #memoryPage.active{transform:translateX(0);visibility:visible}
 .mem-float-top{position:absolute;top:max(env(safe-area-inset-top),10px);left:max(env(safe-area-inset-left),14px);right:max(env(safe-area-inset-right),14px);z-index:6;display:flex;flex-direction:column;gap:10px;pointer-events:none}
 .mem-float-top>*{pointer-events:auto}
@@ -348,7 +348,7 @@ body{padding-top:0}
 .mem-pin-toggle{background:none;border:none;cursor:pointer;padding:2px 4px;color:var(--sr-sage);opacity:.7;transition:all .2s;display:inline-flex;align-items:center}
 .mem-pin-toggle.pinned{opacity:1;color:var(--sr-honey-deep);animation:pinBounce .3s ease-out}
 .mem-pin-toggle.pinned svg{fill:rgba(232,184,75,.30)}
-.mem-card.mem-pinned-card{border-color:rgba(255,255,255,.55);background:rgba(252,246,228,.86)}
+.mem-card.mem-pinned-card{border-color:rgba(255,255,255,.55);background:rgba(255,253,246,.82)}
 .mem-pin-toggle:active{transform:scale(1.3)}
 @keyframes pinBounce{0%{transform:scale(1.4)}100%{transform:scale(1)}}
 .mem-text{font-size:13px;line-height:1.75;color:var(--sr-fern);word-wrap:break-word;overflow-wrap:break-word;white-space:pre-wrap}
@@ -379,7 +379,7 @@ body{padding-top:0}
 .rename-input{width:100%;background:var(--glass);border:1px solid var(--border-subtle);border-radius:10px;padding:10px;color:var(--text-main);font-size:13px;margin-bottom:14px;outline:none;-webkit-appearance:none}
 .rename-input:focus{border-color:var(--emerald)}
 /* === SETTINGS PAGE === */
-.settings-page{position:fixed;inset:0;display:flex;flex-direction:column;z-index:9;background:linear-gradient(160deg,#FDFCF5,#F2F6EC);transform:translateX(100%);transition:transform .3s ease;visibility:hidden}
+.settings-page{position:fixed;inset:0;display:flex;flex-direction:column;z-index:9;background:linear-gradient(rgba(255,255,255,.10),rgba(255,255,255,.10)),url(/images/bg-sunflower-new.jpg) center/cover no-repeat;transform:translateX(100%);transition:transform .3s ease;visibility:hidden}
 .settings-page.active{transform:translateX(0);visibility:visible}
 .settings-header{position:absolute;top:max(env(safe-area-inset-top),10px);left:max(env(safe-area-inset-left),14px);right:max(env(safe-area-inset-right),14px);z-index:6;display:flex;align-items:center;gap:8px;padding:7px 12px;border:.5px solid rgba(255,255,255,.55);border-radius:30px;background:rgba(255,253,246,.90);backdrop-filter:blur(24px) saturate(1.15);-webkit-backdrop-filter:blur(24px) saturate(1.15);box-shadow:0 4px 14px rgba(24,30,16,.10),0 16px 40px rgba(24,30,16,.16);overflow:hidden}
 .settings-title{flex:1;min-width:0}
