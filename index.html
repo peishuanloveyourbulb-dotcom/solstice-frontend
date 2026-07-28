@@ -1533,7 +1533,8 @@ async function photoLoad(force){
   if(photoLoaded&&!force)return;
   try{
     var r=await fetch(API_URL+'/photos',{headers:{'x-admin-password':settingsPassword}});
-    var d=await r.json();
+    var raw=await r.text();var d=null;try{d=JSON.parse(raw)}catch(_){}
+    if(!d){photoHint('後端還沒接上照片系統——server.js 部署完成了嗎？等 Render 跑完再回來這頁');return}
     if(!r.ok){photoHint(d.error||('讀取失敗 HTTP '+r.status+'——photos 的 SQL 跑了嗎？'));return}
     photoLoaded=true;
     photoCur.bg=(d.current&&d.current.bg)||null;photoCur.welcome=(d.current&&d.current.welcome)||null;
