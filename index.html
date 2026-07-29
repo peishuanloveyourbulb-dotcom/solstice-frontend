@@ -1555,8 +1555,8 @@ function photoApplySlot(slot,url){
   photoVarsRefresh();
 }
 function photoApplyCurrent(){
-  fetch(API_URL+'/photos/current').then(function(r){return r.json()}).then(function(d){
-    if(!d)return;
+  fetch(API_URL+'/photos/current').then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(d){
+    if(!d||d.error)return; // 家門鎖的拒絕信不是照片資料——原樣退回，不准吞、更不准寫進快取
     photoCur.bg=d.bg||null;photoCur.welcome=d.welcome||null;
     photoCur.chat=d.chat||null;photoCur.memory=d.memory||null;photoCur.settings=d.settings||null;
     photoCur.avatar=d.avatar||null;photoCur.wife=d.wife||null;
