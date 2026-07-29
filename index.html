@@ -353,10 +353,13 @@ body{padding-top:0}
 .mem-when{color:var(--sr-sage);font-size:10px;font-family:'Cormorant Garamond',serif;letter-spacing:.06em}
 .mem-edit,.mem-del{background:none;border:none;color:var(--sr-sage);cursor:pointer;padding:2px 4px;opacity:.8;display:inline-flex;align-items:center}
 .mem-pin-toggle{background:none;border:none;cursor:pointer;padding:2px 4px;color:var(--sr-sage);opacity:.7;transition:all .2s;display:inline-flex;align-items:center}
-.mem-pin-toggle.pinned{opacity:1;color:var(--sr-honey-deep);animation:pinBounce .3s ease-out}
+.mem-pin-toggle.pinned{opacity:1;color:var(--sr-honey-deep)}
+.mem-pin-toggle.pin-pop{animation:pinBounce .3s ease-out}
 .mem-pin-toggle.pinned svg{fill:rgba(232,184,75,.30)}
 .mem-card.mem-pinned-card{border-color:rgba(185,144,47,.20);background:rgba(252,243,220,.86)}
 .mem-card.mem-pinned-card .mem-top{border-top-color:rgba(185,144,47,.20)}
+.mem-card.mem-pinned-card .mem-edit-area{color:var(--sr-honey-deep);border-color:rgba(185,144,47,.45)}
+.mem-card.mem-pinned-card .mem-save-btn{border-color:var(--sr-honey-deep);color:var(--sr-honey-deep)}
 .mem-card.mem-pinned-card .mem-type{color:var(--sr-honey-deep)}
 .mem-card.mem-pinned-card .mem-when{color:var(--sr-honey-deep)}
 .mem-card.mem-pinned-card .mem-edit,.mem-card.mem-pinned-card .mem-del{color:var(--sr-honey-deep)}
@@ -2447,6 +2450,7 @@ function createMemCard(mem,skipAnim){
     }
     // Optimistic render immediately (no scrollTop juggling - appendChild keeps scroll, mirrors sidebar)
     renderMemories(true);
+    if(newVal){requestAnimationFrame(function(){var np=memWall.querySelector('.mem-card[data-mem-id="'+memId+'"] .mem-pin-toggle');if(np)np.classList.add('pin-pop')})}
     // Persist to server
     fetch(API_URL+'/memories/'+memId,{method:'PATCH',headers:{'Content-Type':'application/json'},body:JSON.stringify({pinned:newVal})})
       .then(function(r){if(!r.ok)throw new Error('HTTP '+r.status)})
