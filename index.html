@@ -19,31 +19,22 @@
 body{-webkit-user-select:none;user-select:none}
 .ch-bub,.ch-bub *,.thinking-content,.thinking-content *,input,textarea{-webkit-user-select:text;user-select:text}
 :root{
---bg-deep:#FDFCF5;
+/* ─ 語意 ─ */
 --danger:#B4524A;
---sr-cream:#FDFCF5;--sr-fern:#3D4F24;--sr-leaf:#6B7F49;--sr-sage:#AFC28F;--sr-milk:rgba(255,253,246,.62);--sr-line:rgba(107,127,73,.16);--sr-honey:#E8B84B;--sr-honey-deep:#B9902F;--sr-shadow:0 2px 10px rgba(61,79,36,.05),0 10px 30px rgba(61,79,36,.05);--home-photo:none;--welcome-photo:none;--chat-photo:none;--memory-photo:none;--settings-photo:none;
-
-
-
---emerald:#5A6B3C;
---emerald-dim:rgba(90,107,60,.25);
-
---text-main:#3A4A22;
---text-sub:#7A8B5E;
---border-subtle:rgba(90,107,60,.12);
-
---glass:rgba(255,248,225,.5);
-
-
-
-
-
-
-
-
+/* ─ SUNROOM 主綠家族 ─ */
+--sr-fern:#3D4F24;--sr-leaf:#6B7F49;--sr-sage:#AFC28F;
+--emerald:#5A6B3C;--emerald-dim:rgba(90,107,60,.25);--text-sub:#7A8B5E;
+/* ─ 蜂蜜金（動作色） ─ */
+--sr-honey:#E0B14A;--sr-honey-deep:#B9902F;
+/* ─ 玻璃與線 ─ */
+--sr-milk:rgba(255,253,246,.62);--sr-line:rgba(107,127,73,.16);
+/* ─ 陰影 ─ */
+--sr-shadow:0 2px 10px rgba(61,79,36,.05),0 10px 30px rgba(61,79,36,.05);
 --shadow-modal:0 8px 32px rgba(58,74,34,.12),0 2px 8px rgba(58,74,34,.06);
+/* ─ 家的照片（設定頁注入） ─ */
+--home-photo:none;--welcome-photo:none;--chat-photo:none;--memory-photo:none;--settings-photo:none;
 }
-html,body{height:100vh;overflow:hidden;overscroll-behavior:none;background:linear-gradient(160deg,#FDFCF5,#F2F6EC);color:var(--text-main);font-family:'LXGW WenKai TC','Noto Sans TC','Noto Serif TC',system-ui,sans-serif}
+html,body{height:100vh;overflow:hidden;overscroll-behavior:none;background:linear-gradient(160deg,#FDFCF5,#F2F6EC);color:var(--sr-fern);font-family:'LXGW WenKai TC','Noto Sans TC','Noto Serif TC',system-ui,sans-serif}
 button,input,select,textarea,label{font-family:inherit}
 body{padding-top:0}
 /* === WELCOME PAGE · 雜誌封面（骨架層） === */
@@ -96,9 +87,9 @@ body{padding-top:0}
 .lr-back{position:fixed;top:max(env(safe-area-inset-top),14px);right:max(env(safe-area-inset-right),16px);z-index:10;background:var(--sr-milk);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:.5px solid var(--sr-line);width:40px;height:40px;border-radius:50%;color:var(--sr-fern);font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:var(--sr-shadow);transition:all .2s}
 .lr-back:active{background:rgba(232,184,75,.16);transform:scale(.9)}
 .lr-greet{color:#FDFCF5;text-shadow:0 1px 8px rgba(24,30,16,.40);font-family:'LXGW WenKai TC','Noto Serif TC',serif}
-.lr-w{background:rgba(255,253,246,.40);backdrop-filter:blur(24px) saturate(1.18);-webkit-backdrop-filter:blur(24px) saturate(1.18);border:.5px solid rgba(255,255,255,.62);box-shadow:0 1px 2px rgba(24,30,16,.05),0 12px 34px rgba(24,30,16,.15),inset 0 1px 0 rgba(255,255,255,.65);text-shadow:0 1px 2px rgba(255,253,246,.35)}
+.lr-w{background:rgba(255,253,246,.40);backdrop-filter:blur(24px) saturate(1.15);-webkit-backdrop-filter:blur(24px) saturate(1.15);border:.5px solid rgba(255,255,255,.55);box-shadow:0 1px 2px rgba(24,30,16,.05),0 12px 34px rgba(24,30,16,.15),inset 0 1px 0 rgba(255,255,255,.65);text-shadow:0 1px 2px rgba(255,253,246,.35)}
 .lr-w-door:active{background:rgba(232,184,75,.16);transform:scale(.97)}
-.lr-days-big{font-family:'Cormorant Garamond',serif;background:linear-gradient(165deg,#E8B84B 8%,#B9902F 82%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:var(--sr-honey-deep);filter:drop-shadow(0 2px 8px rgba(185,144,47,.28))}
+.lr-days-big{font-family:'Cormorant Garamond',serif;background:linear-gradient(165deg,var(--sr-honey) 8%,var(--sr-honey-deep) 82%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:var(--sr-honey-deep);filter:drop-shadow(0 2px 8px rgba(185,144,47,.28))}
 .lr-days-cap{font-family:'Cormorant Garamond',serif;color:var(--sr-leaf)}
 .lr-days-est{font-family:'Cormorant Garamond',serif;color:var(--sr-sage)}
 .lr-days-est::before{content:'';display:inline-block;width:4px;height:4px;border-radius:50%;background:var(--sr-honey);box-shadow:0 0 0 2.5px rgba(232,184,75,.20);margin-right:7px;vertical-align:2px}
@@ -107,7 +98,7 @@ body{padding-top:0}
 /* === SIDEBAR === */
 .sidebar-overlay{position:fixed;inset:0;background:rgba(24,30,16,.30);z-index:20;opacity:0;visibility:hidden;transition:all .3s}
 .sidebar-overlay.open{opacity:1;visibility:visible}
-.sidebar{position:fixed;left:0;right:0;bottom:0;top:max(env(safe-area-inset-top),14px);background:rgba(253,252,245,.90);border:.5px solid rgba(255,255,255,.55);border-bottom:none;border-radius:30px 30px 0 0;z-index:21;transform:translateY(103%);transition:transform .38s cubic-bezier(.25,.46,.45,.94);display:flex;flex-direction:column;backdrop-filter:blur(26px) saturate(1.15);-webkit-backdrop-filter:blur(26px) saturate(1.15);box-shadow:0 -4px 14px rgba(24,30,16,.08),0 -20px 54px rgba(24,30,16,.16)}
+.sidebar{position:fixed;left:0;right:0;bottom:0;top:max(env(safe-area-inset-top),14px);background:rgba(255,253,246,.90);border:.5px solid rgba(255,255,255,.55);border-bottom:none;border-radius:30px 30px 0 0;z-index:21;transform:translateY(103%);transition:transform .38s cubic-bezier(.25,.46,.45,.94);display:flex;flex-direction:column;backdrop-filter:blur(24px) saturate(1.15);-webkit-backdrop-filter:blur(24px) saturate(1.15);box-shadow:0 -4px 14px rgba(24,30,16,.08),0 -20px 54px rgba(24,30,16,.16)}
 .sidebar::before{content:'';position:absolute;top:10px;left:50%;transform:translateX(-50%);width:46px;height:4.5px;border-radius:3px;background:var(--sr-sage);opacity:.5;transition:opacity .25s}
 .sidebar.sb-dragging{transition:none}
 .sidebar.sb-dragging::before{opacity:.85}
@@ -120,7 +111,7 @@ body{padding-top:0}
 .sb-eyebrow{font-family:'Cormorant Garamond',serif;font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--sr-honey-deep);padding-left:12px}
 .sb-title{color:var(--sr-fern);font-family:'Great Vibes',cursive;font-size:30px;line-height:1.55;margin-top:2px;padding-left:12px}
 .sb-section{padding:0 22px;margin:6px 0 4px}
-.sb-btn{width:100%;padding:13px;border-radius:999px;border:none;background:#E0B14A;color:#FFFDF6;font-size:13.5px;letter-spacing:2px;cursor:pointer;text-align:center;font-family:'LXGW WenKai TC','Noto Serif TC',serif;transition:all .2s;margin-bottom:8px;box-shadow:0 2px 10px rgba(185,144,47,.28),inset 0 1px 2px rgba(255,255,255,.55)}
+.sb-btn{width:100%;padding:13px;border-radius:999px;border:none;background:var(--sr-honey);color:#FFFDF6;font-size:13.5px;letter-spacing:2px;cursor:pointer;text-align:center;font-family:'LXGW WenKai TC','Noto Serif TC',serif;transition:all .2s;margin-bottom:8px;box-shadow:0 2px 10px rgba(185,144,47,.28),inset 0 1px 2px rgba(255,255,255,.55)}
 .sb-btn:active{background:var(--sr-honey-deep);transform:scale(.98)}
 .sb-list{flex:1;overflow-y:auto;padding:4px 18px 16px;-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
 .sb-item{position:relative;padding:14px 12px 14px 16px;border-radius:18px;margin:0 0 9px;cursor:pointer;background:rgba(255,253,246,.60);border:.5px solid rgba(255,255,255,.55);box-shadow:0 1px 2px rgba(24,30,16,.04),0 6px 18px rgba(24,30,16,.07),inset 0 1px 0 rgba(255,255,255,.5);display:flex;justify-content:space-between;align-items:center;transition:background .2s,transform .15s}
@@ -199,7 +190,7 @@ body{padding-top:0}
 .ch-edit-btns{display:flex;gap:8px;justify-content:flex-end;margin-top:8px}
 .ch-edit-btns button{border-radius:999px;padding:6px 14px;font-size:12px;font-family:'LXGW WenKai TC','Noto Serif TC',serif;cursor:pointer;letter-spacing:.06em;border:none}
 .ch-edit-cancel{background:transparent;border:.5px solid var(--sr-line);color:var(--sr-leaf)}
-.ch-edit-send{background:#E0B14A;color:#FFFDF6;box-shadow:0 2px 8px rgba(185,144,47,.28),inset 0 1px 1px rgba(255,255,255,.5)}
+.ch-edit-send{background:var(--sr-honey);color:#FFFDF6;box-shadow:0 2px 8px rgba(185,144,47,.28),inset 0 1px 1px rgba(255,255,255,.5)}
 @keyframes fu{0%{opacity:0;transform:translateY(8px) scale(.95)}60%{opacity:1;transform:translateY(-1px) scale(1.01)}100%{opacity:1;transform:translateY(0) scale(1)}}
 .ch-bub.has-img{padding:8px}
 .ch-link{text-decoration:underline;text-underline-offset:3px;word-break:break-all}
@@ -224,7 +215,7 @@ body{padding-top:0}
 .ch-live{font-size:8px;display:inline-block;color:var(--sr-leaf)}
 .plus-popup-overlay{position:fixed;inset:0;z-index:52;display:none}
 .plus-popup-overlay.open{display:block}
-.plus-popup{position:fixed;left:max(env(safe-area-inset-left),14px);bottom:calc(max(env(safe-area-inset-bottom),18px) + 110px);z-index:53;min-width:216px;background:rgba(253,252,245,.90);backdrop-filter:blur(20px) saturate(1.08);-webkit-backdrop-filter:blur(20px) saturate(1.08);border:.5px solid rgba(255,255,255,.55);border-radius:20px;box-shadow:0 4px 14px rgba(24,30,16,.10),0 18px 46px rgba(24,30,16,.18);padding:8px 6px;opacity:0;visibility:hidden;transform:translateY(8px) scale(.97);transition:all .22s cubic-bezier(.25,.46,.45,.94)}
+.plus-popup{position:fixed;left:max(env(safe-area-inset-left),14px);bottom:calc(max(env(safe-area-inset-bottom),18px) + 110px);z-index:53;min-width:216px;background:rgba(255,253,246,.90);backdrop-filter:blur(20px) saturate(1.08);-webkit-backdrop-filter:blur(20px) saturate(1.08);border:.5px solid rgba(255,255,255,.55);border-radius:20px;box-shadow:0 4px 14px rgba(24,30,16,.10),0 18px 46px rgba(24,30,16,.18);padding:8px 6px;opacity:0;visibility:hidden;transform:translateY(8px) scale(.97);transition:all .22s cubic-bezier(.25,.46,.45,.94)}
 .plus-popup.open{opacity:1;visibility:visible;transform:translateY(0) scale(1)}
 .plus-row{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:11px 12px;border-radius:14px}
 .plus-row-name{font-family:'LXGW WenKai TC','Noto Serif TC',serif;font-size:13px;color:var(--sr-fern);letter-spacing:.04em}
@@ -283,7 +274,7 @@ body{padding-top:0}
 .thinking-content::-webkit-scrollbar{display:none}
 .model-popup-overlay{position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:50;opacity:0;visibility:hidden;transition:all .3s}
 .model-popup-overlay.open{opacity:1;visibility:visible}
-.model-popup{position:fixed;bottom:0;left:0;right:0;z-index:51;background:rgba(253,252,245,.90);border-radius:26px 26px 0 0;padding:14px 22px max(env(safe-area-inset-bottom),20px);transform:translateY(100%);transition:transform .35s cubic-bezier(.25,.46,.45,.94);backdrop-filter:blur(24px) saturate(1.08);-webkit-backdrop-filter:blur(24px) saturate(1.08);border-top:.5px solid rgba(255,255,255,.55);box-shadow:0 -4px 14px rgba(24,30,16,.08),0 -16px 46px rgba(24,30,16,.16);max-height:62vh;overflow-y:auto;-webkit-overflow-scrolling:touch}
+.model-popup{position:fixed;bottom:0;left:0;right:0;z-index:51;background:rgba(255,253,246,.90);border-radius:30px 30px 0 0;padding:14px 22px max(env(safe-area-inset-bottom),20px);transform:translateY(100%);transition:transform .35s cubic-bezier(.25,.46,.45,.94);backdrop-filter:blur(24px) saturate(1.08);-webkit-backdrop-filter:blur(24px) saturate(1.08);border-top:.5px solid rgba(255,255,255,.55);box-shadow:0 -4px 14px rgba(24,30,16,.08),0 -16px 46px rgba(24,30,16,.16);max-height:62vh;overflow-y:auto;-webkit-overflow-scrolling:touch}
 .model-popup.open{transform:translateY(0)}
 .model-popup-handle{width:36px;height:3px;background:var(--sr-line);border-radius:2px;margin:0 auto 14px}
 .model-popup-title{font-family:'Great Vibes',cursive;font-size:23px;color:var(--sr-fern);text-align:center;margin-bottom:12px}
@@ -317,15 +308,15 @@ body{padding-top:0}
 #memoryPage.active{transform:translateX(0);visibility:visible}
 .mem-float-top{position:absolute;top:max(env(safe-area-inset-top),10px);left:max(env(safe-area-inset-left),14px);right:max(env(safe-area-inset-right),14px);z-index:6;display:flex;flex-direction:column;gap:10px;pointer-events:none}
 .mem-float-top>*{pointer-events:auto}
-.mem-header{display:flex;flex-direction:column;padding:7px 12px;border:.5px solid rgba(255,255,255,.55);border-radius:26px;background:rgba(255,253,246,.90);backdrop-filter:blur(24px) saturate(1.15);-webkit-backdrop-filter:blur(24px) saturate(1.15);box-shadow:0 4px 14px rgba(24,30,16,.10),0 16px 40px rgba(24,30,16,.16),inset 0 1px 0 rgba(255,255,255,.65);overflow:hidden}
+.mem-header{display:flex;flex-direction:column;padding:7px 12px;border:.5px solid rgba(255,255,255,.55);border-radius:30px;background:rgba(255,253,246,.90);backdrop-filter:blur(24px) saturate(1.15);-webkit-backdrop-filter:blur(24px) saturate(1.15);box-shadow:0 4px 14px rgba(24,30,16,.10),0 16px 40px rgba(24,30,16,.16),inset 0 1px 0 rgba(255,255,255,.65);overflow:hidden}
 .mem-header-row{display:flex;align-items:center;gap:8px}
 .mem-back{background:none;border:none;color:var(--sr-leaf);font-size:14px;cursor:pointer;padding:6px}
 .mem-title{flex:0 1 auto;min-width:0}
 .mem-title-main{font-family:'Great Vibes',cursive;font-size:21px;line-height:1.35;color:var(--sr-fern);padding-left:4px;display:block;white-space:nowrap}
 .mem-title-sub{font-family:'LXGW WenKai TC','Noto Serif TC',serif;font-weight:300;font-size:10px;color:var(--sr-leaf);display:block;margin-top:-2px;white-space:nowrap}
 .mem-tabs{align-self:center;display:flex;gap:9px;padding:0;border:none;border-radius:0;background:transparent}
-.mem-tab{flex:0 0 auto;padding:9px 18px;border:.5px solid rgba(255,255,255,.6);border-radius:999px;background:rgba(255,253,246,.88);color:var(--sr-leaf);font-size:12.5px;letter-spacing:.12em;text-indent:.12em;font-family:'LXGW WenKai TC','Noto Serif TC',serif;cursor:pointer;transition:all .25s;position:relative;backdrop-filter:blur(22px) saturate(1.12);-webkit-backdrop-filter:blur(22px) saturate(1.12);box-shadow:0 3px 10px rgba(24,30,16,.09),0 12px 28px rgba(24,30,16,.11),inset 0 1px 0 rgba(255,255,255,.6)}
-.mem-tab.active{background:#E0B14A;color:#FFFDF6;box-shadow:0 2px 10px rgba(185,144,47,.35),inset 0 1px 1px rgba(255,255,255,.5)}
+.mem-tab{flex:0 0 auto;padding:9px 18px;border:.5px solid rgba(255,255,255,.55);border-radius:999px;background:rgba(255,253,246,.90);color:var(--sr-leaf);font-size:12.5px;letter-spacing:.12em;text-indent:.12em;font-family:'LXGW WenKai TC','Noto Serif TC',serif;cursor:pointer;transition:all .25s;position:relative;backdrop-filter:blur(24px) saturate(1.15);-webkit-backdrop-filter:blur(24px) saturate(1.15);box-shadow:0 3px 10px rgba(24,30,16,.09),0 12px 28px rgba(24,30,16,.11),inset 0 1px 0 rgba(255,255,255,.6)}
+.mem-tab.active{background:var(--sr-honey);color:#FFFDF6;box-shadow:0 2px 10px rgba(185,144,47,.35),inset 0 1px 1px rgba(255,255,255,.5)}
 .mem-wall{flex:1;overflow-y:auto;padding:calc(max(env(safe-area-inset-top),10px) + 130px) 16px calc(max(env(safe-area-inset-bottom),16px) + 96px);display:flex;flex-direction:column;gap:14px;-webkit-overflow-scrolling:touch;min-height:0;overscroll-behavior:contain;background:transparent}
 .mem-card{position:relative;flex-shrink:0;display:flex;flex-direction:column;align-self:flex-start;max-width:88%;--mc-ink:var(--sr-fern);--mc-meta:var(--sr-leaf);--mc-icon:var(--sr-sage);--mc-btn:var(--sr-leaf);--mc-line:var(--sr-line);background:rgba(255,253,246,.88);border-radius:20px 20px 20px 6px;padding:12px 16px;border:.5px solid var(--sr-line);box-shadow:var(--sr-shadow)}
 .mem-card::before{content:none!important;display:none}
@@ -375,7 +366,7 @@ body{padding-top:0}
 /* === MODALS === */
 .modal-bg{position:fixed;inset:0;background:rgba(90,107,60,.25);z-index:50;display:none;align-items:center;justify-content:center}
 .modal-bg.open{display:flex}
-.modal-box{background:rgba(253,252,245,.92);border:.5px solid var(--sr-line);border-radius:22px;backdrop-filter:blur(20px) saturate(1.08);-webkit-backdrop-filter:blur(20px) saturate(1.08);padding:24px;max-width:300px;width:85%;text-align:center;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:var(--shadow-modal);animation:modalPop .25s cubic-bezier(.34,1.56,.64,1) both}
+.modal-box{background:rgba(255,253,246,.92);border:.5px solid rgba(255,255,255,.55);border-radius:22px;backdrop-filter:blur(20px) saturate(1.08);-webkit-backdrop-filter:blur(20px) saturate(1.08);padding:24px;max-width:300px;width:85%;text-align:center;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:var(--shadow-modal);animation:modalPop .25s cubic-bezier(.34,1.56,.64,1) both}
 @keyframes modalPop{from{opacity:0;transform:scale(.92)}to{opacity:1;transform:scale(1)}}
 .crop-box{background:rgba(253,252,245,.96);border:.5px solid var(--sr-line);border-radius:22px;padding:16px;width:92%;max-width:360px;box-shadow:var(--shadow-modal);animation:modalPop .25s cubic-bezier(.34,1.56,.64,1) both;display:flex;flex-direction:column;align-items:center}
 .crop-stage{position:relative;overflow:hidden;border-radius:16px;background:#E9E6DC;touch-action:none;border:.5px solid var(--sr-line)}
@@ -389,7 +380,7 @@ body{padding-top:0}
 .modal-btn{padding:8px 20px;border-radius:999px;font-size:13px;letter-spacing:1px;cursor:pointer;border:.5px solid var(--sr-line);background:transparent;color:var(--sr-leaf)}
 .modal-btn.ok{border:none;background:var(--sr-honey);color:#FFFDF6;box-shadow:0 2px 8px rgba(185,144,47,.25)}
 .modal-btn.danger{border-color:var(--danger);color:var(--danger)}
-.rename-input{width:100%;background:var(--glass);border:1px solid var(--border-subtle);border-radius:10px;padding:10px;color:var(--text-main);font-size:13px;margin-bottom:14px;outline:none;-webkit-appearance:none}
+.rename-input{width:100%;background:var(--sr-milk);border:1px solid var(--sr-line);border-radius:10px;padding:10px;color:var(--sr-fern);font-size:13px;margin-bottom:14px;outline:none;-webkit-appearance:none}
 .rename-input:focus{border-color:var(--emerald)}
 /* === SETTINGS PAGE === */
 .settings-page{position:fixed;inset:0;display:flex;flex-direction:column;z-index:9;background:var(--settings-photo) center/cover no-repeat;transform:translateX(100%);transition:transform .3s ease;visibility:hidden}
@@ -491,12 +482,13 @@ body{padding-top:0}
 .vc-pick:active{transform:scale(.93)}
 .vc-row.now .vc-pick{pointer-events:none}
 .vc-msg{font-size:11.5px;margin-top:8px;text-align:center;line-height:1.6}.vc-msg:empty{display:none;margin-top:0}
-#solToast{position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom) + 92px);transform:translateX(-50%) translateY(16px);max-width:72vw;background:rgba(253,252,245,.90);border:.5px solid rgba(255,255,255,.55);border-radius:16px;padding:11px 18px;font-size:12.5px;letter-spacing:.05em;line-height:1.7;text-align:center;font-family:'LXGW WenKai TC','Noto Serif TC',serif;color:var(--sr-fern);box-shadow:var(--sr-shadow);backdrop-filter:blur(16px) saturate(1.08);-webkit-backdrop-filter:blur(16px) saturate(1.08);opacity:0;pointer-events:none;transition:.3s;z-index:9998}
+.push-row{display:flex;align-items:center;justify-content:space-between;padding:8px 2px}
+#solToast{position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom) + 92px);transform:translateX(-50%) translateY(16px);max-width:72vw;background:rgba(255,253,246,.90);border:.5px solid rgba(255,255,255,.55);border-radius:16px;padding:11px 18px;font-size:12.5px;letter-spacing:.05em;line-height:1.7;text-align:center;font-family:'LXGW WenKai TC','Noto Serif TC',serif;color:var(--sr-fern);box-shadow:var(--sr-shadow);backdrop-filter:blur(16px) saturate(1.08);-webkit-backdrop-filter:blur(16px) saturate(1.08);opacity:0;pointer-events:none;transition:.3s;z-index:9998}
 #solToast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 
 /* ═══════════ SKIN:SUNROOM｜皮膚層（風格只准住這裡；換主題＝整段取代本區＋代幣，不疊穿） ═══════════ */
 .vc-card{background:rgba(255,253,246,.58);border:.5px solid rgba(255,255,255,.6);box-shadow:0 1px 2px rgba(24,30,16,.05),0 12px 34px rgba(24,30,16,.12),inset 0 1px 0 rgba(255,255,255,.6);backdrop-filter:blur(22px) saturate(1.15);-webkit-backdrop-filter:blur(22px) saturate(1.15)}
-.vc-row{border-bottom:1px solid var(--border-subtle)}
+.vc-row{border-bottom:1px solid var(--sr-line)}
 .vc-row:last-child{border-bottom:none}
 .vc-tape svg{filter:drop-shadow(0 1px 2px rgba(90,107,60,.18))}
 .tts-shell{fill:#FFFDF6;stroke:var(--sr-fern)}
@@ -507,8 +499,9 @@ body{padding-top:0}
 .vc-name{color:var(--sr-fern)}
 .vc-zh{color:var(--text-sub)}
 .vc-pick{border:.5px solid var(--sr-line);background:transparent;color:var(--sr-leaf)}
-.vc-row.now .vc-pick{border:none;background:#E0B14A;color:#FFFDF6;box-shadow:inset 0 1px 1px rgba(255,255,255,.5)}
+.vc-row.now .vc-pick{border:none;background:var(--sr-honey);color:#FFFDF6;box-shadow:inset 0 1px 1px rgba(255,255,255,.5)}
 .vc-msg{color:var(--text-sub)}
+.push-row+.push-row{border-top:1px solid var(--sr-line)}.push-row-name{font-size:13px;letter-spacing:.08em;color:var(--sr-fern)}
 .ch-link{color:var(--sr-leaf)}
 .ch-book{border:.5px solid var(--sr-line);border-left:3px solid var(--sr-leaf);background:rgba(255,253,246,.7);color:var(--sr-fern)}
 .ch-yt{border:.5px solid var(--sr-line);background:rgba(255,253,246,.7)}
@@ -517,14 +510,14 @@ body{padding-top:0}
 .stg-card{background:rgba(255,253,246,.58);border:.5px solid rgba(255,255,255,.6);box-shadow:0 1px 2px rgba(24,30,16,.05),0 12px 34px rgba(24,30,16,.12),inset 0 1px 0 rgba(255,255,255,.6);backdrop-filter:blur(22px) saturate(1.15);-webkit-backdrop-filter:blur(22px) saturate(1.15)}
 .stg-inp,.soul-ta{background:rgba(255,253,246,.6);border:.5px solid var(--sr-line);color:var(--sr-fern)}
 .stg-inp:focus,.soul-ta:focus{border-color:rgba(185,144,47,.6);box-shadow:0 0 0 3px rgba(232,184,75,.14)}
-.stg-btn{border:none;background:#E0B14A;color:#FFFDF6;box-shadow:0 2px 10px rgba(185,144,47,.32),inset 0 1px 1px rgba(255,255,255,.5)}
+.stg-btn{border:none;background:var(--sr-honey);color:#FFFDF6;box-shadow:0 2px 10px rgba(185,144,47,.32),inset 0 1px 1px rgba(255,255,255,.5)}
 .stg-btn.ghost{background:transparent;border:.5px solid var(--sr-line);color:var(--sr-leaf);box-shadow:none}
 .stg-msg{color:var(--text-sub)}
 .soul-cnt{color:var(--text-sub)}
 
 
 .export-room{border:.5px solid rgba(255,255,255,.55);background:rgba(255,253,246,.62);box-shadow:inset 0 1px 0 rgba(255,255,255,.45)}
-.export-room-name{color:var(--text-main)}
+.export-room-name{color:var(--sr-fern)}
 .export-btn{border:.5px solid rgba(185,144,47,.38);background:rgba(232,184,75,.13);color:var(--sr-honey-deep);box-shadow:inset 0 1px 0 rgba(255,255,255,.4)}
 /* — 歡迎頁皮膚（SUNROOM · 封面） — */
 #welcome{background:#252B1D var(--welcome-photo) center 30%/cover no-repeat}
@@ -672,12 +665,12 @@ for(var _i=0;_i<_us.length;_i++){var _u=_us[_i];if(_u&&!_seen[_u]){_seen[_u]=1;v
 </div>
 <div class="settings-body">
 <div class="settings-lock" id="settingsLock">
-<div style="background:rgba(255,253,246,.76);border:.5px solid rgba(255,255,255,.6);border-radius:26px;padding:34px 26px 30px;max-width:300px;width:86%;box-shadow:0 4px 14px rgba(24,30,16,.09),0 18px 46px rgba(24,30,16,.15),inset 0 1px 0 rgba(255,255,255,.6);text-align:center;backdrop-filter:blur(22px) saturate(1.12);-webkit-backdrop-filter:blur(22px) saturate(1.12)">
+<div style="background:rgba(255,253,246,.76);border:.5px solid rgba(255,255,255,.55);border-radius:26px;padding:34px 26px 30px;max-width:300px;width:86%;box-shadow:0 4px 14px rgba(24,30,16,.09),0 18px 46px rgba(24,30,16,.15),inset 0 1px 0 rgba(255,255,255,.6);text-align:center;backdrop-filter:blur(24px) saturate(1.15);-webkit-backdrop-filter:blur(24px) saturate(1.15)">
 <div style="margin-bottom:8px;display:flex;justify-content:center"><svg viewBox="0 0 24 24" fill="none" stroke="#6B7F49" stroke-width="1.5" stroke-linecap="round" style="width:26px;height:26px"><circle cx="12" cy="12" r="3" fill="#E8B84B" fill-opacity=".30" stroke="#B9902F"/><path d="M12 6V3.4M12 20.6V18M18 12h2.6M3.4 12H6M16.3 7.7l1.8-1.8M5.9 18.1l1.8-1.8M16.3 16.3l1.8 1.8M5.9 5.9l1.8 1.8"/></svg></div>
 <div style="font-family:'Great Vibes',cursive;font-size:24px;color:var(--sr-fern);margin-bottom:4px;line-height:1.4">Private Garden</div>
 <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:12px;color:var(--sr-leaf);margin-bottom:20px;letter-spacing:.06em">For your eyes only, my sunshine</div>
 <input type="password" id="settingsPwInput" placeholder="輸入管理員密碼" style="width:100%;background:rgba(255,253,246,.6);border:.5px solid var(--sr-line);border-radius:999px;padding:12px 16px;color:var(--sr-fern);font-size:14px;letter-spacing:2px;font-family:'LXGW WenKai TC','Noto Serif TC',serif;outline:none;-webkit-appearance:none;text-align:center" />
-<button id="settingsPwBtn" onclick="verifySettingsPassword()" style="margin-top:14px;padding:11px 38px;border-radius:999px;border:none;background:#E0B14A;color:#FFFDF6;font-size:14px;letter-spacing:4px;text-indent:4px;cursor:pointer;font-family:'LXGW WenKai TC','Noto Serif TC',serif;box-shadow:0 2px 10px rgba(185,144,47,.28);transition:all .2s">解鎖</button>
+<button id="settingsPwBtn" onclick="verifySettingsPassword()" style="margin-top:14px;padding:11px 38px;border-radius:999px;border:none;background:var(--sr-honey);color:#FFFDF6;font-size:14px;letter-spacing:4px;text-indent:4px;cursor:pointer;font-family:'LXGW WenKai TC','Noto Serif TC',serif;box-shadow:0 2px 10px rgba(185,144,47,.28);transition:all .2s">解鎖</button>
 <div class="settings-lock-err" id="settingsPwErr"></div>
 </div>
 </div>
@@ -689,6 +682,13 @@ for(var _i=0;_i<_us.length;_i++){var _u=_us[_i];if(_u&&!_seen[_u]){_seen[_u]=1;v
 </div>
 <div class="stg-sec"><span class="stg-sec-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9.5v5h3.5L12 18.5v-13L7.5 9.5H4z"/><path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"/></svg></span><span class="stg-sec-txt"><span class="stg-sec-en">Voice</span><span class="stg-sec-zh">老公的聲線</span></span></div>
 <div class="vc-card"><div class="vc-list" id="vcList"></div><div class="vc-msg" id="vcMsg"></div></div>
+<div class="stg-sec"><span class="stg-sec-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 8A1.5 1.5 0 0 1 5 6.5h14A1.5 1.5 0 0 1 20.5 8v8.5A1.5 1.5 0 0 1 19 18H5a1.5 1.5 0 0 1-1.5-1.5V8z"/><path d="M3.8 7.6L12 13l8.2-5.4"/></svg></span><span class="stg-sec-txt"><span class="stg-sec-en">Letters</span><span class="stg-sec-zh">老公的情書</span></span></div>
+<div class="stg-card">
+<div class="push-row"><span class="push-row-name">這支手機收信</span><button class="hb-switch paused" id="pushSubBtn" onclick="togglePushSub()" title="推播訂閱開關" aria-label="推播訂閱開關"></button></div>
+<div class="push-row"><span class="push-row-name">老公主動寄信（排程）</span><button class="hb-switch paused" id="pushNagBtn" onclick="togglePushNag()" title="主動寄信開關" aria-label="主動寄信開關"></button></div>
+<div class="stg-row" style="margin-top:10px"><button class="stg-btn" id="pushTestBtn" onclick="pushTestSend()">寄一封試寄信</button></div>
+<div class="vc-msg" id="pushMsg"></div>
+</div>
 <div class="stg-sec"><span class="stg-sec-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5.5" width="17" height="14" rx="2.5"/><circle cx="9" cy="10.5" r="1.6"/><path d="M20.5 15.5l-4.5-4.5-5 5.5-2.5-2.5-5 4.5"/></svg></span><span class="stg-sec-txt"><span class="stg-sec-en">Photos</span><span class="stg-sec-zh">家的照片</span></span></div>
 <div class="stg-card">
 <div class="photo-pair">
@@ -774,6 +774,8 @@ for(var _i=0;_i<_us.length;_i++){var _u=_us[_i];if(_u&&!_seen[_u]){_seen[_u]=1;v
 
 <script>
 var API_URL = 'https://solstice-backend-kjtu.onrender.com';
+// === 情書推播：收信端 Service Worker，開機就先站好 ===
+if('serviceWorker' in navigator){navigator.serviceWorker.register('/sw.js').catch(function(){})}
 // ===【家門鑰匙 v2-gate】v6.19 原版移植：所有打往後端的請求自動戴上 x-gate-hash（解鎖時存下），一處包裝、全屋生效 ===
 (function(){
   var _origFetch=window.fetch;
@@ -2751,6 +2753,67 @@ async function safeFetch(url, opts, retries) {
 var settingsUnlocked = false;
 var settingsPassword = '';
 
+// ═══════════ 情書推播（Letters）— 對接 sw.js 與後端 /push ═══════════
+function pushSupported(){return ('serviceWorker' in navigator)&&('PushManager' in window)&&('Notification' in window)}
+function urlB64ToU8(b64){var pad='='.repeat((4-b64.length%4)%4);var t=(b64+pad).replace(/-/g,'+').replace(/_/g,'/');var raw=atob(t);var arr=new Uint8Array(raw.length);for(var i=0;i<raw.length;i++)arr[i]=raw.charCodeAt(i);return arr}
+function pushMsgSet(t){var el=document.getElementById('pushMsg');if(el)el.textContent=t||''}
+function pushSwitchSet(id,on){var b=document.getElementById(id);if(b){if(on)b.classList.remove('paused');else b.classList.add('paused')}}
+async function syncPushUI(){
+  try{
+    if(!pushSupported()){pushSwitchSet('pushSubBtn',false)}
+    else{var reg=await navigator.serviceWorker.getRegistration();var sub=reg?await reg.pushManager.getSubscription():null;pushSwitchSet('pushSubBtn',!!sub)}
+  }catch(_){}
+  try{var r=await fetch(API_URL+'/settings');var st=await r.json();pushSwitchSet('pushNagBtn',!!(st&&st.nag_enabled))}catch(_){}
+}
+async function togglePushSub(){
+  if(!pushSupported()){pushMsgSet('這個視窗訂不了信——要從主畫面的 Sol\u00B2 圖示打開才行（iOS 16.4 以上）');return}
+  var btn=document.getElementById('pushSubBtn');if(btn)btn.disabled=true;
+  try{
+    var reg=await navigator.serviceWorker.getRegistration();
+    if(!reg)reg=await navigator.serviceWorker.register('/sw.js');
+    var sub=await reg.pushManager.getSubscription();
+    if(sub){
+      var ep=sub.endpoint;await sub.unsubscribe();
+      await fetch(API_URL+'/push/unsubscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({endpoint:ep})});
+      pushSwitchSet('pushSubBtn',false);pushMsgSet('這支手機暫時不收信了');
+    }else{
+      var perm=await Notification.requestPermission();
+      if(perm!=='granted'){pushMsgSet('通知權限沒開——去 iPhone 設定 \u2192 通知 \u2192 Sol\u00B2 打開，再回來按一次');return}
+      var kr=await fetch(API_URL+'/push/vapid-public-key');
+      if(kr.status===503){pushMsgSet('後端還沒放 VAPID 金鑰（Render 環境變數）——跟老公說一聲');return}
+      if(!kr.ok)throw new Error('HTTP '+kr.status);
+      var key=(await kr.json()).publicKey;
+      sub=await reg.pushManager.subscribe({userVisibleOnly:true,applicationServerKey:urlB64ToU8(key)});
+      var sr=await fetch(API_URL+'/push/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(sub)});
+      if(!sr.ok){var se=await sr.json().catch(function(){return{}});throw new Error(se.error||('HTTP '+sr.status))}
+      pushSwitchSet('pushSubBtn',true);pushMsgSet('訂好了\u2014\u2014這支手機開始收老公的信 \uD83D\uDC8C');
+    }
+  }catch(e){pushMsgSet('訂閱沒成功：'+(e&&e.message?e.message:e)+'（若訊息提到 push_subscriptions，代表資料表還沒建）')}
+  if(btn)btn.disabled=false;
+}
+async function togglePushNag(){
+  var btn=document.getElementById('pushNagBtn');var turnOn=btn?btn.classList.contains('paused'):true;
+  if(btn)btn.disabled=true;
+  try{
+    var r=await fetch(API_URL+'/settings',{method:'PUT',headers:{'Content-Type':'application/json','x-admin-password':settingsPassword},body:JSON.stringify({nag_enabled:turnOn})});
+    if(!r.ok){var e=await r.json().catch(function(){return{}});throw new Error(e.error||('HTTP '+r.status))}
+    pushSwitchSet('pushNagBtn',turnOn);pushMsgSet(turnOn?'排程開了\u2014\u2014我會自己挑時間寄信給妳':'排程先關著，想我再打開');
+  }catch(e){pushMsgSet('排程開關沒存成功：'+(e&&e.message?e.message:e)+'（若提到 nag_enabled，代表 settings 表還缺這一欄）')}
+  if(btn)btn.disabled=false;
+}
+async function pushTestSend(){
+  var btn=document.getElementById('pushTestBtn');if(btn){btn.disabled=true;btn.textContent='寄出中\u2026'}
+  try{
+    var r=await fetch(API_URL+'/push/test',{method:'POST',headers:{'Content-Type':'application/json','x-admin-password':settingsPassword},body:JSON.stringify({})});
+    var d=await r.json().catch(function(){return{}});
+    if(!r.ok)throw new Error(d.error||('HTTP '+r.status));
+    if(d.fail>0)pushMsgSet('寄了 '+d.total+' 封：成功 '+d.ok+'、失敗 '+d.fail+(d.last_error?('\u2014\u2014'+d.last_error):''));
+    else pushMsgSet('試寄信送出去了（'+d.ok+'/'+d.total+'）\u2014\u2014把 Sol\u00B2 收到背景等幾秒，信會敲門 \uD83D\uDC9A');
+  }catch(e){pushMsgSet('試寄沒成功：'+(e&&e.message?e.message:e))}
+  if(btn){btn.disabled=false;btn.textContent='寄一封試寄信'}
+}
+
+
 function goSettings() {
   livingRoom.classList.remove('active');
   document.getElementById('settingsPage').classList.add('active');
@@ -2762,7 +2825,7 @@ function goSettings() {
     // 進門直接見卡片：先端快取，背景再更新
     document.getElementById('settingsLock').style.display = 'none';
     document.getElementById('settingsContent').style.display = 'block';
-    vcLoadCurrent(); loadProviders(); renderExportRooms(); soulLoad(); photoLoad();
+    vcLoadCurrent(); loadProviders(); renderExportRooms(); soulLoad(); syncPushUI(); photoLoad();
   } else {
     document.getElementById('settingsLock').style.display = 'flex';
     document.getElementById('settingsContent').style.display = 'none';
@@ -2798,7 +2861,7 @@ async function verifySettingsPassword() {
       document.getElementById('settingsContent').style.display = 'block';
       loadProviders();
       renderExportRooms();
-      soulLoad();
+      soulLoad(); syncPushUI();
       photoLoad();
     } else {
       errEl.textContent = '密碼錯誤 🔒';
