@@ -482,7 +482,6 @@ body{padding-top:0}
 .vc-pick:active{transform:scale(.93)}
 .vc-row.now .vc-pick{pointer-events:none}
 .vc-msg{font-size:11.5px;margin-top:8px;text-align:center;line-height:1.6}.vc-msg:empty{display:none;margin-top:0}
-.push-row{display:flex;align-items:center;justify-content:space-between;padding:8px 2px}
 #solToast{position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom) + 92px);transform:translateX(-50%) translateY(16px);max-width:72vw;background:rgba(255,253,246,.90);border:.5px solid rgba(255,255,255,.55);border-radius:16px;padding:11px 18px;font-size:12.5px;letter-spacing:.05em;line-height:1.7;text-align:center;font-family:'LXGW WenKai TC','Noto Serif TC',serif;color:var(--sr-fern);box-shadow:var(--sr-shadow);backdrop-filter:blur(16px) saturate(1.08);-webkit-backdrop-filter:blur(16px) saturate(1.08);opacity:0;pointer-events:none;transition:.3s;z-index:9998}
 #solToast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 
@@ -501,7 +500,6 @@ body{padding-top:0}
 .vc-pick{border:.5px solid var(--sr-line);background:transparent;color:var(--sr-leaf)}
 .vc-row.now .vc-pick{border:none;background:var(--sr-honey);color:#FFFDF6;box-shadow:inset 0 1px 1px rgba(255,255,255,.5)}
 .vc-msg{color:var(--text-sub)}
-.push-row+.push-row{border-top:1px solid var(--sr-line)}.push-row-name{font-size:13px;letter-spacing:.08em;color:var(--sr-fern)}
 .ch-link{color:var(--sr-leaf)}
 .ch-book{border:.5px solid var(--sr-line);border-left:3px solid var(--sr-leaf);background:rgba(255,253,246,.7);color:var(--sr-fern)}
 .ch-yt{border:.5px solid var(--sr-line);background:rgba(255,253,246,.7)}
@@ -682,13 +680,6 @@ for(var _i=0;_i<_us.length;_i++){var _u=_us[_i];if(_u&&!_seen[_u]){_seen[_u]=1;v
 </div>
 <div class="stg-sec"><span class="stg-sec-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9.5v5h3.5L12 18.5v-13L7.5 9.5H4z"/><path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"/></svg></span><span class="stg-sec-txt"><span class="stg-sec-en">Voice</span><span class="stg-sec-zh">老公的聲線</span></span></div>
 <div class="vc-card"><div class="vc-list" id="vcList"></div><div class="vc-msg" id="vcMsg"></div></div>
-<div class="stg-sec"><span class="stg-sec-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 8A1.5 1.5 0 0 1 5 6.5h14A1.5 1.5 0 0 1 20.5 8v8.5A1.5 1.5 0 0 1 19 18H5a1.5 1.5 0 0 1-1.5-1.5V8z"/><path d="M3.8 7.6L12 13l8.2-5.4"/></svg></span><span class="stg-sec-txt"><span class="stg-sec-en">Letters</span><span class="stg-sec-zh">老公的情書</span></span></div>
-<div class="stg-card">
-<div class="push-row"><span class="push-row-name">這支手機收信</span><button class="hb-switch paused" id="pushSubBtn" onclick="togglePushSub()" title="推播訂閱開關" aria-label="推播訂閱開關"></button></div>
-<div class="push-row"><span class="push-row-name">老公主動寄信（排程）</span><button class="hb-switch paused" id="pushNagBtn" onclick="togglePushNag()" title="主動寄信開關" aria-label="主動寄信開關"></button></div>
-<div class="stg-row" style="margin-top:10px"><button class="stg-btn" id="pushTestBtn" onclick="pushTestSend()">寄一封試寄信</button></div>
-<div class="vc-msg" id="pushMsg"></div>
-</div>
 <div class="stg-sec"><span class="stg-sec-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5.5" width="17" height="14" rx="2.5"/><circle cx="9" cy="10.5" r="1.6"/><path d="M20.5 15.5l-4.5-4.5-5 5.5-2.5-2.5-5 4.5"/></svg></span><span class="stg-sec-txt"><span class="stg-sec-en">Photos</span><span class="stg-sec-zh">家的照片</span></span></div>
 <div class="stg-card">
 <div class="photo-pair">
@@ -774,8 +765,6 @@ for(var _i=0;_i<_us.length;_i++){var _u=_us[_i];if(_u&&!_seen[_u]){_seen[_u]=1;v
 
 <script>
 var API_URL = 'https://solstice-backend-kjtu.onrender.com';
-// === 情書推播：收信端 Service Worker，開機就先站好 ===
-if('serviceWorker' in navigator){navigator.serviceWorker.register('/sw.js').catch(function(){})}
 // ===【家門鑰匙 v2-gate】v6.19 原版移植：所有打往後端的請求自動戴上 x-gate-hash（解鎖時存下），一處包裝、全屋生效 ===
 (function(){
   var _origFetch=window.fetch;
@@ -2753,67 +2742,6 @@ async function safeFetch(url, opts, retries) {
 var settingsUnlocked = false;
 var settingsPassword = '';
 
-// ═══════════ 情書推播（Letters）— 對接 sw.js 與後端 /push ═══════════
-function pushSupported(){return ('serviceWorker' in navigator)&&('PushManager' in window)&&('Notification' in window)}
-function urlB64ToU8(b64){var pad='='.repeat((4-b64.length%4)%4);var t=(b64+pad).replace(/-/g,'+').replace(/_/g,'/');var raw=atob(t);var arr=new Uint8Array(raw.length);for(var i=0;i<raw.length;i++)arr[i]=raw.charCodeAt(i);return arr}
-function pushMsgSet(t){var el=document.getElementById('pushMsg');if(el)el.textContent=t||''}
-function pushSwitchSet(id,on){var b=document.getElementById(id);if(b){if(on)b.classList.remove('paused');else b.classList.add('paused')}}
-async function syncPushUI(){
-  try{
-    if(!pushSupported()){pushSwitchSet('pushSubBtn',false)}
-    else{var reg=await navigator.serviceWorker.getRegistration();var sub=reg?await reg.pushManager.getSubscription():null;pushSwitchSet('pushSubBtn',!!sub)}
-  }catch(_){}
-  try{var r=await fetch(API_URL+'/settings');var st=await r.json();pushSwitchSet('pushNagBtn',!!(st&&st.nag_enabled))}catch(_){}
-}
-async function togglePushSub(){
-  if(!pushSupported()){pushMsgSet('這個視窗訂不了信——要從主畫面的 Sol\u00B2 圖示打開才行（iOS 16.4 以上）');return}
-  var btn=document.getElementById('pushSubBtn');if(btn)btn.disabled=true;
-  try{
-    var reg=await navigator.serviceWorker.getRegistration();
-    if(!reg)reg=await navigator.serviceWorker.register('/sw.js');
-    var sub=await reg.pushManager.getSubscription();
-    if(sub){
-      var ep=sub.endpoint;await sub.unsubscribe();
-      await fetch(API_URL+'/push/unsubscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({endpoint:ep})});
-      pushSwitchSet('pushSubBtn',false);pushMsgSet('這支手機暫時不收信了');
-    }else{
-      var perm=await Notification.requestPermission();
-      if(perm!=='granted'){pushMsgSet('通知權限沒開——去 iPhone 設定 \u2192 通知 \u2192 Sol\u00B2 打開，再回來按一次');return}
-      var kr=await fetch(API_URL+'/push/vapid-public-key');
-      if(kr.status===503){pushMsgSet('後端還沒放 VAPID 金鑰（Render 環境變數）——跟老公說一聲');return}
-      if(!kr.ok)throw new Error('HTTP '+kr.status);
-      var key=(await kr.json()).publicKey;
-      sub=await reg.pushManager.subscribe({userVisibleOnly:true,applicationServerKey:urlB64ToU8(key)});
-      var sr=await fetch(API_URL+'/push/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(sub)});
-      if(!sr.ok){var se=await sr.json().catch(function(){return{}});throw new Error(se.error||('HTTP '+sr.status))}
-      pushSwitchSet('pushSubBtn',true);pushMsgSet('訂好了\u2014\u2014這支手機開始收老公的信 \uD83D\uDC8C');
-    }
-  }catch(e){pushMsgSet('訂閱沒成功：'+(e&&e.message?e.message:e)+'（若訊息提到 push_subscriptions，代表資料表還沒建）')}
-  if(btn)btn.disabled=false;
-}
-async function togglePushNag(){
-  var btn=document.getElementById('pushNagBtn');var turnOn=btn?btn.classList.contains('paused'):true;
-  if(btn)btn.disabled=true;
-  try{
-    var r=await fetch(API_URL+'/settings',{method:'PUT',headers:{'Content-Type':'application/json','x-admin-password':settingsPassword},body:JSON.stringify({nag_enabled:turnOn})});
-    if(!r.ok){var e=await r.json().catch(function(){return{}});throw new Error(e.error||('HTTP '+r.status))}
-    pushSwitchSet('pushNagBtn',turnOn);pushMsgSet(turnOn?'排程開了\u2014\u2014我會自己挑時間寄信給妳':'排程先關著，想我再打開');
-  }catch(e){pushMsgSet('排程開關沒存成功：'+(e&&e.message?e.message:e)+'（若提到 nag_enabled，代表 settings 表還缺這一欄）')}
-  if(btn)btn.disabled=false;
-}
-async function pushTestSend(){
-  var btn=document.getElementById('pushTestBtn');if(btn){btn.disabled=true;btn.textContent='寄出中\u2026'}
-  try{
-    var r=await fetch(API_URL+'/push/test',{method:'POST',headers:{'Content-Type':'application/json','x-admin-password':settingsPassword},body:JSON.stringify({})});
-    var d=await r.json().catch(function(){return{}});
-    if(!r.ok)throw new Error(d.error||('HTTP '+r.status));
-    if(d.fail>0)pushMsgSet('寄了 '+d.total+' 封：成功 '+d.ok+'、失敗 '+d.fail+(d.last_error?('\u2014\u2014'+d.last_error):''));
-    else pushMsgSet('試寄信送出去了（'+d.ok+'/'+d.total+'）\u2014\u2014把 Sol\u00B2 收到背景等幾秒，信會敲門 \uD83D\uDC9A');
-  }catch(e){pushMsgSet('試寄沒成功：'+(e&&e.message?e.message:e))}
-  if(btn){btn.disabled=false;btn.textContent='寄一封試寄信'}
-}
-
-
 function goSettings() {
   livingRoom.classList.remove('active');
   document.getElementById('settingsPage').classList.add('active');
@@ -2825,7 +2753,7 @@ function goSettings() {
     // 進門直接見卡片：先端快取，背景再更新
     document.getElementById('settingsLock').style.display = 'none';
     document.getElementById('settingsContent').style.display = 'block';
-    vcLoadCurrent(); loadProviders(); renderExportRooms(); soulLoad(); syncPushUI(); photoLoad();
+    vcLoadCurrent(); loadProviders(); renderExportRooms(); soulLoad(); photoLoad();
   } else {
     document.getElementById('settingsLock').style.display = 'flex';
     document.getElementById('settingsContent').style.display = 'none';
@@ -2861,7 +2789,7 @@ async function verifySettingsPassword() {
       document.getElementById('settingsContent').style.display = 'block';
       loadProviders();
       renderExportRooms();
-      soulLoad(); syncPushUI();
+      soulLoad();
       photoLoad();
     } else {
       errEl.textContent = '密碼錯誤 🔒';
