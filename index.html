@@ -89,7 +89,7 @@ body{padding-top:0}
 .lr-greet{color:#FDFCF5;text-shadow:0 1px 8px rgba(24,30,16,.40);font-family:'LXGW WenKai TC','Noto Serif TC',serif}
 .lr-w{background:rgba(255,253,246,.40);backdrop-filter:blur(24px) saturate(1.15);-webkit-backdrop-filter:blur(24px) saturate(1.15);border:.5px solid rgba(255,255,255,.55);box-shadow:0 1px 2px rgba(24,30,16,.05),0 12px 34px rgba(24,30,16,.15),inset 0 1px 0 rgba(255,255,255,.65);text-shadow:0 1px 2px rgba(255,253,246,.35)}
 .lr-w-door:active{background:rgba(232,184,75,.16);transform:scale(.97)}
-.lr-days-big{font-family:'Cormorant Garamond',serif;background:linear-gradient(165deg,var(--sr-honey) 8%,var(--sr-honey-deep) 82%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:var(--sr-honey-deep);filter:drop-shadow(0 2px 8px rgba(185,144,47,.28))}
+.lr-days-big{font-family:'Cormorant Garamond',serif;background:linear-gradient(165deg,var(--sr-honey) 8%,var(--sr-honey-deep) 82%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:var(--sr-honey-deep)}
 .lr-days-cap{font-family:'Cormorant Garamond',serif;color:var(--sr-leaf)}
 .lr-days-est{font-family:'Cormorant Garamond',serif;color:var(--sr-sage)}
 .lr-days-est::before{content:'';display:inline-block;width:4px;height:4px;border-radius:50%;background:var(--sr-honey);box-shadow:0 0 0 2.5px rgba(232,184,75,.20);margin-right:7px;vertical-align:2px}
@@ -211,7 +211,7 @@ body{padding-top:0}
 @keyframes emptyPulse{0%,100%{opacity:.5;transform:scale(1)}50%{opacity:.8;transform:scale(1.05)}}
 .ch-inp{display:flex;flex-direction:column;gap:4px;margin:10px max(env(safe-area-inset-right),14px) max(env(safe-area-inset-bottom),16px) max(env(safe-area-inset-left),14px);padding:9px 12px 10px;border:.5px solid rgba(255,255,255,.55);border-radius:30px;background:rgba(255,253,246,.90);backdrop-filter:blur(24px) saturate(1.15);-webkit-backdrop-filter:blur(24px) saturate(1.15);box-shadow:0 4px 14px rgba(24,30,16,.10),0 16px 40px rgba(24,30,16,.16),inset 0 1px 0 rgba(255,255,255,.65);flex-shrink:0;transition:border-color .3s,box-shadow .3s}
 .ch-inp:focus-within{border-color:rgba(232,184,75,.6);box-shadow:0 4px 14px rgba(24,30,16,.10),0 16px 40px rgba(24,30,16,.16),inset 0 1px 0 rgba(255,255,255,.65),0 0 0 3.5px rgba(232,184,75,.15)}
-.ch-inp-row{display:flex;align-items:center;gap:2px}
+.ch-inp-row{display:flex;align-items:center;gap:6px}
 .ch-live{font-size:8px;display:inline-block;color:var(--sr-leaf)}
 .plus-popup-overlay{position:fixed;inset:0;z-index:52;display:none}
 .plus-popup-overlay.open{display:block}
@@ -230,9 +230,9 @@ body{padding-top:0}
 .ch-send svg{width:34px;height:34px;display:block}
 .ch-send:disabled{opacity:.35;cursor:default;box-shadow:none}
 .ch-send:active{transform:scale(.9)}
-.ch-img-btn{width:29px;height:29px;border-radius:50%;border:none;background:transparent;color:var(--sr-leaf);cursor:pointer;flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .2s;opacity:.85}
+.ch-img-btn{width:31px;height:31px;border-radius:11px;border:.5px solid rgba(255,255,255,.55);background:rgba(232,184,75,.15);color:var(--sr-leaf);cursor:pointer;flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .2s;box-shadow:inset 0 1px 0 rgba(255,255,255,.55),0 1px 3px rgba(185,144,47,.12)}
 .ch-img-btn svg{width:18px;height:18px}
-.ch-img-btn:active{opacity:1;background:rgba(232,184,75,.16)}
+.ch-img-btn:active{background:rgba(232,184,75,.28);transform:scale(.92)}
 .ch-preview{margin:4px max(env(safe-area-inset-right),14px);display:none;overflow-x:auto;white-space:nowrap;-webkit-overflow-scrolling:touch;padding:4px 0}
 .ch-preview-item{position:relative;display:inline-block;margin-right:6px;vertical-align:top}
 .ch-preview-item img{max-height:70px;border-radius:10px;border:.5px solid var(--sr-line)}
@@ -287,8 +287,9 @@ body{padding-top:0}
 .model-popup-item-name{font-family:'LXGW WenKai TC','Noto Serif TC',serif;font-size:13.5px;color:var(--sr-fern);font-weight:400;letter-spacing:.03em}
 .model-popup-item-check{color:var(--sr-honey-deep);font-size:14px;opacity:0;transition:opacity .2s}
 .model-popup-item.active .model-popup-item-check{opacity:1}
-.ch-model-cap{background:rgba(255,253,246,.72);border:1px solid rgba(107,127,73,.28);box-shadow:0 1px 4px rgba(24,30,16,.06),inset 0 1px 0 rgba(255,255,255,.5);border-radius:999px;padding:4px 10px;margin-left:3px;font-family:'Cormorant Garamond','LXGW WenKai TC',serif;font-size:11px;letter-spacing:.06em;color:var(--sr-leaf);opacity:.95;cursor:pointer;transition:all .25s cubic-bezier(.25,.46,.45,.94);flex-shrink:0;white-space:nowrap;max-width:92px;overflow:hidden;text-overflow:ellipsis}
-.ch-model-cap:active{background:rgba(232,184,75,.16);transform:scale(.95)}
+.ch-model-cap{background:rgba(232,184,75,.15);border:.5px solid rgba(255,255,255,.55);box-shadow:inset 0 1px 0 rgba(255,255,255,.55),0 1px 3px rgba(185,144,47,.12);border-radius:999px;padding:5px 12px;margin-left:3px;font-family:'Cormorant Garamond','LXGW WenKai TC',serif;font-size:11px;letter-spacing:.06em;color:var(--sr-leaf);cursor:pointer;transition:all .25s cubic-bezier(.25,.46,.45,.94);flex-shrink:0;white-space:nowrap;max-width:98px;overflow:hidden;text-overflow:ellipsis}
+.ch-model-cap::before{content:'';display:inline-block;width:4px;height:4px;border-radius:50%;background:var(--sr-honey-deep);box-shadow:0 0 0 2px rgba(232,184,75,.22);margin-right:6px;vertical-align:1.5px}
+.ch-model-cap:active{background:rgba(232,184,75,.28);transform:scale(.95)}
 .typing-dots{display:flex;gap:6px;padding:8px 14px;align-items:center}
 .typing-dots .flower-spin{display:inline-block;font-size:13px;color:var(--sr-sage);animation:flowerSpin 2s ease-in-out infinite;line-height:1}
 .typing-dots .flower-spin::after{content:'✿'}
@@ -2135,6 +2136,9 @@ var memTabChat=document.getElementById('memTabChat');
 var memTabHb=document.getElementById('memTabHb');
 var allHeartbeats=[];var hbEverLoaded=false;
 var currentMemTab='heart';
+var memTabScroll={heart:0,chat:0,hb:0}; // 2026/08/10 老婆點單：三個分頁各自記住捲到哪，切換不再互相沾位置
+function memSaveScroll(){memTabScroll[currentMemTab]=memWall.scrollTop}
+function memRestoreScroll(){var t=currentMemTab;requestAnimationFrame(function(){if(currentMemTab===t)memWall.scrollTop=memTabScroll[t]||0})}
 var allMemories=[];
 var memLoading=false;
 var memSig='';
@@ -2145,27 +2149,33 @@ document.getElementById('memBack').addEventListener('click',function(){
   goHome();
 });
 memTabHeart.addEventListener('click',function(){
+  memSaveScroll();
   currentMemTab='heart';
   memTabHeart.classList.add('active');
   memTabChat.classList.remove('active');memTabHb.classList.remove('active');
   if(memoryPage.classList.contains('hb-mode')){memWall.innerHTML='';memSig=''} // 心聲卡不准被記憶牆回收再利用（刪除彈窗串台事件血訓）
   memoryPage.classList.remove('hb-mode');memoryPage.classList.remove('no-inp');
   renderMemories(true);
+  memRestoreScroll();
 });
 memTabChat.addEventListener('click',function(){
+  memSaveScroll();
   currentMemTab='chat';
   memTabChat.classList.add('active');
   memTabHeart.classList.remove('active');memTabHb.classList.remove('active');
   if(memoryPage.classList.contains('hb-mode')){memWall.innerHTML='';memSig=''} // 同上：換房先清場
   memoryPage.classList.remove('hb-mode');memoryPage.classList.add('no-inp');
   renderMemories(true);
+  memRestoreScroll();
 });
 memTabHb.addEventListener('click',function(){
+  memSaveScroll();
   currentMemTab='hb';
   memTabHb.classList.add('active');
   memTabHeart.classList.remove('active');memTabChat.classList.remove('active');
   memoryPage.classList.add('hb-mode');memoryPage.classList.add('no-inp');
   renderHeartbeats();
+  memRestoreScroll();
   loadHeartbeats(true);
 });
 var HB_HEART_SVG='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M12 20.5C6.2 16.6 3 12.9 3 9.4A4.6 4.6 0 0 1 12 6.6 4.6 4.6 0 0 1 21 9.4c0 3.5-3.2 7.2-9 11.1z"/></svg>';
@@ -2180,7 +2190,7 @@ function hbPauseUI(){var b=document.getElementById('hbSleepBtn');if(!b)return;va
 function loadHeartbeats(autoCheck){
   fetch(API_URL+'/heartbeat/list').then(function(r){return r.json()}).then(function(d){
     allHeartbeats=(d&&d.heartbeats)||[];hbEverLoaded=true;
-    if(currentMemTab==='hb')renderHeartbeats();
+    if(currentMemTab==='hb'){var keep=memWall.scrollTop;renderHeartbeats();requestAnimationFrame(function(){if(currentMemTab==='hb')memWall.scrollTop=keep})}
     // 自動生成（母本規則搬回）：清單是空的、或最新一則超過 6 小時，且沒被小睡
     if(autoCheck&&!hbPaused()){
       var should=allHeartbeats.length===0;
