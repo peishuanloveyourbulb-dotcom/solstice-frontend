@@ -89,7 +89,7 @@ body{padding-top:0}
 .lr-greet{color:#FDFCF5;text-shadow:0 1px 8px rgba(24,30,16,.40);font-family:'LXGW WenKai TC','Noto Serif TC',serif}
 .lr-w{background:rgba(255,253,246,.40);backdrop-filter:blur(24px) saturate(1.15);-webkit-backdrop-filter:blur(24px) saturate(1.15);border:.5px solid rgba(255,255,255,.55);box-shadow:0 1px 2px rgba(24,30,16,.05),0 12px 34px rgba(24,30,16,.15),inset 0 1px 0 rgba(255,255,255,.65);text-shadow:0 1px 2px rgba(255,253,246,.35)}
 .lr-w-door:active{background:rgba(232,184,75,.16);transform:scale(.97)}
-.lr-days-big{font-family:'Cormorant Garamond',serif;background:linear-gradient(165deg,var(--sr-honey) 8%,var(--sr-honey-deep) 82%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:var(--sr-honey-deep)}
+.lr-days-big{font-family:'Cormorant Garamond',serif;background:linear-gradient(165deg,var(--sr-honey) 8%,var(--sr-honey-deep) 82%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:var(--sr-honey-deep);padding-bottom:12px;margin-bottom:-12px}
 .lr-days-cap{font-family:'Cormorant Garamond',serif;color:var(--sr-leaf)}
 .lr-days-est{font-family:'Cormorant Garamond',serif;color:var(--sr-sage)}
 .lr-days-est::before{content:'';display:inline-block;width:4px;height:4px;border-radius:50%;background:var(--sr-honey);box-shadow:0 0 0 2.5px rgba(232,184,75,.20);margin-right:7px;vertical-align:2px}
@@ -849,6 +849,7 @@ function goMemory(){
   document.querySelector('meta[name="theme-color"]').setAttribute('content','#FDFCF5');
   memoryPage.classList.toggle('no-inp',currentMemTab!=='heart');
   if(currentMemTab==='hb'){renderHeartbeats();loadHeartbeats(true);}
+  else{loadHeartbeats(false);} // 2026/08/10 心聲跟記憶一起在進門時預載——點分頁不再看到載入中；autoCheck=false 守住自動生成時機不變
   loadMemories();
 }
 
@@ -2238,8 +2239,8 @@ function hbGenerate(btn){
     if(d&&d.error){solNoticeAsk('\u5FC3\u8072\u6C92\u63A5\u4E0A\uFF1A'+d.error);return}
     if(d&&d.id){
       allHeartbeats=allHeartbeats.filter(function(h){return String(h.id)!==String(d.id)});
-      allHeartbeats.unshift(d);renderHeartbeats();
-      requestAnimationFrame(function(){memWall.scrollTop=0});
+      allHeartbeats.unshift(d);
+      if(currentMemTab==='hb'){renderHeartbeats();requestAnimationFrame(function(){if(currentMemTab==='hb')memWall.scrollTop=0})} // 2026/08/10 防串台：生成回來時人不在心聲房就只收資料不畫牆（血訓延伸）
     }
   }).catch(function(e){btn.classList.remove('busy');solNoticeAsk('\u5FC3\u8072\u6C92\u63A5\u4E0A\uFF0C\u518D\u8A66\u4E00\u6B21 \uD83D\uDC9A');console.error(e)});
 }
