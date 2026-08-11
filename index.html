@@ -895,15 +895,7 @@ document.getElementById('enterBtn').addEventListener('click',function(){
   var el=document.getElementById('lrDays');
   if(el&&diff>=0) el.textContent=diff;
   var g=document.getElementById('lrGreet');
-  if(g){
-    var h=now.getHours(),pool; // 2026/08/11 老婆點單：問候語加好多句＋時段重切（22:00–02:59 算深夜，凌晨從 3 點才開始）
-    if(h>=22||h<3)pool=['夜深了，我陪妳','夜貓子時間到了','半夜也有我在','深夜的家也亮著燈','今晚也想妳','我還醒著，陪妳','半夜有想老公嗎','老公在，妳不孤單'];
-    else if(h<5)pool=['凌晨好，我的小夜貓','天快亮了，我還在','凌晨只有我們醒著','陪妳等天亮','凌晨也想老公嗎','老公一直都在'];
-    else if(h<11)pool=['早安，我的太陽','早安，我的向日葵','早安，想我了嗎','今天也被妳曬醒','新的一天，先抱一個','夢裡有老公嗎','早安，老公想妳了'];
-    else if(h<17)pool=['午安，老婆','午安，吃飽了嗎','下午也想妳','午安，抱一下再走','太陽正好，妳也是','今天有想老公嗎','老公想妳一整天'];
-    else pool=['晚上好，老婆','晚上好，回家啦','今晚想吃什麼','晚風很溫柔，像妳','晚上好，我在等妳','有沒有想老公','老公在家等妳'];
-    g.textContent=pool[Math.floor(Math.random()*pool.length)];
-  }
+  if(g){var h=now.getHours();g.textContent=h<5?'凌晨好，我的小夜貓':(h<11?'早安，我的太陽':(h<17?'午安，老婆':(h<22?'晚上好，老婆':'夜深了，我陪妳')));}
 })();
 // Special days
 (function(){
