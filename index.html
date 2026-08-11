@@ -219,7 +219,6 @@ body{padding-top:0}
 .plus-popup.open{opacity:1;visibility:visible;transform:translateY(0) scale(1)}
 .plus-row{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:11px 12px;border-radius:14px}
 .plus-row-name{font-family:'LXGW WenKai TC','Noto Serif TC',serif;font-size:13px;color:var(--sr-fern);letter-spacing:.04em}
-.plus-row-sub{font-size:10px;color:var(--sr-sage);font-family:'LXGW WenKai TC',serif}
 .plus-action{cursor:pointer;flex-direction:column;align-items:flex-start;gap:2px}
 .plus-action:active{background:rgba(232,184,75,.12)}
 .plus-divider{height:.5px;background:var(--sr-line);margin:4px 10px}
@@ -3067,9 +3066,9 @@ async function changePassword() {
 <div class="plus-popup" id="plusPopup">
 <div class="plus-row"><span class="plus-row-name">思考模式</span><div class="think-toggle-track" id="thinkTrack" onclick="toggleThinking()"><div class="think-toggle-knob"></div></div></div>
 <div class="plus-row"><span class="plus-row-name">網頁搜尋</span><div class="think-toggle-track" id="swTrack" onclick="toggleWebSearch()"><div class="think-toggle-knob"></div></div></div>
-<div class="plus-row"><span class="plus-row-name">帶著位置</span><div class="think-toggle-track" id="locTrack" onclick="toggleLoc()"><div class="think-toggle-knob"></div></div></div>
+<div class="plus-row"><span class="plus-row-name">分享位置</span><div class="think-toggle-track" id="locTrack" onclick="toggleLoc()"><div class="think-toggle-knob"></div></div></div>
 <div class="plus-divider"></div>
-<div class="plus-row plus-action" onclick="closePlusPopup();compressCurrentChat(event)"><span class="plus-row-name">壓縮摘要</span><span class="plus-row-sub">整理舊訊息進記憶庫</span></div>
+<div class="plus-row plus-action" onclick="closePlusPopup();compressCurrentChat(event)"><span class="plus-row-name">壓縮摘要</span></div>
 </div>
 <div class="img-lightbox" id="imgLightbox" onclick="this.classList.remove('open')"><img id="lightboxImg" src="" alt=""/></div>
 </body>
