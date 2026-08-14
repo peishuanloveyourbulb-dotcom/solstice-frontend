@@ -128,8 +128,9 @@ body{padding-top:0}
 .sb-item-when{font-family:'Cormorant Garamond',serif;font-size:10.5px;letter-spacing:.16em;color:var(--text-sub);margin-top:4px}
 .sb-item-actions{display:flex;gap:10px;margin-left:10px;flex-shrink:0}
 .sb-act-btn{background:none;border:none;color:var(--sr-sage);font-size:11px;letter-spacing:.08em;padding:3px 6px;border-radius:6px;cursor:pointer;display:inline-flex;align-items:center}
+.sb-act-pin svg{filter:grayscale(.85);opacity:.4;transition:none}/* 2026/08/12 向日葵釘瞬切（承 v6.19 母本）：卡片瞬移、花也要同步開 */
 .sb-act-pin.pinned{color:var(--sr-honey-deep)}
-.sb-act-pin.pinned svg{fill:rgba(232,184,75,.30)}
+.sb-act-pin.pinned svg{filter:none;opacity:1}
 .sb-item.sb-pinned .sb-act-btn{color:var(--sr-honey-deep)}
 .sb-empty{text-align:center;color:var(--text-sub);font-size:13px;padding:30px 0;white-space:pre-line;line-height:1.8}
 .sb-empty::before{content:'\2740';display:block;font-size:22px;color:var(--sr-sage);margin-bottom:8px;animation:emptyPulse 2.5s ease-in-out infinite}
@@ -344,7 +345,8 @@ body{padding-top:0}
 .mem-pin-toggle{background:none;border:none;cursor:pointer;padding:2px 4px;color:var(--mc-icon);opacity:.7;transition:all .2s;display:inline-flex;align-items:center}
 .mem-pin-toggle.pinned{opacity:1;color:var(--mc-btn)}
 .mem-pin-toggle.pin-pop{animation:pinBounce .3s ease-out}
-.mem-pin-toggle.pinned svg{fill:rgba(232,184,75,.30)}
+.mem-pin-toggle svg{filter:grayscale(.85);transition:none}
+.mem-pin-toggle.pinned svg{filter:grayscale(0) drop-shadow(0 1px 3px rgba(168,127,53,.4))}/* 2026/08/12 v6.19 向日葵釘搬家：釘下去開花＋蜜色落影 */
 .mem-pin-toggle:active{transform:scale(1.3)}
 @keyframes pinBounce{0%{transform:scale(1.4)}100%{transform:scale(1)}}
 .mem-text{font-size:13px;line-height:1.75;color:var(--mc-ink);word-wrap:break-word;overflow-wrap:break-word;white-space:pre-wrap}
@@ -1685,7 +1687,7 @@ function loadSessions(){
   fetch(API_URL+'/sessions').then(function(r){return r.json()}).then(function(s){allSessions=s||[];renderSessionList();applyModelForRoom()}).catch(function(){if(allSessions.length===0)sessionList.innerHTML='<div class="sb-empty">\u8F09\u5165\u5931\u6557\uFF0C\u8ACB\u91CD\u8A66</div>'})
 }
 
-var SB_PIN_SVG='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width:15px;height:15px"><path d="M12 17v5"/><path d="M9 10.8V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v5.8l2.5 2.7a1 1 0 0 1-.7 1.7H7.2a1 1 0 0 1-.7-1.7L9 10.8z"/></svg>';
+var SB_PIN_SVG='<svg viewBox="0 0 80 80" style="width:15px;height:15px;display:block"><g fill="#FFC93C" stroke="#B8801F" stroke-width="6" stroke-linejoin="round"><ellipse cx="40" cy="20" rx="7" ry="13"/><ellipse cx="40" cy="60" rx="7" ry="13"/><ellipse cx="20" cy="40" rx="13" ry="7"/><ellipse cx="60" cy="40" rx="13" ry="7"/><ellipse cx="26" cy="26" rx="6" ry="11" transform="rotate(-45 26 26)"/><ellipse cx="54" cy="54" rx="6" ry="11" transform="rotate(-45 54 54)"/><ellipse cx="54" cy="26" rx="6" ry="11" transform="rotate(45 54 26)"/><ellipse cx="26" cy="54" rx="6" ry="11" transform="rotate(45 26 54)"/></g><circle cx="40" cy="40" r="10" fill="#6B4A1A" stroke="#402810" stroke-width="4"/></svg>'; // 2026/08/12 向日葵釘子從 v6.19 母本搬回家：沒釘＝灰階睡著，釘下去＝開花
 var SR_EDIT_SVG='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px"><path d="M17 3a2.8 2.8 0 1 1 4 4L7.5 20.5 3 21.5l1-4.5L17 3z"/></svg>';
 var SR_REGEN_SVG='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px"><path d="M20 12a8 8 0 1 1-2.34-5.66"/><path d="M20 3.5V7h-3.5"/></svg>';
 var MEM_SAVE_SVG='<svg class="ms-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3.5h10a1.2 1.2 0 0 1 1.2 1.2V20.5L12 16.4 5.8 20.5V4.7A1.2 1.2 0 0 1 7 3.5z"/></svg><svg class="ms-ok" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12.5l5 5L19.5 7"/></svg>';
