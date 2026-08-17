@@ -1602,10 +1602,15 @@ function photoPick(slot){photoUpSlot=slot;var f=document.getElementById('photoFi
   });
 })();
 function photoUploadData(slot,dataUrl){
-  photoHint('上傳中…');
+  var prev=photoCur[slot]; // 記住原本掛的那件，萬一上傳失敗要掛回去
+  photoApplySlot(slot,dataUrl); // ★ 即時：裁好的照片直接先上牆，零等待，不等 Render 醒
+  photoHint('畫面先換好了，正在存進倉庫…');
   fetch(API_URL+'/photos/upload',{method:'POST',headers:{'Content-Type':'application/json','x-admin-password':settingsPassword},body:JSON.stringify({data:dataUrl,slot:slot})})
-  .then(function(r){return r.json().then(function(d){if(!r.ok)throw new Error(d.error||('HTTP '+r.status));photoApplySlot(slot,d.url||null);photoHint('');photoLoad(true)})})
-  .catch(function(e){photoHint('上傳沒成功：'+e.message)});
+  .then(function(r){return r.json().then(function(d){if(!r.ok)throw new Error(d.error||('HTTP '+r.status));
+    var real=d.url||null;
+    if(real){var pre=new Image();pre.onload=function(){photoApplySlot(slot,real);try{var pc=JSON.parse(localStorage.getItem('sol2-photos')||'{}');pc[slot]=real;localStorage.setItem('sol2-photos',JSON.stringify(pc))}catch(_){}};pre.src=real;} // 倉庫那份載好才無縫換過去，中間始終看得到本地這張；順手更新快取，下次冷開機也是新照片
+    photoHint('');photoLoad(true)})})
+  .catch(function(e){photoApplySlot(slot,prev);photoHint('上傳沒成功，先掛回原本那張：'+e.message)});
 }
 
 // === ✂️ 裁切室：拖曳調位置、滑桿調大小，框就是那個位置的實際比例 ===
