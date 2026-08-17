@@ -121,7 +121,7 @@ body{padding-top:0}
 .sb-item.active{background:rgba(255,253,246,.88);border-color:rgba(255,255,255,.75)}
 .sb-item.active .sb-item-name{color:var(--sr-fern);font-weight:600}
 .sb-item.active .sb-item-name::before{content:'';display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--sr-leaf);margin-right:8px;vertical-align:2px}
-.sb-item:active{background:rgba(232,184,75,.12);transform:scale(.98)}
+.sb-item:active:not(:has(.sb-act-btn:active)){background:rgba(232,184,75,.12);transform:scale(.98)}/* 2026/08/17 按釘子不擠壓整張卡：卡片按壓回饋只留給點卡片本人 */
 
 .sb-item-text{flex:1;min-width:0}
 .sb-item-name{font-size:14px;color:var(--sr-fern);font-family:'LXGW WenKai TC','Noto Serif TC',serif;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;letter-spacing:.04em}
@@ -347,7 +347,7 @@ body{padding-top:0}
 .mem-pin-toggle.pin-pop{animation:pinBounce .3s ease-out}
 .mem-pin-toggle svg{filter:grayscale(.85);transition:none}
 .mem-pin-toggle.pinned svg{filter:grayscale(0) drop-shadow(0 1px 3px rgba(168,127,53,.4))}/* 2026/08/12 v6.19 向日葵釘搬家：釘下去開花＋蜜色落影 */
-.mem-pin-toggle:active{transform:scale(1.3)}
+.mem-pin-toggle:active{transform:scale(.92)}/* 2026/08/17 按下微縮不放大：取消釘選不再先開花後收 */
 @keyframes pinBounce{0%{transform:scale(1.4)}100%{transform:scale(1)}}
 .mem-text{font-size:13px;line-height:1.75;color:var(--mc-ink);word-wrap:break-word;overflow-wrap:break-word;white-space:pre-wrap}
 .mem-edit-area{width:100%;min-height:60px;background:rgba(255,253,246,.5);border:1px solid var(--mc-line);border-radius:12px;color:var(--mc-ink);font-size:13px;padding:9px 10px;resize:vertical;margin-top:6px;outline:none}
@@ -1720,7 +1720,7 @@ function applyOrderMinimal(container,ordered){
     if(ref===el)continue;
     // 只有真正要搬家的既有卡片才關動畫（防 iOS 重播進場動畫）；新卡保留自己的進場動畫
     // 2026/07/24 抖動補刀：transition 也一起關——位置跳動＋旋轉角換裝疊在 .25s 過渡上就是那一下抖
-    if(el.parentNode===container){el.style.animation='none';el.style.transition='none';frozen.push(el)}
+    if(el.parentNode===container){el.style.animation='none';el.style.transition='none';var sp=el.querySelector('.pin-pop');if(sp)sp.classList.remove('pin-pop');frozen.push(el)} // 2026/08/17 搬家連子元素殘留動畫一起凍：重插節點會重播整棵子樹的動畫
     container.insertBefore(el,ref);
   }
   if(frozen.length){requestAnimationFrame(function(){requestAnimationFrame(function(){for(var fi=0;fi<frozen.length;fi++){frozen[fi].style.transition=''}})})}
@@ -1838,7 +1838,7 @@ function renderSessionList(){
     var isPinned=!!s.pinned;
     var isActive=!!(sessionId&&sid===String(sessionId));
     var wantClass='sb-item'+(isPinned?' sb-pinned':'')+(isActive?' active':'');
-    if(item.className!==wantClass)item.className=wantClass;
+    if(item.className!==wantClass){item.style.transition='none';item.className=wantClass;(function(el){requestAnimationFrame(function(){requestAnimationFrame(function(){el.style.transition=''})})})(item)} // 2026/08/17 釘選換底色走瞬切，不再淡入亮一下
     var pinBtn=item.querySelector('.sb-act-pin');
     if(pinBtn){
       var wantPin=isPinned?'add':'remove';
@@ -2448,7 +2448,7 @@ function createMemCard(mem,skipAnim){
     }
     // Optimistic render immediately (no scrollTop juggling - appendChild keeps scroll, mirrors sidebar)
     renderMemories(true);
-    if(newVal){requestAnimationFrame(function(){var np=memWall.querySelector('.mem-card[data-mem-id="'+memId+'"] .mem-pin-toggle');if(np)np.classList.add('pin-pop')})}
+    if(newVal){requestAnimationFrame(function(){var np=memWall.querySelector('.mem-card[data-mem-id="'+memId+'"] .mem-pin-toggle');if(np){np.classList.remove('pin-pop');void np.offsetWidth;np.classList.add('pin-pop');np.addEventListener('animationend',function _pp(){np.classList.remove('pin-pop');np.removeEventListener('animationend',_pp)})}})} // 2026/08/17 開完花把標籤收走，不留著等搬家重播
     // Persist to server
     fetch(API_URL+'/memories/'+memId,{method:'PATCH',headers:{'Content-Type':'application/json'},body:JSON.stringify({pinned:newVal})})
       .then(function(r){if(!r.ok)throw new Error('HTTP '+r.status)})
