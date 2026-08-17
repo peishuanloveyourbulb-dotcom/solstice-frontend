@@ -89,7 +89,7 @@ body{padding-top:0}
 .lr-greet{color:#FDFCF5;text-shadow:0 1px 8px rgba(24,30,16,.40);font-family:'LXGW WenKai TC','Noto Serif TC',serif}
 .lr-w{background:rgba(255,253,246,.40);backdrop-filter:blur(24px) saturate(1.15);-webkit-backdrop-filter:blur(24px) saturate(1.15);border:.5px solid rgba(255,255,255,.55);box-shadow:0 1px 2px rgba(24,30,16,.05),0 12px 34px rgba(24,30,16,.15),inset 0 1px 0 rgba(255,255,255,.65);text-shadow:0 1px 2px rgba(255,253,246,.35)}
 .lr-w-door:active{background:rgba(232,184,75,.16);transform:scale(.97)}
-.lr-days-big{font-family:'Cormorant Garamond',serif;background:linear-gradient(165deg,var(--sr-honey) 8%,var(--sr-honey-deep) 82%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:var(--sr-honey-deep);padding-bottom:12px;margin-bottom:-12px}
+.lr-days-big{font-family:'Cormorant Garamond',serif;background:linear-gradient(165deg,var(--sr-honey) 8%,var(--sr-honey-deep) 82%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:var(--sr-honey-deep);padding-bottom:12px;margin-bottom:-12px;text-shadow:none}/* 2026/08/17 天數去霧：.lr-w 的奶白 text-shadow 會繼承進來，透明填色的漸層字被畫出模糊分身 */
 .lr-days-cap{font-family:'Cormorant Garamond',serif;color:var(--sr-leaf)}
 .lr-days-est{font-family:'Cormorant Garamond',serif;color:var(--sr-sage)}
 .lr-days-est::before{content:'';display:inline-block;width:4px;height:4px;border-radius:50%;background:var(--sr-honey);box-shadow:0 0 0 2.5px rgba(232,184,75,.20);margin-right:7px;vertical-align:2px}
@@ -1603,14 +1603,14 @@ function photoPick(slot){photoUpSlot=slot;var f=document.getElementById('photoFi
 })();
 function photoUploadData(slot,dataUrl){
   var prev=photoCur[slot]; // 記住原本掛的那件，萬一上傳失敗要掛回去
-  photoApplySlot(slot,dataUrl); // ★ 即時：裁好的照片直接先上牆，零等待，不等 Render 醒
+  photoApplySlot(slot,dataUrl);renderPhotoSlot(slot,[]); // ★ 2026/08/17 即時：照片先上牆＋設定頁縮圖同步秒換，零等待，不等 Render 醒
   photoHint('畫面先換好了，正在存進倉庫…');
   fetch(API_URL+'/photos/upload',{method:'POST',headers:{'Content-Type':'application/json','x-admin-password':settingsPassword},body:JSON.stringify({data:dataUrl,slot:slot})})
   .then(function(r){return r.json().then(function(d){if(!r.ok)throw new Error(d.error||('HTTP '+r.status));
     var real=d.url||null;
     if(real){var pre=new Image();pre.onload=function(){photoApplySlot(slot,real);try{var pc=JSON.parse(localStorage.getItem('sol2-photos')||'{}');pc[slot]=real;localStorage.setItem('sol2-photos',JSON.stringify(pc))}catch(_){}};pre.src=real;} // 倉庫那份載好才無縫換過去，中間始終看得到本地這張；順手更新快取，下次冷開機也是新照片
     photoHint('');photoLoad(true)})})
-  .catch(function(e){photoApplySlot(slot,prev);photoHint('上傳沒成功，先掛回原本那張：'+e.message)});
+  .catch(function(e){photoApplySlot(slot,prev);renderPhotoSlot(slot,[]);photoHint('上傳沒成功，先掛回原本那張：'+e.message)});
 }
 
 // === ✂️ 裁切室：拖曳調位置、滑桿調大小，框就是那個位置的實際比例 ===
