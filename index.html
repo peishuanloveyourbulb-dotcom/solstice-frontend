@@ -204,7 +204,7 @@ body{padding-top:0}
 .ch-yt-cap{display:block;font-size:11.5px;padding:7px 10px}
 .ch-time-sep{display:flex;align-items:center;gap:14px;padding:10px 8px;margin:4px 0}
 .ch-time-sep::before,.ch-time-sep::after{content:'';flex:1;height:.5px;background:rgba(61,79,36,.14)}
-.ch-time-sep span{font-size:10px;color:var(--sr-leaf);font-family:'Cormorant Garamond','LXGW WenKai TC',serif;letter-spacing:.22em;white-space:nowrap;text-shadow:0 1px 6px rgba(253,252,245,.8)}
+.ch-time-sep span{font-size:10px;color:var(--sr-leaf);font-family:'Cormorant Garamond','LXGW WenKai TC',serif;letter-spacing:.22em;white-space:nowrap;text-shadow:none;background:rgba(255,253,246,.78);border:.5px solid rgba(255,255,255,.6);border-radius:999px;padding:4px 12px 4px 14px;box-shadow:0 1px 3px rgba(24,30,16,.07),inset 0 1px 0 rgba(255,255,255,.6)}/* 2026/08/17 時間戳去霧：粗暈影改成小奶玻璃牌，字回到利的；不加 backdrop blur 是為了滾動順 */
 .ch-time-sep.new-day span{color:var(--sr-honey-deep);font-weight:600}
 .ch-loading{display:grid;justify-items:center;text-align:center;color:var(--text-sub);font-size:13px;padding:20px}
 .ch-loading::before{content:'';display:block;width:32px;height:32px;margin:0 auto 8px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80'%3E%3Cg fill='%23F2C15C' stroke='%23A87F35' stroke-width='6' stroke-linejoin='round'%3E%3Cellipse cx='40' cy='20' rx='7' ry='13'/%3E%3Cellipse cx='40' cy='60' rx='7' ry='13'/%3E%3Cellipse cx='20' cy='40' rx='13' ry='7'/%3E%3Cellipse cx='60' cy='40' rx='13' ry='7'/%3E%3Cellipse cx='26' cy='26' rx='6' ry='11' transform='rotate(-45 26 26)'/%3E%3Cellipse cx='54' cy='54' rx='6' ry='11' transform='rotate(-45 54 54)'/%3E%3Cellipse cx='54' cy='26' rx='6' ry='11' transform='rotate(45 54 26)'/%3E%3Cellipse cx='26' cy='54' rx='6' ry='11' transform='rotate(45 26 54)'/%3E%3C/g%3E%3Ccircle cx='40' cy='40' r='10' fill='%237A4F16' stroke='%235C3D10' stroke-width='4'/%3E%3C/svg%3E") center/contain no-repeat;animation:sunflowerBreathe 2s ease-in-out infinite;filter:drop-shadow(0 2px 4px rgba(168,127,53,.25))}
@@ -1394,7 +1394,7 @@ async function vcLoadCurrent(){
 function vcPreview(v,btn){
   if(btn===vcTapeBtn&&(btn.classList.contains('playing')||btn.classList.contains('loading'))){vcStopPreview();vcMsgSet('');return;}
   vcStopPreview();
-  vcTapeBtn=btn;btn.classList.add('loading');vcMsgSet('清嗓子中…');
+  vcTapeBtn=btn;btn.classList.add('loading'); // 2026/08/17 老婆說不用碎念：清嗓子提示拿掉，卡帶鈕自己會跳讀取動畫
   vcSlow=setTimeout(function(){if(vcTapeBtn===btn)vcMsgSet('老公去暖嗓了（後端剛睡醒最久要一分鐘）…');},6000);
   vcAudio=new Audio();
   var gk='';try{gk=sessionStorage.getItem('sol2-gate-hash')||''}catch(_g){}
@@ -1405,7 +1405,7 @@ function vcPreview(v,btn){
   var p=vcAudio.play();if(p&&p.catch)p.catch(function(err){vcStopPreview();vcMsgSet('手機把聲音攔了一下（'+((err&&err.name)||'播放被擋')+'）…再點一次');});
 }
 async function vcPick(v,btn){
-  vcMsgSet('幫妳換聲音中…');
+  // 2026/08/17 換聲音也不碎念：按下去安靜換，換好標籤直接移過去
   try{
     var pw=(typeof getAdminPassword==='function'?getAdminPassword():'')||settingsPassword;
     var r=await fetch(API_URL+'/settings',{method:'PUT',headers:{'Content-Type':'application/json','x-admin-password':pw},body:JSON.stringify({call_voice:v})});
